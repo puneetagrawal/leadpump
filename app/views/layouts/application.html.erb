@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leadpump</title>
+  <%= stylesheet_link_tag  "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= tag :meta, :name => 'stripe-key', :content => STRIPE_PUBLIC_KEY %>
+
+</head>
+<body>
+
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
