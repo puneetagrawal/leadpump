@@ -1,11 +1,15 @@
 Leadpump::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
 
   # root to: "home#index"
   root to: 'plans#index'
   resources :subscriptions
   resources :plans
+
+  match 'home/index' => 'home#index'
+
+  match '/test' => 'home#test'
 
 
   # match "/stripe_events", :to => "events#stripe_events", :as => :stripe_events, :via => :post

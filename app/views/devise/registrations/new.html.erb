@@ -1,18 +1,120 @@
-<h2>Sign up</h2>
+<div class="container">
+	<div class="row-fluid">
+		<div class="span12">
+			<h3>Thanks for choosing Buddy Referrer</h3>
+			<h4>You're just 60 seconds away from your new account.</h4>
+			<div class="signupCon">
+				<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form form_block test", }) do |f| %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+				<div class="row-fluid">
+					<span class="span7">											
+						<%= devise_error_messages! %>
+						<div class="errors" id="stripe_error"></div>
+						<h2><span class="number">1</span>Your details</h2>
+						<p><%= f.label :Name %><%= f.text_field :name, :autofocus => true %></p>
+						<p><%= f.label :Email %><%= f.email_field :email %></p>
+						<p><%= f.label :Password %><%= f.password_field :password %></p>
+						<p><label></label><a class="link" href="#">Need More users?</a> </p>
+						
+						<%= f.fields_for :addresses, Address.new do |adr| %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+						<h2><span class="number">2</span>Your billing address</h2>
+						<p><%= adr.label :Address %><%= adr.text_field :address %></p>
+						<p><%= adr.label :City %><%= adr.text_field :city %></p>
+						<p><%= adr.label :Zip %><%= adr.text_field :zip %></p>
+						<p><%= adr.label :State %><%= adr.text_field :state %></p>
+						<p><%= adr.label :Phone %><%= adr.text_field :phone %></p>
+						<p><%= adr.label :Zip %><%= adr.text_field :zip %></p>							
+						<div class="clear"></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+						<% end %>
+						
+						<%= form_for :subscription do |sub| %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+						<h2><span class="number">3</span>Your billing information</h2>
+						<p><label></label><label class="checkboxCon"><input type="radio"> <strong>Pay per month</strong></label>
+							<label class="checkboxCon"><input type="radio"><strong>Pay per year</strong> (save 17%)</label>
+						</p>
+						<p><label></label><span class="trialInfo"><strong>30-day Free Trial</strong> - we won't bill you unless you keep your account open past your 30-day free trial,
+							which starts today.</span></p>
+							<div class="clear"></div>
+							<hr/>
+							<p><label></label><label class="checkboxCon"><input type="radio"> <strong>Credit card</strong></label>
+								<label class="checkboxCon"><input type="radio"><strong>PayPal</strong></label>
+								<label class="checkboxCon"><input type="radio"><strong>Coupon</strong></label></p>
+								<p><label></label><span class="trialInfo mb10">You will be automatically redirected to PayPal in order to finish your purchase</span></p>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+								<%= sub.hidden_field :plan_id %>
+								<%= sub.hidden_field :stripe_card_token %>
 
-<%= render "devise/shared/links" %>
+								<p><%= label_tag :Type %><%= select_tag "credit_card", options_for_select([ "VISA", "MasterCard" ], "MasterCard") %></p>
+								<p>
+									<%= label_tag :card_number, "Credit Card Number" %>
+									<%= text_field_tag :card_number, nil, name: nil %>
+								</p>
+
+								<p>
+									<%= label_tag :card_code, "Security Code on Card (CVV)" %>
+									<%= text_field_tag :card_code, nil, name: nil %>
+								</p>
+
+								<p>
+									<%= label_tag :card_month, "Card Expiration" %>
+									<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
+									<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+								</p>
+
+								<div class="clear"></div>
+								<%end%>
+								
+
+							</span>
+							<span class="span5 signupRight">
+								<h2>What people say</h2>
+								<div class="testimonial">
+									<p>"I found the extremely fabulous and user-friendly MindMeister. What makes MindMeister rock my world is the fact that
+										it lets two or more people work on a mind map at the same time."
+									</p><strong>Social Signal</strong>
+								</div>
+								<div class="testimonial">
+									<p>"MindMeister is a superb free online mind/project mapping come outliner service. The interface is excellent,
+										clear and easy to use, and the feature set is also top notch."</p>
+										<strong>The Red Ferret Journal</strong>
+									</div>
+									<div class="testimonial">
+										<p>"MindMeister is a superb free online mind/project mapping come outliner service. The interface is excellent,
+											clear and easy to use, and the feature set is also top notch."</p>
+											<strong>The Red Ferret Journal</strong>
+										</div>
+									</span>
+								</div>
+								<div class="row-fluid">
+									<div class="span12 mt20">
+										<div class="span3">
+											<div class="priceDetail">
+												<strong>Free</strong>
+												<p>$9.99 after trial</p>
+											</div>
+											<p class="text-center mt10"><a class="link" href="#">Got a Promo Code?</a></p>
+										</div>
+
+										<div class="span9">
+											<p>Your 30-day free trial lasts until 11/20/2013. If you don't want to continue using Mindmeister, just cancel
+												before the trial ends and you won't be charged. Otherwise, you'll pay just $9.99/month for the service as
+												long as your account is open. You can upgrade or downgrade at any time.</p>
+											</div>
+										</div>
+									</div>
+									<div class="row-fluid">
+										<div class="span12 acceptTerms">
+											<label class="pull-left"><input type="checkbox">I have read and accept the <a class="link" href="#">Terms and Conditions</a></label>
+											<%#= f.submit "Sign up" %>
+											<a class="btn yellow pull-right" href="" id="test1">Create My Account</a>
+										</div>
+									</div>
+									<% end %>
+								</div>
+							</div>
+
+						</div>
+					</div>

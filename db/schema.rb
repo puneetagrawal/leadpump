@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131017201558) do
+ActiveRecord::Schema.define(:version => 20131021135215) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "address"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "state"
+    t.string   "phone"
+    t.string   "country"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "plans", :force => true do |t|
     t.string   "name"
@@ -23,12 +35,13 @@ ActiveRecord::Schema.define(:version => 20131017201558) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "plan_id"
     t.string   "email"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.string   "stripe_customer_token"
+    t.string   "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
+    t.string   "name",                   :default => "", :null => false
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"

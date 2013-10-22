@@ -1,0 +1,670 @@
+html,
+button,
+input,
+select,
+textarea { color: #222;}
+html {font-size: 1em; line-height: 1.4;}
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+body {
+    margin:0;
+    padding: 0;
+}
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+.clear {
+    clear: both;
+    width: 100%;
+}
+a {
+    outline: none;
+}
+
+.fl {
+    float:left;
+}
+.fr {
+    float:right;
+}
+
+.pr {
+    position: relative;
+}
+.whalf {
+    width: 50%;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+.m0 {
+    margin: 0 !important;
+}
+.m15 {
+    margin: 15px;
+}
+.mt10 {
+    margin-top: 10px;
+}
+.img_margin {
+    margin: 0 15px 15px 15px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.displayBlock {
+    display: block;
+}
+h3 {
+    font-size:24px;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: #666;
+    margin: 0 0 20px 0;
+}
+h4 {
+    font-size:16px;
+    color: #666;
+}
+.pd15 {
+  padding:15px;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+    
+}
+
+
+
+/*form*/
+input, textarea {
+    border:1px solid #ddd;
+    background: #fff;
+    width: 100%;
+  -moz-border-radius:0 !important;
+  -webkit-border-radius:0 !important;
+  border-radius:0 !important;
+    box-shadow: none !important;
+
+}
+input[type="radio"], input[type="checkbox"] {
+    width: auto;
+}
+input[type="submit"], input[type="reset"] {
+    display: inline-block;
+    width: auto;
+}
+.input_number {
+    width: 88px;
+    height: 33px;
+}
+.input_sml {
+    width: 165px;
+}
+select {
+    border:1px solid #ddd;
+    background: #fff;
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    margin-bottom: 15px;
+
+}
+textarea {
+    height: 200px;
+}
+.dashboard_con {
+    width: 680px;
+    min-height: 600px;
+}
+
+.btn {
+    background: #eee;
+    color: #fff;
+    font-size:16px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    min-width: 100px;
+    display: inline-block;
+    text-align: center;
+}
+.btn:hover {
+    background: #ddd;
+}
+.red {
+    background: #ed1c24;
+    border-color: #ad1016;
+}
+.red:hover {
+    background: #ad1016;
+}
+.yellow {
+    background: #ffde52;
+    border-color: #e8c943;
+    color: #444d00;
+}
+.yellow:hover {
+    background: #474747;
+    border-color: #2f2f2f;
+    color: #ececec;
+    text-shadow: 1px 0 0 #000;
+}
+.gray {
+    background: #5d5c5c;
+    border-color: #525252;
+}
+.gray:hover {
+    background: #525252;
+}
+.btn-small {
+    padding: 2px 10px;
+    font-size: 12px;
+}
+
+label {
+    font-size:16px;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+/*layout*/
+a {
+    color: #ffde52;
+    text-decoration: none;
+}
+a:hover {
+    color: #e0c13e;
+    text-decoration: underline;
+}
+.link {
+    color: #e0c13e;
+}
+
+.borderbox {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+footer {
+    margin-top: 40px;
+    background: #666;
+    padding: 10px 0;
+    color: #eee;
+}
+.dashboardIcons {
+  width:100%;
+    padding: 15px;
+}
+.dashboardIcons li {
+  width:100px;
+  float:left;
+  border:1px solid #ddd;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  padding:6px;
+  margin:0 20px 20px 0;
+}
+.dashboardIcons li a {
+  display:block;
+}
+.dashboardIcons li img {
+  width:88px;
+  height:88px;
+  text-align:center;
+}
+.dashboardIcons li span {
+  clear:both; 
+  width:100%;
+  text-align:center;
+  display:block; 
+}
+.heading {
+  background:#ffde52;
+  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;    
+  box-sizing: border-box;   
+  font-size:24px;
+  padding:0px 10px;
+  text-align:center;
+  margin:0;
+}
+.border {
+  border:1px solid #ddd;
+}
+.form p {
+    clear: both;
+    width: 98%;
+}
+.form select {
+    height:34px;
+    border-radius: 0;
+}
+.form select:focus {
+    box-shadow:none;
+    border:1px solid #ffde52;
+    outline: none;
+}
+.form input[type="text"], .form input[type="password"] .form input[type="email"], .form input[type="search"] {
+  height:24px;
+}
+.form input[type="text"]:focus, .form input[type="password"]:focus, .form input[type="email"]:focus, .form input[type="search"]:focus {
+  box-shadow:none;
+  border:1px solid #ffde52;
+}
+
+/*header*/
+header {
+    background: #333;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px #666666;
+    color: #eee;
+}
+.usernav {
+    margin: 8px 0;
+}
+.usernav li {
+    float: left;
+    margin: 0 10px 0 0;
+}
+#headerNav {
+    margin: 4px 0 0 0;
+}
+#headerNav .navbar-inner {
+    background: transparent;
+    border: none;
+}
+#headerNav .nav > li > a {
+    color: #ffde52;
+    text-shadow: none;
+    font-weight: bold;
+    line-height: 16px;
+    padding: 6px 15px;
+    margin: 0 5px 0 0;
+}
+#headerNav .nav > li > a:hover, #headerNav .nav li a.active {
+    color: #444D00;
+    background: #ffde52;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 5px;
+}
+#headerNav .btn-navbar {
+    background: #ffde52;
+    min-width: 18px;
+}
+#headerNav .btn-navbar span {
+    background-color: #444d00;
+}
+
+/*footer*/
+.footer-nav li {
+    display: inline;
+    float: left;
+    margin-right: 10px;
+    color: #eee;
+}
+.footer-nav li a {
+    color: #eee;
+}
+.footer-nav li a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/*lead*/
+.leadform label {
+    width:40%;
+    float: left;
+}
+.leadform input {
+    width: 54%;
+    float: left;
+}
+.leadform select {
+    width: 58%;
+    float: left;
+}
+.table {
+    margin-bottom: 0;
+}
+.table thead {
+    background: #666;
+    color: #eee;
+}
+/*appointment*/
+.calender td.time {
+    background: #444 !important;
+    color: #eee;
+    width: 80px;
+}
+
+/*sales data*/
+.salesData {
+    overflow: auto;
+}
+.salesData .table thead tr td input[type="text"] {
+    width: 50px;
+}
+.salesData .table thead td {
+    font-size: 12px;
+}
+.salesData .table tbody td {
+    font-size: 12px;
+    padding: 5px 2px;
+}
+
+.salesData .form .dollar {
+    float: left;
+}
+.salesData .form .table input[type="text"]{
+    padding: 0;
+    width: 30px;
+    font-size: 12px;
+    height: 20px;
+    margin-bottom: 0;
+
+}
+.salesData .form .table select {
+    padding: 0;
+    height: 22px;
+    margin-bottom: 0;
+}
+.td100 {
+    width: 100px;
+}
+.salesData .form .table .td100 input[type="text"] {
+    width: 100px;
+}
+.td50 {
+    width: 50px;
+}
+.salesData .subheading {
+    padding: 10px 15px;
+    margin: 0 0 0 0;
+    background: #f0f0f0;
+}
+.salesReportData {
+    clear: both;
+}
+.salesReportData .table tbody td {
+    padding: 8px;
+    font-size: 12px;
+}
+
+/*alert*/
+.alert h6, .alert p {
+    margin: 0;
+}
+
+/*opt filter*/
+.optFilter span {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.optFilter select {
+    width: 150px;
+    margin-bottom: 0;
+}
+.optFilter input[type="search"] {
+    margin-bottom: 0;
+}
+
+/*signin signup*/
+.signupCon {
+    margin: 20px auto;
+    box-shadow: 0 0 10px #ddd;
+    padding: 15px;
+}
+.signupCon input {
+    width: 60%;
+    float: left;
+}
+.signupCon label {
+    width: 30%;
+    float: left;
+    text-align: right;
+    margin-right: 15px;
+}
+.signupCon select {
+    width: 62%;
+    float: left;
+}
+.form_block {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+.signupCon .form_block {
+    border-right: 1px solid #ddd;
+    margin-bottom: 0;
+}
+.signupCon .form_block h2 {
+    font-weight: normal;
+    float: left;
+    clear: both;
+}
+.signupCon .trialInfo {
+    float: left;
+    width: 62%;
+}
+.signupCon .checkboxCon {
+    float: left;
+    margin: 0 30px 15px 0;
+    text-align: left;
+    width: auto;
+}
+.signupCon .checkboxCon input {
+    width: auto;
+    margin-right: 5px;
+}
+.signupCon .input-small {
+    width: 90px;
+}
+
+.signupRight h2 {
+    font-weight: normal;
+}
+.priceDetail {
+    border:1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+.priceDetail strong {
+    font-size: 30px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    display: block;
+    padding-bottom: 10px;
+}
+.priceDetail p {
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 0;
+    color: #666;
+
+}
+.acceptTerms {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+}
+.acceptTerms label {
+    width: auto;
+    font-size:20px;
+    margin-top: 10px;
+}
+.acceptTerms input[type="checkbox"]{
+    width: auto;
+    margin-right: 10px;
+}
+.number {
+    background: #666;
+    text-align: center;
+    padding: 2px 10px;
+    border-radius: 30px;
+    color: #eee;
+    margin-right: 10px;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+/*testimonial*/
+.testimonial {
+    color: #666;
+    font-size: 18px;
+    line-height: 26px;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.testimonial p {
+    margin-bottom: 0;
+}
+
+
