@@ -1,17 +1,21 @@
+<h1>Signing up for "<%= @subscription.plan.name %>"</h1>
+<p>Includes Pump lead for only <strong><%= number_to_currency @subscription.plan.price %></strong> per month!</p>
 
-<%= form_for @user.subscription do |f| %>
-<% if @user.subscription.errors.any? %>
+<%= form_for @subscription do |f| %>
+<% if @subscription.errors.any? %>
 <div class="error_messages">
   <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
   <ul>
-    <% @user.subscription.errors.full_messages.each do |msg| %>
+    <% @subscription.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
     <% end %>
   </ul>
 </div>
   <% end %>
+   
+  <%= f.hidden_field :subscription_plan_id, params[:plan_id] %>
 
-  
+<%= f.hidden_field :stripe_card_token %>
 
 <% if @subscription.stripe_card_token.present? %>
 Credit card has been provided.

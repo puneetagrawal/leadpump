@@ -3,17 +3,25 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+  btnHtml = $('.submitSignUpForm').html()
   subscription.setupForm()
 
 subscription =
   setupForm: ->
-    $('#test1').click ->
-      $('input[type=submit]').attr('disabled', true)
-      if $('#card_number').length
-        subscription.processCard()
+    $('.submitSignUpForm').click ->
+      if $("input[name='acceptConditions']").is(":checked")
+        if($("input:radio[name='paymentOptionRadio']:checked").attr('class') == 'creditCard')
+          $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif">')
+          if $('#card_number').length
+            subscription.processCard()
+            false
+          else
+            true
+        else
+           $('#new_user')[0].submit()   
+      else  
+        alert("Please accept Term and conditions")
         false
-      else
-        true
   
   processCard: ->
     card =
@@ -26,8 +34,13 @@ subscription =
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#subscription_stripe_card_token').val(response.id)
-      $('#new_subscription')[0].submit()
+      $('#user_subscriptions_attributes_0_stripe_card_token').val(response.id)
+      alert(response.id)
+      $($('#user_subscriptions_attributes_0_stripe_card_token').val())
+      $('#new_user')[0].submit()
     else
       $('#stripe_error').text(response.error.message)
-      $('input[type=submit]').attr('disabled', false)
+      $("html, body").animate({ scrollTop: 0 }, "fast");
+     
+    $(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn yellow pull-right">Create My Account</a>')
+    

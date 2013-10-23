@@ -14,3 +14,25 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require_tree .
+
+
+$(document).ready(function(){
+	initsignUpRadioBtn()
+})
+
+function initsignUpRadioBtn(){
+	$('input[name="paymentOptionRadio"]').change(function(){
+		if($(this).attr('class') == 'creditCard'){
+			$("#creditCardDiv").show()
+			$("#couponDiv").hide()
+		}
+		else{
+			$("#couponDiv").show()
+			$("#creditCardDiv").hide()
+		}
+	})
+
+	$("#moreUserLink").click(function(){
+		$('.moreUserLink').removeClass('hide')
+	})
+}

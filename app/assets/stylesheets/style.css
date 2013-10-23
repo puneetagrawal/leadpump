@@ -667,4 +667,14 @@ header {
     margin-bottom: 0;
 }
 
+.submitSignUpForm img {
+    float: right;
+    margin-right: 80px;
+}
+
+.hide{
+    display: none;
+}
+
+
 
