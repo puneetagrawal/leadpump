@@ -52,7 +52,7 @@ end
     charges = chargess ? chargess[i] : 0
     locationCharge = chargess ? chargess[0] : 0
     lcStr = "$#{locationCharge} * #{dl} = $#{locationCharge.to_i * dl.to_i}"
-    locationCharge = locationCharge.to_i * dl.to_i
+    locationCharge = locationCharge ? locationCharge.to_i : 1 * dl.to_i
     bcStr = "$#{charges} * #{no_of_users} = $#{no_of_users * charges.to_i}"
 
     charges = no_of_users.to_i * charges.to_i
