@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Userranges:</b>
+  <%= @discounts_on_user.userRanges %>
+</p>
+
+<p>
+  <b>Discountpercentage:</b>
+  <%= @discounts_on_user.discountPercentage %>
+</p>
+
+
+<%= link_to 'Edit', edit_discounts_on_user_path(@discounts_on_user) %> |
+<%= link_to 'Back', discounts_on_users_path %>

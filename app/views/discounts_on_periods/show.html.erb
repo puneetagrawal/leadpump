@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Periodtype:</b>
+  <%= @discounts_on_period.periodType %>
+</p>
+
+<p>
+  <b>Discountpercentage:</b>
+  <%= @discounts_on_period.discountPercentage %>
+</p>
+
+
+<%= link_to 'Edit', edit_discounts_on_period_path(@discounts_on_period) %> |
+<%= link_to 'Back', discounts_on_periods_path %>

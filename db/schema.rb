@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023000857) do
+ActiveRecord::Schema.define(:version => 20131028065853) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -25,11 +25,49 @@ ActiveRecord::Schema.define(:version => 20131023000857) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "discounts_on_locations", :force => true do |t|
+    t.string   "locationRanges"
+    t.integer  "discountPercentage"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "chargePerUser"
+  end
+
+  create_table "discounts_on_periods", :force => true do |t|
+    t.string   "periodType"
+    t.integer  "discountPercentage"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "discounts_on_users", :force => true do |t|
+    t.string   "userRanges"
+    t.integer  "discountPercentage"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "plans", :force => true do |t|
     t.string   "name"
     t.decimal  "price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "user_position"
+    t.integer  "number_of_user"
+    t.string   "lead_management"
+    t.boolean  "apportunity_dashboard"
+    t.boolean  "team_management"
+    t.boolean  "daily_sales_report"
+    t.boolean  "daily_sales_projection"
+    t.boolean  "full_dashboard_enabled"
+    t.boolean  "traditional_refferals"
+    t.boolean  "leadpump_social_inviter"
+    t.string   "socail_refferals"
+    t.boolean  "online_mall"
+    t.boolean  "daily_team_usage_report"
+    t.boolean  "unlimited_team_training"
+    t.boolean  "unlimited_support"
+    t.boolean  "national_spokeswoman"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -58,6 +96,9 @@ ActiveRecord::Schema.define(:version => 20131023000857) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "locationType"
+    t.integer  "discountOnUsers"
+    t.integer  "planType"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

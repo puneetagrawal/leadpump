@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Locationranges:</b>
+  <%= @discounts_on_location.locationRanges %>
+</p>
+
+<p>
+  <b>Discountpercentage:</b>
+  <%= @discounts_on_location.discountPercentage %>
+</p>
+
+
+<%= link_to 'Edit', edit_discounts_on_location_path(@discounts_on_location) %> |
+<%= link_to 'Back', discounts_on_locations_path %>

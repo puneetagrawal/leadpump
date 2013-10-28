@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  locationRanges: MyString
+  discountPercentage: 1
+
+two:
+  locationRanges: MyString
+  discountPercentage: 1

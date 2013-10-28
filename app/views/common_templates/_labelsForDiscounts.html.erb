@@ -1,0 +1,41 @@
+						<%=hidden_field_tag 'du'%>
+						<%=hidden_field_tag 'dl'%>
+						<%=hidden_field_tag 'dp'%>
+
+						<p>
+							<label></label>
+							<% if DiscountsOnPeriod.all %>
+							<% DiscountsOnPeriod.all.each do |dp| %>
+							<label class="checkboxCon">
+								<%= f.radio_button :planType, "#{dp.id}", :checked => "#{dp.id}" > "1" ?  false : true, :class => "plant #{dp.periodType}"%>
+								<strong>Pay 
+									<%= "#{dp.periodType}"%>
+									<%if dp.discountPercentage > 0%>
+									(save <%="#{dp.discountPercentage}" %>%)
+									<%end%>
+								</strong>
+							</label>
+							<% end %>
+							<% end %>
+						</p>
+						<p>
+							<label></label>
+							<label class="checkboxCon" style="margin:0 15px 15px 0">
+								<input type="radio"  name="locationTypeRadio" class="singleLocation" checked="checked"> 
+								<strong>Single Location</strong>
+							</label>
+							<label class="checkboxCon" style="margin:0 15px 15px 0">
+								<input type="radio"  name="locationTypeRadio" class="multipleLocation">
+								<strong>Multiple Locaction</strong></label>
+
+								<%=f.select :locationType, options_for_select(DiscountsOnLocation.all.collect{ |dl| ["#{dl.locationRanges}(#{dl.discountPercentage}%)", dl.id] }), {},:class => "input-small hide selectMultiLocation", :style => "float:right;"%>
+							</p>
+
+							<label></label>
+							<label class="checkboxCon">
+								<input type="radio" name="paymentOptionRadio" checked="checked" class="creditCard"> <strong>Credit card</strong>
+							</label>
+							<label class="checkboxCon">
+								<input type="radio" name="paymentOptionRadio" class="coupon"><strong>Coupon</strong>
+							</label>
+						</p>

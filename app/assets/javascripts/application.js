@@ -18,6 +18,7 @@
 
 $(document).ready(function(){
 	initsignUpRadioBtn()
+	
 })
 
 function initsignUpRadioBtn(){
@@ -35,4 +36,12 @@ function initsignUpRadioBtn(){
 	$("#moreUserLink").click(function(){
 		$('.moreUserLink').removeClass('hide')
 	})
+	$(".multipleLocation").click(function(){
+		$('#user_locationType').removeClass('hide')
+	})
+
+	$(".singleLocation").click(function(){
+		$('#user_locationType').addClass('hide')
+	})
+
 }

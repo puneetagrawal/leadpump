@@ -10,7 +10,12 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
-
+ <% if flash[:error] %>
+    <p class="flash-error"><%= flash[:alert] %></p>
+  <% end %>
+  <% if flash[:notice] %>
+    <p class="flash-notice"><%= flash[:notice] %></p>
+  <% end %>
 <%= yield %>
 <%= render 'layouts/footer' %>
 </body>

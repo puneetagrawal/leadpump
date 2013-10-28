@@ -1,0 +1,10 @@
+<h2><span class="number">1</span>Your details</h2>
+<p><%= f.label :Name %><%= f.text_field :name %></p>
+<p><%= f.label :Email %><%= f.email_field :email %></p>
+<p><%= f.label :Password %><%= f.password_field :password %></p>
+<p>
+	<label></label>
+	<a class="link mr10 fl" href="javascript:void(0)" id="moreUserLink">Need More users?</a> 
+	
+	<%=f.select :discountOnUsers, options_for_select((1..100).collect{ |dl| [dl, dl] }), {},:class => "input-small hide moreUserLink w100"%>
+</p>

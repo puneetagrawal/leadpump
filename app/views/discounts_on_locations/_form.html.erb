@@ -1,0 +1,25 @@
+<%= form_for(@discounts_on_location) do |f| %>
+  <% if @discounts_on_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discounts_on_location.errors.count, "error") %> prohibited this discounts_on_location from being saved:</h2>
+
+      <ul>
+      <% @discounts_on_location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :locationRanges %><br />
+    <%= f.text_field :locationRanges %>
+  </div>
+  <div class="field">
+    <%= f.label :discountPercentage %><br />
+    <%= f.number_field :discountPercentage %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

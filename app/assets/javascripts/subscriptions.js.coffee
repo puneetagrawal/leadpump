@@ -3,43 +3,52 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-  btnHtml = $('.submitSignUpForm').html()
   subscription.setupForm()
 
 subscription =
   setupForm: ->
     $('.submitSignUpForm').click ->
-      if $("input[name='acceptConditions']").is(":checked")
-        if($("input:radio[name='paymentOptionRadio']:checked").attr('class') == 'creditCard')
-          $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif">')
-          if $('#card_number').length
-            subscription.processCard()
-            false
+        if $("input[name='acceptConditions']").is(":checked")
+          if($("input:radio[name='paymentOptionRadio']:checked").attr('class') == 'creditCard')
+            $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif">')
+            if $('#card_number').length
+              subscription.validateCard()
+              return false
+            else
+              true
           else
-            true
-        else
-           $('#new_user')[0].submit()   
-      else  
-        alert("Please accept Term and conditions")
-        false
+             $('#new_user')[0].submit()   
+        else  
+          alert("Please accept Term and conditions")
+          false
   
-  processCard: ->
-    card =
-      type: $('#credit_card').val()
-      number: $('#card_number').val()
-      cvc: $('#card_code').val()
-      expMonth: $('#card_month').val()
-      expYear: $('#card_year').val()
-    Stripe.createToken(card, subscription.handleStripeResponse)
   
   handleStripeResponse: (status, response) ->
     if status == 200
       $('#user_subscriptions_attributes_0_stripe_card_token').val(response.id)
-      $($('#user_subscriptions_attributes_0_stripe_card_token').val())
+      subscription.addHiddenField()
       $('#new_user')[0].submit()
     else
       $('#stripe_error').text(response.error.message)
       $("html, body").animate({ scrollTop: 0 }, "fast");
-     
-    $(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn yellow pull-right">Create My Account</a>')
-    
+      $(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn yellow pull-right">Create My Account</a>')
+
+  addHiddenField: ->
+      if($('#user_discountOnUsers').is(':visible'))      
+        $('#du').val($('#user_discountOnUsers').val())
+      if($("#user_planType_2").is(':checked'))
+        $('#dp').val(2)
+      if($("#user_locationType").is(':visible'))
+        $('#dl').val($("#user_locationType").val())          
+
+  validateCard: ->
+      card =
+        name: $('#person_name').val()
+        type: $('#credit_card').val()
+        number: $('#card_number').val()
+        cvc: $('#card_code').val()
+        expMonth: $('#card_month').val()
+        expYear: $('#card_year').val()
+      Stripe.createToken(card, subscription.handleStripeResponse)
+
+$(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn yellow pull-right">Create My Account</a>')

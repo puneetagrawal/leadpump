@@ -1,4 +1,13 @@
 Leadpump::Application.routes.draw do
+  resources :discounts_on_periods
+
+
+  resources :discounts_on_users
+
+
+  resources :discounts_on_locations
+
+
   devise_for :users, :controllers => {:registrations => "registrations"}
 
 
@@ -10,6 +19,9 @@ Leadpump::Application.routes.draw do
   match 'home/index' => 'home#index'
 
   match '/test' => 'home#test'
+  match '/home/calculateAmount' => 'home#calculateAmount'
+  match '/home/validateEmail' => 'home#validateEmail'
+  
 
 
   # match "/stripe_events", :to => "events#stripe_events", :as => :stripe_events, :via => :post
