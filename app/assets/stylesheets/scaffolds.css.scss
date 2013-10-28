@@ -18,52 +18,34 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
-
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
-}
-
-#notice {
-  color: green;
-}
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  h2 {
-    text-align: left;
+    background-color: none !important;
+    border: 2px solid red;
+    float: left;
+    margin-bottom: 20px;
+    padding: 7px 7px 0;
+    width: 450px;
+}
+
+#error_explanation h2 {
+    background-color: none !important;
+    color: red;
+    float: left;
+    font-size: 12px;
     font-weight: bold;
-    padding: 5px 5px 5px 15px;
+    line-height: 20px !important;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+#error_explanation > ul {
+    clear: both !important;
+    float: left !important;
+    list-style: none outside none;
+}
+
+#error_explanation ul li {
     font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
+    list-style: none !important;
 }
