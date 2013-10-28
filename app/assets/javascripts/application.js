@@ -34,14 +34,47 @@ function initsignUpRadioBtn(){
 	})
 
 	$("#moreUserLink").click(function(){
-		$('.moreUserLink').removeClass('hide')
+		$('.moreUserLink').removeClass('hide')		
 	})
 	$(".multipleLocation").click(function(){
 		$('#user_locationType').removeClass('hide')
+		caclulateAmount()
 	})
 
 	$(".singleLocation").click(function(){
 		$('#user_locationType').addClass('hide')
+		caclulateAmount()
 	})
 
+	$("#user_discountOnUsers, #user_locationType").change(function(){
+		caclulateAmount()
+	})
+
+	$("#user_planType_1, #user_planType_2").click(function(){
+		caclulateAmount()	
+	})
+
+}
+
+function caclulateAmount(){
+	no_of_users = 1
+	no_of_locations = 1
+	payment_type = 1
+	planId = $("#user_subscriptions_attributes_0_plan_id").val()
+	if ($("#user_locationType").is(":visible")) {
+		no_of_locations = $("#user_locationType").val()
+	}
+	if($("#user_discountOnUsers").is(":visible")){
+		no_of_users = $("#user_discountOnUsers").val()		
+	}
+	if($("input[name='user_discountOnUsers']").is(":checked")){
+		payment_type = 10
+	}
+	url = '/home/calculateAmount'
+	$.get(url, {du:no_of_users, dl:no_of_locations, dp:payment_type, planId:planId}, function (data) {
+		$("#pr").html(data.lcStr)
+		$("#pu").html(data.bcStr)
+		$("#td").html(data.totalDis)
+		$("#ta").html(data.amount)
+        })
 }
