@@ -46,6 +46,7 @@ end
     elsif (dl > 3 && dl <= 4)
         @discountOnLocation = dl != '' ? DiscountsOnLocation.find(4) : nil
     end
+
     puts @discountOnLocation.id
     chargess = @discountOnLocation ? @discountOnLocation.chargePerUser.split(",") : []
     charges = chargess ? chargess[i] : 0
