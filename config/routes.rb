@@ -1,4 +1,5 @@
 Leadpump::Application.routes.draw do
+  
   resources :discounts_on_periods
 
 
@@ -17,6 +18,10 @@ Leadpump::Application.routes.draw do
   resources :plans
 
   match 'home/index' => 'home#index'
+  
+  match 'employee/new' => 'employee#new'
+  match 'employee/create' => 'employee#create'
+  match 'employee/index' => 'employee#index'
 
   match '/test' => 'home#test'
   match '/home/calculateAmount' => 'home#calculateAmount'

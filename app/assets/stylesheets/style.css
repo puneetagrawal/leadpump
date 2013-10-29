@@ -658,6 +658,18 @@ header {
 .signupCon .input-small {
     width: 90px;
 }
+.signinCon {
+    width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px #ddd;
+    padding: 15px;
+}
+.signinCon input[type="text"], .signinCon input[type="password"] {
+    width: 98%;
+}
+.signinCon input[type="checkbox"] {
+    margin: 0 5px 0 0;
+}
 
 .signupRight h2 {
     font-weight: normal;
@@ -936,6 +948,123 @@ header {
     right: 0;
 }
 
+/*social inviter*/
+.social_inviter div p {
+    width: auto;
+    float: left;
+    clear: none;
+    margin-right: 15px;
+}
+.social_inviter label {
+    width: auto;
+}
+.social_inviter div {
+    clear: both;
+}
+.process_steps {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.process_steps .step-title{
+    float: left;
+    border-radius: 0;
+}
+.process_steps .btn {
+    background-color: #5BB75B;
+    background-image: linear-gradient(to bottom, #62C462, #51A351);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.email_icon {
+    float: left;
+    background: url("../img/mail-icon.png") 0 0 no-repeat;
+    width: 100px;
+    padding-left: 120px;
+}
+.facebook_icon {
+    float: left;
+    background: url("../img/facebook-icon.png") 0 0 no-repeat;
+    width: 100px;
+    padding-left: 120px;
+}
+.twitter_icon {
+    float: left;
+    background: url("../img/twitter-icon.png") 0 0 no-repeat;
+    width: 100px;
+    padding-left: 120px;
+}
+.social_options {
+    clear: both;
+    float: left;
+    width: 100%;
+}
+.social_options h3 {
+    text-transform: none;
+    font-size:20px;
+}
+.social_options ul li {
+    float: left;
+    background: #f1f1f1;
+    padding:10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border:1px solid #ddd;
+}
+.social_options ul li a {
+    color: #666;
+    margin-right: 15px;
+    font-size:16px;
+    min-width: 150px;
+    padding-top: 20px;
+    height: 80px;
+}
+.pre_formated_email {
+    float:left;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+}
+.email_msg {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.email_example {
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+.email_example h3 {
+    text-transform: none;
+}
+.pre_formated_email h3 {
+    text-transform: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -948,7 +1077,7 @@ header {
     .pricing_table .table {
         border-right: 1px solid #DDDDDD;
     }
-
+}
 
 
 
