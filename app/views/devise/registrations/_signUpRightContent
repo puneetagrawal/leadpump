@@ -15,6 +15,15 @@ clear and easy to use, and the feature set is also top notch."</p>
 clear and easy to use, and the feature set is also top notch."</p>
 <strong>The Red Ferret Journal</strong>
 </div>
+<div class="testimonial">
+<p>Plan Type: 
+<strong><%= @plan ? @plan.name ? @plan.name : 'Plan name not Given' : 'Plan name not Given' %></strong></p>
+<p>Total Amount as per location: <strong><span id="pr"></span></strong></p>
+<p>Total Amount as per user: <strong><span id="pu"></span></strong></p>
+<p>Total Discount: <strong><span id="td"></span></strong></p>
+<p>Total Charges: <strong><span id="ta"></span></strong></p>
+<%=hidden_field_tag 'tpa'%>
 
+</div>
 </span>
 </div>

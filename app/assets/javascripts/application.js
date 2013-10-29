@@ -53,9 +53,32 @@ function initsignUpRadioBtn(){
 	$("#user_planType_1, #user_planType_2").click(function(){
 		caclulateAmount()	
 	})
-
+	$("#user_planType_1").attr('checked', 'checked')
+	$(".singleLocation").attr('checked', 'checked')
 }
 
 function caclulateAmount(){
-	
+	no_of_users = 1
+	no_of_locations = 1
+	payment_type = 0
+	planId = $("#user_subscriptions_attributes_0_plan_id").val()
+	if ($("#user_locationType").is(":visible")) {
+		no_of_locations = $("#user_locationType").val()
+	}
+	if($("#user_discountOnUsers").is(":visible")){
+		no_of_users = $("#user_discountOnUsers").val()		
+	}
+	if($("input[name='user[planType]']").is(":checked")){		
+		if($("input[name='user[planType]']:checked").val() > 1){
+			payment_type = 10		
+		}		
+	}
+	url = '/home/calculateAmount'
+	$.get(url, {du:no_of_users, dl:no_of_locations, dp:payment_type, planId:planId}, function (data) {
+		$("#pr").html(data.lcStr)
+		$("#pu").html(data.bcStr)
+		$("#td").html(data.totalDis)
+		$("#ta").html(data.amount)
+		$("#tpa").val(data.amount.split("$")[1])
+        })
 }

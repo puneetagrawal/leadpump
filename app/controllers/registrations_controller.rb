@@ -13,7 +13,10 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     resource = build_resource(params[:user])
     if resource.valid?
-      @amount = User.calculate_total_amount(params["user"]["subscriptions_attributes"]["0"]["plan_id"], params[:du], params[:dl], params[:dp])
+      @plan = params["user"]["subscriptions_attributes"]["0"]["plan_id"] ? Plan.find(params["user"]["subscriptions_attributes"]["0"]["plan_id"]) : nil
+      #@amount = User.calculate_total_amount(params["user"]["subscriptions_attributes"]["0"]["plan_id"], params[:du], params[:dl], params[:dp])
+      @amount = params[:tpa] != '' ? params[:tpa].to_i : @plan.price.to_i
+      @amount = @amount * 100
       customer = Stripe::Customer.create(
         :email => params[:email],
         :card  => params["user"]["subscriptions_attributes"]["0"]["stripe_card_token"]
@@ -24,8 +27,9 @@ class RegistrationsController < Devise::RegistrationsController
             :customer => customer.id
       )
       resource.save
-      sign_in(resource_name, resource)
-      respond_with resource, :location => after_sign_up_path_for(resource)
+      sign_in(resource_name, resource)  
+      flash[:notice] = "You have paid $#{@amount/100}. Congratulation you signUp successfully"    
+      redirect_to home_index_path()
     else     
       @plan = Plan.find(params["user"]["subscriptions_attributes"]["0"]["plan_id"])
       render :action => "new"

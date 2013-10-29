@@ -6,6 +6,7 @@
 							<label></label>
 							<% if DiscountsOnPeriod.all %>
 							<% DiscountsOnPeriod.all.each do |dp| %>
+							<%=hidden_field_tag 'periodValue'%>
 							<label class="checkboxCon">
 								<%= f.radio_button :planType, "#{dp.id}", :checked => "#{dp.id}" > "1" ?  false : true, :class => "plant #{dp.periodType}"%>
 								<strong>Pay 
