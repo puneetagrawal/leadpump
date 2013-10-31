@@ -21,18 +21,6 @@
 						</p>
 						<p>
 							<label></label>
-							<label class="checkboxCon" style="margin:0 15px 15px 0">
-								<input type="radio"  name="locationTypeRadio" class="singleLocation" checked="checked"> 
-								<strong>Single Location</strong>
-							</label>
-							<label class="checkboxCon" style="margin:0 15px 15px 0">
-								<input type="radio"  name="locationTypeRadio" class="multipleLocation">
-								<strong>Multiple Locaction</strong></label>
-
-								<%=f.select :locationType, options_for_select(DiscountsOnLocation.all.collect{ |dl| ["#{dl.locationRanges}(#{dl.discountPercentage}%)", dl.id] }), {},:class => "input-small hide selectMultiLocation", :style => "float:right;"%>
-							</p>
-
-							<label></label>
 							<label class="checkboxCon">
 								<input type="radio" name="paymentOptionRadio" checked="checked" class="creditCard"> <strong>Credit card</strong>
 							</label>

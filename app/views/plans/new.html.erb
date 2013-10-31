@@ -1,184 +1,164 @@
-  
 <div class="container">
-  <div class="row-fluid">
-    <div class="span12 text-center">
-      <h2>Pricing plan Ending soon!</h2>
-      <h3>Which Edition is right for you?</h3>
-    </div>
-  </div>
-  <div class="row-fluid no-space">
-    <% @plans.each_with_index do |plan, i| %>
-    <div class="span3">
-      <div class="pricing_table <%= i == 2 ? 'activetable' : '' %> ">
-        <div class="pricing_table_head <%= i == 3 ? 'last' : ''%>">
-          <h3><%="#{plan.name}"%></h3>
-          <div class="detail">
-            <p><span class="subheading"><i>$</i><strong><%="#{plan.price}"%></strong><span>user/month</span></span></p>
-            <strong><%="#{plan.user_position}"%></strong>
-          </div>
+    <div class="row-fluid">
+        <div class="span12 text-center">
+            <h2>Pricing plan Ending soon!</h2>
+            <h3>Which Edition is right for you?</h3>
         </div>
-        <table class="table table-striped <%= i == 3 ? 'last' : ''%>">
-          <tbody>
-            <tr><td><p>Number of user</p><strong>Up to <%=plan.number_of_user%></strong></td></tr>
-            <tr><td><p>Lead Management</p><strong>Up to <%=plan.lead_management%> Contacts</strong></td></tr>
-            <tr><td><p>Apportunity Dashboard</p>
-              <strong>
-                <%if plan.apportunity_dashboard%>
-                <%= image_tag("right.png") %>
-                <%else%>
-                <%= image_tag("cross.png") %>
-                <%end%>
-              </strong>
-            </td></tr>
-            <tr><td><p>Team Management</p>
-              <strong>
-                <%if plan.team_management%>
-                <%= image_tag("right.png") %>
-                <%else%>
-                <%= image_tag("cross.png") %>
-                <%end%>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Daily Sales Report</p>
-              <strong>
-                <strong>
-                  <%if plan.team_management%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Monthly Sales Projections</p>
-              <strong>
-                <strong>
-                  <%if plan.team_management%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Full Dashboard Enabled</p>
-              <strong>
-                <strong>
-                  <%if plan.full_dashboard_enabled%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Tradional Refferals (3-5)</p>
-              <strong>
-                <strong>
-                  <%if plan.traditional_refferals%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Leadpump Socail Inviter</p>
-              <strong>
-                <strong>
-                  <%if plan.leadpump_social_inviter%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Email-Facebook-Twitter</p>
-              <strong>
-                <strong>
-                  <%if plan.socail_refferals != ''%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Online-Mall(members rewards)</p>
-              <strong>
-                <strong>
-                  <%if plan.online_mall%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Daily Team Usage Report</p>
-              <strong>
-                <strong>
-                  <%if plan.daily_team_usage_report%>
-                  <%= image_tag("right.png") %>
-                  <%else%>
-                  <%= image_tag("cross.png") %>
-                  <%end%>
-                </strong>
-              </strong>
-            </td></tr>
-            <tr><td>
-              <p>Unlimited Team Training</p>
-              <strong>
-                <strong>
-                 <%if plan.unlimited_team_training%>
-                 <%= image_tag("right.png") %>
-                 <%else%>
-                 <%= image_tag("cross.png") %>
-                 <%end%>
-               </strong>
-             </strong>
-           </td></tr>
-           <tr><td>
-            <p>Unlimited Support</p>
-            <strong>
-              <strong>
-                <%if plan.unlimited_support%>
-                <%= image_tag("right.png") %>
-                <%else%>
-                <%= image_tag("cross.png") %>
-                <%end%>
-              </strong>
-            </strong>
-          </td></tr>
-          <tr><td>
-            <p>National SpokesWomen</p>
-            <strong>
-              <strong>
-                <%if plan.national_spokeswoman%>
-                <%= image_tag("right.png") %>
-                <%else%>
-                <%= image_tag("cross.png") %>
-                <%end%>
-              </strong>
-            </strong>
-          </td></tr>
-
-          <tr><td>
-            <%= link_to "Sign up", new_user_registration_path(:plan_id => plan), html_options = {:class => "btn yellow"} %>
-            </td></tr>
-          </tbody>
-        </table>
-      </div>
     </div>
-    <% end %>
-  </div>
+    <div class="row-fluid">
+        <div class="span9 offset1">
+        <div class="price-tbl">
+    
+       <div class="feature-column">
+        <div class="col-header">
+            <span>Choose <br />Your Plan</span>
+        </div>
+            <div class="col-body">
+                <span class="highlight">Number of user</span>
+                <span>Lead Management</span>
+                <span class="highlight">Apportunity Dashboard</span>
+                <span>Team Management</span>
+                <span class="highlight">Daily Sales Report</span>
+                <span>Monthly Sales Projections</span>
+                <span class="highlight">Full Dashboard Enabled</span>
+                <span>Tradional Refferals (3-5)</span>
+                <span class="highlight">Leadpump Socail Inviter</span>
+                <span>Email-Facebook-Twitter</span>
+                <span class="highlight">Online-Mall(members rewards)</span>
+                <span>Daily Team Usage Report</span>
+                <span class="highlight">Unlimited Team Training</span>
+                <span>Unlimited Support</span>
+                <span class="highlight">National SpokesWomen</span>
+            </div>
+        </div>
+        <div class="all-data-col">
+            <% @plans.each_with_index do |plan, i| %>
+                <div class="data-column data-col-<%="#{i+1}"%><%=' featured' if i == 2%>">
+                    <span class="featured-red-corner"></span>
+                    <div class="col-header">
+                        <div class="plan-name"><span class="cufon"><%="#{plan.name}"%></span></div>
+                        <div class="col-header-BG">
+                            <div class="plan-price">
+                                <em class="cufon">$</em>
+                                <strong class="cufon"><%="#{plan.price}"%></strong>
+                                <b class="cufon">/mo</b>
+                            </div>
+                            <div class="plan-user"><span class="cufon"><%="#{plan.user_position}"%></span></div>
+                            <div class="plan-signup">
+                                <%= link_to "Sign up", new_user_registration_path(:plan_id => plan), html_options = {} %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-body">
+                        <span class="highlight">Up to <%=plan.number_of_user%></span>
+                        <span>Up to <%=plan.lead_management%> Contacts</span>
+                       <span class="highlight">
+                        <%if plan.apportunity_dashboard%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                       </span>
+                        <span>
+                            <%if plan.team_management%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+
+
+                        <span class="highlight">
+                            <%if plan.daily_sales_report%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span>
+                            <%if plan.daily_sales_projection%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span class="highlight">
+                            <%if plan.full_dashboard_enabled%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span>
+                            <%if plan.traditional_refferals%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span class="highlight">
+                            <%if plan.leadpump_social_inviter%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if plan.socail_refferals != ''%>
+                            <%=plan.socail_refferals%>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span class="highlight">
+                            <%if plan.online_mall%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if plan.daily_team_usage_report%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span class="highlight">
+                            <%if plan.unlimited_team_training%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span>
+                            <%if plan.unlimited_support%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span class="highlight">
+                            <%if plan.national_spokeswoman%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>                        
+                    </div>
+                    <div class="col-footer">
+                        <div class="plan-signup"><%= link_to "Sign up", new_user_registration_path(:plan_id => plan), html_options = {} %></div>
+                    </div>
+                </div>
+            <%end%>
+        </div> 
+        </div>
+        </div>
+    </div>
 </div>

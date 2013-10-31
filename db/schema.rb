@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131029120110) do
+ActiveRecord::Schema.define(:version => 20131030181952) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20131029120110) do
     t.string   "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "companies", :force => true do |t|
+    t.integer  "company_user_id"
+    t.integer  "company_admin_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "discounts_on_locations", :force => true do |t|
@@ -47,10 +54,20 @@ ActiveRecord::Schema.define(:version => 20131029120110) do
     t.datetime "updated_at",         :null => false
   end
 
-  create_table "employees", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
+  create_table "leads", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "address"
+    t.string   "refferred_by"
+    t.string   "lead_source"
+    t.string   "dues_value"
+    t.string   "enrolment_value"
+    t.string   "notes"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "company_id"
+    t.integer  "phone",           :limit => 8
   end
 
   create_table "plans", :force => true do |t|
@@ -80,6 +97,11 @@ ActiveRecord::Schema.define(:version => 20131029120110) do
     t.string   "role_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "subscriptions", :force => true do |t|

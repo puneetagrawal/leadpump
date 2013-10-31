@@ -1,13 +1,13 @@
 <div class="container">
 	<div class="row-fluid">
-		<div class="span12">
+		<div class="span12 signup_heading">
 			<h3>Thanks for choosing Buddy Referrer</h3>
 			<h4>You're just 60 seconds away from your new account.</h4>
 			<div class="signupCon">
 				<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form form_block test", }) do |f| %>
 
 				<div class="row-fluid">
-					<span class="span7">
+		`			<span class="span7">
 						<%= devise_error_messages! %>
 						<div class="errors" id="stripe_error"></div>
 						<%= render :template => "devise/registrations/_signupUserFields", :locals => { :f => f} %>	
@@ -39,7 +39,7 @@
 							<div class="span12 acceptTerms">
 								<label class="pull-left"><input type="checkbox" name="acceptConditions">I have read and accept the <a class="link" href="#">Terms and Conditions</a></label>
 								<span class="submitSignUpForm">
-									<a class="btn yellow pull-right" href="" id="signupBtn">Create My Account</a>
+									<a class="btn green pull-right" href="" id="signupBtn">Create My Account</a>
 								</span>
 							</div>
 						</div>

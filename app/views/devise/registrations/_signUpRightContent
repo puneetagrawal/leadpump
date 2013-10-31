@@ -1,4 +1,4 @@
-<span class="span5 signupRight">
+<span class="span4 signupRight">
 <h2>What people say</h2>
 <div class="testimonial">
 <p>"I found the extremely fabulous and user-friendly MindMeister. What makes MindMeister rock my world is the fact that
@@ -18,8 +18,7 @@ clear and easy to use, and the feature set is also top notch."</p>
 <div class="testimonial">
 <p>Plan Type: 
 <strong><%= @plan ? @plan.name ? @plan.name : 'Plan name not Given' : 'Plan name not Given' %></strong></p>
-<p>Total Amount as per location: <strong><span id="pr"></span></strong></p>
-<p>Total Amount as per user: <strong><span id="pu"></span></strong></p>
+<p>Total Amount as per user: <p><strong><span id="pu"></span></strong></p></p>
 <p>Total Discount: <strong><span id="td"></span></strong></p>
 <p>Total Charges: <strong><span id="ta"></span></strong></p>
 <%=hidden_field_tag 'tpa'%>

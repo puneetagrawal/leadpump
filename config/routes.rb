@@ -1,5 +1,5 @@
 Leadpump::Application.routes.draw do
-  
+
   resources :discounts_on_periods
 
 
@@ -11,6 +11,7 @@ Leadpump::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
+  resources :leads
 
   # root to: "home#index"
   root to: 'plans#index'
@@ -19,13 +20,17 @@ Leadpump::Application.routes.draw do
 
   match 'home/index' => 'home#index'
   
-  match 'employee/new' => 'employee#new'
-  match 'employee/create' => 'employee#create'
-  match 'employee/index' => 'employee#index'
-
   match '/test' => 'home#test'
   match '/home/calculateAmount' => 'home#calculateAmount'
   match '/home/validateEmail' => 'home#validateEmail'
+
+  match '/company/index' => 'company#index'
+  match '/company/new' => 'company#new'
+  match '/company/show' => 'company#show'
+  match '/company/create' => 'company#create'
+  match '/edit/:id' => 'company#edit', :as => :edit
+  match '/update/:id' => 'company#update', :as => :update
+  match '/delete/:id' => 'company#delete', :as => :delete
   
 
 

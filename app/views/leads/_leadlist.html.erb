@@ -1,0 +1,22 @@
+<div class="span8">
+  <div class="border">
+   <h2 class="heading">All Contacts / Leads</h2>
+   <table class="table table-striped">
+       <thead>
+           <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Status</td><td>Action</td></tr>
+       </thead>
+       <tbody>                    
+           <% @leads.each do |lead|%>
+           <tr>
+             <td><%=lead.first_name%></td>
+             <td><%=lead.phone%></td>
+             <td><%=lead.email%></td>
+             <td><%=lead.lead_source%></td>
+             <td></td>
+             <td><%=link_to "View", edit_lead_path(lead)%></td>
+         </tr>
+         <% end %>         
+     </tbody>
+ </table>
+</div>
+</div>

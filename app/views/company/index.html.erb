@@ -1,0 +1,30 @@
+
+
+<h1>Listing users</h1>
+<%= link_to 'New user', company_new_path %>
+<p><%=link_to 'Manage Leads', new_lead_path() %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+<%if@users%>
+  <% @users.each do |user| %>
+  <%usr = User.find(user)%>
+    <tr>
+      <td><%= usr.name %></td>
+      <td><%= usr.email %></td>
+      <td>--</td>
+      <td><%=link_to "Edit", "/edit/#{user}"%> | <%=link_to "Delete", "/delete/#{user}"%></td>
+    </tr>
+  <% end %>
+  <% end %>
+</table>
+
+<br />
+
+
+

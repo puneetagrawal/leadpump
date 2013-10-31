@@ -1,0 +1,945 @@
+@import url("reset.css");
+
+/*=========================General Table Styles===========================*/
+
+div.price-tbl
+{
+    position: relative;/*--This is to position columns relative to table body--*/
+    float: left;
+    left: 0; /*--Position the table as per your requirements--*/
+    width: 100%; /*--Width of parent--*/
+    height: 820px; /*--You need to mention height as per your need, so that contents of page below the table could be positioned as per the requirements--*/
+    margin: 50px 0; /*--Give some space above and below the table--*/
+}
+
+/*===========================Position and Width of Table Columns as per Requirements====================*/
+
+/*==========================================================================================================================================
+
+This section of CSS is for the width of table columns and their respective positions in the Pricing Table. In this template we have five columns each with 180px width. We have kept the width of the featured column as 188px.
+
+Now, if you want to change the width of the columns of your pricing table then simply change the value of width and position of each column, and thats it, your new table will adopt the new look in no time.
+
+For example, suppose we want to change the column width from 180px to 190px and therefore, the width of the featured column would be 198px.
+
+So, new CSS:
+
+div.price-tbl div.data-column
+{
+    position: absolute;
+    width: 190px;
+}
+
+div.price-tbl div.feature-column
+{
+    left: 0;
+}
+
+div.price-tbl div.data-col-1
+{
+    left: 190px;
+}
+
+div.price-tbl div.data-col-2
+{
+    left: 380px;
+}
+
+div.price-tbl div.data-col-3
+{
+    left: 570px;
+}
+
+div.price-tbl div.data-col-4
+{
+    left: 760px;
+}
+
+div.price-tbl div.featured
+{
+    width: 198px;
+}
+
+div.price-tbl div.all-data-col:hover div.featured
+{
+    width: 190px;
+}
+
+div.price-tbl div.all-data-col div.data-col-1:hover,
+div.price-tbl div.all-data-col div.data-col-2:hover,
+div.price-tbl div.all-data-col div.data-col-3:hover,
+div.price-tbl div.all-data-col div.data-col-4:hover
+{
+    width: 198px;
+}
+
+====================================================================================================================================================== */
+
+div.price-tbl div.feature-column, div.price-tbl div.data-column
+{
+    position: absolute; /*--Position columns relative to the parent table div (div.price-tbl)--*/
+    width: 180px; /*--Each column width. Change this value as per your requirements--*/
+}
+
+div.price-tbl div.feature-column
+{
+    left: 0;
+}
+
+div.price-tbl div.data-col-1
+{
+    left: 180px;
+}
+
+div.price-tbl div.data-col-2
+{
+    left: 360px;
+}
+
+div.price-tbl div.data-col-3
+{
+    left: 540px;
+}
+
+div.price-tbl div.data-col-4
+{
+    left: 720px;
+}
+
+div.price-tbl div.featured
+{
+    width: 188px;
+}
+
+div.price-tbl div.all-data-col:hover div.featured
+{
+    width: 180px;
+}
+
+div.price-tbl div.all-data-col div.data-col-1:hover,
+div.price-tbl div.all-data-col div.data-col-2:hover,
+div.price-tbl div.all-data-col div.data-col-3:hover,
+div.price-tbl div.all-data-col div.data-col-4:hover
+{
+    width: 188px;
+}
+
+/*=====================General styles for each column====================*/
+
+div.price-tbl div.feature-column div.col-header,
+div.price-tbl div.feature-column div.col-body,
+div.price-tbl div.data-column div.col-header,
+div.price-tbl div.data-column div.col-body,
+div.price-tbl div.data-column div.col-footer
+{
+    display: inline-block;
+    width: 100%;
+}
+
+/*==============================General Styles and Typography for Column Header======================*/
+
+/*--CSS3 @font-face has been used for the text in "div.plan-price strong" and  "div.plan-user span". However, if you want, you can use them for the texts in other sections or replace them with other fonts of your choice or delete them as per your requirements--*/
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('../fontface/OpenSans-Regular-webfont.eot');
+    src: url('../fontface/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fontface/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fontface/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fontface/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PTSerifRegular';
+    src: url('PTF55F-webfont.eot');
+    src: url('PTF55F-webfont.eot?#iefix') format('embedded-opentype'),
+         url('PTF55F-webfont.woff') format('woff'),
+         url('PTF55F-webfont.ttf') format('truetype'),
+         url('PTF55F-webfont.svg#PTSerifRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+div.price-tbl div.data-column div.col-header div.plan-name
+{
+    position: relative;
+    z-index: 100; /*--So that box-shadow of this div stays above div.col-header-BG--*/
+    width: 100%;
+    height: 34px; /*--Change this height as per your requirement--*/
+    text-align: center;
+
+    /*--Border radius--*/
+    -webkit-border-radius: 6px 6px 0px 0px;
+    -moz-border-radius: 6px 6px 0px 0px;
+    border-radius:6px 6px 0px 0px;
+}
+
+div.price-tbl div.data-column div.col-header div.col-header-BG
+{
+    height: 100px;/*--Change this height as per your requirements--*/
+    width: 100%;
+    text-align: center;
+}
+
+/*--Here goes the typography for plan name at the top--*/
+div.price-tbl div.data-column div.plan-name span
+{
+    display: inline-block;
+    color: #fff;
+    text-shadow: 0px 1px 1px #000;
+    text-transform: uppercase;
+    font: 400 1.4em/32px OpenSansRegular, Verdana, Geneva, Tahoma, sans-serif;/*--You can change the fonts or their other values like size, weight, etc. as per your requirements--*/
+}
+
+/*--Here goes the typography for price values--*/
+div.price-tbl div.data-column div.plan-price em,
+div.price-tbl div.data-column div.plan-price strong,
+div.price-tbl div.data-column div.plan-price b
+{
+    display: inline-block;
+    text-shadow: 0px 1px 1px #000;
+}
+
+/*--This is for the '$' symbol--*/
+div.price-tbl div.data-column div.plan-price em
+{
+    vertical-align: top;
+    margin: 11px -2px 0px 0px;
+    color: #fff;
+    font: normal 1.4em/14px OpenSansRegular, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/*--This for the price value--*/
+div.price-tbl div.data-column div.plan-price strong
+{
+    margin: 7px -2px 0px 0px;
+    color: #fff;
+    font: 500 3.2em/32px OpenSansRegular, Arial, Helvetica, sans-serif;
+}
+
+/*--This for "/mo"--*/
+div.price-tbl div.data-column div.plan-price b
+{
+    color: #fff;
+    font: normal 1.2em/12px OpenSansRegular, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/*--This is for plan-user text line--*/
+div.price-tbl div.data-column div.plan-user span
+{
+    display: inline-block;
+    color: #ff3;
+    margin-top: 4px;
+    font: normal 1.1em/12px PTSerifRegular, Georgia, serif;
+}
+
+/*=====================General Styles and Typography for Column Body=====================*/
+
+/*--General typography for rows--*/
+div.price-tbl div.feature-column div.col-body span,
+div.price-tbl div.data-column div.col-body span
+{
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    color: #2b2f35;
+    font: normal 1.2em/40px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+/*--Replace "tick" and "cross" with images--*/
+div.price-tbl div.data-column div.col-body span em.tick,
+div.price-tbl div.data-column div.col-body span em.cross
+{
+    display: inline-block;
+    width: 19px;
+    text-indent: -9999px; /*--Indent text for screen readers--*/
+}
+
+div.price-tbl div.data-column div.col-body span em.tick
+{
+    background: url(/assets/table_images/tick.png) no-repeat 0px 10px;
+
+}
+
+div.price-tbl div.data-column div.col-body span em.cross
+{
+    background: url(/assets/table_images/cross.png) no-repeat 0px 10px;
+}
+
+/*============================General Styles for Column Footer===========================*/
+
+div.price-tbl div.data-column div.col-footer
+{
+    height: 48px;/*--This is the height of each footer of non-featured columns. Change this as per your requirements--*/
+    line-height: 48px; /*--Change this value if you have changed the height of the div.col-footer--*/
+    text-align: center;
+}
+
+/*=====================General Styles and Typography for Sign Up Buttons at the Top and Bottom of the Data Columns====================*/
+
+div.price-tbl div.data-column div.col-header div.plan-signup a,
+div.price-tbl div.data-column div.col-footer div.plan-signup a
+{
+    display: inline-block;
+    width: auto;
+    height: 24px;
+    padding: 0 16px;
+    color: #fff;
+    font: 600 1.3em/24px Arial, Helvetica, sans-serif;
+    border: 1px solid #f86b00;
+
+    /*--Border radius--*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    /*--Box shadow--*/
+    -webkit-box-shadow: 0px 1px 2px #323232, 0px 2px 2px #ffcba4 inset;
+    -moz-box-shadow: 0px 1px 2px #323232, 0px 2px 2px #ffcba4 inset;
+    box-shadow: 0px 1px 2px #323232, 0px 2px 2px #ffcba4 inset;
+
+    /*--Gradient--*/
+    background: url(/assets/table_images/signup-btn-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ff862b), to(#eb6602)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #ff862b, #eb6602); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #ff862b, #eb6602); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #ff862b, #eb6602); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #ff862b, #eb6602); /*--For IE10--*/
+}
+
+div.price-tbl div.data-column div.col-header div.plan-signup a
+{
+    margin-top: 7px;
+}
+
+/*--CSS for :hover state--*/
+div.price-tbl div.data-column div.col-header div.col-header-BG div.plan-signup a:hover,
+div.price-tbl div.data-column div.col-footer div.plan-signup a:hover
+{
+    border: 1px solid #de6000;
+
+    /*--Gradient--*/
+    background: url(/assets/table_images/signup-btn-hover-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#e57a27), to(#d15c02)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #e57a27, #d15c02); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #e57a27, #d15c02); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #e57a27, #d15c02); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #e57a27, #d15c02); /*--For IE10--*/
+}
+
+/*--CSS for :active state--*/
+div.price-tbl div.data-column div.col-header div.col-header-BG div.plan-signup a:active,
+div.price-tbl div.data-column div.col-footer div.plan-signup a:active
+{
+    /*--Gradient--*/
+    background: url(/assetstable_images/signup-btn-active-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#d85d02), to(#ff862b)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #d85d02, #ff862b); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #d85d02, #ff862b); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #d85d02, #ff862b); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #d85d02, #ff862b); /*--For IE10--*/
+}
+
+/*============================================General Styles for First Column: It is the Column which Contains Feature List for All Plans===============================================*/
+
+/*--Header--*/
+div.price-tbl div.feature-column div.col-header
+{
+    height: 80px;
+    padding-top: 20px;
+    margin-top: 34px;
+    color: #2b6788;
+    font: normal 2em/1.3em Arial, Helvetica, sans-serif;
+    text-align: center;
+    background: #edf3f5;
+
+    /*--Border radius--*/
+    -webkit-border-radius: 6px 0px 0px 0px;
+    -moz-border-radius: 6px 0px 0px 0px;
+    border-radius: 6px 0px 0px 0px;
+}
+
+/*--Body--*/
+div.price-tbl div.feature-column div.col-body
+{
+/*--    margin-top: 134px;  --*/ /*--If you do not need column header for the first column then unhide this and delete above CSS for "div.price-tbl div.col-1 div.col-header"--*/
+    background: #d4f4ff;
+}
+
+div.price-tbl div.feature-column div.col-body span.highlight
+{
+    background: #abdeef; /*--fallback color--*/
+    background: rgba(77, 170, 201, 0.3);
+}
+
+div.price-tbl div.feature-column div.col-body span
+{
+    position: relative;
+    text-align: left;
+    padding-left: 10px;
+    width: auto;
+    color: #424851;
+}
+
+/*--CSS for Popup box--*/
+div.price-tbl div.feature-column div.col-body span img.info-icon
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+}
+
+div.price-tbl div.feature-column div.col-body span img.info-icon:hover
+{
+    cursor: pointer;
+}
+
+div.price-tbl div.feature-column div.col-body span em.popup-box
+{
+    position: absolute;
+    display: none; /*--Hide pop-up box--*/
+    bottom: 46px;
+    width: 90%;
+    padding: 5%;
+    color: #fff;
+    font: normal 0.9em/16px Arial, Helvetica, sans-serif;
+    text-shadow: 0px 1px 1px #000;
+    background: #202a30; /*--Fallback background color--*/
+    background: rgba(22, 32, 38, .9);
+
+    /*--Border radius--*/
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+div.price-tbl div.feature-column div.col-body span em.popup-box b.corner
+{
+    position: absolute;
+    width: 25px;
+    height: 11px;
+    bottom: -11px;
+    left: 5px;
+    background: url(/assets/table_images/popup-corner.png) no-repeat 0 0;
+}
+
+div.price-tbl div.feature-column div.col-body span:hover em.popup-box
+{
+    display: block;/*--Show pop-up box--*/
+    left: 0;
+}
+
+/*============================================General Styles for Four Columns with Four Different Plans: Data Column 1, Data Column 2, Data Column 3, and Data Column 4===============================================*/
+
+/*==================CSS for Data Column 1=================*/
+
+/*--Header--*/
+div.price-tbl div.data-col-1 div.col-header div.plan-name
+{
+    /*--Box shadow--*/
+    -webkit-box-shadow: 0px 1px 0px #205f73, 0px -1px 0px #3baed4 inset;
+    -moz-box-shadow: 0px 1px 0px #205f73, 0px -1px 0px #3baed4 inset;
+    box-shadow: 0px 1px 0px #205f73, 0px -1px 0px #3baed4 inset;
+
+    /*--Gradient--*/
+    background: url(/assets/table_images/blue1-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3397b8), to(#27738c)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #3397b8, #27738c);  /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #3397b8, #27738c); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #3397b8, #27738c); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #3397b8, #27738c); /*--For IE10--*/
+}
+
+div.price-tbl div.data-col-1 div.col-header div.col-header-BG
+{
+    background: #3397b8;
+}
+
+/*--Body--*/
+div.price-tbl div.data-col-1 div.col-body
+{
+    background: #b6e3f2;
+}
+
+div.price-tbl div.data-col-1 div.col-body span.highlight
+{
+    background: #8fcde2; /**--Fallback background color--*/
+    background: rgba(53, 155, 189, 0.3);
+}
+
+/*--Footer--*/
+div.price-tbl div.data-col-1 div.col-footer
+{
+   background: #6bbfdb;
+}
+
+/*==================CSS for Data Column 2=================*/
+
+/*--Header--*/
+div.price-tbl div.data-col-2 div.col-header div.plan-name
+{
+    /*--Box shadow--*/
+    -webkit-box-shadow: 0px 1px 0px #1a4b5b, 0px -1px 0px #308cab inset;
+    -moz-box-shadow: 0px 1px 0px #1a4b5b, 0px -1px 0px #308cab inset;
+    box-shadow: 0px 1px 0px #1a4b5b, 0px -1px 0px #308cab inset;
+
+    /*--Gradient--*/
+    background: url(/assets/table_images/blue2-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#2c829e), to(#205f74)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #2c829e, #205f74); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #2c829e, #205f74); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #2c829e, #205f74);/*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #2c829e, #205f74); /*--For IE10--*/
+}
+
+div.price-tbl div.data-col-2 div.col-header div.col-header-BG
+{
+    background: #2c829e;
+}
+
+/*--Body--*/
+div.price-tbl div.data-col-2 div.col-body
+{
+    background: #95ddf5;
+}
+
+div.price-tbl div.data-col-2 div.col-body span.highlight
+{
+    background: #77c6e1; /**--Fallback background color--*/
+    background: rgba(50, 146, 179, 0.3);
+}
+
+/*--Footer--*/
+div.price-tbl div.data-col-2 div.col-footer
+{
+   background: #60abc4;
+}
+
+/*==================CSS for Data Column 3=================*/
+
+/*--Header--*/
+div.price-tbl div.data-col-3 div.col-header div.plan-name
+{
+    /*--Box shadow--*/
+    -webkit-box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #027da6 inset;
+    -moz-box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #027da6 inset;
+    box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #027da6 inset;
+
+    /*--Gradient--*/
+    background: url(/assets/table_images/blue3-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#187594), to(#0e4e63)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #187594, #0e4e63); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #187594, #0e4e63); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #187594, #0e4e63); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #187594, #0e4e63); /*--For IE10--*/
+}
+
+div.price-tbl div.data-col-3 div.col-header div.col-header-BG
+{
+    background: #1f637a;
+}
+
+/*--Body--*/
+div.price-tbl div.data-col-3 div.col-body
+{
+    background: #7bd1ed;
+}
+
+div.price-tbl div.data-col-3 div.col-body span.highlight
+{
+    background: #5eb9d6; /*--Fallback background color--*/
+    background: rgba(51, 148, 180, 0.4);
+}
+
+/*--Footer--*/
+div.price-tbl div.data-col-3 div.col-footer
+{
+   background: #519eb7;
+}
+
+/*==================CSS for Data Column 4=================*/
+
+/*--Header--*/
+div.price-tbl div.data-col-4 div.col-header div.plan-name
+{
+    /*--Box shadow--*/
+    -webkit-box-shadow: 0px 1px 0px #013645, 0px -1px 0px #016885 inset;
+    -moz-box-shadow: 0px 1px 0px #013645, 0px -1px 0px #016885 inset;
+    box-shadow: 0px 1px 0px #013645, 0px -1px 0px #016885 inset;
+
+    /*--Gradient--*/
+    background: url(/assets/table_images/blue4-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#00576d), to(#013645)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #00576d, #013645); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #00576d, #013645); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #00576d, #013645); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #00576d, #013645); /*--For IE10--*/
+}
+
+div.price-tbl div.data-col-4 div.col-header div.col-header-BG
+{
+    background: #185465;
+}
+
+/*--Body--*/
+div.price-tbl div.data-col-4 div.col-body
+{
+    background: #67bed6;
+}
+
+div.price-tbl div.data-col-4 div.col-body span.highlight
+{
+    background: #4ea6bf; /*--Fallback background color--*/
+    background: rgba(61, 150, 175, 0.6);
+}
+
+/*--Footer--*/
+div.price-tbl div.data-col-4 div.col-footer
+{
+   background: #3a899f;
+}
+
+/*===================================================General Styling and Typography for Featured Column=======================================================*/
+
+div.price-tbl div.featured
+{
+    z-index: 300;
+    margin: 0 0 0 -4px;
+    top: -12px;
+
+    /*--Border radius--*/
+    -webkit-border-radius: 6px 6px 0px 0px;
+    -moz-border-radius: 6px 6px 0px 0px;
+    border-radius: 6px 6px 0px 0px;
+
+    /*--Box shadow--*/
+    -webkit-box-shadow: 0px 0px 4px #1c1c1c;
+    -moz-box-shadow: 0px 0px 4px #1c1c1c;
+    box-shadow: 0px 0px 4px #1c1c1c;
+}
+
+/*=========CSS for Header========*/
+
+div.price-tbl div.featured div.col-header div.col-header-BG
+{
+    height: 112px;
+}
+
+div.price-tbl div.featured span.featured-red-corner
+{
+    position: absolute;
+    z-index: 300;
+    width: 63px;
+    height: 61px;
+    right: -6px;
+    top: -3px;
+    background: url(/assets/table_images/featured-col-red-corner.png) no-repeat 0 0;
+}
+
+/*--Here goes the typography for plan name at the top--*/
+div.price-tbl div.featured div.plan-name span
+{
+    font-size: 1.6em;
+    line-height: 30px;
+}
+
+/*====Here goes the typography for price values=====*/
+
+/*--This is for the '$' symbol--*/
+div.price-tbl div.featured div.plan-price em
+{
+    font-size: 1.6em;
+    line-height: 16px;
+    margin-top: 11px;
+}
+
+/*--This for the price value--*/
+div.price-tbl div.featured div.plan-price strong
+{
+    font-size: 4em;
+    line-height: 40px;
+    margin-top: 7px;
+}
+
+/*--This for "/mo"--*/
+div.price-tbl div.featured div.plan-price b
+{
+    font-size: 1.4em;
+    line-height: 14px;
+}
+
+/*--This is for plan-user text line--*/
+div.price-tbl div.featured div.plan-user span
+{
+    font-size: 1.2em;
+    line-height: 12px;
+}
+
+/*==========CSS for Column Body============*/
+
+div.price-tbl div.featured div.col-body span
+{
+    color: #1b566a;
+    font-weight: bold;
+}
+
+/*==========CSS for Column Footer============*/
+
+div.price-tbl div.featured div.col-footer
+{
+   height: 60px;
+   line-height: 60px;
+}
+
+/*=============================================General Styling and  Typography of Resized Featured Column when You Mouseover on Other Data Columns================================================*/
+
+div.price-tbl div.all-data-col:hover div.featured
+{
+    z-index: 200;
+    margin: 0;
+    top: 0;
+
+    /*--Remove box-shadow--*/
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+/*=========CSS for Header========*/
+
+div.price-tbl div.all-data-col:hover div.featured div.col-header div.col-header-BG
+{
+    height: 100px;
+}
+
+/*--Here goes the typography for plan name at the top--*/
+div.price-tbl div.all-data-col:hover div.featured div.plan-name span
+{
+    font-size: 1.4em;
+    line-height: 32px;
+}
+
+/*====Here goes the typography for price values=====*/
+
+/*--This is for '$' symbol--*/
+div.price-tbl div.all-data-col:hover div.featured div.plan-price em
+{
+    font-size: 1.4em;
+    line-height: 14px;
+    margin-top: 11px;
+}
+
+/*--This for the price value--*/
+div.price-tbl div.all-data-col:hover div.featured div.plan-price strong
+{
+    font-size: 3.2em;
+    line-height: 32px;
+    margin-top: 7px;
+}
+
+/*--This for "/mo"--*/
+div.price-tbl div.data-column:hover div.featured div.plan-price b
+{
+    font-size: 1.2em;
+    line-height: 12px;
+}
+
+/*--This is for plan-user text line--*/
+div.price-tbl div.all-data-col:hover div.featured div.plan-user span
+{
+    font-size: 1.1em;
+}
+
+/*==========CSS for Column Body============*/
+
+div.price-tbl div.all-data-col:hover div.featured div.col-body span
+{
+    color: #2b2f35;
+    font-weight: normal;
+}
+
+/*==========CSS for Column Footer============*/
+
+div.price-tbl div.all-data-col:hover div.featured div.col-footer
+{
+   height: 48px;
+   line-height: 48px;
+}
+
+/*=================================================General Styling and Typography for Mouseover effect on Four Data Columns===============================================*/
+
+div.price-tbl div.all-data-col div.data-col-1:hover,
+div.price-tbl div.all-data-col div.data-col-2:hover,
+div.price-tbl div.all-data-col div.data-col-3:hover,
+div.price-tbl div.all-data-col div.data-col-4:hover
+{
+    z-index: 300;
+    margin: 0 0 0 -4px;
+    top: -12px;
+
+    /*--Border radius--*/
+    -webkit-border-radius: 6px 6px 0px 0px;
+    -moz-border-radius: 6px 6px 0px 0px;
+    border-radius: 6px 6px 0px 0px;
+
+     /*--Box shadow--*/
+    -webkit-box-shadow: 0px 0px 4px #1c1c1c;
+    -moz-box-shadow: 0px 0px 4px #1c1c1c;
+    box-shadow: 0px 0px 4px #1c1c1c;
+}
+
+/*==========Column Header===========*/
+
+div.price-tbl div.all-data-col div.data-col-1:hover div.col-header div.col-header-BG,
+div.price-tbl div.all-data-col div.data-col-2:hover div.col-header div.col-header-BG,
+div.price-tbl div.all-data-col div.data-col-3:hover div.col-header div.col-header-BG,
+div.price-tbl div.all-data-col div.data-col-4:hover div.col-header div.col-header-BG
+{
+    height: 112px;
+}
+
+/*--Here goes the typography for plan name at the top--*/
+div.price-tbl div.all-data-col div.data-col-1:hover div.plan-name span,
+div.price-tbl div.all-data-col div.data-col-2:hover div.plan-name span,
+div.price-tbl div.all-data-col div.data-col-3:hover div.plan-name span,
+div.price-tbl div.all-data-col div.data-col-4:hover div.plan-name span
+{
+    font-size: 1.6em;
+    line-height: 30px;
+}
+
+/*====Here goes the typography for price values=====*/
+
+/*--This is for '$' symbol--*/
+div.price-tbl div.all-data-col div.data-col-1:hover div.plan-price em,
+div.price-tbl div.all-data-col div.data-col-2:hover div.plan-price em,
+div.price-tbl div.all-data-col div.data-col-3:hover div.plan-price em,
+div.price-tbl div.all-data-col div.data-col-4:hover div.plan-price em
+{
+    font-size: 1.6em;
+    line-height: 16px;
+    margin-top: 11px;
+}
+
+/*--This for the price value--*/
+div.price-tbl div.all-data-col div.data-col-1:hover div.plan-price strong,
+div.price-tbl div.all-data-col div.data-col-2:hover div.plan-price strong,
+div.price-tbl div.all-data-col div.data-col-3:hover div.plan-price strong,
+div.price-tbl div.all-data-col div.data-col-4:hover div.plan-price strong
+{
+    font-size: 4em;
+    line-height: 40px;
+    margin-top: 7px;
+}
+
+/*--This for "/mo"--*/
+div.price-tbl div.all-data-col div.data-col-1:hover div.plan-price b,
+div.price-tbl div.all-data-col div.data-col-2:hover div.plan-price b,
+div.price-tbl div.all-data-col div.data-col-3:hover div.plan-price b,
+div.price-tbl div.all-data-col div.data-col-4:hover div.plan-price b
+{
+    font-size: 1.4em;
+    line-height: 14px;
+}
+
+/*--This is for plan-user text line--*/
+div.price-tbl div.all-data-col div.data-col-1:hover div.plan-user span,
+div.price-tbl div.all-data-col div.data-col-2:hover div.plan-user span,
+div.price-tbl div.all-data-col div.data-col-3:hover div.plan-user span,
+div.price-tbl div.all-data-col div.data-col-4:hover div.plan-user span
+{
+    font-size: 1.2em;
+    line-height: 12px;
+}
+
+/*==========CSS for Column Body============*/
+
+div.price-tbl div.all-data-col div.data-col-1:hover div.col-body span,
+div.price-tbl div.all-data-col div.data-col-2:hover div.col-body span,
+div.price-tbl div.all-data-col div.data-col-3:hover div.col-body span,
+div.price-tbl div.all-data-col div.data-col-4:hover div.col-body span
+{
+    color: #1b566a;
+    font-weight: bold;
+}
+
+/*==========CSS for Column Footer============*/
+
+div.price-tbl div.all-data-col div.data-col-1:hover div.col-footer,
+div.price-tbl div.all-data-col div.data-col-2:hover div.col-footer,
+div.price-tbl div.all-data-col div.data-col-3:hover div.col-footer,
+div.price-tbl div.all-data-col div.data-col-4:hover div.col-footer
+{
+   height: 60px;
+   line-height: 60px;
+}
+
+/*================General Styling and Typography for Cufon Replaced Texts on Mouseover. Any Change of Styles Here will be Reflected on Cufon-Replaced Texts====================*/
+
+/*----Styles for the class Name "cufon-normal". These are the Normal Styles of Cufon-replaced texts at the Column Header initially loaded by JQuery on page load----*/
+div.price-tbl div.all-data-col div.data-column div.plan-name span.cufon-normal
+{
+    font: 400 1.4em/32px OpenSansRegular;
+}
+
+div.price-tbl div.all-data-col div.data-column div.plan-price em.cufon-normal
+{
+    font: normal 1.4em/14px OpenSansRegular;
+    margin-top: 9px;
+}
+
+div.price-tbl div.all-data-col div.data-column div.plan-price strong.cufon-normal
+{
+    font: 500 3.2em/32px OpenSansRegular;
+    margin-top: 5px;
+}
+
+div.price-tbl div.all-data-col div.data-column div.plan-price b.cufon-normal
+{
+    font: normal 1.2em/12px OpenSansRegular;
+}
+
+div.price-tbl div.all-data-col div.data-column div.plan-user span.cufon-normal
+{
+    font: normal 1.1em/12px PTSerifRegular;
+    margin-top: 2px;
+}
+
+/*----Styles for the class Name "cufon-hover". These are the Styles of Cufon-replaced texts at the Column Header loaded by JQuery on mouseover on any data column or featured column----*/
+div.price-tbl div.all-data-col div.featured div.plan-name span.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-name span.cufon-hover
+{
+    font: normal 1.6em/30px OpenSansRegular;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-price em.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-price em.cufon-hover
+{
+    font: normal 1.6em/16px OpenSansRegular;
+    margin: 10px -2px 0px 0px;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-price strong.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-price strong.cufon-hover
+{
+    font: normal 4em/40px OpenSansRegular;
+    margin: 5px -2px 0px 0px;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-price b.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-price b.cufon-hover
+{
+    font: normal 1.4em/14px OpenSansRegular;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-user span.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-user span.cufon-hover
+{
+    font: normal 1.2em/12px PTSerifRegular;
+    margin: 0;
+}

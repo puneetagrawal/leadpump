@@ -11,7 +11,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    puts params
     resource = build_resource(params[:user])
+    resource.role_id = Role.find_by_role_type("company").id
     if resource.valid?
       @plan = params["user"]["subscriptions_attributes"]["0"]["plan_id"] ? Plan.find(params["user"]["subscriptions_attributes"]["0"]["plan_id"]) : nil
       #@amount = User.calculate_total_amount(params["user"]["subscriptions_attributes"]["0"]["plan_id"], params[:du], params[:dl], params[:dp])

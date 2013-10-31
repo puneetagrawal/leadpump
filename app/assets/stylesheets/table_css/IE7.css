@@ -1,0 +1,87 @@
+/*==============================General Styles and Typography for Column Header===========================*/
+/*--This is for the '$' symbol--*/
+div.price-tbl div.data-column div.plan-price em
+{
+    margin-top: 8px;
+}
+
+/*=====================General Styles and Typography for Column Body=====================*/
+/*--Replace "tick" and "cross" with images--*/
+div.price-tbl div.data-column div.col-body span em.tick,
+div.price-tbl div.data-column div.col-body span em.cross
+{
+    display: block;
+}
+
+/*===================================================General Styling and Typography for Featured Column=======================================================*/
+/*--This is for the '$' symbol--*/
+div.price-tbl div.featured div.plan-price em
+{
+    margin-top: 8px;
+}
+
+/*=============================================General Styling and  Typography of Resized Featured Column when You Mouseover on Other Data Columns================================================*/
+div.price-tbl div.all-data-col:hover div.featured div.plan-price em
+{
+    margin-top: 5px;
+}
+
+/*=================================================General Styling and Typography for Mouseover effect on Four Data Columns===============================================*/
+/*--This is for plan-user text line--*/
+div.price-tbl div.all-data-col div.data-col-1:hover div.plan-price em,
+div.price-tbl div.all-data-col div.data-col-2:hover div.plan-price em,
+div.price-tbl div.all-data-col div.data-col-3:hover div.plan-price em,
+div.price-tbl div.all-data-col div.data-col-4:hover div.plan-price em
+{
+    margin-top: 8px;
+}
+
+/*================General Styling and Typography for Cufon Replaced Texts on Mouseover. Any Change of Styles Here will be Reflected on Cufon-Replaced Texts====================*/
+div.price-tbl div.all-data-col div.data-column div.plan-price em.cufon-normal
+{
+    margin-top: 7px;
+}
+
+div.price-tbl div.all-data-col div.data-column div.plan-price strong.cufon-normal
+{
+    margin-top: 1px;
+    margin-bottom: -4px;
+}
+div.price-tbl div.all-data-col div.data-column div.plan-user span.cufon-normal
+{
+    line-height: 11px;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-price em.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-price em.cufon-hover
+{
+    margin-top: 6px;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-price strong.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-price strong.cufon-hover
+{
+    margin-top: 0px;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-user span.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-user span.cufon-hover
+{
+    margin-top: -7px;
+}
+
+/*==============For the Sign Up Button at Footer======================*/
+div.price-tbl div.all-data-col div.data-column div.col-footer div.plan-signup a,
+div.price-tbl div.all-data-col:hover div.featured div.col-footer div.plan-signup a
+{
+   margin-top: 12px;
+}
+
+div.price-tbl div.all-data-col div.featured div.col-footer div.plan-signup a,
+div.price-tbl div.all-data-col div.data-col-1:hover div.col-footer div.plan-signup a,
+div.price-tbl div.all-data-col div.data-col-2:hover div.col-footer div.plan-signup a,
+div.price-tbl div.all-data-col div.data-col-3:hover div.col-footer div.plan-signup a,
+div.price-tbl div.all-data-col div.data-col-4:hover div.col-footer div.plan-signup a
+{
+    margin-top: 18px;
+}

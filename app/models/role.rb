@@ -1,4 +1,4 @@
 class Role < ActiveRecord::Base
-  belongs_to :user
+  has_one :user
   attr_accessible :role_type
 end

@@ -1,0 +1,11 @@
+/*================General Styling and Typography for Cufon Replaced Texts on Mouseover. Any Change of Styles Here will be Reflected on Cufon-Replaced Texts====================*/
+div.price-tbl div.all-data-col div.data-column div.plan-price em.cufon-normal
+{
+    margin-top: 10px;
+}
+
+div.price-tbl div.all-data-col div.featured div.plan-price em.cufon-hover,
+div.price-tbl div.all-data-col div.data-column div.plan-price em.cufon-hover
+{
+    margin-top: 11px;
+}

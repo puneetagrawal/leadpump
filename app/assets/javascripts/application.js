@@ -33,20 +33,14 @@ function initsignUpRadioBtn(){
 		}
 	})
 
-	$("#moreUserLink").click(function(){
-		$('.moreUserLink').removeClass('hide')		
-	})
-	$(".multipleLocation").click(function(){
-		$('#user_locationType').removeClass('hide')
-		caclulateAmount()
-	})
 
-	$(".singleLocation").click(function(){
-		$('#user_locationType').addClass('hide')
-		caclulateAmount()
-	})
-
-	$("#user_discountOnUsers, #user_locationType").change(function(){
+	$("#user_discountOnUsers").change(function(){
+		no_of_users = $(this).val()
+		options = ''
+		for(i=1;i<=no_of_users;i++){
+			options += '<option value="'+i+'">'+i+'</option>'	
+		}
+		$("#no_of_locations").html(options)
 		caclulateAmount()
 	})
 
@@ -54,31 +48,35 @@ function initsignUpRadioBtn(){
 		caclulateAmount()	
 	})
 	$("#user_planType_1").attr('checked', 'checked')
-	$(".singleLocation").attr('checked', 'checked')
+	$("#user_discountOnUsers").val(1)
+
+	if ($("#user_discountOnUsers").val()){
+		alert(">>>>>>")
+		alert($("#user_discountOnUsers").val())
+		caclulateAmount()
+	}
+	
+	
 }
 
 function caclulateAmount(){
 	no_of_users = 1
 	no_of_locations = 1
-	payment_type = 0
+	payment_type = 'monthly'
 	planId = $("#user_subscriptions_attributes_0_plan_id").val()
-	if ($("#user_locationType").is(":visible")) {
-		no_of_locations = $("#user_locationType").val()
-	}
-	if($("#user_discountOnUsers").is(":visible")){
-		no_of_users = $("#user_discountOnUsers").val()		
-	}
+	no_of_locations = $("#no_of_locations").val()
+	no_of_users = $("#user_discountOnUsers").val()		
+	
 	if($("input[name='user[planType]']").is(":checked")){		
 		if($("input[name='user[planType]']:checked").val() > 1){
-			payment_type = 10		
+			payment_type = "yearly"		
 		}		
 	}
 	url = '/home/calculateAmount'
 	$.get(url, {du:no_of_users, dl:no_of_locations, dp:payment_type, planId:planId}, function (data) {
-		$("#pr").html(data.lcStr)
-		$("#pu").html(data.bcStr)
-		$("#td").html(data.totalDis)
-		$("#ta").html(data.amount)
-		$("#tpa").val(data.amount.split("$")[1])
+		$("#pu").html(data.chargesPerUserStr)
+		$("#td").html(data.disAmountStr)
+		$("#ta").html(data.amountStr)
+		$("#tpa").val(data.amount)
         })
 }

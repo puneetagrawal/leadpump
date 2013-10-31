@@ -1,3 +1,4 @@
+<div class="container">
  	<h2>Sign in</h2>
 <div class="signupCon">
 	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -11,9 +12,12 @@
 			<p style="float:left"><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
 			<% end -%>
 		</div>
-		<div style="float:left"><%= f.submit "Sign in" , :class => "btn yellow"%></div>
+		<p style="float:left"><%= f.submit "Sign in" , :class => "btn green"%></p><br/><br/>
 		<% end %>
-		<div>
-			<%= render "devise/shared/links" %>
-		</div>
+		
 
+</div>
+
+<p >
+			<%= render "devise/shared/links" %>
+		</p>

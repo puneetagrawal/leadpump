@@ -16,6 +16,9 @@
   <% if flash[:notice] %>
     <p class="flash-notice"><%= flash[:notice] %></p>
   <% end %>
+  <% if flash[:alert] %>
+    <p class="flash-notice"><%= flash[:alert] %></p>
+  <% end %>
 <%= yield %>
 <%= render 'layouts/footer' %>
 </body>
