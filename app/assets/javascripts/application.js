@@ -34,7 +34,7 @@ function initsignUpRadioBtn(){
 	})
 
 
-	$("#user_discountOnUsers").change(function(){
+	$("#discountOnUsers").change(function(){
 		no_of_users = $(this).val()
 		options = ''
 		for(i=1;i<=no_of_users;i++){
@@ -44,18 +44,15 @@ function initsignUpRadioBtn(){
 		caclulateAmount()
 	})
 
-	$("#user_planType_1, #user_planType_2").click(function(){
+	$("#planType_1, #planType_2").click(function(){
 		caclulateAmount()	
 	})
-	$("#user_planType_1").attr('checked', 'checked')
-	$("#user_discountOnUsers").val(1)
+	$("#planType_1").attr('checked', 'checked')
+	$("#discountOnUsers").val(1)
 
-	if ($("#user_discountOnUsers").val()){
-		alert(">>>>>>")
-		alert($("#user_discountOnUsers").val())
+	if ($("#discountOnUsers").val()){
 		caclulateAmount()
-	}
-	
+	}	
 	
 }
 
@@ -65,10 +62,10 @@ function caclulateAmount(){
 	payment_type = 'monthly'
 	planId = $("#user_subscriptions_attributes_0_plan_id").val()
 	no_of_locations = $("#no_of_locations").val()
-	no_of_users = $("#user_discountOnUsers").val()		
+	no_of_users = $("#discountOnUsers").val()		
 	
-	if($("input[name='user[planType]']").is(":checked")){		
-		if($("input[name='user[planType]']:checked").val() > 1){
+	if($("input[name='planType']").is(":checked")){		
+		if($("input[name='planType']:checked").val() > 1){
 			payment_type = "yearly"		
 		}		
 	}

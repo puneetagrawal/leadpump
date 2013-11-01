@@ -5,7 +5,8 @@
        <thead>
            <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Status</td><td>Action</td></tr>
        </thead>
-       <tbody>                    
+       <tbody>    
+       <%if @leads%>                
            <% @leads.each do |lead|%>
            <tr>
              <td><%=lead.first_name%></td>
@@ -15,6 +16,7 @@
              <td></td>
              <td><%=link_to "View", edit_lead_path(lead)%></td>
          </tr>
+         <% end %>         
          <% end %>         
      </tbody>
  </table>

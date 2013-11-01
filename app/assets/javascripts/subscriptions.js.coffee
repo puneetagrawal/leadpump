@@ -10,7 +10,7 @@ subscription =
     $('.submitSignUpForm').click ->
         if $("input[name='acceptConditions']").is(":checked")
           if($("input:radio[name='paymentOptionRadio']:checked").attr('class') == 'creditCard')
-            $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif">')
+            $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif" style="float:right;margin-right:40px">')
             if $('#card_number').length
               subscription.validateCard()
               return false
@@ -31,7 +31,7 @@ subscription =
     else
       $('#stripe_error').text(response.error.message)
       $("html, body").animate({ scrollTop: 0 }, "fast");
-      $(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn yellow pull-right">Create My Account</a>')
+      $(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn green pull-right">Create My Account</a>')
 
   addHiddenField: ->
       if($('#user_discountOnUsers').is(':visible'))      
@@ -51,4 +51,4 @@ subscription =
         expYear: $('#card_year').val()
       Stripe.createToken(card, subscription.handleStripeResponse)
 
-$(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn yellow pull-right">Create My Account</a>')
+$(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn green pull-right">Create My Account</a>')

@@ -2,11 +2,11 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  attr_accessible :email, :name, :password, :remember_me, :role_id, :employees_attributes, :locationType, :planType, :discountOnUsers, :addresses_attributes, :subscriptions_attributes
+  attr_accessible :email, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscriptions_attributes
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses, :dependent => :destroy
   has_many :subscriptions, :dependent => :destroy
-  has_many :employees, :dependent => :destroy
+  has_many :leads, :dependent => :destroy
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscriptions
 
@@ -14,15 +14,28 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
 
-def user_role
-  return self.role.role_type
-end
+# def user_role
+#   return self.role.role_type
+# end
 
- Role.all.each do |r| 
-    define_method "#{r.role_type}?" do
-        user_role == r.role_type     
-    end
+ # Role.all.each do |r| 
+ #    define_method "#{r.role_type}?" do
+ #        user_role == r.role_type     
+ #    end
+ #  end
+
+  def user_role
+    Role.where(:id => self.role_id).last
   end
+
+  def role?(base_role)   
+    if user_role.blank? or user_role.name.try(:humanize) != base_role.to_s.try(:humanize)
+       false
+    else 
+       true
+    end   
+  end
+
 
 
   def self.calculate_total_amount(plan, du, dl, dp)

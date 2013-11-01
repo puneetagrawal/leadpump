@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(:version => 20131030181952) do
   create_table "discounts_on_locations", :force => true do |t|
     t.string   "locationRanges"
     t.integer  "discountPercentage"
+    t.string   "chargePerUser"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.string   "chargePerUser"
   end
 
   create_table "discounts_on_periods", :force => true do |t|
@@ -59,22 +59,21 @@ ActiveRecord::Schema.define(:version => 20131030181952) do
     t.string   "last_name"
     t.string   "email"
     t.string   "address"
+    t.integer  "phone",             :limit => 8
     t.string   "refferred_by"
+    t.boolean  "guest_pass_issued"
     t.string   "lead_source"
     t.string   "dues_value"
     t.string   "enrolment_value"
     t.string   "notes"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
     t.integer  "company_id"
-    t.integer  "phone",           :limit => 8
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "plans", :force => true do |t|
     t.string   "name"
     t.decimal  "price"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
     t.string   "user_position"
     t.integer  "number_of_user"
     t.string   "lead_management"
@@ -91,17 +90,14 @@ ActiveRecord::Schema.define(:version => 20131030181952) do
     t.boolean  "unlimited_team_training"
     t.boolean  "unlimited_support"
     t.boolean  "national_spokeswoman"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "roles", :force => true do |t|
     t.string   "role_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -128,12 +124,9 @@ ActiveRecord::Schema.define(:version => 20131030181952) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "role_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.integer  "locationType"
-    t.integer  "discountOnUsers"
-    t.integer  "planType"
-    t.integer  "role_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

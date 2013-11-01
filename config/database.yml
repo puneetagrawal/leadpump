@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   host: localhost
-  database: leadpump
+  database: dev_leadpump
   pool: 5
   timeout: 5000
   username: postgres
@@ -19,7 +19,7 @@ development:
 test: &test
   adapter: postgresql
   host: localhost
-  database: leadpump-test
+  database: test_leadpump
   pool: 5
   timeout: 5000
   username: postgres

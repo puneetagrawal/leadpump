@@ -10,12 +10,12 @@ end
 
 def new  
   @leads = []
-  case current_user.user_role.to_sym
-  when :admin
-    @leads = Lead.all
-  when :company
-    @leads = Lead.where(:company_id =>current_user.id)
-  end
+  # case current_user.user_role.to_sym
+  # when :admin
+  #   @leads = Lead.all
+  # when :company
+  #   @leads = Lead.where(:company_id =>current_user.id)
+  # end
 
   @lead  = Lead.new()
 

@@ -5,11 +5,20 @@
         <h2 class="fl"><a href="#">Company logo</a></h2>
         <div class="fr">
             <ul class="fr usernav">
-                <%- if current_user.id %>
-                    <li> <%= link_to "Logout", "users/logout"%></li>
+                <li> 
+                <%- if current_user %>
+                <%=link_to(destroy_user_session_path, html_options = {}) do%>
+                  <i class="icon-chevron-right icon-white icon_login"></i>
+                  Logout
+                <%end %>
                 <%else%>
-                    <li> <%= link_to "Log in", "users/sign_in"%></li>
+                    <%=link_to("users/sign_in", html_options = {}) do %>
+                      <i class="icon-chevron-right icon-white icon_login"></i>
+                      Login
+                    <%end %>
                 <%end%>
+                </li>
+                
             </ul>
             <div class="clear"></div>
             <div id="headerNav" class="navbar">

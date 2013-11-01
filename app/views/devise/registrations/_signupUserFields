@@ -4,7 +4,7 @@
 <p><%= f.label :Password %><%= f.password_field :password %></p>
 <p>
 	<label>No of users</label>
-	<%=f.select :discountOnUsers, options_for_select((1..200).collect{ |dl| [dl, dl] }), {},:class => "moreUserLink w100"%>
+	<%= select_tag "discountOnUsers", options_for_select((1..200).collect{ |dl| [dl, dl] }),:class => "moreUserLink w100"%>
 </p>
 <p>
 	<label>No of Locations</label>

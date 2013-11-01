@@ -2,10 +2,6 @@ Leadpump::Application.routes.draw do
 
   resources :discounts_on_periods
 
-
-  resources :discounts_on_users
-
-
   resources :discounts_on_locations
 
 
@@ -13,12 +9,12 @@ Leadpump::Application.routes.draw do
 
   resources :leads
 
-  # root to: "home#index"
-  root to: 'plans#index'
+  root to: "home#index"
   resources :subscriptions
   resources :plans
 
   match 'home/index' => 'home#index'
+  match '/success' => 'home#success'
   
   match '/test' => 'home#test'
   match '/home/calculateAmount' => 'home#calculateAmount'

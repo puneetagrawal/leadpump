@@ -23,4 +23,5 @@ Plan.create(name:"Proffessional Plus",price:81, user_position:"National Spokeswo
 
 Role.create(role_type:"admin")
 Role.create(role_type:"company")
-Role.create(role_type:"companyUser")
+Role.create(role_type:"employee")
+Role.create(role_type:"normalUser")
