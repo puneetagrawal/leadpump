@@ -39,4 +39,5 @@ gem 'cancan'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+ gem 'debugger'
+ gem 'chronic', :require => 'chronic'

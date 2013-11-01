@@ -10,7 +10,7 @@ Leadpump::Application.routes.draw do
 
 
   devise_for :users, :controllers => {:registrations => "registrations"}
-
+  resources :appointments
 
   # root to: "home#index"
   root to: 'plans#index'
@@ -22,6 +22,10 @@ Leadpump::Application.routes.draw do
   match 'employee/new' => 'employee#new'
   match 'employee/create' => 'employee#create'
   match 'employee/index' => 'employee#index'
+
+  match 'appointment/new' => 'appointments#new'
+  match 'appointment/create' => 'appointments#create'
+  match 'appointment/index' => 'appointments#index'
 
   match '/test' => 'home#test'
   match '/home/calculateAmount' => 'home#calculateAmount'

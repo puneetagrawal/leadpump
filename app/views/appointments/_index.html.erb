@@ -1,0 +1,26 @@
+ <table class="table table-striped">
+    <thead>
+        <tr>
+          <td>Time</td>
+          <% @appointments.each do |a| %>
+            <td>Appointment <%= a.id %></td>
+          <% end %>
+        </tr>
+    </thead>
+        <tbody>
+            <% tym.each do |a| %>
+              <tr>
+               <td class="time"><%= a.app_time %></td>
+                      <td>
+                           <ul>
+                              <li><strong>Member:</strong> <%= a.name %>  </li>
+                              <li><strong>Phone:</strong> <%= a.phone %> </li>
+                              <li><strong>Notes:</strong> <%= a.notes %> </li>
+                              <li><strong>Submitted by:</strong>Golds Gym</li>
+                          </ul>
+                      </td>
+              </tr>
+              <% end %> 
+        </tbody>
+
+  </table>

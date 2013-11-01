@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row-fluid">
+        <div class="span4">
+              <h2 class="heading">New Appointment</h2>   
+            <%= form_for :appointment, :url => appointment_create_path(), :html => {:class => "form", } do |a| %>
+                <div class="errors">
+                    <% @appointment.errors.each do |attr, msg| %>
+                    <h5> <%= "#{attr} #{msg}"%> </h5>
+                    <% end %>
+                </div>
+            <div class="border">
+             
+                           
+             <form class="form pd15 leadform">
+                
+                    <p><label> Name: </label><%= a.text_field :name %></p>
+                    <p> <label>Phone: </label>
+                        <%= a.text_field :phone %>
+                    </p>
+                    <p> <label>Email: </label> 
+                       <%= a.email_field :email %>
+                    </p>
+                    <p> <label>Notes: </label> 
+                        <%= a.text_field :notes %>
+                    </p>
+                    <p> <label>Dues value: </label>
+                        <%= a.text_field :dues %>
+                    </p>
+                    <p> <label>Enrolment value: </label>
+                       <%= a.text_field :enrol %>
+                    </p>
+                    <p> <label>Appt. source: </label>
+                       <%= a.select :app_source, options_for_select([["BRS VIP", "vip"], ["Walkin", "walk"]], :selected => @appointment.app_source), :prompt => "Select Source" %>
+                    </p>
+                    <p> <label>Appt. time: </label>
+                        <%= a.text_field :app_time %>
+                    </p>
+                    <p> <label>Date of Appt: </label>
+                        <%= a.text_field :app_date %>
+                    </p>
+                    <p> <input class="btn yellow" type="submit" value="Add Appointment"/> </p>
+                   
+                    <div class="clear"></div>
+                    <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                        <input class="span2 wd55" type="text" value="12-02-2012">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                </form>
+                 <%end%>
+            </div>
+        </div>
+        <div class="span8">
+            <div class="border calender">
+                <h2 class="heading">Appointments</h2>
+                   <%= render 'index' %>
+            </div>
+        </div>
+    </div>
+</div>
