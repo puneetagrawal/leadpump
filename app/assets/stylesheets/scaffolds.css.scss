@@ -14,17 +14,17 @@ pre {
 }
 
 #error_explanation {
-    background-color: none !important;
-    border: 2px solid red;
+    background: none repeat scroll 0 0 #DCB8B8 !important;
     float: left;
     margin-bottom: 20px;
     padding: 7px 7px 0;
-    width: 450px;
+    width: 90%;
+    float:left;
 }
 
 #error_explanation h2 {
     background-color: none !important;
-    color: red;
+    color: #BF5254;
     float: left;
     font-size: 12px;
     font-weight: bold;

@@ -2,7 +2,11 @@
        
 <header>
     <div class="container">
-        <h2 class="fl"><a href="#">Company logo</a></h2>
+        <h2 class="fl">
+            <%=link_to home_index_path do%>   
+                  <img src="/assets/logo.png">
+            <%end %>
+        </h2>
         <div class="fr">
             <ul class="fr usernav">
                 <li> 
@@ -31,10 +35,10 @@
                         </a>
                         <div class="nav-collapse collapse fr">
                             <ul class="nav">
-                                <li><%= link_to "Home", home_index_path, :class => "active" %></li>
-                                <li><%= link_to "Plan", "#" %></li>
-                                <li><%= link_to "About", "#" %></li>
-                                <li><%= link_to "Contact us", "#" %></li>
+                                <li><%= link_to "Home", home_index_path, :class => "headerLinks" %></li>
+                                <li><%= link_to "Plan", new_plan_path, :class => "headerLinks" %></li>
+                                <li><%= link_to "About", "#", :class => "headerLinks" %></li>
+                                <li><%= link_to "Contact us", '#', :class => "headerLinks" %></li>
                             </ul>
                         </div>
                     </div>

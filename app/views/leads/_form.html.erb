@@ -1,24 +1,30 @@
 <div class="span4">
-                <div class="border">
-                	<h2 class="heading">Add A New Lead</h2>
-            		<%= form_for @lead, :html => {:class => "form pd15", } do |lead| %>
-            			<div class="errors">
-							<% @lead.errors.each do |attr, msg| %>
-							<p> <%= "#{attr} #{msg}"%> </p>
-							<% end %>
-						</div>
-                		<p><%= lead.label :First_Name %><%= lead.text_field :first_name %></p>
-                		<p><%= lead.label :Last_Name %><%= lead.text_field :last_name %></p>
-                        <p><%= lead.label :Phone %><%= lead.text_field :phone %></p>
-                        <p><%= lead.label :Email %><%= lead.text_field :email %></p>
-                        <p><%= lead.label :Address %><%= lead.text_field :address %></p>
-                        <p><%= lead.label :Refferred_By %><%= lead.text_field :refferred_by %></p>
-                        <p><%= lead.label :Lead_Source %><%= lead.text_field :lead_source %></p>
-                        <p><%= lead.label :Guest_Pass_Issued %><%#= lead.text_field :guest_pass_issued %></p>
-                        <p><%= lead.label :Dues_Value %><%= lead.text_field :dues_value %></p>
-                        <p><%= lead.label :Enrolment_Value %><%= lead.text_field :enrolment_value %></p>
-                        <p><%= lead.label :Notes %><%= lead.text_field :notes %></p>
-                        <p><input type="submit" class="btn yellow" value="Enter Lead"/></p>
-                    <%end%>
-                </div>
-            </div>
+    <%= form_for @lead, :html => {:class => "", } do |lead| %>
+
+    <%if @lead.errors.size > 0 %>
+        <div class="alert alert-error">
+            <% @lead.errors.each do |attr, msg| %>
+            <p> <%= "#{attr} #{msg}"%> </p>
+            <% end %>
+        </div>
+    <%end%>
+    <div class="border">
+        <h2 class="heading">Add A New Lead</h2>
+        <div class="form pd15 leadform">
+            <p><%= lead.label :First_Name %><%= lead.text_field :first_name %></p>
+            <p><%= lead.label :Last_Name %><%= lead.text_field :last_name %></p>
+            <p><%= lead.label :Phone %><%= lead.text_field :phone %></p>
+            <p><%= lead.label :Email %><%= lead.text_field :email %></p>
+            <p><%= lead.label :Address %><%= lead.text_field :address %></p>
+            <p><%= lead.label :Refferred_By %><%= lead.text_field :refferred_by %></p>
+            <p><%= lead.label :Lead_Source %><%= lead.text_field :lead_source %></p>
+            <p><%= lead.label :Guest_Pass_Issued %><%= lead.text_field :guest_pass_issued %></p>
+            <p><%= lead.label :Dues_Value %><%= lead.text_field :dues_value %></p>
+            <p><%= lead.label :Enrolment_Value %><%= lead.text_field :enrolment_value %></p>
+            <p><%= lead.label :Notes %><%= lead.text_field :notes %></p>
+            <p><input type="submit" class="btn yellow" value="Enter Lead"/></p>
+            <div class="clear"></div>
+        </div>        
+    </div>    
+    <%end%>    
+</div>

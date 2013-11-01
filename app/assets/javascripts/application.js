@@ -53,7 +53,7 @@ function initsignUpRadioBtn(){
 	if ($("#discountOnUsers").val()){
 		caclulateAmount()
 	}	
-	
+
 }
 
 function caclulateAmount(){

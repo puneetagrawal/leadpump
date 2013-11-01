@@ -11,13 +11,16 @@
 <body>
 <%= render 'layouts/header' %>
  <% if flash[:error] %>
-    <p class="flash-error mesgs"><%= flash[:alert] %></p>
+    <p class="flashes alert alert-error"><%= flash[:alert] %></p>
   <% end %>
   <% if flash[:notice] %>
-    <p class="flash-notice mesgs"><%= flash[:notice] %></p>
+    <p class="flashes alert alert-info"><%= flash[:notice] %></p>
   <% end %>
   <% if flash[:alert] %>
-    <p class="flash-notice mesgs"><%= flash[:alert] %></p>
+    <p class="flashes alert alert-block"><%= flash[:alert] %></p>
+  <% end %>
+  <% if flash[:success] %>
+    <p class="flashes alert alert-success"><%= flash[:success] %></p>
   <% end %>
 <%= yield %>
 <%= render 'layouts/footer' %>

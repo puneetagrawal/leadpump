@@ -30,7 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
       )
       resource.save
       sign_in(resource_name, resource)  
-      flash[:notice] = "You have paid $#{@amount/100}. Congratulation you signUp successfully"    
+      flash[:notice] = ""    
       redirect_to success_path()
     else     
       @plan = Plan.find(params["user"]["subscriptions_attributes"]["0"]["plan_id"])

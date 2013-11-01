@@ -1,29 +1,40 @@
 
 
-<h1>Listing users</h1>
-<%= link_to 'New user', company_new_path %>
-<p><%=link_to 'Manage Leads', new_lead_path() %></p>
+<div style="width:100%;float:left">
+  <p style="float:left;margin-right:30px">
+    <%=link_to(company_new_path(), html_options = {}) do %>
+    <span style="color:gray;font-size:20px;font-weight:bold;margin-left:10px;">Create User</span>                 
+    <%end %>
+  </p>
 
-<table class="table table-striped">
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Status</th>
-    <th>Action</th>
-  </tr>
-<%if@users%>
-  <% @users.each do |user| %>
-  <%usr = User.find(user)%>
+  <p style="float:left;">
+    <%=link_to(new_lead_path(), html_options = {}) do %>
+    <span style="color:gray;font-size:20px;font-weight:bold;margin-left:10px;">Manage Lead</span>                 
+    <%end %>
+  </p>
+</div>
+<div style="min-height:350px;">
+  <h3 style="text-align:center">Listing users</h3>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    <%if@users%>
+    <% @users.each do |user| %>
+    <%usr = User.find(user)%>
     <tr>
       <td><%= usr.name %></td>
       <td><%= usr.email %></td>
       <td>--</td>
       <td><%=link_to "Edit", "/edit/#{user}"%> | <%=link_to "Delete", "/delete/#{user}"%></td>
     </tr>
-  <% end %>
-  <% end %>
-</table>
-
+    <% end %>
+    <% end %>
+  </table>
+</div>
 <br />
 
 

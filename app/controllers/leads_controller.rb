@@ -10,12 +10,12 @@ end
 
 def new  
   @leads = []
-  # case current_user.user_role.to_sym
-  # when :admin
-  #   @leads = Lead.all
-  # when :company
-  #   @leads = Lead.where(:company_id =>current_user.id)
-  # end
+  case current_user.user_role.role_type.to_sym
+  when :admin
+    @leads = Lead.all
+  when :company
+    @leads = Lead.where(:company_id =>current_user.id)
+  end
 
   @lead  = Lead.new()
 
@@ -26,7 +26,7 @@ def create
   @lead.company_id = current_user.id
   if @lead.save
     flash[:notice] = "New lead created successfully"
-    redirect_to lead_index_path
+    redirect_to new_lead_path
   else
     render "new"
   end
