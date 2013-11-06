@@ -130,6 +130,16 @@ div.price-tbl div.all-data-col:hover div.featured div.col-body span
     font: bold 1.2em/40px Tahoma,Arial,Helvetica,sans-serif !important;
 }
 
+div.price-tbl .unlimited {
+    text-transform: uppercase;
+    font: bold 15px/40px Tahoma, Arial, Helvetica, sans-serif !important;
+}
+div.price-tbl div.all-data-col:hover div.featured div.col-body span.unlimited {
+    text-transform: uppercase;
+    font: bold 15px/40px Tahoma, Arial, Helvetica, sans-serif !important;
+}
+
+
 div.price-tbl div.all-data-col div.data-col-1:hover,
 div.price-tbl div.all-data-col div.data-col-2:hover,
 div.price-tbl div.all-data-col div.data-col-3:hover,
