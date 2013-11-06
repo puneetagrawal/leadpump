@@ -9,6 +9,11 @@ Leadpump::Application.routes.draw do
 
   resources :leads
 
+  get 'leads/autocomplete_user_name'
+
+  match '/leads/leadassign' => 'leads#leadassign'
+  match '/leads/leadassigntouser' => 'leads#leadassigntouser'
+
   root to: "home#index"
   resources :subscriptions
   resources :plans

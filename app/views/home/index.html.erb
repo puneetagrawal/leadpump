@@ -7,11 +7,13 @@
 	                  <i class="icon icon_leads"></i><span>Leads</span>                 
 	                <%end %>
                 </li>
-                <li>
-                    <%=link_to(company_new_path, html_options = {}) do %>
-	                  <i class="icon icon_socialInviter"></i><span>Manage User</span><span></span>                  
-	                <%end %>
-                </li>
+                <%if current_user.role.role_type == "admin" || current_user.role.role_type == "company"%>
+                    <li>
+                        <%=link_to(company_new_path, html_options = {}) do %>
+    	                  <i class="icon icon_socialInviter"></i><span>Manage User</span><span></span>                  
+    	                <%end %>
+                    </li>
+                <%end%>
                 <!-- <li><a href="#"><img src="img/icon.png"/><span>Appointments</span></a></li> -->
                 <!-- <li><a href="#"><img src="img/icon.png"/><span>Sales Data</span></a></li>
                 <li><a href="#"><img src="img/icon.png"/><span>Social Inviter</span></a></li>

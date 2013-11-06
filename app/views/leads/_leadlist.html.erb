@@ -8,17 +8,22 @@
        <tbody>    
        <%if @leads%>                
            <% @leads.each do |ur|%>
-           <%lead = Lead.find(ur.lead_id)%>
+           <%lead = ur.lead%>
            <tr>
              <td><%=lead.first_name%></td>
              <td><%=lead.phone%></td>
              <td><%=lead.email%></td>
              <td><%=lead.lead_source%></td>
              <td></td>
-             <td><%=fetchLeadEmployee(lead.id)%></td>
+             <td><span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%></td>
              <td><%=link_to "Edit", edit_lead_path(lead)%> 
-              <%if checkIfCompanyAdmin%>
-              | <%=link_to "Assign", "#"%></td>
+              <%if checkIfCompanyAdmin(lead.id)%>
+              <span id="asignBtn_<%=lead.id%>">
+              | <%=link_to "Assign", "javascript:void(0)", :onclick => "getAutoCompleteForLeadAssign(#{lead.id})"%>
+              </span>
+                <span id="users_<%=lead.id%>" class="selectBox">                    
+                </span>
+            </td>
               <%end%>
          </tr>
          <% end %>         
