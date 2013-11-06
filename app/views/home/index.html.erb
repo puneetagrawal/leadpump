@@ -4,13 +4,13 @@
             	<!-- <li><a href="#"><img src="img/icon.png"/><span>Leads</span></a></li>  -->
                 <li>
                     <%=link_to(new_lead_path(), html_options = {}) do %>
-	                  <i class="icon icon_leads"></i><span>Leads</span>                 
+	                  <i class="icon icon_opt_in_lead"></i><span>Leads</span>                 
 	                <%end %>
                 </li>
                 <%if current_user.role.role_type == "admin" || current_user.role.role_type == "company"%>
                     <li>
                         <%=link_to(company_new_path, html_options = {}) do %>
-    	                  <i class="icon icon_socialInviter"></i><span>Manage User</span><span></span>                  
+    	                  <i class="icon icon_leads"></i><span>Manage User</span><span></span>                  
     	                <%end %>
                     </li>
                 <%end%>
