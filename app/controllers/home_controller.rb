@@ -10,7 +10,7 @@ class HomeController < ApplicationController
 
 
     def calculateAmount
-        @msg = User.signUpAmount(params[:planId], params[:du], params[:dl], params[:dp])
+        @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])
         respond_to do |format|
           format.json { render json: @msg}
         end

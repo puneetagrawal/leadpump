@@ -1,5 +1,12 @@
 @import url("reset.css");
 
+div#wrapper
+{
+	width: 960px;
+	margin: 0 auto;
+	text-align: left;
+}
+
 /*=========================General Table Styles===========================*/
 
 div.price-tbl
@@ -9,7 +16,7 @@ div.price-tbl
     left: 0; /*--Position the table as per your requirements--*/
     width: 100%; /*--Width of parent--*/
     height: 820px; /*--You need to mention height as per your need, so that contents of page below the table could be positioned as per the requirements--*/
-    margin: 50px 0; /*--Give some space above and below the table--*/
+    margin: 24px 0; /*--Give some space above and below the table--*/
 }
 
 /*===========================Position and Width of Table Columns as per Requirements====================*/
@@ -84,6 +91,8 @@ div.price-tbl div.feature-column, div.price-tbl div.data-column
 div.price-tbl div.feature-column
 {
     left: 0;
+    margin-left: -20px;
+    width: 242px;
 }
 
 div.price-tbl div.data-col-1
@@ -114,6 +123,11 @@ div.price-tbl div.featured
 div.price-tbl div.all-data-col:hover div.featured
 {
     width: 180px;
+}
+
+div.price-tbl div.all-data-col:hover div.featured div.col-body span
+{
+    font: bold 1.2em/40px Tahoma,Arial,Helvetica,sans-serif !important;
 }
 
 div.price-tbl div.all-data-col div.data-col-1:hover,
@@ -245,8 +259,9 @@ div.price-tbl div.data-column div.col-body span
     width: 100%;
     height: 40px;
     text-align: center;
-    color: #2b2f35;
+    color: #232323;
     font: normal 1.2em/40px Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 /*--Replace "tick" and "cross" with images--*/
@@ -261,7 +276,6 @@ div.price-tbl div.data-column div.col-body span em.cross
 div.price-tbl div.data-column div.col-body span em.tick
 {
     background: url(/assets/table_images/tick.png) no-repeat 0px 10px;
-
 }
 
 div.price-tbl div.data-column div.col-body span em.cross
@@ -335,7 +349,7 @@ div.price-tbl div.data-column div.col-header div.col-header-BG div.plan-signup a
 div.price-tbl div.data-column div.col-footer div.plan-signup a:active
 {
     /*--Gradient--*/
-    background: url(/assetstable_images/signup-btn-active-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background: url(/assets/table_images/signup-btn-active-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
     background-image: -webkit-gradient(linear, left top, left bottom, from(#d85d02), to(#ff862b)); /*--For older webkit browsers--*/
     background-image: -webkit-linear-gradient(top, #d85d02, #ff862b); /*--For newer webkit and iOS5+--*/
     background-image: -moz-linear-gradient(top, #d85d02, #ff862b); /*--For mozilla--*/
@@ -351,7 +365,7 @@ div.price-tbl div.feature-column div.col-header
     height: 80px;
     padding-top: 20px;
     margin-top: 34px;
-    color: #2b6788;
+    color: #535652;
     font: normal 2em/1.3em Arial, Helvetica, sans-serif;
     text-align: center;
     background: #edf3f5;
@@ -366,13 +380,15 @@ div.price-tbl div.feature-column div.col-header
 div.price-tbl div.feature-column div.col-body
 {
 /*--    margin-top: 134px;  --*/ /*--If you do not need column header for the first column then unhide this and delete above CSS for "div.price-tbl div.col-1 div.col-header"--*/
-    background: #d4f4ff;
+    background: #edf3f5;
+
 }
 
 div.price-tbl div.feature-column div.col-body span.highlight
 {
-    background: #abdeef; /*--fallback color--*/
-    background: rgba(77, 170, 201, 0.3);
+    background: #d9dee0; /*--Fallback background color--*/
+    background: rgba(136, 137, 138, 0.2);
+
 }
 
 div.price-tbl div.feature-column div.col-body span
@@ -381,7 +397,8 @@ div.price-tbl div.feature-column div.col-body span
     text-align: left;
     padding-left: 10px;
     width: auto;
-    color: #424851;
+    color: #666e70;
+    font-weight: bold;
 }
 
 /*--CSS for Popup box--*/
@@ -436,172 +453,88 @@ div.price-tbl div.feature-column div.col-body span:hover em.popup-box
 
 /*============================================General Styles for Four Columns with Four Different Plans: Data Column 1, Data Column 2, Data Column 3, and Data Column 4===============================================*/
 
-/*==================CSS for Data Column 1=================*/
+/*==================CSS for Data Column 1 and Data Column 3=================*/
 
 /*--Header--*/
-div.price-tbl div.data-col-1 div.col-header div.plan-name
+div.price-tbl div.data-col-1 div.col-header div.plan-name, div.price-tbl div.data-col-3 div.col-header div.plan-name
 {
     /*--Box shadow--*/
-    -webkit-box-shadow: 0px 1px 0px #205f73, 0px -1px 0px #3baed4 inset;
-    -moz-box-shadow: 0px 1px 0px #205f73, 0px -1px 0px #3baed4 inset;
-    box-shadow: 0px 1px 0px #205f73, 0px -1px 0px #3baed4 inset;
+    -webkit-box-shadow: 0px 1px 0px #000, 0px -1px 0px #404040 inset;
+    -moz-box-shadow: 0px 1px 0px #000, 0px -1px 0px #404040 inset;
+    box-shadow: 0px 1px 0px #000, 0px -1px 0px #404040 inset;
 
     /*--Gradient--*/
-    background: url(/assets/table_images/blue1-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#3397b8), to(#27738c)); /*--For older webkit browsers--*/
-    background-image: -webkit-linear-gradient(top, #3397b8, #27738c);  /*--For newer webkit and iOS5+--*/
-    background-image: -moz-linear-gradient(top, #3397b8, #27738c); /*--For mozilla--*/
-    background-image: -o-linear-gradient(top, #3397b8, #27738c); /*--For Opera 11.10+--*/
-    background-image: -ms-linear-gradient(top, #3397b8, #27738c); /*--For IE10--*/
+    background: url(/assets/table_images/black-light-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#404040), to(#262626)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #404040, #262626); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #404040, #262626); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #404040, #262626); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #404040, #262626); /*--For IE10--*/
 }
 
-div.price-tbl div.data-col-1 div.col-header div.col-header-BG
+div.price-tbl div.data-col-1 div.col-header div.col-header-BG, div.price-tbl div.data-col-3 div.col-header div.col-header-BG
 {
-    background: #3397b8;
+    background: #3b3b3b;
 }
 
 /*--Body--*/
-div.price-tbl div.data-col-1 div.col-body
+div.price-tbl div.data-col-1 div.col-body, div.price-tbl div.data-col-3 div.col-body
 {
-    background: #b6e3f2;
+    background: #d2d7d9;
 }
 
-div.price-tbl div.data-col-1 div.col-body span.highlight
+div.price-tbl div.data-col-1 div.col-body span.highlight, div.price-tbl div.data-col-3 div.col-body span.highlight
 {
-    background: #8fcde2; /**--Fallback background color--*/
-    background: rgba(53, 155, 189, 0.3);
+    background: #c1c5c7; /*--Fallback background color--*/
+    background: rgba(124, 127, 128, 0.2);
 }
 
 /*--Footer--*/
-div.price-tbl div.data-col-1 div.col-footer
+div.price-tbl div.data-col-1 div.col-footer, div.price-tbl div.data-col-3 div.col-footer
 {
-   background: #6bbfdb;
+   background: #a3a7a8;
 }
 
-/*==================CSS for Data Column 2=================*/
+/*==================CSS for Data Column 2 and Data Column 4=================*/
 
 /*--Header--*/
-div.price-tbl div.data-col-2 div.col-header div.plan-name
+div.price-tbl div.data-col-2 div.col-header div.plan-name, div.price-tbl div.data-col-4 div.col-header div.plan-name
 {
     /*--Box shadow--*/
-    -webkit-box-shadow: 0px 1px 0px #1a4b5b, 0px -1px 0px #308cab inset;
-    -moz-box-shadow: 0px 1px 0px #1a4b5b, 0px -1px 0px #308cab inset;
-    box-shadow: 0px 1px 0px #1a4b5b, 0px -1px 0px #308cab inset;
+    -webkit-box-shadow: 0px 1px 0px #000, 0px -1px 0px #363636 inset;
+    -moz-box-shadow: 0px 1px 0px #000, 0px -1px 0px #363636 inset;
+    box-shadow: 0px 1px 0px #000, 0px -1px 0px #363636 inset;
 
     /*--Gradient--*/
-    background: url(/assets/table_images/blue2-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#2c829e), to(#205f74)); /*--For older webkit browsers--*/
-    background-image: -webkit-linear-gradient(top, #2c829e, #205f74); /*--For newer webkit and iOS5+--*/
-    background-image: -moz-linear-gradient(top, #2c829e, #205f74); /*--For mozilla--*/
-    background-image: -o-linear-gradient(top, #2c829e, #205f74);/*--For Opera 11.10+--*/
-    background-image: -ms-linear-gradient(top, #2c829e, #205f74); /*--For IE10--*/
+    background: url(/assets/table_images/black-dark-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3a3a3a), to(#191919)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #3a3a3a, #191919); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #3a3a3a, #191919); /*--For mozilla--*/
+    background-image: -o-linear-gradient(top, #3a3a3a, #191919); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #3a3a3a, #191919); /*--For IE10--*/
 }
 
-div.price-tbl div.data-col-2 div.col-header div.col-header-BG
+div.price-tbl div.data-col-2 div.col-header div.col-header-BG, div.price-tbl div.data-col-4 div.col-header div.col-header-BG
 {
-    background: #2c829e;
+    background: #2e2e2e;
 }
 
 /*--Body--*/
-div.price-tbl div.data-col-2 div.col-body
+div.price-tbl div.data-col-2 div.col-body, div.price-tbl div.data-col-4 div.col-body
 {
-    background: #95ddf5;
+    background: #c3c8c9;
 }
 
-div.price-tbl div.data-col-2 div.col-body span.highlight
+div.price-tbl div.data-col-2 div.col-body span.highlight, div.price-tbl div.data-col-4 div.col-body span.highlight
 {
-    background: #77c6e1; /**--Fallback background color--*/
-    background: rgba(50, 146, 179, 0.3);
-}
-
-/*--Footer--*/
-div.price-tbl div.data-col-2 div.col-footer
-{
-   background: #60abc4;
-}
-
-/*==================CSS for Data Column 3=================*/
-
-/*--Header--*/
-div.price-tbl div.data-col-3 div.col-header div.plan-name
-{
-    /*--Box shadow--*/
-    -webkit-box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #027da6 inset;
-    -moz-box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #027da6 inset;
-    box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #027da6 inset;
-
-    /*--Gradient--*/
-    background: url(/assets/table_images/blue3-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#187594), to(#0e4e63)); /*--For older webkit browsers--*/
-    background-image: -webkit-linear-gradient(top, #187594, #0e4e63); /*--For newer webkit and iOS5+--*/
-    background-image: -moz-linear-gradient(top, #187594, #0e4e63); /*--For mozilla--*/
-    background-image: -o-linear-gradient(top, #187594, #0e4e63); /*--For Opera 11.10+--*/
-    background-image: -ms-linear-gradient(top, #187594, #0e4e63); /*--For IE10--*/
-}
-
-div.price-tbl div.data-col-3 div.col-header div.col-header-BG
-{
-    background: #1f637a;
-}
-
-/*--Body--*/
-div.price-tbl div.data-col-3 div.col-body
-{
-    background: #7bd1ed;
-}
-
-div.price-tbl div.data-col-3 div.col-body span.highlight
-{
-    background: #5eb9d6; /*--Fallback background color--*/
-    background: rgba(51, 148, 180, 0.4);
+    background: #b5b9ba; /*--Fallback background color--*/
+    background: rgba(124, 127, 128, 0.2);
 }
 
 /*--Footer--*/
-div.price-tbl div.data-col-3 div.col-footer
+div.price-tbl div.data-col-2 div.col-footer, div.price-tbl div.data-col-4 div.col-footer
 {
-   background: #519eb7;
-}
-
-/*==================CSS for Data Column 4=================*/
-
-/*--Header--*/
-div.price-tbl div.data-col-4 div.col-header div.plan-name
-{
-    /*--Box shadow--*/
-    -webkit-box-shadow: 0px 1px 0px #013645, 0px -1px 0px #016885 inset;
-    -moz-box-shadow: 0px 1px 0px #013645, 0px -1px 0px #016885 inset;
-    box-shadow: 0px 1px 0px #013645, 0px -1px 0px #016885 inset;
-
-    /*--Gradient--*/
-    background: url(/assets/table_images/blue4-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#00576d), to(#013645)); /*--For older webkit browsers--*/
-    background-image: -webkit-linear-gradient(top, #00576d, #013645); /*--For newer webkit and iOS5+--*/
-    background-image: -moz-linear-gradient(top, #00576d, #013645); /*--For mozilla--*/
-    background-image: -o-linear-gradient(top, #00576d, #013645); /*--For Opera 11.10+--*/
-    background-image: -ms-linear-gradient(top, #00576d, #013645); /*--For IE10--*/
-}
-
-div.price-tbl div.data-col-4 div.col-header div.col-header-BG
-{
-    background: #185465;
-}
-
-/*--Body--*/
-div.price-tbl div.data-col-4 div.col-body
-{
-    background: #67bed6;
-}
-
-div.price-tbl div.data-col-4 div.col-body span.highlight
-{
-    background: #4ea6bf; /*--Fallback background color--*/
-    background: rgba(61, 150, 175, 0.6);
-}
-
-/*--Footer--*/
-div.price-tbl div.data-col-4 div.col-footer
-{
-   background: #3a899f;
+   background: #8e9192;
 }
 
 /*===================================================General Styling and Typography for Featured Column=======================================================*/
@@ -625,18 +558,36 @@ div.price-tbl div.featured
 
 /*=========CSS for Header========*/
 
+div.price-tbl div.featured div.col-header div.plan-name
+{
+    /*--Box shadow--*/
+    -webkit-box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #0281ab inset;
+    -moz-box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #0281ab inset;
+    box-shadow: 0px 1px 0px #013d50, 0px -1px 0px #0281ab inset;
+
+    /*--Gradient--*/
+    background: url(/assets/table_images/blue-top-bg.png) repeat-x 0 0; /*--Fallback for IE and other non-CSS3 and buggy browsers--*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#187594), to(#0e4e63)); /*--For older webkit browsers--*/
+    background-image: -webkit-linear-gradient(top, #187594, #0e4e63); /*--For newer webkit and iOS5+--*/
+    background-image: -moz-linear-gradient(top, #187594, #0e4e63); /*--For mozilla--*/
+    background-image: -moz-linear-gradient(top, #187594, #0e4e63); /*--For Opera 11.10+--*/
+    background-image: -ms-linear-gradient(top, #187594, #0e4e63); /*--For IE10--*/
+}
+
 div.price-tbl div.featured div.col-header div.col-header-BG
 {
     height: 112px;
+    background: #1f637a;
 }
 
+/*--Red corner tag--*/
 div.price-tbl div.featured span.featured-red-corner
 {
     position: absolute;
     z-index: 300;
     width: 63px;
     height: 61px;
-    right: -6px;
+    right: -2px;
     top: -3px;
     background: url(/assets/table_images/featured-col-red-corner.png) no-repeat 0 0;
 }
@@ -645,7 +596,8 @@ div.price-tbl div.featured span.featured-red-corner
 div.price-tbl div.featured div.plan-name span
 {
     font-size: 1.6em;
-    line-height: 30px;
+    line-height: 36px;
+
 }
 
 /*====Here goes the typography for price values=====*/
@@ -682,10 +634,21 @@ div.price-tbl div.featured div.plan-user span
 
 /*==========CSS for Column Body============*/
 
+div.price-tbl div.featured div.col-body
+{
+    background: #7bd1ed;
+}
+
 div.price-tbl div.featured div.col-body span
 {
-    color: #1b566a;
+    color: #000;
     font-weight: bold;
+}
+
+div.price-tbl div.featured div.col-body span.highlight
+{
+    background: #5eb9d6; /*--Fallback background color--*/
+    background: rgba(51, 148, 180, 0.4);
 }
 
 /*==========CSS for Column Footer============*/
@@ -694,6 +657,7 @@ div.price-tbl div.featured div.col-footer
 {
    height: 60px;
    line-height: 60px;
+   background: #3a899f;
 }
 
 /*=============================================General Styling and  Typography of Resized Featured Column when You Mouseover on Other Data Columns================================================*/
@@ -703,11 +667,13 @@ div.price-tbl div.all-data-col:hover div.featured
     z-index: 200;
     margin: 0;
     top: 0;
-
     /*--Remove box-shadow--*/
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+
+
+
 }
 
 /*=========CSS for Header========*/
@@ -715,6 +681,7 @@ div.price-tbl div.all-data-col:hover div.featured
 div.price-tbl div.all-data-col:hover div.featured div.col-header div.col-header-BG
 {
     height: 100px;
+
 }
 
 /*--Here goes the typography for plan name at the top--*/
@@ -759,7 +726,6 @@ div.price-tbl div.all-data-col:hover div.featured div.plan-user span
 
 div.price-tbl div.all-data-col:hover div.featured div.col-body span
 {
-    color: #2b2f35;
     font-weight: normal;
 }
 
@@ -810,7 +776,7 @@ div.price-tbl div.all-data-col div.data-col-3:hover div.plan-name span,
 div.price-tbl div.all-data-col div.data-col-4:hover div.plan-name span
 {
     font-size: 1.6em;
-    line-height: 30px;
+    line-height: 36px;
 }
 
 /*====Here goes the typography for price values=====*/
@@ -864,7 +830,7 @@ div.price-tbl div.all-data-col div.data-col-2:hover div.col-body span,
 div.price-tbl div.all-data-col div.data-col-3:hover div.col-body span,
 div.price-tbl div.all-data-col div.data-col-4:hover div.col-body span
 {
-    color: #1b566a;
+
     font-weight: bold;
 }
 

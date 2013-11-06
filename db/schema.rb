@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131030181952) do
+ActiveRecord::Schema.define(:version => 20131106083231) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -71,24 +71,33 @@ ActiveRecord::Schema.define(:version => 20131030181952) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "plan_per_user_ranges", :force => true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_range_id"
+    t.integer  "price"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "plans", :force => true do |t|
     t.string   "name"
     t.decimal  "price"
     t.string   "user_position"
     t.integer  "number_of_user"
     t.string   "lead_management"
-    t.boolean  "apportunity_dashboard"
+    t.string   "appointment_sheduler"
+    t.boolean  "lead_dashboard"
     t.boolean  "team_management"
     t.boolean  "daily_sales_report"
     t.boolean  "daily_sales_projection"
     t.boolean  "full_dashboard_enabled"
-    t.boolean  "traditional_refferals"
+    t.boolean  "traditional_referrals"
     t.boolean  "leadpump_social_inviter"
-    t.string   "socail_refferals"
+    t.string   "social_referrals"
     t.boolean  "online_mall"
     t.boolean  "daily_team_usage_report"
     t.boolean  "unlimited_team_training"
-    t.boolean  "unlimited_support"
+    t.boolean  "online_membership"
     t.boolean  "national_spokeswoman"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -101,11 +110,28 @@ ActiveRecord::Schema.define(:version => 20131030181952) do
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "plan_id"
+    t.integer  "plan_per_user_range_id"
     t.string   "stripe_card_token"
+    t.integer  "customer_id"
     t.integer  "user_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "locations_count"
+    t.integer  "users_count"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "user_leads", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "lead_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_ranges", :force => true do |t|
+    t.integer  "start_range"
+    t.integer  "end_range"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

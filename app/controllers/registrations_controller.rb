@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :getPlan, :only => [:new]
   def new
-    if params[:plan_id]
-      @plan = Plan.find(params[:plan_id])
+    if params[:planPerUser]
+      @planPerUser = PlanPerUserRange.find(params[:planPerUser])
       super
     else
       flash[:notice] = 'Please select one of the plan first!'
@@ -15,25 +15,29 @@ class RegistrationsController < Devise::RegistrationsController
     resource = build_resource(params[:user])
     resource.role_id = Role.find_by_role_type("company").id
     if resource.valid?
-      @plan = params["user"]["subscriptions_attributes"]["0"]["plan_id"] ? Plan.find(params["user"]["subscriptions_attributes"]["0"]["plan_id"]) : nil
-      #@amount = User.calculate_total_amount(params["user"]["subscriptions_attributes"]["0"]["plan_id"], params[:du], params[:dl], params[:dp])
-      @amount = params[:tpa] != '' ? params[:tpa].to_i : @plan.price.to_i
-      @amount = @amount * 100
+      @PlanPerUser = params[:planPerUserId] ? PlanPerUserRange.find(params[:planPerUserId]) : nil
+      planType = params[:planType] == '2' ? 'yearly' : 'monthly'
+      amt = User.signUpAmount(params[:planPerUserId], params[:discountOnUsers], planType)
+      total_amount = amt["amount"].to_i * 100
       customer = Stripe::Customer.create(
         :email => params[:email],
-        :card  => params["user"]["subscriptions_attributes"]["0"]["stripe_card_token"]
+        :card  => params["user"]["subscription_attributes"]["stripe_card_token"]
         )
-      Stripe::Charge.create(
-            :amount => @amount, # in cents
+      charge = Stripe::Charge.create(
+            :amount => total_amount, # in cents
             :currency => "usd",
             :customer => customer.id
       )
       resource.save
+      resource.subscription.plan_per_user_range_id = @planPerUser
+      resource.subscription.customer_id = charge.id
+      resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
+      resource.subscription.save
       sign_in(resource_name, resource)  
       flash[:notice] = ""    
       redirect_to success_path()
     else     
-      @plan = Plan.find(params["user"]["subscriptions_attributes"]["0"]["plan_id"])
+      @PlanPerUser = PlanPerUserRange.find(params[:planPerUserId])
       render :action => "new"
     end
   end

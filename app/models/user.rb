@@ -2,13 +2,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  attr_accessible :email, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscriptions_attributes
+  attr_accessible :email, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses, :dependent => :destroy
-  has_many :subscriptions, :dependent => :destroy
+  has_one :subscription, :dependent => :destroy
   has_many :leads, :dependent => :destroy
   belongs_to :role
-  accepts_nested_attributes_for :addresses, :subscriptions
+  accepts_nested_attributes_for :addresses, :subscription
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :title, :body
@@ -45,39 +45,12 @@ class User < ActiveRecord::Base
   end
 
 
-  def self.signUpAmount(planId, du, dl, dp)
-    @plan = planId ? Plan.find(planId) : nil
+  def self.signUpAmount(planId, du, dp)
+      @plan = planId ? PlanPerUserRange.find(planId) : nil
       no_of_users = du.to_i
-      dl = dl.to_i
 
-      charges = 0
-      chargesList = []
-      @discountOnLocation = nil
-
-      i = 0
-      if @plan.name == 'Advanced'
-        i = 1
-      elsif @plan.name == 'Proffessional'
-        i = 2
-      elsif @plan.name == 'Proffessional Plus'
-        i = 3
-      end 
-      if(no_of_users <= 10)
-        @discountOnLocation = DiscountsOnLocation.find(1)       
-      elsif (no_of_users > 10 && no_of_users <= 20)
-        @discountOnLocation = DiscountsOnLocation.find(2)
-      elsif (no_of_users > 20 && no_of_users <= 50)
-        @discountOnLocation = DiscountsOnLocation.find(3)
-      elsif (no_of_users > 50 && no_of_users <= 100)
-        @discountOnLocation = DiscountsOnLocation.find(4)
-      else
-        @discountOnLocation = DiscountsOnLocation.find(5)
-      end
-
-      chargesList = @discountOnLocation ? @discountOnLocation.chargePerUser.split(",") : []
-      chargesPerUser = chargesList[i].to_i
-      totalCharge = chargesPerUser * no_of_users
-      chargesPerUserStr = "$#{chargesPerUser} * #{no_of_users} = $#{totalCharge} per month"
+      totalCharge = @plan.price * no_of_users
+      chargesPerUserStr = "$#{@plan.price} * #{no_of_users} = $#{totalCharge} per month"
       disAmount = 0
       disAmountStr = "No Discount"
       paymentPeriod = ' per month'

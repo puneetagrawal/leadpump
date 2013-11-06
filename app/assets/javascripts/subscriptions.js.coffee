@@ -25,7 +25,8 @@ subscription =
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#user_subscriptions_attributes_0_stripe_card_token').val(response.id)
+      $('#user_subscription_attributes_stripe_card_token').val(response.id)
+      alert($('#user_subscription_attributes_stripe_card_token').val())
       subscription.addHiddenField()
       $('#new_user')[0].submit()
     else

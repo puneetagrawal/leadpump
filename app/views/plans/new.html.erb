@@ -1,84 +1,93 @@
 <div class="container">
     <div class="row-fluid">
-        <div class="span12 text-center">
-            <h2>Pricing plan Ending soon!</h2>
-            <h3>Which Edition is right for you?</h3>
+        <div class="span12 text-center pricing_plans_heading">
+            <h2>Charter Member Pricing Ending soon!</h2>
+            <h3>Which edition is right for you?</h3>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span9 offset1">
-        <div class="price-tbl">
-    
-       <div class="feature-column">
-        <div class="col-header">
-            <span>Choose <br />Your Plan</span>
-        </div>
-            <div class="col-body">
-                <span class="highlight">Number of user</span>
-                <span>Lead Management</span>
-                <span class="highlight">Apportunity Dashboard</span>
-                <span>Team Management</span>
-                <span class="highlight">Daily Sales Report</span>
-                <span>Monthly Sales Projections</span>
-                <span class="highlight">Full Dashboard Enabled</span>
-                <span>Tradional Refferals (3-5)</span>
-                <span class="highlight">Leadpump Socail Inviter</span>
-                <span>Email-Facebook-Twitter</span>
-                <span class="highlight">Online-Mall(members rewards)</span>
-                <span>Daily Team Usage Report</span>
-                <span class="highlight">Unlimited Team Training</span>
-                <span>Unlimited Support</span>
-                <span class="highlight">National SpokesWomen</span>
+            <div class="price-tbl">
+
+             <div class="feature-column">
+                <div class="col-header bg_none">
+
+                </div>
+                <div class="col-body">
+                    <span class="highlight">Number of Users</span>
+                    <span>Lead Management - CRM</span>
+                    <span class="highlight">Appointment Scheduler</span>
+                    <span>Lead Dashboard</span>
+                    <span class="highlight">Team Management</span>
+                    <span>Daily Sales Report</span>
+                    <span class="highlight">Monthly Sales Projections</span>
+                    <span>Full Dashboard Enabled</span>
+                    <span class="highlight">Traditional Referrals (3-5)</span>
+                    <span>LEAD<i class="txt_red">PUMP</i> - Social Inviter</span>
+                    <span class="highlight">Email-Facebook-Twitter</span>
+                    <span>On-Line Mall - <i class="pricingMallText">Member Rewards</i></span>
+                    <span class="highlight">Daily Team Usage Reports</span>
+                    <span>Unlimited Team Training</span>
+                    <span class="highlight">National Spokeswoman
+                        <img class="info-icon" src="/assets/table_images/info-icon.png" alt="info icon">
+                        <em class="popup-box"><b class="corner"></b>
+                            Former Miss Utah, is featured on
+                            your landing page encouraging
+                            the potential members to take that
+                            first step in starting a fitness program
+                        </em>
+                    </span>
+                    <span>Buy Membership Now - Online
+                        <img class="info-icon" src="/assets/table_images/info-icon.png" alt="info icon">
+                        <em class="popup-box"><b class="corner"></b>We build an online membership
+                            sales portal for your club. Potential
+                            member has the option to join 
+                            online before coming to the club
+                        </em>
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="all-data-col">
-            <% @plans.each_with_index do |plan, i| %>
+            <div class="all-data-col">
+                <% @planPerUsers.each_with_index do |planPerUser, i| %>
                 <div class="data-column data-col-<%="#{i+1}"%><%=' featured' if i == 2%>">
                     <span class="featured-red-corner"></span>
                     <div class="col-header">
-                        <div class="plan-name"><span class="cufon"><%="#{plan.name}"%></span></div>
+                        <div class="plan-name"><span class="cufon"><%="#{planPerUser.plan.name}"%></span></div>
                         <div class="col-header-BG">
                             <div class="plan-price">
                                 <em class="cufon">$</em>
-                                <strong class="cufon"><%="#{plan.price}"%></strong>
-                                <b class="cufon">/mo</b>
+                                <strong class="cufon"><%="#{planPerUser.price}"%></strong>
+                                <b class="cufon">user/month</b>
                             </div>
-                            <div class="plan-user"><span class="cufon"><%="#{plan.user_position}"%></span></div>
+                            <div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
                             <div class="plan-signup">
-                                <%= link_to "Sign up", new_user_registration_path(:plan_id => plan), html_options = {} %>
+                                <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
                             </div>
                         </div>
                     </div>
                     <div class="col-body">
-                        <span class="highlight">Up to <%=plan.number_of_user%></span>
-                        <span>Up to <%=plan.lead_management%> Contacts</span>
-                       <span class="highlight">
-                        <%if plan.apportunity_dashboard%>
-                            <em class="tick">tick</em>
-                            <%else%>
-                            <em class="cross">cross</em>
-                            <%end%>
-                       </span>
+                        <span class="highlight">Up to <%=planPerUser.user_range.end_range%></span>
+                        <span class=<%=unlimitedText(planPerUser.plan.lead_management)%>><%=fetechPlanLeadmanagementText(planPerUser.plan.lead_management)%></span>
+                        <span class="highlight unlimited"><%=planPerUser.plan.appointment_sheduler%></span>
                         <span>
-                            <%if plan.team_management%>
+                            <%if planPerUser.plan.lead_dashboard%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
                             <%end%>
                         </span>
-
-
-
                         <span class="highlight">
-                            <%if plan.daily_sales_report%>
+                            <%if planPerUser.plan.team_management%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
                             <%end%>
                         </span>
 
+
+
                         <span>
-                            <%if plan.daily_sales_projection%>
+                            <%if planPerUser.plan.daily_sales_report%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
@@ -86,7 +95,7 @@
                         </span>
 
                         <span class="highlight">
-                            <%if plan.full_dashboard_enabled%>
+                            <%if planPerUser.plan.daily_sales_projection%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
@@ -94,7 +103,7 @@
                         </span>
 
                         <span>
-                            <%if plan.traditional_refferals%>
+                            <%if planPerUser.plan.full_dashboard_enabled%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
@@ -102,35 +111,7 @@
                         </span>
 
                         <span class="highlight">
-                            <%if plan.leadpump_social_inviter%>
-                            <em class="tick">tick</em>
-                            <%else%>
-                            <em class="cross">cross</em>
-                            <%end%>
-                        </span>
-                        <span>
-                            <%if plan.socail_refferals != ''%>
-                            <%=plan.socail_refferals%>
-                            <%else%>
-                            <em class="cross">cross</em>
-                            <%end%>
-                        </span>
-                        <span class="highlight">
-                            <%if plan.online_mall%>
-                            <em class="tick">tick</em>
-                            <%else%>
-                            <em class="cross">cross</em>
-                            <%end%>
-                        </span>
-                        <span>
-                            <%if plan.daily_team_usage_report%>
-                            <em class="tick">tick</em>
-                            <%else%>
-                            <em class="cross">cross</em>
-                            <%end%>
-                        </span>
-                        <span class="highlight">
-                            <%if plan.unlimited_team_training%>
+                            <%if planPerUser.plan.traditional_referrals%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
@@ -138,14 +119,50 @@
                         </span>
 
                         <span>
-                            <%if plan.unlimited_support%>
+                            <%if planPerUser.plan.leadpump_social_inviter%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span class="highlight unlimited">
+                            <%if planPerUser.plan.social_referrals != ''%>
+                                UNLIMITED
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if planPerUser.plan.online_mall%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
                             <%end%>
                         </span>
                         <span class="highlight">
-                            <%if plan.national_spokeswoman%>
+                            <%if planPerUser.plan.daily_team_usage_report%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if planPerUser.plan.unlimited_team_training%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span class="highlight">
+                            <%if planPerUser.plan.national_spokeswoman%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if planPerUser.plan.online_membership%>
                             <em class="tick">tick</em>
                             <%else%>
                             <em class="cross">cross</em>
@@ -153,12 +170,22 @@
                         </span>                        
                     </div>
                     <div class="col-footer">
-                        <div class="plan-signup"><%= link_to "Sign up", new_user_registration_path(:plan_id => plan), html_options = {} %></div>
+                        <div class="plan-signup"><%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %></div>
                     </div>
                 </div>
-            <%end%>
-        </div> 
+                
+                <%end%>
+            </div> 
         </div>
+        <div class="user_filter pull-left">
+            <p>Charter member for more users?</p>
+            <ul>
+                <li><%= link_to "Up to 20", new_plan_path(:maxUsers => 2) %></li>
+                <li><%= link_to "Up to 50", new_plan_path(:maxUsers => 3) %></li>
+                <li><%= link_to "Up to 100", new_plan_path(:maxUsers => 4) %></li>
+                <li><%= link_to "Up to 200", new_plan_path(:maxUsers => 5) %></li>
+            </ul>
         </div>
     </div>
+</div>
 </div>

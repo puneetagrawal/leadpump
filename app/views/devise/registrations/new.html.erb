@@ -18,7 +18,7 @@
 
 						<h2><span class="number">3</span>Your billing information</h2>
 						<%= render :template => "common_templates/_labelsForDiscounts", :locals => { :f => f} %>	
-						<%= f.fields_for :subscriptions, Subscription.new do |sub| %>
+						<%= f.fields_for :subscription, Subscription.new do |sub| %>
 						<%= render :template => "devise/registrations/_creditCardDetails", :locals => { :sub => sub} %>	
 						<%end%>
 						<span id="couponDiv" style="display:none">
@@ -50,11 +50,4 @@
 			</div>
 		</div>
 
-		<script>
-		$(document).ready(function(){
-			plan = "#{@plan.price}";	
-			if($("input:radio[name='locationType']:checked").attr('class')  == 'multipleLocation'){
-				$('#location_type').removeClass('hide')
-			}
-		})			
-		</script>
+		

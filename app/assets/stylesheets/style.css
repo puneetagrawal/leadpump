@@ -206,10 +206,11 @@ h4 {
     color: #666;
 }
 .pd15 {
-    padding:15px;
+	padding:15px;
 }
 .txt_red {
     color: #ff0000;
+    font-style: normal;
 }
 .txt_black {
     color: #333;
@@ -231,9 +232,9 @@ input, textarea {
     border:1px solid #ddd;
     background: #fff;
     width: 100%;
-    -moz-border-radius:0 !important;
-    -webkit-border-radius:0 !important;
-    border-radius:0 !important;
+	-moz-border-radius:0 !important;
+	-webkit-border-radius:0 !important;
+	border-radius:0 !important;
     box-shadow: none !important;
 
 }
@@ -323,12 +324,12 @@ label {
 
 /*layout*/
 a {
-    /*color: #ffde52;*/
+    color: #ffde52;
     text-decoration: none;
 }
 a:hover {
-    /*color: black;*/
-    text-decoration: none;
+    color: #e0c13e;
+    text-decoration: underline;
 }
 a:focus {
     color: #e0c13e;
@@ -378,22 +379,23 @@ footer {
 /*dashboard*/
 
 .dashboardIcons {
-    width:100%;
+	width:100%;
     padding: 15px;
 }
 .dashboardIcons li {
-    width:100px;
-    float:left;
-    border:1px solid #ddd;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    border-radius:5px;
-    padding:6px;
-    margin:0 20px 20px 0;
+	width:100px;
+	float:left;
+	border:1px solid #ddd;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:6px;
+	margin:0 20px 20px 0;
     position: relative;
+    background: #fff;
 }
 .dashboardIcons li a {
-    display:block;
+	display:block;
     background: #444;
 }
 .dashboardIcons li a:hover {
@@ -401,15 +403,15 @@ footer {
     text-decoration: none;
 }
 .dashboardIcons li img {
-    width:88px;
-    height:88px;
-    text-align:center;
+	width:88px;
+	height:88px;
+	text-align:center;
 }
 .dashboardIcons li span {
-    clear:both; 
-    width:100%;
-    text-align:center;
-    display:block; 
+	clear:both; 
+	width:100%;
+	text-align:center;
+	display:block; 
 }
 .icon {
     width: 100px;
@@ -451,18 +453,29 @@ footer {
 .icon_super_admin {
     background-position: 5px -872px;
 }
+.icon_setting {
+    background-position: 5px -968px;
+}
+.upgrade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background:url("/assets/upgrade.png") 0 0 no-repeat;
+    width: 40px;
+    height: 40px;
+}
 .heading {
-    background:#ffde52;
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;    
-    box-sizing: border-box;   
-    font-size:24px;
-    padding:0px 10px;
-    text-align:center;
-    margin:0;
+	background:#ffde52;
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box;   
+	font-size:24px;
+	padding:0px 10px;
+	text-align:center;
+	margin:0;
 }
 .border {
-    border:1px solid #ddd;
+	border:1px solid #ddd;
 }
 .form p {
     clear: both;
@@ -478,11 +491,11 @@ footer {
     outline: none;
 }
 .form input[type="text"], .form input[type="password"], .form input[type="email"], .form input[type="search"] {
-    height:24px;
+	height:24px;
 }
 .form input[type="text"]:focus, .form input[type="password"]:focus, .form input[type="email"]:focus, .form input[type="search"]:focus {
-    box-shadow:none;
-    border:1px solid #333;
+	box-shadow:none;
+	border:1px solid #333;
 }
 
 body {
@@ -565,6 +578,9 @@ header h2 a {
 .usernav a {
     color: #fff;
 }
+.navbar-inner {
+    min-height: 28px;
+}
 
 /*footer*/
 .footer-nav li {
@@ -607,14 +623,35 @@ header h2 a {
     margin-bottom: 0;
 }
 .table thead {
-    background: #666;
+    background: #333;
     color: #eee;
 }
 /*appointment*/
 .calender td.time {
-    background: #444 !important;
+    background: #212d3d !important;
     color: #eee;
     width: 80px;
+}
+.green_dark {
+     background: #8dec84 !important;
+}
+.green_light {
+    background: #c3f4bd !important;
+}
+.blue_dark {
+    background: #5f8ae9 !important;
+}
+.blue_light {
+    background: #b7ccfd !important;
+}
+.red_dark {
+    background: #f98383 !important;
+}
+.red_light {
+    background: #f9c3c3 !important;
+}
+.calender .table th, .calender .table td {
+    border-top: 1px solid #333333;
 }
 
 /*sales data*/
@@ -1007,119 +1044,37 @@ header h2 a {
 }
 
 /*pricing table*/
-.no-space [class*="span"]{
-    margin-left: 0;
-    width: 25%; // This is for 4 elements ONLY in the row
+.bg_none {
+    background: transparent !important;
 }
-.pricing_table .table {
-    border-left: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
+.user_filter {
+    font-size:18px;
+    margin-left: 180px;
+}
+.user_filter a {
+    color: #666;
+    text-decoration: underline;
+    line-height: 24px;
+}
+.user_filter a:hover {
+    text-decoration: none;
+}
+.pricing_plans_heading h2 {
+    color: #ff0000;
+    font-size: 44px;
+    font-family: arial;
+    text-shadow: 0 0 2px #FFF;
 
 }
-.pricing_table .table.last {
-    border-right: 1px solid #ddd;
-
+.pricing_plans_heading h3 {
+    color:#000;
+    text-transform: none;
+    font-weight: normal;
+    font-size: 30px;
 }
-.pricing_table_head {
-    text-align: center;
-    border-left: 1px solid #dbbc39;
-    -moz-border-radius: 10px 10px 0 0;
-    -webkit-border-radius: 10px 10px 0 0;
-    border-radius: 10px 10px 0 0;
-}
-.pricing_table_head h3 {
-    border-bottom: 1px solid #fee784;
-    background: #ffde52;
-    background: -moz-linear-gradient(top, #ffde52 0%, #dbbc39 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffde52), color-stop(100%,#dbbc39));
-    background: -webkit-linear-gradient(top, #ffde52 0%,#dbbc39 100%);
-    background: -o-linear-gradient(top, #ffde52 0%,#dbbc39 100%);
-    background: -ms-linear-gradient(top, #ffde52 0%,#dbbc39 100%);
-    background: linear-gradient(to bottom, #ffde52 0%,#dbbc39 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffde52', endColorstr='#dbbc39',GradientType=0 );
-    font-size:16px;
-    color: #333;
-    border-radius: 10px 10px 0 0;
-    margin-bottom: 0;
-}
-.pricing_table_head.last {
-    border-right: 1px solid #dbbc39;
-}
-.pricing_table_head .detail {
-    background: #ffde52;
-    border-top: 1px solid #dbbc39;
-    padding: 10px 0;
-}
-.pricing_table table * {
-    text-align: center;
-}
-.pricing_table table strong {
-    line-height: 22px;
-}
-.pricing_table table p {
-    margin-bottom: 2px;
-}
-.pricing_table_head .subheading strong {
-    font-size:40px;
-}
-.pricing_table_head .subheading span {
-    font-size:16px;
-}
-.pricing_table_head .subheading i {
-    font-size:16px;
-    font-style: normal;
-}
-.pricing_table_head .detail p {
-    margin-bottom: 2px;
-    padding-top: 6px;
-}
-.activetable .pricing_table_head {
-    margin-top: -10px;
-}
-.activetable .pricing_table_head .detail {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background: #131313;
-    border-top: 1px solid #000;
-    color: #fff;
-}
-.activetable .pricing_table_head h3 {
-    border-bottom: 1px solid #666;
-    background: #4c4c4c;
-    background: -moz-linear-gradient(top, #4c4c4c 0%, #131313 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(100%,#131313));
-    background: -webkit-linear-gradient(top, #4c4c4c 0%,#131313 100%);
-    background: -o-linear-gradient(top, #4c4c4c 0%,#131313 100%);
-    background: -ms-linear-gradient(top, #4c4c4c 0%,#131313 100%);
-    background: linear-gradient(to bottom, #4c4c4c 0%,#131313 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 );
-    font-size:16px;
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-    margin-bottom: 0;
-}
-.activetable .table a.btn {
-    margin: 10px 0;
-}
-.activetable .table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
-    background-color: #666;
-}
-.activetable {
-    position: relative;
-}
-.activetable .table td {
-    background-color: #444;
-    color: #eee;
-}
-.activetable .most_popular {
-    width: 62px;
-    height: 62px;
-    background: url("/assets/most_popular.png") 0 0 no-repeat;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
+.unlimited {
+    text-transform: uppercase;
+    font-size: 15px !important;
 }
 
 /*social inviter*/
@@ -1349,11 +1304,6 @@ header h2 a {
 }
 
 
-.mesgs {
-    text-align: center;
-    font-size: 16px;
-}
-
 
 
 
@@ -1390,10 +1340,9 @@ header h2 a {
     }
 }
 
-.flashes{
-    width: 50%;
-    margin-left: 22%;
-    text-align: center;
-    font-size: 16px;
-}
 
+.pricingMallText{
+    font-weight: normal;
+    font-size: 11px;
+    font-style: normal;
+}

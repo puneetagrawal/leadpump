@@ -1,12 +1,8 @@
-						<%=hidden_field_tag 'du'%>
-						<%=hidden_field_tag 'dl'%>
-						<%=hidden_field_tag 'dp'%>
 
 						<p>
 							<label></label>
 							<% if DiscountsOnPeriod.all %>
 							<% DiscountsOnPeriod.all.each do |dp| %>
-							<%=hidden_field_tag 'periodValue'%>
 							<label class="checkboxCon">
 								<%= radio_button_tag 'planType', "#{dp.id}", :checked => "#{dp.id}" > "1" ?  false : true, :class => "plant #{dp.periodType}"%>
 								<strong>Pay 

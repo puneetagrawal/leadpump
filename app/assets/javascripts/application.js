@@ -58,10 +58,8 @@ function initsignUpRadioBtn(){
 
 function caclulateAmount(){
 	no_of_users = 1
-	no_of_locations = 1
 	payment_type = 'monthly'
-	planId = $("#user_subscriptions_attributes_0_plan_id").val()
-	no_of_locations = $("#no_of_locations").val()
+	planId = $("#planPerUserId").val()
 	no_of_users = $("#discountOnUsers").val()		
 	
 	if($("input[name='planType']").is(":checked")){		
@@ -70,10 +68,9 @@ function caclulateAmount(){
 		}		
 	}
 	url = '/home/calculateAmount'
-	$.get(url, {du:no_of_users, dl:no_of_locations, dp:payment_type, planId:planId}, function (data) {
+	$.get(url, {du:no_of_users,dp:payment_type, plan_per_user_range:planId}, function (data) {
 		$("#pu").html(data.chargesPerUserStr)
 		$("#td").html(data.disAmountStr)
 		$("#ta").html(data.amountStr)
-		$("#tpa").val(data.amount)
         })
 }

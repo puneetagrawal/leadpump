@@ -6,8 +6,8 @@ class PlansController < ApplicationController
   end
 
   def new
-	@plans = Plan.order("price")
-	
+  	rangeId = params[:maxUsers] ? params[:maxUsers] : 1
+	@planPerUsers = PlanPerUserRange.where(:user_range_id => rangeId)
   end
 
 end

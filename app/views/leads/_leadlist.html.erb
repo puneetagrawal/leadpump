@@ -3,18 +3,23 @@
    <h2 class="heading">All Contacts / Leads</h2>
    <table class="table table-striped">
        <thead>
-           <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Status</td><td>Action</td></tr>
+           <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Status</td><td>Employee</td><td>Action</td></tr>
        </thead>
        <tbody>    
        <%if @leads%>                
-           <% @leads.each do |lead|%>
+           <% @leads.each do |ur|%>
+           <%lead = Lead.find(ur.lead_id)%>
            <tr>
              <td><%=lead.first_name%></td>
              <td><%=lead.phone%></td>
              <td><%=lead.email%></td>
              <td><%=lead.lead_source%></td>
              <td></td>
-             <td><%=link_to "Edit", edit_lead_path(lead)%></td>
+             <td><%=fetchLeadEmployee(lead.id)%></td>
+             <td><%=link_to "Edit", edit_lead_path(lead)%> 
+              <%if checkIfCompanyAdmin%>
+              | <%=link_to "Assign", "#"%></td>
+              <%end%>
          </tr>
          <% end %>         
          <% end %>         
