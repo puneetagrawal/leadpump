@@ -8,7 +8,6 @@ jQuery ->
 subscription =
   setupForm: ->
     $('.submitSignUpForm').click ->
-        alert(">>>>>>>>>>>>>>>>>>")
         if $("input[name='acceptConditions']").is(":checked")
           if($("input:radio[name='paymentOptionRadio']:checked").attr('class') == 'creditCard')
             $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif" style="float:right;margin-right:40px">')
