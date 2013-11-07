@@ -66,10 +66,7 @@
                         </a>
                         <div class="nav-collapse collapse fr">
                             <ul class="nav">
-                                <li><%= link_to "Home", home_index_path, :class => "active" %></li>
-                                <!--<li><a href="#">Plan</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Contact us</a></li>-->
+                                <li><%= link_to "Home", home_index_path, :class => "home_icon" %></li>
                             </ul>
                         </div>
                     </div>
@@ -85,8 +82,7 @@
                 <%end %>
                 <%else%>
                     <%=link_to new_user_session_path do %>
-                      <i class="icon-chevron-right icon-white icon_login"></i>Login
-                    <%end %>
+                      <i class="icon-chevron-right icon-white icon_login"></i>Login<%end %>
                 <%end%>
                 </li>
             </ul>

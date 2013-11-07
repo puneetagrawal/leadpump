@@ -13,7 +13,7 @@ class HomeController < ApplicationController
         @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])
         respond_to do |format|
           format.json { render json: @msg}
-        end
-    end
+      end
+  end  
 
 end

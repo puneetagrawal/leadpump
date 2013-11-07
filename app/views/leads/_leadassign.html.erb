@@ -1,0 +1,10 @@
+
+
+<%=select_tag "users", options_from_collection_for_select(@users, "id", "name"),:include_blank => true,:class=>"leadAssignSelect" %>
+
+<script type="text/javascript">	
+	$(".leadAssignSelect").change(function(){
+		leadId = $(this).parent().attr('id').split("_")[1]
+		assignLeadToUser($(this).val(), leadId)
+	});
+</script>

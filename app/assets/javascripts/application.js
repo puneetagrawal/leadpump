@@ -11,9 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery_nested_form
-//= require_tree .
+//= require autocomplete-rails
 
 
 $(document).ready(function(){
@@ -52,25 +51,40 @@ function initsignUpRadioBtn(){
 
 	if ($("#discountOnUsers").val()){
 		caclulateAmount()
-	}	
-
+	}		
 }
 
 function caclulateAmount(){
-	no_of_users = 1
-	payment_type = 'monthly'
-	planId = $("#planPerUserId").val()
-	no_of_users = $("#discountOnUsers").val()		
+	no_of_users = 1;
+	payment_type = 'monthly';
+	planId = $("#planPerUserId").val();
+	no_of_users = $("#discountOnUsers").val();	
 	
 	if($("input[name='planType']").is(":checked")){		
 		if($("input[name='planType']:checked").val() > 1){
-			payment_type = "yearly"		
+			payment_type = "yearly";		
 		}		
 	}
 	url = '/home/calculateAmount'
 	$.get(url, {du:no_of_users,dp:payment_type, plan_per_user_range:planId}, function (data) {
-		$("#pu").html(data.chargesPerUserStr)
-		$("#td").html(data.disAmountStr)
-		$("#ta").html(data.amountStr)
-        })
+		$("#pu").html(data.chargesPerUserStr);
+		$("#td").html(data.disAmountStr);
+		$("#ta").html(data.amountStr);
+    });
+}
+
+function getAutoCompleteForLeadAssign(id){
+	$(".selectBox").html('')
+	url = '/leads/leadassign';
+	$.post(url, {leadId:id}, function (data) {		
+    });
+}
+
+function assignLeadToUser(userId, leadId){
+	url = '/leads/leadassigntouser';
+	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
+		$("#emp_"+leadId).html(data.name)
+		$("#asignBtn_"+leadId).remove()
+		$("#users_"+leadId).remove()	
+    });
 }
