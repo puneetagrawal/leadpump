@@ -18,7 +18,7 @@ html {font-size: 1em; line-height: 1.4;}
 /*
  * A better looking default horizontal rule
  */
-hr {
+ hr {
     display: block;
     height: 1px;
     border: 0;
@@ -35,10 +35,10 @@ body {
  * their containers: h5bp.com/i/440
  */
 
-audio,
-canvas,
-img,
-video {
+ audio,
+ canvas,
+ img,
+ video {
     vertical-align: middle;
 }
 ul {
@@ -50,7 +50,7 @@ ul {
 /*
  * Remove default fieldset styles.
  */
-fieldset {
+ fieldset {
     border: 0;
     margin: 0;
     padding: 0;
@@ -60,7 +60,7 @@ fieldset {
  * Allow only vertical resizing of textareas.
  */
 
-textarea {
+ textarea {
     resize: vertical;
 }
 
@@ -68,7 +68,7 @@ textarea {
    Browse Happy prompt
    ========================================================================== */
 
-.browsehappy {
+   .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
     color: #000;
@@ -84,7 +84,7 @@ textarea {
  * Image replacement
  */
 
-.ir {
+ .ir {
     background-color: transparent;
     border: 0;
     overflow: hidden;
@@ -103,7 +103,7 @@ textarea {
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
 
-.hidden {
+ .hidden {
     display: none !important;
     visibility: hidden;
 }
@@ -112,7 +112,7 @@ textarea {
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
 
-.visuallyhidden {
+ .visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -206,7 +206,7 @@ h4 {
     color: #666;
 }
 .pd15 {
-	padding:15px;
+    padding:15px;
 }
 .txt_red {
     color: #ff0000;
@@ -221,20 +221,20 @@ h4 {
    Author's custom styles
    ========================================================================== */
 
-body {
-   font-family: Arial;
-}
+   body {
+     font-family: Arial;
+ }
 
 
 
-/*form*/
-input, textarea {
+ /*form*/
+ input, textarea {
     border:1px solid #ddd;
     background: #fff;
     width: 100%;
-	-moz-border-radius:0 !important;
-	-webkit-border-radius:0 !important;
-	border-radius:0 !important;
+    -moz-border-radius:0 !important;
+    -webkit-border-radius:0 !important;
+    border-radius:0 !important;
     box-shadow: none !important;
 
 }
@@ -267,6 +267,10 @@ textarea {
 .dashboard_con {
     width: 680px;
     min-height: 600px;
+}
+.feild_info {
+    float: left;    
+    margin: 12px 0 0 10px;
 }
 
 .btn {
@@ -356,12 +360,12 @@ footer {
 
 }
 #subfooter {
-    background: rgba(0, 0, 0, 0) url("/assets/bg_subfooter.png") repeat-x 0 0;
+    background: rgba(0, 0, 0, 0) url(/assets/bg_subfooter.png) repeat-x 0 0;
     padding-top: 10px;
     margin-top: 40px;
 }
 #mainfooter {
-    background: rgba(0, 0, 0, 0) url("/assets/bg_footer.png") repeat-x 0 0;
+    background: rgba(0, 0, 0, 0) url(/assets/bg_footer.png) repeat-x 0 0;
     padding-top: 10px;
     margin-top: -10px;
 }
@@ -427,23 +431,23 @@ footer {
 /*dashboard*/
 
 .dashboardIcons {
-	width:100%;
+    width:100%;
     padding: 15px;
 }
 .dashboardIcons li {
-	width:100px;
-	float:left;
-	border:1px solid #ddd;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border-radius:5px;
-	padding:6px;
-	margin:0 20px 20px 0;
+    width:100px;
+    float:left;
+    border:1px solid #ddd;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    padding:6px;
+    margin:0 20px 20px 0;
     position: relative;
     background: #fff;
 }
 .dashboardIcons li a {
-	display:block;
+    display:block;
     background: #444;
 }
 .dashboardIcons li a:hover {
@@ -451,15 +455,15 @@ footer {
     text-decoration: none;
 }
 .dashboardIcons li img {
-	width:88px;
-	height:88px;
-	text-align:center;
+    width:88px;
+    height:88px;
+    text-align:center;
 }
 .dashboardIcons li span {
-	clear:both; 
-	width:100%;
-	text-align:center;
-	display:block; 
+    clear:both; 
+    width:100%;
+    text-align:center;
+    display:block; 
 }
 .icon {
     width: 100px;
@@ -513,22 +517,21 @@ footer {
     height: 40px;
 }
 .heading {
-	background:#ffde52;
-	-webkit-box-sizing: border-box; 
-	-moz-box-sizing: border-box;    
-	box-sizing: border-box;   
-	font-size:24px;
-	padding:0px 10px;
-	text-align:center;
-	margin:0;
+    background:#ffde52;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;   
+    font-size:24px;
+    padding:0px 10px;
+    text-align:center;
+    margin:0;
 }
 .border {
-	border:1px solid #ddd;
+    border:1px solid #ddd;
 }
 .form p {
     clear: both;
-    width: 92%;
-    padding: 5px;
+    width: 98%;
 }
 .form select {
     height:34px;
@@ -540,11 +543,11 @@ footer {
     outline: none;
 }
 .form input[type="text"], .form input[type="password"], .form input[type="email"], .form input[type="search"] {
-	height:24px;
+    height:24px;
 }
 .form input[type="text"]:focus, .form input[type="password"]:focus, .form input[type="email"]:focus, .form input[type="search"]:focus {
-	box-shadow:none;
-	border:1px solid #333;
+    box-shadow:none;
+    border:1px solid #333;
 }
 
 body {
@@ -629,13 +632,17 @@ header h2 a {
     min-height: 28px;
 }
 #headerNav .home_icon {
-    background: url("/assets/home.png") 22px 5px no-repeat transparent;
-    width: 60px;
-    height: 60px;
+    background: url("/assets/home.png") 13px 5px no-repeat transparent;
+    width: 54px;
+    height: 46px;
     text-indent: -9999px;
 }
 #headerNav .nav > li > a.home_icon:hover, #headerNav .nav li a.home_icon.active {
     background: url("/assets/home.png") 22px 5px no-repeat transparent;
+}
+.punchline {
+    margin: 5px 0 0 320px;
+    font-weight: bold;
 }
 
 /*footer*/
@@ -689,7 +696,7 @@ header h2 a {
     width: 80px;
 }
 .green_dark {
-     background: #8dec84 !important;
+   background: #8dec84 !important;
 }
 .green_light {
     background: #c3f4bd !important;
@@ -889,6 +896,7 @@ header h2 a {
 .acceptTerms {
     background: #DCEFFC;
     padding: 20px 35px;
+    margin-top: 30px;
 }
 .acceptTerms label {
     width: auto;
@@ -954,6 +962,12 @@ header h2 a {
     color: #ff0000;
     font-weight: normal;
 }
+.city_input {
+    width: 224px !important;
+}
+.city_label {
+    width: 40px !important;
+}
 
 /*testimonial*/
 .testimonial {
@@ -986,7 +1000,7 @@ header h2 a {
     margin-top: 40px;
 }
 .icon-largest {
-    background: url("/assets/thank-you.png") no-repeat 0 0;
+    background: url(/assets/thank-you.png) no-repeat 0 0;
     width: 128px;
     height: 128px;
 }
@@ -1349,18 +1363,11 @@ header h2 a {
     padding: 15px 0;
 }
 .dashboardpage .dashboardIcons li {
-     margin: 0 10px 10px 0;
+   margin: 0 10px 10px 0;
 }
 .payment_success {
     margin: 0 auto 150px !important;
     width: 800px;
-}
-.icon_1{
-    width: 100px;
-    height: 88px;
-    display: block;
-    background-image: url("/assets/glyphicons-halflings.png");
-    background-repeat: no-repeat;
 }
 
 /*welcome page*/
@@ -1445,4 +1452,57 @@ header h2 a {
 }
 
 
+.pricingMallText{
+    font-weight: normal;
+    font-size: 11px;
+    font-style: normal;
+}
 
+.leadAssignSelect{
+   background: none repeat scroll 0 0 #FFFFFF;
+   border: 1px solid #DDDDDD;
+   height: 22px;
+   margin-bottom: -2px;
+   padding: 0px;
+   width: 55%;
+   float: right;
+   margin-right: 5px;
+}
+
+.hide{
+    display: none;
+}
+
+.flashes{
+    font-size: 14px;
+    margin-left: 28%;
+    text-align: center;
+    width: 40%;
+}
+
+.w27{
+    width:27%;
+}
+.leadActive select,.userActive select{
+    height: 22px;
+    margin-bottom: -2px;
+    padding: 0px;
+    width: 64%;
+}
+
+.leadActive span, .userActive span{
+    cursor: pointer;
+}
+
+.leadFilterByName {
+    height: 30px;
+    width: 20%;
+}
+.leadHeading{
+    margin-bottom: -10px;
+    text-align: right;
+}
+
+.leadHeading input{
+    width: 25%    
+}
