@@ -1,16 +1,14 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span4">
+            <div class="border">
               <h2 class="heading">New Appointment</h2>   
             <%= form_for :appointment, :url => appointment_create_path(), :html => {:class => "form", } do |a| %>
                 <div class="errors">
                     <% @appointment.errors.each do |attr, msg| %>
                     <h5> <%= "#{attr} #{msg}"%> </h5>
                     <% end %>
-                </div>
-            <div class="border">
-             
-                           
+               </div>               
              <form class="form pd15 leadform">
                 
                     <p><label> Name: </label><%= a.text_field :name %></p>
@@ -36,7 +34,7 @@
                         <%= a.text_field :app_time %>
                     </p>
                     <p> <label>Date of Appt: </label>
-                        <%= a.text_field :app_date %>
+                        <%= a.text_field :app_date, :id=> "app_date" %>
                     </p>
                     <p> <input class="btn yellow" type="submit" value="Add Appointment"/> </p>
                    
@@ -46,7 +44,7 @@
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
                 </form>
-                 <%end%>
+                <%end%>
             </div>
         </div>
         <div class="span8">

@@ -10,7 +10,7 @@
         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
         <% else %>
           <li>
-          <%= link_to('Login', new_user_session_path)  %>  
+          <%= link_to('Login', new_user_session_path, :class=>"icon-chevron-right icon-white icon_login") %>  
           </li>
         <% end %>
       </ul>
@@ -27,7 +27,7 @@
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li><%= link_to "Home", "#",                   :class => "active" %></li>
+                <li><%= link_to "Home", "#", :class => "home_icon" %></li>
                 <li><%= link_to "Plan", "#" %></li>
                 <li><%= link_to "About", "#" %></li>
                 <li><%= link_to "Contact us", "#" %></li>

@@ -39,6 +39,8 @@ GEM
     arel (3.0.2)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    bootstrap-datepicker-rails (1.1.1.9)
+      railties (>= 3.0)
     builder (3.0.4)
     cancan (1.6.10)
     chronic (0.9.1)
@@ -151,6 +153,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-datepicker-rails
   cancan
   chronic
   coffee-rails (~> 3.2.1)

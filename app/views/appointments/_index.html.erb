@@ -1,24 +1,25 @@
- <table class="table table-striped">
+ <table class="table table-striped">  
     <thead>
         <tr>
-          <td>Time</td>
-          <% @appointments.each do |a| %>
-            <td>Appointment <%= a.id %></td>
-          <% end %>
+          <td style="width: 20%;">Time</td>
+          <td >Appointment </td>
         </tr>
     </thead>
         <tbody>
-            <% tym.each do |a| %>
+            <% @tym.each do |k,v| %>
               <tr>
-               <td class="time"><%= a.app_time %></td>
-                      <td>
-                           <ul>
-                              <li><strong>Member:</strong> <%= a.name %>  </li>
-                              <li><strong>Phone:</strong> <%= a.phone %> </li>
-                              <li><strong>Notes:</strong> <%= a.notes %> </li>
+               <td class="time"><%= k %></td>
+                <% v.each do |a,b| %>
+                   <td class="green_dark">
+                      
+                       <ul>
+                              <li><strong>Member:</strong> <%= b.values[1] %>  </li>
+                              <li><strong>Phone:</strong> <%= b.values[2] %> </li>
+                              <li><strong>Notes:</strong> <%= b.values[3] %> </li>
                               <li><strong>Submitted by:</strong>Golds Gym</li>
                           </ul>
                       </td>
+                    <% end %>
               </tr>
               <% end %> 
         </tbody>

@@ -7,6 +7,7 @@ gem 'rails', '3.2.15'
 
 gem 'pg'
 gem "nested_form"
+gem 'bootstrap-datepicker-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
