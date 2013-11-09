@@ -55,6 +55,7 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    country-select (1.1.1)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -148,6 +149,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.1)
   compass-rails
+  country-select
   devise
   jquery-rails
   nested_form

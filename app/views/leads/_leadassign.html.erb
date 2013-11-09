@@ -1,6 +1,6 @@
 
 
-<%=select_tag "users", options_from_collection_for_select(@users, "id", "name"),:include_blank => true,:class=>"leadAssignSelect" %>
+<%=select_tag "users", options_from_collection_for_select(@users, "id", "name"),:prompt => "Select User",:class=>"leadAssignSelect" %>
 
 <script type="text/javascript">	
 	$(".leadAssignSelect").change(function(){

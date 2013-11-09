@@ -62,5 +62,15 @@ module Leadpump
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
       "#{html_tag}".html_safe 
     }
+
+    config.action_mailer.smtp_settings = {
+        address: "smtp.gmail.com",
+        port: 587,
+        domain: "gmail.com",
+        authentication: "plain",
+        enable_starttls_auto: true,
+        user_name: "testatdev@gmail.com",
+        password: "test@dev"
+      } 
     end
 end

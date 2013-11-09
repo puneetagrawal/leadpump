@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  attr_accessible :email, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes
+  attr_accessible :email, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses, :dependent => :destroy
   has_one :subscription, :dependent => :destroy
@@ -66,4 +66,5 @@ class User < ActiveRecord::Base
       return @msg
   end
 
+  
 end

@@ -1,0 +1,7 @@
+<%= select "status", "lead", options_for_select([["active", true], ["Inactive", false]], 'Inactive') %>
+
+<script type="text/javascript">	
+	$(".leadActive select").change(function(){
+		saveLeadStatus($(this).parent().attr('id'), $(this).val())
+	})
+</script>

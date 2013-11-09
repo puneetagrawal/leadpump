@@ -28,7 +28,7 @@
     <tr>
       <td><%= usr.name %></td>
       <td><%= usr.email %></td>
-      <td>--</td>
+      <td class="userActive" id="userActive_<%=usr.id%>"><span><%=usr.active%></span></td>
       <td><%=link_to "Edit", "/edit/#{user}"%> | <%=link_to "Delete", "/delete/#{user}"%></td>
     </tr>
     <% end %>

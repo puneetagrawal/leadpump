@@ -52,4 +52,12 @@ def index
     end
   end
 
+  def changeuserstatus
+    @user = User.find(params[:userId])  
+    #@status = @lead.active ? "Active" : "Inactive"
+    respond_to do |format|
+      format.js 
+    end
+  end
+
 end

@@ -194,6 +194,9 @@ a {
 .displayBlock {
     display: block;
 }
+.w100 {
+    width: 100px;
+}
 h3 {
     font-size:24px;
     line-height: 30px;
@@ -267,6 +270,10 @@ textarea {
 .dashboard_con {
     width: 680px;
     min-height: 600px;
+}
+.feild_info {
+    float: left;    
+    margin: 12px 0 0 10px;
 }
 
 .btn {
@@ -582,13 +589,17 @@ header h2 a {
     min-height: 28px;
 }
 #headerNav .home_icon {
-    background: url("/assets/home.png") 22px 5px no-repeat transparent;
-    width: 60px;
-    height: 60px;
+    background: url("/assets/home.png") 13px 5px no-repeat transparent;
+    width: 54px;
+    height: 46px;
     text-indent: -9999px;
 }
 #headerNav .nav > li > a.home_icon:hover, #headerNav .nav li a.home_icon.active {
     background: url("/assets/home.png") 22px 5px no-repeat transparent;
+}
+.punchline {
+    margin: 5px 0 0 320px;
+    font-weight: bold;
 }
 
 /*footer*/
@@ -842,6 +853,7 @@ header h2 a {
 .acceptTerms {
     background: #DCEFFC;
     padding: 20px 35px;
+    margin-top: 30px;
 }
 .acceptTerms label {
     width: auto;
@@ -906,6 +918,12 @@ header h2 a {
     font-size: 30px;
     color: #ff0000;
     font-weight: normal;
+}
+.city_input {
+    width: 224px !important;
+}
+.city_label {
+    width: 40px !important;
 }
 
 /*testimonial*/
@@ -1356,9 +1374,9 @@ header h2 a {
 .leadAssignSelect{
    background: none repeat scroll 0 0 #FFFFFF;
    border: 1px solid #DDDDDD;
-   height: 30px;
-   margin-bottom: 0;
-   padding: 3px;
+   height: 22px;
+   margin-bottom: -2px;
+   padding: 0px;
    width: 55%;
    float: right;
    margin-right: 5px;
@@ -1373,4 +1391,31 @@ header h2 a {
     margin-left: 28%;
     text-align: center;
     width: 40%;
+}
+
+.w27{
+    width:27%;
+}
+.leadActive select,.userActive select{
+    height: 22px;
+    margin-bottom: -2px;
+    padding: 0px;
+    width: 64%;
+}
+
+.leadActive span, .userActive span{
+    cursor: pointer;
+}
+
+.leadFilterByName {
+    height: 30px;
+    width: 20%;
+}
+.leadHeading{
+    margin-bottom: -10px;
+    text-align: right;
+}
+
+.leadHeading input{
+    width: 25%    
 }

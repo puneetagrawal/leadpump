@@ -1,0 +1,30 @@
+<table class="table table-striped">
+ <thead>
+   <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Status</td><td>Employee</td><td>Action</td></tr>
+ </thead>
+ <tbody>    
+  <%if @leads.size > 0%>                
+   <% @leads.each do |ur|%>
+   <tr>
+     <td><%=ur.lead.name%></td>
+     <td><%=ur.lead.phone%></td>
+     <td><%=ur.lead.email%></td>
+     <td><%=ur.lead.lead_source%></td>
+     <td class="leadActive" id="leadActive_<%=ur.lead.id%>"><span><%=checkLeadStatus(ur.lead.id)%></span></td>
+     <td><span id="emp_<%=ur.lead.id%>"><%=fetchLeadEmployee(ur.lead.id)%></td>
+     <td class="w27"><%=link_to "Edit", edit_lead_path(ur.lead)%> 
+      <%if checkIfCompanyAdmin(ur.lead.id)%>
+      <span id="asignBtn_<%=ur.lead.id%>">
+        | <%=link_to "Assign", "javascript:void(0)", :onclick => "getAutoCompleteForLeadAssign(#{ur.lead.id})"%>
+      </span>
+      <span id="users_<%=ur.lead.id%>" class="selectBox">                    
+      </span>
+    </td>
+    <%end%>
+  </tr>
+  <% end %>         
+  <%else%>
+  <tr><td colspan="7" style="text-align:center">no lead assign/created by this user</td></tr>         
+  <% end %>
+</tbody>
+</table>

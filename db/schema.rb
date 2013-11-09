@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20131106083231) do
   end
 
   create_table "leads", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.boolean  "active",                         :default => true
+    t.string   "name"
     t.string   "email"
     t.string   "address"
     t.integer  "phone",             :limit => 8
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20131106083231) do
     t.string   "enrolment_value"
     t.string   "notes"
     t.integer  "company_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|
@@ -135,13 +135,13 @@ ActiveRecord::Schema.define(:version => 20131106083231) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                   :default => "", :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "name",                   :default => "",   :null => false
+    t.string   "email",                  :default => "",   :null => false
+    t.string   "encrypted_password",     :default => "",   :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.integer  "sign_in_count",          :default => 0,    :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -150,9 +150,10 @@ ActiveRecord::Schema.define(:version => 20131106083231) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.boolean  "active",                 :default => true
     t.integer  "role_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

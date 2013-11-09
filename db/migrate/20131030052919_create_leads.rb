@@ -1,8 +1,8 @@
 class CreateLeads < ActiveRecord::Migration
   def change
     create_table :leads do |t|
-      t.string :first_name
-      t.string :last_name
+      t.boolean :active, :default => true
+      t.string :name
       t.string :email
       t.string :address
       t.integer :phone, :limit => 8

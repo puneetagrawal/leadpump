@@ -7,12 +7,30 @@ Leadpump::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  resources :leads
+  get '/leads/autocomplete_lead_email'
+  
 
-  get 'leads/autocomplete_user_name'
+  # resources :leads do
+  #   member do
+      
+  #   end
+  #   collection do
+  #     get 'leadassign'      
+  #     get 'changeleadstatus'
+  #     get 'saveleadstatus'
+  #     get 'filterbyname'
+  #     get 'leadassigntouser'
+  #   end
+  # end
 
   match '/leads/leadassign' => 'leads#leadassign'
   match '/leads/leadassigntouser' => 'leads#leadassigntouser'
+  match '/leads/changeleadstatus' => 'leads#changeleadstatus'
+  match '/leads/saveleadstatus' => 'leads#saveleadstatus'
+  match '/leads/filterbyname' => 'leads#filterbyname'
+  match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
+  match '/leads/getemails' => 'leads#getemails'
+  resources :leads 
 
   root to: "home#index"
   resources :subscriptions
@@ -25,6 +43,8 @@ Leadpump::Application.routes.draw do
   match '/home/calculateAmount' => 'home#calculateAmount'
   match '/home/validateEmail' => 'home#validateEmail'
 
+ 
+  match '/company/changeuserstatus' => 'company#changeuserstatus'
   match '/company/index' => 'company#index'
   match '/company/new' => 'company#new'
   match '/company/show' => 'company#show'
@@ -32,6 +52,7 @@ Leadpump::Application.routes.draw do
   match '/edit/:id' => 'company#edit', :as => :edit
   match '/update/:id' => 'company#update', :as => :update
   match '/delete/:id' => 'company#delete', :as => :delete
+
   
 
 

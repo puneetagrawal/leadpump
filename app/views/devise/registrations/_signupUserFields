@@ -3,12 +3,14 @@
 <p><%= f.label :Email %><%= f.email_field :email %></p>
 <p><%= f.label :Password %><%= f.password_field :password %></p>
 <p>
-	<label>No of users</label>
-	<%= select_tag "discountOnUsers", options_for_select((1..@planPerUser.user_range.end_range).collect{ |dl| [dl, dl] }),:class => "moreUserLink w100"%>
+	<label>Users</label>
+	<%= select_tag "discountOnUsers", options_for_select((1..@planPerUser.user_range.end_range).collect{ |dl| [dl, dl] }),:class => "moreUserLink input-small"%>
+	<span class="feild_info">All user must be in same plan.</span>
 </p>
 <p>
 	<label>No of Locations</label>
 	<span id="locationSelectBox">
-		<%= select_tag "no_of_locations", options_for_select((1..1).collect{ |dl| [dl, dl] }), :class => "w100" %>
+		<%= select_tag "no_of_locations", options_for_select((1..1).collect{ |dl| [dl, dl] }), :class => "input-small" %>
+		<span class="feild_info">Must have one user per location.</span>
 	</span>
 </p>

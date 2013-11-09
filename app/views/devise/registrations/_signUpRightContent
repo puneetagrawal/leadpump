@@ -1,19 +1,16 @@
 <span class="span4 signupRight">
 <h2>What people say</h2>
 <div class="testimonial">
-<p>"I found the extremely fabulous and user-friendly MindMeister. What makes MindMeister rock my world is the fact that
-it lets two or more people work on a mind map at the same time."
-</p><strong>Social Signal</strong>
+<p>“LeadPump.com has GREATLY impacted our clubs membership enrollments. LeadPump.com drastically increased the amount of qualified leads coming through our doors and as a result our company’s sales are up 22% in the first 30-days. I highly recommend leadpump.com to any Health Club owner or operator look to pump up their membership sales.”
+</p><strong>LEADPUMP - Rocking in the USA"
+</strong>
 </div>
 <div class="testimonial">
-<p>"MindMeister is a superb free online mind/project mapping come outliner service. The interface is excellent,
-clear and easy to use, and the feature set is also top notch."</p>
-<strong>The Red Ferret Journal</strong>
+<p>"I have been in the fitness industry for the last 24 years. I have tried all conventional means of advertising like direct mailers, lead boxes, radio ads you name it. I can honestly say I was shocked by the results that we have achieved since we have implemented LeadPump.com. I have never in all my years seen the kind of ROI that we have already achieved in such a short time with LeadPump.com."</p>
+<strong>LEADPUMP - Rocking in the UK</strong>
 </div>
 <div class="testimonial">
-<p>"MindMeister is a superb free online mind/project mapping come outliner service. The interface is excellent,
-clear and easy to use, and the feature set is also top notch."</p>
-<strong>The Red Ferret Journal</strong>
+<p>"Leads are up sales are up, I say two thumbs us to LEADPUMP.com."</p>
 </div>
 <div class="testimonial">
 <p>Plan Type: 
@@ -22,6 +19,17 @@ clear and easy to use, and the feature set is also top notch."</p>
 <p>Total Discount: <strong><span id="td"></span></strong></p>
 <p>Total Charges: <strong><span id="ta"></span></strong></p>
 
+</div>
+<div id="user_counter" class="absblock">
+<h3>You are in good company</h3>
+<p>
+<span>1,276 Users</span>
+Are already enrolled for <b class="txt_black">LEAD</b>PUMP
+</p>
+</div>
+<div class="absblock" id="payment_logos">
+
+<img alt="Payment_logos" src="/assets/payment_logos.png">
 </div>
 </span>
 </div>
