@@ -18,17 +18,40 @@
 
 $(document).ready(function(){
 	initsignUpRadioBtn()
-})
+	$(".viewLead").fancybox({
+		'transitionIn': 'elastic',
+	    'transitionOut': 'elastic',
+	    'speedIn': 500,
+	    'speedOut': 300,
+	    'autoDimensions': true,
+	    'centerOnScroll': true,
+	    'afterLoad': function(){
+		    leadId = $(this.element).attr('id');
+		    fillPopupContent(leadId);
+		  }
+	});
+	$("#facnybox").click(function(){
+		$.fancybox.close();
+	})
+});
+
+function fillPopupContent(leadId) {
+	leadId = leadId.split("_")[1]
+	alert(leadId)
+	url = '/leads/fillpopupcontent';
+	$.get(url, {leadId:leadId}, function (data) {			
+    });
+}
 
 function initsignUpRadioBtn(){
 	$('input[name="paymentOptionRadio"]').change(function(){
 		if($(this).attr('class') == 'creditCard'){
-			$("#creditCardDiv").show()
-			$("#couponDiv").hide()
+			$("#creditCardDiv").show();
+			$("#couponDiv").hide();
 		}
 		else{
-			$("#couponDiv").show()
-			$("#creditCardDiv").hide()
+			$("#couponDiv").show();
+			$("#creditCardDiv").hide();
 		}
 	})
 

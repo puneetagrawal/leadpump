@@ -60,25 +60,7 @@
             <li>Pump <i class="txt_red">Up</i> Sales,</li>
             <li>Pump Up <i class="txt_red">Profits</i>.</li>
         </ul>
-        <div class="fr">
-            <div id="headerNav" class="navbar">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a class="btn yellow btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
-                        <div class="nav-collapse collapse fr">
-                            <ul class="nav">
-                                <li><%= link_to "Home", home_index_path, :class => "home_icon" %></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="clear"></div>
-            <ul class="fr usernav">
+         <ul class="fr usernav">
                 <li> 
                 <%- if current_user %>
                 <%=link_to destroy_user_session_path, :method => :delete do%>   
@@ -91,6 +73,26 @@
                 <%end%>
                 </li>
             </ul>
+            <div class="clear"></div>
+        <div class="fr">
+            <div id="headerNav" class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn yellow btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <div class="nav-collapse collapse fr">
+                            <ul class="nav">
+                                <li><%= link_to "Home", home_index_path, :class => "active" %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
 
         </div>
     </div>

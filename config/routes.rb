@@ -30,6 +30,7 @@ Leadpump::Application.routes.draw do
   match '/leads/filterbyname' => 'leads#filterbyname'
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
+  match '/leads/fillpopupcontent' => 'leads#fillpopupcontent'
   resources :leads 
 
   root to: "home#index"
