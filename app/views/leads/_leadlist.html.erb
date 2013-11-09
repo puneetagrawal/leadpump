@@ -1,34 +1,12 @@
 <div class="span8">
   <div class="border">
    <h2 class="heading">All Contacts / Leads</h2>
-   <table class="table table-striped">
-       <thead>
-           <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Status</td><td>Employee</td><td>Action</td></tr>
-       </thead>
-       <tbody>    
-       <%if @leads%>                
-           <% @leads.each do |ur|%>
-           <%lead = ur.lead%>
-           <tr>
-             <td><%=lead.first_name%></td>
-             <td><%=lead.phone%></td>
-             <td><%=lead.email%></td>
-             <td><%=lead.lead_source%></td>
-             <td></td>
-             <td><span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%></td>
-             <td><%=link_to "Edit", edit_lead_path(lead)%> 
-              <%if checkIfCompanyAdmin(lead.id)%>
-              <span id="asignBtn_<%=lead.id%>">
-              | <%=link_to "Assign", "javascript:void(0)", :onclick => "getAutoCompleteForLeadAssign(#{lead.id})"%>
-              </span>
-                <span id="users_<%=lead.id%>" class="selectBox">                    
-                </span>
-            </td>
-              <%end%>
-         </tr>
-         <% end %>         
-         <% end %>         
-     </tbody>
- </table>
+   <div class="heading leadHeading">
+      <%= select_tag "leadFilterByName", options_for_select(@userList.collect{ |user| [user.name, user.id] }),:class => "leadFilterByName",:prompt=>"Filter By Employee"%>  
+        <input type="text" name="test" id="test" placeholder="Type email for search lead">        
+  </div>
+   <span class="leadListContent" id="leadListContent">
+    <%= render "leadListContent"%>   
+  </span>
 </div>
 </div>

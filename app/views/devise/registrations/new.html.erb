@@ -1,13 +1,16 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12 signup_heading">
-			<h3>Thanks for choosing Buddy Referrer</h3>
+			<h3>Thanks for choosing LEAD<i class="txt_red">PUMP</i></h3>
 			<h4>You're just 60 seconds away from your new account.</h4>
-			<div class="signupCon">
+			<div class="signupCon pr">
 				<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form form_block test", }) do |f| %>
 
 				<div class="row-fluid">
-		`			<span class="span7">
+					<div class="icon-largest badge">
+						<span>Thank <br> you!</span>
+					</div>
+					<span class="span7">
 						<%= devise_error_messages! %>
 						<div class="errors" id="stripe_error"></div>
 						<%= render :template => "devise/registrations/_signupUserFields", :locals => { :f => f} %>	
@@ -25,14 +28,24 @@
 							<p><%= label_tag :couponCode, "Coupon Code" %><%= text_field_tag :couponCode, nil, name: nil %></p>	
 						</span>
 						<div class="clear"></div>
-
 					</span>
-					<%= render :template => "devise/registrations/_signUpRightContent" %>		
-						<div class="row-fluid">
-							<div class="span12 mt20">
-								<div class="span9">
-									<p></p>
-								</div>
+					<%= render :template => "devise/registrations/_signUpRightContent" %>
+					<hr>
+				
+					<div class="row-fluid">
+						<div></div>
+						<div class="span2">
+							<div class="priceDetail">
+								<strong></strong>
+								<p>after trial</p>
+							</div>
+							<div class="clear"></div>                            
+						</div>
+
+						<div class="span8">
+							<p>Your 14-day trial will start 12/19/2014 and last until 1/1/2014. If you don’t want to continue using LEADPUMP, just
+								cancel before your trial ends and you will be refunded. Otherwise, you’ll pay just $ 18/month for the services as
+								long as your account is open. You can upgrade or downgrade at any time or cancel with a 60-day notice.</p>
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -43,10 +56,11 @@
 								</span>
 							</div>
 						</div>
+
 						<% end %>
+
 					</div>
 				</div>
-
 			</div>
 		</div>
 

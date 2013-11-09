@@ -25,6 +25,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email # Only if using reconfirmable
+      t.boolean  :active, :default => true
       t.integer  :role_id
 
       ## Lockable

@@ -27,6 +27,7 @@ gem 'susy'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'cancan'
 gem 'rails3-jquery-autocomplete'
+gem 'country-select'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

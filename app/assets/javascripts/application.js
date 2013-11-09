@@ -18,7 +18,6 @@
 
 $(document).ready(function(){
 	initsignUpRadioBtn()
-	
 })
 
 function initsignUpRadioBtn(){
@@ -52,7 +51,35 @@ function initsignUpRadioBtn(){
 
 	if ($("#discountOnUsers").val()){
 		caclulateAmount()
-	}		
+	}			
+	$(".leadFilterByName").change(function(){
+		if($(this).val() != ''){
+			leadFilterByName($(this).val())	
+		}		
+	});	
+	
+	initStatusSelectBox();
+	initUserStatusSelectBox()
+}
+
+function initUserStatusSelectBox(){
+	$(".userActive span").click(function(){
+		changeUserstatus($(this).parent().attr('id'))
+	})	
+}
+
+function changeUserstatus(userId){
+	userId = userId.split("_")[1]
+	url = '/company/changeuserstatus';
+	$.get(url, {userId:userId}, function (data) {	
+		// $("#leadActive_"+leadId).html()	
+    });
+}
+
+function initStatusSelectBox(){
+	$(".leadActive span").click(function(){
+		changeleadstatus($(this).parent().attr('id'))
+	})	
 }
 
 function caclulateAmount(){
@@ -87,5 +114,37 @@ function assignLeadToUser(userId, leadId){
 		$("#emp_"+leadId).html(data.name)
 		$("#asignBtn_"+leadId).remove()
 		$("#users_"+leadId).remove()	
+    });
+}
+
+function changeleadstatus(leadId){
+	leadId = leadId.split("_")[1]
+	url = '/leads/changeleadstatus';
+	$.post(url, {leadId:leadId}, function (data) {	
+		// $("#leadActive_"+leadId).html()	
+    });
+}
+
+function saveLeadStatus(leadId, status){
+	leadId = leadId.split("_")[1]
+	url = '/leads/saveleadstatus';
+	$.post(url, {leadId:leadId,status:status}, function (data) {
+		$("#leadActive_"+leadId).html('<span>'+data.status+'</span>')	
+		initStatusSelectBox()
+    });
+}
+
+function leadFilterByName(userId){
+	$("#leadListContent").html('<img src="/assets/ajax-loader.gif" style="margin:100px 350px 300px">')
+	url = '/leads/filterbyname';
+	$.post(url, {userId:userId}, function (data) {	
+		initStatusSelectBox()
+    });
+}
+
+function leadSearchFilter(leadId){
+	url = '/leads/leadsearchfilter';
+	$.get(url, {leadId:leadId}, function (data) {	
+		initStatusSelectBox()
     });
 }

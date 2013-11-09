@@ -17,12 +17,22 @@ module LeadsHelper
 	def checkIfCompanyAdmin(leadId)
 		user = User.find(current_user.id) 	
 		company = false
-		case user.user_role.role_type.to_sym			
+		case user.user_role.role_type.to_sym	
+		when :admin
+			company = true		
 		when :company
 			user_lead = UserLeads.where(:lead_id => leadId).where('user_id != ?', current_user.id)
-			company = user_lead[0] ? false : true
+			company = user_lead.size > 0 ? false : true
 		end
 		return company	
 	end	 
+
+	def checkLeadStatus(leadId)
+		lead = Lead.find(leadId)
+		status = "Inactive"
+		if lead.present?
+			status = lead.active ? "Active" : "Inactive"
+		end
+	end
 
 end

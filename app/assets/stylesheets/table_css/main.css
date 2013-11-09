@@ -434,6 +434,7 @@ div.price-tbl div.feature-column div.col-body span em.popup-box
     width: 90%;
     padding: 5%;
     color: #fff;
+    z-index: 99;
     font: normal 0.9em/16px Arial, Helvetica, sans-serif;
     text-shadow: 0px 1px 1px #000;
     background: #202a30; /*--Fallback background color--*/
