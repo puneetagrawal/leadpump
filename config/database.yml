@@ -31,6 +31,6 @@ adapter: mysql
 database: leadpump
 hostname: localhost
 username: postgres
-password: postgres
+password: root
 pool: 5
 timeout: 5000

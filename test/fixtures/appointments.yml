@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  phone: 1
+  email: MyString
+  notes: MyString
+  dues: MyString
+  enrol: 1
+  app_source: MyString
+  app_time: 2013-10-31 11:54:54
+  app_date: 2013-10-31
+
+two:
+  name: MyString
+  phone: 1
+  email: MyString
+  notes: MyString
+  dues: MyString
+  enrol: 1
+  app_source: MyString
+  app_time: 2013-10-31 11:54:54
+  app_date: 2013-10-31

@@ -12,11 +12,17 @@
 //
 //= require jquery
 //= require jquery_nested_form
-//= require_tree
-//= require autocomplete-rails
+//= require_tree 
+//= require bootstrap-datepicker
 
 
 $(document).ready(function(){
+	$("#app_date").datepicker({
+    	 autoclose: true
+    }).on('changeDate', function(selected){
+    	app_date = new Date(selected.date.valueOf());
+    	app_date.setDate(app_date.getDate(new Date(selected.date.valueOf())));
+   	}); 
 	initsignUpRadioBtn()
 })
 
