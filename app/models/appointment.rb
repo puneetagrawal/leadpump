@@ -2,5 +2,6 @@ class Appointment < ActiveRecord::Base
   attr_accessible :app_date, :app_source, :app_time, :dues, :email, :enrol, :name, :notes, :phone
 
   belongs_to :employee
-  validates_presence_of :name, :email, :app_source
+  validates_presence_of :name, :app_source, :dues
+  validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
 end

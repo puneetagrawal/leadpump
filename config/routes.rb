@@ -1,5 +1,6 @@
 Leadpump::Application.routes.draw do
 
+  match '/appointments/filter_app' => 'appointments#filter_app'
   resources :discounts_on_periods
   resources :appointments
   resources :discounts_on_locations
@@ -41,11 +42,24 @@ Leadpump::Application.routes.draw do
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
 
-  
+
   match 'appointment/new' => 'appointments#new'
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
- 
+
+  resources :leads 
+
+  root to: "home#index"
+  resources :subscriptions
+  resources :plans
+
+  match 'home/index' => 'home#index'
+  match '/success' => 'home#success'
+  
+  match '/test' => 'home#test'
+  match '/home/calculateAmount' => 'home#calculateAmount'
+  match '/home/validateEmail' => 'home#validateEmail'
+
   match '/company/getemails' => 'company#getemails'
   match '/company/usersearchfilter' => 'company#usersearchfilter'
   match '/company/changeuserstatus' => 'company#changeuserstatus'

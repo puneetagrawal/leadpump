@@ -1,6 +1,8 @@
 <div class="span4">
+
     <%= form_for @lead, :html => {:class => "forms"} do |lead| %>
     <%=render "common_templates/showerrors", :object=>@lead%>
+
     <div class="border app_header">
         <h2 class="heading headmsg">Add A New Lead</h2>
         <div class="form pd15 leadform">
