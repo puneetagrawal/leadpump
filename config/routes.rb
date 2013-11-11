@@ -5,7 +5,6 @@ Leadpump::Application.routes.draw do
   resources :appointments
   resources :discounts_on_locations
 
-
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get '/leads/autocomplete_lead_email'
