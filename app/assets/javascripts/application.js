@@ -28,21 +28,30 @@ $(document).ready(function(){
     	app_date.setDate(app_date.getDate(new Date(selected.date.valueOf())));
    	}); 
 	initsignUpRadioBtn();
-	$(".viewLead").click(function(e) {
-		id = $(this).attr('id');
-		if(!$(e.target).is('.leadAction')){
-			$.fancybox.open({
-				href: '#dashboardPopup',
-				height: 385,
-				width: 510,
-				type: 'inline',
-				'beforeLoad' : function() {
-					fillPopupContent(id)
-				}
-			});
-		}
-	});
+	initLeadActiveSelect();
+	
 });
+
+function initLeadActiveSelect(){
+	// $(".viewLead").click(function(e) {
+	// 	id = $(this).attr('id');
+	// 	if(!$(e.target).is('.leadAction, #status_lead, #status_lead opt')){
+	// 		$.fancybox.open({
+	// 			href: '#dashboardPopup',
+	// 			height: 385,
+	// 			width: 510,
+	// 			type: 'inline',
+	// 			'beforeLoad' : function() {
+	// 				fillPopupContent(id)
+	// 			}
+	// 		});
+	// 	}
+	// });
+
+	$(".leadActive select").change(function(){
+		saveLeadStatus($(this).parent().attr('id'), $(this).val())
+	})
+}
 
 function fillPopupContent(id) {
 	id = id.split("_")[1];
@@ -96,6 +105,8 @@ function initsignUpRadioBtn(){
 		}		
 	});	
 	
+
+
 	initStatusSelectBox();
 	initUserStatusSelectBox()
 }
@@ -117,7 +128,7 @@ function changeUserstatus(userId){
 function initStatusSelectBox(){
 	$(".leadActive span").click(function(){
 		changeleadstatus($(this).parent().attr('id'))
-	})	
+	})		
 }
 
 function caclulateAmount(){
@@ -162,19 +173,21 @@ function assignLeadToUser(userId, leadId){
 	});
 }
 
-function changeleadstatus(leadId){
-	leadId = leadId.split("_")[1]
-	url = '/leads/changeleadstatus';
-	$.post(url, {leadId:leadId}, function (data) {	
+function changeleadstatus(id){
+	id = id.split("_")[1]
+	urls = window.location.pathname;
+	url = '/home/changestatus'
+	$.post(url, {leadId:id, urls:urls}, function (data) {	
 		// $("#leadActive_"+leadId).html()	
 	});
 }
 
-function saveLeadStatus(leadId, status){
-	leadId = leadId.split("_")[1]
-	url = '/leads/saveleadstatus';
-	$.post(url, {leadId:leadId,status:status}, function (data) {
-		$("#leadActive_"+leadId).html('<span>'+data.status+'</span>')	
+function saveLeadStatus(id, status){
+	id = id.split("_")[1]
+	urls = window.location.pathname;
+	url = '/home/saveleadstatus';
+	$.post(url, {leadId:id,status:status, urls:urls}, function (data) {
+		$("#status_"+id).html('<span>'+data.status+'</span>')	
 		initStatusSelectBox()
 	});
 }

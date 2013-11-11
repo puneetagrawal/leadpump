@@ -5,12 +5,14 @@ Leadpump::Application.routes.draw do
   resources :appointments
   resources :discounts_on_locations
 
+
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   get '/leads/autocomplete_lead_email'
   
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
-  # resources :leads do
+  match '/home/changestatus' => 'home#changestatus'
+  match '/home/saveleadstatus' => 'home#saveleadstatus'
   #   member do
       
   #   end
@@ -51,7 +53,14 @@ Leadpump::Application.routes.draw do
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
  
-
+  match '/company/changeuserstatus' => 'company#changeuserstatus'
+  match '/company/index' => 'company#index'
+  match '/company/new' => 'company#new'
+  match '/company/show' => 'company#show'
+  match '/company/create' => 'company#create'
+  match '/edit/:id' => 'company#edit', :as => :edit
+  match '/update/:id' => 'company#update', :as => :update
+  match '/delete/:id' => 'company#delete', :as => :delete
 
   
 

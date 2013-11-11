@@ -31,5 +31,29 @@ class HomeController < ApplicationController
   end
 end
 
+def changestatus
+  if(params[:urls].include? 'company')
+      @object = User.find(params[:leadId])
+    else
+      @object = Lead.find(params[:leadId])
+    end
+  respond_to do |format|
+    format.js 
+  end
+end
+
+def saveleadstatus
+  if(params[:urls].include?'company')
+    object = User.find(params[:leadId])  
+  else
+    object = Lead.find(params[:leadId])  
+  end
+  object.active = params[:status] == "false" ? false : true
+  object.save
+  status = Lead.checkLeadStatus(object.active)
+  logger.debug(status)
+  msg = {"status"=>status}
+  render json:msg
+end
 
 end
