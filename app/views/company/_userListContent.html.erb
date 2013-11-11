@@ -10,7 +10,7 @@
        <td><%=ur.name%></td>
        <td><%=ur.email%></td>
        <td class="leadActive leadAction" id="status_<%=ur.id%>">
-        <span class="leadAction"><%=ur.active%></span>
+        <span class="leadAction"><%=ur.active ? 'Active' : 'Inactive'%></span>
       </td>
         <td class="leadAction">
           <%=link_to "Edit", "/edit/#{ur.id}", html={:class=>"leadAction"}%> 
