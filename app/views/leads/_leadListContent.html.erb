@@ -4,34 +4,37 @@
  </thead>
  <tbody>    
   <%if @leads.size > 0%>                
-   <% @leads.each do |ur|%>
-   <tr>
-     <td><%=ur.lead.name%></td>
-     <td><%=ur.lead.phone%></td>
-     <td><%=ur.lead.email%></td>
-     <td><%=ur.lead.lead_source%></td> 
-     <td><%=ur.lead.goal%></td>
-     <td class="leadActive" id="leadActive_<%=ur.lead.id%>"><span><%=checkLeadStatus(ur.lead.id)%></span></td>
-     <td><span id="emp_<%=ur.lead.id%>"><%=fetchLeadEmployee(ur.lead.id)%></td>
-     <td class="w27"><%=link_to "Edit", edit_lead_path(ur.lead)%> 
+  <% @leads.each do |ur|%>
+  
+  <tr class="viewLead" id="viewLead_<%=ur.lead.id%>" href="#dashboardPopup">
+   <td><%=ur.lead.name%></td>
+   <td><%=ur.lead.phone%></td>
+   <td><%=ur.lead.email%></td>
+   <td><%=ur.lead.lead_source%></td>
+   <td><%=ur.lead.goal%></td>
+   <td class="leadActive leadAction" id="leadActive_<%=ur.lead.id%>">
+    <span class="leadAction"><%=checkLeadStatus(ur.lead.id)%></span>
+  </td>
+  <td>
+    <span id="emp_<%=ur.lead.id%>"><%=fetchLeadEmployee(ur.lead.id)%>
+    </td>
+    <td class="leadAction">
+      <%=link_to "Edit", edit_lead_path(ur.lead),html={:class=>"leadAction"}%> 
       <%if checkIfCompanyAdmin(ur.lead.id)%>
-        <span id="asignBtn_<%=ur.lead.id%>">
-          | <%=link_to "Assign", "javascript:void(0)", :onclick => "getAutoCompleteForLeadAssign(#{ur.lead.id})"%>
-        </span>
-        <span id="users_<%=ur.lead.id%>" class="selectBox">                    
+      <span id="asignBtn_<%=ur.lead.id%>" class="leadAction">
+        | <%=link_to "Assign", "javascript:void(0)",html={:class=>"leadAction assignLead"}%>
       </span>
     </td>    
-    <%end%>
-    <td><span class="viewLead" id="viewLead_<%=ur.lead.id%>" href="#dashboardPopup">view</span></td>
+    <%end%>  
+
   </tr>
   <% end %>         
   <%else%>
-  <tr><td colspan="7" style="text-align:center">no lead assign/created by this user</td></tr>         
+  <tr>
+    <td colspan="7" style="text-align:center">no lead assign/created by this user
+    </td>
+  </tr>         
   <% end %>
 </tbody>
 </table>
-<div id="dashboardPopup" style="height:300px:width:200px;border:1px solid green;border-radius:5px;text-align:center;display:none;">
-<div style="width:400px;height:400px;" id="viewItem">
-  <img src="/assets/ajax-loader.gif" style="margin-top:35%"/>
-  </div>
-</popup>
+<%= render "common_templates/popupContainer"%>

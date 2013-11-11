@@ -1,0 +1,28 @@
+<table class="table table-striped">
+ <thead>
+   <tr><td>Name</td><td>Email</td><td>Status</td><td>Action</td></tr>
+ </thead>
+ <tbody>    
+  <%if @users.size > 0%>                
+  <% @users.each do |ur|%>
+  
+  <tr class="viewLead" id="viewLead_<%=ur.id%>" href="#dashboardPopup">
+   <td><%=ur.name%></td>
+   <td><%=ur.email%></td>
+   <td class="leadActive leadAction" id="leadUser_<%=ur.id%>">
+    <span class="leadAction"><%=ur.active%></span>
+  </td>
+    <td class="leadAction">
+      <%=link_to "Edit", "/edit/#{ur.id}", html={:class=>"leadAction"}%> 
+    </td>    
+  </tr>
+  <% end %>         
+  <%else%>
+  <tr>
+    <td colspan="7" style="text-align:center">No User Found
+    </td>
+  </tr>         
+  <% end %>
+</tbody>
+</table>
+<%= render "common_templates/popupContainer"%>

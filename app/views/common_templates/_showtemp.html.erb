@@ -1,0 +1,27 @@
+<div class="span4 margin_width">    
+    <div class="border">
+        <% if @lead.blank? %>
+        <h2 class="heading">View Lead</h2>
+        <div class="form pd15 leadform">
+            <p><%= label_tag "Name:" %><%= text_field_tag  :name, @lead.name %></p>
+            <p><%= label_tag "Phone:" %><%= text_field_tag :phone, @lead.phone %></p>
+            <p><%= label_tag "Email:" %><%= text_field_tag :email, @lead.email %></p>
+            <p><%= label_tag "Source:" %><%= text_field_tag :lead_source, @lead.lead_source %></p>
+            <p><%= label_tag "Status:" %><%= text_field_tag :active, @lead.active %></p>
+            <p><%= label_tag "Notes:" %><%= text_field_tag :notes, @lead.notes %></p>
+            <p><input type="button" class="btn yellow fancybox_close" value="Cancel"/></p>
+            <div class="clear"></div>
+        </div>        
+        <%end%>
+        <% elsif @user %>
+        <h2 class="heading">View Lead</h2>
+        <div class="form pd15 leadform">
+            <p><%= label_tag "Name:" %><%= text_field_tag  :name, @user.name %></p>
+            <p><%= label_tag "Email:" %><%= text_field_tag :phone, @user.email %></p>
+            <p><%= label_tag "Status:" %><%= text_field_tag :active, @user.active %></p>
+            <p><input type="button" class="btn yellow fancybox_close" value="Cancel"/></p>
+            <div class="clear"></div>
+        </div>      
+        <%end%>  
+    </div>        
+</div>

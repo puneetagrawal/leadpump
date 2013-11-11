@@ -1,7 +1,7 @@
 class CompanyController < ApplicationController
-    before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
-def index
+  def index
     companyUsers = Company.where(:company_admin_id => current_user.id)
     companyUsers = companyUsers.pluck(:company_user_id)
     @users = companyUsers   
@@ -12,6 +12,10 @@ def index
 
   def new
   	@user = User.new()
+    @users = User.fetchCompanyUserList(current_user)
+    logger.debug(">>>>>>>>>>>>>>>>>")
+    logger.debug(@users)
+    logger.debug(">>>>>>>>>>>>>>>>>")
   end
 
   def create
@@ -22,9 +26,10 @@ def index
       company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
       company.save
       flash[:success] = "User successfully created"
-      redirect_to company_index_path()
+      redirect_to company_new_path()
     else
-        render "new"
+      @users = User.fetchCompanyUserList(current_user)
+      render :action =>"new"
     end
   end
 
@@ -59,5 +64,26 @@ def index
       format.js 
     end
   end
+
+  def getemails
+    if params[:term]
+     like  = "%".concat(params[:term].concat("%"))
+     users = User.where("email like ?", like)
+   else
+    users = User.all
+  end
+  list = users.map {|l| Hash[id: l.id, label: l.email, name: l.email]}
+  render json: list
+end
+
+def usersearchfilter
+  @users = User.find(params[:id])
+  respond_to do |format|
+    format.js 
+  end
+end
+
+
+
 
 end

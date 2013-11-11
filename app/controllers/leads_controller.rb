@@ -8,19 +8,10 @@ class LeadsController < ApplicationController
   end
 
 
-  def new  
-    @leads = []
-    case current_user.user_role.role_type.to_sym  
-    when :admin
-      @leads = UserLeads.includes(:lead).all     
-    when :company
-      @userList = Company.where(:company_admin_id => current_user.id).pluck(:company_user_id)
-      @userList << current_user.id
-      @leads = UserLeads.includes(:lead).where(:user_id => @userList)
-      @userList = @userList.collect{|user| User.find(user)}
-    when :employee
-      @leads = UserLeads.includes(:lead).where(:user_id => current_user.id)
-    end
+  def new 
+    hash = Lead.fetchLeadList(current_user) 
+    @leads = hash['leads'.to_sym]
+    @userList = hash['userList'.to_sym]
     @lead  = Lead.new()
   end
 
@@ -33,6 +24,9 @@ class LeadsController < ApplicationController
       flash[:notice] = "New lead created successfully"
       redirect_to new_lead_path
     else
+      hash = Lead.fetchLeadList(current_user) 
+      @leads = hash['leads'.to_sym]
+      @userList = hash['userList'.to_sym]
       render "new"
     end
   end
@@ -57,8 +51,8 @@ class LeadsController < ApplicationController
     @users = @users.uniq
     @lead = Lead.find(params[:leadId])  
     respond_to do |format|
-    format.js   # leadAssignToUserTemplate.js.erb
-  end
+      format.js   
+    end
 end
 
 def leadassigntouser
@@ -114,13 +108,5 @@ def getemails
  render json: list
 end
 
-def fillpopupcontent
-  @lead = Lead.find(params[:leadId])
-  logger.debug "::::::::::::::::::"
-  logger.debug @lead.inspect
-  respond_to do |format|
-    format.js 
-  end
-end
 
 end
