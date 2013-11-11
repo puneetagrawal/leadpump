@@ -7,26 +7,7 @@
   <% @leads.each do |ur|%>
   
   <tr class="viewLead" id="viewLead_<%=ur.lead.id%>" href="#dashboardPopup">
-   <td><%=ur.lead.name%></td>
-   <td><%=ur.lead.phone%></td>
-   <td><%=ur.lead.email%></td>
-   <td><%=ur.lead.lead_source%></td>
-   <td><%=ur.lead.goal%></td>
-   <td class="leadActive leadAction" id="status_<%=ur.lead.id%>">
-    <span class="leadAction"><%=Lead.checkLeadStatus(ur.lead.id)%></span>
-  </td>
-  <td>
-    <span id="emp_<%=ur.lead.id%>"><%=fetchLeadEmployee(ur.lead.id)%>
-    </td>
-    <td class="leadAction">
-      <%=link_to "Edit", edit_lead_path(ur.lead),html={:class=>"leadAction"}%> 
-      <%if checkIfCompanyAdmin(ur.lead.id)%>
-      <span id="asignBtn_<%=ur.lead.id%>" class="leadAction">
-        | <%=link_to "Assign", "javascript:void(0)",html={:class=>"leadAction assignLead"}%>
-      </span>
-    </td>    
-    <%end%>  
-
+    <%=render "leadContentRow", :lead=>ur.lead %>
   </tr>
   <% end %>         
   <%else%>

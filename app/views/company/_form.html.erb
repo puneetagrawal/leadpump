@@ -1,22 +1,6 @@
 
 <div class="span4">
-	<%= form_for @user, :url => company_create_path(),:html => {:class => ""} do |usr| %>
-
-	<%if @user.errors.size > 0 %>
-	<div class="alert alert-error">
-		<% @user.errors.each do |attr, msg| %>
-		<p> <%= "#{attr} #{msg}"%> </p>
-		<% end %>
-	</div>
-	<%end%>
-	<div class="border">
-		<h2 class="heading">Add A New User</h2>
-		<div class="form pd15 leadform">
-			<p><%= usr.label :Name %><%= usr.text_field :name %></p>
-			<p><%= usr.label :Email %><%= usr.email_field :email %></p>
-			<p><input type="submit" class="btn yellow" value="Create User"/></p>
-			<div class="clear"></div>
-		</div>        
-	</div>    
+	<%= form_for @user, :url => company_create_path(),:html => {:class => "forms"} do |usr| %>
+	<%=render "formContent", :user => usr%>   
 	<%end%>    
 </div>

@@ -1,0 +1,7 @@
+<%if @leadUpdate.errors.any? %>
+	$("#showErrors").html('<%=escape_javascript(render partial: "common_templates/showerrors", :locals =>{:object => @leadUpdate})%>')	
+	$(".submitLeadBtn").html('<input type="button" class="btn yellow leadSubmit" value="Update Lead">');	
+<%else%>
+	$(".formfields").html('<%=escape_javascript(render partial: "form", :locals =>{:lead => @lead})%>')
+	$("#viewLead_<%=@leadUpdate.id%>").html('<%=escape_javascript(render partial: "leadContentRow", :locals =>{:lead => @leadUpdate})%>')
+<%end%>
