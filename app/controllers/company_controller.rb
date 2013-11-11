@@ -13,9 +13,6 @@ class CompanyController < ApplicationController
   def new
   	@user = User.new()
     @users = User.fetchCompanyUserList(current_user)
-    logger.debug(">>>>>>>>>>>>>>>>>")
-    logger.debug(@users)
-    logger.debug(">>>>>>>>>>>>>>>>>")
   end
 
   def create

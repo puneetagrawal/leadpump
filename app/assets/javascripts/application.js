@@ -18,6 +18,9 @@
 
 
 $(document).ready(function(){
+	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
+	
+
 	$("#app_date").datepicker({
     	 autoclose: true
     }).on('changeDate', function(selected){

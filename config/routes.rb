@@ -52,14 +52,7 @@ Leadpump::Application.routes.draw do
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
  
-  match '/company/changeuserstatus' => 'company#changeuserstatus'
-  match '/company/index' => 'company#index'
-  match '/company/new' => 'company#new'
-  match '/company/show' => 'company#show'
-  match '/company/create' => 'company#create'
-  match '/edit/:id' => 'company#edit', :as => :edit
-  match '/update/:id' => 'company#update', :as => :update
-  match '/delete/:id' => 'company#delete', :as => :delete
+
 
   
 

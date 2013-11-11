@@ -570,6 +570,7 @@ header {
     color: #FFF;
     width: 100%;
     background-color: #343434;
+    margin-bottom: 15px;
 
 }
 header h2 {
@@ -1529,7 +1530,8 @@ header h2 a {
 }
 
 .leadHeading input{
-    width: 25%    
+    width: 23%;
+    margin-bottom: 17px; 
 }
 
 .viewLead{
@@ -1537,10 +1539,13 @@ header h2 a {
 }
 
 .leadFilterByName {
-    height: 30px;
-    padding: 4px 0;
+    height: 32px;
+    padding: 4px 4px;
     width: 20%;
+    border-radius: 5px;
 }
+
+#test { -webkit-border-radius: 20px; }
 
 #address_country{
     width:25%;
