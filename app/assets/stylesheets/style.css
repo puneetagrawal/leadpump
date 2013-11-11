@@ -641,7 +641,7 @@ header h2 a {
     background: url("/assets/home.png") 22px 5px no-repeat transparent;
 }
 .punchline {
-    margin: 5px 0 0 320px;
+    margin: 5px 0 0 225px;
     font-weight: bold;
 }
 
@@ -843,9 +843,12 @@ header h2 a {
 }
 .signupCon .checkboxCon {
     float: left;
-    margin: 0 30px 15px 0;
+    margin: 0 18px 15px 0;
     text-align: left;
     width: auto;
+}
+.w70p{
+    width:50px !important;
 }
 .signupCon .checkboxCon input {
     width: auto;
@@ -963,12 +966,15 @@ header h2 a {
     font-weight: normal;
 }
 .city_input {
-    width: 224px !important;
+    width: 160px !important;
 }
 .city_label {
-    width: 40px !important;
+    width: 28px !important;
 }
 
+.city_label1{
+    width:72px;
+}
 /*testimonial*/
 .testimonial {
     color: #8799A6;
