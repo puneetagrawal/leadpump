@@ -53,15 +53,15 @@ class User < ActiveRecord::Base
       chargesPerUserStr = "$#{@plan.price} * #{no_of_users} = $#{totalCharge} per month"
       disAmount = 0
       disAmountStr = "No Discount"
-      paymentPeriod = ' per month'
+      paymentPeriod = '/month'
       if dp == 'yearly'
         totalCharge = totalCharge * 12
         disAmount =  (totalCharge * 17)/100
-        disAmountStr = "$#{disAmount} on yearly"
-        paymentPeriod = " per year"
+        disAmountStr = "$ #{disAmount} on yearly"
+        paymentPeriod = "/year"
       end
       amount = totalCharge - disAmount
-      amountStr = "$#{amount}" + paymentPeriod
+      amountStr = "$ #{amount}" + paymentPeriod
       @msg = { "chargesPerUserStr" => chargesPerUserStr, "disAmountStr" => disAmountStr, "amountStr" => amountStr, "amount" => amount}
       return @msg
   end

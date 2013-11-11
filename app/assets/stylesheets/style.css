@@ -360,12 +360,12 @@ footer {
 
 }
 #subfooter {
-    background: rgba(0, 0, 0, 0) url(/assets/bg_subfooter.png) repeat-x 0 0;
+    background: rgba(0, 0, 0, 0) url("/assets/bg_subfooter.png") repeat-x 0 0;
     padding-top: 10px;
     margin-top: 40px;
 }
 #mainfooter {
-    background: rgba(0, 0, 0, 0) url(/assets/bg_footer.png) repeat-x 0 0;
+    background: rgba(0, 0, 0, 0) url("/assets/bg_footer.png") repeat-x 0 0;
     padding-top: 10px;
     margin-top: -10px;
 }
@@ -877,7 +877,6 @@ header h2 a {
     padding: 15px 0 10px;
     text-align: center;
     min-width: 160px;
-    float: left;
 }
 .priceDetail strong {
     font-size: 30px;
@@ -1000,7 +999,7 @@ header h2 a {
     margin-top: 40px;
 }
 .icon-largest {
-    background: url(/assets/thank-you.png) no-repeat 0 0;
+    background: url("/assets/thank-you.png") no-repeat 0 0;
     width: 128px;
     height: 128px;
 }
@@ -1416,30 +1415,6 @@ header h2 a {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*responsive styles*/
 @media (max-width: 767px){
     .no-space [class*="span"]{
@@ -1536,7 +1511,24 @@ header h2 a {
 .viewLead{
     cursor: pointer;
 }
+
 .app_header{
     margin-top: 12px !important;
+}
+
+.leadFilterByName {
+    height: 30px;
+    padding: 4px 0;
+    width: 20%;
+}
+
+#address_country{
+    width:25%;
+}
+#credit_card{
+    width:25%;   
+}
+.w19{
+    width: 19% !important;
 }
 

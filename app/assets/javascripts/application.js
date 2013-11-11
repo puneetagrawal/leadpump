@@ -132,7 +132,8 @@ function caclulateAmount(){
 	$.get(url, {du:no_of_users,dp:payment_type, plan_per_user_range:planId}, function (data) {
 		$("#pu").html(data.chargesPerUserStr);
 		$("#td").html(data.disAmountStr);
-		$("#ta").html(data.amountStr);
+		$(".payAmountTxt").html(data.amountStr);
+		$(".tAmount").html("$ "+data.amount);		
 	});
 }
 
