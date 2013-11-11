@@ -27,12 +27,6 @@ module LeadsHelper
 		return company	
 	end	 
 
-	def checkLeadStatus(leadId)
-		lead = Lead.find(leadId)
-		status = "Inactive"
-		if lead.present?
-			status = lead.active ? "Active" : "Inactive"
-		end
-	end
+	
 
 end

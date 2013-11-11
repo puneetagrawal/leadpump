@@ -11,7 +11,8 @@ Leadpump::Application.routes.draw do
   get '/leads/autocomplete_lead_email'
   
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
-  # resources :leads do
+  match '/home/changestatus' => 'home#changestatus'
+  match '/home/saveleadstatus' => 'home#saveleadstatus'
   #   member do
       
   #   end

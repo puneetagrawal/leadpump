@@ -8,10 +8,11 @@
             <% end %>
         </div>
     <%end%>
-    <div class="border">
+    <div class="border app_header">
         <h2 class="heading">Add A New Lead</h2>
         <div class="form pd15 leadform">
-            <p><%= lead.label "Name:" %><%= lead.text_field :name %></p>
+            <p><%= lead.label "First Name:" %><%= lead.text_field :name %></p>
+             <p><%= lead.label "Last Name:" %><%= lead.text_field :lname %></p>
             <p><%= lead.label "Phone:" %><%= lead.text_field :phone %></p>
             <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
             <p><%= lead.label "Address:" %><%= lead.text_field :address %></p>

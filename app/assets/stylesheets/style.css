@@ -360,12 +360,12 @@ footer {
 
 }
 #subfooter {
-    background: rgba(0, 0, 0, 0) url(/assets/bg_subfooter.png) repeat-x 0 0;
+    background: rgba(0, 0, 0, 0) url("/assets/bg_subfooter.png") repeat-x 0 0;
     padding-top: 10px;
     margin-top: 40px;
 }
 #mainfooter {
-    background: rgba(0, 0, 0, 0) url(/assets/bg_footer.png) repeat-x 0 0;
+    background: rgba(0, 0, 0, 0) url("/assets/bg_footer.png") repeat-x 0 0;
     padding-top: 10px;
     margin-top: -10px;
 }
@@ -570,6 +570,7 @@ header {
     color: #FFF;
     width: 100%;
     background-color: #343434;
+    margin-bottom: 15px;
 
 }
 header h2 {
@@ -999,7 +1000,7 @@ header h2 a {
     margin-top: 40px;
 }
 .icon-largest {
-    background: url(/assets/thank-you.png) no-repeat 0 0;
+    background: url("/assets/thank-you.png") no-repeat 0 0;
     width: 128px;
     height: 128px;
 }
@@ -1415,30 +1416,6 @@ header h2 a {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*responsive styles*/
 @media (max-width: 767px){
     .no-space [class*="span"]{
@@ -1472,10 +1449,11 @@ header h2 a {
 }
 
 .flashes{
-    font-size: 14px;
+    font-size: 17px;
     margin-left: 28%;
     text-align: center;
     width: 40%;
+    font-weight: bold;
 }
 
 .w27{
@@ -1485,7 +1463,7 @@ header h2 a {
     height: 22px;
     margin-bottom: -2px;
     padding: 3px 0 0;
-    width: 70%;
+    width: 76%;
     font-size: 10px;
 }
 
@@ -1529,18 +1507,26 @@ header h2 a {
 }
 
 .leadHeading input{
-    width: 25%    
+    width: 23%;
+    margin-bottom: 17px; 
 }
 
 .viewLead{
     cursor: pointer;
 }
 
-.leadFilterByName {
-    height: 30px;
-    padding: 4px 0;
-    width: 20%;
+.app_header{
+    margin-top: 12px !important;
 }
+
+.leadFilterByName {
+    height: 32px;
+    padding: 4px 4px;
+    width: 20%;
+    border-radius: 5px;
+}
+
+#test { -webkit-border-radius: 20px; }
 
 #address_country{
     width:25%;
@@ -1551,3 +1537,4 @@ header h2 a {
 .w19{
     width: 19% !important;
 }
+
