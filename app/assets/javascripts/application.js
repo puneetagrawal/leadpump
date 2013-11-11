@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_nested_form
-//= require_tree 
+//= require_tree
+//= require autocomplete-rails
 //= require bootstrap-datepicker
 
 
@@ -23,33 +24,38 @@ $(document).ready(function(){
     	app_date = new Date(selected.date.valueOf());
     	app_date.setDate(app_date.getDate(new Date(selected.date.valueOf())));
    	}); 
-	initsignUpRadioBtn()
-	$(".viewLead").fancybox({
-		'transitionIn': 'elastic',
-	    'transitionOut': 'elastic',
-	    'speedIn': 500,
-	    'speedOut': 300,
-	    'autoDimensions': true,
-	    'centerOnScroll': true,
-	    'afterLoad': function(){
-		    leadId = $(this.element).attr('id');
-		    fillPopupContent(leadId);
-		  }
+	initsignUpRadioBtn();
+	$(".viewLead").click(function(e) {
+		id = $(this).attr('id');
+		if(!$(e.target).is('.leadAction')){
+			$.fancybox.open({
+				href: '#dashboardPopup',
+				height: 385,
+				width: 510,
+				type: 'inline',
+				'beforeLoad' : function() {
+					fillPopupContent(id)
+				}
+			});
+		}
 	});
-	$("#facnybox").click(function(){
-		$.fancybox.close();
-	})
 });
 
-function fillPopupContent(leadId) {
-	leadId = leadId.split("_")[1]
-	alert(leadId)
-	url = '/leads/fillpopupcontent';
-	$.get(url, {leadId:leadId}, function (data) {			
-    });
+function fillPopupContent(id) {
+	id = id.split("_")[1];
+	urls = window.location.pathname;
+	url = '/home/fillpopupcontent';
+	$.get(url, {id:id,urls:urls}, function (data) {			
+	});
 }
 
 function initsignUpRadioBtn(){
+
+	$(".assignLead").click(function(){
+		leadId = $(this).parent().attr('id').split("_")[1];
+		getAutoCompleteForLeadAssign(leadId);
+	});
+
 	$('input[name="paymentOptionRadio"]').change(function(){
 		if($(this).attr('class') == 'creditCard'){
 			$("#creditCardDiv").show();
@@ -59,7 +65,7 @@ function initsignUpRadioBtn(){
 			$("#couponDiv").show();
 			$("#creditCardDiv").hide();
 		}
-	})
+	});
 
 
 	$("#discountOnUsers").change(function(){
@@ -102,7 +108,7 @@ function changeUserstatus(userId){
 	url = '/company/changeuserstatus';
 	$.get(url, {userId:userId}, function (data) {	
 		// $("#leadActive_"+leadId).html()	
-    });
+	});
 }
 
 function initStatusSelectBox(){
@@ -126,24 +132,31 @@ function caclulateAmount(){
 	$.get(url, {du:no_of_users,dp:payment_type, plan_per_user_range:planId}, function (data) {
 		$("#pu").html(data.chargesPerUserStr);
 		$("#td").html(data.disAmountStr);
-		$("#ta").html(data.amountStr);
-    });
+		$(".payAmountTxt").html(data.amountStr);
+		$(".tAmount").html("$ "+data.amount);		
+	});
 }
 
-function getAutoCompleteForLeadAssign(id){
-	$(".selectBox").html('')
-	url = '/leads/leadassign';
-	$.post(url, {leadId:id}, function (data) {		
-    });
-}
+function getAutoCompleteForLeadAssign(id){	
+	$.fancybox.open({
+		href: '#leadAssignPopup',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/leads/leadassign';
+			$.post(url, {leadId:id}, function (data) {		
+			});
+		}
+	});
+}	
 
 function assignLeadToUser(userId, leadId){
 	url = '/leads/leadassigntouser';
 	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
-		$("#emp_"+leadId).html(data.name)
-		$("#asignBtn_"+leadId).remove()
-		$("#users_"+leadId).remove()	
-    });
+		$("#emp_"+leadId).html(data.name);
+		$("#asignBtn_"+leadId).remove();
+		$("#users_"+leadId).remove();	
+		$.fancybox.close();
+	});
 }
 
 function changeleadstatus(leadId){
@@ -151,7 +164,7 @@ function changeleadstatus(leadId){
 	url = '/leads/changeleadstatus';
 	$.post(url, {leadId:leadId}, function (data) {	
 		// $("#leadActive_"+leadId).html()	
-    });
+	});
 }
 
 function saveLeadStatus(leadId, status){
@@ -160,7 +173,7 @@ function saveLeadStatus(leadId, status){
 	$.post(url, {leadId:leadId,status:status}, function (data) {
 		$("#leadActive_"+leadId).html('<span>'+data.status+'</span>')	
 		initStatusSelectBox()
-    });
+	});
 }
 
 function leadFilterByName(userId){
@@ -168,12 +181,12 @@ function leadFilterByName(userId){
 	url = '/leads/filterbyname';
 	$.post(url, {userId:userId}, function (data) {	
 		initStatusSelectBox()
-    });
+	});
 }
 
 function leadSearchFilter(leadId){
 	url = '/leads/leadsearchfilter';
 	$.get(url, {leadId:leadId}, function (data) {	
 		initStatusSelectBox()
-    });
+	});
 }

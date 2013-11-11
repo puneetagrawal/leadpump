@@ -53,18 +53,29 @@ class User < ActiveRecord::Base
       chargesPerUserStr = "$#{@plan.price} * #{no_of_users} = $#{totalCharge} per month"
       disAmount = 0
       disAmountStr = "No Discount"
-      paymentPeriod = ' per month'
+      paymentPeriod = '/month'
       if dp == 'yearly'
         totalCharge = totalCharge * 12
         disAmount =  (totalCharge * 17)/100
-        disAmountStr = "$#{disAmount} on yearly"
-        paymentPeriod = " per year"
+        disAmountStr = "$ #{disAmount} on yearly"
+        paymentPeriod = "/year"
       end
       amount = totalCharge - disAmount
-      amountStr = "$#{amount}" + paymentPeriod
+      amountStr = "$ #{amount}" + paymentPeriod
       @msg = { "chargesPerUserStr" => chargesPerUserStr, "disAmountStr" => disAmountStr, "amountStr" => amountStr, "amount" => amount}
       return @msg
   end
 
+  def self.fetchCompanyUserList(user)
+    users = []
+    case user.user_role.role_type.to_sym  
+    when :admin
+      users = User.all     
+    when :company
+      users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+      users << user.id
+      users = users.collect{|user| User.find(user)}
+    end
+  end
   
 end

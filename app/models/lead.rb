@@ -25,7 +25,23 @@ class Lead < ActiveRecord::Base
 #     return hash
 # end
 
-
+def self.fetchLeadList(user)
+	leads = []
+	userList = []
+	case user.user_role.role_type.to_sym  
+    when :admin
+      leads = UserLeads.includes(:lead).all  
+      userList = User.all   
+    when :company
+      userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+      userList << user.id
+      leads = UserLeads.includes(:lead).where(:user_id => userList)
+      userList = userList.collect{|user| User.find(user)}
+    when :employee
+      leads = UserLeads.includes(:lead).where(:user_id => user.id)
+    end
+    hash = {:leads=>leads,:userList=>userList}
+end
 
 end
 
