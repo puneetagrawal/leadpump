@@ -641,7 +641,7 @@ header h2 a {
     background: url("/assets/home.png") 22px 5px no-repeat transparent;
 }
 .punchline {
-    margin: 5px 0 0 225px;
+    margin: 5px 0 0 340px;
     font-weight: bold;
 }
 
@@ -966,7 +966,7 @@ header h2 a {
     font-weight: normal;
 }
 .city_input {
-    width: 160px !important;
+    width: 235px !important;
 }
 .city_label {
     width: 28px !important;
