@@ -66,5 +66,16 @@ class User < ActiveRecord::Base
       return @msg
   end
 
+  def self.fetchCompanyUserList(user)
+    users = []
+    case user.user_role.role_type.to_sym  
+    when :admin
+      users = User.all     
+    when :company
+      users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+      users << user.id
+      users = users.collect{|user| User.find(user)}
+    end
+  end
   
 end

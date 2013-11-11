@@ -1,13 +1,13 @@
-<div class="span8">
+<div class="span8 app_header">
   <div class="border">
    <h2 class="heading">All Contacts / Leads</h2>
    <div class="heading leadHeading">
    	<%if @userList%>
-      <%= select_tag "leadFilterByName", options_for_select(@userList.collect{ |user| [user.name, user.id] }),:class => "leadFilterByName",:prompt=>"Filter By Employee"%>  
-      <%end%>
-        <input type="text" name="test" id="test" placeholder="Type email for search lead">        
+    <%= select_tag "filter_select", options_for_select(@userList.collect{ |user| [user.name, user.id] }),:class => "leadFilterByName filter_select",:prompt=>"Filter By Employee"%>  
+    <%end%>
+    <input type="text" name="test" id="test" placeholder="Type email for search lead">        
   </div>
-   <span class="leadListContent" id="leadListContent">
+  <span class="leadListContent" id="leadListContent">
     <%= render "leadListContent"%>   
   </span>
 </div>

@@ -1,10 +1,14 @@
-
-
-<%=select_tag "users", options_from_collection_for_select(@users, "id", "name"),:prompt => "Select User",:class=>"leadAssignSelect" %>
+<div class="span4 margin_width">    
+    <div>
+        <h2 class="heading" style="border-radius:5px;">Assign Lead</h2>
+        <%=hidden_field_tag :leadid, @lead.id%>
+        <%=select_tag "users", options_from_collection_for_select(@users, "id", "name"),:prompt => "Select User",:class=>"leadAssignSelect" %>
+    </div>        
+</div>
 
 <script type="text/javascript">	
-	$(".leadAssignSelect").change(function(){
-		leadId = $(this).parent().attr('id').split("_")[1]
-		assignLeadToUser($(this).val(), leadId)
-	});
+$(".leadAssignSelect").change(function(){
+	leadId = $("#leadid").val();
+	assignLeadToUser($(this).val(), leadId)
+});
 </script>

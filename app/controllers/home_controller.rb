@@ -16,4 +16,20 @@ class HomeController < ApplicationController
       end
   end  
 
+  def fillpopupcontent
+    if(params[:urls].include? 'company')
+      @user = User.find(params[:id])
+    else
+      @lead = Lead.find(params[:id])
+    end
+      logger.debug(@lead)
+      logger.debug(">>>ifddffdfdf")
+      logger.debug(@user)
+
+  respond_to do |format|
+    format.js 
+  end
+end
+
+
 end
