@@ -1,20 +1,32 @@
+
 <div class="container">
-    	<div class="row-fluid">
-        	<ul class="dashboardIcons">
-            	<!-- <li><a href="#"><img src="img/icon.png"/><span>Leads</span></a></li>  -->
+        <div class="row-fluid">
+            <ul class="dashboardIcons">
+                <!-- <li><a href="#"><img src="img/icon.png"/><span>Leads</span></a></li>  -->
                 <li>
                     <%=link_to(new_lead_path(), html_options = {}) do %>
-	                  <i class="icon icon_opt_in_lead"></i><span>Leads</span>                 
-	                <%end %>
+                      <i class="icon icon_opt_in_lead"></i><span>Leads</span>                 
+                    <%end %>
                 </li>
                 <%if current_user.role.role_type == "admin" || current_user.role.role_type == "company"%>
                     <li>
                         <%=link_to(company_new_path, html_options = {}) do %>
-    	                  <i class="icon icon_leads"></i><span>Manage User</span><span></span>                  
-    	                <%end %>
+                          <i class="icon icon_leads"></i><span>Manage User</span><span></span>                  
+                        <%end %>
+                    </li>
+                <%end%> 
+                <%if current_user.role.role_type == "employee"%>
+                    <li>
+                        <%=link_to("javascript:void(0)", html_options = {}) do %>
+                          <i class="icon icon_socialInviter"></i><span>Social Inviters</span><span></span>                  
+                        <%end %>
                     </li>
                 <%end%>
-                <!-- <li><a href="#"><img src="img/icon.png"/><span>Appointments</span></a></li> -->
+                <li>
+                    <%=link_to(new_appointment_path(), html_options = {}) do %>
+                      <i class="icon_1 icon_opt_in_lead"></i><span>Appointments</span>                 
+                    <%end %>
+                   </li> 
                 <!-- <li><a href="#"><img src="img/icon.png"/><span>Sales Data</span></a></li>
                 <li><a href="#"><img src="img/icon.png"/><span>Social Inviter</span></a></li>
                 <li><a href="#"><img src="img/icon.png"/><span>Opt in leads</span></a></li>
@@ -26,6 +38,13 @@
             </ul>
         </div>
         <div class="row-fluid" style="height:340px">
-        	
+            
+   Welcome to buddy refferal.
+  Site is under construction.
+  <p> You have login as company now you can create employee. on clicking link below.</p>
+  <h4><%=link_to 'Create Employee', employee_new_path() %></h4>
+  <h4><%=link_to 'Create Appointment', appointment_new_path() %></h4>
         </div>
     </div>
+
+

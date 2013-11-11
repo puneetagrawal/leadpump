@@ -16,7 +16,8 @@
             <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
             <p><%= lead.label "Address:" %><%= lead.text_field :address %></p>
             <p><%= lead.label "Refferred By:" %><%= lead.text_field :refferred_by %></p>
-            <p><%= lead.label "Lead Source:" %><%= lead.text_field :lead_source %></p>
+            <p><%= lead.label "Lead Source:" %><%= lead.select :lead_source, [['Direct Mailer', "Direct Mailer"], ['Lead Box ', "Lead Box"], ['LeadPump - Traditional', "LeadPump - Traditional"], ['LeadPump - Opt in', "LeadPump - Opt in"], ['Member Referral', "Member Referral"], ['Radio ad', "Radio ad"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"]] %></p>
+            <p><%= lead.label "Goals:" %><%= lead.select :goal, [['Build muscle', "Build muscle"], ['Build strength', "Build strength"], ['Doctor recommended', "Doctor recommended"], ['Firm up', "Firm up"], ['Lose weight', "Lose weight"], ['Overall health', "Overall health"], ['Rehabilitation', "Rehabilitation"]] %></p>
             <p><%= lead.label "Guest Pass Issued:" %><%= lead.select :guest_pass_issued, [['Yes', true], ['No', false]] %></p>
             <p><%= lead.label "Dues Value:" %><%= lead.text_field :dues_value %></p>
             <p><%= lead.label "Enrolment Value:" %><%= lead.text_field :enrolment_value %></p>

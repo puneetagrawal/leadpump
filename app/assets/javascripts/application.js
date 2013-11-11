@@ -12,23 +12,52 @@
 //
 //= require jquery
 //= require jquery_nested_form
-//= require_tree
-//= require autocomplete-rails
+//= require_tree 
+//= require bootstrap-datepicker
 
 
 $(document).ready(function(){
+	$("#app_date").datepicker({
+    	 autoclose: true
+    }).on('changeDate', function(selected){
+    	app_date = new Date(selected.date.valueOf());
+    	app_date.setDate(app_date.getDate(new Date(selected.date.valueOf())));
+   	}); 
 	initsignUpRadioBtn()
-})
+	$(".viewLead").fancybox({
+		'transitionIn': 'elastic',
+	    'transitionOut': 'elastic',
+	    'speedIn': 500,
+	    'speedOut': 300,
+	    'autoDimensions': true,
+	    'centerOnScroll': true,
+	    'afterLoad': function(){
+		    leadId = $(this.element).attr('id');
+		    fillPopupContent(leadId);
+		  }
+	});
+	$("#facnybox").click(function(){
+		$.fancybox.close();
+	})
+});
+
+function fillPopupContent(leadId) {
+	leadId = leadId.split("_")[1]
+	alert(leadId)
+	url = '/leads/fillpopupcontent';
+	$.get(url, {leadId:leadId}, function (data) {			
+    });
+}
 
 function initsignUpRadioBtn(){
 	$('input[name="paymentOptionRadio"]').change(function(){
 		if($(this).attr('class') == 'creditCard'){
-			$("#creditCardDiv").show()
-			$("#couponDiv").hide()
+			$("#creditCardDiv").show();
+			$("#couponDiv").hide();
 		}
 		else{
-			$("#couponDiv").show()
-			$("#creditCardDiv").hide()
+			$("#couponDiv").show();
+			$("#creditCardDiv").hide();
 		}
 	})
 

@@ -194,9 +194,6 @@ a {
 .displayBlock {
     display: block;
 }
-.w100 {
-    width: 100px;
-}
 h3 {
     font-size:24px;
     line-height: 30px;
@@ -382,6 +379,54 @@ footer {
     color: #FFF;
     padding: 5px 0 5px 0;
 }
+.footerLinks {
+    margin-top: 50px;
+}
+.footerLinks h2 {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+.footerLinks ul li {
+    font-size:14px;
+}
+.footerLinks ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size:14px;
+}
+.footerLinks ul li a:hover {
+    text-decoration: underline;
+}
+.for_mobile {
+    float: left;
+}
+.for_mobile li {
+    float: left;
+    text-align: center;
+    width: 55px;
+}
+.iphone_icon {
+    width: 40px;
+    height: 40px;
+    clear: both;
+    display: inline-block;
+    background: url("/assets/for-mobile.png") -49px 0 no-repeat;
+}
+.ipad_icon {
+    width: 40px;
+    height: 40px;
+    clear: both;
+    display: inline-block;
+    background: url("/assets/for-mobile.png") -97px 0 no-repeat;
+}
+.android_icon {
+    width: 40px;
+    height: 40px;
+    clear: both;
+    display: inline-block;
+    background: url("/assets/for-mobile.png") 0px 0 no-repeat;
+}
 
 /*dashboard*/
 
@@ -518,11 +563,9 @@ body {
 }
 /*header*/
 header {
-    margin-bottom: 20px;
     box-shadow: 0 2px 12px #666666;
     color: #eee;
     padding: 0px 0;
-    margin-bottom: 8px;
     font-size: 16px;
     color: #FFF;
     width: 100%;
@@ -544,7 +587,7 @@ header h2 a {
     margin: 0 10px 0 0;
 }
 #headerNav {
-    margin: 4px 0 0 0;
+    margin: -24px 0 10px;
 }
 #headerNav .navbar-inner {
     background: transparent;
@@ -1325,6 +1368,50 @@ header h2 a {
 .payment_success {
     margin: 0 auto 150px !important;
     width: 800px;
+}
+
+/*welcome page*/
+.welcome_con {
+    width: 100%;
+    background: #000;
+    min-height: 500px;
+}
+.home_video {
+    margin-top: 100px;
+}
+.welcome_heading {
+    text-align: center;
+    height: 8px;
+    background: #fff;
+    width: 430px;
+    margin: 43px auto 0;
+}
+.welcome_heading h3 {
+    background: none repeat scroll 0 0 #000000;
+    display: inline;
+    padding: 0 10px;
+    position: relative;
+    top: -11px;
+    font-size: 26px;
+}
+.welcome_heading_2 {
+    font-size: 40px;
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+}
+.welcome_save {
+    float: left;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.welcome_save strong {
+    font-size: 30px;
+}
+.welcome_save p {
+    font-size:16px;
+    color: #fff;
+    margin-top: 10px;
 }
 
 

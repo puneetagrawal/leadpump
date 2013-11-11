@@ -114,4 +114,13 @@ def getemails
  render json: list
 end
 
+def fillpopupcontent
+  @lead = Lead.find(params[:leadId])
+  logger.debug "::::::::::::::::::"
+  logger.debug @lead.inspect
+  respond_to do |format|
+    format.js 
+  end
+end
+
 end
