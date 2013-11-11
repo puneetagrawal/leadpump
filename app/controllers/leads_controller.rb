@@ -35,8 +35,6 @@ class LeadsController < ApplicationController
   end
 
   def update  
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    params["inputs"]["lead"]
     @leadUpdate = Lead.find(params[:id]) 
     if @leadUpdate.update_attributes(params["inputs"]["lead"])
       @lead = Lead.new
@@ -121,6 +119,9 @@ def getemails
  end
  list = leads.map {|l| Hash[id: l.id, label: l.email, name: l.email]}
  render json: list
+end
+
+def socialInviter
 end
 
 

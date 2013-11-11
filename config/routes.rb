@@ -5,9 +5,9 @@ Leadpump::Application.routes.draw do
   resources :appointments
   resources :discounts_on_locations
   resources :company
-  resources :leads 
   resources :subscriptions
   resources :plans
+  resources :vipLeads
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
@@ -41,6 +41,7 @@ Leadpump::Application.routes.draw do
   match '/leads/filterbyname' => 'leads#filterbyname'
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
+  match '/leads/socialInviter' => 'leads#socialInviter'
 
 
   match 'appointment/new' => 'appointments#new'
@@ -50,8 +51,6 @@ Leadpump::Application.routes.draw do
   resources :leads 
 
   root to: "home#index"
-  resources :subscriptions
-  resources :plans
 
   match 'home/index' => 'home#index'
   match '/success' => 'home#success'
