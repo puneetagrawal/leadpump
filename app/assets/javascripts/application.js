@@ -16,22 +16,16 @@
 //= require autocomplete-rails
 //= require bootstrap-datepicker
 //= require appointment
+//= require lead
 
 
 $(document).ready(function(){
-	// $("#app_date").datepicker({
- //    	 autoclose: true
- //    	 dateFormat: 'dd-mm-yy'
- //    }).on('changeDate', function(selected){
- //    	app_date = new Date(selected.date.valueOf());
- //    	app_date.setDate(app_date.getDate(new Date(selected.date.valueOf())));
- //   	});
 
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 
-	initsignUpRadioBtn();
+	initialization();
 	initLeadActiveSelect();
 });
 
@@ -59,9 +53,9 @@ function initLeadActiveSelect(){
 	// 	}
 	// });
 
-$(".leadActive select").change(function(){
-	saveLeadStatus($(this).parent().attr('id'), $(this).val())
-});
+	$(".leadActive select").change(function(){
+		saveLeadStatus($(this).parent().attr('id'), $(this).val())
+	});
 }
 
 function fillPopupContent(id) {
@@ -72,7 +66,7 @@ function fillPopupContent(id) {
 	});
 }
 
-function initsignUpRadioBtn(){
+function initialization(){
 
 	$(".assignLead").click(function(){
 		leadId = $(this).parent().attr('id').split("_")[1];
@@ -110,22 +104,17 @@ function initsignUpRadioBtn(){
 	if ($("#discountOnUsers").val()){
 		caclulateAmount()
 	}			
-	$(".leadFilterByName").change(function(){
-		if($(this).val() != ''){
-			leadFilterByName($(this).val())	
-		}		
-	});	
 	
-
-
-	initStatusSelectBox();
-	initUserStatusSelectBox()
-}
-
-function initUserStatusSelectBox(){
+	
 	$(".userActive span").click(function(){
 		changeUserstatus($(this).parent().attr('id'))
 	})	
+
+	$(".leadActive span").click(function(){
+		changeleadstatus($(this).parent().attr('id'))
+	})
+
+	
 }
 
 function changeUserstatus(userId){
@@ -134,12 +123,6 @@ function changeUserstatus(userId){
 	$.get(url, {userId:userId}, function (data) {	
 		// $("#leadActive_"+leadId).html()	
 	});
-}
-
-function initStatusSelectBox(){
-	$(".leadActive span").click(function(){
-		changeleadstatus($(this).parent().attr('id'))
-	})		
 }
 
 function caclulateAmount(){
@@ -199,21 +182,10 @@ function saveLeadStatus(id, status){
 	url = '/home/saveleadstatus';
 	$.post(url, {leadId:id,status:status, urls:urls}, function (data) {
 		$("#status_"+id).html('<span>'+data.status+'</span>')	
-		initStatusSelectBox()
+		initialization();
 	});
 }
 
-function leadFilterByName(userId){
-	$("#leadListContent").html('<img src="/assets/ajax-loader.gif" style="margin:100px 350px 300px">')
-	url = '/leads/filterbyname';
-	$.post(url, {userId:userId}, function (data) {	
-		initStatusSelectBox()
-	});
-}
-
-function leadSearchFilter(leadId){
-	url = '/leads/leadsearchfilter';
-	$.get(url, {leadId:leadId}, function (data) {	
-		initStatusSelectBox()
-	});
+function showSuccessMsg(msg){
+	$(".successMsg").addClass('alert alert-success').text(msg);
 }
