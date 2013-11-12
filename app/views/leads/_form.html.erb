@@ -1,7 +1,7 @@
 <div class="span4">
     <%= form_for @lead, :html => {:class => ""} do |lead| %>
 
-    <%if @lead.errors.size > 0 %>
+    <%if @lead.errors.any? %>
         <div class="alert alert-error">
             <% @lead.errors.each do |attr, msg| %>
             <p> <%= "#{attr} #{msg}"%> </p>
