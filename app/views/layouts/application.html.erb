@@ -22,6 +22,7 @@
   <% if flash[:success] %>
     <p class="flashes alert alert-success"><%= flash[:success] %></p>
   <% end %>
+    <p class="flashes successMsg"></p>
 <%= yield %>
 <%= render 'layouts/footer' %>
 </body>

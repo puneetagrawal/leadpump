@@ -8,13 +8,12 @@ function initCompanyCreateOrUpdate(){
 	});
 
 	$(".compSubmit").click(function(){
-		alert(">>>>>>>");
 		companySubmit(this);
 	});		
 }
 
 function companyEdit(obj){
-	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px;float:left;">')
+	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 0;float:left;">')
 	id = $(obj).closest('tr').attr('id');
 	userId = id.split("_")[1]
 	url = '/company/'+userId+'/edit'
@@ -28,11 +27,12 @@ function companyEdit(obj){
 
 function companySubmit(obj){
 	btnHtml = $(obj).parent().html();
-	$(obj).parent().html('<img src="/assets/ajax-loader.gif" style="margin-left: 40px;>');
+	$(obj).parent().html('<img src="/assets/ajax-loader.gif" style="margin-left: 40px;">');
 	id = $("#user_id").val();
 	url = '/company/update/'+id+'';
 	$.get(url, {inputs:formfields()}, function (data) {
 		$('.submitUserBtn').html(btnHtml);	
+		showSuccessMsg("User Updated Successfully");
 		initCompanyCreateOrUpdate();
 		initialization();
 	});

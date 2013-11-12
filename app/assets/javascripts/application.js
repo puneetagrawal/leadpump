@@ -188,4 +188,10 @@ function saveLeadStatus(id, status){
 
 function showSuccessMsg(msg){
 	$(".successMsg").addClass('alert alert-success').text(msg);
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+	setTimeout(hideSuccessMsg, 3000);
+}
+
+function hideSuccessMsg(){
+	$(".successMsg").removeClass('alert alert-success').text('');	
 }

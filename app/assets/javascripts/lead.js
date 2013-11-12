@@ -21,7 +21,7 @@ function initLeadCreateOrUpdate(){
 }
 
 function leadEdit(obj){
-	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px;float:left;">')
+	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 200px;float:left;">')
 	id = $(obj).closest('tr').attr('id');
 	leadId = id.split("_")[1];
 	url = '/leads/'+leadId+'/edit'
