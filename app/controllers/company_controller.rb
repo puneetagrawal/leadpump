@@ -23,7 +23,7 @@ class CompanyController < ApplicationController
       company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
       company.save
       flash[:success] = "User successfully created"
-      redirect_to company_new_path()
+      redirect_to company_new_path()      
     else
       @users = User.fetchCompanyUserList(current_user)
       render :action =>"new"
@@ -31,14 +31,21 @@ class CompanyController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])   
+    @user = User.find(params[:id])  
+    respond_to do |format|
+        format.js 
+    end 
   end
 
   def update
-    user = User.find(params[:id]) 
-    user.update_attributes(params[:user])
-    flash[:success] = "User successfully updated"
-    redirect_to company_index_path()
+    @userUpdate = User.find(params[:id]) 
+    if @userUpdate.update_attributes(params["inputs"]["user"])
+      @user = User.new
+    else
+    end
+    respond_to do |format|
+        format.js 
+    end
   end
 
   def delete

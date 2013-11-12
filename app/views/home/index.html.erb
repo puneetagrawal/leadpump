@@ -16,11 +16,11 @@
             </li>
             <%end%> 
             <%if current_user.role.role_type == "employee"%>
-            <li>
-                <%=link_to("javascript:void(0)", html_options = {}) do %>
+            <!-- <li>
+                <%=link_to(leads_socialInviter_path, html_options = {}) do %>
                 <i class="icon icon_socialInviter"></i><span>Social Inviters</span><span></span>                  
                 <%end %>
-            </li>
+            </li> -->
             <%end%>
             <li>
                 <%=link_to(new_appointment_path(), html_options = {}) do %>

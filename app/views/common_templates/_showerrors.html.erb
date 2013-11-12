@@ -1,0 +1,8 @@
+<%if object.errors.size > 0 %>
+	<div class="alert alert-error">
+		<% object.errors.each do |attr, msg| %>
+		<p> <%= "#{attr} #{msg}"%> </p>
+		<% end %>
+	</div>
+<%end%>
+<div id="showErrors"></div>

@@ -1,16 +1,12 @@
 <div class="span4">
-    <%= form_for @lead, :html => {:class => ""} do |lead| %>
 
-    <%if @lead.errors.size > 0 %>
-        <div class="alert alert-error">
-            <% @lead.errors.each do |attr, msg| %>
-            <p> <%= "#{attr} #{msg}"%> </p>
-            <% end %>
-        </div>
-    <%end%>
+    <%= form_for @lead, :html => {:class => "forms"} do |lead| %>
+    <%=render "common_templates/showerrors", :object=>@lead%>
+
     <div class="border app_header">
-        <h2 class="heading">Add A New Lead</h2>
+        <h2 class="heading headmsg">Add A New Lead</h2>
         <div class="form pd15 leadform">
+            <%= lead.hidden_field :id%>
             <p><%= lead.label "First Name:" %><%= lead.text_field :name %></p>
              <p><%= lead.label "Last Name:" %><%= lead.text_field :lname %></p>
             <p><%= lead.label "Phone:" %><%= lead.text_field :phone %></p>
@@ -23,7 +19,7 @@
             <p><%= lead.label "Dues Value:" %><%= lead.text_field :dues_value %></p>
             <p><%= lead.label "Enrolment Value:" %><%= lead.text_field :enrolment_value %></p>
             <p><%= lead.label "Notes:" %><%= lead.text_field :notes %></p>
-            <p><input type="submit" class="btn yellow" value="Enter Lead"/></p>
+            <p class="submitLeadBtn"><input type="submit" class="btn yellow" value="Enter Lead"/></p>
             <div class="clear"></div>
         </div>        
     </div>    

@@ -15,22 +15,33 @@
 //= require_tree
 //= require autocomplete-rails
 //= require bootstrap-datepicker
+//= require appointment
 
 
 $(document).ready(function(){
-	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
-	
+	// $("#app_date").datepicker({
+ //    	 autoclose: true
+ //    	 dateFormat: 'dd-mm-yy'
+ //    }).on('changeDate', function(selected){
+ //    	app_date = new Date(selected.date.valueOf());
+ //    	app_date.setDate(app_date.getDate(new Date(selected.date.valueOf())));
+ //   	});
 
-	$("#app_date").datepicker({
-    	 autoclose: true
-    }).on('changeDate', function(selected){
-    	app_date = new Date(selected.date.valueOf());
-    	app_date.setDate(app_date.getDate(new Date(selected.date.valueOf())));
-   	}); 
+ 	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
+ 	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
+	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
+
 	initsignUpRadioBtn();
 	initLeadActiveSelect();
-	
 });
+
+function formfields(){
+	new_obj = {}
+	$.each($('.forms').serializeArray(), function(i, obj){
+		new_obj[obj.name] = obj.value		 
+	});
+	return new_obj
+}
 
 function initLeadActiveSelect(){
 	// $(".viewLead").click(function(e) {
@@ -48,9 +59,9 @@ function initLeadActiveSelect(){
 	// 	}
 	// });
 
-	$(".leadActive select").change(function(){
-		saveLeadStatus($(this).parent().attr('id'), $(this).val())
-	})
+$(".leadActive select").change(function(){
+	saveLeadStatus($(this).parent().attr('id'), $(this).val())
+});
 }
 
 function fillPopupContent(id) {

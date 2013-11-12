@@ -1,0 +1,22 @@
+<%= form_for @viplead, :html => {:class => "forms social_inviter"} do |vip| %>
+<%=render "common_templates/showerrors", :object=>@viplead%>
+<p><label>Referrer's Name</label>
+    <%=text_field_tag 'referrer', current_user.name, :disabled => true, :class => 'input-large'  %></p>
+    <div>
+        <p><%= vip.label "First Name:" %><%= vip.text_field :first_name :class "input-large"%></p>
+        <p><%= vip.label "Last Name:" %><%= vip.text_field :last_name :class=>"input-large"%></p>
+        <p><%= vip.label "First Name:" %><%= vip.text_field :email :class=>"input-large"%></p>
+    </div>
+    <div>
+        <p><%= vip.label "First Name:" %><%= vip.text_field :first_name :class=>"input-large"%></p>
+        <p><%= vip.label "Last Name:" %><%= vip.text_field :last_name :class=>"input-large"%></p>
+        <p><%= vip.label "First Name:" %><%= vip.text_field :email :class=>"input-large"%></p>
+    </div>
+    <div>
+        <p><%= vip.label "First Name:" %><%= vip.text_field :first_name :class=>"input-large"%></p>
+        <p><%= vip.label "Last Name:" %><%= vip.text_field :last_name :class=>"input-large"%></p>
+        <p><%= vip.label "First Name:" %><%= vip.text_field :email :class=>"input-large"%></p>
+    </div>
+    <div class="clear"></div>
+    <a class="btn yellow" href="#">Proceed to Next Step</a>
+    <%end%>
