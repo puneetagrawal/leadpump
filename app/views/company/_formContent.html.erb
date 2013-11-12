@@ -1,0 +1,11 @@
+<%=render "common_templates/showerrors", :object => @user%>
+<div class="border">
+	<h2 class="heading headmsg">Add A New User</h2>
+	<div class="form pd15 leadform">
+		<p><%= user.label :Name %><%= user.text_field :name %></p>
+		<p><%= user.label :Email %><%= user.email_field :email %></p>
+		<%=user.hidden_field :id%>
+		<p class="submitUserBtn"><input type="submit" class="btn yellow" value="Create User"/></p>
+		<div class="clear"></div>
+	</div>        
+</div> 

@@ -4,15 +4,24 @@ Leadpump::Application.routes.draw do
   resources :discounts_on_periods
   resources :appointments
   resources :discounts_on_locations
-
+  resources :company
+  resources :leads 
+  resources :subscriptions
+  resources :plans
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  get '/leads/autocomplete_lead_email'
+  root to: "home#index"
+
+  
   
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
   match '/home/changestatus' => 'home#changestatus'
   match '/home/saveleadstatus' => 'home#saveleadstatus'
+  match 'home/index' => 'home#index'
+  match '/success' => 'home#success'
+  match '/home/calculateAmount' => 'home#calculateAmount'
+  match '/home/validateEmail' => 'home#validateEmail'
   #   member do
       
   #   end
@@ -24,7 +33,7 @@ Leadpump::Application.routes.draw do
   #     get 'leadassigntouser'
   #   end
   # end
-
+  match '/update/:id' => 'leads#update', :as => :update
   match '/leads/leadassign' => 'leads#leadassign'
   match '/leads/leadassigntouser' => 'leads#leadassigntouser'
   match '/leads/changeleadstatus' => 'leads#changeleadstatus'
@@ -33,9 +42,11 @@ Leadpump::Application.routes.draw do
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
 
-  match '/company/getemails' => 'company#getemails'
-  match '/company/usersearchfilter' => 'company#usersearchfilter'
-  
+
+  match 'appointment/new' => 'appointments#new'
+  match 'appointment/create' => 'appointments#create'
+  match 'appointment/index' => 'appointments#index'
+
   resources :leads 
 
   root to: "home#index"
@@ -49,10 +60,8 @@ Leadpump::Application.routes.draw do
   match '/home/calculateAmount' => 'home#calculateAmount'
   match '/home/validateEmail' => 'home#validateEmail'
 
-  match '/appointment/new' => 'appointments#new'
-  match '/appointment/create' => 'appointments#create'
-  match '/appointment/index' => 'appointments#index'
- 
+  match '/company/getemails' => 'company#getemails'
+  match '/company/usersearchfilter' => 'company#usersearchfilter'
   match '/company/changeuserstatus' => 'company#changeuserstatus'
   match '/company/index' => 'company#index'
   match '/company/new' => 'company#new'

@@ -30,11 +30,18 @@ $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
-	
+
 	initsignUpRadioBtn();
 	initLeadActiveSelect();
-	
 });
+
+function formfields(){
+	new_obj = {}
+	$.each($('.forms').serializeArray(), function(i, obj){
+		new_obj[obj.name] = obj.value		 
+	});
+	return new_obj
+}
 
 function initLeadActiveSelect(){
 	// $(".viewLead").click(function(e) {
@@ -52,9 +59,9 @@ function initLeadActiveSelect(){
 	// 	}
 	// });
 
-	$(".leadActive select").change(function(){
-		saveLeadStatus($(this).parent().attr('id'), $(this).val())
-	})
+$(".leadActive select").change(function(){
+	saveLeadStatus($(this).parent().attr('id'), $(this).val())
+});
 }
 
 function fillPopupContent(id) {

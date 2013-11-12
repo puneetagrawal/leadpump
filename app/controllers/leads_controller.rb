@@ -5,6 +5,9 @@ class LeadsController < ApplicationController
 
   def edit   
     @lead = Lead.find(params[:id])   
+    respond_to do |format|
+        format.js 
+    end 
   end
 
 
@@ -32,9 +35,16 @@ class LeadsController < ApplicationController
   end
 
   def update  
-    @lead = Lead.find(params[:id]) 
-    @lead.update_attributes(params[:lead])
-    redirect_to new_lead_path
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    params["inputs"]["lead"]
+    @leadUpdate = Lead.find(params[:id]) 
+    if @leadUpdate.update_attributes(params["inputs"]["lead"])
+      @lead = Lead.new
+    else
+    end
+    respond_to do |format|
+        format.js 
+    end
   end
 
   def delete

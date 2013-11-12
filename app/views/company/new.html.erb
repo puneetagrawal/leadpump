@@ -1,21 +1,9 @@
-<!-- <div class="container">	
-	<div class="row-fluid">
-		<div style="width:100%">
-			<p style="float:left;margin-right:30px">
-				<%=link_to(company_index_path(), html_options = {}) do %>
-				<span style="color:gray;font-size:20px;font-weight:bold">Manage User</span>                 
-				<%end %>
-			</p>		
-		</div>
-		<div class="span12">
-			<%= render 'form' %>
-		</div>
-	</div>
-</div>
- -->
+
 <div class="container">
    <div class="row-fluid">
+   	<span class="formfields">
        <%= render 'form' %>
+   </span>
        <%= render 'userlist' %>
    </div>
 </div>
