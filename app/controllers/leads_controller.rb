@@ -75,10 +75,15 @@ def changeleadstatus
 end
 
 def saveleadstatus
-  lead = Lead.find(params[:leadId])
-  lead.active = params[:status] == "false" ? false : true
-  lead.save
-  status = checkLeadStatus(lead.id)
+  if(params[:urls].include?'company')
+    object = User.find(params[:leadId])  
+  else
+    object = Lead.find(params[:leadId])  
+  end
+  object.active = params[:status] == "false" ? false : true
+  object.save
+  status = Lead.checkLeadStatus(object.active)
+  logger.debug(status)
   msg = {"status"=>status}
   render json:msg
 end

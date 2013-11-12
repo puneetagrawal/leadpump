@@ -1,0 +1,5 @@
+<%= select "status", "lead", options_for_select([["active", true], ["Inactive", false]], :selected=>@object.active)%>
+
+<script type="text/javascript">	
+	initLeadActiveSelect();	
+</script>
