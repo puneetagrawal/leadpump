@@ -27,6 +27,7 @@ $(document).ready(function(){
 
 	initialization();
 	initLeadActiveSelect();
+	removeFlash();
 });
 
 function formfields(){
@@ -193,5 +194,14 @@ function showSuccessMsg(msg){
 }
 
 function hideSuccessMsg(){
-	$(".successMsg").removeClass('alert alert-success').text('');	
+	if($(".successMsg").length){
+		$(".successMsg").removeClass('alert alert-success').text('');		
+	}
+	if($(".flashes").length){
+		$(".flashes").removeClass('alert alert-success').text('');	
+	}
+}
+
+function removeFlash(){
+	setTimeout(hideSuccessMsg, 3000);
 }
