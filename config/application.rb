@@ -69,8 +69,8 @@ module Leadpump
         domain: "gmail.com",
         authentication: "plain",
         enable_starttls_auto: true,
-        user_name: "testatdev@gmail.com",
-        password: "test@dev"
+        user_name: "vs9170@gmail.com",
+        password: "j@1s@1r@m"
       } 
     end
 end
