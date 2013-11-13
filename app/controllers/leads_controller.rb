@@ -38,7 +38,6 @@ class LeadsController < ApplicationController
     @leadUpdate = Lead.find(params[:id]) 
     if @leadUpdate.update_attributes(params["inputs"]["lead"])
       @lead = Lead.new
-    else
     end
     respond_to do |format|
         format.js 

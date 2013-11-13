@@ -7,14 +7,17 @@ Leadpump::Application.routes.draw do
   resources :company
   resources :subscriptions
   resources :plans
-  resources :vipLeads
+  resources :vipleads
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   root to: "home#index"
 
-  
-  
+
+  match "/acceptInvitation" => "vipleads#acceptInvitation"
+  match "/invites" => "vipleads#invites"
+  match "/fetchContacts" => "vipleads#fetchContacts"
+  resources :vipleads
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
   match '/home/changestatus' => 'home#changestatus'
   match '/home/saveleadstatus' => 'home#saveleadstatus'

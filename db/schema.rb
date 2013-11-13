@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111225049) do
+ActiveRecord::Schema.define(:version => 20131113170653) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -67,6 +67,28 @@ ActiveRecord::Schema.define(:version => 20131111225049) do
     t.integer  "discountPercentage"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "gmail_contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "active"
+    t.string   "secret_token"
+    t.integer  "phone",        :limit => 8
+    t.integer  "user_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "gmail_friends", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "phone"
+    t.boolean  "active",       :default => false
+    t.string   "secret_token"
+    t.integer  "user_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "leads", :force => true do |t|
@@ -182,8 +204,10 @@ ActiveRecord::Schema.define(:version => 20131111225049) do
     t.string   "last_name"
     t.integer  "phone",      :limit => 8
     t.integer  "user_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "email"
+    t.boolean  "active",                  :default => false
   end
 
 end
