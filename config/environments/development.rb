@@ -33,6 +33,7 @@ Leadpump::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
   config.action_mailer.default_url_options = { :host => '162.243.60.57:3000' }
 
   # ActionMailer Config

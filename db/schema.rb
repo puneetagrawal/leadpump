@@ -69,17 +69,6 @@ ActiveRecord::Schema.define(:version => 20131113170653) do
     t.datetime "updated_at",         :null => false
   end
 
-  create_table "gmail_contacts", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.boolean  "active"
-    t.string   "secret_token"
-    t.integer  "phone",        :limit => 8
-    t.integer  "user_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
   create_table "gmail_friends", :force => true do |t|
     t.string   "name"
     t.string   "email"
