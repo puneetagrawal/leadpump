@@ -172,7 +172,7 @@ function assignLeadToUser(userId, leadId){
 	url = '/leads/leadassigntouser';
 	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
 		$("#emp_"+leadId).html(data.name);
-		$("#asignBtn_"+leadId).html('<a class="leadAction assignLead" href="javascript:void(0)">| Reassign</a>');
+		$("#asignBtn_"+leadId).html('| <a class="leadAction assignLead" href="javascript:void(0)">Reassign</a>');
 		$("#users_"+leadId).remove();	
 		$.fancybox.close();
 		initialization();
