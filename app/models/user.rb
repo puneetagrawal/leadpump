@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
+  
+
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :title, :body
 

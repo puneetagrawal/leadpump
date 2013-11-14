@@ -22,6 +22,9 @@ class CompanyController < ApplicationController
     if @user.save      
       company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
       company.save
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+      @user.send_reset_password_instructions
+      Emailer.password_reset(@user, @reset_token).deliver
       flash[:success] = "User successfully created"
       redirect_to company_new_path()      
     else
