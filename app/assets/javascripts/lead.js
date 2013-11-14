@@ -21,7 +21,6 @@ function deleteLead(obj){
  	$(obj).html('<img src="/assets/ajax-loader.gif" style="">')
  	url = '/leads/deleteLeadByajax'
 	$.get(url, {leadId:leadid}, function (data) {
-		alert(data);
 		$("#viewLead_"+leadid).remove();
 		leadid = '';
 		$(obj).html('');
