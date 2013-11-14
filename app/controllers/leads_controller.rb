@@ -109,7 +109,11 @@ def filterbyname
 end
 
 def leadsearchfilter
-  @leads = UserLeads.where(:lead_id=>params[:leadId])
+  logger.debug(params)
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  lead = Lead.where("name = ? or lname = ? or lead_source = ?", params[:leadId],params[:leadId],params[:leadId])
+  @leads = UserLeads.where(:lead_id=>lead)
+  logger.debug(@leads.size)
   respond_to do |format|
     format.js 
   end
@@ -132,6 +136,7 @@ def getemails
       list = leads.map {|l| Hash[id: l.id, label: l.lead_source, name: l.lead_source]}
    end
  end
+ logger.debug(list)
  render json: list
 end
 
