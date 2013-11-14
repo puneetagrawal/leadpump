@@ -1541,3 +1541,6 @@ header h2 a {
     width:90px;
  }
 
+.hide{
+    display: none;
+}

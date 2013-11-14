@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_one :subscription, :dependent => :destroy
   has_many :leads, :dependent => :destroy
   has_many :vipLeads, :dependent => :destroy
+  has_many :gmailFriends, :dependent => :destroy
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
@@ -70,13 +71,24 @@ class User < ActiveRecord::Base
   def self.fetchCompanyUserList(user)
     users = []
     case user.user_role.role_type.to_sym  
-    when :admin
-      users = User.all     
-    when :company
-      users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
-      users << user.id
-      users = users.collect{|user| User.find(user)}
+      when :admin
+        users = User.all     
+      when :company
+        users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+        users << user.id
+        users = users.collect{|user| User.find(user)}
     end
   end
-  
+
+  def getCompanyEmail
+    email = self.email
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      user = User.find_by_id(companyId)
+      email = user.email
+    end
+  end
+
+
 end

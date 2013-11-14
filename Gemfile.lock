@@ -75,7 +75,10 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     fssm (0.2.10)
+    gmail-contacts (0.0.6)
+      hpricot
     hike (1.2.3)
+    hpricot (0.8.6)
     i18n (0.6.5)
     journey (1.0.4)
     jquery-rails (3.0.4)
@@ -164,6 +167,7 @@ DEPENDENCIES
   country-select
   debugger
   devise
+  gmail-contacts
   jquery-rails
   nested_form
   pg
