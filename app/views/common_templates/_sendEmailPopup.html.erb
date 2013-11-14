@@ -1,0 +1,17 @@
+  <div class="span4">
+    <form class="form">
+        <div class="border app_header">
+            <h2 class="heading headmsg">Invite Contacts</h2>
+            <div class="form pd15 leadform">
+              <%if @contacts.present?%>
+                <% @contacts.each do |contact| %>
+                  <p>
+                    <%=check_box_tag "freindId_#{contact.id}", 'yes', false, :class => 'gmailContactChekbox'%>
+                    <%= label_tag contact.name %>
+                    <%= label_tag contact.email %></p>
+                <%end%>
+              <%end%>
+          </div>        
+      </div>    
+  </form>
+</div>

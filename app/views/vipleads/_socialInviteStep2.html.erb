@@ -1,0 +1,18 @@
+<div class="social_options">
+    <h3>Choose how you would like to invite your friends, family members or co-workers…</h3>
+    <ul>
+        <li name="social-email">
+            <%=link_to "Send a pre-formatted e-mail…", "javascript:void(0)", :class=>"email_icon"%>
+        </li>
+        <li name="social-fb">
+            <%=link_to "Post to Friends wall…", "javascript:void(0)", :class=>"facebook_icon"%>
+        </li>
+        <li name="social-twit">
+            <%=link_to "Tweet it…", "javascript:void(0)", :class=>"twitter_icon"%>
+        </li>
+    </ul>
+</div>
+
+<%=render "socialInviterEmail"%>
+<%=render "socialInviterFacebook"%>
+<%=render "socialInviterTwitter"%>
