@@ -16,15 +16,29 @@ module LeadsHelper
 
 	def checkIfCompanyAdmin(leadId)
 		user = User.find(current_user.id) 	
-		company = false
+		assigntext = ''
 		case user.user_role.role_type.to_sym	
-		when :admin
-			company = true		
-		when :company
+		when :admin || :company
+			assigntext = 'Assign'
 			user_lead = UserLeads.where(:lead_id => leadId).where('user_id != ?', current_user.id)
-			company = user_lead.size > 0 ? false : true
+			if user_lead.present?
+				assigntext = "Reassign"
+			end
+		when :company
+			assigntext = 'Assign'
+			user_lead = UserLeads.where(:lead_id => leadId).where('user_id != ?', current_user.id)
+			if user_lead.present?
+				assigntext = "Reassign"
+			end
 		end
-		return company	
+
+		if !assigntext.blank?
+			assigntext = "<span id='asignBtn_#{leadId}' class='leadAction'>
+			  					| <%=link_to '#{assigntext}', 'javascript:void(0)',html={:class=>'leadAction assignLead'}%>
+							</span>"
+
+		end
+		return render(:inline=> assigntext)
 	end	 
 
 	

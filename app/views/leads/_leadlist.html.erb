@@ -5,7 +5,7 @@
    	<%if @userList%>
     <%= select_tag "filter_select", options_for_select(@userList.collect{ |user| [user.name, user.id] }),:class => "leadFilterByName filter_select",:prompt=>"Filter By Employee"%>  
     <%end%>
-    <input type="text" name="test" id="test" placeholder="Type email for search lead">        
+    <input type="text" name="test" id="test" placeholder="Type name, lastname or source">        
   </div>
   <span class="leadListContent" id="leadListContent">
     <%= render "leadListContent"%>   

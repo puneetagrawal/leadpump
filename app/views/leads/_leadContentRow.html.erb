@@ -8,12 +8,10 @@
 </td>
 <td>
   <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>
-  </td>
-  <td class="leadAction">
-    <%=link_to "Edit", "javascript:void(0)",html={:class=>"leadAction leadEdit"}%> 
-    <%if checkIfCompanyAdmin(lead.id)%>
-    <span id="asignBtn_<%=lead.id%>" class="leadAction">
-      | <%=link_to "Assign", "javascript:void(0)",html={:class=>"leadAction assignLead"}%>
-    </span>
-  </td>    
-  <%end%> 
+</td>
+<td class="leadAction">
+  <%=link_to "Edit", "javascript:void(0)",html={:class=>"leadAction leadEdit"}%> 
+  <%=link_to "| Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete"}%>
+  <%=checkIfCompanyAdmin(lead.id)%>
+</td>    
+  

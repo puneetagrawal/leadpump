@@ -1,5 +1,5 @@
-
 $(document).ready(function(){
+	leadid = ''
 	$(".leadFilterByName").change(function(){
 		if($(this).val() != ''){
 			leadFilterByName($(this).val())	
@@ -7,6 +7,29 @@ $(document).ready(function(){
 	});	
 	initLeadCreateOrUpdate();	
 });
+
+function deleteFancyBox(obj){
+	id = $(obj).closest('tr').attr('id');
+	leadid = id.split("_")[1];
+	$.fancybox.open({
+		href: '#deleteLeadPopup',
+		type: 'inline'
+	});
+}
+
+function deleteLead(obj){
+ 	$(obj).html('<img src="/assets/ajax-loader.gif" style="">')
+ 	url = '/leads/deleteLeadByajax'
+	$.get(url, {leadId:leadid}, function (data) {
+		alert(data);
+		$("#viewLead_"+leadid).remove();
+		leadid = '';
+		$(obj).html('');
+		$.fancybox.close();
+		alert("Lead Deleted Successfully");
+		initLeadCreateOrUpdate();
+	});
+}
 
 function initLeadCreateOrUpdate(){
 	$(".leadEdit").click(function(){
@@ -16,9 +39,18 @@ function initLeadCreateOrUpdate(){
 	$(".leadSubmit").click(function(){
 		leadSubmit(this);
 	});		
+	$(".leadDelete").click(function(){
+		deleteFancyBox(this);
+	});
+	$(".leadDeleteBtn").click(function(){
+		deleteLead(this);
+	});
+	
 	initLeadActiveSelect();
 	initialization();
 }
+
+
 
 function leadEdit(obj){
 	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 200px;float:left;">')

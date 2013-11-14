@@ -45,6 +45,7 @@ Leadpump::Application.routes.draw do
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
   match '/leads/socialInviter' => 'leads#socialInviter'
+  match '/leads/deleteLeadByajax' => 'leads#deleteLeadByajax'
 
 
   match 'appointment/new' => 'appointments#new'
