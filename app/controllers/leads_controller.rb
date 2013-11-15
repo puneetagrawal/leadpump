@@ -109,8 +109,6 @@ def filterbyname
 end
 
 def leadsearchfilter
-  logger.debug(params)
-  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
   lead = Lead.where("name = ? or lname = ? or lead_source = ?", params[:leadId],params[:leadId],params[:leadId])
   @leads = UserLeads.where(:lead_id=>lead)
   logger.debug(@leads.size)

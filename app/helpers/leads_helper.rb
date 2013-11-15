@@ -18,7 +18,7 @@ module LeadsHelper
 		user = User.find(current_user.id) 	
 		assigntext = ''
 		case user.user_role.role_type.to_sym	
-		when :admin || :company
+		when :admin
 			assigntext = 'Assign'
 			user_lead = UserLeads.where(:lead_id => leadId).where('user_id != ?', current_user.id)
 			if user_lead.present?
