@@ -1,7 +1,2 @@
 <%= select "status", "user", options_for_select([["active", true], ["Inactive", false]], 'Inactive') %>
 
-<script type="text/javascript">	
-	$(".userActive select").change(function(){
-		saveUserStatus($(this).parent().attr('id'), $(this).val())
-	})
-</script>

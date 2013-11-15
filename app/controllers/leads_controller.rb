@@ -19,14 +19,23 @@ class LeadsController < ApplicationController
   end
 
   def create
-    @lead = Lead.new(params[:lead])
-    @lead.company_id = current_user.id  
-    if @lead.save
-      user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
-      user_lead.save
-      flash[:notice] = "New lead created successfully"
-      redirect_to new_lead_path
+    if current_user.checkLeadLimit
+      @lead = Lead.new(params[:lead])
+      @lead.company_id = current_user.id  
+      if @lead.save
+        user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
+        user_lead.save
+        flash[:notice] = "New lead created successfully"
+        redirect_to new_lead_path
+      else
+        hash = Lead.fetchLeadList(current_user) 
+        @leads = hash['leads'.to_sym]
+        @userList = hash['userList'.to_sym]
+        render "new"
+      end
     else
+      @lead  = Lead.new()
+      flash[:notice] = "Sorry! your leads Limit has been reached"
       hash = Lead.fetchLeadList(current_user) 
       @leads = hash['leads'.to_sym]
       @userList = hash['userList'.to_sym]
@@ -110,7 +119,7 @@ end
 
 def leadsearchfilter
   lead = Lead.where("name = ? or lname = ? or lead_source = ?", params[:leadId],params[:leadId],params[:leadId])
-  @leads = UserLeads.where(:lead_id=>lead)
+  @leads = UserLeads.select("distinct(lead_id)").where(:lead_id=>lead)
   logger.debug(@leads.size)
   respond_to do |format|
     format.js 
@@ -141,19 +150,6 @@ end
 def socialInviter
 end
 
-def deleteLeadByajax
-  lead = Lead.find(params[:leadId])
-  if lead
-    userleads = UserLeads.where(:lead_id=>lead.id)
-    userleads.each do|userlead|
-      userlead.destroy
-    end
-    lead.destroy
-  end
-  msg = {"msg"=>"successfull"}
-  respond_to do |format|
-    format.json { render json: msg}
-  end
-end
+
 
 end

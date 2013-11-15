@@ -5,7 +5,7 @@ $(document).ready(function(){
 			leadFilterByName($(this).val())	
 		}		
 	});	
-	initLeadCreateOrUpdate();	
+	initLeadCreateOrUpdate();
 });
 
 function deleteFancyBox(obj){
@@ -19,34 +19,31 @@ function deleteFancyBox(obj){
 
 function deleteLead(obj){
  	$(obj).html('<img src="/assets/ajax-loader.gif" style="">')
- 	url = '/leads/deleteLeadByajax'
-	$.get(url, {leadId:leadid}, function (data) {
+ 	url = '/home/deleteRowByajax'
+ 	uri = window.location.pathname;
+	$.get(url, {leadId:leadid, uri:uri}, function (data) {
 		$("#viewLead_"+leadid).remove();
 		leadid = '';
-		$(obj).html('');
+		$(obj).text('Delete');
 		$.fancybox.close();
-		alert("Lead Deleted Successfully");
-		initLeadCreateOrUpdate();
+		alert("Deleted Successfully");
 	});
 }
 
 function initLeadCreateOrUpdate(){
-	$(".leadEdit").click(function(){
+
+	$(".container").on('click', '.leadEdit', function (){
 		leadEdit(this);
 	});
-
-	$(".leadSubmit").click(function(){
+	$(".container").on('click', '.leadSubmit', function (){
 		leadSubmit(this);
 	});		
-	$(".leadDelete").click(function(){
+	$(".container").on('click', '.leadDelete', function (){
 		deleteFancyBox(this);
 	});
-	$(".leadDeleteBtn").click(function(){
+	$("#deleteContent").on('click', '.leadDeleteBtn', function (){
 		deleteLead(this);
 	});
-	
-	initLeadActiveSelect();
-	initialization();
 }
 
 
@@ -59,7 +56,6 @@ function leadEdit(obj){
 	$.get(url, {}, function (data) {
 		$(".headmsg").text("Update Lead");
 		$(".submitLeadBtn").html('<input type="button" class="btn yellow leadSubmit" value="Update Lead">');	
-		initLeadCreateOrUpdate();
 	});
 	
 }
@@ -69,7 +65,6 @@ function leadSubmit(obj){
 	id = $("#lead_id").val();
 	url = '/update/'+id+'';
 	$.get(url, {inputs:formfields()}, function (data) {
-		initLeadCreateOrUpdate();
 		showSuccessMsg("Lead Updated Successfully");
 	});
 	
@@ -79,15 +74,11 @@ function leadFilterByName(userId){
 	$("#leadListContent").html('<img src="/assets/ajax-loader.gif" style="margin:100px 350px 300px">')
 	url = '/leads/filterbyname';
 	$.post(url, {userId:userId}, function (data) {	
-		initialization();
-		initLeadCreateOrUpdate();
 	});
 }
 
 function leadSearchFilter(leadId){
 	url = '/leads/leadsearchfilter';
 	$.get(url, {leadId:leadId}, function (data) {	
-		initialization();
-		initLeadCreateOrUpdate();
 	});
 }

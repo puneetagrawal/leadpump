@@ -6,9 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name:"admin", email:"admin@lead.com", password:"admin123",role_id:1)
-User.create(name:"company", email:"company@lead.com", password:"company123",role_id:2)
-User.create(name:"companyUser", email:"companyUser@lead.com", password:"companyUser123",role_id:3)
 
 DiscountsOnLocation.create(locationRanges: '1-10', discountPercentage: 5, chargePerUser:"21,31,51,81")
 DiscountsOnLocation.create(locationRanges: '11-20', discountPercentage: 10, chargePerUser:"17,27,47,77")
@@ -60,3 +57,11 @@ Role.create(role_type:"admin")
 Role.create(role_type:"company")
 Role.create(role_type:"employee")
 Role.create(role_type:"normalUser")
+
+["admin", "company", "employee"].each_with_index do|user, index|
+	user = User.new(name:"#{user}", email:"#{user}@lead.com", password:"#{user}123",role_id:index+1)
+	if user.save
+		sub = Subscription.new(:plan_per_user_range_id=>index+1, :user_id=>user.id)
+		sub.save
+	end
+end

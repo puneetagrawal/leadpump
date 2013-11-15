@@ -4,7 +4,7 @@
 <td><%=lead.lead_source%></td>
 <td><%=lead.goal%></td>
 <td class="leadActive leadAction" id="status_<%=lead.id%>">
-  <span class="leadAction"><%=Lead.checkLeadStatus(lead.active)%></span>
+  <span class="leadAction span"><%=Lead.checkLeadStatus(lead.active)%></span>
 </td>
 <td>
   <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>

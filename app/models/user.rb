@@ -74,10 +74,9 @@ class User < ActiveRecord::Base
     users = []
     case user.user_role.role_type.to_sym  
       when :admin
-        users = User.all     
+        users = User.where("id != ?", current_user.id)     
       when :company
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
-        users << user.id
         users = users.collect{|user| User.find(user)}
     end
   end
@@ -92,5 +91,40 @@ class User < ActiveRecord::Base
     end
   end
 
+def checkLeadLimit
+  allow = true
+  case self.user_role.role_type.to_sym
+  when :admin
+    allow = false
+  else
+    limit = self.subscription.plan_per_user_range.plan.lead_management
+    if User.numeric?limit
+      usrLeads = UserLeads.where(:user_id=>self.id)
+      if usrLeads.present? && usrLeads.size() == limit.to_i
+        allow = false
+      end
+    end
+  end
+  return allow
+end
+
+def checkUserLimit
+  allow = true
+  case self.user_role.role_type.to_sym
+  when :admin
+    allow = false
+  else
+    limit = self.subscription.plan_per_user_range.plan.number_of_user
+    users = Company.where(:company_admin_id => self.id)
+    if users.present? && users.size() == limit.to_i
+      allow = false
+    end
+  end
+  return allow
+end
+
+def self.numeric?(object)
+  true if Float(object) rescue false
+end
 
 end

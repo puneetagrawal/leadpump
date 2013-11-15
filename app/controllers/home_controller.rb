@@ -22,10 +22,6 @@ class HomeController < ApplicationController
     else
       @lead = Lead.find(params[:id])
     end
-      logger.debug(@lead)
-      logger.debug(">>>ifddffdfdf")
-      logger.debug(@user)
-
   respond_to do |format|
     format.js 
   end
@@ -51,9 +47,34 @@ def saveleadstatus
   object.active = params[:status] == "false" ? false : true
   object.save
   status = Lead.checkLeadStatus(object.active)
-  logger.debug(status)
   msg = {"status"=>status}
   render json:msg
+end
+
+def deleteRowByajax
+  if params[:uri].include?'company'
+     object = User.find(params[:leadId])
+     company = Company.where(:company_user_id=>object.id)
+     if company.present?
+      company.each do|user|
+        user.destroy
+      end
+    end
+  else
+     object = Lead.find(params[:leadId])
+     if object.present?
+        userleads = UserLeads.where(:lead_id=>object.id)
+        userleads.each do|userlead|
+          userlead.destroy
+        end
+     end
+    object.destroy
+  end
+  
+  msg = {"msg"=>"successfull"}
+  respond_to do |format|
+    format.json { render json: msg}
+  end
 end
 
 end

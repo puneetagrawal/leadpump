@@ -2,8 +2,9 @@
 <td><%=user.name%></td>
 <td><%=user.email%></td>
 <td class="leadActive leadAction" id="status_<%=user.id%>">
-	<span class="leadAction"><%=user.active ? 'Active' : 'Inactive'%></span>
+	<span class="leadAction span"><%=user.active ? 'Active' : 'Inactive'%></span>
 </td>
 <td class="leadAction">
-	<%=link_to "Edit", "javascript:void(0)", html={:class=>"leadAction userEdit"}%> 
+	<%=link_to "Edit", "javascript:void(0)", html={:class=>"leadAction userEdit"}%>
+	 | <%=link_to "Delete", "javascript:void(0)", html={:class=>"leadAction leadDelete"}%> 
 </td>    

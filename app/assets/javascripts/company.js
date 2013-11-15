@@ -3,11 +3,11 @@ $(document).ready(function(){
 });
 
 function initCompanyCreateOrUpdate(){
-	$(".userEdit").click(function(){
+	$(".container").on('click', '.userEdit', function (){
 		companyEdit(this);
 	});
 
-	$(".compSubmit").click(function(){
+	$(".container").on('click', '.compSubmit', function (){
 		companySubmit(this);
 	});		
 }
@@ -20,8 +20,6 @@ function companyEdit(obj){
 	$.get(url, {}, function (data) {
 		$(".headmsg").text("Update User");
 		$(".submitUserBtn").html('<input type="button" class="btn yellow compSubmit" value="Update User">');	
-		initCompanyCreateOrUpdate();
-		initialization();			
 	});
 }
 
@@ -33,8 +31,6 @@ function companySubmit(obj){
 	$.get(url, {inputs:formfields()}, function (data) {
 		$('.submitUserBtn').html(btnHtml);	
 		showSuccessMsg("User Updated Successfully");
-		initCompanyCreateOrUpdate();
-		initialization();
 	});
 }
 
