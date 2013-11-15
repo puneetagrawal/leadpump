@@ -19,7 +19,7 @@ class LeadsController < ApplicationController
   end
 
   def create
-    if current_user.checkLeadLimit
+    
       @lead = Lead.new(params[:lead])
       @lead.company_id = current_user.id  
       if @lead.save
@@ -33,14 +33,7 @@ class LeadsController < ApplicationController
         @userList = hash['userList'.to_sym]
         render "new"
       end
-    else
-      @lead  = Lead.new()
-      flash[:notice] = "Sorry! your leads Limit has been reached"
-      hash = Lead.fetchLeadList(current_user) 
-      @leads = hash['leads'.to_sym]
-      @userList = hash['userList'.to_sym]
-      render "new"
-    end
+    
   end
 
   def update  
