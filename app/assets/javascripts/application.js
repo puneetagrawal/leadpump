@@ -20,14 +20,13 @@
 
 
 $(document).ready(function(){
-
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 
 	initialization();
 	initLeadActiveSelect();
-	removeFlash();
+	removeFlash();	
 });
 
 function formfields(){
@@ -57,6 +56,10 @@ function initLeadActiveSelect(){
 	$(".leadActive select").change(function(){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
 	});
+	$(".cancelFancybox").click(function(){
+		$.fancybox.close();
+	});
+	assignleaduserfunction();
 }
 
 function fillPopupContent(id) {
@@ -118,6 +121,13 @@ function initialization(){
 	
 }
 
+function assignleaduserfunction(){
+	$(".leadAssignSelect").change(function(){
+		leadId = $("#leadid").val();
+		assignLeadToUser($(this).val(), leadId)
+	});
+}
+
 function changeUserstatus(userId){
 	userId = userId.split("_")[1]
 	url = '/company/changeuserstatus';
@@ -162,9 +172,10 @@ function assignLeadToUser(userId, leadId){
 	url = '/leads/leadassigntouser';
 	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
 		$("#emp_"+leadId).html(data.name);
-		$("#asignBtn_"+leadId).remove();
+		$("#asignBtn_"+leadId).html('<a class="leadAction assignLead" href="javascript:void(0)">| Reassign</a>');
 		$("#users_"+leadId).remove();	
 		$.fancybox.close();
+		initialization();
 	});
 }
 

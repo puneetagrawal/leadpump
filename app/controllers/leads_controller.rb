@@ -65,8 +65,14 @@ end
 def leadassigntouser
   user = User.find(params[:userId])
   lead = Lead.find(params[:leadId])
-  user_lead = UserLeads.new(:lead_id => lead.id, :user_id=>user.id)
-  user_lead.save
+  userleads = UserLeads.where(:lead_id => lead.id).where('user_id != ?', current_user.id)
+  if userleads.present?
+    userleads[0].user_id = user.id
+    userleads[0].save
+  else
+    user_lead = UserLeads.new(:lead_id => lead.id, :user_id=>user.id)
+    user_lead.save
+  end
   user_name = {"name" => user.name}
   respond_to do |format|
     format.json { render json: user_name}
@@ -110,18 +116,41 @@ def leadsearchfilter
 end
 
 def getemails
-  if params[:term]
+  if params[:term].blank?
+   leads = Lead.all(:select=>"distinct(name)") 
+   list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
+  else params[:term]
    like  = "%".concat(params[:term].concat("%"))
-   leads = Lead.where("email like ?", like)
- else
-   leads = Lead.all
+   leads = Lead.select("distinct(name)").where("name like ?", like)
+   list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
+   if !leads.present?
+      leads = Lead.select("distinct(lname)").where("lname like ? ", like)
+      list = leads.map {|l| Hash[id: l.id, label: l.lname, name: l.lname]}
+   end
+   if !leads.present?
+      leads = Lead.select("distinct(lead_source)").where("lead_source like ? ", like)
+      list = leads.map {|l| Hash[id: l.id, label: l.lead_source, name: l.lead_source]}
+   end
  end
- list = leads.map {|l| Hash[id: l.id, label: l.email, name: l.email]}
  render json: list
 end
 
 def socialInviter
 end
 
+def deleteLeadByajax
+  lead = Lead.find(params[:leadId])
+  if lead
+    userleads = UserLeads.where(:lead_id=>lead.id)
+    userleads.each do|userlead|
+      userlead.destroy
+    end
+    lead.destroy
+  end
+  msg = {"msg"=>"successfull"}
+  respond_to do |format|
+    format.json { render json: msg}
+  end
+end
 
 end
