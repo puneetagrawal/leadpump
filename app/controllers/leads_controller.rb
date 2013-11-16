@@ -1,6 +1,7 @@
 class LeadsController < ApplicationController
   autocomplete :lead, :email, :full => true
   def index
+   
   end
 
   def edit   
@@ -9,7 +10,6 @@ class LeadsController < ApplicationController
         format.js 
     end 
   end
-
 
   def new 
     hash = Lead.fetchLeadList(current_user) 

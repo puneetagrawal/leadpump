@@ -1540,4 +1540,27 @@ header h2 a {
 .date_app{
     width:90px;
  }
+ .text_fb{
+width: 120px;
+ }
 
+#share {
+    border:1px solid #0D386F;
+    background-color:#5D7DAE;
+    height:24px;
+    width: 100px;
+}
+
+#share a.click {
+    font-size:13px;
+    font-weight:bold;
+    text-align:center;
+    color:#fff;
+    border-top:1px solid #879DC2;
+    background-color:#5D7DAE;
+    padding: 2px 10px;
+    cursor: pointer;
+    text-decoration:none;
+    width:80px;
+    display:block;
+}

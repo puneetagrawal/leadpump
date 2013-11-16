@@ -27,6 +27,7 @@ class Lead < ActiveRecord::Base
 #     return hash
 # end
 
+
 def self.fetchLeadList(user)
 	leads = []
 	userList = []
