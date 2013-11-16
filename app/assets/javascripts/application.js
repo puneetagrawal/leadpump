@@ -45,12 +45,14 @@ $(document).ready(function(){
   	 	twttr.widgets.load();
 	}); 
 
-    $('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
+
+ 	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
-
+	
 	initialization();
 	initLeadActiveSelect();
+	removeFlash();	
 
 });
 
@@ -67,6 +69,7 @@ function initLeadActiveSelect(){
 	$(".leadActive select").change(function(){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
 	});
+
 }
 
 function fillPopupContent(id) {
@@ -78,8 +81,7 @@ function fillPopupContent(id) {
 }
 
 function initialization(){
-
-	$(".assignLead").click(function(){
+	$(".container").on('click', '.assignLead', function (){
 		leadId = $(this).parent().attr('id').split("_")[1];
 		getAutoCompleteForLeadAssign(leadId);
 	});
@@ -116,23 +118,20 @@ function initialization(){
 		caclulateAmount()
 	}			
 	
-	
-	$(".userActive span").click(function(){
-		changeUserstatus($(this).parent().attr('id'))
-	})	
-
-	$(".leadActive span").click(function(){
+	$(".container").on('click', '.span', function (){
 		changeleadstatus($(this).parent().attr('id'))
 	})
 
-	
-}
+	$(".container").on('change', '#status_lead', function (){
+		saveLeadStatus($(this).parent().attr('id'), $(this).val())
+	});
+	$(".fancybox-inner").on('click', '.cancelFancybox', function (){
+		$.fancybox.close();
+	});
 
-function changeUserstatus(userId){
-	userId = userId.split("_")[1]
-	url = '/company/changeuserstatus';
-	$.get(url, {userId:userId}, function (data) {	
-		// $("#leadActive_"+leadId).html()	
+	$("#assignLeadSelect").on('change', '.leadAssignSelect', function (){
+		leadId = $("#leadid").val();
+		assignLeadToUser($(this).val(), leadId);
 	});
 }
 
@@ -172,7 +171,7 @@ function assignLeadToUser(userId, leadId){
 	url = '/leads/leadassigntouser';
 	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
 		$("#emp_"+leadId).html(data.name);
-		$("#asignBtn_"+leadId).remove();
+		$("#asignBtn_"+leadId).html('| <a class="leadAction assignLead" href="javascript:void(0)">Reassign</a>');
 		$("#users_"+leadId).remove();	
 		$.fancybox.close();
 	});
@@ -192,8 +191,7 @@ function saveLeadStatus(id, status){
 	urls = window.location.pathname;
 	url = '/home/saveleadstatus';
 	$.post(url, {leadId:id,status:status, urls:urls}, function (data) {
-		$("#status_"+id).html('<span>'+data.status+'</span>')	
-		initialization();
+		$("#status_"+id).html('<span class="span">'+data.status+'</span>')	
 	});
 }
 
@@ -204,5 +202,14 @@ function showSuccessMsg(msg){
 }
 
 function hideSuccessMsg(){
-	$(".successMsg").removeClass('alert alert-success').text('');	
+	if($(".successMsg").length){
+		$(".successMsg").removeClass('alert alert-success').text('');		
+	}
+	if($(".flashes").length){
+		$(".flashes").removeClass('alert alert-success').text('');	
+	}
+}
+
+function removeFlash(){
+	setTimeout(hideSuccessMsg, 3000);
 }

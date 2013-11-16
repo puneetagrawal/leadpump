@@ -6,8 +6,11 @@ class User < ActiveRecord::Base
   has_one :subscription, :dependent => :destroy
   has_many :leads, :dependent => :destroy
   has_many :vipLeads, :dependent => :destroy
+  has_many :gmailFriends, :dependent => :destroy
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
+
+  
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :title, :body
@@ -68,13 +71,58 @@ class User < ActiveRecord::Base
   def self.fetchCompanyUserList(user)
     users = []
     case user.user_role.role_type.to_sym  
-    when :admin
-      users = User.all     
-    when :company
-      users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
-      users << user.id
-      users = users.collect{|user| User.find(user)}
+      when :admin
+        users = User.where("id != ?", current_user.id)     
+      when :company
+        users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+        users = users.collect{|user| User.find(user)}
     end
   end
-  
+
+  def getCompanyEmail
+    email = self.email
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      user = User.find_by_id(companyId)
+      email = user.email
+    end
+  end
+
+def checkLeadLimit
+  allow = true
+  case self.user_role.role_type.to_sym
+  when :admin
+    allow = false
+  else
+    limit = self.subscription.plan_per_user_range.plan.lead_management
+    if User.numeric?limit
+      usrLeads = UserLeads.where(:user_id=>self.id)
+      if usrLeads.present? && usrLeads.size() == limit.to_i
+        allow = false
+      end
+    end
+  end
+  return allow
+end
+
+def checkUserLimit
+  allow = true
+  case self.user_role.role_type.to_sym
+  when :admin
+    allow = false
+  else
+    limit = self.subscription.plan_per_user_range.plan.number_of_user
+    users = Company.where(:company_admin_id => self.id)
+    if users.present? && users.size() == limit.to_i
+      allow = false
+    end
+  end
+  return allow
+end
+
+def self.numeric?(object)
+  true if Float(object) rescue false
+end
+
 end

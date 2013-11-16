@@ -23,6 +23,10 @@
     <p class="flashes alert alert-success"><%= flash[:success] %></p>
   <% end %>
     <p class="flashes successMsg"></p>
+
+  <script type="text/javascript">
+      emailAuth = '<%=@emailAuth %>';
+  </script>
 <%= yield %>
 <%= render 'layouts/footer' %>
 </body>

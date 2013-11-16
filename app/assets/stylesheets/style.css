@@ -1507,7 +1507,7 @@ header h2 a {
 }
 
 .leadHeading input{
-    width: 23%;
+    width: 28%;
     margin-bottom: 17px; 
 }
 
@@ -1522,7 +1522,7 @@ header h2 a {
 .leadFilterByName {
     height: 32px;
     padding: 4px 4px;
-    width: 20%;
+    width: 28%;
     border-radius: 5px;
 }
 
@@ -1564,3 +1564,8 @@ width: 120px;
     width:80px;
     display:block;
 }
+
+.hide{
+    display: none;
+}
+

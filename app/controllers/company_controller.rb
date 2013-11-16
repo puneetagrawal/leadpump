@@ -16,18 +16,21 @@ class CompanyController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    @user.password = "user.leadpump123"
-    @user.role_id = Role.find_by_role_type("employee").id
-    if @user.save      
-      company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
-      company.save
-      flash[:success] = "User successfully created"
-      redirect_to company_new_path()      
-    else
-      @users = User.fetchCompanyUserList(current_user)
-      render :action =>"new"
-    end
+    
+      @user = User.new(params[:user])
+      @user.password = "user.leadpump123"
+      @user.role_id = Role.find_by_role_type("employee").id
+      if @user.save      
+        company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
+        company.save
+        @user.send_reset_password_instructions
+        flash[:success] = "User successfully created"
+        redirect_to company_new_path()      
+      else
+        @users = User.fetchCompanyUserList(current_user)
+        render :action =>"new"
+      end
+    
   end
 
   def edit

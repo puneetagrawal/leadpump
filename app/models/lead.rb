@@ -5,7 +5,6 @@ class Lead < ActiveRecord::Base
   validates :name, :presence => true
   validates :email, :presence => true
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
-  validates :phone, :presence => true
   validates :phone, :numericality => {:only_integer => true}, :if => :phone?
 
 
@@ -34,16 +33,19 @@ def self.fetchLeadList(user)
 	case user.user_role.role_type.to_sym  
     when :admin
       leads = UserLeads.includes(:lead).all  
-      userList = User.all   
+      userList = User.where("id != ?", current_user.id)   
     when :company
       userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+      users = userList
       userList << user.id
-      leads = UserLeads.includes(:lead).where(:user_id => userList)
-      userList = userList.collect{|user| User.find(user)}
+      leads = UserLeads.select("distinct(lead_id)").where(:user_id => userList)
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(leads)
+      users = users.collect{|user| User.find(user)}
     when :employee
       leads = UserLeads.includes(:lead).where(:user_id => user.id)
     end
-    hash = {:leads=>leads,:userList=>userList}
+    hash = {:leads=>leads,:userList=>users}
 end
 
 def self.checkLeadStatus(status)
