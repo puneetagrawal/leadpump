@@ -20,9 +20,11 @@
             <p><%= lead.label "Enrolment Value:" %><%= lead.text_field :enrolment_value %></p>
             <p><%= lead.label "Notes:" %><%= lead.text_field :notes %></p>
             <p class="submitLeadBtn">
-                
-                    <input type="submit" class="btn yellow" value="Enter Lead"/>
-                
+             <%if current_user.checkLeadLimit %>   
+                <input type="submit" class="btn yellow" value="Enter Lead"/>
+              <%else%>
+                <input type="button" class="btn yellow disabled" value="Enter Lead"/>
+              <%end%>  
             </p>    
             <div class="clear"></div>
         </div>        

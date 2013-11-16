@@ -936,7 +936,7 @@ header h2 a {
 }
 
 .number {
-    background: #ff0000;
+    background: #00B200;
     text-align: center;
     border-radius: 30px;
     color: #eee;
@@ -959,7 +959,7 @@ header h2 a {
 }
 .signup_heading h4 {
     font-size: 30px;
-    color: #ff0000;
+    color: #00B200;
     font-weight: normal;
 }
 .city_input {
@@ -972,7 +972,7 @@ header h2 a {
 /*testimonial*/
 .testimonial {
     color: #8799A6;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 24px;
     font-style: italic;
     margin-bottom: 20px;
@@ -981,7 +981,8 @@ header h2 a {
     margin-bottom: 0;
 }
 .absblock {
-    color: #ff0000;
+    color: #00B200;
+    margin-left: 20px;
 }
 .absblock h3 {
     margin-bottom: 0;
@@ -1025,6 +1026,12 @@ header h2 a {
     -moz-transform: rotate(15deg);
 }
 
+.signupRight h2{
+    margin-left: 20px;
+}
+.signupRight .testimonial{
+    margin-left: 20px;
+}
 /*mall item*/
 .edit_icon {
     background: url("/assets/edit-icon.png") 0 0 no-repeat;

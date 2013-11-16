@@ -26,8 +26,26 @@ $(document).ready(function(){
 	
 	initialization();
 	removeFlash();	
+	$('#postToWall').click(function() {
+      FB.ui(
+        {
+          method : 'feed',
+          link   : $(this).attr('data-url')
+        },
+        function (response) {
+          // If response is null the user canceled the dialog
+          if (response != null) {
+            logResponse(response);
+          }
+        }
+      );
+    });
 });
-
+function logResponse(response) {
+    if (console && console.log) {
+      console.log('The response was', response);
+    }
+  }
 function formfields(){
 	new_obj = {}
 	$.each($('.forms').serializeArray(), function(i, obj){
@@ -94,8 +112,9 @@ function initialization(){
 	$("#planType_1, #planType_2").click(function(){
 		caclulateAmount()	
 	})
-	$("#planType_1").attr('checked', 'checked')
-	$("#discountOnUsers").val(1)
+	$("#planType_1").attr('checked', 'checked');
+	$("#planType_2").attr('checked', false);
+	//$("#discountOnUsers").val(1);
 
 	if ($("#discountOnUsers").val()){
 		caclulateAmount()
@@ -108,7 +127,7 @@ function initialization(){
 	$(".container").on('change', '#status_lead', function (){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
 	});
-	$(".fancybox-inner").on('click', '.cancelFancybox', function (){
+	$(".cancelFancybox").click(function (){
 		$.fancybox.close();
 	});
 

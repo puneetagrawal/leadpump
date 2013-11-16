@@ -1,4 +1,5 @@
 class LeadsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:index] 
   autocomplete :lead, :email, :full => true
   def index
   end
@@ -19,7 +20,7 @@ class LeadsController < ApplicationController
   end
 
   def create
-    
+    if current_user.checkLeadLimit
       @lead = Lead.new(params[:lead])
       @lead.company_id = current_user.id  
       if @lead.save
@@ -33,7 +34,14 @@ class LeadsController < ApplicationController
         @userList = hash['userList'.to_sym]
         render "new"
       end
-    
+    else
+      flash[:alert] = "Sorry! your lead creation limit exceeded."
+      @lead  = Lead.new()
+      hash = Lead.fetchLeadList(current_user) 
+      @leads = hash['leads'.to_sym]
+      @userList = hash['userList'.to_sym]
+      render "new"
+    end
   end
 
   def update  

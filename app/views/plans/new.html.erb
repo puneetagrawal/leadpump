@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span12 text-center pricing_plans_heading">
-            <h2>Charter Member Pricing Ending soon!</h2>
-            <h3>Which edition is right for you?</h3>
+            <h2>Charter Member Pricing Ends soon!</h2>
+            <h3>Which plan is right for you?</h3>
         </div>
     </div>
     <div class="row-fluid">
@@ -14,7 +14,7 @@
 
                 </div>
                 <div class="col-body">
-                    <span class="highlight">Number of Users</span>
+                    <span class="highlight"># of Users</span>
                     <span>Lead Management - CRM</span>
                     <span class="highlight">Appointment Scheduler</span>
                     <span>Lead Dashboard</span>
@@ -29,7 +29,7 @@
                         <i class="mr10"><img src="/assets/table_images/twitter.png"></i>
                         <i><img src="/assets/table_images/mail.png"></i>
                     </span>                    
-                    <span>On-Line Mall - <i class="pricingMallText">Member Rewards</i></span>
+                    <span>Virtual Store - <i class="pricingMallText">Member Rewards</i></span>
                     <span class="highlight">Daily Team Usage Reports</span>
                     <span>Unlimited Team Training</span>
                     <span class="highlight">&nbsp;National Spokeswoman
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="col-body">
-                        <span class="highlight">Up to <%=planPerUser.user_range.end_range%></span>
+                        <span class="highlight"><%=planPerUser.user_range.start_range%> - <%=planPerUser.user_range.end_range%></span>
                         <span class=<%=unlimitedText(planPerUser.plan.lead_management)%>><%=fetechPlanLeadmanagementText(planPerUser.plan.lead_management)%></span>
                         <span class="highlight unlimited"><%=planPerUser.plan.appointment_sheduler%></span>
                         <span>
@@ -131,7 +131,7 @@
                         </span>
                         <span class="highlight unlimited">
                             <%if planPerUser.plan.social_referrals != ''%>
-                                UNLIMITED
+                                UNLIMITED INVITATIONS
                             <%else%>
                             <em class="cross">cross</em>
                             <%end%>
@@ -184,10 +184,10 @@
         <div class="user_filter pull-left">
             <p>Charter member for more users?</p>
             <ul>
-                <li><%= link_to "Up to 20", new_plan_path(:maxUsers => 2) %></li>
-                <li><%= link_to "Up to 50", new_plan_path(:maxUsers => 3) %></li>
-                <li><%= link_to "Up to 100", new_plan_path(:maxUsers => 4) %></li>
-                <li><%= link_to "Up to 200", new_plan_path(:maxUsers => 5) %></li>
+                <li><%= link_to "11-20", new_plan_path(:maxUsers => 2) %></li>
+                <li><%= link_to "21-50", new_plan_path(:maxUsers => 3) %></li>
+                <li><%= link_to "51-100", new_plan_path(:maxUsers => 4) %></li>
+                <li><%= link_to "101-200", new_plan_path(:maxUsers => 5) %></li>
             </ul>
         </div>
     </div>

@@ -76,7 +76,6 @@ Leadpump::Application.routes.draw do
 
   
 
-
   # match "/stripe_events", :to => "events#stripe_events", :as => :stripe_events, :via => :post
 
   # The priority is based upon order of creation:

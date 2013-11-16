@@ -30,6 +30,7 @@ gem 'cancan'
 gem 'rails3-jquery-autocomplete'
 gem 'country-select'
 gem 'gmail-contacts', :require => "gmail-contacts"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

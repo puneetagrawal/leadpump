@@ -6,7 +6,7 @@
 	<%= adr.label :City %><%= adr.text_field :city, :class=>"city-input city_input" %>
 	<%= adr.label :Zip, :class=>"city_label" %><%= adr.text_field :zip, :class=>"input-small"%>
 </p>
-<p><%= adr.label "Region/State" %><%= adr.text_field :state %></p>
+<p><label>State/Region</label><%= adr.text_field :state %></p>
 <p><%= adr.label :Phone %><%= adr.text_field :phone %></p>
 <p><%= adr.label :Country %><%= country_select("address", "country") %>
   </p>
