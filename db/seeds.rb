@@ -61,7 +61,9 @@ Role.create(role_type:"normalUser")
 ["admin", "company", "employee"].each_with_index do|user, index|
 	user = User.new(name:"#{user}", email:"#{user}@lead.com", password:"#{user}123",role_id:index+1)
 	if user.save
-		sub = Subscription.new(:plan_per_user_range_id=>index+1, :user_id=>user.id)
+		sub = Subscription.new(:plan_per_user_range_id=>1, :user_id=>user.id)
 		sub.save
 	end
 end
+
+Company.create(:company_admin_id=>2,:company_user_id=>3)
