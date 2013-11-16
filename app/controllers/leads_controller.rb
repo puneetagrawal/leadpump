@@ -2,6 +2,7 @@ class LeadsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:index] 
   autocomplete :lead, :email, :full => true
   def index
+   
   end
 
   def edit   
@@ -10,7 +11,6 @@ class LeadsController < ApplicationController
         format.js 
     end 
   end
-
 
   def new 
     hash = Lead.fetchLeadList(current_user) 

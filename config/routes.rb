@@ -1,6 +1,7 @@
 Leadpump::Application.routes.draw do
 
   match '/appointments/filter_app' => 'appointments#filter_app'
+
   resources :discounts_on_periods
   resources :appointments
   resources :discounts_on_locations
@@ -13,12 +14,18 @@ Leadpump::Application.routes.draw do
 
   root to: "home#index"
 
+<<<<<<< HEAD
+  
+  
+  match '/home/fillpopupcontent' => 'home#fillpopupcontent' 
+=======
 
   match "/acceptInvitation" => "vipleads#acceptInvitation"
   match "/invites" => "vipleads#invites"
   match "/fetchContacts" => "vipleads#fetchContacts"
   resources :vipleads
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
+>>>>>>> d1cf57bd48779452c47f61cbcc327d080f7cdf4f
   match '/home/changestatus' => 'home#changestatus'
   match '/home/saveleadstatus' => 'home#saveleadstatus'
   match 'home/index' => 'home#index'
@@ -45,8 +52,12 @@ Leadpump::Application.routes.draw do
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
   match '/leads/socialInviter' => 'leads#socialInviter'
+<<<<<<< HEAD
+  match '/leads/test' => 'leads#index'
+=======
   match '/home/deleteRowByajax' => 'home#deleteRowByajax'
 
+>>>>>>> d1cf57bd48779452c47f61cbcc327d080f7cdf4f
 
   match 'appointment/new' => 'appointments#new'
   match 'appointment/create' => 'appointments#create'

@@ -52,6 +52,9 @@
         <div class="span8 app_header">
             <div class="border calender">
                 <h2 class="heading">Appointments</h2>
+                 <div class="heading leadHeading">
+                   <%= text_field_tag 'date_filter', nil, :class=>"date_app", :placeholder=>"Date" %> 
+                 </div>
                    <div id= "appt_table">
                      <%= render 'index' %>
                   </div>
