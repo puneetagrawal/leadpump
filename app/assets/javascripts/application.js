@@ -49,12 +49,41 @@ $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
+
+
+ $(document).on('change', '#lead_lead_source', function () {
+        if($(this).val() == "Other") {
+		      $("#text_div").show();
+		    }
+		    else {
+		      $("#text_div").hide();
+		    }
+    });
+
+  $(document).on('change', '#goal', function () {
+        if($(this).val() == "Other") {
+		      $("#text_div_2").show();
+		    }
+		    else {
+		      $("#text_div_2").hide();
+		    }
+    });
+	
 	
 	initialization();
 	initLeadActiveSelect();
 	removeFlash();	
 
 });
+
+// function display_date_range(list) {
+//     if(list.options[list.selectedIndex].value == 9) {
+//       $("text_div").show();
+//     }
+//     else {
+//       $("text_div").hide();
+//     }
+//   }
 
 
 function formfields(){
