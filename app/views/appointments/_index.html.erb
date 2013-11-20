@@ -1,24 +1,26 @@
  <table class="table table-striped">  
-    <thead>
-        <tr>
-          <td style="width: 20%;">Time</td>
-          <td> Appointment </td>
-        </tr>
-    </thead>
-        <tbody>
-            <% @appointments.each do |a| %>
-              <tr>
-               <td class="time"><%= a.appdateTime.strftime("%I:%M %p") %></td>
-                 <td class="green_dark">
-                     <ul>
-                        <li><strong>Member:</strong> <%= a.name %>  </li>
-                        <li><strong>Phone:</strong> <%= a.phone %> </li>
-                        <li><strong>Notes:</strong> <%= a.notes %> </li>
-                        <li><strong>Submitted by:</strong>Golds Gym</li>
-                      </ul>
-                      </td>
-              </tr>
-              <% end %> 
-        </tbody>
+  <thead>
+    <tr>
+      <td style="width: 20%;">Time</td>
+      <td> Appointment </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do |a| %>
+    <tr>
+      <% if a.appdateTime.present?%>
+      <td class="time"><%= a.appdateTime.strftime("%I:%M %p") %></td>
+      <td class="green_dark">
+       <ul>
+        <li><strong>Member:</strong> <%= a.name %>  </li>
+        <li><strong>Phone:</strong> <%= a.phone %> </li>
+        <li><strong>Notes:</strong> <%= a.notes %> </li>
+        <li><strong>Submitted by:</strong>Golds Gym</li>
+      </ul>
+    </td>
+    <%end%>
+  </tr>
+  <% end %> 
+</tbody>
 
-  </table>
+</table>
