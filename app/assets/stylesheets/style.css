@@ -1578,6 +1578,9 @@ width: 120px;
 .red_lead{
     color:red;
 }
+.red_lead:hover{
+    color:red !important;
+}
 .terms_page{
     font-size: 14px;
     font-weight: bold;
