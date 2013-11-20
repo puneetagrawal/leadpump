@@ -1575,8 +1575,24 @@ width: 120px;
 .hide{
     display: none;
 }
+.red_signup{
+    background:red;
+}
+.red_signup:hover{
+    background:red;
+}
+.black_link{
+    color:#000;
+}
+.signin_checkbox{
+    float: left;
+    margin:2px 5px 0 0 !important;
+}
+.signin_label{
+    float: left;
+}
 .red_lead{
-    color:red;
+    color:red !important;
 }
 .red_lead:hover{
     color:red !important;

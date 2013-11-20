@@ -15,10 +15,10 @@
             <p><%= lead.label "Referred By:" %><%= lead.text_field :refferred_by %></p>
 
             <p><%= lead.label "Lead Source:" %><%= lead.select(:lead_source, [['LEADPUMP POS', "LEADPUMP POS"], ['LEADPUMP Opt in', "LEADPUMP Opt in"], ['Member referral', "Member referral"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"], ['Direct mail', "Direct mail"], ['Radio', "Radio"], ['T.V.', "T.V."], ['Other', "Other"]], :prompt => "Select Source") %></p>
-        <p id="text_div" style="display:none;"><%= lead.label " " %> <%= lead.text_field :lead_source %> </p>
+            <p id="text_div"> </p>
 
-            <p><%= lead.label "Goals:" %><%= lead.select(:goal, [['Lose weight', "Lose weight"], ['Improve strength', "Improve strength"], ['Cardiovascular', "Cardiovascular"], ['Stress management', "Stress management"], ['Injury rehab', "Injury rehab"], ['Improve stamina', "Improve stamina"], ['General conditioning', "General conditioning"], ['Overall health', "Overall health"], ['Doctor recommended', "Doctor recommended"], ['Other', "Other"]], :prompt => "Select Goal") %></p>
-            <p id="text_div_2" style="display:none;"> <%= lead.label " " %> <%= lead.text_field :goal %> </p>
+            <p><%= lead.label "Goals:" %><%= lead.select(:goal, [['Lose weight', "Lose weight"], ['Improve strength', "Improve strength"], ['Cardiovascular', "Cardiovascular"], ['Stress management', "Stress management"], ['Injury rehab', "Injury rehab"], ['Improve stamina', "Improve stamina"], ['General conditioning', "General conditioning"], ['Overall health', "Overall health"], ['Doctor recommended', "Doctor recommended"], ['Other', "Other"]],class:"goal_sel", :prompt => "Select Goal")%></p>
+            <p id="text_div_2"> </p>
 
             <p><%= lead.label "Guest Pass Issued:" %><%= lead.select :guest_pass_issued, [['Yes', true], ['No', false]], :prompt => "Select Pass" %></p>
             <p><%= lead.label "# of days:" %><%= lead.select :no_of_days, (1 .. 30), :prompt => "Select No. Of Days" %></p>

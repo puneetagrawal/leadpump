@@ -8,7 +8,7 @@
         <tbody>
             <% @appointments.each do |a| %>
               <tr>
-               <td class="time"><%= a.app_time %></td>
+               <td class="time"><%= a.appdateTime.strftime("%I:%M %p") %></td>
                  <td class="green_dark">
                      <ul>
                         <li><strong>Member:</strong> <%= a.name %>  </li>

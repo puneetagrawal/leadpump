@@ -5,7 +5,6 @@ class Lead < ActiveRecord::Base
   validates :name, :presence => true
   validates :email, :presence => true
   validates :lead_source, :presence => true
-  validates :lead_source, :presence => true
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
   validates :phone, :numericality => {:only_integer => true}, :if => :phone?
 
