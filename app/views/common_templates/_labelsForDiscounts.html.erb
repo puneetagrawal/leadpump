@@ -4,7 +4,7 @@
 							<% if DiscountsOnPeriod.all %>
 							<% DiscountsOnPeriod.all.each do |dp| %>
 							<label class="checkboxCon">
-								<%= radio_button_tag 'planType', "#{dp.id}", :checked => "#{dp.id}" > "1" ?  false : true, :class => "plant #{dp.periodType}"%>
+								<%= radio_button_tag 'planType', "#{dp.id}",:class => "plant #{dp.periodType}"%>
 								<strong>Pay 
 									<%= "#{dp.periodType}"%>
 									<%if dp.discountPercentage > 0%>

@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(:version => 20131120073921) do
     t.integer  "employee_id"
   end
 
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
+  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+
   create_table "companies", :force => true do |t|
     t.integer  "company_user_id"
     t.integer  "company_admin_id"

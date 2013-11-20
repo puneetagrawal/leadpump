@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :getPlan, :only => [:new]
   def new
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     if params[:planPerUser]
       @planPerUser = PlanPerUserRange.find(params[:planPerUser])
       super
@@ -11,13 +12,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    puts params
     resource = build_resource(params[:user])
     resource.role_id = Role.find_by_role_type("company").id
     if resource.valid?
-      @PlanPerUser = params[:planPerUserId] ? PlanPerUserRange.find(params[:planPerUserId]) : nil
+    @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
-      amt = User.signUpAmount(params[:planPerUserId], params[:discountOnUsers], planType)
+      amt = User.signUpAmount(params["user"]["subscription_attributes"]["plan_per_user_range_id"], params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
       customer = Stripe::Customer.create(
         :email => params[:email],
@@ -29,7 +29,7 @@ class RegistrationsController < Devise::RegistrationsController
             :customer => customer.id
       )
       resource.save
-      resource.subscription.plan_per_user_range_id = @planPerUser
+      resource.subscription.plan_per_user_range_id = @planPerUser.id
       resource.subscription.customer_id = charge.id
       resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
       resource.subscription.save
@@ -37,7 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
       flash[:notice] = ""    
       redirect_to success_path()
     else     
-      @PlanPerUser = PlanPerUserRange.find(params[:planPerUserId])
+      @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
       render :action => "new"
     end
   end

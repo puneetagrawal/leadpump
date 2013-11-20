@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :leads, :dependent => :destroy
   has_many :vipLeads, :dependent => :destroy
   has_many :gmailFriends, :dependent => :destroy
+  has_many :authentications , :dependent => :destroy
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
