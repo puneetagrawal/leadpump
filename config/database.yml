@@ -3,7 +3,7 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-development:
+development: &dev
   adapter: postgresql
   host: localhost
   database: dev_leadpump
@@ -26,11 +26,4 @@ test: &test
   password: root
   port: 5432
 
-production:
-adapter: mysql
-database: leadpump
-hostname: localhost
-username: postgres
-password: postgres
-pool: 5
-timeout: 5000
+production: *dev

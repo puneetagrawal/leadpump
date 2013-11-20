@@ -1578,6 +1578,9 @@ width: 120px;
 .red_lead{
     color:red;
 }
+.red_lead:hover{
+    color:red !important;
+}
 .terms_page{
     font-size: 14px;
     font-weight: bold;
@@ -1586,3 +1589,13 @@ width: 120px;
     color:blue;
 }
 
+.taskAssign{
+    width:50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.taskAsgn input{
+    width:50%;
+    margin-bottom: 20px;
+}

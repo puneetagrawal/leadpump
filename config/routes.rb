@@ -46,6 +46,7 @@ Leadpump::Application.routes.draw do
   match '/leads/socialInviter' => 'leads#socialInviter'
 
   match '/leads/test' => 'leads#index'
+  match '/leads/createtask' => 'leads#createtask'
 
   match '/home/deleteRowByajax' => 'home#deleteRowByajax'
 

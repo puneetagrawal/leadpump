@@ -72,6 +72,14 @@ class LeadsController < ApplicationController
     end
 end
 
+def createtask
+  @lead = Lead.find(params[:leadId])
+  @tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
+  respond_to do |format|
+    format.js   
+  end
+end
+
 def leadassigntouser
   user = User.find(params[:userId])
   lead = Lead.find(params[:leadId])

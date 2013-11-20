@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20131120111721) do
     t.integer  "users_count"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.date     "expiry_date"
   end
 
   create_table "user_leads", :force => true do |t|
