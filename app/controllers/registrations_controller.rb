@@ -19,31 +19,33 @@ class RegistrationsController < Devise::RegistrationsController
       amt = User.signUpAmount(params["user"]["subscription_attributes"]["plan_per_user_range_id"], params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
 
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-      logger.debug(params)
-      logger.debug(params["user"]["email"])
-      logger.debug(@planPerUser.plan.name)
-      email = params["user"]["email"].to_s
-      customer = Stripe::Customer.create(
-        :email => email,
-        :description => "Subscribed for #{@planPerUser.plan.name} plan.",
-        :card  => params["user"]["subscription_attributes"]["stripe_card_token"]
+      begin
+        email = params["user"]["email"].to_s
+        customer = Stripe::Customer.create(
+          :email => email,
+          :description => "Subscribed for #{@planPerUser.plan.name} plan.",
+          :card  => params["user"]["subscription_attributes"]["stripe_card_token"]
+          )
+        charge = Stripe::Charge.create(
+              :amount => total_amount, # in cents
+              :currency => "usd",
+              :customer => customer.id
         )
-      charge = Stripe::Charge.create(
-            :amount => total_amount, # in cents
-            :currency => "usd",
-            :customer => customer.id
-      )
-      resource.save
-      resource.subscription.plan_per_user_range_id = @planPerUser.id
-      resource.subscription.customer_id = charge.id
-      resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
-      #@todaydate = "2013-12-30 11:59:59"
-      #@todaytime.to_time.strftime('%a %b %d %H:%M:%S %Z %Y')
-      #resource.expiry_date = 
-      resource.subscription.save
-      sign_in(resource_name, resource)  
-      redirect_to success_path()
+        resource.save
+        resource.subscription.plan_per_user_range_id = @planPerUser.id
+        resource.subscription.customer_id = charge.id
+        resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
+        #@todaydate = "2013-12-30 11:59:59"
+        #@todaytime.to_time.strftime('%a %b %d %H:%M:%S %Z %Y')
+        #resource.expiry_date = 
+        resource.subscription.save
+        sign_in(resource_name, resource)  
+        redirect_to success_path()
+      rescue Exception => e
+        @cardError = "Your have problem in your card"
+        @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
+        render :action => "new"
+      end
     else     
       @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
       render :action => "new"

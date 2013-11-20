@@ -51,18 +51,41 @@ function initLeadCreateOrUpdate(){
 		leadId = $("#leadid").val();
 		assignLeadToUser($(this).val(), leadId);
 	});
-	$("#submitApoint").on('click', '#taskBtn', function (){
-		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
-		task = $("#createLeadTask").val();
-		time = $("#hr").val()+":"+$("#min").val()+":"+$("#sec").val();
-		date = $("#app_date").val();
-		if(task && time && date){
-		}
-		else{
-		}
-	});
+
 }
 
+function tashtest(){
+	$(".taskBtn").click(function (){
+		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		task = $("#createLeadTask").val();
+		date = $("#app_date").val();
+		time = $("#app_date").val()+" "+$("#hr").val()+":"+$("#min").val()+":"+$("#zon").val();
+		leadId = $("#leadid").val();
+		if(task == ''){
+
+		}
+		else if(time == ''){
+
+		}
+		else if($("#hr").val() == ''){
+
+		}
+		if(task && time && date){
+			url = '/leads/saveappointment';
+			$.get(url, {task:task,date:date,time:time,leadId:leadId}, function (data) {
+				alert(data.msg);
+				$(this).html('<input type="button" style="margin:0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52" id="submitApoint" value="submit" name="submitApoint">');
+				$.fancybox.close();
+			});
+		}
+		else{
+			alert("Please enter all fields");
+			$(this).html('<input type="button" style="margin:0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52" id="submitApoint" value="submit" name="submitApoint">');
+		}
+		
+
+	});
+}
 
 function openTask(obj){
 	id = $(obj).closest('tr').attr('id');

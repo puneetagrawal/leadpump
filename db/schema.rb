@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20131120090804) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "employee_id"
+    t.string   "task"
+    t.datetime "appdateTime"
+    t.integer  "user_id"
+    t.integer  "lead_id"
   end
 
   create_table "companies", :force => true do |t|
@@ -185,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20131120090804) do
     t.integer  "role_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+    t.string   "token"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

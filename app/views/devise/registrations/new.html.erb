@@ -12,7 +12,11 @@
 					</div>
 					<span class="span7">
 						<%= devise_error_messages! %>
-						<div class="errors" id="stripe_error"></div>
+						<div class="errors" id="stripe_error">
+							<%if @cardError.present?%>
+								<%=@cardError%>
+							<%end%>
+						</div>
 						<%= render :template => "devise/registrations/_signupUserFields", :locals => { :f => f} %>	
 						
 						<%= f.fields_for :addresses, Address.new do |adr| %>
