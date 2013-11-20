@@ -52,5 +52,7 @@ def create
   @filter_appointment = Appointment.where(:app_date => params[:appointment_date]).all
  end
 
+ 
+
 end
 

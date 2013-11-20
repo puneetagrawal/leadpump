@@ -159,6 +159,21 @@ end
 def socialInviter
 end
 
-
+def saveappointment
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  logger.debug(params)
+  time = DateTime.strptime(params[:time], '%Y-%m-%d %I:%M:%p')
+  logger.debug(time)
+  lead = params[:leadId] ? Lead.find(params[:leadId]) : nil
+  msg = "Please try again."
+  if lead.present?
+    appoint = Appointment.create(:task=>params[:task],:appdateTime=>time,:lead_id=>lead.id)
+    msg = "Appointment schedule successfully"
+  end
+  data = {"msg" => msg}
+  respond_to do |format|
+    format.json { render json: data}
+  end
+ end
 
 end

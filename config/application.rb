@@ -71,8 +71,8 @@ module Leadpump
         enable_starttls_auto: true,
         #user_name: "webteam786@gmail.com",
         #password: "webteam786"
-        user_name: "vishwanath.yadav@ongraph.com",
-        password: "vishu@ongraph"
+        user_name: "Support@LeadPump.com",
+        password: "4trading"
       } 
     end
 end
