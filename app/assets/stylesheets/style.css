@@ -1575,4 +1575,27 @@ width: 120px;
 .hide{
     display: none;
 }
+.red_lead{
+    color:red;
+}
+.red_lead:hover{
+    color:red !important;
+}
+.terms_page{
+    font-size: 14px;
+    font-weight: bold;
+}
+.blue_link{
+    color:blue;
+}
 
+.taskAssign{
+    width:50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.taskAsgn input{
+    width:50%;
+    margin-bottom: 20px;
+}

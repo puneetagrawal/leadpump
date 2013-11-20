@@ -1,16 +1,24 @@
 class HomeController < ApplicationController
-	skip_before_filter :authenticate_user!, :only => [:calculateAmount]
+	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms]
 
     def index
     	@user = User.new
     end
 
+    def terms
+    
+    end
+
+    # def social_inviter
+    #   @referrer = User.find(params[:token])
+    # end
+
     def calculateAmount
         @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])
         respond_to do |format|
           format.json { render json: @msg}
-      end
-  end  
+        end
+   end  
 
   def fillpopupcontent
     if(params[:urls].include? 'company')
@@ -37,12 +45,15 @@ end
 def saveleadstatus
   if(params[:urls].include?'company')
     object = User.find(params[:leadId])  
+    object.active = params[:status] == "false" ? false : true
+    status = Lead.checkLeadStatus(object.active)
   else
     object = Lead.find(params[:leadId])  
+    object.status = params[:status]
+    status = params[:status]
   end
-  object.active = params[:status] == "false" ? false : true
-  object.save
-  status = Lead.checkLeadStatus(object.active)
+   object.save
+  
   msg = {"status"=>status}
   render json:msg
 end

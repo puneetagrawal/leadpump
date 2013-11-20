@@ -1,9 +1,11 @@
 class Lead < ActiveRecord::Base
-  attr_accessible :name, :lname, :active, :address, :phone, :email, :address, :refferred_by, :goal, :lead_source, :guest_pass_issued, :dues_value, :enrolment_value, :notes, :user_id
+  attr_accessible :name, :lname, :active, :address, :phone, :email, :address, :refferred_by, :goal, :lead_source, :guest_pass_issued, :dues_value, :enrolment_value, :notes, :user_id, :status, :no_of_days
   belongs_to :user
 
   validates :name, :presence => true
   validates :email, :presence => true
+  validates :lead_source, :presence => true
+  validates :lead_source, :presence => true
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
   validates :phone, :numericality => {:only_integer => true}, :if => :phone?
 
@@ -39,8 +41,6 @@ def self.fetchLeadList(user)
       users = userList
       userList << user.id
       leads = UserLeads.select("distinct(lead_id)").where(:user_id => userList)
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-      logger.debug(leads)
       users = users.collect{|user| User.find(user)}
     when :employee
       leads = UserLeads.includes(:lead).where(:user_id => user.id)
@@ -48,7 +48,7 @@ def self.fetchLeadList(user)
     hash = {:leads=>leads,:userList=>users}
 end
 
-def self.checkLeadStatus(status)
+  def self.checkLeadStatus(status)
      status = status ? "Active" : "Inactive"
     
   end

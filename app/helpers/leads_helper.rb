@@ -33,8 +33,8 @@ module LeadsHelper
 		end
 
 		if !assigntext.blank?
-			assigntext = "<span id='asignBtn_#{leadId}' class='leadAction'>
-			  					| <%=link_to '#{assigntext}', 'javascript:void(0)',html={:class=>'leadAction assignLead'}%>
+			assigntext = "<span id='asignBtn_#{leadId}' class='leadAction '>
+			  					| <%=link_to '#{assigntext}', 'javascript:void(0)',html={:class=>'leadAction assignLead red_lead'}%>
 							</span>"
 
 		end

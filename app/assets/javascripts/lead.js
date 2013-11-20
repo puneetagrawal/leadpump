@@ -44,9 +44,39 @@ function initLeadCreateOrUpdate(){
 	$("#deleteContent").on('click', '.leadDeleteBtn', function (){
 		deleteLead(this);
 	});
+	$(".container").on('click', '.task', function (){
+		openTask(this);
+	});
+	$("#assignLeadSelect").on('change', '.createLeadTask', function (){
+		leadId = $("#leadid").val();
+		assignLeadToUser($(this).val(), leadId);
+	});
+	$("#submitApoint").on('click', '#taskBtn', function (){
+		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		task = $("#createLeadTask").val();
+		time = $("#hr").val()+":"+$("#min").val()+":"+$("#sec").val();
+		date = $("#app_date").val();
+		if(task && time && date){
+		}
+		else{
+		}
+	});
 }
 
 
+function openTask(obj){
+	id = $(obj).closest('tr').attr('id');
+	leadid = id.split("_")[1];
+	$.fancybox.open({
+		href: '#createTask',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/leads/createtask';
+			$.get(url, {leadId:leadid}, function (data) {
+			});
+		}
+	});
+}
 
 function leadEdit(obj){
 	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 200px;float:left;">')

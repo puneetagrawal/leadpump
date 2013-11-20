@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131113170653) do
+=======
+ActiveRecord::Schema.define(:version => 20131120090804) do
+>>>>>>> fd94042a5be1c59777d307bce8927d6a355c79f2
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -97,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20131113170653) do
     t.datetime "updated_at",                                       :null => false
     t.string   "goal"
     t.string   "lname"
+    t.string   "status"
+    t.integer  "no_of_days"
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|
@@ -146,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20131113170653) do
     t.integer  "users_count"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.date     "expiry_date"
   end
 
   create_table "user_leads", :force => true do |t|

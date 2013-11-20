@@ -66,7 +66,7 @@ module Leadpump
     config.action_mailer.smtp_settings = {
         address: "smtp.gmail.com",
         port: 587,
-        domain: "162.243.60.57:3000",
+        domain: "signin.leadpump.com",
         authentication: "plain",
         enable_starttls_auto: true,
         #user_name: "webteam786@gmail.com",

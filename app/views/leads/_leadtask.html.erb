@@ -1,0 +1,22 @@
+<div class="span4 margin_width">    
+    <div class="taskAsgn">
+        <h2 class="heading" style="border-radius:5px;">Create Task</h2>
+	        <%=hidden_field_tag :leadid, @lead.id%>
+	        <%=select_tag "createLeadTask", options_for_select(@tasklist),:prompt => "Create Task",:class=>"createLeadTask taskAssign" %>
+
+	        <p> <label>Appt. time: </label>
+                <%= text_field_tag :app_time%>
+            </p>
+            <p> <label>Date of Appt: </label>
+                <%= text_field_tag :app_date %>
+            </p>
+            <p class="taskBtn"> 
+                <input type="button" name="submitApoint" value="submit" id="submitApoint" style="margin:0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52">
+            </p>
+    </div>        
+</div>
+
+<script type="text/javascript">
+	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+	
+</script>

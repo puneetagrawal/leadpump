@@ -1,5 +1,5 @@
 class Emailer < ActionMailer::Base
-  default from: "vishuatdev@gmail.com"
+  default from: "Support@LeadPump.com"
   def gmail_referral_mail()
     #@user = user
     email = "vishwanath.yadav@ongraph.com"
@@ -9,13 +9,15 @@ class Emailer < ActionMailer::Base
   end
   def password_reset(user, reset_token)
   	@user = user
+    email = @user.email
   	@reset_token = reset_token
   	logger.debug(">>*************")
+    logger.debug(email)
   	logger.debug(@user.reset_password_token)
   	@url = "localhost:3000/users/password/edit?initial=true&reset_password_token=#{reset_token}"
   	logger.debug(">>>>>>>>>>>>>")
   	logger.debug @url
 		
-		mail(to: "vs9170@gmail.com", subject: 'you are created')
+		mail(to: email, subject: 'Set password for LEADPUMP.com employee user account')
   end
 end

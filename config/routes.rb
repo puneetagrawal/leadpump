@@ -21,7 +21,6 @@ Leadpump::Application.routes.draw do
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
   match '/home/changestatus' => 'home#changestatus'
   match '/home/saveleadstatus' => 'home#saveleadstatus'
-  match 'home/index' => 'home#index'
   match '/success' => 'home#success'
   match '/home/calculateAmount' => 'home#calculateAmount'
   match '/home/validateEmail' => 'home#validateEmail'
@@ -45,7 +44,9 @@ Leadpump::Application.routes.draw do
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
   match '/leads/socialInviter' => 'leads#socialInviter'
+
   match '/leads/test' => 'leads#index'
+  match '/leads/createtask' => 'leads#createtask'
 
   match '/home/deleteRowByajax' => 'home#deleteRowByajax'
 
@@ -58,6 +59,8 @@ Leadpump::Application.routes.draw do
   root to: "home#index"
 
   match 'home/index' => 'home#index'
+  match 'home/social_inviter' => 'home#social_inviter'
+  match 'home/terms' => 'home#terms'
   match '/success' => 'home#success'
   
   match '/test' => 'home#test'

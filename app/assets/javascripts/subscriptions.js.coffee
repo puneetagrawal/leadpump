@@ -43,7 +43,8 @@ subscription =
 
   validateCard: ->
       card =
-        name: $('#person_name').val()
+        email: $('#user_email').val()
+        name: $('#customerName').val()
         type: $('#credit_card').val()
         number: $('#card_number').val()
         cvc: $('#card_code').val()
