@@ -12,12 +12,15 @@
             <p><%= lead.label "Phone:" %><%= lead.text_field :phone %></p>
             <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
             <p><%= lead.label "Address:" %><%= lead.text_field :address %></p>
-            <p><%= lead.label "Refferred By:" %><%= lead.text_field :refferred_by %></p>
-            <p><%= lead.label "Lead Source:" %><%= lead.select :lead_source, [['Direct Mailer', "Direct Mailer"], ['Lead Box ', "Lead Box"], ['LeadPump - Traditional', "LeadPump - Traditional"], ['LeadPump - Opt in', "LeadPump - Opt in"], ['Member Referral', "Member Referral"], ['Radio ad', "Radio ad"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"]] %></p>
-            <p><%= lead.label "Goals:" %><%= lead.select :goal, [['Build muscle', "Build muscle"], ['Build strength', "Build strength"], ['Doctor recommended', "Doctor recommended"], ['Firm up', "Firm up"], ['Lose weight', "Lose weight"], ['Overall health', "Overall health"], ['Rehabilitation', "Rehabilitation"]] %></p>
+            <p><%= lead.label "Referred By:" %><%= lead.text_field :refferred_by %></p>
+            <p><%= lead.label "Lead Source:" %><%= lead.select :lead_source, [['LEADPUMP POS', "LEADPUMP POS"], ['LEADPUMP Opt in', "LEADPUMP Opt in"], ['Member referral', "Member referral"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"], ['Direct mail', "Direct mail"], ['Radio', "Radio"], ['T.V.', "T.V."], ['Other', "Other"]] %></p>
+
+            <p><%= lead.label "Goals:" %><%= lead.select :goal, [['Lose weight', "Lose weight"], ['Improve strength', "Improve strength"], ['Cardiovascular', "Cardiovascular"], ['Stress management', "Stress management"], ['Injury rehab', "Injury rehab"], ['Improve stamina', "Improve stamina"], ['General conditioning', "General conditioning"], ['Overall health', "Overall health"], ['Doctor recommended', "Doctor recommended"], ['Other', "Other"]] %></p>
+
             <p><%= lead.label "Guest Pass Issued:" %><%= lead.select :guest_pass_issued, [['Yes', true], ['No', false]] %></p>
-            <p><%= lead.label "Dues Value:" %><%= lead.text_field :dues_value %></p>
-            <p><%= lead.label "Enrolment Value:" %><%= lead.text_field :enrolment_value %></p>
+            <p><%= lead.label "# of days:" %><%= lead.select :no_of_days,(1 .. 30) %></p>
+            <p><%= lead.label "Potential enrollment $:" %><%= lead.text_field :enrolment_value %></p>
+            <p><%= lead.label "Potential dues $:" %><%= lead.text_field :dues_value %></p>
             <p><%= lead.label "Notes:" %><%= lead.text_field :notes %></p>
             <p class="submitLeadBtn">
                 

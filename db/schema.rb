@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115225634) do
+ActiveRecord::Schema.define(:version => 20131120073921) do
+
   create_table "addresses", :force => true do |t|
     t.string   "address"
     t.string   "city"
@@ -96,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20131115225634) do
     t.datetime "updated_at",                                       :null => false
     t.string   "goal"
     t.string   "lname"
+    t.string   "status"
+    t.integer  "no_of_days"
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|

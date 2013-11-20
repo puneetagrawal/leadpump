@@ -1568,4 +1568,14 @@ width: 120px;
 .hide{
     display: none;
 }
+.red_lead{
+    color:red;
+}
+.terms_page{
+    font-size: 14px;
+    font-weight: bold;
+}
+.blue_link{
+    color:blue;
+}
 

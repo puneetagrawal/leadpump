@@ -1,6 +1,6 @@
 <script>
  function fbs_click() {
-        u=location.href;
+        u="http://localhost:3000/home/terms?token=<%= current_user.name %>&fb=true";
         t=document.title;
         m="https://www.google.com/images/srpr/logo3w.png",
         window.open("http://www.facebook.com/sharer.php?s=100&p[url]=" + u + "&p[title]=" + t + "&p[summary]=Lorem ipsum dolor amet" + "&p[images][0]="+m,'sharer','toolbar=0,status=0,width=626,height=436');
