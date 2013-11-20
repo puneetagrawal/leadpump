@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :getPlan, :only => [:new]
   def new
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     if params[:planPerUser]
       @planPerUser = PlanPerUserRange.find(params[:planPerUser])
       super
@@ -19,8 +18,15 @@ class RegistrationsController < Devise::RegistrationsController
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
       amt = User.signUpAmount(params["user"]["subscription_attributes"]["plan_per_user_range_id"], params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
+
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(params)
+      logger.debug(params["user"]["email"])
+      logger.debug(@planPerUser.plan.name)
+      email = params["user"]["email"].to_s
       customer = Stripe::Customer.create(
-        :email => params[:email],
+        :email => email,
+        :description => "Subscribed for #{@planPerUser.plan.name} plan.",
         :card  => params["user"]["subscription_attributes"]["stripe_card_token"]
         )
       charge = Stripe::Charge.create(
@@ -32,9 +38,11 @@ class RegistrationsController < Devise::RegistrationsController
       resource.subscription.plan_per_user_range_id = @planPerUser.id
       resource.subscription.customer_id = charge.id
       resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
+      #@todaydate = "2013-12-30 11:59:59"
+      #@todaytime.to_time.strftime('%a %b %d %H:%M:%S %Z %Y')
+      #resource.expiry_date = 
       resource.subscription.save
       sign_in(resource_name, resource)  
-      flash[:notice] = ""    
       redirect_to success_path()
     else     
       @planPerUser = PlanPerUserRange.find(params[:planPerUserId])

@@ -1576,3 +1576,13 @@ width: 120px;
     display: none;
 }
 
+.taskAssign{
+    width:50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.taskAsgn input{
+    width:50%;
+    margin-bottom: 20px;
+}

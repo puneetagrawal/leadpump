@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115225634) do
+ActiveRecord::Schema.define(:version => 20131120090804) do
+
   create_table "addresses", :force => true do |t|
     t.string   "address"
     t.string   "city"
@@ -38,17 +39,6 @@ ActiveRecord::Schema.define(:version => 20131115225634) do
     t.datetime "updated_at",  :null => false
     t.integer  "employee_id"
   end
-
-  create_table "authentications", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
-  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "companies", :force => true do |t|
     t.integer  "company_user_id"
@@ -156,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20131115225634) do
     t.integer  "users_count"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.date     "expiry_date"
   end
 
   create_table "user_leads", :force => true do |t|
