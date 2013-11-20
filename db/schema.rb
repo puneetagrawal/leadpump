@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20131120090804) do
     t.datetime "updated_at",                                       :null => false
     t.string   "goal"
     t.string   "lname"
+    t.string   "status"
+    t.integer  "no_of_days"
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|
