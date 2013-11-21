@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120090804) do
+ActiveRecord::Schema.define(:version => 20131120140857) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -189,7 +189,6 @@ ActiveRecord::Schema.define(:version => 20131120090804) do
     t.integer  "role_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
-    t.string   "token"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

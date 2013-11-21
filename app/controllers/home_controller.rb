@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms]
+	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
 
     def index
     	@user = User.new
@@ -11,6 +11,9 @@ class HomeController < ApplicationController
 
     def social_inviter
       # @referrer = User.find(params[:token])
+    end
+
+    def welcome
     end
 
     def calculateAmount
