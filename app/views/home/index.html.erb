@@ -1,10 +1,9 @@
 <script>
-<<<<<<< HEAD
  function fbs_click() {
         u="http://localhost:3000/home/social_inviter?token=<%= current_user.name %>&fb=true";
         t=document.title;
-        m="https://www.google.com/images/srpr/logo3w.png",
-        window.open("http://www.facebook.com/sharer.php?s=100&p[url]=" + u + "&p[title]=" + t + "&p[summary]=Lorem ipsum dolor amet" + "&p[images][0]="+m,'sharer','toolbar=0,status=0,width=626,height=436');
+        m="localhost:3000/assets/logo.png",
+        window.open("http://www.facebook.com/sharer.php?s=100&p[url]=" + u + "&p[title]=" + t + "&p[summary]=I just joined Your gym name here, here a free 7-day pass for you.Come join me!" + "&p[images][0]="+m,'sharer','toolbar=0,status=0,width=626,height=436');
         return false;
     }  
     tweet_token = "<%=current_user.name%>"
@@ -25,13 +24,12 @@
                 <%end %>
             </li>
             <%end%> 
-            <%if current_user.role.role_type == "employee"%>
-            <li>
-                <%=link_to(new_viplead_path, html_options = {}) do %>
-                <i class="icon icon_socialInviter"></i><span>Social Inviters</span><span></span>                  
-                <%end %>
-            </li>
-            <%end%>
+                <li>
+                    <%=link_to(new_viplead_path, html_options = {}) do %>
+                    <i class="icon icon_socialInviter"></i><span>Social Inviters</span><span></span>                  
+                    <%end %>
+                </li>
+
             <li>
                 <%=link_to(new_appointment_path(), html_options = {}) do %>
                 <i class="icon icon_opt_in_lead"></i><span>Appointments</span>                 

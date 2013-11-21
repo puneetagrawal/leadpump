@@ -7,9 +7,17 @@
         <h3>Share on Facebook</h3>
         <p>Share this message with your friends on Facebook. The following tweet will be posted to your Facebook stream.</p>
         <form class="form">
-            <textarea>I just joined "Your gym name here", here's a free 7-day pass for you.Come join me!
+            <textarea>
+                I just joined "Your gym name here", here's a free 7-day pass for you.Come join me!
             </textarea>
-            <a class="btn yellow" href="#">Share on facebook</a>
+            <!-- <a class="btn yellow" href="#">Share on facebook</a> -->
+            <%#= text_field_tag :social_invite, nil, :class=>"text_fb"  %> 
+
+            <div id="share_text" style="display:none;"> </div>   
+            
+            <a href="http://www.facebook.com/share.php?u=<url>" onclick="return fbs_click()" target="_blank"> 
+                <img src= "http://b.static.ak.fbcdn.net/images/share/facebook_share_icon.gif?8:26981" alt="" width="50" height="25" />
+            </a>
         </form>
     </div>
 </div>

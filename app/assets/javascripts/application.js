@@ -55,9 +55,8 @@ $(document).ready(function(){
 	});
 
 	$("#social_invite").focusout(function(){
-		 
 		twttr.widgets.createShareButton(
-				  "http://192.168.3.177:3000/tweet/ref?token="+tweet_token,
+		    "http://192.168.3.177:3000/tweet/ref?token="+tweet_token,
 			  document.getElementById('new-button'),
 			  function (el) {
 			    console.log("Button created.")
@@ -65,7 +64,8 @@ $(document).ready(function(){
 			  {
 			    count: 'none',
 			    text: $("#share_text").text(),
-
+			});
+		});
 	
 	initialization();
 	initLeadActiveSelect();
@@ -160,6 +160,28 @@ function initialization(){
 		leadId = $("#leadid").val();
 		assignLeadToUser($(this).val(), leadId);
 	});
+
+	$(".ref_submit").click(function (){
+		saveReferral(this);
+	});
+}
+
+function saveReferral(obj){
+	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
+	name = $("#referral_name").val();
+	email = $("#referral_email").val();
+	ref_id = $("#referral_referrer_id").val();
+	if(name && email && ref_id){
+		url = '/savereferral';
+		$.get(url, {name:name, email:email, ref_id:ref_id}, function (data) {
+			$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');	
+		});	
+	}
+	else{
+		alert("all fields are mandatory.")
+		$(obj).html('<input type="button" value="Submit" class="btn yellow social_ref_btn" size="20">');
+	}
+	
 }
 
 function caclulateAmount(){

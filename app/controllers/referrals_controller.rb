@@ -2,7 +2,9 @@ class ReferralsController < ApplicationController
 
 	def new
 		@referral  = Referral.new()
-		@ref = User.where(:name=>params[:token]).last
+		if params[:token].present?
+			@ref = User.where(:token=>params[:token]).last
+		end
 	end
 
 	def create
@@ -18,6 +20,20 @@ class ReferralsController < ApplicationController
 	        viplead.save
 	  		end
 	   end
+	end
+
+	def savereferral
+		referrals = Referral.where(:email=>params[:email], :referrer=>params[:ref_id])
+		if !@referral.present?
+			msg = "Thank you! You have done.W'll get you soon."
+			Referral.create(:email=>params[:email], :referrer=>params[:ref_id], :name=>params[:name])
+    	else
+    		msg = "Token looks invalid or expired."
+		end
+		message = {"msg" => msg}
+		respond_to do |format|
+			format.json { render json: message}
+		end
 	end
 
 end

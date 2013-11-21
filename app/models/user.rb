@@ -89,6 +89,7 @@ class User < ActiveRecord::Base
       user = User.find_by_id(companyId)
       email = user.email
     end
+    return email
   end
 
 def checkLeadLimit
