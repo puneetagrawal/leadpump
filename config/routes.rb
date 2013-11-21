@@ -53,6 +53,7 @@ Leadpump::Application.routes.draw do
   match 'appointment/new' => 'appointments#new'
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
+  match 'leads/saveappointment' => 'leads#saveappointment'
 
   resources :leads 
 

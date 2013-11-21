@@ -51,22 +51,22 @@ $(document).ready(function(){
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 
 
- $(document).on('change', '#lead_lead_source', function () {
+ $(document).on('change', '.lead_source_sel', function () {
         if($(this).val() == "Other") {
-		      $("#text_div").show();
-		    }
-		    else {
-		      $("#text_div").hide();
-		    }
+	      $("#text_div").html('<label for="lead_ "> </label><input type="text" value="" placeholder="Please specify" name="lead[lead_source]" id="lead_lead_source">');
+	    }
+	    else {
+	      $("#text_div").html('');
+	    }
     });
 
-  $(document).on('change', '#goal', function () {
+  $(document).on('change', '.goal_sel', function () {
         if($(this).val() == "Other") {
-		      $("#text_div_2").show();
-		    }
-		    else {
-		      $("#text_div_2").hide();
-		    }
+	      $("#text_div_2").html('<label for="lead_ "> </label><input type="text" value="" size="30" placeholder="Please specify" name="lead[goal]" id="lead_goal">');
+	    }
+	    else {
+	      $("#text_div_2").html('');
+	    }
     });
 	
 	
