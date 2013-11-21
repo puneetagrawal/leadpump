@@ -137,6 +137,14 @@ ActiveRecord::Schema.define(:version => 20131120140857) do
     t.datetime "updated_at",              :null => false
   end
 
+  create_table "referrals", :force => true do |t|
+    t.string   "referrer"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "role_type"
     t.datetime "created_at", :null => false

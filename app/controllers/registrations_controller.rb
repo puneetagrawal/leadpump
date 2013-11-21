@@ -18,7 +18,6 @@ class RegistrationsController < Devise::RegistrationsController
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
       amt = User.signUpAmount(params["user"]["subscription_attributes"]["plan_per_user_range_id"], params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
-
       begin
         email = params["user"]["email"].to_s
         customer = Stripe::Customer.create(
@@ -35,9 +34,7 @@ class RegistrationsController < Devise::RegistrationsController
         resource.subscription.plan_per_user_range_id = @planPerUser.id
         resource.subscription.customer_id = charge.id
         resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
-        #@todaydate = "2013-12-30 11:59:59"
-        #@todaytime.to_time.strftime('%a %b %d %H:%M:%S %Z %Y')
-        #resource.expiry_date = 
+        resource.subscription.expiry_date = DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p')
         resource.subscription.save
         sign_in(resource_name, resource)  
         redirect_to success_path()

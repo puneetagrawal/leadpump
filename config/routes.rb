@@ -24,6 +24,7 @@ Leadpump::Application.routes.draw do
   match '/success' => 'home#success'
   match '/home/calculateAmount' => 'home#calculateAmount'
   match '/home/validateEmail' => 'home#validateEmail'
+  match '/welcome' => 'home#welcome'
   #   member do
       
   #   end

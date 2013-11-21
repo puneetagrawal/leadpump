@@ -1,8 +1,17 @@
 <header>
     <div class="container">
-        <h2 class="fl"><%=link_to home_index_path do%>   
+        <h2 class="fl">
+            <%- if current_user %>
+                <%=link_to home_index_path do%>   
                   <img src="/assets/logo.png">
-            <%end %></h2>
+                <%end %>
+            <%else%>
+                <%=link_to welcome_path do%>   
+                  <img src="/assets/logo.png">
+                <%end %>
+            <%end%>
+            
+        </h2>
         <ul class="pull-left punchline">
             <li><i class="txt_red">Pump</i> Up Leads,</li> 
             <li>Pump <i class="txt_red">Up</i> Sales,</li>
@@ -33,7 +42,11 @@
                         </a>
                         <div class="nav-collapse collapse fr">
                             <ul class="nav">
-                                <li><%= link_to "Home", home_index_path, :class => "active" %></li>
+                                <%- if current_user %>
+                                    <li><%= link_to "Home", home_index_path, :class => "active" %></li>
+                                <%else%>
+                                    <li><%= link_to "Home", welcome_path, :class => "active" %></li>
+                                <%end%>
                             </ul>
                         </div>
                     </div>

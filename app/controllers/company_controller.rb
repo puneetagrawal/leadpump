@@ -23,15 +23,11 @@ class CompanyController < ApplicationController
       if @user.save      
         company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
         company.save
-        @user.send_reset_password_instructions
-        # Emailer.password_reset(@user, @user.reset_password_token).deliver
-        # raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
-
-        # self.reset_password_token   = enc
-        # self.reset_password_sent_at = Time.now.utc
-        # self.save(:validate => false)
-
-        # send_devise_notification(:reset_password_instructions, raw, {})
+        begin 
+          @user.send_reset_password_instructions
+        rescue Exception => e
+          logger.debug(e)
+        end
         flash[:success] = "User successfully created"
         redirect_to company_new_path()      
       else
