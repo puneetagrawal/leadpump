@@ -1,7 +1,7 @@
 Leadpump::Application.routes.draw do
 
   match '/appointments/filter_app' => 'appointments#filter_app'
-
+  match '/tweet/ref' => 'tweet_referrals#new'
   resources :discounts_on_periods
   resources :appointments
   resources :discounts_on_locations
@@ -9,6 +9,8 @@ Leadpump::Application.routes.draw do
   resources :subscriptions
   resources :plans
   resources :vipleads
+  resources :referrals
+  resources :tweet_referrals
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
@@ -60,7 +62,8 @@ Leadpump::Application.routes.draw do
   root to: "home#index"
 
   match 'home/index' => 'home#index'
-  match 'home/social_inviter' => 'home#social_inviter'
+  match 'home/social_inviter' => 'referrals#new'
+
   match 'home/terms' => 'home#terms'
   match '/success' => 'home#success'
   

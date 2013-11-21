@@ -9,11 +9,11 @@ class HomeController < ApplicationController
     
     end
 
-    def social_inviter
-      # @referrer = User.find(params[:token])
-      # logger.debug @referrer
-      # logger.debug "+++++++++++++"
-    end
+    # def social_inviter
+    #   # @referrer = User.find(params[:token])
+    #   # logger.debug @referrer
+    #   # logger.debug "+++++++++++++"
+    # end
 
     def calculateAmount
         @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])

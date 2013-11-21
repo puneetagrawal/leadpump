@@ -33,10 +33,6 @@
           if email.present? && name.present?
             gmailcontact = GmailFriend.where(:user_id => current_user.id, :email => email)
             if !gmailcontact.present?
-              logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-              logger.debug(email)
-              logger.debug(name)
-              logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
               gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>current_user.id)
               gmailfreind.save
             end
@@ -71,9 +67,7 @@
 
   def acceptInvitation
     #Emailer.gmail_referral_mail().deliver
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     user = User.find(1)
-    logger.debug(user.reset_password_token)
     msg = ""
     token = params[:token]
     if !token.blank?

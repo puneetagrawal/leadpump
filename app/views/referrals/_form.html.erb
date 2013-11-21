@@ -1,0 +1,23 @@
+<%= form_for @referral, :html => {:class => "forms"} do |ref| %>
+
+<%if @referral.errors.any? %>
+    <div class="alert alert-error">
+        <% @referral.errors.full_messages do |msg| %>
+        <p> <%= msg %> </p>
+        <% end %>
+    </div>
+<%end%>
+<div id="showErrors"></div>
+
+    <div class="border app_header">
+        <h2 class="heading headmsg">Add A New User</h2>
+        <div class="form pd15 leadform">
+             <p><%= ref.label "Name:" %><%= ref.text_field :name %></p>
+             <p><%= ref.label "Email:" %><%= ref.text_field :email %></p>
+             <p><%= ref.label "Referred By:" %><%= ref.text_field :referrer, :value=>@ref.id, :readonly=>true %></p>
+             <br/><br/>
+         </div>       
+          <input type="submit" size="20" class="btn yellow" value="Submit"/> 
+            <br/><br/>
+    </div>    
+    <%end%>    

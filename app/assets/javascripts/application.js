@@ -20,15 +20,18 @@
 
 
 $(document).ready(function(){
- 
-	$("#social_invite").keyup(function(e) {
+ 	$("#social_invite").keyup(function(e) {
 	   $("#share_text").text($(this).val());
 	});
 
+	$("#social_invite").keydown(function(e) {
+	    $(".twitter-share-button").hide();
+	});
+
 	$("#social_invite").focusout(function(){
-		  $(".twitter-share-button").hide();
+		 
 		twttr.widgets.createShareButton(
-				  'http://192.168.3.177:3000/leads/test',
+				  "http://192.168.3.177:3000/tweet/ref?token="+tweet_token,
 			  document.getElementById('new-button'),
 			  function (el) {
 			    console.log("Button created.")
