@@ -26,4 +26,12 @@ test: &test
   password: postgres
   port: 5432
 
-production: *dev
+staging: &stag
+  adapter: postgresql
+  host: "localhost"
+  database: dev_leadpump
+  pool: 5
+  timeout: 5000
+  username: postgres
+  password: postgres
+  port: 5432

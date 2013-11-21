@@ -41,6 +41,21 @@ module LeadsHelper
 		return render(:inline=> assigntext)
 	end	 
 
-	
+	def fetchTasklink(leadId)
+		user = User.find(current_user.id) 	
+		tasktext = 'Task'
+		case user.user_role.role_type.to_sym	
+		when :normalUser
+			tasktext = ''
+		end
+		if tasktext != ''
+			app = Appointment.find_by_lead_id(leadId)
+			if app.present?
+				tasktext = "ReTask"	
+			end
+			tasktext = "<%=link_to '#{tasktext}', 'javascript:void(0)',html={:class=>'leadAction task'}%>"
+			return render(:inline=> tasktext)
+		end
 
+	end
 end

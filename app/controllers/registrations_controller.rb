@@ -17,7 +17,6 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.valid?
       @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
       resource.subscription.plan_per_user_range_id = @planPerUser.id
-     
       resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
       resource.subscription.expiry_date = DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p')
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
@@ -37,6 +36,7 @@ class RegistrationsController < Devise::RegistrationsController
         )
         if resource.save
           resource.subscription.customer_id = charge.id
+          resource.subscription.payment = amt["amount"].to_i
           resource.subscription.save
           sign_in(resource_name, resource)  
           redirect_to success_path()
@@ -64,7 +64,7 @@ class RegistrationsController < Devise::RegistrationsController
         @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
         render :action => "new"
       rescue => e
-        @cardError = "Something else happened, Please try again"
+        @cardError = "Something bad happened, Please try again"
         @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
         render :action => "new"
       end

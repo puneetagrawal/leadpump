@@ -13,6 +13,7 @@
   <%=link_to "Edit", "javascript:void(0)",html={:class=>"leadAction leadEdit"}%> | 
   <%=link_to "Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete"}%>
   <%=checkIfCompanyAdmin(lead.id)%> | 
-  <%=link_to "Task", "javascript:void(0)",html={:class=>"leadAction task"}%>
+  <%=fetchTasklink(lead.id)%>
+  
 </td>    
   

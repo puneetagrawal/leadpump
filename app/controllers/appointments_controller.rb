@@ -2,37 +2,10 @@ class AppointmentsController < ApplicationController
 
 def new
  @appointments = Appointment.all
- @appointment = Appointment.new()
- # @tym = Hash.new
- # @appointments.each do |appointment|
- #  # debugger
- #  if @tym.has_key?(appointment.app_date) 
-	# 	@tym[appointment.app_time][:appointments][:id] = Hash.new
-	# 	@tym[appointment.app_time][:appointments][:id]  = appointment.id
- #      @tym[appointment.app_time][:appointments][:time]  = appointment.app_time
- #   		@tym[appointment.app_time][:appointments][:name]  = appointment.name
- #   		@tym[appointment.app_time][:appointments][:phone]  = appointment.phone
- #   		@tym[appointment.app_time][:appointments][:notes]  = appointment.notes
- #      logger.debug @tym[appointment.app_time][:appointments][:name]
- #      logger.debug "+++++++++++++"
- #   else
- #   		@tym[appointment.app_time] = Hash.new
- #   		@tym[appointment.app_time][:appointments] = Hash.new
- #   		@tym[appointment.app_time][:appointments][:id] = Hash.new
- #   		@tym[appointment.app_time][:appointments][:id]  = appointment.id
- #      @tym[appointment.app_time][:appointments][:time]  = appointment.app_time
- #   		@tym[appointment.app_time][:appointments][:name]  = appointment.name
- #   		@tym[appointment.app_time][:appointments][:phone]  = appointment.phone
- #   		@tym[appointment.app_time][:appointments][:notes]  = appointment.notes
- #        logger.debug @tym[appointment.app_time][:appointments][:name]
- #      logger.debug "**********************"
- #   end
- # end
 end
 
 def index
    @appointments = Appointment.all	
-
 end
 
 def create

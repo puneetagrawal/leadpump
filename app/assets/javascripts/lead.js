@@ -54,7 +54,7 @@ function initLeadCreateOrUpdate(){
 
 }
 
-function tashtest(){
+function tasksave(){
 	$(".taskBtn").click(function (){
 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 		task = $("#createLeadTask").val();
@@ -62,28 +62,24 @@ function tashtest(){
 		time = $("#app_date").val()+" "+$("#hr").val()+":"+$("#min").val()+":"+$("#zon").val();
 		leadId = $("#leadid").val();
 		if(task == ''){
-
+			alert("please schedule task");
 		}
-		else if(time == ''){
-
+		else if(date == ''){
+			alert("please select date");
 		}
 		else if($("#hr").val() == ''){
-
+			alert("please schedule time");
 		}
-		if(task && time && date){
+		else {
 			url = '/leads/saveappointment';
 			$.get(url, {task:task,date:date,time:time,leadId:leadId}, function (data) {
 				alert(data.msg);
-				$(this).html('<input type="button" style="margin:0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52" id="submitApoint" value="submit" name="submitApoint">');
+				$(this).html('<input type="button" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px" id="submitApoint" value="submit" name="submitApoint">');
+				$("#viewLead_"+leadId).find(".task").text("ReTask");
 				$.fancybox.close();
 			});
 		}
-		else{
-			alert("Please enter all fields");
-			$(this).html('<input type="button" style="margin:0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52" id="submitApoint" value="submit" name="submitApoint">');
-		}
-		
-
+		$(this).html('<input type="button" style="margin:0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52" id="submitApoint" value="submit" name="submitApoint">');
 	});
 }
 

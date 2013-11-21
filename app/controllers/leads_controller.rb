@@ -74,6 +74,23 @@ end
 
 def createtask
   @lead = Lead.find(params[:leadId])
+  @appointment = Appointment.find_by_lead_id(@lead.id)
+  @task = ''
+  @hour = ''
+  @min = ''
+  @zone = ''
+  if @appointment.present?
+    @date = @appointment.appdateTime.strftime("%Y-%m-%d")
+    @task = @appointment.task
+    @hour = @appointment.appdateTime.hour
+    @min = @appointment.appdateTime.min
+    if @hour >= 12 
+      @zone = "pm"
+      @hour = @appointment.appdateTime.hour - 12
+    else
+      @zone = "am"
+    end
+  end
   @tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
   respond_to do |format|
     format.js   

@@ -35,9 +35,13 @@ as &quot;Paid Memberships&quot;).</P>
 for the Paid Membership Editions are set forth on the LEADPUMP Web
 sites under the following urls:</P>
 
-<P STYLE="margin-bottom: 0.14in"><A HREF="http://signin.leadpump.com/plans/new?maxUsers=1" class="blue_link">
-http://signin.leadpump.com/plans/new?maxUsers=1</A><BR><A HREF="http://signin.leadpump.com/plans/new?maxUsers=2
-" class="blue_link">http://signin.leadpump.com/plans/new?maxUsers=2</A><BR><A HREF="http://signin.leadpump.com/plans/new?maxUsers=3" class="blue_link">http://signin.leadpump.com/plans/new?maxUsers=3</A><BR><A HREF="http://signin.leadpump.com/plans/new?maxUsers=4" class="blue_link">http://signin.leadpump.com/plans/new?maxUsers=4</A><BR><A HREF="http://signin.leadpump.com/plans/new?maxUsers=5" class="blue_link">http://signin.leadpump.com/plans/new?maxUsers=5</A></P>
+<P STYLE="margin-bottom: 0.14in"><%=link_to "#{SERVER_URL}/plans/new?maxUsers=1","#{SERVER_URL}/plans/new?maxUsers=1", :class=>"blue_link"%>			
+<BR>
+<%=link_to "#{SERVER_URL}/plans/new?maxUsers=2","#{SERVER_URL}/plans/new?maxUsers=2", :class=>"blue_link"%><BR>
+<%=link_to "#{SERVER_URL}/plans/new?maxUsers=3","#{SERVER_URL}/plans/new?maxUsers=3", :class=>"blue_link"%><BR>
+<%=link_to "#{SERVER_URL}/plans/new?maxUsers=4","#{SERVER_URL}/plans/new?maxUsers=4", :class=>"blue_link"%><BR>
+<%=link_to "#{SERVER_URL}/plans/new?maxUsers=5","#{SERVER_URL}/plans/new?maxUsers=5", :class=>"blue_link"%>
+</P>
 
 <P STYLE="margin-bottom: 0.14in">The fees listed are binding.
 Payments for the Paid Membership Editions shall be due immediately

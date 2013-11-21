@@ -4,6 +4,10 @@ Leadpump::Application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+  SERVER_URL = "http://signin.leadpump.com"
+  STRIPE_API_KEY = "sk_live_uZbFMn8jJDxYhcWBJMRz4kZS"
+  STRIPE_PUB_KEY = "pk_live_IEcenF7CwslP7o1kXeRcYCQS"
+  
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.
@@ -33,9 +37,12 @@ Leadpump::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  config.action_mailer.default_url_options = { :host => '162.243.60.57:3000' }
+
+  config.action_mailer.default_url_options = { :host => SERVER_URL }
 
   # ActionMailer Config
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+
+
 end
