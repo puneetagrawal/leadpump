@@ -10,9 +10,9 @@
   <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>
 </td>
 <td class="leadAction">
-  <%=link_to "Edit", "javascript:void(0)",html={:class=>"leadAction leadEdit red_lead"}%> | 
-  <%=link_to "Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete red_lead"}%>
+  <%=link_to "Edit", "javascript:void(0)",html={:class=>"leadAction leadEdit"}%> | 
+  <%=link_to "Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete"}%>
   <%=checkIfCompanyAdmin(lead.id)%> | 
-  <%=link_to "Task", "javascript:void(0)",html={:class=>"leadAction task red_lead"}%>
+  <%=link_to "Task", "javascript:void(0)",html={:class=>"leadAction task"}%>
 </td>    
   

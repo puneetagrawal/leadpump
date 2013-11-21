@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms]
+	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
 
     def index
     	@user = User.new
@@ -14,6 +14,9 @@ class HomeController < ApplicationController
     #   # logger.debug @referrer
     #   # logger.debug "+++++++++++++"
     # end
+
+    def welcome
+    end
 
     def calculateAmount
         @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])

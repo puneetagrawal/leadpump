@@ -205,7 +205,6 @@ ActiveRecord::Schema.define(:version => 20131121065307) do
     t.integer  "role_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
-    t.string   "token"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -1,0 +1,315 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        var outer       = $("#preview_outer");
+        var arrow       = $("#arrow");
+        var thumbs      = $("#thumbs span");
+        var preview_pos;
+        var preview_els = $("#preview_inner div");
+        var image_width = preview_els.eq(0).width();
+        thumbs.click(function() {
+            preview_pos = preview_els.eq( thumbs.index( this) ).position();
+            outer.stop().animate( {'scrollLeft' : preview_pos.left},    500 );
+            arrow.stop().animate( {'left' : $(this).position().left },  500 );
+        });
+        arrow.css( {'left' : thumbs.eq(0).position().left } ).show();
+        outer.animate( {'scrollLeft' : 0}, 0 );
+        $("#preview_inner").css('width', preview_els.length * image_width);
+    });
+</script>
+
+<div class="welcome_con">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="home_video">
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/30VAxy_YXBM" frameborder="0" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="welcome_heading"><h3 class="txt_red">PUMP UP YOUR</h3></div>
+                <p class="welcome_heading_2">Leads, Sales & Profits!</p>
+                <ul class="charter_presale">
+                    <h3>Charter Member - Pre-Sale Pricing</h3>
+                    <li>* Save 33%</li>
+                    <li>* No enrollment fee (normally $497)</li>
+                    <li>* No long-term contracts</li>
+                </ul>
+                <h3 class="ending_soon">Charter member pricing ends soon...</h3>
+                <div>
+                    <div>
+                        <%=link_to "View Charter Member Pricing", new_plan_path , :class=>"btn orangebtn" %>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="width_full light welcome_page">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12 text-center">
+                <h2>Instantly Increase Leads By Up To 30% A Month!</h2>
+                <h3>LEAD<i class="txt_red">PUMP</i>.com is easy, automated and trackable.</h3>
+            </div>
+        </div>
+        <div class="row-fluid welcome_icons">
+            <div class="span4">
+                <img src="/assets/welcome_pg_invite.png"/>
+                <h3>Invite Friends</h3>
+                <p>Create a compelling offer for your
+                    members to share  with friends so
+                    they engage  your brand along
+                    with great incentives for
+                    members to share.</p>
+            </div>
+            <div class="span4">
+                <img src="/assets/welcome_pg_ad.png"/>
+                <h3>Word of Mouth Advertising</h3>
+                <p>A customer recommending your business to a friend
+                    provides credibility and reduces doubt in a the
+                    prospects mind. Our technology, combined
+                    with your members allows you to spread the word
+                    to 100â€™ even 1000â€™s with a click of a button.</p>
+            </div>
+            <div class="span4">
+                <img src="/assets/welcome_pg_sale.png"/>
+                <h3>Increased Sales</h3>
+                <p>Our system provides your club with qualified
+                    prospects that convert to additional
+                    membership and profit center sales.
+                    Easy, automated, trackable,
+                    and guaranteed!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="width_full dark welcome_page">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12 text-center">
+                <h2>Itâ€™s Time To Pump Up Your Leads, Sales and Profits!</h2>
+                <p class="font_20">Lock in Charter Member pricing today then test drive our software for a 14-day no obligation
+                    trial upon our official launch date. Donâ€™t Delay, Get Started Today!</p>
+                    <%=link_to "View Charter Member Pricing", new_plan_path , :class=>"btn orangebtn mt10" %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="width_full light welcome_page">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="sliderArea">
+                    <div style="position:absolute;left:292px;top:30px;width:82px;height:89px;">
+                        <div id="preview_wrap">
+                            <div id="preview_outer">
+                                <div id="preview_inner" style="width: 2200px;">
+                                    <div>
+                                        <span>
+                                            <p>The Basic Plan is idea for those organizations looking to enter all leads/products into
+                                            a cloud based centralized location that can be accessed  from the internet. It gives the user
+                                                the ability to enter all contact details, make notes, schedule tasks like follow up calls
+                                                and club tours on the daily, weekly, monthly calender.
+                                            </p>
+                                            <ul class="welcome_slider">
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_1.png"/></span>
+                                                    <h3>Cloud Storage</h3>
+                                                    <p>Central location of all leads</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_2.png"/></span>
+                                                    <h3>Customer Ralations Manager</h3>
+                                                    <p>Manage interactions with future members</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assetsimg/slider_icon_3.png"/></span>
+                                                    <h3>Calendar</h3>
+                                                    <p>Schedule reminders, tasks, calls and tours</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_4.png"/></span>
+                                                    <h3>management</h3>
+                                                    <p>Track your teams leads</p>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                        <a href="http://serifaddons.com">Image One</a>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <p>The Advanced plan has all the basic plan features. It also allows your organization
+                                                to collect 3-5 traditional buddy referrals at the point of sale. In addition you
+                                                have the ability to create daily sales reports with monthly projections. Our dashboard
+                                                keeps your manager informed of what is happening in your club!
+                                            </p>
+                                            <ul class="welcome_slider">
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_5.png"/></span>
+                                                    <h3>All Basic Features +</h3>
+                                                    <p>Additional functionality and features</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_6.png"/></span>
+                                                    <h3>Sales Reports</h3>
+                                                    <p>Produce daily, weekly, monthly sales reports stored in the cloud</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_7.png"/></span>
+                                                    <h3>Sales Projections</h3>
+                                                    <p>Produce monthly sales projections</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_8.png"/></span>
+                                                    <h3>Enhanced Dashboard</h3>
+                                                    <p>Track your teams leads</p>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                        <a href="http://serifaddons.com">Image Two</a>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <p>The Professional plan is designed for the club looking to PUMP UP their Leads!
+                                                You create an invitation to be sent by your member to their friends, family
+                                                members and co-workers. Our technology allows the member to easily retrive all e-mail,
+                                                Facebook and Twitter contacts and invite them to your club with the click of a button.
+                                                The Online mall then rewards your member for the referrals.
+                                            </p>
+                                            <ul class="welcome_slider">
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_5.png"/></span>
+                                                    <h3>Message Creator</h3>
+                                                    <p>Create a compelling invitation to your club for your member to send to friends</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_11.png"/></span>
+                                                    <h3>Traditional Referrals</h3>
+                                                    <p>Collect 3-5 names and numbers at point of sale</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_9.png"/></span>
+                                                    <h3>Virtual Mall - member Rewards</h3>
+                                                    <p>Increase profit centers with member rewards</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_12.png"/></span>
+                                                    <h3>LEADPUMP<strong class="superscript">TM</strong> Inviter</h3>
+                                                    <p>Import your members contacts, share invitation and guest pass to 100's
+                                                    even 1,000's with the click of a button</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_10.png"/></span>
+                                                    <h3>Internal Landing Pages</h3>
+                                                    <p>High converting landing pages</p>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                        <a href="http://serifaddons.com">Image Three</a>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <p>The Professional Pro plan is ideal for the club owner or operator that would like
+                                                generate maximum leads and additionally convert those leads into memberships
+                                                on-line through our "buy now" sales portal. In-turn lower your new member
+                                                acquisition costs and increase membership enrollments with out having to pay
+                                                sales commissions or pay for advertising!
+                                            </p>
+                                            <p>
+                                                includes training and supports section with proven methods and invaluable
+                                                information on how to <strong>PUMP</strong> your club up!
+                                            </p>
+                                            <ul class="welcome_slider">
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_13.png"/></span>
+                                                    <h3>Former Miss Utah</h3>
+                                                    <p>Encourage potential members to take that first steps starting
+                                                    a fitness program at your club</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_15.png"/></span>
+                                                    <h3>Buy Membership Now</h3>
+                                                    <p>Our on-line sales portal allows your potential member to join before even
+                                                    coming to<br> your club</p>
+                                                </li>
+                                                <li>
+                                                    <span><img src="/assets/slider_icon_14.png"/></span>
+                                                    <h3>Training and Support</h3>
+                                                    <p>Proven methods, Invaluable information</p>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                        <a href="http://serifaddons.com">Image Four</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="thumbs">
+                            <div id="arrow" style="left: 355px; display: block;"></div>
+                            <span><img src="/assets/thumb-01.jpg" alt=""></span>
+                            <span><img src="/assets/thumb-02.jpg" alt=""></span>
+                            <span><img src="/assets/thumb-03.jpg" alt=""></span>
+                            <span><img src="/assets/thumb-04.jpg" alt=""></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="width_full light_gray welcome_page">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="client_img">
+                    <img src="img/user_img.png"/>
+                </div>
+            </div>
+            <div class="span10">
+                <div class="blockquote">
+                    <p>Our industry has needed an online solution for this for some time. It is a win for the
+                        consumer and a win for the health club owner or operator. A job well done.</p>
+                    <span class="txt_red">- Randy Young - </span><span class="pdl15">Powerhouse Gym, MI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container footerLinks">
+    <div class="row-fluid">
+        <div class="span2">
+            <h2>LEAD<i class="txt_red">PUMP</i></h2>
+            <ul>
+                <li><a href="#">Features - Plans</a></li>
+                <li><a href="#">Testimonials</a></li>
+            </ul>
+        </div>
+        <div class="span2">
+            <h2>About Us</h2>
+            <ul>
+                <li><a href="#">Our Team</a></li>
+            </ul>
+        </div>
+        <div class="span2">
+            <h2>Support</h2>
+            <ul>
+                <li><a href="#">FAQ's</a></li>
+                <li><a href="#">Training</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="span3">
+            <h2>LEADPUMP is mobile</h2>
+            <ul class="for_mobile">
+                <li>iPhone.<i class="iphone_icon"></i></li>
+                <li>iPad.<i class="ipad_icon"></i></li>
+                <li>Android<i class="android_icon"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>

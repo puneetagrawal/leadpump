@@ -65,7 +65,9 @@
                             </div>
                             <div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
                             <div class="plan-signup">
-                                <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                                <%if !current_user%>
+                                    <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -174,7 +176,11 @@
                         </span>                        
                     </div>
                     <div class="col-footer">
-                        <div class="plan-signup"><%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %></div>
+                        <div class="plan-signup">
+                            <%if !current_user%>
+                                <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                            <%end%>
+                        </div>
                     </div>
                 </div>
                 
