@@ -26,14 +26,13 @@
 								<%= f.label :remember_me, :class=>"signin_label" %>
 							</p>
 						<% end %>
-						<div style="width:100%;float:left;">
-							<p style="float:left;clear:none;width:30%">
+						
+							<p>
 								<%= f.submit "Sign in" , :class => "btn green"%>
+								<%= link_to "Sign up", new_plan_path(:maxUsers => 1), :class => "btn red" %>
 							</p>
-							<p style="float:left;width:30%;clear:none;">
-								<%= link_to "Sign up", new_plan_path(:maxUsers => 1), :class => "btn green red_signup" %><br />
-							</p>
-						</div>
+							
+						
 						<p>
 							<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
 								  <%= link_to "Forgot your password?", new_password_path(resource_name), :class=>"black_link" %><br />

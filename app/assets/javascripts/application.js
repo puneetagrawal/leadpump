@@ -201,7 +201,7 @@ function assignLeadToUser(userId, leadId){
 	url = '/leads/leadassigntouser';
 	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
 		$("#emp_"+leadId).html(data.name);
-		$("#asignBtn_"+leadId).html('| <a class="leadAction assignLead red_lead" href="javascript:void(0)">Reassign</a>');
+		$("#asignBtn_"+leadId).html('| <a class="leadAction assignLead" href="javascript:void(0)">Reassign</a>');
 		$("#users_"+leadId).remove();	
 		$.fancybox.close();
 	});
@@ -226,20 +226,17 @@ function saveLeadStatus(id, status){
 }
 
 function showSuccessMsg(msg){
-	$(".successMsg").addClass('alert alert-success').text(msg);
 	$("html, body").animate({ scrollTop: 0 }, "slow");
+	$(".successMsg").addClass('alert alert-success').text(msg).fadeIn('slow').animate({top:"80px"});
 	setTimeout(hideSuccessMsg, 3000);
 }
 
 function hideSuccessMsg(){
-	if($(".successMsg").length){
-		$(".successMsg").removeClass('alert alert-success').text('');		
-	}
-	if($(".flashes").length){
-		$(".flashes").removeClass('alert alert-success').text('');	
+	if($(".flashes").text().length){
+		$(".flashes").animate({top: "10px"}, 2000).fadeOut('slow');
 	}
 }
 
 function removeFlash(){
-	setTimeout(hideSuccessMsg, 3000);
+	setTimeout(hideSuccessMsg, 2500);
 }

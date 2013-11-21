@@ -154,6 +154,11 @@ ul {
 }
 a {
     outline: none;
+    color: #ff0000;
+}
+a:hover {
+    color: #ff0000;
+    text-decoration: underline;
 }
 
 .fl {
@@ -290,13 +295,32 @@ textarea {
 .btn:hover {
     background: #ddd;
 }
+
+
 .red {
-    background: #ed1c24;
-    border-color: #ad1016;
+    border: 1px solid #ad1016!important;
+    color: #FFF!important;
+    text-shadow: 0 -1px 1px rgba(80, 138, 6, 0.8)!important;
+    background-color: #ed1c24 2%;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+    background-size: 100%;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(1%,#ff0000),color-stop(2%,#ed1c24),color-stop(100%,#ad1016));
+    background-image: -webkit-linear-gradient(#ff0000 1%,#ed1c24 2%,#ad1016);
+    background-image: -o-linear-gradient(#ff0000 1%,#ed1c24 2%,#ad1016);
+    background-image: -moz-linear-gradient(#ff0000 1%,#ed1c24 2%,#ad1016);
+    background-image: linear-gradient(#ff0000 1%,#ed1c24 2%,#ad1016);
 }
 .red:hover {
-    background: #ad1016;
+    background-color: #98080d 2%;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+    background-size: 100%;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(1%,#ff0000),color-stop(2%,#ed1c24),color-stop(100%,#98080d));
+    background-image: -webkit-linear-gradient(#ff0000 1%,#ed1c24 2%,#98080d);
+    background-image: -moz-linear-gradient(#ff0000 1%,#ed1c24 2%,#98080d);
+    background-image: -o-linear-gradient(#ff0000 1%,#ed1c24 2%,#98080d);
+    background-image: linear-gradient(#ff0000 1%,#ed1c24 2%,#98080d);
 }
+
 .yellow {
     background: #ffde52;
     border-color: #e8c943;
@@ -327,20 +351,13 @@ label {
 }
 
 /*layout*/
-a {
-    color: #ffde52;
-    text-decoration: none;
-}
-a:hover {
-    color: #e0c13e;
-    text-decoration: underline;
-}
+
 a:focus {
-    color: #e0c13e;
+    color: #ff0000;
     text-decoration: none;
 }
 .link {
-    color: #e0c13e;
+    color: #ff0000;
 }
 
 .borderbox {
@@ -570,7 +587,6 @@ header {
     color: #FFF;
     width: 100%;
     background-color: #343434;
-    margin-bottom: 15px;
 
 }
 header h2 {
@@ -1710,10 +1726,12 @@ header h2 a {
 
 .flashes{
     font-size: 17px;
-    margin-left: 28%;
     text-align: center;
-    width: 40%;
+    width: 50%;
     font-weight: bold;
+    position: fixed;
+    top: 80px;
+    left:24%;
 }
 
 .w27{
@@ -1844,12 +1862,8 @@ width: 120px;
 .signin_label{
     float: left;
 }
-.red_lead{
-    color:red !important;
-}
-.red_lead:hover{
-    color:red !important;
-}
+
+
 .terms_page{
     font-size: 14px;
     font-weight: bold;
