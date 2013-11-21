@@ -1891,3 +1891,9 @@ width: 120px;
     padding: 7px 0;
     width: 17%;
 }
+.social_invite{
+    width:30%;
+    height:auto;
+    text-align: center;
+    margin-left: 30%;
+}

@@ -20,32 +20,8 @@
 
 
 $(document).ready(function(){
- 
-	// $("#social_invite").keyup(function(e) {
-	//    $("#share_text").text($(this).val());
-	// });
 
-	// $("#social_invite").focusout(function(){
-	// 	  $(".twitter-share-button").hide();
-	// 	twttr.widgets.createShareButton(
-	// 			  'http://192.168.3.177:3000/leads/test',
-	// 		  document.getElementById('new-button'),
-	// 		  function (el) {
-	// 		    console.log("Button created.")
-	// 		  },
-	// 		  {
-	// 		    count: 'none',
-	// 		    text: $("#share_text").text(),
-			    
-	// 		  }
-	// 		);
-	// })
-
- //   $.getScript('https://platform.twitter.com/widgets.js', function(){
- //  	 	twttr.widgets.load();
-	// }); 
-
-
+	
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
@@ -69,6 +45,27 @@ $(document).ready(function(){
 	    }
     });
 	
+
+ 	$("#social_invite").keyup(function(e) {
+	   $("#share_text").text($(this).val());
+	});
+
+	$("#social_invite").keydown(function(e) {
+	    $(".twitter-share-button").hide();
+	});
+
+	$("#social_invite").focusout(function(){
+		 
+		twttr.widgets.createShareButton(
+				  "http://192.168.3.177:3000/tweet/ref?token="+tweet_token,
+			  document.getElementById('new-button'),
+			  function (el) {
+			    console.log("Button created.")
+			  },
+			  {
+			    count: 'none',
+			    text: $("#share_text").text(),
+
 	
 	initialization();
 	initLeadActiveSelect();

@@ -9,11 +9,11 @@ class HomeController < ApplicationController
     
     end
 
-    def social_inviter
-      # @referrer = User.find(params[:token])
-      # logger.debug @referrer
-      # logger.debug "+++++++++++++"
-    end
+    # def social_inviter
+    #   # @referrer = User.find(params[:token])
+    #   # logger.debug @referrer
+    #   # logger.debug "+++++++++++++"
+    # end
 
     def welcome
     end

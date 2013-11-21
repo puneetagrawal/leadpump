@@ -8,10 +8,12 @@ class User < ActiveRecord::Base
   has_many :vipLeads, :dependent => :destroy
   has_many :gmailFriends, :dependent => :destroy
   has_many :authentications , :dependent => :destroy
+  has_many :referrals
+  has_many :tweet_referrals
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
-  
+  after_create :generate_token
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :title, :body
@@ -46,7 +48,6 @@ class User < ActiveRecord::Base
     amounts = @amount.amount * 100
     return amounts
   end
-
 
   def self.signUpAmount(planId, du, dp)
       @plan = planId ? PlanPerUserRange.find(planId) : nil
@@ -125,5 +126,13 @@ end
 def self.numeric?(object)
   true if Float(object) rescue false
 end
+
+  protected
+
+  def generate_token
+    random_token = SecureRandom.urlsafe_base64(nil, false)
+    self.token = random_token
+  end
+
 
 end

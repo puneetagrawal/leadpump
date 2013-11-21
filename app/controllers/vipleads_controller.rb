@@ -67,9 +67,7 @@
 
   def acceptInvitation
     #Emailer.gmail_referral_mail().deliver
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     user = User.find(1)
-    logger.debug(user.reset_password_token)
     msg = ""
     token = params[:token]
     if !token.blank?

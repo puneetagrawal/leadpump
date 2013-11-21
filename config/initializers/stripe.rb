@@ -1,4 +1,3 @@
 
 Stripe.api_key  = STRIPE_API_KEY
 STRIPE_PUBLIC_KEY = STRIPE_PUB_KEY
-
