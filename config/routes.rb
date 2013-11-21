@@ -12,7 +12,7 @@ Leadpump::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  root to: "home#index"
+  root to: "home#welcome"
 
   match "/acceptInvitation" => "vipleads#acceptInvitation"
   match "/invites" => "vipleads#invites"
