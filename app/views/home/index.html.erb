@@ -1,6 +1,6 @@
 <script>
  function fbs_click() {
-        u="http://localhost:3000/home/terms?token=<%= current_user.name %>&fb=true";
+        u="http://localhost:3000/home/social_inviter?token=<%= current_user.name %>&fb=true";
         t=document.title;
         m="https://www.google.com/images/srpr/logo3w.png",
         window.open("http://www.facebook.com/sharer.php?s=100&p[url]=" + u + "&p[title]=" + t + "&p[summary]=Lorem ipsum dolor amet" + "&p[images][0]="+m,'sharer','toolbar=0,status=0,width=626,height=436');
@@ -39,7 +39,7 @@
         </ul>
     </div>
 
-    <!-- <div class="row-fluid" style="height:340px">
+    <div class="row-fluid" style="height:340px">
     
     <%= text_field_tag :social_invite, nil, :class=>"text_fb"  %> 
 
@@ -52,6 +52,6 @@
         <img src= "http://b.static.ak.fbcdn.net/images/share/facebook_share_icon.gif?8:26981" alt="" width="35" height="25" />
     </a>
 
- </div> -->
+ </div>
 </div>
 

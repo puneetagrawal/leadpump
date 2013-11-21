@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120111721) do
+ActiveRecord::Schema.define(:version => 20131120131401) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -131,6 +131,14 @@ ActiveRecord::Schema.define(:version => 20131120111721) do
     t.boolean  "national_spokeswoman"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+  end
+
+  create_table "referrals", :force => true do |t|
+    t.string   "referrer"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|
