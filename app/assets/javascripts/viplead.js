@@ -23,21 +23,25 @@ function initSocialInviter(){
 		});	
 	});
 	$(document).on('click', '.sendReferralEmailBtn', function (){
-		emaillist = '';
+		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		emaillist = [];
 		$(".gmailContactChekbox").each(function(){
 			if($(this).is(":checked")){
-				if (emaillist == ''){
-					emaillist = $(this).closest('.email_label').text();	
-				}
-				else{
-					emaillist = emaillist + ","+ $(this).closest('.email_label').text();		
-				}
-				alert(emaillist);
+				emaillist.push($(this).siblings('.email_label').text());	
 			}
 		});
-		url = '/sendIvitationToGmailFriend';
-		$.get(url, {emaillist:emaillist}, function (data) {
-		});
+		if(emaillist.length){
+			url = '/sendIvitationToGmailFriend';
+			$.get(url, {emaillist:emaillist}, function (data) {
+				alert(data.msg);
+				$.fancybox.close();
+			});	
+		}
+		else{
+			alert("please select members.");
+			$(this).html('<a class="btn yellow sendReferralEmailBtn" href="javascript:void(0)">Send Invitations</a>');
+		}
+		
 	});
 }
 

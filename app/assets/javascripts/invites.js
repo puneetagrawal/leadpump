@@ -10,7 +10,6 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
 });
 
 function fetchEmailContact(){

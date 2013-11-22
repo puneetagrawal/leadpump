@@ -172,7 +172,13 @@ function saveReferral(obj){
 	email = $("#referral_email").val();
 	ref_id = $("#referral_referrer_id").val();
 	if(name && email && ref_id){
-		url = '/savereferral';
+		urls = window.location.pathname
+		if(urls.indexOf("acceptinvitation") > -1){
+			url = '/acceptinvitation';
+		}
+		else{
+			url = '/savereferral';	
+		}
 		$.get(url, {name:name, email:email, ref_id:ref_id}, function (data) {
 			$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');	
 		});	

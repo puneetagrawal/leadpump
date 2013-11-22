@@ -78,8 +78,6 @@
   end
 
   def sendIvitationToGmailFriend
-    logger.debug(">?>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(params)
     emails = params[:emaillist]
     token = current_user.token
     if emails.present?
@@ -87,28 +85,30 @@
         Emailer.gmail_referral_mail(email, token).deliver
       end
     end
+    message = {"msg"=> "successfully sent invitations."}
+    render json: list
   end
 
-  def acceptInvitation
-    user = User.find_by_token(params[:token])
-    msg = ""
-    token = params[:token]
-    if !token.blank?
-      gmailcontact = GmailFriend.find_by_secret_token(token)
-      if !gmailcontact.present?
-        msg = "You are unautherise user or your token is invalid"
-      elsif gmailcontact.active
-        msg = "You have already used this token"
-      else
-        gmailcontact.update_attributes(:active=>true)
-        gmailReferral.create(:first_name)
-        #viplead = VipLead.create(:first_name=>gmailcontact.name, :email=>gmailcontact.email, :active=>true, :user_id=>gmailcontact.user_id)
-        #viplead.save
-        msg = "You are successfuly created as lead"
-      end
-     end
-     flash[:success] = msg 
-  end
+  # def acceptInvitation
+  #   user = User.find_by_token(params[:token])
+  #   msg = ""
+  #   token = params[:token]
+  #   if !token.blank?
+  #     gmailcontact = GmailFriend.find_by_secret_token(token)
+  #     if !gmailcontact.present?
+  #       msg = "You are unautherise user or your token is invalid"
+  #     elsif gmailcontact.active
+  #       msg = "You have already used this token"
+  #     else
+  #       gmailcontact.update_attributes(:active=>true)
+  #       gmailReferral.create(:first_name)
+  #       #viplead = VipLead.create(:first_name=>gmailcontact.name, :email=>gmailcontact.email, :active=>true, :user_id=>gmailcontact.user_id)
+  #       #viplead.save
+  #       msg = "You are successfuly created as lead"
+  #     end
+  #    end
+  #    flash[:success] = msg 
+  # end
 
   def acceptInvitation
     @referral  = GmailReferral.new()
@@ -156,7 +156,6 @@ def searchvipleads
       list = leads.map {|l| Hash[id: l.id, label: l.last_name, name: l.last_name]}
    end
  end
- logger.debug(list)
  render json: list
 end
 
