@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131122120728) do
-=======
-ActiveRecord::Schema.define(:version => 20131122094635) do
->>>>>>> 2a16723a4a9e81bf07d770a2e38d34dd6c02e347
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -181,9 +177,9 @@ ActiveRecord::Schema.define(:version => 20131122094635) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "referrer"
   end
 
   create_table "user_leads", :force => true do |t|
