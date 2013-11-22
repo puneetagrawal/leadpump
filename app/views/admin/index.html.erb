@@ -12,7 +12,7 @@
                     <tr> <td><%= user.name %></td> 
                   		 <td><%= user.email %></td>
                     	 <td><%= user.subscription.plan_type %> </td>
-                         <td>  </td>
+                         <td> <%=user.subscription.plan_per_user_range.plan.name%> </td>
                          <td> <%= user.subscription.payment %> </td>
                          <td> <%= user.subscription.users_count %> </td>
                      </tr>
@@ -21,18 +21,6 @@
                     <% end %>
                 </table>
             </div>
-           <!--  <div class="row-fluid">
-                <div class="span4 pull-left mt10">Showing 1 to 3 of 3 entries</div>
-                <div class="span3 pull-right">
-                    <ul class="pager">
-                        <li class="previous">
-                            <a class="link" href="#">&larr; Previous</a>
-                        </li>
-                        <li class="next">
-                            <a class="link" href="#">Next &rarr;</a>
-                        </li>
-                    </ul></div>
-            </div> -->
         </div>
     </div>
 </div>
