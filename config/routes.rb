@@ -31,6 +31,14 @@ Leadpump::Application.routes.draw do
   match '/home/validateEmail' => 'home#validateEmail'
   match '/welcome' => 'home#welcome'
   match '/savereferral' => 'referrals#savereferral'
+  match '/savetweet' => 'tweet_referrals#savereferral'
+  match '/admin/index' => 'admin#index'
+
+   namespace :admin do
+     root :to => "admin#index"
+     resources :users, :subscriptions, :plans
+  end
+
   #   member do
       
   #   end
