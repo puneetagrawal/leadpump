@@ -25,7 +25,7 @@ class ReferralsController < ApplicationController
 	def savereferral
 		referrals = Referral.where(:email=>params[:email], :referrer=>params[:ref_id])
 		if !@referral.present?
-			msg = "Thank you! You have done.W'll get you soon."
+			msg = "Thank you! You have done.Will get you soon."
 			Referral.create(:email=>params[:email], :referrer=>params[:ref_id], :name=>params[:name])
     	else
     		msg = "Token looks invalid or expired."

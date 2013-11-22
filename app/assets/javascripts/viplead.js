@@ -28,4 +28,5 @@ function executeSecondStep(name){
 	$(".social_options ul li").each(function(){$(this).addClass("hide")});
 	$("."+name).removeClass('hide');
 	$(".stepNo3").removeClass('disabled');
+
 }

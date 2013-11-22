@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="row-fluid">
+                <div class="span4 pull-left optFilter">
+                    <form class="form"><span>Show</span><select><option>10</option><option>20</option><option>50</option></select>
+                        <span>entries</span></form>
+                </div>
+                <div class="span3 pull-right optFilter">
+                    <form class="form text-right"><span>Search</span><input class="input-medium" placeholder="Search" type="search"></form>
+                </div>
+            </div>
+            <div class="border">
+                <table class="table table-striped">
+                    <thead>
+                        <tr><td>Associate</td><td>VIP Name</td><td>VIP Phone Number</td><td>VIP Status</td><td>Actions</td></tr>
+                    </thead>
+                    <tbody>
+                    <%=render "vipleadContentRow"%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row-fluid">
+                <div class="span4 pull-left mt10">Showing 1 to 3 of 3 entries</div>
+                <div class="span3 pull-right">
+                    <ul class="pager">
+                        <li class="previous">
+                            <a class="link" href="#">&larr; Previous</a>
+                        </li>
+                        <li class="next">
+                            <a class="link" href="#">Next &rarr;</a>
+                        </li>
+                    </ul></div>
+            </div>
+        </div>
+    </div>
+</div>

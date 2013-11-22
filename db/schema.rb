@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121065307) do
+ActiveRecord::Schema.define(:version => 20131122094635) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -154,21 +154,24 @@ ActiveRecord::Schema.define(:version => 20131121065307) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "plan_per_user_range_id"
     t.string   "stripe_card_token"
-    t.integer  "customer_id"
     t.integer  "user_id"
     t.integer  "locations_count"
     t.integer  "users_count"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.date     "expiry_date"
+    t.string   "plan_type"
+    t.integer  "payment"
+    t.string   "customer_id"
+    t.string   "charge_id"
   end
 
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "referrer"
   end
 
   create_table "user_leads", :force => true do |t|
@@ -205,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20131121065307) do
     t.integer  "role_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+    t.string   "token"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

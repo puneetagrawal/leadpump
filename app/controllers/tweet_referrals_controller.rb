@@ -2,7 +2,9 @@ class TweetReferralsController < ApplicationController
 
 	def new
 		@tw_referral  = TweetReferral.new()
-		@ref = User.where(:name=>params[:token]).last
+		if params[:token].present?
+			@ref = User.where(:name=>params[:token]).last
+		end
 	end
 
 	def create
@@ -17,5 +19,20 @@ class TweetReferralsController < ApplicationController
 	        	end
    		  end
 	end
+
+	def savereferral
+		referrals = TweetReferral.where(:email=>params[:email], :referrer=>params[:ref_id])
+		if !@tw_referral.present?
+			msg = "Thank you! You have done.Will get you soon."
+			TweetReferral.create(:email=>params[:email], :referrer=>params[:ref_id], :name=>params[:name])
+    	else
+    		msg = "Token looks invalid or expired."
+		end
+		message = {"msg" => msg}
+		respond_to do |format|
+			format.json { render json: message}
+		end
+	end
+
 
 end
