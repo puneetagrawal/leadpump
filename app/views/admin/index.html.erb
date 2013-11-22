@@ -12,7 +12,7 @@
                     <tr> <td><%= user.name %></td> 
                   		 <td><%= user.email %></td>
                     	 <td><%= user.subscription.plan_type %> </td>
-                         <td>  </td>
+                         <td><%=user.subscription.plan_per_user_range.plan.name%>  </td>
                          <td> <%= user.subscription.payment %> </td>
                          <td> <%= user.subscription.users_count %> </td>
                      </tr>
