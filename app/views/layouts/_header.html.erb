@@ -41,7 +41,9 @@
                         </a>
                         <div class="nav-collapse collapse fr">
                             <ul class="nav">
-                                <%- if current_user %>
+                                <% if current_user && current_user.role_id == 1%>
+                                    <li><%= link_to "Home", admin_index_path, :class => "active" %></li>
+                                <% elsif current_user %>
                                     <li><%= link_to "Home", home_index_path, :class => "active" %></li>
                                 <%else%>
                                     <li><%= link_to "Home", "http://www.leadpump.com", :class => "active" %></li>
