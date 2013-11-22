@@ -8,7 +8,6 @@ Leadpump::Application.routes.draw do
   resources :company
   resources :subscriptions
   resources :plans
-  resources :vipleads
   resources :referrals
   resources :tweet_referrals
 
@@ -19,6 +18,10 @@ Leadpump::Application.routes.draw do
   match "/acceptInvitation" => "vipleads#acceptInvitation"
   match "/invites" => "vipleads#invites"
   match "/fetchContacts" => "vipleads#fetchContacts"
+  match "/showvipleads" => "vipleads#showvipleads"
+  match "/searchvipleads" => "vipleads#searchvipleads"
+  match "/vipleadsearchfilter" => "vipleads#vipleadsearchfilter"
+  match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
   resources :vipleads
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
   match '/home/changestatus' => 'home#changestatus'

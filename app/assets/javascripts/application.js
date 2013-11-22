@@ -54,18 +54,18 @@ $(document).ready(function(){
 	    $(".twitter-share-button").hide();
 	});
 
-	$("#social_invite").focusout(function(){
-		twttr.widgets.createShareButton(
-		    "http://192.168.3.177:3000/tweet/ref?token="+tweet_token,
-			  document.getElementById('new-button'),
-			  function (el) {
-			    console.log("Button created.")
-			  },
-			  {
-			    count: 'none',
-			    text: $("#share_text").text(),
-			});
-		});
+	// $("#social_invite").focusout(function(){
+	// 	twttr.widgets.createShareButton(
+	// 	    "http://192.168.3.177:3000/tweet/ref?token="+tweet_token,
+	// 		  document.getElementById('new-button'),
+	// 		  function (el) {
+	// 		    console.log("Button created.")
+	// 		  },
+	// 		  {
+	// 		    count: 'none',
+	// 		    text: $("#share_text").text(),
+	// 		});
+	// 	});
 	
 	initialization();
 	initLeadActiveSelect();
@@ -152,7 +152,7 @@ function initialization(){
 	$(".container").on('change', '#status_lead', function (){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
 	});
-	$(".cancelFancybox").click(function (){
+	$(document).on("click",".cancelFancybox", function (){
 		$.fancybox.close();
 	});
 

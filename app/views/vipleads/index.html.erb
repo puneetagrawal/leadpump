@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row-fluid" style="margin-top:15px;">
+        <div class="span12">
+            <div class="row-fluid">
+                <div class="span4 pull-left optFilter">
+                    <form class="form"><span>Show</span><select><option>10</option><option>20</option><option>50</option></select>
+                        <span>entries</span></form>
+                </div>
+                <div class="span3 pull-right optFilter">
+                    <form class="form text-right"><span>Search</span><input class="input-medium" placeholder="Search" type="search" id="vipleadlist"></form>
+                </div>
+            </div>
+            <div class="border" id="vlList">
+                <%=render "vipleadlistcontent"%>
+            </div>
+            <div class="row-fluid">
+                <div class="span4 pull-left mt10">Showing 1 to 3 of 3 entries</div>
+                <div class="span3 pull-right">
+                    <ul class="pager">
+                        <li class="previous">
+                            <a class="link" href="#">&larr; Previous</a>
+                        </li>
+                        <li class="next">
+                            <a class="link" href="#">Next &rarr;</a>
+                        </li>
+                    </ul></div>
+            </div>
+        </div>
+    </div>
+</div>
+<%=render "common_templates/popupContainer"%>

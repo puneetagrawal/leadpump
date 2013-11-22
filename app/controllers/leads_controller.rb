@@ -144,28 +144,33 @@ def filterbyname
 end
 
 def leadsearchfilter
-  lead = Lead.where("name = ? or lname = ? or lead_source = ?", params[:leadId],params[:leadId],params[:leadId])
+  hash = Lead.fetchLeadList(current_user) 
+  leadlist = hash['leads'.to_sym]
+  leadlist = leadlist.pluck(:lead_id)
+  lead = Lead.where("name = ? or lname = ? or lead_source = ?", params[:leadId],params[:leadId],params[:leadId]).where(:id=>leadlist) 
   @leads = UserLeads.select("distinct(lead_id)").where(:lead_id=>lead)
-  logger.debug(@leads.size)
   respond_to do |format|
     format.js 
   end
 end
 
 def getemails
+  hash = Lead.fetchLeadList(current_user) 
+  leadlist = hash['leads'.to_sym]
+  leadlist = leadlist.pluck(:lead_id)
   if params[:term].blank?
-   leads = Lead.all(:select=>"distinct(name)") 
+   leads = Lead.select("distinct(name)").where(:id=>leadlist) 
    list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
-  else params[:term]
+  else
    like  = "%".concat(params[:term].concat("%"))
-   leads = Lead.select("distinct(name)").where("name like ?", like)
+   leads = Lead.select("distinct(name)").where("name like ?", like).where(:id=>leadlist) 
    list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
    if !leads.present?
-      leads = Lead.select("distinct(lname)").where("lname like ? ", like)
+      leads = Lead.select("distinct(lname)").where("lname like ? ", like).where(:id=>leadlist) 
       list = leads.map {|l| Hash[id: l.id, label: l.lname, name: l.lname]}
    end
    if !leads.present?
-      leads = Lead.select("distinct(lead_source)").where("lead_source like ? ", like)
+      leads = Lead.select("distinct(lead_source)").where("lead_source like ? ", like).where(:id=>leadlist) 
       list = leads.map {|l| Hash[id: l.id, label: l.lead_source, name: l.lead_source]}
    end
  end

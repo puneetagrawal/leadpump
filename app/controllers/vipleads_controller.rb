@@ -4,6 +4,11 @@
  require 'rexml/document'
 
  class VipleadsController < ApplicationController
+  
+  def index
+    @vipleads = VipLead.fetchList(current_user.id)
+  end
+
   def show
   end
 
@@ -12,8 +17,12 @@
 
   def create
     (1..3).each do |index|
-      if params["inputs"]["vip_#{index}"].present?
+      first_name = params["inputs"]["vip_#{index}"]["first_name"]
+      last_name = params["inputs"]["vip_#{index}"]["last_name"]
+      phone = params["inputs"]["vip_#{index}"]["phone"]
+      if first_name.present? || last_name.present? || phone.present?
         @viplead = VipLead.new(params["inputs"]["vip_#{index}"])
+        @viplead.user_id = current_user.id
         @viplead.save
       end  
     end
@@ -61,13 +70,27 @@
     end
   end
 
+  def showvipleads
+    @viplead = VipLead.find(params[:id])
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   def sendIvitationToGmailFriend
-    Emailer.gmail_referral_mail().deliver
+    logger.debug(">?>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(params)
+    emails = params[:emaillist]
+    token = current_user.token
+    if emails.present?
+      emails.each do|email|
+        Emailer.gmail_referral_mail(email, token).deliver
+      end
+    end
   end
 
   def acceptInvitation
-    #Emailer.gmail_referral_mail().deliver
-    user = User.find(1)
+    user = User.find_by_token(params[:token])
     msg = ""
     token = params[:token]
     if !token.blank?
@@ -78,12 +101,52 @@
         msg = "You have already used this token"
       else
         gmailcontact.update_attributes(:active=>true)
-        viplead = VipLead.create(:first_name=>gmailcontact.name, :email=>gmailcontact.email, :active=>true, :user_id=>gmailcontact.user_id)
-        viplead.save
+        gmailReferral.create(:first_name)
+        #viplead = VipLead.create(:first_name=>gmailcontact.name, :email=>gmailcontact.email, :active=>true, :user_id=>gmailcontact.user_id)
+        #viplead.save
         msg = "You are successfuly created as lead"
       end
      end
      flash[:success] = msg 
   end
+
+  def acceptInvitation
+    user = User.find_by_token(params[:token])
+    msg = ""
+    token = params[:token]
+    if !token.blank?
+        msg = "You are successfuly created as lead"
+      end
+     end
+     flash[:success] = msg 
+  end
+
+  def vipleadsearchfilter
+  vl = VipLead.fetchList(current_user.id)
+  vl = vl.present? ? vl.pluck(:id) : []
+  @vipleads = VipLead.where("first_name = ? or last_name = ?", params[:viplead],params[:viplead]).where(:id=> vl)
+  respond_to do |format|
+    format.js 
+  end
+end
+
+def searchvipleads
+  vipleads = VipLead.fetchList(current_user.id)
+  vipleads = vipleads.present? ? vipleads.pluck(:id) : []
+  if params[:term].blank?
+   leads = VipLead.select("distinct(first_name)").where(:id=> vipleads)
+   list = leads.map {|l| Hash[id: l.id, label: l.first_name, name: l.first_name]}
+  else
+   like  = "%".concat(params[:term].concat("%"))
+   leads = VipLead.select("distinct(first_name)").where("first_name like ?", like).where(:id=>vipleads)
+   list = leads.map {|l| Hash[id: l.id, label: l.first_name, name: l.first_name]}
+   if !leads.present?
+      leads = VipLead.select("distinct(last_name)").where("last_name like ? ", like).where(:id=>vipleads)
+      list = leads.map {|l| Hash[id: l.id, label: l.last_name, name: l.last_name]}
+   end
+ end
+ logger.debug(list)
+ render json: list
+end
 
 end

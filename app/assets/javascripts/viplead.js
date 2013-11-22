@@ -10,6 +10,33 @@ function initSocialInviter(){
 		name = $(this).attr('name');
 		executeSecondStep(name);
 	});
+	$(document).on('click', '.viewVipLead', function (){
+		id = $(this).closest('tr').attr('id').split("_")[1]
+		$.fancybox.open({
+			href: '#dashboardPopup',
+			type: 'inline',
+			'beforeLoad' : function() {
+				url = '/showvipleads';
+				$.get(url, {id:id}, function (data) {
+			});
+		}
+		});	
+	});
+	$(document).on('click', '.sendReferralEmailBtn', function (){
+		emaillist = [];
+		$("input[name='planType']").is(":checked")
+		$(".gmailContactChekbox").each(function(){
+			if($(this).is(":checked")){
+				alert("chekked");
+				emaillist.push($(this).closest('.email_label').text());
+			}
+			else{
+				alert("notche");
+			}
+		});
+		url = '/sendmailinvitations';
+		$.get(url, {emaillist:emaillist}, function (data) {
+	});
 }
 
 function executeFirstStep(obj){
@@ -28,4 +55,10 @@ function executeSecondStep(name){
 	$(".social_options ul li").each(function(){$(this).addClass("hide")});
 	$("."+name).removeClass('hide');
 	$(".stepNo3").removeClass('disabled');
+}
+
+function vipleadSearchFilter(vipleadId){
+	url = '/vipleadsearchfilter';
+	$.get(url, {viplead:vipleadId}, function (data) {	
+	});
 }

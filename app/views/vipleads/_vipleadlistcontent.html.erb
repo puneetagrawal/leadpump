@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <thead>
+        <tr><td>Associate</td><td>VIP Name</td><td>VIP Phone Number</td><td>VIP Status</td><td>Actions</td></tr>
+    </thead>
+    <tbody>
+    <%if @vipleads.present?%>
+        <%@vipleads.each do |vip|%>
+            <%=render "vipleadContentRow", :vip=>vip%>
+        <%end%>
+    <%else%>
+        <tr><td colspan="4">No vip lead created yet<td></tr>
+    <%end%>
+    </tbody>
+</table>

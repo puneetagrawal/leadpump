@@ -7,10 +7,11 @@
                 <% @contacts.each do |contact| %>
                   <p>
                     <%=check_box_tag "freindId_#{contact.id}", 'yes', false, :class => 'gmailContactChekbox'%>
-                    <%= label_tag contact.name %>
-                    <%= label_tag contact.email %></p>
+                    <label class=""><%=contact.name%></label></p>
+                    <label class="email_label"><%=contact.email%></label></p>
                 <%end%>
               <%end%>
+              <input type="button" value="submit" class="sendReferralEmailBtn">
           </div>        
       </div>    
   </form>
