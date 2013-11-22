@@ -23,19 +23,21 @@ function initSocialInviter(){
 		});	
 	});
 	$(document).on('click', '.sendReferralEmailBtn', function (){
-		emaillist = [];
-		$("input[name='planType']").is(":checked")
+		emaillist = '';
 		$(".gmailContactChekbox").each(function(){
 			if($(this).is(":checked")){
-				alert("chekked");
-				emaillist.push($(this).closest('.email_label').text());
-			}
-			else{
-				alert("notche");
+				if (emaillist == ''){
+					emaillist = $(this).closest('.email_label').text();	
+				}
+				else{
+					emaillist = emaillist + ","+ $(this).closest('.email_label').text();		
+				}
+				alert(emaillist);
 			}
 		});
-		url = '/sendmailinvitations';
+		url = '/sendIvitationToGmailFriend';
 		$.get(url, {emaillist:emaillist}, function (data) {
+		});
 	});
 }
 

@@ -1,6 +1,6 @@
 class CreateGmailFriends < ActiveRecord::Migration
   def change
-    create_table :gmail_friends do |t|
+  create_table :gmail_friends do |t|
       t.string :name
       t.string :email
       t.integer :phone

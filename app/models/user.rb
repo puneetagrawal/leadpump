@@ -3,13 +3,14 @@ class User < ActiveRecord::Base
   attr_accessible :email, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes, :token
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses, :dependent => :destroy
-  has_one :subscription, :dependent => :destroy
+  has_one :subscription
   has_many :leads, :dependent => :destroy
   has_many :vipLeads, :dependent => :destroy
   has_many :gmailFriends, :dependent => :destroy
   has_many :authentications , :dependent => :destroy
-  has_many :referrals
-  has_many :tweet_referrals
+  has_many :referrals, :dependent => :destroy
+  has_many :tweet_referrals, :dependent => :destroy
+  has_many :send_invitation_to_gmail_friends, :dependent => :destroy
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 

@@ -111,14 +111,25 @@
   end
 
   def acceptInvitation
-    user = User.find_by_token(params[:token])
+    @referral  = GmailReferral.new()
+    if params[:token].present?
+      @ref = User.where(:token=>params[:token]).last
+    end
+  end
+
+  def savegmailreferral
+    user = User.find_by_token(params[:ref_id])
     msg = ""
-    token = params[:token]
-    if !token.blank?
+    if !user.present?
+        GmailReferral.create(:name=>params[:name], :email=>params[:email], :user_id=>user.id)
         msg = "You are successfuly created as lead"
-      end
-     end
-     flash[:success] = msg 
+    else
+      msg = "Sorry! your link is invalid or expired."
+    end
+    message = {"msg" => msg}
+    respond_to do |format|
+      format.json { render json: message}
+    end
   end
 
   def vipleadsearchfilter
