@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses, :dependent => :destroy
   has_one :subscription
+  has_one :picture, :dependent => :destroy
   has_many :leads, :dependent => :destroy
   has_many :vipLeads, :dependent => :destroy
   has_many :gmailFriends, :dependent => :destroy
@@ -42,7 +43,21 @@ class User < ActiveRecord::Base
     end   
   end
 
+  def isAdmin
+    isadmin = self.user_role.id == 1 ? true : false
+    return isadmin
+  end
 
+  def isCompany
+    iscompany = self.user_role.id == 2 ? true : false
+    logger.debug(iscompany)
+    return iscompany
+  end
+
+  def isEmployee
+    isemployee = self.user_role.id == 3 ? true : false
+    return isemployee
+  end
 
   def self.calculate_total_amount(plan, du, dl, dp)
     @amount = signUpAmount(planId, du, dl, dp)

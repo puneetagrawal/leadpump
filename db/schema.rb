@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122120728) do
+ActiveRecord::Schema.define(:version => 20131123092204) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -103,6 +103,16 @@ ActiveRecord::Schema.define(:version => 20131122120728) do
     t.string   "lname"
     t.string   "status"
     t.integer  "no_of_days"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|

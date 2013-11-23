@@ -3,13 +3,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
     def after_sign_in_path_for(resource)
-      if current_user.role_id == 1
-  	  	url = admin_index_path
-  	 else
-  		url = root_url
-  	 end
+      url = root_url
+      case user.user_role.role_type.to_sym  
+      when :admin
+        url = admin_index_path    
+      end
   	 return url
   end
-
- 
+  
 end

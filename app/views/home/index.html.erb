@@ -1,62 +1,12 @@
-<script>
- function fbs_click() {
-        u="http://signin.leadpump.com/home/social_inviter?token=<%= current_user.name %>&fb=true";
-        t=document.title;
-        m="signin.leadpump.com/assets/logo.png",
-        window.open("http://www.facebook.com/sharer.php?s=100&p[url]=" + u + "&p[title]=" + t + "&p[summary]=I just joined Your gym name here, here a free 7-day pass for you.Come join me!" + "&p[images][0]="+m,'sharer','toolbar=0,status=0,width=626,height=436');
-        return false;
-    }  
-    tweet_token = "<%=current_user.name%>"
-    </script>
-
+ 
 <div class="container">
+    <%if current_user.isEmployee || current_user.isCompany%>
+        <%#=render "home/companyLogo"%>
+    <%end%>
     <div class="row-fluid">
         <ul class="dashboardIcons">
-            <li>
-                <%=link_to(new_lead_path(), html_options = {}) do %>
-                <i class="icon icon_opt_in_lead"></i><span>Leads</span>                 
-                <%end %>
-            </li>
-            <%if current_user.role.role_type == "admin" || current_user.role.role_type == "company"%>
-            <li>
-                <%=link_to(company_new_path, html_options = {}) do %>
-                <i class="icon icon_leads"></i><span>Manage User</span><span></span>                  
-                <%end %>
-            </li>
-            <%end%> 
-                <li>
-                    <%=link_to(new_viplead_path, html_options = {}) do %>
-                    <i class="icon icon_socialInviter"></i><span>Social Inviters</span><span></span>                  
-                    <%end %>
-                </li>
-
-            <li>
-                <%=link_to(new_appointment_path(), html_options = {}) do %>
-                <i class="icon icon_opt_in_lead"></i><span>Appointments</span>                 
-                <%end %>
-            </li> 
-            <li>
-                <%=link_to(vipleads_path(), html_options = {}) do %>
-                <i class="icon icon_vip_leads"></i><span>VIP Leads</span>                 
-                <%end %>
-            </li> 
-
+            <%=render "home/companyDashboard"%>
         </ul>
     </div>
-
-    <!-- <div class="row-fluid" style="height:340px">
-        
-        <%= text_field_tag :social_invite, nil, :class=>"text_fb"  %> 
-
-        <div id="share_text" style="display:none;"> </div>   
-        <div id="new-button"> </div> 
-        
-        <a href="http://twitter.com/share" class="twitter-share-button" data-text="" data-count="none">Tweet</a>
-        
-        <a href="http://www.facebook.com/share.php?u=<url>" onclick="return fbs_click()" target="_blank"> 
-            <img src= "http://b.static.ak.fbcdn.net/images/share/facebook_share_icon.gif?8:26981" alt="" width="35" height="25" />
-        </a>
-
-    </div> -->
 </div>
 

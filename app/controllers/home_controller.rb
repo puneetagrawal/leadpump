@@ -3,6 +3,8 @@ class HomeController < ApplicationController
 
     def index
     	@user = User.new
+      @picture_user = Picture.find_by_user_id(current_user.id)
+      @picture = Picture.new
     end
 
     def terms
