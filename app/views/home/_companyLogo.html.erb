@@ -1,0 +1,22 @@
+<div class="row-fluid">
+    <div class="span2">
+        <div class="pull-left">
+            <%if @picture_user.present?%>
+                <%= image_tag @picture_user.avatar.url %>
+            <%else%>
+                <img src="/assets/company-logo.png" class="img-polaroid">
+            <%end%>
+        </div>
+    </div>
+    <div class="span10">
+        <div class="pull-left clear">
+            <h2>Company Name</h2>
+        </div>
+        <%if current_user.isAdmin || current_user.isCompany%>
+            <div class="pull-left clear">
+                <h4 class="btn yellow">Upload Logo</h4>
+            </div>
+        <%end%>
+    </div>
+</div>
+
