@@ -6,6 +6,7 @@
                     <thead>
                     <tr><td>Date</td><td>User</td><td>Invoice Id</td><td>Subscription Id</td><td>Amount ($)</td></tr>
                     </thead>
+                    <% if @users.present? %>
                         <% @users.each do |user| %>
                         <% if user.subscription.present? %>
                     <tbody>
@@ -16,6 +17,7 @@
                          <td> <%= user.subscription.payment %> </td>
                      </tr>
                     </tbody>
+                    <% end %>
                     <% end %>
                     <% end %>
                 </table>
