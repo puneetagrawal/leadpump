@@ -1,0 +1,26 @@
+<div class="container nav_second">
+    <div class="row-fluid">
+        <div class="span12">
+           <div class="border">
+                <table class="table table-striped">
+                    <thead>
+                    <tr><td>Date</td><td>User</td><td>Invoice Id</td><td>Subscription Id</td><td>Amount ($)</td></tr>
+                    </thead>
+                        <% @users.each do |user| %>
+                        <% if user.subscription.present? %>
+                    <tbody>
+                    <tr> <td> <%= user.subscription.created_at.strftime("%m/%d/%Y") %> </td> 
+                         <td><%= user.name.humanize %></td>
+                         <td><%= user.subscription.charge_id %> </td>
+                         <td> <%=user.subscription.customer_id %> </td>
+                         <td> <%= user.subscription.payment %> </td>
+                     </tr>
+                    </tbody>
+                    <% end %>
+                    <% end %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

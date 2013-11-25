@@ -1115,6 +1115,9 @@ header h2 a {
     float: right;
     margin-right: 10px;
 }
+.pagination ul {
+    box-shadow: none !important;
+}
 .pager {
     float: left;
     width: 300px;
@@ -1668,30 +1671,9 @@ header h2 a {
     font-size: 13px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.wrapper{
+    margin-top:15px;
+}
 
 
 
@@ -1899,4 +1881,28 @@ width: 120px;
 }
 .tw_height{
     height: 280px !important;
+}
+.previous_page{
+    text-align: center !important;
+    background-color: rgb(255, 255, 255)!important;
+    border: 1px solid rgb(221, 221, 221)!important;
+    border-radius: 15px 15px 15px 15px !important;
+    display: inline-block;
+    padding: 5px 14px !important;
+    width:60px !important;
+    margin-right: 8px !important;
+}
+.next_page{
+    text-align: center !important;
+    background-color: rgb(255, 255, 255)!important;
+    border: 1px solid rgb(221, 221, 221)!important;
+    border-radius: 15px 15px 15px 15px !important;
+    display: inline-block;
+    padding: 5px 14px !important;
+    width:60px !important;
+    margin-left: 8px !important;
+
+}
+.nav_second{
+    margin-top: 15px !important;
 }

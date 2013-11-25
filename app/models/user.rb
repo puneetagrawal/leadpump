@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
     return isemployee
   end
 
+
   def self.calculate_total_amount(plan, du, dl, dp)
     @amount = signUpAmount(planId, du, dl, dp)
     amounts = @amount.amount * 100
@@ -106,6 +107,17 @@ class User < ActiveRecord::Base
       email = user.email
     end
     return email
+  end
+
+  def fetchCompanyName
+    name = self.name
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      user = User.find_by_id(companyId)
+      name = user.name
+    end
+    return name.humanize
   end
 
 def checkLeadLimit

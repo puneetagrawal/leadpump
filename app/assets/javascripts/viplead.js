@@ -4,7 +4,13 @@ $(document).ready(function(){
 
 function initSocialInviter(){
 	$(".proceed_step1").click(function(){
-		executeFirstStep(this);
+		if ($("#vip_lead_first_name").val() == "" || $("#vip_lead_last_name").val() == "" || $("#vip_lead_phone").val() == "") {
+			alert(" Please fill one lead atleast, then proceed further..!!");
+		}
+		else {
+			executeFirstStep(this);	
+		}
+		
 	});
 	$(".social_options ul li").click(function(){
 		name = $(this).attr('name');
@@ -30,6 +36,7 @@ function initSocialInviter(){
 				emaillist.push($(this).siblings('.email_label').text());	
 			}
 		});
+
 		if(emaillist.length){
 			url = '/sendIvitationToGmailFriend';
 			$.get(url, {emaillist:emaillist}, function (data) {
@@ -39,9 +46,9 @@ function initSocialInviter(){
 		}
 		else{
 			alert("please select members.");
-			$(this).html('<a class="btn yellow sendReferralEmailBtn" href="javascript:void(0)">Send Invitations</a>');
 		}
-		
+			$(this).html('<a class="btn yellow sendReferralEmailBtn" href="javascript:void(0)">Send Invitations</a>');
+
 	});
 }
 

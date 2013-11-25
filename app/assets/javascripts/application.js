@@ -20,12 +20,30 @@
 
 
 $(document).ready(function(){
-
-	
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 
+	  $("#select_user_entry").click(function(){  
+		   var search_val = $(this).val(); 
+		   $.ajax({
+		    url: "/admin/user_rec",
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});   
+	 });
+
+
+	  $("#select_user_entry").click(function(){  
+		   var search_val = $(this).val(); 
+		   $.ajax({
+		    url: "/viplead/filter_rec",
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});   
+	 }); 
 
  $(document).on('change', '.lead_source_sel', function () {
         if($(this).val() == "Other") {
@@ -47,15 +65,18 @@ $(document).ready(function(){
 
 
    	$(document).on('keyup', '#social_invite', function (){
- 		// alert("sdfsdf");
 	   $("#share_text").text($(this).val());
+	});
+
+   	$(document).on('click', '.user_delete', function (){
+	  	$(this).parent().parent().parent().remove();
 	});
 
 	$(document).on('focusout', '#social_invite', function (){
 		 $(".twitter-share-button").hide();
 		 $(".twitter-tweet-button").hide();
 		twttr.widgets.createShareButton(
-		    "http://signin.leadpump.com/tweet/ref?token="+tweet_token,
+		    ROOT_PATH+"tweet/ref?token="+tweet_token,
 			  document.getElementById('new-button'),
 			  function (el) {
 			    console.log("Button created.")
@@ -71,16 +92,6 @@ $(document).ready(function(){
 	removeFlash();	
 
 });
-
-// function display_date_range(list) {
-//     if(list.options[list.selectedIndex].value == 9) {
-//       $("text_div").show();
-//     }
-//     else {
-//       $("text_div").hide();
-//     }
-//   }
-
 
 function formfields(){
 	new_obj = {}
@@ -166,6 +177,14 @@ function initialization(){
 
 	$(".ref_tweet_submit").click(function (){
 		saveTweetref(this);
+	});
+
+	$(".submitlogo").click(function (){
+		$('#picture_avatar').click();
+	});
+
+	$("#picture_avatar").change(function(){
+		$('#new_picture').submit();
 	});
 }
 
@@ -288,3 +307,4 @@ function hideSuccessMsg(){
 function removeFlash(){
 	setTimeout(hideSuccessMsg, 2500);
 }
+

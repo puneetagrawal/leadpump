@@ -9,17 +9,15 @@ class VipLead < ActiveRecord::Base
   	if company.present?
 	    allUsers = Company.where(:company_admin_id=>company.company_admin_id).pluck(:company_user_id) 
 	    vipleads = VipLead.where(:user_id=>allUsers) 
-	else
-		logger.debug(">>>>>>>>>>>>>>>>>>>>>")
-		logger.debug(userId)
-		vipleads = VipLead.where(:user_id=>userId) 
-	end
+  	else
+  		vipleads = VipLead.where(:user_id=>userId) 
+  	end
   	case user.user_role.role_type.to_sym  
     when :admin
       vipleads = VipLead.all   
     when :normalUser
     	vipleads = []
-	end   
+	  end   
   	return vipleads
   end
 

@@ -6,6 +6,7 @@ end
 
 def index
    @appointments = Appointment.all	
+   @filter_appointment = Appointment.where(:app_date=> params[:appointment_date]).all
 end
 
 def create
@@ -22,7 +23,7 @@ def create
  end
 
  def filter_app
-  @filter_appointment = Appointment.where(:app_date => params[:appointment_date]).all
+  @filter_appointment = Appointment.where(:app_date=> params[:appointment_date]).all
  end
 
  

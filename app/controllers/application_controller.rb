@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   protect_from_forgery
 
-    def after_sign_in_path_for(resource)
+    def after_sign_in_path_for(user)
       url = root_url
       case user.user_role.role_type.to_sym  
       when :admin

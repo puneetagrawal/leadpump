@@ -13,18 +13,10 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     resource = build_resource(params[:user])
     resource.role_id = Role.find_by_role_type("company").id
-
     if resource.valid?
       @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
-      amt = User.signUpAmount(params["user"]["subscription_attributes"]["plan_per_user_range_id"], params[:discountOnUsers], planType)
-      resource.subscription.plan_per_user_range_id = @planPerUser.id
-      resource.subscription.stripe_card_token = params["user"]["subscription_attributes"]["stripe_card_token"]
-      resource.subscription.expiry_date = DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p')
-      resource.subscription.payment = amt["amount"].to_i
-      resource.subscription.users_count = params[:discountOnUsers]
-      resource.subscription.locations_count = params[:no_of_locations]
-      resource.subscription.plan_type = planType
+      amt = User.signUpAmount(params[:planPerUserId], params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
       begin
         email = params["user"]["email"].to_s
@@ -39,9 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
               :customer => customer.id
         )
         if resource.save
-          resource.subscription.customer_id = customer.id
-          resource.subscription.charge_id = charge.id
-          resource.subscription.save
+          Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p'), amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, charge.id)
           sign_in(resource_name, resource)  
           redirect_to success_path()
         end

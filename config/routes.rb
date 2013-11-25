@@ -10,6 +10,8 @@ Leadpump::Application.routes.draw do
   resources :plans
   resources :referrals
   resources :tweet_referrals
+
+  match "/createpic" => "picture#create"  
   resources :picture
 
 
@@ -23,8 +25,11 @@ Leadpump::Application.routes.draw do
   match "/showvipleads" => "vipleads#showvipleads"
   match "/searchvipleads" => "vipleads#searchvipleads"
   match "/vipleadsearchfilter" => "vipleads#vipleadsearchfilter"
+  match "/viplead/filter_rec" => "vipleads#filter_rec"
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
   resources :vipleads
+  
+  match 'home/index' => 'home#index'
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
   match '/home/changestatus' => 'home#changestatus'
   match '/home/saveleadstatus' => 'home#saveleadstatus'
@@ -32,13 +37,26 @@ Leadpump::Application.routes.draw do
   match '/home/calculateAmount' => 'home#calculateAmount'
   match '/home/validateEmail' => 'home#validateEmail'
   match '/welcome' => 'home#welcome'
+  match '/home/deleteRowByajax' => 'home#deleteRowByajax'
+
+  match 'home/social_inviter' => 'referrals#new'
+  match 'home/terms' => 'home#terms'
+  match '/test' => 'home#test'
+
+
+
   match '/savereferral' => 'referrals#savereferral'
   match '/savetweet' => 'tweet_referrals#savereferral'
   match '/admin/index' => 'admin#index'
-
+  match '/admin/plan' => 'admin#plan'
+  match '/admin/payment' => 'admin#payment'
+  match '/admin/user' => 'admin#user'
+  match '/admin/statistic' => 'admin#statistic' 
+  match '/admin/user_rec' => 'admin#user_record'
+  
    namespace :admin do
      root :to => "admin#index"
-     resources :users, :subscriptions, :plans
+     resources :users, :subscriptions, :plans, :payments, :vipleads
   end
 
   #   member do
@@ -64,27 +82,16 @@ Leadpump::Application.routes.draw do
 
   match '/leads/test' => 'leads#index'
   match '/leads/createtask' => 'leads#createtask'
+  match 'leads/saveappointment' => 'leads#saveappointment'
 
-  match '/home/deleteRowByajax' => 'home#deleteRowByajax'
+  resources :leads 
+  
 
   match 'appointment/new' => 'appointments#new'
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
-  match 'leads/saveappointment' => 'leads#saveappointment'
-
-  resources :leads 
-
-  root to: "home#index"
-
-  match 'home/index' => 'home#index'
-  match 'home/social_inviter' => 'referrals#new'
-
-  match 'home/terms' => 'home#terms'
-  match '/success' => 'home#success'
   
-  match '/test' => 'home#test'
-  match '/home/calculateAmount' => 'home#calculateAmount'
-  match '/home/validateEmail' => 'home#validateEmail'
+  
 
   match '/company/getemails' => 'company#getemails'
   match '/company/usersearchfilter' => 'company#usersearchfilter'
