@@ -57,3 +57,53 @@
     </div>
 </header>
 
+<div id="fb-root"></div>
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+    FB.init({
+        appId: '468207766612651',
+        status:true,
+        cookie:true,
+        xfbml:true,
+        oauth:true
+    });
+    //FB.Event.subscribe('auth.login', handleSessionResponse,{scope:'email,read_stream,publish_stream,friends_location,friends_website,friends_hometown,friends_education_history,friends_birthday,friends_work_history'});
+};
+(function(d){
+    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement('script');
+    js.id = id; js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    ref.parentNode.insertBefore(js, ref);
+}(document));
+
+function onloginCall(){
+    FB.login(handleSessionResponse,{scope:'email,read_stream,publish_stream'});
+}
+
+function handleSessionResponse(response){
+    var accessToken = response.authResponse.accessToken;
+    if (response.authResponse) {
+        FB.api('/me/friends', {fields:'name,username'}, function (result) {
+          if(result.data) {
+            $.fancybox.open({
+                href: '#gmailContactsPopup',
+                type: 'inline',
+                'beforeLoad' : function() {
+                    url = '/fetchfbfreinds'
+                   $.post(url, {info:result.data}, function (data) {          
+                    }); 
+                }
+            });
+               
+            }    
+         });
+    }
+    else {
+      console.log('User cancelled login or did not fully authorize.');
+      return;
+    }
+}
+</script>
+

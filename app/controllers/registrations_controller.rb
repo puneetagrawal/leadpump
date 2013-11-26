@@ -74,6 +74,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def success
   end
+  
+  
+  
 
   private
   def getPlan

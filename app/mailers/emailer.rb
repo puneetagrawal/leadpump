@@ -5,6 +5,11 @@ class Emailer < ActionMailer::Base
     @url  = "signin.leadpump.com/acceptInvitation?token=#{token}"
     mail(to: @email, subject: 'There is lead for you')
   end
+  def fb_referral_mail(email, token)
+    @email = email.to_s
+    @url  = "signin.leadpump.com/acceptInvitation?token=#{token}"
+    mail(to: @email, subject: 'There is lead for you')
+  end
   def password_reset(user, reset_token)
   	@user = user
     email = @user.email

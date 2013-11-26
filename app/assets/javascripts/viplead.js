@@ -28,6 +28,29 @@ function initSocialInviter(){
 		}
 		});	
 	});
+	$(document).on('click', '.sendFbmail', function (){
+		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		username = [];
+		$(".fbchekbox").each(function(){
+			if($(this).is(":checked")){
+				username.push($(this).attr('id').split("_")[1]+"@facebook.com");	
+			}
+		});
+
+		if(username.length){
+			url = '/sendIvitationToFbFriend';
+			$.get(url, {username:username}, function (data) {
+				alert(data.msg);
+				$.fancybox.close();
+			});	
+		}
+		else{
+			alert("please select members.");
+		}
+		$(this).parent().html('<a class="btn yellow sendReferralEmailBtn" href="javascript:void(0)">Send Invitations</a>');
+
+	});
+
 	$(document).on('click', '.sendReferralEmailBtn', function (){
 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 		emaillist = [];
@@ -47,7 +70,7 @@ function initSocialInviter(){
 		else{
 			alert("please select members.");
 		}
-			$(this).html('<a class="btn yellow sendReferralEmailBtn" href="javascript:void(0)">Send Invitations</a>');
+		$(this).parent().html('<a class="btn yellow sendReferralEmailBtn" href="javascript:void(0)">Send Invitations</a>');
 
 	});
 }

@@ -1,5 +1,8 @@
+require 'omniauth'
+
 class HomeController < ApplicationController
 	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
+  use OmniAuth::Strategies::Developer
 
     def index
     	@user = User.new
@@ -12,11 +15,13 @@ class HomeController < ApplicationController
     
     end
 
-    # def social_inviter
-    #   # @referrer = User.find(params[:token])
-    #   # logger.debug @referrer
-    #   # logger.debug "+++++++++++++"
-    # end
+    def fetchfbfreinds
+      @fbfreinds = params[:info]  
+      respond_to do |format|
+        format.js 
+      end
+    end
+    
 
     def welcome
     end

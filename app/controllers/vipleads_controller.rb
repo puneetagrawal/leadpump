@@ -90,7 +90,19 @@
       end
     end
     message = {"msg"=> "successfully sent invitations."}
-    render json: list
+    render json: message
+  end
+
+  def sendIvitationToFbFriend
+    emails = params[:username]
+    token = current_user.token
+    if emails.present?
+      emails.each do|email|
+        Emailer.gmail_referral_mail(email, token).deliver
+      end
+    end
+    message = {"msg"=> "successfully sent invitations."}
+    render json: message
   end
 
   # def acceptInvitation

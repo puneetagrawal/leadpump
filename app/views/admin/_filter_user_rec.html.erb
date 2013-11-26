@@ -1,22 +1,6 @@
  <table class="table table-striped">
-                    <thead>
-                    <tr><td>Name</td><td>Account Type</td><td>Status</td><td>Action</td></tr>
-                    </thead>
-                        <% if @users.present? %>
-                        <% @users.each do |user| %>
-                        <% if user.subscription.present? %>
-                    <tbody>
-                    <tr data-id="<%= user.id %>"> <td><%= user.name.humanize %></td> 
-                         <td><%=user.subscription.plan_per_user_range.plan.name%></td>
-                         <% if user.active == true %>
-                         <td> Active </td>
-                         <% else %>
-                         <td> Inactive </td>
-                         <% end %>
-                         <td> <%= link_to "Delete","javascript:void(0)", :class=>"user_delete" %> </td>
-                      </tr>
-                    </tbody>
-                    <% end %>
-                    <% end %>
-                    <% end %>
-                    </table>
+    <thead>
+        <tr><td>Name</td><td>Account Type</td><td>Status</td><td>Action</td></tr>
+    </thead>
+    <%=render "userContentRowInAdmin"%>
+</table>

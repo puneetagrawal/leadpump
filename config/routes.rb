@@ -19,6 +19,7 @@ Leadpump::Application.routes.draw do
 
   root to: "home#index"
 
+  match "/fetchfbfreinds" => "home#fetchfbfreinds"
   match "/acceptInvitation" => "vipleads#acceptInvitation"
   match "/invites" => "vipleads#invites"
   match "/fetchContacts" => "vipleads#fetchContacts"
@@ -27,6 +28,7 @@ Leadpump::Application.routes.draw do
   match "/vipleadsearchfilter" => "vipleads#vipleadsearchfilter"
   match "/viplead/filter_rec" => "vipleads#filter_rec"
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
+  match "/sendIvitationToFbFriend" => "vipleads#sendIvitationToFbFriend"
   resources :vipleads
   
   match 'home/index' => 'home#index'
@@ -53,6 +55,8 @@ Leadpump::Application.routes.draw do
   match '/admin/user' => 'admin#user'
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
+  match "/searchUserAc" => "admin#searchUserAc"
+  match "/usersearchinadmin" => "admin#usersearchinadmin"
   
    namespace :admin do
      root :to => "admin#index"

@@ -91,6 +91,10 @@ $(document).ready(function(){
 	initLeadActiveSelect();
 	removeFlash();	
 
+	$(document).on('click', '.fbfetchfreinds', function (){
+  		onloginCall();
+	});
+
 });
 
 function formfields(){
@@ -306,5 +310,12 @@ function hideSuccessMsg(){
 
 function removeFlash(){
 	setTimeout(hideSuccessMsg, 2500);
+}
+
+function userSearchFilter(userId){
+	alert(userId)
+	url = '/usersearchinadmin';
+	$.get(url, {userId:userId}, function (data) {	
+	});
 }
 

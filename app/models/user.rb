@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
     users = []
     case user.user_role.role_type.to_sym  
       when :admin
-        users = User.where("id != ?", current_user.id)     
+        users = User.where("id != ?", user.id)     
       when :company
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users = users.collect{|user| User.find(user)}
@@ -154,6 +154,14 @@ end
 
 def self.numeric?(object)
   true if Float(object) rescue false
+end
+
+def self.fetchUserByPlan(plan)
+  plan = Plan.where("name ilike ? ",plan).pluck(:id)
+  logger.debug(plan)
+  planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
+  subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange)
+  return users
 end
 
   protected

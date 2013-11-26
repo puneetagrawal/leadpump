@@ -8,4 +8,8 @@ $(document).ready ->
                  source: "/searchvipleads"
                  select: (event,ui) -> vipleadSearchFilter(ui.item.name)
 
+         $('#searchUserAc').autocomplete
+                 source: "/searchUserAc"
+                 select: (event,ui) -> userSearchFilter(ui.item.name)
+
                  

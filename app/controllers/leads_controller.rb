@@ -174,7 +174,6 @@ def getemails
       list = leads.map {|l| Hash[id: l.id, label: l.lead_source, name: l.lead_source]}
    end
  end
- logger.debug(list)
  render json: list
 end
 
