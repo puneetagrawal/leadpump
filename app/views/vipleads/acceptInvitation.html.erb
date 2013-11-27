@@ -1,16 +1,18 @@
 <div class="social_invite" style="min-height:300px;">
  
  <%if @ref.present? %>
-    <%= form_for @referral, :html => {:class => "forms form"} do |ref| %>
+    <form class = "forms form">
         <div id="showErrors"></div>
         <div class="border app_header">
             <h2 class="heading headmsg">Add A New User</h2>
             <div class="form pd15 leadform">
-                 <p><%= ref.label "Name:" %><%= ref.text_field :name %></p>
-                 <p><%= ref.label "Email:" %><%= ref.text_field :email %></p>
-                 <p><%= ref.label "Referred By:" %>
-                    <%= ref.hidden_field :ref_id, :value=>@ref.name %>
-                    <%= ref.text_field :user_id, :value=>@ref.name, :readonly=>true %>
+                 <p><label>Name:</label><%= text_field_tag :name %></p>
+                 <p><label>Email:</label><%= text_field_tag :email %></p>
+                 <p><label>Phone:</label><%= text_field_tag :phone %></p>
+                 <p><label>Referred By:</label>
+                    <%= hidden_field_tag :ref_id, @ref.name %>
+                    <%= hidden_field_tag :source, @source %>
+                    <%= text_field_tag :user_id, @ref.name, :readonly=>true %>
                </p>
                <p class="ref_submit">
                 <input type="button" size="20" class="btn yellow gmail_ref_btn" value="Submit"/>
@@ -18,7 +20,7 @@
              </div>       
                <br/>
         </div>    
-    <%end%>   
+    </form>   
 <%else%>
     <span style="font-size:25px;right:25%;top:200px;position:fixed;">You are requesting with wrong link. Please try with another link.</span>
 <%end%>

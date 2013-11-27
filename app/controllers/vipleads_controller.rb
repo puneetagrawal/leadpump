@@ -54,6 +54,7 @@
       end
       @emailAuth = true       
     end
+
     @vipleads = VipLead.new
   end
 
@@ -85,8 +86,9 @@
     emails = params[:emaillist]
     token = current_user.token
     if emails.present?
+      emailMessage = current_user.fetchEmailMessage
       emails.each do|email|
-        Emailer.gmail_referral_mail(email, token).deliver
+        Emailer.gmail_referral_mail(email, token, emailMessage).deliver
       end
     end
     message = {"msg"=> "successfully sent invitations."}
@@ -97,8 +99,9 @@
     emails = params[:username]
     token = current_user.token
     if emails.present?
+      emailMessage = current_user.fetchFacebookMessage
       emails.each do|email|
-        Emailer.gmail_referral_mail(email, token).deliver
+        Emailer.fb_referral_mail(email, token, emailMessage).deliver
       end
     end
     message = {"msg"=> "successfully sent invitations."}
@@ -127,17 +130,19 @@
   # end
 
   def acceptInvitation
-    @referral  = GmailReferral.new()
+    @opt_in_lead  = OptInLead.new()
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
+      @source = params[:source]
     end
   end
 
-  def savegmailreferral
+  def savereferral
     user = User.find_by_token(params[:ref_id])
+    opt_in_lead = OptInLead.where(:email=>params[:email],:user_id=>user.id, :source=>params[:source]).last
     msg = ""
-    if !user.present?
-        GmailReferral.create(:name=>params[:name], :email=>params[:email], :user_id=>user.id)
+    if !opt_in_lead.present?
+        opt_in_lead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],phone=>params[:phone], :user_id=>user.id)
         msg = "You are successfuly created as lead"
     else
       msg = "Sorry! your link is invalid or expired."
@@ -174,5 +179,6 @@ def searchvipleads
  end
  render json: list
 end
+
 
 end

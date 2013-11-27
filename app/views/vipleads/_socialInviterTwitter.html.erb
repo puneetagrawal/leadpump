@@ -9,11 +9,10 @@
         <h3>Share on Twitter</h3>
         <p>Share this message with your friends on Twitter. The following tweet will be posted to your twitter stream.</p>
         <form class="form">
-         <textarea id="social_invite"></textarea>
+         <textarea id="social_invite" disableb="disabled"><%=current_user.fetchtwitterMessage%></textarea>
             <div id="share_text" style="display:none;"> </div>   
             <div id="new-button"> </div> 
            <a href="http://twitter.com/share" class="twitter-share-button" data-text="" data-count="none">Tweet</a>
-
         </form>
     </div>
 </div>

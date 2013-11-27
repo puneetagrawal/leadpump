@@ -1,18 +1,14 @@
-require 'omniauth'
 
 class HomeController < ApplicationController
 	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
-  use OmniAuth::Strategies::Developer
 
     def index
     	@user = User.new
-
       @picture_user = Picture.fetchCompanyLogo(current_user.id)
       @picture = Picture.new
     end
 
     def terms
-    
     end
 
     def fetchfbfreinds

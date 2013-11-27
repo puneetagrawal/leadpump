@@ -29,6 +29,7 @@ Leadpump::Application.routes.draw do
   match "/viplead/filter_rec" => "vipleads#filter_rec"
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
   match "/sendIvitationToFbFriend" => "vipleads#sendIvitationToFbFriend"
+
   resources :vipleads
   
   match 'home/index' => 'home#index'
@@ -107,6 +108,10 @@ Leadpump::Application.routes.draw do
   match '/edit/:id' => 'company#edit', :as => :edit
   match '/company/update/:id' => 'company#update', :as => :update
   match '/delete/:id' => 'company#delete', :as => :delete
+  match "/socialMessages" => "company#socialMessages"
+  match "/savetwmes" => "company#savetwmes"
+  match "/savefbmes" => "company#savefbmes"
+  match "/savegmmes" => "company#savegmmes"
 
   
 

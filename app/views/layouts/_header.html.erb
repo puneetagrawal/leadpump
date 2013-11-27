@@ -57,9 +57,9 @@
     </div>
 </header>
 
-<div id="fb-root"></div>
+ <div id="fb-root"></div>
 <script type="text/javascript">
-    window.fbAsyncInit = function() {
+    
     FB.init({
         appId: '468207766612651',
         status:true,
@@ -67,14 +67,13 @@
         xfbml:true,
         oauth:true
     });
-    //FB.Event.subscribe('auth.login', handleSessionResponse,{scope:'email,read_stream,publish_stream,friends_location,friends_website,friends_hometown,friends_education_history,friends_birthday,friends_work_history'});
-};
+    
 (function(d){
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
     if (d.getElementById(id)) {return;}
     js = d.createElement('script');
     js.id = id; js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
+    js.src = "http://connect.facebook.net/en_US/all.js";
     ref.parentNode.insertBefore(js, ref);
 }(document));
 

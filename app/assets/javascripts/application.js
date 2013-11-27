@@ -179,10 +179,6 @@ function initialization(){
 		saveReferral(this);
 	});
 
-	$(".ref_tweet_submit").click(function (){
-		saveTweetref(this);
-	});
-
 	$(".submitlogo").click(function (){
 		$('#picture_avatar').click();
 	});
@@ -197,34 +193,11 @@ function saveReferral(obj){
 	name = $("#referral_name").val();
 	email = $("#referral_email").val();
 	ref_id = $("#referral_referrer_id").val();
+	source = $("#referral_referrer_id").val();
+	phone = $("#referral_referrer_id").val();
 	if(name && email && ref_id){
-		urls = window.location.pathname
-		if(urls.indexOf("acceptinvitation") > -1){
-			url = '/acceptinvitation';
-		}
-		else{
-			url = '/savereferral';	
-		}
-		$.get(url, {name:name, email:email, ref_id:ref_id}, function (data) {
-			$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');	
-		});	
-	}
-	else{
-		alert("all fields are mandatory.")
-		$(obj).html('<input type="button" value="Submit" class="btn yellow social_ref_btn" size="20">');
-	}
-	
-}
-
-
-function saveTweetref(obj){
-	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
-	name = $("#tweet_referral_name").val();
-	email = $("#tweet_referral_email").val();
-	ref_id = $("#tweet_referral_referrer_id").val();
-	if(name && email && ref_id){
-		url = '/savetweet';
-		$.get(url, {name:name, email:email, ref_id:ref_id}, function (data) {
+		url = '/acceptinvitation';
+		$.get(url, {name:name, email:email, phone:phone,source:source,ref_id:ref_id}, function (data) {
 			$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');	
 		});	
 	}
