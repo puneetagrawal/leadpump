@@ -1,0 +1,11 @@
+<%if @opt_in_lead.present?%>
+	<% @opt_in_lead.each do |opt|%>
+		<tr  id="optRow_<%=opt.id%>">
+			<td><%=opt.email%></td>
+			<td><%=User.find(opt.referrer_id).name%></td>
+			<td><%=User.find(opt.referrer_id).email%></td>
+			<td><%=opt.created_at%></td>
+			<td><a class="btn yellow btn-small viewContact" href="javascript:void(0)">See Contact Details</a></td>
+		</tr>
+	<%end%>
+<%end%>

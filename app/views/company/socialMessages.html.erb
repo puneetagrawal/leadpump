@@ -1,0 +1,57 @@
+
+<div class="container wrapper" >
+<div class="pre_formated_email social-fb">
+    <div class="span4">
+        <h3>Share this invitations on Facebook with one simple click</h3>
+        <p class="text-center"><img src="/assets/facebook-icon.png"></p>
+    </div>
+    <div class="span4">
+        <p>Enter facebook message that you want to send on facebook.</p>
+        <form class="form">
+            <textarea>
+                <%=current_user.fetchFacebookMessage%>
+            </textarea>
+            <span class="submitFmes">
+                <a class="btn yellow" href="javascript:void(0)">Submit</a>
+            </span>
+        </form>
+    </div>
+</div>
+
+<div class="pre_formated_email social-twit">
+    <div class="span4">
+        <h3>Share this invitations on twitter with one simple click</h3>
+        <p class="text-center"><img src="/assets/twitter-icon.png"></p>
+    </div>
+    <div class="span4">
+        <p>Enter Tweets message that you want to tweet on twiter.</p>
+        <form class="form">
+            <textarea>
+                <%=current_user.fetchtwitterMessage%>
+            </textarea>
+            <span class="submitTmes">
+                <a class="btn yellow" href="javascript:void(0)">Submit</a>
+            </span>
+        </form>
+    </div>
+</div>
+
+<div class="pre_formated_email">
+    <div class="span4">
+        <h3>Share this invitations on Gmail with one simple click</h3>
+        <p class="text-center"><img src="/assets/mail-icon.png" /></p>
+    </div>
+    <div class="span4">
+        <p>Enter Gmail message that you want to send on email.</p>
+        <form class="form">
+            <textarea>
+                <%=current_user.fetchEmailMessage%>
+            </textarea>
+            <span class="submitGmes">
+                <a class="btn yellow" href="javascript:void(0)">Submit</a>
+            </span>
+        </form>
+    </div>
+</div>
+
+</div>

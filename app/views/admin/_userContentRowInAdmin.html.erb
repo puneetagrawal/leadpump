@@ -1,0 +1,37 @@
+<% if @users.present? %>
+	<% @users.each do |user| %>
+		<% if user.subscription.present? %>
+			<tbody>
+				<tr data-id="<%= user.id %>"> <td><%= user.name.humanize %></td> 
+					<td><%=user.subscription.plan_per_user_range.plan.name%></td>
+					<% if user.active == true %>
+					<td> Active </td>
+					<% else %>
+					<td> Inactive </td>
+					<% end %>
+					<td> <%= link_to "Delete","javascript:void(0)", :class=>"user_delete" %> </td>
+				</tr>
+			</tbody>
+		<% end %>
+	<% end %>
+<% elsif @subscriptions.present? %>
+	<% @subscriptions.each do |sub| %>
+		<% if sub.present? %>
+			<tbody>
+				<tr data-id="<%= user.id %>"> <td><%= sub.user.name.humanize %></td> 
+					<td><%=sub.plan_per_user_range.plan.name%></td>
+					<% if sub.user.active == true %>
+					<td> Active </td>
+					<% else %>
+					<td> Inactive </td>
+					<% end %>
+					<td> <%= link_to "Delete","javascript:void(0)", :class=>"user_delete" %> </td>
+				</tr>
+			</tbody>
+		<% end %>
+	<% end %>
+<% else %>
+	 <tr>
+		<td> No record found. </td>
+	 </tr>
+<% end %>
