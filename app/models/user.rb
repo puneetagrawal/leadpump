@@ -4,18 +4,18 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes, :token
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-  has_many :addresses, :dependent => :destroy
+  has_many :addresses
   has_one :subscription
-  has_one :picture, :dependent => :destroy
-  has_many :leads, :dependent => :destroy
-  has_many :vipLeads, :dependent => :destroy
-  has_many :gmailFriends, :dependent => :destroy
-  has_many :authentications , :dependent => :destroy
-  has_many :referrals, :dependent => :destroy
-  has_many :tweet_referrals, :dependent => :destroy
-  has_many :send_invitation_to_gmail_friends, :dependent => :destroy
-  has_many :opt_in_leads, :dependent => :destroy
-  has_many :statss, :dependent => :destroy
+  has_one :picture
+  has_many :leads
+  has_many :vipLeads
+  has_many :gmailFriends
+  has_many :authentications 
+  has_many :referrals
+  has_many :tweet_referrals
+  has_many :send_invitation_to_gmail_friends
+  has_many :opt_in_leads
+  has_many :statss
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
@@ -111,30 +111,34 @@ class User < ActiveRecord::Base
       when :company
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users = users.collect{|user| User.find(user)}
+      when :employee
+        company = Company.find_by_company_user_id(user.id).company_admin_id
+        users = Company.where(:company_admin_id => company).pluck(:company_user_id)
+        users = users.collect{|user| User.find(user)}
     end
   end
 
-  def getCompanyEmail
-    email = self.email
-    case self.user_role.role_type.to_sym
-    when :employee
-      companyId = Company.find_by_company_user_id(self.id)
-      user = User.find_by_id(companyId)
-      email = user.email
-    end
-    return email
-  end
+  # def getCompanyEmail
+  #   email = self.email
+  #   case self.user_role.role_type.to_sym
+  #   when :employee
+  #     companyId = Company.find_by_company_user_id(self.id)
+  #     user = User.find_by_id(companyId)
+  #     email = user.email
+  #   end
+  #   return email
+  # end
 
-  def fetchCompanyName
-    name = self.name
-    case self.user_role.role_type.to_sym
-    when :employee
-      companyId = Company.find_by_company_user_id(self.id)
-      user = companyId.present? ? User.find_by_id(companyId.company_admin_id) : nil
-      name = user.present? ? user.name : ''
-    end
-    return name.humanize
-  end
+  # def fetchCompanyName
+  #   name = self.name
+  #   case self.user_role.role_type.to_sym
+  #   when :employee
+  #     companyId = Company.find_by_company_user_id(self.id)
+  #     user = companyId.present? ? User.find_by_id(companyId.company_admin_id) : nil
+  #     name = user.present? ? user.name : ''
+  #   end
+  #   return name.humanize
+  # end
 
   def fetchCompanyId
     id = self.id
@@ -151,13 +155,15 @@ class User < ActiveRecord::Base
     case self.user_role.role_type.to_sym
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
-      company = User.find_by_id(companyId)
+      company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
+    when :company
+      company = Company.find_by_company_admin_id(self.id)
     end
     return company
   end
 
 def saveLeadCount
-  company = self.fetchCompanyId
+  company = self.fetchCompany.company_admin_id
   user = User.find(company)
   if user.present?
     user.update_attributes(:leads_created=>user.leads_created+1)
@@ -169,10 +175,18 @@ def checkLeadLimit
   case self.user_role.role_type.to_sym
   when :admin
     allow = false
-  else
+  when :employee
+    company = Company.find_by_company_user_id(self.id).company_admin_id
+    user = User.find(company)
+    limit = user.subscription.plan_per_user_range.plan.lead_management
+    if User.numeric?limit
+      if user.leads_created == limit.to_i
+        allow = false
+      end
+    end
+  when :company
     limit = self.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
-      usrLeads = UserLeads.where(:user_id=>self.id)
       if self.leads_created == limit.to_i
         allow = false
       end
@@ -208,7 +222,7 @@ def self.fetchUserByPlan(plan)
 end
 
 def fetchEmailMessage
-  company = self.fetchCompanyId
+  company = self.fetchCompany.company_admin_id
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company)
   if socialmessage.present? && socialmessage.gmailMessage.present?
@@ -218,7 +232,7 @@ def fetchEmailMessage
 end
 
 def fetchFacebookMessage
-  company = self.fetchCompanyId
+  company = self.fetchCompany.company_admin_id
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company)
   if socialmessage.present? && socialmessage.facebookMessage.present?
@@ -228,7 +242,7 @@ def fetchFacebookMessage
 end
 
 def fetchtwitterMessage
-  company = self.fetchCompanyId
+  company = self.fetchCompany.company_admin_id
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company)
   if socialmessage.present? && socialmessage.twitterMessage.present?

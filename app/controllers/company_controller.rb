@@ -29,7 +29,7 @@ class CompanyController < ApplicationController
         rescue Exception => e
           logger.debug(e)
         end
-        flash[:success] = "User successfully created"
+        flash.now[:success] = "User successfully created"
         redirect_to company_new_path()      
       else
         @users = User.fetchCompanyUserList(current_user)
@@ -109,7 +109,7 @@ def socialMessages
 end
 
 def savetwmes
-  company = current_user.fetchCompanyId
+  company = current_user.fetchCompany.company_admin_id
   socailMessage = SocialMessage.find_by_company_id(company)
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}
@@ -123,7 +123,7 @@ def savetwmes
 end
 
 def savefbmes
-  company = current_user.fetchCompanyId
+  company = current_user.fetchCompany.company_admin_id
   socailMessage = SocialMessage.find_by_company_id(company)
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}
@@ -137,7 +137,7 @@ def savefbmes
 end
 
 def savegmmes
-  company = current_user.fetchCompanyId
+  company = current_user.fetchCompany.company_admin_id
   socailMessage = SocialMessage.find_by_company_id(company)
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}

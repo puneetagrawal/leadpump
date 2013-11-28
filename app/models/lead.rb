@@ -6,7 +6,8 @@ class Lead < ActiveRecord::Base
   validates :email, :presence => true
   validates :lead_source, :presence => true
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
-  validates :phone, :numericality => {:only_integer => true}, :if => :phone?
+  number_regex = /\d[0-9]\)*\z/
+  validates_format_of :phone, :with =>  number_regex, :message => "-no should be positive number and without space"
 
 
 # def self.userLeads(user)
@@ -49,7 +50,6 @@ end
 
   def self.checkLeadStatus(status)
      status = status ? "Active" : "Inactive"
-    
   end
 
 end

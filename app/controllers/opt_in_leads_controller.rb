@@ -3,9 +3,8 @@ class OptInLeadsController < ApplicationController
   def index
   	if current_user.isCompany || current_user.isEmployee
   		users = User.fetchCompanyUserList(current_user)
-  		users = users.collect{|user| user.id}
+  		users = users.present? ? users.collect{|user| user.id} : []
   		users << current_user.id
-  		logger.debug(users.uniq)
 		@opt_in_lead = OptInLead.where(:referrer_id=>users.uniq)
 		logger.debug(@opt_in_lead)
 	else

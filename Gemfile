@@ -9,8 +9,6 @@ gem 'pg'
 gem "nested_form"
 gem 'bootstrap-datepicker-rails'
 gem 'will_paginate'
-#gem 'omniauth-facebook'
-#gem "omnicontacts"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,7 +32,6 @@ gem 'rails3-jquery-autocomplete'
 gem 'country-select'
 gem 'gmail-contacts', :require => "gmail-contacts"
 gem "paperclip", "~> 3.0"
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

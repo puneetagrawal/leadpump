@@ -5,13 +5,13 @@ class Picture < ActiveRecord::Base
 
 
 def self.fetchCompanyLogo(userId)
-	user = User.find(userId)
-	case user.user_role.role_type.to_sym
+	company = User.find(userId)
+	case company.user_role.role_type.to_sym
 	when :employee
-		companyId = Company.find_by_company_user_id(user.id)
-		user = User.find_by_id(companyId)
+		companyId = Company.find_by_company_user_id(company.id)
+		company = User.find_by_id(companyId.company_admin_id)
 	end
-	picture = Picture.find_by_user_id(user.id)
+	picture = Picture.find_by_user_id(company.id)
 end	
 
 

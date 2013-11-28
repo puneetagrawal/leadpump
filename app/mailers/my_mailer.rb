@@ -4,7 +4,7 @@ class MyMailer < Devise::Mailer
 
   def reset_password_instructions(record, opts={})
     headers = {
-        :subject => "Hi this is test"
+        :subject => "Welcome  #{resource.name}, reset your Qitch.com password"
     }
     super
   end

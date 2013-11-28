@@ -89,10 +89,12 @@ def deleteRowByajax
           userlead.destroy
         end
      end
-    object.destroy
   end
-  
-  msg = {"msg"=>"successfull"}
+  if object.destroy
+    msg = {"msg"=>"successfull"}
+  else
+    msg = {"msg"=>"successfull"}
+  end
   respond_to do |format|
     format.json { render json: msg}
   end

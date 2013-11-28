@@ -10,7 +10,7 @@
     </div>
     <div class="span10">
         <div class="pull-left clear">
-            <h2><%=current_user.fetchCompanyName%></h2>
+            <h2><%=current_user.name.humanize%></h2>
         </div>
         <%if current_user.isAdmin || current_user.isCompany%>
             <div class="pull-left clear">
