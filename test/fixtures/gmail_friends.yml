@@ -1,9 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
   email: MyString
+  name: MyString
+  user_id: 1
+  visited: false
+  opt_in: false
+  sent: false
+  secret_token: MyString
+  oppened: false
 
 two:
-  name: MyString
   email: MyString
+  name: MyString
+  user_id: 1
+  visited: false
+  opt_in: false
+  sent: false
+  secret_token: MyString
+  oppened: false

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :tweet_referrals, :dependent => :destroy
   has_many :send_invitation_to_gmail_friends, :dependent => :destroy
   has_many :opt_in_leads, :dependent => :destroy
+  has_many :statss, :dependent => :destroy
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
@@ -67,6 +68,13 @@ class User < ActiveRecord::Base
     return isNormaluser
   end
 
+  def isSocialInvitable
+    company = self.fetchCompany
+    allow = false
+    if company.subscription.present? && !company.subscription.plan_per_user_range.plan.social_referrals.blank?
+        allow = true
+    end
+  end
 
   def self.calculate_total_amount(plan, du, dl, dp)
     @amount = signUpAmount(planId, du, dl, dp)
@@ -138,6 +146,15 @@ class User < ActiveRecord::Base
     end
     return id
   end
+  def fetchCompany
+    company = self
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      company = User.find_by_id(companyId)
+    end
+    return company
+  end
 
 def saveLeadCount
   company = self.fetchCompanyId
@@ -153,7 +170,7 @@ def checkLeadLimit
   when :admin
     allow = false
   else
-    limit = self.no_of_users
+    limit = self.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
       usrLeads = UserLeads.where(:user_id=>self.id)
       if self.leads_created == limit.to_i
@@ -194,7 +211,7 @@ def fetchEmailMessage
   company = self.fetchCompanyId
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company)
-  if socialmessage.gmailMessage.present?
+  if socialmessage.present? && socialmessage.gmailMessage.present?
     message = socialmessage.gmailMessage
   end
   return message
@@ -204,7 +221,7 @@ def fetchFacebookMessage
   company = self.fetchCompanyId
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company)
-  if socialmessage.facebookMessage.present?
+  if socialmessage.present? && socialmessage.facebookMessage.present?
     message = socialmessage.facebookMessage
   end
   return message
@@ -214,7 +231,7 @@ def fetchtwitterMessage
   company = self.fetchCompanyId
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company)
-  if socialmessage.twitterMessage.present?
+  if socialmessage.present? && socialmessage.twitterMessage.present?
     message = socialmessage.twitterMessage
   end
   return message

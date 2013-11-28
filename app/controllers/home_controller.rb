@@ -11,6 +11,11 @@ class HomeController < ApplicationController
     def terms
     end
 
+    def sendmail
+      Emailer.sendtestmail().deliver
+    end 
+
+    
     def fetchfbfreinds
       @fbfreinds = params[:info]  
       respond_to do |format|

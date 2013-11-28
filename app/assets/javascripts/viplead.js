@@ -64,14 +64,14 @@ function initSocialInviter(){
 			url = '/sendIvitationToGmailFriend';
 			$.get(url, {emaillist:emaillist}, function (data) {
 				alert(data.msg);
+				$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 				$.fancybox.close();
 			});	
 		}
 		else{
 			alert("please select members.");
+			$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 		}
-		$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
-
 	});
 }
 

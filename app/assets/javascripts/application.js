@@ -63,29 +63,9 @@ $(document).ready(function(){
 	    }
     });
 
-
-   	$(document).on('keyup', '#social_invite', function (){
-	   $("#share_text").text($(this).val());
-	});
-
    	$(document).on('click', '.user_delete', function (){
 	  	$(this).parent().parent().parent().remove();
 	});
-
-	$(document).on('focusout', '#social_invite', function (){
-		 $(".twitter-share-button").hide();
-		 $(".twitter-tweet-button").hide();
-		twttr.widgets.createShareButton(
-		    ROOT_PATH+"tweet/ref?token="+tweet_token,
-			  document.getElementById('new-button'),
-			  function (el) {
-			    console.log("Button created.")
-			  },
-			  {
-			    count: 'none',
-			    text: $("#share_text").text(),
-			});
-		});
 	
 	initialization();
 	initLeadActiveSelect();
@@ -95,6 +75,18 @@ $(document).ready(function(){
   		onloginCall();
 	});
 
+	$(".viewContact").click(function(){
+		id = $(this).closest('tr').attr('id').split("_")[1]
+		$.fancybox.open({
+			href: '#contactDetails',
+			type: 'inline',
+			'beforeLoad' : function() {
+				url = '/opt_in_leads/viewContact';
+				$.post(url, {leadId:id}, function (data) {		
+				});
+			}
+		});
+	});
 });
 
 function formfields(){
@@ -190,14 +182,15 @@ function initialization(){
 
 function saveReferral(obj){
 	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
-	name = $("#referral_name").val();
-	email = $("#referral_email").val();
-	ref_id = $("#referral_referrer_id").val();
-	source = $("#referral_referrer_id").val();
-	phone = $("#referral_referrer_id").val();
+	name = $("#name").val();
+	email = $("#email").val();
+	ref_id = $("#ref_id").val();
+	source = $("#source").val();
+	phone = $("#phone").val();
+	sec = $("#sec").val();
 	if(name && email && ref_id){
-		url = '/acceptinvitation';
-		$.get(url, {name:name, email:email, phone:phone,source:source,ref_id:ref_id}, function (data) {
+		url = '/savereferral';
+		$.get(url, {sec:sec, name:name, email:email, phone:phone,source:source,ref_id:ref_id}, function (data) {
 			$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');	
 		});	
 	}

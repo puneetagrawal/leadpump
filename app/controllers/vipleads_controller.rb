@@ -36,25 +36,36 @@
   end
 
   def new
-    if params[:token].present?
-      token = params[:token]
-      @contacts = GmailContacts::Google.new(token).contacts
-      if @contacts.present?
-        @contacts.each do |contact|
-          email = contact.email != '' ? contact.email : ''
-          name = GmailFriend.getName(contact,email)
-          if email.present? && name.present?
-            gmailcontact = GmailFriend.where(:user_id => current_user.id, :email => email)
-            if !gmailcontact.present?
-              gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>current_user.id)
-              gmailfreind.save
+    if current_user.isSocialInvitable
+      if params[:token].present?
+        token = params[:token]
+        @contacts = GmailContacts::Google.new(token).contacts
+        if @contacts.present?
+          @contacts.each do |contact|
+            email = contact.email != '' ? contact.email : ''
+            logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>********************>>")
+            logger.debug(email)
+            name = GmailFriend.getName(contact,email)
+            logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            if email.present? && name.present?
+              gmailcontact = GmailFriend.where(:user_id => current_user.id, :email => email)
+              logger.debug(gmailcontact)
+              if !gmailcontact.present?
+                logger.debug("***sdffdsfdsdfdsfdsf**")
+                gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>current_user.id)
+                gmailfreind.save
+                logger.debug("*****")
+              end
             end
           end
         end
-      end
-      @emailAuth = true       
+        @emailAuth = true 
+      end      
+    else
+      flash[:notice] = "Sorry! you are not autherise user."
+      redirect_to home_index_path  
+      return false
     end
-
     @vipleads = VipLead.new
   end
 
@@ -69,7 +80,6 @@
 
   def fetchContacts
     @contacts = GmailFriend.where(:user_id=> current_user.id)
-    
     respond_to do |format|
       format.js 
     end
@@ -85,10 +95,15 @@
   def sendIvitationToGmailFriend
     emails = params[:emaillist]
     token = current_user.token
+    sents_count = 0
     if emails.present?
       emailMessage = current_user.fetchEmailMessage
       emails.each do|email|
-        Emailer.gmail_referral_mail(email, token, emailMessage).deliver
+        sec_token = GmailFriend.where(:email=>email,:user_id=>current_user.id).last
+        sec_token = sec_token.present? ? sec_token.secret_token : ''
+        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token).deliver
+        sents_count += 1
+        Stats.saveEsents(current_user.id, sents_count, email)
       end
     end
     message = {"msg"=> "successfully sent invitations."}
@@ -133,25 +148,40 @@
     @opt_in_lead  = OptInLead.new()
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
+      @token = params[:token]
       @source = params[:source]
+      @sec = params[:sec]
+      @gmailcontact = GmailFriend.where(:secret_token=>params[:sec], :user_id=>@ref.id).last
+      if @gmailcontact.present? && !@gmailcontact.visited
+        Stats.saveEvisited(@ref.id, @gmailcontact)
+      end
     end
   end
 
   def savereferral
     user = User.find_by_token(params[:ref_id])
-    opt_in_lead = OptInLead.where(:email=>params[:email],:user_id=>user.id, :source=>params[:source]).last
-    msg = ""
+    opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
+    msg = "Sorry! your link is invalid or expired."
     if !opt_in_lead.present?
-        opt_in_lead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],phone=>params[:phone], :user_id=>user.id)
-        msg = "You are successfuly created as lead"
-    else
-      msg = "Sorry! your link is invalid or expired."
+        if params[:source] == "gmail" && !params[:sec].blank?
+          OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
+          msg = Stats.saveEconverted(user.id, params[:sec])
+        end
     end
     message = {"msg" => msg}
     respond_to do |format|
       format.json { render json: message}
     end
   end
+
+  def trackEmail
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(params)
+      ref = User.where(:token=>params[:token]).last
+      gmailfriend = ref.present? ? GmailFriend.where(:secret_token=>params[:sec], :user_id=>ref.id) : nil
+      Stats.saveEoppened(gmailfriend)
+      send_file Rails.root.join("public", "track.png"), type: "image/png", disposition: "inline"
+   end
 
   def vipleadsearchfilter
   vl = VipLead.fetchList(current_user.id)

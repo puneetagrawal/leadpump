@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126235458) do
+ActiveRecord::Schema.define(:version => 20131128123839) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -74,12 +74,14 @@ ActiveRecord::Schema.define(:version => 20131126235458) do
   end
 
   create_table "gmail_friends", :force => true do |t|
-    t.string   "name"
     t.string   "email"
-    t.integer  "phone"
-    t.boolean  "active",       :default => false
-    t.string   "secret_token"
+    t.string   "name"
     t.integer  "user_id"
+    t.boolean  "visited",      :default => false
+    t.boolean  "opt_in",       :default => false
+    t.boolean  "sent",         :default => false
+    t.string   "secret_token"
+    t.boolean  "oppened",      :default => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
   end
@@ -186,6 +188,18 @@ ActiveRecord::Schema.define(:version => 20131126235458) do
     t.integer  "company_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "stats", :force => true do |t|
+    t.string   "source",      :default => "email"
+    t.string   "location",    :default => "Default Location"
+    t.integer  "e_sents"
+    t.integer  "e_oppened"
+    t.integer  "e_views"
+    t.integer  "e_converted"
+    t.integer  "user_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
