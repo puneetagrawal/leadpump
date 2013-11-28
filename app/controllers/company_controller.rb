@@ -23,6 +23,7 @@ class CompanyController < ApplicationController
       if @user.save      
         company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
         company.save
+        current_user.update_attributes(:users_created=> current_user.users_created+1)
         begin 
           @user.send_reset_password_instructions
         rescue Exception => e
@@ -99,7 +100,54 @@ def usersearchfilter
   end
 end
 
+def socialMessages
+  if current_user.isEmployee || current_user.isNormaluser
+    flash[:notice] = "Sorry! you are not authorize user to perform this action."
+    redirect_to home_index_path
+    return false
+  end
+end
 
+def savetwmes
+  company = current_user.fetchCompanyId
+  socailMessage = SocialMessage.find_by_company_id(company)
+  if params[:text].blank?
+    message = {"msg"=>"Please Enter some text."}
+  elsif socailMessage.present?
+    socailMessage.update_attributes(:twitterMessage=>params[:text])
+    message = {"msg"=>"Message saved successfully"}
+  else
+    SocialMessage.create(:twitterMessage=>params[:text], :company_id=>current_user.id)
+  end
+  render json: message
+end
 
+def savefbmes
+  company = current_user.fetchCompanyId
+  socailMessage = SocialMessage.find_by_company_id(company)
+  if params[:text].blank?
+    message = {"msg"=>"Please Enter some text."}
+  elsif socailMessage.present?
+    socailMessage.update_attributes(:facebookMessage=>params[:text])
+    message = {"msg"=>"Message saved successfully"}
+  else
+    SocialMessage.create(:facebookMessage=>params[:text], :company_id=>current_user.id)
+  end
+  render json: message
+end
+
+def savegmmes
+  company = current_user.fetchCompanyId
+  socailMessage = SocialMessage.find_by_company_id(company)
+  if params[:text].blank?
+    message = {"msg"=>"Please Enter some text."}
+  elsif socailMessage.present?
+    socailMessage.update_attributes(:gmailMessage=>params[:text])
+    message = {"msg"=>"Message saved successfully"}
+  else
+    SocialMessage.create(:gmailMessage=>params[:text], :company_id=>current_user.id)
+  end
+  render json: message
+end
 
 end

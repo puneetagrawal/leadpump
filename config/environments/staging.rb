@@ -4,9 +4,11 @@ Leadpump::Application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  SERVER_URL = "http://signin.leadpump.com"
+  SERVER_URL = "signin.leadpump.com"
   STRIPE_API_KEY = "sk_live_uZbFMn8jJDxYhcWBJMRz4kZS"
   STRIPE_PUB_KEY = "pk_live_IEcenF7CwslP7o1kXeRcYCQS"
+  FACEBOOK_KEY = "563196563757857"
+  FACEBOOK_SECRET = "ac0561d3179ef6507205091ccc4bb018"
   
   config.cache_classes = false
 
@@ -18,7 +20,8 @@ Leadpump::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -41,7 +44,6 @@ Leadpump::Application.configure do
   config.action_mailer.default_url_options = { :host => SERVER_URL }
 
   # ActionMailer Config
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
 
 

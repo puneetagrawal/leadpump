@@ -1,23 +1,27 @@
 <div class="container nav_second">
     <div class="row-fluid">
-         <div class="span4 pull-left optFilter">
-                <div class="form">
-                    <span>Show</span>
-                    <select  id="select_user_entry"><option>10</option><option>20</option><option>50</option></select>
-                        <span>entries</span>
-                </div>
+       <div class="span4 pull-left optFilter">
+            <div class="form">
+                <span>Show</span>
+                <select  id="select_user_entry"><option>10</option><option>20</option><option>50</option></select>
+                <span>entries</span>
             </div>
-        
-        <div class="span12 nav_second">
-           
-           <div class="border">
-            <div id="user_record">
-                <%= render 'filter_user_rec' %>
-            </div>
-           
-                </div>
-            <%= will_paginate @users, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;" %>
+        </div>
+        <div class="span3 pull-right optFilter">
+            <!-- <form class="form text-right">
+                <span>Search</span>
+                <input class="input-medium" placeholder="Search" type="search" id="searchUserAc">
+            </form> -->
+        </div>
+
+    <div class="span12 nav_second">
+     <div class="border">
+        <div id="user_record">
+            <%= render 'filter_user_rec' %>
         </div>
     </div>
+    <%= will_paginate @users, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;" %>
+</div>
+</div>
 </div>
 

@@ -1,6 +1,8 @@
+
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  attr_accessible :email, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes, :token
+  attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes, :token
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses, :dependent => :destroy
   has_one :subscription
@@ -12,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :referrals, :dependent => :destroy
   has_many :tweet_referrals, :dependent => :destroy
   has_many :send_invitation_to_gmail_friends, :dependent => :destroy
+  has_many :opt_in_leads, :dependent => :destroy
+  has_many :statss, :dependent => :destroy
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
@@ -59,6 +63,18 @@ class User < ActiveRecord::Base
     return isemployee
   end
 
+  def isNormaluser
+    isNormaluser = self.user_role.id == 4 ? true : false
+    return isNormaluser
+  end
+
+  def isSocialInvitable
+    company = self.fetchCompany
+    allow = false
+    if company.subscription.present? && !company.subscription.plan_per_user_range.plan.social_referrals.blank?
+        allow = true
+    end
+  end
 
   def self.calculate_total_amount(plan, du, dl, dp)
     @amount = signUpAmount(planId, du, dl, dp)
@@ -91,7 +107,7 @@ class User < ActiveRecord::Base
     users = []
     case user.user_role.role_type.to_sym  
       when :admin
-        users = User.where("id != ?", current_user.id)     
+        users = User.where("id != ?", user.id)     
       when :company
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users = users.collect{|user| User.find(user)}
@@ -114,11 +130,39 @@ class User < ActiveRecord::Base
     case self.user_role.role_type.to_sym
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
-      user = User.find_by_id(companyId)
-      name = user.name
+      user = companyId.present? ? User.find_by_id(companyId.company_admin_id) : nil
+      name = user.present? ? user.name : ''
     end
     return name.humanize
   end
+
+  def fetchCompanyId
+    id = self.id
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      user = User.find_by_id(companyId)
+      id = user.id
+    end
+    return id
+  end
+  def fetchCompany
+    company = self
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      company = User.find_by_id(companyId)
+    end
+    return company
+  end
+
+def saveLeadCount
+  company = self.fetchCompanyId
+  user = User.find(company)
+  if user.present?
+    user.update_attributes(:leads_created=>user.leads_created+1)
+  end
+end
 
 def checkLeadLimit
   allow = true
@@ -129,7 +173,7 @@ def checkLeadLimit
     limit = self.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
       usrLeads = UserLeads.where(:user_id=>self.id)
-      if usrLeads.present? && usrLeads.size() == limit.to_i
+      if self.leads_created == limit.to_i
         allow = false
       end
     end
@@ -144,8 +188,7 @@ def checkUserLimit
     allow = false
   else
     limit = self.subscription.plan_per_user_range.plan.number_of_user
-    users = Company.where(:company_admin_id => self.id)
-    if users.present? && users.size() == limit.to_i
+    if self.users_created == limit.to_i
       allow = false
     end
   end
@@ -156,11 +199,50 @@ def self.numeric?(object)
   true if Float(object) rescue false
 end
 
+def self.fetchUserByPlan(plan)
+  plan = Plan.where("name ilike ? ",plan).pluck(:id)
+  logger.debug(plan)
+  planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
+  subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange)
+  return users
+end
+
+def fetchEmailMessage
+  company = self.fetchCompanyId
+  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
+  socialmessage = SocialMessage.find_by_company_id(company)
+  if socialmessage.present? && socialmessage.gmailMessage.present?
+    message = socialmessage.gmailMessage
+  end
+  return message
+end
+
+def fetchFacebookMessage
+  company = self.fetchCompanyId
+  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
+  socialmessage = SocialMessage.find_by_company_id(company)
+  if socialmessage.present? && socialmessage.facebookMessage.present?
+    message = socialmessage.facebookMessage
+  end
+  return message
+end
+
+def fetchtwitterMessage
+  company = self.fetchCompanyId
+  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
+  socialmessage = SocialMessage.find_by_company_id(company)
+  if socialmessage.present? && socialmessage.twitterMessage.present?
+    message = socialmessage.twitterMessage
+  end
+  return message
+end
+
   protected
 
   def generate_token
-    random_token = SecureRandom.urlsafe_base64(nil, false)
-    self.token = random_token
+    token = SecureRandom.urlsafe_base64(self.id, false)
+    self.token = token
+    self.save
   end
 
 

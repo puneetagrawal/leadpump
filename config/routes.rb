@@ -1,5 +1,5 @@
 Leadpump::Application.routes.draw do
-  
+
   match '/appointments/filter_app' => 'appointments#filter_app'
   match '/tweet/ref' => 'tweet_referrals#new'
   resources :discounts_on_periods
@@ -11,6 +11,9 @@ Leadpump::Application.routes.draw do
   resources :referrals
   resources :tweet_referrals
 
+  match "/opt_in_leads/viewContact" => "opt_in_leads#viewContact"    
+  resources :opt_in_leads
+
   match "/createpic" => "picture#create"  
   resources :picture
 
@@ -19,6 +22,7 @@ Leadpump::Application.routes.draw do
 
   root to: "home#index"
 
+  match "/fetchfbfreinds" => "home#fetchfbfreinds"
   match "/acceptInvitation" => "vipleads#acceptInvitation"
   match "/invites" => "vipleads#invites"
   match "/fetchContacts" => "vipleads#fetchContacts"
@@ -27,6 +31,8 @@ Leadpump::Application.routes.draw do
   match "/vipleadsearchfilter" => "vipleads#vipleadsearchfilter"
   match "/viplead/filter_rec" => "vipleads#filter_rec"
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
+  match "/sendIvitationToFbFriend" => "vipleads#sendIvitationToFbFriend"
+
   resources :vipleads
   
   match 'home/index' => 'home#index'
@@ -45,14 +51,15 @@ Leadpump::Application.routes.draw do
 
 
 
-  match '/savereferral' => 'referrals#savereferral'
-  match '/savetweet' => 'tweet_referrals#savereferral'
+  match '/savereferral' => 'vipleads#savereferral'
   match '/admin/index' => 'admin#index'
   match '/admin/plan' => 'admin#plan'
   match '/admin/payment' => 'admin#payment'
   match '/admin/user' => 'admin#user'
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
+  match "/searchUserAc" => "admin#searchUserAc"
+  match "/usersearchinadmin" => "admin#usersearchinadmin"
   
    namespace :admin do
      root :to => "admin#index"
@@ -103,8 +110,15 @@ Leadpump::Application.routes.draw do
   match '/edit/:id' => 'company#edit', :as => :edit
   match '/company/update/:id' => 'company#update', :as => :update
   match '/delete/:id' => 'company#delete', :as => :delete
+  match "/socialMessages" => "company#socialMessages"
+  match "/savetwmes" => "company#savetwmes"
+  match "/savefbmes" => "company#savefbmes"
+  match "/savegmmes" => "company#savegmmes"
 
-  
+  match "/trackEmail" => "vipleads#trackEmail"
+  match "/sendmail" => "vipleads#sendmail"
+
+
 
   # match "/stripe_events", :to => "events#stripe_events", :as => :stripe_events, :via => :post
 

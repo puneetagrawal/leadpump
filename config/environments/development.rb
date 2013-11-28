@@ -7,7 +7,9 @@ Leadpump::Application.configure do
   SERVER_URL = "localhost:3000"
   STRIPE_API_KEY = "sk_test_MDqPbXEEDmOnzrqwJhyzmYeF"
   STRIPE_PUB_KEY = "pk_test_khzNUZcEtnlUCiom3lA2nQtI"
-  
+  FACEBOOK_KEY = "468207766612651"
+  FACEBOOK_SECRET = "34084682effefb870f5d4b6115463bb6"
+
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.

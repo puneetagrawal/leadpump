@@ -64,15 +64,13 @@ module Leadpump
     }
 
     config.action_mailer.smtp_settings = {
-        address: "smtp.gmail.com",
-        port: 587,
-        domain: "signin.leadpump.com",
+        address: "smtpout.secureserver.net",
+        port: 465,
+        domain: "leadpump.com",
         authentication: "plain",
-        enable_starttls_auto: true,
-        #user_name: "webteam786@gmail.com",
-        #password: "webteam786"
-        user_name: "Support@LeadPump.com",
-        password: "4trading"
+        user_name: "support@leadpump.com",
+        password: "4trading",
+	ssl: true
       } 
     end
 end

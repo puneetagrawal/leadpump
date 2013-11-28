@@ -26,6 +26,7 @@ class LeadsController < ApplicationController
       if @lead.save
         user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
         user_lead.save
+        current_user.saveLeadCount
         flash[:notice] = "New lead created successfully"
         redirect_to new_lead_path
       else
@@ -174,7 +175,6 @@ def getemails
       list = leads.map {|l| Hash[id: l.id, label: l.lead_source, name: l.lead_source]}
    end
  end
- logger.debug(list)
  render json: list
 end
 

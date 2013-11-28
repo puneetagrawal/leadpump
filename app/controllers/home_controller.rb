@@ -1,22 +1,28 @@
+
 class HomeController < ApplicationController
 	skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
 
     def index
     	@user = User.new
-
       @picture_user = Picture.fetchCompanyLogo(current_user.id)
       @picture = Picture.new
     end
 
     def terms
-    
     end
 
-    # def social_inviter
-    #   # @referrer = User.find(params[:token])
-    #   # logger.debug @referrer
-    #   # logger.debug "+++++++++++++"
-    # end
+    def sendmail
+      Emailer.sendtestmail().deliver
+    end 
+
+    
+    def fetchfbfreinds
+      @fbfreinds = params[:info]  
+      respond_to do |format|
+        format.js 
+      end
+    end
+    
 
     def welcome
     end
