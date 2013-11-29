@@ -164,10 +164,6 @@ class User < ActiveRecord::Base
     return company
   end
 
-def saveLeadCount
-  user = self.fetchCompany
-
-  
   def fetchCompany
     company = self
     case self.user_role.role_type.to_sym
