@@ -164,9 +164,6 @@ class User < ActiveRecord::Base
     return company
   end
 
-def saveLeadCount
-  user = self.fetchCompany
-
   
   def fetchCompany
     company = self
