@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131128123839) do
+ActiveRecord::Schema.define(:version => 20131129202342) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(:version => 20131128123839) do
     t.string   "app_source"
     t.string   "app_time"
     t.date     "app_date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "employee_id"
     t.string   "task"
-    t.datetime "appdateTime"
+    t.datetime "app_date_time"
     t.integer  "user_id"
     t.integer  "lead_id"
   end
@@ -190,18 +190,6 @@ ActiveRecord::Schema.define(:version => 20131128123839) do
     t.datetime "updated_at",      :null => false
   end
 
-  create_table "stats", :force => true do |t|
-    t.string   "source",      :default => "email"
-    t.string   "location",    :default => "Default Location"
-    t.integer  "e_sents"
-    t.integer  "e_oppened"
-    t.integer  "e_views"
-    t.integer  "e_converted"
-    t.integer  "user_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-  end
-
   create_table "subscriptions", :force => true do |t|
     t.integer  "plan_per_user_range_id"
     t.string   "stripe_card_token"
@@ -220,7 +208,6 @@ ActiveRecord::Schema.define(:version => 20131128123839) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

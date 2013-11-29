@@ -1,1 +1,5 @@
-$("#status_<%=@object.id%>").html('<%=escape_javascript(render partial: "common_templates/changeStatus")%>')
+<%if @user.present?%>
+	$("#status_<%=@user.id%>").html('<%=escape_javascript(render partial: "common_templates/changeStatus")%>')
+<%else%>
+	$("#status_<%=@lead.id%>").html('<%=escape_javascript(render partial: "common_templates/changeStatus")%>')
+<%end%>

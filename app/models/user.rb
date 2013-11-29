@@ -163,20 +163,9 @@ class User < ActiveRecord::Base
     end
     return company
   end
-
-  def fetchCompany
-    company = self
-    case self.user_role.role_type.to_sym
-    when :employee
-      companyId = Company.find_by_company_user_id(self.id)
-      company = User.find_by_id(companyId)
-    end
-    return company
-  end
-
+  
 def saveLeadCount
-  company = self.fetchCompanyId
-  user = User.find(company)
+  user = self.fetchCompany
   if user.present?
     user.update_attributes(:leads_created=>user.leads_created+1)
   end
@@ -188,8 +177,8 @@ def checkLeadLimit
   when :admin
     allow = false
   when :employee
-    company = Company.find_by_company_user_id(self.id).company_admin_id
-    user = User.find(company)
+    user = self.fetchCompany
+    logger.debug(user.id)
     limit = user.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
       if user.leads_created == limit.to_i
@@ -276,9 +265,9 @@ def fetchFacebookMessage
 end
 
 def fetchtwitterMessage
-  company = self.fetchCompanyId
+  company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company)
+  socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.twitterMessage.present?
     message = socialmessage.twitterMessage
   end

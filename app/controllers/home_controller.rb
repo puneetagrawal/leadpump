@@ -47,9 +47,9 @@ end
 
 def changestatus
   if(params[:urls].include? 'company')
-      @object = User.find(params[:leadId])
+      @user = User.find(params[:leadId])
     else
-      @object = Lead.find(params[:leadId])
+      @lead = Lead.find(params[:leadId])
     end
   respond_to do |format|
     format.js 

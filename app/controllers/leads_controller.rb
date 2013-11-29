@@ -81,13 +81,13 @@ def createtask
   @min = ''
   @zone = ''
   if @appointment.present?
-    @date = @appointment.appdateTime.strftime("%Y-%m-%d")
+    @date = @appointment.app_date_time.strftime("%Y-%m-%d")
     @task = @appointment.task
-    @hour = @appointment.appdateTime.hour
-    @min = @appointment.appdateTime.min
+    @hour = @appointment.app_date_time.hour
+    @min = @appointment.app_date_time.min
     if @hour >= 12 
       @zone = "pm"
-      @hour = @appointment.appdateTime.hour - 12
+      @hour = @appointment.app_date_time.hour - 12
     else
       @zone = "am"
     end

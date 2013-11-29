@@ -1,2 +1,5 @@
-<%= select "status", "lead", options_for_select(["Active hot","Active","Inactive","Sold"], :selected=>@object.status)%>
-
+<%if @lead.present? %>
+	<%= select "status", "lead", options_for_select(["Active hot","Active","Inactive","Sold"], :selected=>@lead.status)%>
+<%elsif @user.present?%>
+	<%= select "status", "lead", options_for_select([["Active",true],["Inactive",false]], @user.active)%>
+<%end%>
