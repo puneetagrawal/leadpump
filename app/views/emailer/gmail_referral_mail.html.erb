@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <p>hey your freind sent you inivitation to pump your leads.Click here to respond <%=link_to "leadpump.com", @url %>.</p>
-    <p>Thanks in advance and have a great day!</p>
-  </body>
-</html>
+<head>
+	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+	<p><%=@message%>. As one of my friends you qualify to receive a FREE
+		7 day membership pass. I thought you might be interested and would join me.</p>
+		<p>Hope to see you in the club soon.</p>
+		<p>Click the link below to get your pass now.</p>
+		<p><%=link_to "Respond", @url%></p>
+		<p>Talk to you soon!</p>
+		<img src="<%=@trackUrl%>" />
+	</body>
+	</html>

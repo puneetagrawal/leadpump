@@ -9,16 +9,14 @@
         <h3>Share on Twitter</h3>
         <p>Share this message with your friends on Twitter. The following tweet will be posted to your twitter stream.</p>
         <form class="form">
-         <textarea id="social_invite"></textarea>
-            <div id="share_text" style="display:none;"> </div>   
-            <div id="new-button"> </div> 
-           <a href="http://twitter.com/share" class="twitter-share-button" data-text="" data-count="none">Tweet</a>
-
-        </form>
-    </div>
+           <textarea disabled="disabled"><%=current_user.fetchtwitterMessage%></textarea>
+           <div id="share_text" style="display:none;"> </div>   
+           <div id="new-button"> </div> 
+           <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://signin.leadpump.com/acceptInvitation?token=<%=current_user.token%>&source=twitter"
+           data-text="<%=current_user.fetchtwitterMessage%>"
+           data-count="none"> Tweet </a>
+       </form>
+   </div>
 </div>
-<script>
-   $.getScript('https://platform.twitter.com/widgets.js', function(){
-        twttr.widgets.load();
-    }); 
-</script>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>

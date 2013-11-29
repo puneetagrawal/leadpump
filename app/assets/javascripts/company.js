@@ -9,7 +9,36 @@ function initCompanyCreateOrUpdate(){
 
 	$(".container").on('click', '.compSubmit', function (){
 		companySubmit(this);
-	});		
+	});	
+
+
+	$(".submitFmes").click(function(){
+		$(this).html('<img src="/assets/ajax-loader.gif">');
+		url = '/savefbmes';
+		text = $.trim($(this).siblings('textarea').val());
+		$.get(url, {text:text}, function (data) {
+			alert("Message save successfully.");
+			$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
+		});
+	});
+	$(".submitTmes").click(function(){
+		$(this).html('<img src="/assets/ajax-loader.gif">');
+		url = '/savetwmes';
+		text = $.trim($(this).siblings('textarea').val());
+		$.get(url, {text:text}, function (data) {
+			alert("Message save successfully.");
+			$('.submitTmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
+		});
+	});
+	$(".submitGmes").click(function(){
+		$(this).html('<img src="/assets/ajax-loader.gif">');
+		url = '/savegmmes';
+		text = $(this).siblings('textarea').val();
+		$.get(url, {text:text}, function (data) {
+			alert("Message save successfully.");
+			$('.submitGmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
+		});
+	});	
 }
 
 function companyEdit(obj){

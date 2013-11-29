@@ -1,11 +1,11 @@
 <script>
- function fbs_click() {
+    function fbs_click() {
         u="http://sigin.leadpump.com/referrals/new?token=<%= current_user.token %>&fb=true";
         t=document.title;
         m="http://sigin.leadpump.com/assets/logo.png",
         window.open("http://www.facebook.com/sharer.php?s=100&p[url]=" + u + "&p[title]=" + t + "&p[summary]=I just joined Your gym name here, here a free 7-day pass for you.Come join me!" + "&p[images][0]="+m,'sharer','toolbar=0,status=0,width=626,height=436');
         return false;
-    }  
+    } 
     tweet_token = "<%=current_user.name%>"
 </script>
 <div class="social_options">
@@ -26,3 +26,5 @@
 <%=render "socialInviterEmail"%>
 <%=render "socialInviterFacebook"%>
 <%=render "socialInviterTwitter"%>
+
+
