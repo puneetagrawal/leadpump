@@ -1,9 +1,7 @@
 $(document).ready(function(){
 	leadid = ''
 	$(".leadFilterByName").change(function(){
-		if($(this).val() != ''){
-			leadFilterByName($(this).val())	
-		}		
+		leadFilterByName($(this).val())	
 	});	
 	initLeadCreateOrUpdate();
 });
@@ -50,6 +48,11 @@ function initLeadCreateOrUpdate(){
 	$("#assignLeadSelect").on('change', '.createLeadTask', function (){
 		leadId = $("#leadid").val();
 		assignLeadToUser($(this).val(), leadId);
+	});
+	$("#test").keyup(function(e){
+		if(e.keyCode == 13){
+			leadSearchFilter($(this).val())
+		}
 	});
 
 }

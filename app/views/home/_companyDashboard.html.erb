@@ -16,7 +16,38 @@
 	<span>VIP Leads</span>                 
 	<%end %>
 </li>
-<%if current_user.isSocialInvitable %> 
+<%if current_user.isEmployee%> 
+	<li>
+		<%=link_to(vipleads_path(), html_options = {}) do %>
+		<i class="icon icon_vip_leads"></i>
+		<span>VIP Leads</span>                 
+		<%end %>
+	</li>
+	<li>
+	    <%=link_to(opt_in_leads_path, html_options = {}) do %>
+	    <i class="icon icon_opt_in_lead"></i>
+	    <span>Opt in leads</span>	
+	    <span></span>                  
+	    <%end%>
+	</li>
+	<%if current_user.isSocialInvitable %> 
+		<li>
+		    <%=link_to(new_viplead_path, html_options = {}) do %>
+		    <i class="icon icon_socialInviter"></i>
+		    <span>Social Inviters</span>
+		    <span></span>                  
+		    <%end %>
+		</li>
+	<%end%>
+	<li>
+		<%=link_to(statss_index_path(), html_options = {}) do %>
+		<i class="icon icon_statistics"></i>
+		<span>Stats</span>                 
+		<%end %>
+	</li>
+<%end%>
+
+
 	<li>
 	    <%=link_to(new_viplead_path, html_options = {}) do %>
 	    <i class="icon icon_socialInviter"></i>
@@ -24,7 +55,7 @@
 	    <span></span>                  
 	    <%end %>
 	</li>
-<%end%>
+
 
 <li>
     <%=link_to(opt_in_leads_path, html_options = {}) do %>

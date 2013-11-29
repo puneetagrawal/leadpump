@@ -138,7 +138,12 @@ def saveleadstatus
 end
 
 def filterbyname
-  @leads = UserLeads.where(:user_id=>params[:userId])
+  if params[:userId].blank?
+    hash = Lead.fetchLeadList(current_user) 
+    @leads = hash['leads'.to_sym]
+  else
+    @leads = UserLeads.where(:user_id=>params[:userId])
+  end
   respond_to do |format|
     format.js 
   end
@@ -148,7 +153,8 @@ def leadsearchfilter
   hash = Lead.fetchLeadList(current_user) 
   leadlist = hash['leads'.to_sym]
   leadlist = leadlist.pluck(:lead_id)
-  lead = Lead.where("name = ? or lname = ? or lead_source = ?", params[:leadId],params[:leadId],params[:leadId]).where(:id=>leadlist) 
+  like = "%#{params[:leadId]}%"
+  lead = Lead.where("name ilike ? or lname ilike ? or lead_source ilike ?", like,like,like).where(:id=>leadlist) 
   @leads = UserLeads.select("distinct(lead_id)").where(:lead_id=>lead)
   respond_to do |format|
     format.js 

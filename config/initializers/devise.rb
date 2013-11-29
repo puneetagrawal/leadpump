@@ -14,7 +14,7 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
-  #config.mailer = "MyMailer"
+    config.mailer = "MyMailer"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

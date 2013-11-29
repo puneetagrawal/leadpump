@@ -1,12 +1,16 @@
 class Lead < ActiveRecord::Base
   attr_accessible :name, :lname, :active, :address, :phone, :email, :address, :refferred_by, :goal, :lead_source, :guest_pass_issued, :dues_value, :enrolment_value, :notes, :user_id, :status, :no_of_days
   belongs_to :user
+  after_create :savestatus
+
   has_many :appointments , :dependent => :destroy
   validates :name, :presence => true
   validates :email, :presence => true
   validates :lead_source, :presence => true
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
-  validates :phone, :numericality => {:only_integer => true}, :if => :phone?
+  number_regex = /\d[0-9]\)*\z/
+  validates_format_of :phone, :with =>  number_regex, :message => "-no should be positive number and without space"
+
 
 
 # def self.userLeads(user)
@@ -49,8 +53,13 @@ end
 
   def self.checkLeadStatus(status)
      status = status ? "Active" : "Inactive"
-    
   end
+
+protected
+def savestatus
+  self.status = "Active"
+  self.save
+end
 
 end
 

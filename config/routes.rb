@@ -1,5 +1,8 @@
 Leadpump::Application.routes.draw do
 
+
+  get "statss/index"
+
   match '/appointments/filter_app' => 'appointments#filter_app'
   match '/tweet/ref' => 'tweet_referrals#new'
   resources :discounts_on_periods

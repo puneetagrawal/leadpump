@@ -1,5 +1,6 @@
 <div class="social_invite" style="min-height:300px;">
- 
+ <div style="color:red;" class="ref_lead_error"></div>
+
  <%if @ref.present? && @gmailcontact.present? && !@gmailcontact.opt_in?%>
     <form class = "forms form">
         <div id="showErrors"></div>

@@ -6,7 +6,7 @@
  class VipleadsController < ApplicationController
   
   def index
-    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => 10)
+    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
   end
 
   def filter_rec
@@ -43,18 +43,12 @@
         if @contacts.present?
           @contacts.each do |contact|
             email = contact.email != '' ? contact.email : ''
-            logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>********************>>")
-            logger.debug(email)
             name = GmailFriend.getName(contact,email)
-            logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             if email.present? && name.present?
               gmailcontact = GmailFriend.where(:user_id => current_user.id, :email => email)
-              logger.debug(gmailcontact)
               if !gmailcontact.present?
-                logger.debug("***sdffdsfdsdfdsfdsf**")
                 gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>current_user.id)
                 gmailfreind.save
-                logger.debug("*****")
               end
             end
           end
@@ -123,6 +117,7 @@
     render json: message
   end
 
+
   # def acceptInvitation
   #   user = User.find_by_token(params[:token])
   #   msg = ""
@@ -162,21 +157,28 @@
     user = User.find_by_token(params[:ref_id])
     opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
     msg = "Sorry! your link is invalid or expired."
+    error = ""
     if !opt_in_lead.present?
-        if params[:source] == "gmail" && !params[:sec].blank?
-          OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
-          msg = Stats.saveEconverted(user.id, params[:sec])
+        if !params[:sec].blank?
+          lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
+          if lead.save
+            UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
+            OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
+            if params[:source] == "gmail"
+              msg = Stats.saveEconverted(user.id, params[:sec])
+            end
+          else
+            error = lead.errors.full_messages.to_sentence
+          end
         end
     end
-    message = {"msg" => msg}
+    message = {"msg" => msg,"error"=>error}
     respond_to do |format|
       format.json { render json: message}
     end
   end
 
   def trackEmail
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>")
-      logger.debug(params)
       ref = User.where(:token=>params[:token]).last
       gmailfriend = ref.present? ? GmailFriend.where(:secret_token=>params[:sec], :user_id=>ref.id) : nil
       Stats.saveEoppened(gmailfriend)
