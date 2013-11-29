@@ -166,6 +166,21 @@ class User < ActiveRecord::Base
 
 def saveLeadCount
   user = self.fetchCompany
+
+  
+  def fetchCompany
+    company = self
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      company = User.find_by_id(companyId)
+    end
+    return company
+  end
+
+def saveLeadCount
+  company = self.fetchCompanyId
+  user = User.find(company)
   if user.present?
     user.update_attributes(:leads_created=>user.leads_created+1)
   end
@@ -188,6 +203,7 @@ def checkLeadLimit
   when :company
     limit = self.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
+      usrLeads = UserLeads.where(:user_id=>self.id)
       if self.leads_created == limit.to_i
         allow = false
       end
@@ -218,7 +234,8 @@ def self.fetchUserByPlan(plan)
   plan = Plan.where("name ilike ? ",plan).pluck(:id)
   logger.debug(plan)
   planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
-  subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange)
+  subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange).pluck(:user_id)
+  users = subscription.present? ? subscription.collect{|user| User.find(user)} : []
   return users
 end
 
@@ -246,10 +263,30 @@ def fetchtwitterMessage
   company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company.id)
+  if socialmessage.present? && socialmessage.gmailMessage.present?
+    message = socialmessage.gmailMessage
+  end
+  return message.html_safe
+end
+
+def fetchFacebookMessage
+  company = self.fetchCompany
+  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
+  socialmessage = SocialMessage.find_by_company_id(company.id)
+  if socialmessage.present? && socialmessage.facebookMessage.present?
+    message = socialmessage.facebookMessage
+  end
+  return message.html_safe
+end
+
+def fetchtwitterMessage
+  company = self.fetchCompanyId
+  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
+  socialmessage = SocialMessage.find_by_company_id(company)
   if socialmessage.present? && socialmessage.twitterMessage.present?
     message = socialmessage.twitterMessage
   end
-  return message
+  return message.html_safe
 end
 
   protected

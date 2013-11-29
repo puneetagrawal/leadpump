@@ -6,7 +6,7 @@
  class VipleadsController < ApplicationController
   
   def index
-    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => 10)
+    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
   end
 
   def filter_rec
@@ -116,6 +116,7 @@
     message = {"msg"=> "successfully sent invitations."}
     render json: message
   end
+
 
   # def acceptInvitation
   #   user = User.find_by_token(params[:token])

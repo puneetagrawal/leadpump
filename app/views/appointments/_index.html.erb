@@ -1,8 +1,11 @@
  <table class="table table-striped">  
   <thead>
     <tr>
-      <td style="width: 20%;">Time</td>
-      <td> Appointment </td>
+      <th class="app_index">Time</th>
+      <th class="app_index"> Schedule </th>
+      <th class="app_index"> Submitted By </th>
+      <th class="app_index"> Lead Name </th>
+      <th class="app_index"> Date </th>
     </tr>
   </thead>
   <tbody>
@@ -11,12 +14,10 @@
         <tr>
           <% if a.appdateTime.present?%>
             <td class="time"><%= a.appdateTime.strftime("%I:%M %p") %></td>
-            <td class="green_dark">
-               <ul>
-                <li><strong>Date:</strong> <%= a.appdateTime.strftime("%Y-%m-%d") %> </li>
-                <li><strong>Submitted by: </strong><%= a.user.name.humanize if a.user.present? %></li>
-              </ul>
-            </td>
+            <td class="green_dark"> <%= a.task %>  </td>
+            <td class="blue_dark"> <%= a.user.name.humanize if a.user.present? %>  </td>
+            <td class="green_dark"> <%= a.lead.name %> </td>
+            <td class="blue_dark"> <%= a.appdateTime.strftime("%Y-%m-%d") %>  </td>
           <%end%>
         </tr>
       <%end%>
@@ -26,12 +27,10 @@
         <tr>
           <% if a.appdateTime.present?%>
             <td class="time"><%= a.appdateTime.strftime("%I:%M %p") %></td>
-            <td class="green_dark">
-               <ul>
-                <li><strong>Date:</strong> <%= a.appdateTime.strftime("%Y-%m-%d") %> </li>
-                <li><strong>Submitted by: </strong><%= a.user.name.humanize if a.user.present? %></li>
-              </ul>
-            </td>
+            <td class="green_dark"> <%= a.task %>  </td>
+            <td class="blue_dark"> <%= a.user.name.humanize if a.user.present? %>  </td>
+            <td class="green_dark"> <%= a.lead.name %> </td>
+            <td class="blue_dark"> <%= a.appdateTime.strftime("%Y-%m-%d") %>  </td>
           <%end%>
         </tr>
       <%end%>
