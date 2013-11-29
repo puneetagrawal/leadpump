@@ -24,19 +24,11 @@ $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
+	$('.ckeditor').ckeditor({
+		  // optional config
+	}); 
 
-	  $("#select_user_entry").click(function(){  
-		   var search_val = $(this).val(); 
-		   $.ajax({
-		    url: "/admin/user_rec",
-		    data: { 
-		     "search_val": search_val
- 		   }   
- 		});   
-	 });
-
-
-	  $("#select_user_entry").click(function(){  
+    $("#select_user_entry").click(function(){  
 		   var search_val = $(this).val(); 
 		   $.ajax({
 		    url: "/viplead/filter_rec",
@@ -46,16 +38,35 @@ $(document).ready(function(){
  		});   
 	 }); 
 
- $(document).on('change', '.lead_source_sel', function () {
+    $(document).on('change', "#select_user_entry", function () {
+       var search_val = $(this).val(); 
+		   $.ajax({
+		    url: "/admin/user_rec",
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});   
+    });	
+
+   $(document).on("click", ".pagination a", function(){
+   	var search_val = $("#select_user_entry").val(); 
+		   $.ajax({
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});  
+    });
+
+   $(document).on('change', '.lead_source_sel', function () {
         if($(this).val() == "Other") {
 	      $("#text_div").html('<label for="lead_ "> </label><input type="text" value="" placeholder="Please specify" name="lead[lead_source]" id="lead_lead_source">');
 	    }
 	    else {
 	      $("#text_div").html('');
 	    }
-    });
+	});
 
-  $(document).on('change', '.goal_sel', function () {
+   $(document).on('change', '.goal_sel', function () {
         if($(this).val() == "Other") {
 	      $("#text_div_2").html('<label for="lead_ "> </label><input type="text" value="" size="30" placeholder="Please specify" name="lead[goal]" id="lead_goal">');
 	    }
@@ -102,7 +113,6 @@ function initLeadActiveSelect(){
 	$(".leadActive select").change(function(){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
 	});
-
 }
 
 function fillPopupContent(id) {
@@ -201,7 +211,6 @@ function saveReferral(obj){
 	}
 	
 }
-
 
 function caclulateAmount(){
 	no_of_users = 1;

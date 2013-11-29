@@ -203,7 +203,12 @@ def self.fetchUserByPlan(plan)
   plan = Plan.where("name ilike ? ",plan).pluck(:id)
   logger.debug(plan)
   planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
-  subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange)
+  subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange).pluck(:user_id)
+  logger.debug subscription
+  logger.debug "________________-"
+  users = subscription.present? ? subscription.collect{|user| User.find(user)} : []
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>")
+  logger.debug(users)
   return users
 end
 
@@ -214,7 +219,7 @@ def fetchEmailMessage
   if socialmessage.present? && socialmessage.gmailMessage.present?
     message = socialmessage.gmailMessage
   end
-  return message
+  return message.html_safe
 end
 
 def fetchFacebookMessage
@@ -224,7 +229,7 @@ def fetchFacebookMessage
   if socialmessage.present? && socialmessage.facebookMessage.present?
     message = socialmessage.facebookMessage
   end
-  return message
+  return message.html_safe
 end
 
 def fetchtwitterMessage
@@ -234,7 +239,7 @@ def fetchtwitterMessage
   if socialmessage.present? && socialmessage.twitterMessage.present?
     message = socialmessage.twitterMessage
   end
-  return message
+  return message.html_safe
 end
 
   protected

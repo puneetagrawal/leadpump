@@ -5,7 +5,7 @@
         <h3>Share this invitations on Facebook with one simple click</h3>
         <p class="text-center"><img src="/assets/facebook-icon.png"></p>
     </div>
-    <div class="span4">
+    <div class="span7">
         <p>Enter facebook message that you want to send on facebook.</p>
         <form class="form">
             <textarea class="ckeditor">
@@ -23,10 +23,10 @@
         <h3>Share this invitations on twitter with one simple click</h3>
         <p class="text-center"><img src="/assets/twitter-icon.png"></p>
     </div>
-    <div class="span4">
+    <div class="span7">
         <p>Enter Tweets message that you want to tweet on twiter.</p>
         <form class="form">
-            <textarea>
+            <textarea class="ckeditor">
                 <%=current_user.fetchtwitterMessage%>
             </textarea>
             <span class="submitTmes">
@@ -41,10 +41,10 @@
         <h3>Share this invitations on Gmail with one simple click</h3>
         <p class="text-center"><img src="/assets/mail-icon.png" /></p>
     </div>
-    <div class="span4">
+    <div class="span7">
         <p>Enter Gmail message that you want to send on email.</p>
         <form class="form">
-            <textarea>
+            <textarea class="ckeditor">
                 <%=current_user.fetchEmailMessage%>
             </textarea>
             <span class="submitGmes">

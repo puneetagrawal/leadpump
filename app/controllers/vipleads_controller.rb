@@ -6,7 +6,7 @@
  class VipleadsController < ApplicationController
   
   def index
-    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => 10)
+    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
   end
 
   def filter_rec

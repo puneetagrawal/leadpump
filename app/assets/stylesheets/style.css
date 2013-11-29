@@ -1252,6 +1252,7 @@ header h2 a {
     background: #f5f5f5;
     padding: 15px;
     border-radius: 5px;
+    width: 100%;
 }
 .email_msg {
     border: 1px solid #ddd;
@@ -1905,4 +1906,9 @@ width: 120px;
 }
 .nav_second{
     margin-top: 15px !important;
+}
+.app_index{
+    width: 15%;
+    font-weight: bolder;
+    font-size: 14px;
 }

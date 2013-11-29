@@ -16,7 +16,7 @@
 	<span>VIP Leads</span>                 
 	<%end %>
 </li>
-<%if current_user.isSocialInvitable %> 
+
 	<li>
 	    <%=link_to(new_viplead_path, html_options = {}) do %>
 	    <i class="icon icon_socialInviter"></i>
@@ -24,7 +24,7 @@
 	    <span></span>                  
 	    <%end %>
 	</li>
-<%end%>
+
 
 <li>
     <%=link_to(opt_in_leads_path, html_options = {}) do %>
