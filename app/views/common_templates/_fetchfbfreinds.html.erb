@@ -1,0 +1,18 @@
+  <div class="span4" style="width:470px">
+    <form class="form">
+        <div class="border app_header">
+            <h2 class="heading headmsg">Invite Contacts</h2>
+            <div class="form pd15 leadform">
+              <%if @fbfreinds.present?%>
+                <% @fbfreinds.each do |contact| %>
+                  <p>
+                    <%=check_box_tag "freindId_#{contact[1][:username]}", 'yes', false, :class => 'fbchekbox'%>
+                    <label class="email_label" style="width:48%;"><%=contact[1][:name]%></label>
+                  </p>
+                <%end%>
+              <%end%>
+              <p class="sendFbmail"><a class="btn yellow" href="javascript:void(0)">Send Invitations</a></p>
+          </div>        
+      </div>    
+  </form>
+</div>
