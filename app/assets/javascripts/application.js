@@ -181,6 +181,7 @@ function initialization(){
 }
 
 function saveReferral(obj){
+	$(".ref_lead_error").html('');	
 	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
 	name = $("#name").val();
 	email = $("#email").val();
@@ -191,7 +192,13 @@ function saveReferral(obj){
 	if(name && email && ref_id){
 		url = '/savereferral';
 		$.get(url, {sec:sec, name:name, email:email, phone:phone,source:source,ref_id:ref_id}, function (data) {
-			$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');	
+			if(data.error != ''){
+				$(".ref_lead_error").html(data.error);	
+				$(obj).html('<input type="button" value="Submit" class="btn yellow social_ref_btn" size="20">');
+			}
+			else{
+				$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');		
+			}
 		});	
 	}
 	else{
@@ -279,7 +286,6 @@ function removeFlash(){
 }
 
 function userSearchFilter(userId){
-	alert(userId)
 	url = '/usersearchinadmin';
 	$.get(url, {userId:userId}, function (data) {	
 	});

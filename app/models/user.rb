@@ -118,16 +118,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def getCompanyEmail
-  #   email = self.email
-  #   case self.user_role.role_type.to_sym
-  #   when :employee
-  #     companyId = Company.find_by_company_user_id(self.id)
-  #     user = User.find_by_id(companyId)
-  #     email = user.email
-  #   end
-  #   return email
-  # end
+  def getCompanyEmail
+    email = self.email
+    case self.user_role.role_type.to_sym
+    when :employee
+      companyId = Company.find_by_company_user_id(self.id)
+      user = User.find_by_id(companyId)
+      email = user.email
+    end
+    return email
+  end
 
   # def fetchCompanyName
   #   name = self.name
@@ -140,16 +140,17 @@ class User < ActiveRecord::Base
   #   return name.humanize
   # end
 
-  def fetchCompanyId
-    id = self.id
-    case self.user_role.role_type.to_sym
-    when :employee
-      companyId = Company.find_by_company_user_id(self.id)
-      user = User.find_by_id(companyId)
-      id = user.id
-    end
-    return id
-  end
+  # def fetchCompanyId
+  #   id = self.id
+  #   case self.user_role.role_type.to_sym
+  #   when :employee
+  #     companyId = Company.find_by_company_user_id(self.id)
+  #     user = User.find_by_id(companyId)
+  #     id = user.id
+  #   end
+  #   return id
+  # end
+  
   def fetchCompany
     company = self
     case self.user_role.role_type.to_sym
@@ -157,14 +158,14 @@ class User < ActiveRecord::Base
       companyId = Company.find_by_company_user_id(self.id)
       company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
     when :company
-      company = Company.find_by_company_admin_id(self.id)
+      companyId = Company.find_by_company_admin_id(self.id)
+      company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
     end
     return company
   end
 
 def saveLeadCount
-  company = self.fetchCompany.company_admin_id
-  user = User.find(company)
+  user = self.fetchCompany
   if user.present?
     user.update_attributes(:leads_created=>user.leads_created+1)
   end
@@ -222,9 +223,9 @@ def self.fetchUserByPlan(plan)
 end
 
 def fetchEmailMessage
-  company = self.fetchCompany.company_admin_id
+  company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company)
+  socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.gmailMessage.present?
     message = socialmessage.gmailMessage
   end
@@ -232,9 +233,9 @@ def fetchEmailMessage
 end
 
 def fetchFacebookMessage
-  company = self.fetchCompany.company_admin_id
+  company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company)
+  socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.facebookMessage.present?
     message = socialmessage.facebookMessage
   end
@@ -242,9 +243,9 @@ def fetchFacebookMessage
 end
 
 def fetchtwitterMessage
-  company = self.fetchCompany.company_admin_id
+  company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company)
+  socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.twitterMessage.present?
     message = socialmessage.twitterMessage
   end

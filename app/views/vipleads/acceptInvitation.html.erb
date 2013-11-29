@@ -1,6 +1,7 @@
 <div class="social_invite" style="min-height:300px;">
- 
- <%if @ref.present? && @gmailcontact.present? && !@gmailcontact.opt_in?%>
+ <div style="color:red;" class="ref_lead_error"></div>
+
+ <%#if @ref.present? && @gmailcontact.present? && !@gmailcontact.opt_in?%>
     <form class = "forms form">
         <div id="showErrors"></div>
         <div class="border app_header">
@@ -22,8 +23,8 @@
                <br/>
         </div>    
     </form>   
-<%else%>
+<%#else%>
     <span style="font-size:25px;right:25%;top:200px;position:fixed;">You are requesting with wrong link. Please try with another link.</span>
-<%end%>
+<%#end%>
 
 </div>
