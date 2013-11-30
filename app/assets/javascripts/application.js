@@ -99,7 +99,32 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$(document).on('mouseenter', 'td.leadAction', function (){
+	   view = false;
+	});
+	$(document).on('mouseenter', 'td.leadAction *', function (){
+	   view = false;
+	});
+	 
+	$(document).on('mouseenter', '.listView', function (){
+	   view = true
+	});
+
+	$(document).on('click', '.listView', function (){
+		if(view){
+			$.fancybox.open(this,{
+				href: '#viewPopup',
+				type: 'inline',
+				'beforeLoad' : function() {
+					fillPopupContent($(this.element));
+				}
+			});
+		}
+	});
+
+
 });
+
 
 function formfields(){
 	new_obj = {}
@@ -115,11 +140,12 @@ function initLeadActiveSelect(){
 	});
 }
 
-function fillPopupContent(id) {
+function fillPopupContent(obj) {
+	id = $(obj).attr('id');
 	id = id.split("_")[1];
-	urls = window.location.pathname;
+	act = $(obj).attr('data-action');
 	url = '/home/fillpopupcontent';
-	$.get(url, {id:id,urls:urls}, function (data) {			
+	$.get(url, {id:id,act:act}, function (data) {			
 	});
 }
 
@@ -162,9 +188,11 @@ function initialization(){
 		caclulateAmount()
 	}			
 	
-	$(".container").on('click', '.span', function (){
-		changeleadstatus($(this).parent().attr('id'))
-	})
+	$(".container").on('click', '.span', function (event){
+		if(!view){
+			changeleadstatus($(this).parent().attr('id'));	
+		}
+	});
 
 	$(".container").on('change', '#status_lead', function (){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
@@ -286,17 +314,17 @@ function saveLeadStatus(id, status){
 function showSuccessMsg(msg){
 	$("html, body").animate({ scrollTop: 0 }, "slow");
 	$(".successMsg").addClass('alert alert-success').text(msg).fadeIn('slow').animate({top:"80px"});
-	setTimeout(hideSuccessMsg, 3000);
+	// setTimeout(hideSuccessMsg, 3000);
 }
 
 function hideSuccessMsg(){
-	if($(".flashes").text().length){
-		$(".flashes").animate({top: "10px"}, 2000).fadeOut('slow');
-	}
+	// if($(".flashes").text().length){
+	// 	$(".flashes").animate({top: "10px"}, 2000).fadeOut('slow');
+	// }
 }
 
 function removeFlash(){
-	setTimeout(hideSuccessMsg, 2500);
+	// setTimeout(hideSuccessMsg, 2500);
 }
 
 function userSearchFilter(userId){

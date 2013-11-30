@@ -29,7 +29,7 @@ class CompanyController < ApplicationController
         rescue Exception => e
           logger.debug(e)
         end
-        flash.now[:success] = "User successfully created"
+        flash[:success] = "User successfully created"
         redirect_to company_new_path()      
       else
         @users = User.fetchCompanyUserList(current_user)

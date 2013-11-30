@@ -42,7 +42,7 @@ Leadpump::Application.routes.draw do
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
   match '/home/changestatus' => 'home#changestatus'
   match '/home/saveleadstatus' => 'home#saveleadstatus'
-  match '/success' => 'home#success'
+  match '/success' => 'home#success'  
   match '/home/calculateAmount' => 'home#calculateAmount'
   match '/home/validateEmail' => 'home#validateEmail'
   match '/welcome' => 'home#welcome'

@@ -35,14 +35,14 @@ class HomeController < ApplicationController
    end  
 
   def fillpopupcontent
-    if(params[:urls].include? 'company')
-      @user = User.find(params[:id])
-    else
+    if params[:act] == 'leadpopup'
       @lead = Lead.find(params[:id])
+    elsif params[:act] == 'userpopup'
+      @user = User.find(params[:id])
     end
-  respond_to do |format|
-    format.js 
-  end
+    respond_to do |format|
+      format.js 
+    end
 end
 
 def changestatus

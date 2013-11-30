@@ -22,12 +22,17 @@
   def create
     (1..3).each do |index|
       first_name = params["inputs"]["vip_#{index}"]["first_name"]
-      last_name = params["inputs"]["vip_#{index}"]["last_name"]
+      email = params["inputs"]["vip_#{index}"]["email"]
       phone = params["inputs"]["vip_#{index}"]["phone"]
-      if first_name.present? || last_name.present? || phone.present?
+      if first_name.present? || email.present? || phone.present?
         @viplead = VipLead.new(params["inputs"]["vip_#{index}"])
         @viplead.user_id = current_user.id
-        @viplead.save
+        if @viplead.save
+          lead = Lead.new(:name=>@viplead.first_name,:email=>@viplead.email,:phone=>@viplead.phone,:lead_source=>"vip")
+          if lead.save
+            UserLeads.create(:user_id=>@viplead.user_id, :lead_id=>lead.id)
+          end
+        end
       end  
     end
     respond_to do |format|
