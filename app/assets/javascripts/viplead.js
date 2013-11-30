@@ -4,12 +4,16 @@ $(document).ready(function(){
 
 function initSocialInviter(){
 	$(".proceed_step1").click(function(){
-		if ($("#vip_lead_first_name").val() == "" || $("#vip_lead_last_name").val() == "" || $("#vip_lead_phone").val() == "") {
-			alert(" Please fill one lead atleast, then proceed further..!!");
-		}
-		else {
-			executeFirstStep(this);	
-		}
+		$(".fname").each(function(){
+			if ($(this).val() == "" && $(this).closest('.lname').val() == "" && $(this).closest(".phone").val() == "") {
+				alert(" Please fill one lead atleast, then proceed further..!!");
+			}
+			else {
+				executeFirstStep(this);
+			}	
+		});
+		
+		
 		
 	});
 	$(".social_options ul li").click(function(){

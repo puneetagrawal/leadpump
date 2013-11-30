@@ -1,1 +1,5 @@
-$("#viewItem").html('<%=escape_javascript(render partial: "leads/showtemp")%>')
+<%if @lead.present?%>
+	$(".fancybox-inner #myModal").html('<%=escape_javascript(render partial: "common_templates/popupInnerHtml")%>')
+<%elsif @user.present?%>
+	$(".fancybox-inner #myModal").html('<%=escape_javascript(render partial: "common_templates/userviewpopup")%>')
+<%end%>

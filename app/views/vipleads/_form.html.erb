@@ -4,9 +4,9 @@
 
     <%(1..3).each do |row|%>
         <div>
-            <p><%= vip.label "First Name" %><%= vip.text_field :first_name, name: "vip_#{row}[first_name]", class: "input-large" %></p>
-            <p><%= vip.label "Last Name" %><%= vip.text_field :last_name, name: "vip_#{row}[last_name]", class: "input-large" %></p>
-            <p><%= vip.label "Phone" %><%= vip.text_field :phone, name: "vip_#{row}[phone]", class: "input-large" %></p>
+            <p><%= vip.label "Name" %><%= vip.text_field :first_name, name: "vip_#{row}[first_name]", class: "input-large fname" %></p>
+            <p><%= vip.label "Email" %><%= vip.text_field :email, name: "vip_#{row}[email]", class: "input-large lname" %></p>
+            <p><%= vip.label "Phone" %><%= vip.text_field :phone, name: "vip_#{row}[phone]", class: "input-large phone" %></p>
         </div> 
     <%end%>
     <div class="clear"></div>
