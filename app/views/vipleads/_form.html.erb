@@ -3,7 +3,7 @@
     <p><%= vip.label "Referrer's Name" %><%= vip.text_field :user_id, :value => current_user.name, class: "input-large", :disabled=>true %></p>
 
     <%(1..3).each do |row|%>
-        <div>
+        <div class="viprow">
             <p><%= vip.label "Name" %><%= vip.text_field :first_name, name: "vip_#{row}[first_name]", class: "input-large fname" %></p>
             <p><%= vip.label "Email" %><%= vip.text_field :email, name: "vip_#{row}[email]", class: "input-large lname" %></p>
             <p><%= vip.label "Phone" %><%= vip.text_field :phone, name: "vip_#{row}[phone]", class: "input-large phone" %></p>
@@ -12,5 +12,5 @@
     <div class="clear"></div>
     <span class="proceed_step1">
         <%= link_to "Proceed to Next Step", "javascript:void(0)", :class=>"btn yellow", :id=>"proceed_step_1" %>
-    </span">
-<%end%>
+    </span>
+<% end %>
