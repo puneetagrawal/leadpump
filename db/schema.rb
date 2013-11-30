@@ -190,6 +190,18 @@ ActiveRecord::Schema.define(:version => 20131129202342) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "stats", :force => true do |t|
+    t.string   "source",      :default => "email"
+    t.string   "location",    :default => "Default Location"
+    t.integer  "e_sents"
+    t.integer  "e_oppened"
+    t.integer  "e_views"
+    t.integer  "e_converted"
+    t.integer  "user_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
   create_table "subscriptions", :force => true do |t|
     t.integer  "plan_per_user_range_id"
     t.string   "stripe_card_token"
@@ -208,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20131129202342) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
