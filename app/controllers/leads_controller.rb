@@ -196,9 +196,9 @@ def saveappointment
   if lead.present?
     appoint = Appointment.find_by_lead_id(lead.id)
     if appoint.present?
-      appoint.update_attributes(:task=>params[:task],:appdateTime=>time,:app_date=>params[:date])
+      appoint.update_attributes(:task=>params[:task],:app_date_time=>time,:app_date=>params[:date])
     else
-      apoint = Appointment.create(:task=>params[:task],:app_date=>params[:date],:appdateTime=>time,:lead_id=>lead.id, :user_id=>current_user.id)  
+      apoint = Appointment.create(:task=>params[:task],:app_date=>params[:date],:app_date_time=>time,:lead_id=>lead.id, :user_id=>current_user.id)  
     end
     
     msg = "Appointment schedule successfully"
