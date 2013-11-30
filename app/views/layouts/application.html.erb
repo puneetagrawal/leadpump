@@ -14,6 +14,7 @@
 
 
 <%= render 'layouts/header' %>
+
  <% if flash[:error] %>
     <p class="flashes alert alert-error"><%= flash[:alert] %></p>
   <% end %>
@@ -26,7 +27,7 @@
   <% if flash[:success] %>
     <p class="flashes alert alert-success"><%= flash[:success] %></p>
   <% end %>
-    <p class="flashes successMsg"></p>
+   <!--  <p class="flashes successMsg"></p> -->
 
   <script type="text/javascript">
       emailAuth = '<%=@emailAuth %>';

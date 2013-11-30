@@ -286,17 +286,17 @@ function saveLeadStatus(id, status){
 function showSuccessMsg(msg){
 	$("html, body").animate({ scrollTop: 0 }, "slow");
 	$(".successMsg").addClass('alert alert-success').text(msg).fadeIn('slow').animate({top:"80px"});
-	setTimeout(hideSuccessMsg, 3000);
+	// setTimeout(hideSuccessMsg, 3000);
 }
 
 function hideSuccessMsg(){
-	if($(".flashes").text().length){
-		$(".flashes").animate({top: "10px"}, 2000).fadeOut('slow');
-	}
+	// if($(".flashes").text().length){
+	// 	$(".flashes").animate({top: "10px"}, 2000).fadeOut('slow');
+	// }
 }
 
 function removeFlash(){
-	setTimeout(hideSuccessMsg, 2500);
+	// setTimeout(hideSuccessMsg, 2500);
 }
 
 function userSearchFilter(userId){

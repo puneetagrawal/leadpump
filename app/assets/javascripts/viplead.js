@@ -4,14 +4,25 @@ $(document).ready(function(){
 
 function initSocialInviter(){
 	$(".proceed_step1").click(function(){
-		if ($("#vip_lead_first_name").val() == "" || $("#vip_lead_last_name").val() == "" || $("#vip_lead_phone").val() == "") {
-			alert(" Please fill one lead atleast, then proceed further..!!");
-		}
-		else {
+		var exit = false;
+		$(".viprow").each(function() {
+		    exit = false;
+		    $(this).find('p input').each(function(){
+		        if($(this).val() == '') { 
+		           exit = true;
+		           alert(" Please fill all fields, then proceed further..!!");
+		           return false;
+		        }
+		    });
+		    if (exit){
+		        return false;
+		    }
+		  });
+		if(!exit){
 			executeFirstStep(this);	
 		}
-		
 	});
+
 	$(".social_options ul li").click(function(){
 		name = $(this).attr('name');
 		executeSecondStep(name);
