@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  link: MyString
+  active: false
+  mallpic_id: 1
+
+two:
+  title: MyString
+  link: MyString
+  active: false
+  mallpic_id: 1

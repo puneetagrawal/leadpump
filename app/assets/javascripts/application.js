@@ -76,7 +76,15 @@ $(document).ready(function(){
     });
 
    	$(document).on('click', '.user_delete', function (){
-	  	$(this).parent().parent().parent().remove();
+ 	  	// $(this).parent().parent().parent().remove();
+   		 var search_val = $(this).parent().parent().attr("data-id"); 
+		   $.ajax({
+		    url: "/admin/remove_user",
+		    data: { 
+		     "search_user": search_val
+ 		   }   
+ 		});   
+	  	
 	});
 	
 	initialization();

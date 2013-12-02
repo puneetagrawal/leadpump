@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">id</Data></Cell>
+        <Cell><Data ss:Type="String">Offer Source</Data></Cell>
+        <Cell><Data ss:Type="String">Date Sent</Data></Cell>
+        <Cell><Data ss:Type="String">Location</Data></Cell>
+        <Cell><Data ss:Type="String">Associate</Data></Cell>
+        <Cell><Data ss:Type="String">Email Sent</Data></Cell>
+        <Cell><Data ss:Type="String">Email Opened</Data></Cell>
+        <Cell><Data ss:Type="String">Conversion page views</Data></Cell>
+        <Cell><Data ss:Type="String">Lead Conversions</Data></Cell>
+      </Row>
+    <% @stats.each do |product| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%=stat.id%></Data></Cell>
+        <Cell><Data ss:Type="Number">email-onsite</Data></Cell>
+        <Cell><Data ss:Type="String"><%= stat.created_at.strftime("%Y-%m-%d %I:%M:%p") %></Data></Cell>
+        <Cell><Data ss:Type="String">Default Location</Data></Cell>
+        <Cell><Data ss:Type="String"><%= stat.user.name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= stat.e_sents %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= stat.e_views %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= stat.user.name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= stat.e_converted %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
