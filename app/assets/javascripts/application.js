@@ -130,9 +130,36 @@ $(document).ready(function(){
 		}
 	});
 
+	
+	$(".mallsubmit").click(function(){
+		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
+		if (isValid != '') {
+			$("#new_onlinemall").submit()
+		}
+		else {
+			alert("please add image")
+	}
+	});
 
 });
 
+// function validate() {
+//     var extensions = new Array("jpg", "jpeg", "gif", "png", "bmp");
+//     var image_file = $("#avatar").val();
+//     var image_length = $("#avatar").val().length;
+//     var pos = image_file.lastIndexOf('.') + 1;
+//     var ext = image_file.substring(pos, image_length);
+//     var final_ext = ext.toLowerCase();
+//     if (!final_ext) {
+//         return true
+//     }
+//     for (var i = 0; i < extensions.length; i++) {
+//         if (extensions[i] == final_ext) {
+//             return true
+//         }
+//     }
+//     return alert("Image format not supported....");
+// }
 
 function formfields(){
 	new_obj = {}
