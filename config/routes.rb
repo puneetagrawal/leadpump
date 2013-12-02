@@ -59,6 +59,7 @@ Leadpump::Application.routes.draw do
   match '/admin/plan' => 'admin#plan'
   match '/admin/payment' => 'admin#payment'
   match '/admin/user' => 'admin#user'
+  match '/admin/remove_user' => 'admin#destroy'
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
   match "/searchUserAc" => "admin#searchUserAc"
