@@ -24,8 +24,14 @@ def user_record
 	@users = User.all.paginate(:page => params[:page], :per_page => params[:search_val])
 end
 
+def destroy
+  @user = User.find(params[:search_user])
+  @user.destroy
+  redirect_to admin_user_path 
+end
+
 def searchUserAc
-	like  = "%".concat(params[:term].concat("%"))
+  like  = "%".concat(params[:term].concat("%"))
     users = User.select("distinct(name)").where(" name ilike ? ", like)
     if !users.present?
       users = Plan.where("name ilike ?", like)
@@ -34,7 +40,7 @@ def searchUserAc
       list = users.map {|l| Hash[label: l.name, name: l.name]}
     end
     render json: list
-  end
+end
 
   def usersearchinadmin
   	like  = "%".concat(params[:userId].concat("%"))
