@@ -145,12 +145,11 @@
   # end
 
   def acceptInvitation
-    @opt_in_lead  = OptInLead.new()
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
       @token = params[:token]
-      @source = params[:source]
       @sec = params[:sec]
+      @source = params[:source]
       @gmailcontact = GmailFriend.where(:secret_token=>params[:sec], :user_id=>@ref.id).last
       if @gmailcontact.present? && !@gmailcontact.visited
         Stats.saveEvisited(@ref.id, @gmailcontact)
@@ -161,10 +160,10 @@
   def savereferral
     user = User.find_by_token(params[:ref_id])
     opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
-    msg = "Sorry! your link is invalid or expired."
+    msg = "Sorry! your are requesting expired link."
     error = ""
     if !opt_in_lead.present?
-        if !params[:sec].blank?
+        if(!params[:sec].blank? || params[:source] == "fb" || params[:source] == "twitter") 
           lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
           if lead.save
             UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)

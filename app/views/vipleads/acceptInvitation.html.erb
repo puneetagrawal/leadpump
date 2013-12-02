@@ -1,7 +1,7 @@
 <div class="social_invite" style="min-height:300px;">
  <div style="color:red;" class="ref_lead_error"></div>
 
- <%if @ref.present? && @gmailcontact.present? && !@gmailcontact.opt_in?%>
+ <%if @ref.present? && ((@source=="fb" || @source=="twitter") || (@gmailcontact.present? && !@gmailcontact.opt_in?))%>
     <form class = "forms form">
         <div id="showErrors"></div>
         <div class="border app_header">

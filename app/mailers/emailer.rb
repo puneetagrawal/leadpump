@@ -1,6 +1,10 @@
 class Emailer < ActionMailer::Base
+  include SendGrid
+
   default from: "Support@LeadPump.com"
   def gmail_referral_mail(email, token, message, sec_token)
+    sendgrid_category "Welcome"
+    sendgrid_unique_args :key2 => "newvalue2", :key3 => "value3"
     @email = email.to_s
     @url  = "http://"+SERVER_URL+"/acceptInvitation?token=#{token}&sec=#{sec_token}&source=gmail"
     @message = message
@@ -21,6 +25,8 @@ class Emailer < ActionMailer::Base
 		mail(to: email, subject: 'Set password for LEADPUMP.com employee user account')
   end
   def sendtestmail()
+    sendgrid_category "Welcome"
+    sendgrid_unique_args :key2 => "newvalue2", :key3 => "value3"
     @url = SERVER_URL+"/trackEmail"
     mail(to: 'puneet.agarwal@ongraph.com', subject: 'You are being tracked')
   end

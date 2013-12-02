@@ -49,3 +49,4 @@ gem "paperclip", "~> 3.0"
 # To use debugger
  gem 'debugger'
  gem 'chronic', :require => 'chronic'
+ gem 'sendgrid'

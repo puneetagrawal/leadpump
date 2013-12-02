@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :send_invitation_to_gmail_friends
   has_many :opt_in_leads
   has_many :statss
+  has_many :onlinemalls
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
@@ -217,7 +218,6 @@ end
 
 def self.fetchUserByPlan(plan)
   plan = Plan.where("name ilike ? ",plan).pluck(:id)
-  logger.debug(plan)
   planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
   subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange).pluck(:user_id)
   users = subscription.present? ? subscription.collect{|user| User.find(user)} : []

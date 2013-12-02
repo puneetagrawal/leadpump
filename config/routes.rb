@@ -1,6 +1,5 @@
 Leadpump::Application.routes.draw do
 
-
   get "statss/index"
 
   match '/appointments/filter_app' => 'appointments#filter_app'
@@ -13,6 +12,11 @@ Leadpump::Application.routes.draw do
   resources :plans
   resources :referrals
   resources :tweet_referrals
+  resources :onlinemall
+
+  get "onlinemall/create"
+
+  match "/csvdownload" => "statss#csvdownload"      
 
   match "/opt_in_leads/viewContact" => "opt_in_leads#viewContact"    
   resources :opt_in_leads
@@ -119,7 +123,7 @@ Leadpump::Application.routes.draw do
   match "/savegmmes" => "company#savegmmes"
 
   match "/trackEmail" => "vipleads#trackEmail"
-  match "/sendmail" => "vipleads#sendmail"
+  match "/sendmail" => "home#sendmail"
 
 
 

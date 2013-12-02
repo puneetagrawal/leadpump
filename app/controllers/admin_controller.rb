@@ -28,10 +28,10 @@ def searchUserAc
 	like  = "%".concat(params[:term].concat("%"))
     users = User.select("distinct(name)").where(" name ilike ? ", like)
     if !users.present?
-      users = User.fetchUserByPlan(like)
-      list = users.map {|l| Hash[id: l.id, label: l.subscription.plan_per_user_range.plan.name, name: l.subscription.plan_per_user_range.plan.name]}
+      users = Plan.where("name ilike ?", like)
+      list = users.map {|l| Hash[label: l.name, name: l.name]}
     else
-      list = users.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
+      list = users.map {|l| Hash[label: l.name, name: l.name]}
     end
     render json: list
   end
