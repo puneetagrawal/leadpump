@@ -3,58 +3,68 @@
         <div class="span4">
             <div class="border">
                 <h2 class="heading">Add A New Mall Item</h2>
-            	<%= form_for @onlinemall, :url=>"/onlinemall",:method=>:post, :html => {:class => "form pd15"} do |mall| %>
-    				<%=render "common_templates/showerrors", :object=>@onlinemall%>
-                    <p><%= mall.label "Title:" %><%= mall.text_field :title %></p>
-                    <p><%= mall.label "Link:" %><%= mall.text_field :link %></p>
+                <%= form_for @onlinemall, :url=>"/onlinemall",:method=>:post, :html => {:class => "form pd15"} do |mall| %>
+                <%=render "common_templates/showerrors", :object=>@onlinemall%>
+                <p><%= mall.label "Title:" %><%= mall.text_field :title %></p>
+                <p><%= mall.label "Link:" %><%= mall.text_field :link %></p>
                     <!-- <p><label>File:</label><input type="file"/> </p>
                     <p>*Don't enter the link if you are uploading a file instead.</p> -->
                     <%= mall.fields_for :mallpic, Mallpic.new do |pic| %>
-						<%= pic.file_field :avatar %>	
-					<% end %>
-                    <p><label>Picture:</label><input type="file"/></p>
-                    <p>*The size should be 300x300 pixels.</p>
-                    <p><input class="btn yellow" type="button" value="Add Mall Item"/></p>
+                    <label>Image:</label><%= pic.file_field :avatar %>	
+                    <% end %>
+                    <p><input class="btn yellow" type="submit" value="Add Mall Item"/></p>
                     <div class="clear"></div>
-                <%end%>
+                    <%end%>
+                </div>
             </div>
-        </div>
-        <div class="span8">
-            <div class="border">
-                <h2 class="heading">All Mall Items</h2>
-                <table class="table table-striped">
-                    <thead>
-                    <tr><td>No.</td><td>Title</td><td>Picture</td><td>Action</td></tr>
-                    </thead>
-                    <tbody>
-                    <tr><td>1</td><td style="width: 70%;">$10 e-cash</td><td><img src="img/product_thumb.png"></td><td><a class="edit_icon pull-left" href="#"></a><a class="delete_icon pull-left" href="#"></a></td></tr>
-                    <tr><td>2</td><td style="width: 70%;">$100 off any personal training package over 12 season</td><td><img src="img/product_thumb.png"></td><td><a class="edit_icon pull-left" href="#"></a><a class="delete_icon pull-left" href="#"></a></td></tr>
-                    <tr><td>3</td><td style="width: 70%;">$10 e-cash</td><td><img src="img/product_thumb.png"></td><td><a class="edit_icon pull-left" href="#"></a><a class="delete_icon pull-left" href="#"></a></td></tr>
-                    <tr><td>4</td><td style="width: 70%;">$10 e-cash</td><td><img src="img/product_thumb.png"></td><td><a class="edit_icon pull-left" href="#"></a><a class="delete_icon pull-left" href="#"></a></td></tr>
-                    <tr><td>5</td><td style="width: 70%;">$10 e-cash</td><td><img src="img/product_thumb.png"></td><td><a class="edit_icon pull-left" href="#"></a><a class="delete_icon pull-left" href="#"></a></td></tr>
-                    <tr><td>6</td><td style="width: 70%;">$10 e-cash</td><td><img src="img/product_thumb.png"></td><td><a class="edit_icon pull-left" href="#"></a><a class="delete_icon pull-left" href="#"></a></td></tr>
-                    <tr><td>7</td><td style="width: 70%;">$10 e-cash</td><td><img src="img/product_thumb.png"></td><td><a class="edit_icon pull-left" href="#"></a><a class="delete_icon pull-left" href="#"></a></td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="clear"></div>
-            <div class="sliderCon">
-                <h2>Online Mall</h2>
-                <p class="text-center alert">Please click on the ad of your choice to print a coupon to redeem at the club.</p>
-                <div class="list_carousel responsive" >
-                    <ul id="foo5">
-                        <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
-                        <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
-                        <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
-                        <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
-                        <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
-                        <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
-                        <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
-                        <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
+            <div class="span8">
+                <div class="border">
+                    <h2 class="heading">All Mall Items</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><td>No.</td><td>Title</td><td>Picture</td><td>Action</td></tr>
+                        </thead>
+                        <tbody>
+                            <%@onlinemalls.present?%>
+                                <%@onlinemalls.each_with_index do|index, om|%>
+                                    <tr>
+                                        <td><%=index+1%></td>
+                                        <td style="width: 70%;"><%=om.title%></td>
+                                        <td>
+                                            <%if @picture_user.present?%>
+                                                <%= image_tag @picture_user.avatar.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+                                            <%else%>
+                                                <img src="/assets/company-logo.png" class="img-polaroid">
+                                            <%end%>
+                                        </td>
+                                        <td>
+                                            <a class="edit_icon pull-left" href="#"></a>
+                                            <a class="delete_icon pull-left" href="#"></a>
+                                        </td>
+                                    </tr>
+                                <%end%>
+                            <%end%>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="clear"></div>
+                <div class="sliderCon">
+                    <h2>Online Mall</h2>
+                    <p class="text-center alert">Please click on the ad of your choice to print a coupon to redeem at the club.</p>
+                    <div class="list_carousel responsive" >
+                        <ul id="foo5">
+                            <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
+                            <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
+                            <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
+                            <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
+                            <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
+                            <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
+                            <li><a href="#"><img src="img/slider-img-1.jpg"/></a></li>
+                            <li><a href="#"><img src="img/slider-img-2.jpg"/></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
