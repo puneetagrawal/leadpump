@@ -3,7 +3,7 @@
         <div class="span4">
             <div class="border">
                 <h2 class="heading">Add A New Mall Item</h2>
-            	<%= form_for @onlinemall, :html => {:class => "form pd15"} do |mall| %>
+            	<%= form_for @onlinemall, :url=>"/onlinemall",:method=>:post, :html => {:class => "form pd15"} do |mall| %>
     				<%=render "common_templates/showerrors", :object=>@onlinemall%>
                     <p><%= mall.label "Title:" %><%= mall.text_field :title %></p>
                     <p><%= mall.label "Link:" %><%= mall.text_field :link %></p>

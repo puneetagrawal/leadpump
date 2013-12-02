@@ -14,7 +14,6 @@ Leadpump::Application.routes.draw do
   resources :tweet_referrals
   resources :onlinemall
 
-  get "onlinemall/create"
 
   match "/csvdownload" => "statss#csvdownload"      
 

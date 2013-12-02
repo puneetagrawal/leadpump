@@ -1,6 +1,6 @@
 class OnlinemallController < ApplicationController
   def index
-  	@onlinemall = OnlineMall.new
+  	@onlinemall = Onlinemall.new
   end
 
   def create
