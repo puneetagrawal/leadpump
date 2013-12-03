@@ -26,29 +26,29 @@
                     </thead>
                     <tbody>
                         <%if @onlinemalls.present?%>
-                        <%@onlinemalls.each_with_index do|om, index|%>
-                        <tr>
-                        <td><%=index+1%></td>
-                        <td style="width: 70%;"><%=om.title%></td>
-                        <td>
-                            <%if om.mallpic.present?%>
-                                <%= image_tag om.mallpic.last.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
-                            <%else%>
-                                <img src="/assets/company-logo.png" class="img-polaroid">
+                            <%@onlinemalls.each_with_index do|om, index|%>
+                                <tr>
+                                    <td><%=index+1%></td>
+                                    <td style="width: 70%;"><%=om.title%></td>
+                                    <td>
+                                        <%if om.mallpic.present?%>
+                                            <%= image_tag om.mallpic.last.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+                                        <%else%>
+                                            <img src="/assets/company-logo.png" class="img-polaroid">
+                                        <%end%>
+                                    </td>
+                                    <td>
+                                        <%if om.user.role.id == 2%>
+                                            <%=check_box_tag "onlinemall_#{om.id}", 'yes', true, :class => 'mall_chek'%>
+                                        <%elsif om.user.role.id == 3%>
+                                            <%=check_box_tag "onlinemall_#{om.id}", 'yes', false, :class => 'mall_chek'%>
+                                        <%end%>
+                                        <a class="edit_icon pull-left" href="#"></a>
+                                        <a class="delete_icon pull-left" href="#"></a>
+                                    </td>
+                                </tr>
                             <%end%>
-                        </td>
-                        <td>
-                            <%if om.user.role.id == 2%>
-                                <%=check_box_tag "onlinemall_#{om.id}", 'yes', true, :class => 'mall_chek'%>
-                            <%elsif om.user.role.id == 3%>
-                                <%=check_box_tag "onlinemall_#{om.id}", 'yes', false, :class => 'mall_chek'%>
-                            <%end%>
-                            <a class="edit_icon pull-left" href="#"></a>
-                            <a class="delete_icon pull-left" href="#"></a>
-                        </td>
-                    </tr>
-                    <%end%>
-                    <%end%>
+                        <%end%>
                     </tbody>
                 </table>
             </div>
@@ -102,4 +102,5 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>

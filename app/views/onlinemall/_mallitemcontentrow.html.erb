@@ -1,0 +1,17 @@
+
+<td style="width: 70%;"><%=om.title%></td>
+<td style="width: 70%;"><%=fetchAssociate(om)%></td>
+<td>
+    <%if om.mallpic.present?%>
+    <%= image_tag om.mallpic.last.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+    <%else%>
+    <img src="/assets/company-logo.png" class="img-polaroid">
+    <%end%>
+</td>
+<td>
+    <%=fetchcheckbox(om,current_user)%>
+    <%if (om.user.id == current_user.id) || current_user.isAdmin%>
+    <a class="edit_icon pull-left" href="javascript:void(0)"></a>
+    <a class="delete_icon pull-left" href="javascript:void(0)"></a>
+    <%end%>
+</td>
