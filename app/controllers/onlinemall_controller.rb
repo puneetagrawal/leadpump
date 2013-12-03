@@ -17,6 +17,9 @@ class OnlinemallController < ApplicationController
 	  		@onlinemall.save
 	  		mallpic.onlinemall_id = @onlinemall.id
 	  		mallpic.save
+        if current_user.role.id == 2
+          Companymallitem.create(:onlinemall_id=>@onlinemall.id,:user_id=>current_user.id)
+        end
 	  		flash[:notice] = "Mall item added successfully"
 			  redirect_to onlinemall_index_path
   		else
@@ -42,6 +45,29 @@ class OnlinemallController < ApplicationController
           companymallitem.destroy
         end
       end
+    end
+    msg = {"msg" => "success"}
+    respond_to do |format|
+      format.json { render json: msg}
+    end
+  end
+
+  def edit   
+    @onlinemall = Onlinemall.find(params[:id])   
+    respond_to do |format|
+        format.js 
+    end 
+  end
+
+  def update  
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(params)
+    @mallupdate = Onlinemall.find(params[:id]) 
+    if @mallupdate.update_attributes(params["inputs"]["onlinemall"])
+      @onlinemall = Onlinemall.new
+    end
+    respond_to do |format|
+        format.js 
     end
   end
 

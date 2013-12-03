@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	leadid = ''
 	$(".leadFilterByName").change(function(){
-		leadFilterByName($(this).val())	
+		leadFilterByName($(this).val());	
 	});	
 	initLeadCreateOrUpdate();
 });
