@@ -42,6 +42,8 @@ Leadpump::Application.routes.draw do
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
   match "/sendIvitationToFbFriend" => "vipleads#sendIvitationToFbFriend"
   match "/mallitems" => "vipleads#mallitems"
+  match "/viewmallitem" => "vipleads#viewmallitem"
+  match "/download" => "vipleads#download"
 
   resources :vipleads
   

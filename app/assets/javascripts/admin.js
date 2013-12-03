@@ -53,4 +53,12 @@ $(document).ready(function(){
 		});
 	});
 
+	$(document).on('click', ".viewmallitem", function () {
+		id = $(this).attr('id').split("_")[1];
+		url = '/viewmallitem';
+		$.get(url, {id:id}, function (data) {
+			
+		});
+	});
+
 });

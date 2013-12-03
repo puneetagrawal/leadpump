@@ -203,6 +203,25 @@
   end
 end
 
+def viewmallitem
+  @mall = Onlinemall.find(params[:id])
+  respond_to do |format|
+    format.js 
+  end
+end
+
+def download
+   @mall = Onlinemall.last
+  respond_to do |format|
+      format.pdf do
+        pdf = render_to_string :pdf => @mall.title + " CV",
+                       :margin => {:top     => 20,  
+                                   :bottom  => 20 }
+        send_file pdf
+      end
+    end
+end
+
 def searchvipleads
   vipleads = VipLead.fetchList(current_user.id)
   vipleads = vipleads.present? ? vipleads.pluck(:id) : []
