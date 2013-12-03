@@ -19,6 +19,11 @@
   def edit
   end
 
+  def mallitems
+    user = User.find(3)
+    @companymallitem = user.fetchcompanymallitem
+  end
+
   def create
     (1..3).each do |index|
       first_name = params["inputs"]["vip_#{index}"]["first_name"]

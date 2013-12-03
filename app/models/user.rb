@@ -1,5 +1,4 @@
 
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes, :token
@@ -163,6 +162,13 @@ class User < ActiveRecord::Base
       company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
     end
     return company
+  end
+
+  def fetchcompanymallitem
+    company = self.fetchCompany
+    logger.debug(company.name)
+    logger.debug(company)
+    company = Onlinemall.where(:user_id=>company.id)
   end
   
 def saveLeadCount
