@@ -38,7 +38,7 @@ def self.fetchLeadList(user)
 	case user.user_role.role_type.to_sym  
     when :admin
       leads = UserLeads.includes(:lead).all  
-      userList = User.where("id != ?", current_user.id)   
+      userList = User.where("id != ?", user.id)   
     when :company
       userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
       users = userList

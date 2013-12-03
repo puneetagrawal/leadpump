@@ -17,6 +17,9 @@ class OnlinemallController < ApplicationController
 	  		@onlinemall.save
 	  		mallpic.onlinemall_id = @onlinemall.id
 	  		mallpic.save
+        if current_user.role.id == 2
+          Companymallitem.create(:onlinemall_id=>@onlinemall.id,:user_id=>current_user.id)
+        end
 	  		flash[:notice] = "Mall item added successfully"
 			  redirect_to onlinemall_index_path
   		else
@@ -42,6 +45,45 @@ class OnlinemallController < ApplicationController
           companymallitem.destroy
         end
       end
+    end
+    msg = {"msg" => "success"}
+    respond_to do |format|
+      format.json { render json: msg}
+    end
+  end
+
+  def edit   
+    @onlinemall = Onlinemall.find(params[:id])   
+    respond_to do |format|
+        format.js 
+    end 
+  end
+
+  def update  
+    @mallupdate = Onlinemall.find(params[:id]) 
+    @mallupdate.update_attributes(:title=>params[:onlinemall][:title],:link=>params[:onlinemall][:link])
+    if params[:onlinemall].has_key?(:mallpic_attributes)
+      @mallupdate.mallpic[0].avatar = params["onlinemall"]["mallpic_attributes"]["0"]["avatar"]
+      if @mallupdate.mallpic[0].save
+      else
+        logger.debug(@mallupdate.errors.fullmessage)
+      end
+    end
+    flash[:notice] = "Mall item updated successfully"
+    redirect_to onlinemall_index_path
+  end
+
+  def mallremove
+    onlinemall = Onlinemall.find(params[:id])
+    if onlinemall.present?
+      onlinemall.mallpic[0].destroy
+      company = Companymallitem.where(:onlinemall_id=>onlinemall.id)
+      company.destroy_all
+      onlinemall.destroy
+    end
+    msg = {"msg" => "Successfully Deleted"}
+    respond_to do |format|
+      format.json { render json: msg}
     end
   end
 

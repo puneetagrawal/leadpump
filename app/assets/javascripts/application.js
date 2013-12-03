@@ -131,15 +131,7 @@ $(document).ready(function(){
 	});
 
 	
-	$(".mallsubmit").click(function(){
-		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
-		if (isValid != '') {
-			$("#new_onlinemall").submit()
-		}
-		else {
-			alert("please add image")
-	}
-	});
+	
 
 });
 

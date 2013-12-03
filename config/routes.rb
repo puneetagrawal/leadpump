@@ -1,3 +1,4 @@
+
 Leadpump::Application.routes.draw do
 
   get "statss/index"
@@ -8,13 +9,15 @@ Leadpump::Application.routes.draw do
   resources :appointments
   resources :discounts_on_locations
   resources :company
-resources :subscriptions
+  resources :subscriptions
   resources :plans
   resources :referrals
   resources :tweet_referrals
   resources :onlinemall
 
   match "/mallitemassign" => "onlinemall#mallitemassign"
+  match '/mall/update/:id' => 'onlinemall#update', :as => :update
+  match '/mallremove' => 'onlinemall#mallremove'
   match "/csvdownload" => "statss#csvdownload"      
 
   match "/opt_in_leads/viewContact" => "opt_in_leads#viewContact"    

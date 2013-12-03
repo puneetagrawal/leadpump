@@ -64,19 +64,19 @@ module Leadpump
     }
 
     config.action_mailer.smtp_settings = {
-     #    address: "smtpout.secureserver.net",
-     #    port: 465,
-     #    domain: "leadpump.com",
-     #    authentication: "plain",
-     #    user_name: "support@leadpump.com",
-     #    password: "4trading",
-	    # ssl: true
-        :address => "smtp.sendgrid.net",
-        :port => 25,
-        :domain => "leadpump.com",
-        :authentication => :plain,
-        :user_name => "leadpump",
-        :password => "4trading"
+        address: "smtpout.secureserver.net",
+        port: 465,
+        domain: "leadpump.com",
+        authentication: "plain",
+        user_name: "support@leadpump.com",
+        password: "4trading",
+	      ssl: true
+        # :address => "smtp.sendgrid.net",
+        # :port => 25,
+        # :domain => "leadpump.com",
+        # :authentication => :plain,
+        # :user_name => "leadpump",
+        # :password => "4trading"
       } 
     end
 end
