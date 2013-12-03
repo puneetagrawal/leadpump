@@ -1,0 +1,14 @@
+fdfdsfdfdf
+<div style="float:left;width:80%;text-align:center">
+<%if @companymallitem.present?%>
+<%@companymallitem.each do|mall|%>
+	<div style="float:left;margin:20px;">
+		<%if mall.mallpic.present?%>
+	    <%= image_tag mall.mallpic.last.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+	    <%else%>
+	    <img src="/assets/company-logo.png" class="img-polaroid">
+    <%end%>
+	</div>
+<%end%>
+<%end%>
+</div>
