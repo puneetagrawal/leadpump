@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	mallid = '';
+	dltid = '';
 	$(".mallsubmit").click(function(){
 		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
 		if (isValid != '') {
@@ -30,26 +31,26 @@ $(document).ready(function(){
  	});
 
  	$(document).on('click', ".malledit", function () {
- 		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
-		if (isValid != '') {
-			$('.submitmallbtn').parent().html('<img src="/assets/ajax-loader.gif" style="">');
-			id = mallid;
-			new_obj = {}
-			alert($('.forms').serializeArray())
-			$.each($('.forms').serializeArray(), function(i, obj){
-				new_obj[obj.name] = obj.value	
-				alert(new_obj[obj.name]);	 
-			});
-			url = '/mall/update/'+id+'';
-			$.get(url, {id:id,inputs:new_obj,test:"dfsdfsdfdsf"}, function (data) {
-				$(".heading").text("Add A Mall Item");
-				$('.submitmallbtn').html('<input type="button" value="Add A Mall Item" class="btn yellow">');				
-			});
-		}
-		else{
-			alert("Please select Image.")
-		}
- 		
+		$("#edit_onlinemall_"+mallid).submit();
  	});
+
+ 	$(document).on('click', ".mallBtn", function () {
+ 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		url = '/mallremove'
+		$.get(url, {id:dltid}, function (data) {
+			alert(data.msg);
+			$("#mallitem_"+dltid).remove();
+			$.fancybox.close()
+		});
+ 	});
+
+ 	$(document).on('click', ".delete_icon", function () {
+		id = $(this).closest('tr').attr('id').split("_")[1];
+		dltid = id;
+		$.fancybox.open({
+			href: '#deleteMallPopup',
+			type: 'inline'
+		});
+	});
 
 });

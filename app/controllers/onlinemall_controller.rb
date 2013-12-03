@@ -60,14 +60,30 @@ class OnlinemallController < ApplicationController
   end
 
   def update  
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(params)
     @mallupdate = Onlinemall.find(params[:id]) 
-    if @mallupdate.update_attributes(params["inputs"]["onlinemall"])
-      @onlinemall = Onlinemall.new
+    @mallupdate.update_attributes(:title=>params[:onlinemall][:title],:link=>params[:onlinemall][:link])
+    if params[:onlinemall].has_key?(:mallpic_attributes)
+      @mallupdate.mallpic[0].avatar = params["onlinemall"]["mallpic_attributes"]["0"]["avatar"]
+      if @mallupdate.mallpic[0].save
+      else
+        logger.debug(@mallupdate.errors.fullmessage)
+      end
     end
+    flash[:notice] = "Mall item updated successfully"
+    redirect_to onlinemall_index_path
+  end
+
+  def mallremove
+    onlinemall = Onlinemall.find(params[:id])
+    if onlinemall.present?
+      onlinemall.mallpic[0].destroy
+      company = Companymallitem.where(:onlinemall_id=>onlinemall.id)
+      company.destroy_all
+      onlinemall.destroy
+    end
+    msg = {"msg" => "Successfully Deleted"}
     respond_to do |format|
-        format.js 
+      format.json { render json: msg}
     end
   end
 

@@ -1,7 +1,0 @@
-<%if @onlinemall.errors.any? %>
-	$("#showErrors").html('<%=escape_javascript(render partial: "common_templates/showerrors", :locals =>{:object => @onlinemall})%>')	
-	$(".submitmallbtn").html('<input type="button" class="btn yellow malledit" value="Update Lead">');	
-<%else%>
-	$(".formfields").html('<%=escape_javascript(render partial: "form")%>')
-	$("#mallitem_<%=@onlinemall.id%>").html('<%=escape_javascript(render partial: "mallitemcontentrow", :locals =>{:om => @onlinemall})%>')
-<%end%>
