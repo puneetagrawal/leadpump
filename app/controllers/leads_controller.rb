@@ -30,7 +30,6 @@ class LeadsController < ApplicationController
         flash[:notice] = "New lead created successfully"
         redirect_to new_lead_path
       else
-        redirect_to :back, flash[:error] = "Oops, something went wrong. Please try again"
         hash = Lead.fetchLeadList(current_user) 
         @leads = hash['leads'.to_sym]
         @userList = hash['userList'.to_sym]
