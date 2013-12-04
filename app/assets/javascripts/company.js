@@ -18,13 +18,13 @@ function initCompanyCreateOrUpdate(){
 		subject = $.trim($("#fbsubject").val());
 		if(subject.length <= 140){
 			text = $.trim($(this).siblings('textarea').val());
-			$.get(url, {text:text,subject:subject}, function (data) {
+			$.post(url, {text:text,subject:subject}, function (data) {
 				alert("Message save successfully.");
 				$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 			});
 		}
 		else{
-			alert("Subject Line cannot be greater than 140 characters.");
+			alert("Subject cannot be greater than 140 characters.");
 			$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 		}
 	});
@@ -32,10 +32,15 @@ function initCompanyCreateOrUpdate(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savetwmes';
 		text = $.trim($(this).siblings('textarea').val());
-		$.get(url, {text:text}, function (data) {
-			alert("Message save successfully.");
-			$('.submitTmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
-		});
+		if (text.length <= 140){
+			$.post(url, {text:text}, function (data) {
+				alert("Message save successfully.");
+				$('.submitTmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
+			});
+		}
+		else{
+			alert("Message cannot be greater than 140 characters.");
+		}
 	});
 	$(".submitGmes").click(function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
@@ -43,7 +48,7 @@ function initCompanyCreateOrUpdate(){
 		text = $(this).siblings('textarea').val();
 		subject = $.trim($("#emailsubject").val());
 		if(subject.length <= 140){
-			$.get(url, {text:text,subject:subject}, function (data) {
+			$.post(url, {text:text,subject:subject}, function (data) {
 				alert("Message save successfully.");
 				$('.submitGmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 			});

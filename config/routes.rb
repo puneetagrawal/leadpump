@@ -75,7 +75,10 @@ Leadpump::Application.routes.draw do
   match "/usersearchinadmin" => "admin#usersearchinadmin"
   match "/searchvipleadsadmin" => "admin#search_vip"
   match "/vipleadsearchadminfilter" => "admin#vipleadsearchadminfilter"
-  
+  match "/editplanbyadmin" => "admin#editplanbyadmin"
+  match "/setunlimited" => "admin#setunlimited"
+  match "/updateplan" => "admin#updateplan"
+
    namespace :admin do
      root :to => "admin#index"
      resources :users, :subscriptions, :plans, :payments, :vipleads

@@ -274,7 +274,7 @@ def fetchtwitterMessage
   company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.gmailMessage.present?
+  if socialmessage.present? && socialmessage.twitter.present?
     message = socialmessage.gmailMessage
   end
   return message.html_safe

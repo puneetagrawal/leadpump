@@ -9,8 +9,11 @@ def user
 end
 
 def plan
-   @plans = Plan.all 
-   @plans = PlanPerUserRange.where(:plan_id => @plans).group("@plans.name")
+   @planlist = []
+   plan = Plan.all
+   plan.each do|p|
+     @planlist << PlanPerUserRange.where(:plan_id => p.id)
+   end
 end
 
 def statistic
@@ -92,5 +95,44 @@ def search_vip
     end
   end
 
+  def editplanbyadmin
+    @plans = PlanPerUserRange.find(params[:planid])
+    respond_to do |format|
+      format.js 
+    end
+  end
+  def setunlimited
+    @plan = PlanPerUserRange.find(params[:plid])
+    if @plan.present?
+      @plan.plan.lead_management = "unlimited"
+      @plan.plan.save
+      msg = "Set Unlimited Successfully"
+    else
+      msg = "Something went wrong. Please try later."
+    end
+    message = {"msg" => msg}
+    respond_to do |format|
+      format.json { render json: message}
+    end
+  end
+
+  def updateplan
+    @plan = PlanPerUserRange.find(params[:plid])
+    if @plan.present?
+      unless params[:price].blank?
+       @plan.update_attributes(:price=>params[:price])
+      end
+      unless params[:leads].blank?
+        @plan.plan.update_attributes(:lead_management=>params[:leads])
+      end
+      msg = "Set Unlimited Successfully"
+    else
+      msg = "Something went wrong. Please try later."
+    end
+    message = {"msg" => msg}
+    respond_to do |format|
+      format.json { render json: message}
+    end
+  end
 
 end

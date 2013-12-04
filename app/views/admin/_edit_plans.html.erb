@@ -1,0 +1,16 @@
+<div class="span4 margin_width">    
+    <div class="taskAsgn">
+        <h2 class="heading" style="border-radius:5px;">Edit Plan</h2>
+	        <p> <label>No of leads </label>
+                <%= text_field_tag :leads, @plans.plan.lead_management %>
+                <input type="button" name="setunlimited" value="Set Unlimited" id="setunlimited" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px"> 
+            </p>
+            <p> <label>Price </label>
+                <%= text_field_tag :price, @plans.price %>
+            </p>
+
+            <p class="editplanbtn"> 
+                <input type="button" name="submitplanedit" value="submit" id="submitplanedit" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px">
+            </p>
+    </div>        
+</div>

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	mallid = '';
 	dltid = '';
+	plid = '';
 	$(".mallsubmit").click(function(){
 		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
 		if (isValid != '') {
@@ -11,40 +12,40 @@ $(document).ready(function(){
 		}
 	});
 
- 	$('.mall_chek').click(function(){
+	$('.mall_chek').click(function(){
 		checked = $(this).is(':checked'); 
 		id = $(this).attr('id').split("_")[1];
 		url = '/mallitemassign';
-			$.get(url, {id:id,checked:checked}, function (data) {			
+		$.get(url, {id:id,checked:checked}, function (data) {			
 		});
- 	});
+	});
 
- 	$(document).on('click', ".edit_icon", function () {
- 		$(".formfields").html('<img src="/assets/ajax-loader.gif" style="margin:35%">');
+	$(document).on('click', ".edit_icon", function () {
+		$(".formfields").html('<img src="/assets/ajax-loader.gif" style="margin:35%">');
 		id = $(this).closest('tr').attr('id').split("_")[1];
 		url = '/onlinemall/'+id+'/edit'
-			$.get(url, {id:id}, function (data) {
-		    mallid = id;
+		$.get(url, {id:id}, function (data) {
+			mallid = id;
 			$(".heading").text("Update Mall Item");
 			$(".submitmallbtn").html('<input type="button" value="Edit Mall Item" class="btn yellow malledit">');				
 		});
- 	});
+	});
 
- 	$(document).on('click', ".malledit", function () {
+	$(document).on('click', ".malledit", function () {
 		$("#edit_onlinemall_"+mallid).submit();
- 	});
+	});
 
- 	$(document).on('click', ".mallBtn", function () {
- 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+	$(document).on('click', ".mallBtn", function () {
+		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 		url = '/mallremove'
 		$.get(url, {id:dltid}, function (data) {
 			alert(data.msg);
 			$("#mallitem_"+dltid).remove();
 			$.fancybox.close()
 		});
- 	});
+	});
 
- 	$(document).on('click', ".delete_icon", function () {
+	$(document).on('click', ".delete_icon", function () {
 		id = $(this).closest('tr').attr('id').split("_")[1];
 		dltid = id;
 		$.fancybox.open({
@@ -63,31 +64,72 @@ $(document).ready(function(){
 	
 	//gaurav
 	
-	$(document).on("change", "#to_date", function (obj){
-	
-	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
-    var to_date = $(this).val();
-    var from_date = $('#from_date').val();
-    if ($('#from_date').val().length == 0)
-    {
-    	from_date = to_date;
-    }
+	$(document).on("change", "#to_date", function (){
+		//$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		var to_date = $(this).val();
+		var from_date = $('#from_date').val();
+		if ($('#from_date').val().length == 0)
+		{
+			from_date = to_date;
+		}
+		$.ajax({ 
+			url: "/filter_vip",
+			data: { 
+				"vip_to_date": to_date,
+				"vip_from_date": from_date
+			}
+		});
+	});
 
-    $.ajax({ 
-      url: "/filter_vip",
-	      data: { 
-	       "vip_to_date": to_date,
-	       "vip_from_date": from_date
-          }
-	   });
-	  });
+	$(document).on("click", ".planedit", function (){
+		id = $(this).closest('tr').attr('id');
+		plid = id.split("_")[1];
+		$.fancybox.open({
+			href: '#editPlanPopup',
+			type: 'inline',
+			'beforeLoad' : function() {
+				url = '/editplanbyadmin';
+				$.get(url, {planid:plid}, function (data) {
+				});
+			}
+		});
+	});
 
-
+	$(document).on("click", "#setunlimited", function (){
+		$.fancybox.open({
+			href: '#editPlanPopup',
+			type: 'inline',
+			'beforeLoad' : function() {
+				url = '/setunlimited';
+				$.get(url, {plid:plid}, function (data) { 
+					$("#leads_"+plid).html(leads);
+					alert(data.msg);
+					$.fancybox.close();
+				});
+			}
+		});
+	});	
+	$(document).on("click", ".editplanbtn", function (){
+		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		url = '/updateplan';
+		leads = $("#leads").val();
+		price = $("#price").val();
+		$.get(url, {plid:plid,leads:leads,price:price}, function (data) { 
+			alert(data.msg);
+			$("#price_"+plid).html(price);
+			$("#leads_"+plid).html(leads);
+			$(this).html('');
+			$.fancybox.close();
+		});
+	});	
 
 });
 
 function vipleadSearchAdminFilter(vipleadId){
-  url = '/vipleadsearchadminfilter';
-  $.get(url, {viplead:vipleadId}, function (data) { 
-  });
+	url = '/vipleadsearchadminfilter';
+	$.get(url, {viplead:vipleadId}, function (data) { 
+	});
 }
+
+
+

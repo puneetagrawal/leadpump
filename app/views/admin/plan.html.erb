@@ -6,7 +6,7 @@
     </div>
 </div> -->
 
-<div class="container nav-second">
+<div class="container wrapper">
 	<div class="row-fluid">
 		<table class="table table-striped">
 			<thead>
@@ -15,24 +15,26 @@
 					<th>No of Leads</th>
 					<th>No of users</th>
 					<th>Price</th>
-					<th></th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<% @plans.each do |plan| %>
-					<% ur = UserRange.find(plan.user_range_id) %>
-					<tr>
-						<td><%= Plan.find(plan.plan_id).name %></td>
-						<td><%= Plan.find(plan.plan_id).lead_management %></td>
-						<td><%= ur.start_range.to_s() + '-' + ur.end_range.to_s() %></td>
-						<td><%= plan.price %></td>
-						<td></td>
-					</tr>
+				<% @planlist.each do |pl| %>
+					<% pl.each do |plan|%>
+						<tr id="viewPlan_<%=plan.id%>" data-action="planpopup">
+							<td><%= plan.plan.name %></td>
+							<td id="leads_<%= plan.id%>"><%= plan.plan.lead_management %></td>
+							<td><%= "#{plan.user_range.start_range}-#{plan.user_range.end_range}" %></td>
+							<td id="price_<%= plan.id%>"><%= plan.price %></td>
+							<td><%=link_to "Edit", "javascript:void(0)",html={:class=>"planedit"}%></td>
+						</tr>
+					<%end%>
 				<% end %>
 			</tbody>
 		</table>
 	</div>
 </div>
+<%= render "common_templates/popupContainer"%>
 
 
 
