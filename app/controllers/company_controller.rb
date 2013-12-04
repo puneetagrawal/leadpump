@@ -149,4 +149,8 @@ def savegmmes
   render json: message
 end
 
+def setting
+  
+end
+
 end
