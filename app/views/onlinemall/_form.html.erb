@@ -4,10 +4,9 @@
 <p><%= mall.label "Title:" %><%= mall.text_field :title %></p>
 <p><%= mall.label "Link:" %><%= mall.text_field :link %></p>
 <%= hidden_field_tag :mallid%>
-<!-- <p><label>File:</label><input type="file"/> </p>
-<p>*Don't enter the link if you are uploading a file instead.</p> -->
+<p><%= mall.label "Description:" %><%= mall.text_field :description %></p>
 <%= mall.fields_for :mallpic, Mallpic.new do |pic| %>
-<label>Image:</label><%= pic.file_field :avatar %>	
+	<label>Image:</label><%= pic.file_field :avatar %>	
 <% end %>
 <p class="submitmallbtn"><input class="btn yellow mallsubmit" type="button" value="Add Mall Item"/></p>
 <div class="clear"></div>

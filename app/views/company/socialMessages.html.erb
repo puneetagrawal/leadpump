@@ -8,6 +8,8 @@
     <div class="span7">
         <p>Enter facebook message that you want to send on facebook.</p>
         <form class="form">
+            
+            <%=text_field_tag :fbsubject, current_user.fetchfbsubject, :placeholder=>"Enter Subject Line Here."%>
             <textarea class="ckeditor">
                 <%=current_user.fetchFacebookMessage%>
             </textarea>
@@ -44,6 +46,7 @@
     <div class="span7">
         <p>Enter Gmail message that you want to send on email.</p>
         <form class="form">
+            <%=text_field_tag :emailsubject, current_user.fetchgmailsubject, :placeholder=>"Enter Subject Line Here."%>
             <textarea class="ckeditor">
                 <%=current_user.fetchEmailMessage%>
             </textarea>

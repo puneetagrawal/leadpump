@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202161534) do
+ActiveRecord::Schema.define(:version => 20131204104722) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -129,9 +129,10 @@ ActiveRecord::Schema.define(:version => 20131202161534) do
     t.string   "link"
     t.boolean  "active"
     t.integer  "mallpic_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.string   "description"
   end
 
   create_table "opt_in_leads", :force => true do |t|
@@ -215,6 +216,8 @@ ActiveRecord::Schema.define(:version => 20131202161534) do
     t.integer  "company_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "fbsubject"
+    t.string   "gmailsubject"
   end
 
   create_table "stats", :force => true do |t|

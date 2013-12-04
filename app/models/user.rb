@@ -230,6 +230,26 @@ def self.fetchUserByPlan(plan)
   return users
 end
 
+def fetchfbsubject
+  company = self.fetchCompany
+  message = 'An Inviation from #{current_user.name} to you.'
+  socialmessage = SocialMessage.find_by_company_id(company.id)
+  if socialmessage.present? && socialmessage.fbsubject.present?
+    message = socialmessage.fbsubject
+  end
+  return message.html_safe
+end
+
+def fetchgmailsubject
+  company = self.fetchCompany
+  message = 'An Inviation from #{current_user.name} to you.'
+  socialmessage = SocialMessage.find_by_company_id(company.id)
+  if socialmessage.present? && socialmessage.gmailsubject.present?
+    message = socialmessage.gmailsubject
+  end
+  return message.html_safe
+end
+
 def fetchEmailMessage
   company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
@@ -237,7 +257,7 @@ def fetchEmailMessage
   if socialmessage.present? && socialmessage.gmailMessage.present?
     message = socialmessage.gmailMessage
   end
-  return message
+  return message.html_safe
 end
 
 def fetchFacebookMessage
@@ -247,7 +267,7 @@ def fetchFacebookMessage
   if socialmessage.present? && socialmessage.facebookMessage.present?
     message = socialmessage.facebookMessage
   end
-  return message
+  return message.html_safe
 end
 
 def fetchtwitterMessage
@@ -260,25 +280,6 @@ def fetchtwitterMessage
   return message.html_safe
 end
 
-def fetchFacebookMessage
-  company = self.fetchCompany
-  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.facebookMessage.present?
-    message = socialmessage.facebookMessage
-  end
-  return message.html_safe
-end
-
-def fetchtwitterMessage
-  company = self.fetchCompany
-  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.twitterMessage.present?
-    message = socialmessage.twitterMessage
-  end
-  return message.html_safe
-end
 
   protected
 

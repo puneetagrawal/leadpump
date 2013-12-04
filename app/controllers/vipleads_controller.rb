@@ -101,10 +101,11 @@
     sents_count = 0
     if emails.present?
       emailMessage = current_user.fetchEmailMessage
+      subject = current_user.fetchgmailsubject
       emails.each do|email|
         sec_token = GmailFriend.where(:email=>email,:user_id=>current_user.id).last
         sec_token = sec_token.present? ? sec_token.secret_token : ''
-        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token).deliver
+        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token, subject).deliver
         sents_count += 1
         Stats.saveEsents(current_user.id, sents_count, email)
       end
@@ -118,8 +119,9 @@
     token = current_user.token
     if emails.present?
       emailMessage = current_user.fetchFacebookMessage
+      subject = current_user.fetchfbsubject
       emails.each do|email|
-        Emailer.fb_referral_mail(email, token, emailMessage).deliver
+        Emailer.fb_referral_mail(email, token, emailMessage, subject).deliver
       end
     end
     message = {"msg"=> "successfully sent invitations."}

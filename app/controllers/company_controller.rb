@@ -127,7 +127,7 @@ def savefbmes
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}
   elsif socailMessage.present?
-    socailMessage.update_attributes(:facebookMessage=>params[:text])
+    socailMessage.update_attributes(:facebookMessage=>params[:text],:fbsubject=>params[:subject])
     message = {"msg"=>"Message saved successfully"}
   else
     SocialMessage.create(:facebookMessage=>params[:text], :company_id=>current_user.id)
@@ -141,7 +141,7 @@ def savegmmes
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}
   elsif socailMessage.present?
-    socailMessage.update_attributes(:gmailMessage=>params[:text])
+    socailMessage.update_attributes(:gmailMessage=>params[:text],:gmailsubject=>params[:subject])
     message = {"msg"=>"Message saved successfully"}
   else
     SocialMessage.create(:gmailMessage=>params[:text], :company_id=>current_user.id)
@@ -149,8 +149,9 @@ def savegmmes
   render json: message
 end
 
-def setting
-  
+def settings
+  @picture_user = Picture.fetchCompanyLogo(current_user.id)
+   @picture = Picture.new
 end
 
 end

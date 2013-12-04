@@ -1,5 +1,5 @@
 class Onlinemall < ActiveRecord::Base
-  attr_accessible :active, :link, :mallpic_id, :title, :user_id
+  attr_accessible :active, :link, :mallpic_id, :title, :user_id, :description
 
   has_many :mallpic
   belongs_to :user

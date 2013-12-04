@@ -9,7 +9,7 @@ class OnlinemallController < ApplicationController
   end
 
   def create
-  	@onlinemall = Onlinemall.new(:title=>params[:onlinemall][:title], :link=>params[:onlinemall][:link],:user_id=>current_user.id)
+  	@onlinemall = Onlinemall.new(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title], :link=>params[:onlinemall][:link],:user_id=>current_user.id)
   	mallpic = nil
   	if !params["onlinemall"]["mallpic_attributes"]["0"]["avatar"].blank?
   		mallpic = Mallpic.new(:avatar=>params["onlinemall"]["mallpic_attributes"]["0"]["avatar"])
@@ -59,7 +59,7 @@ class OnlinemallController < ApplicationController
 
   def update  
     @mallupdate = Onlinemall.find(params[:id]) 
-    @mallupdate.update_attributes(:title=>params[:onlinemall][:title],:link=>params[:onlinemall][:link])
+    @mallupdate.update_attributes(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title],:link=>params[:onlinemall][:link])
     if params[:onlinemall].has_key?(:mallpic_attributes)
       @mallupdate.mallpic[0].avatar = params["onlinemall"]["mallpic_attributes"]["0"]["avatar"]
       if @mallupdate.mallpic[0].save

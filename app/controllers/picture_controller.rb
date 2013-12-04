@@ -12,7 +12,7 @@ class PictureController < ApplicationController
   rescue Exception => e
     flash[:error] = "Please try again"
   end
-  	redirect_to home_index_path
+  	redirect_to settings_path
   end
 
   def show
