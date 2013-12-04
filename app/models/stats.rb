@@ -67,7 +67,7 @@ class Stats < ActiveRecord::Base
     stats = []
     case user.user_role.role_type.to_sym  
     when :employee
-      stats = Stats.where(:user_id=>current_user.id)
+      stats = Stats.where(:user_id=>user.id)
     when :company
       users = User.fetchCompanyUserList(user)
       users << user
