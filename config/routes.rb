@@ -1,4 +1,3 @@
-
 Leadpump::Application.routes.draw do
 
   get "statss/index"
@@ -71,8 +70,11 @@ Leadpump::Application.routes.draw do
   match '/admin/remove_user' => 'admin#destroy'
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
+  match '/filter_vip' => 'admin#filter_vip', :as => 'filter_vip'
   match "/searchUserAc" => "admin#searchUserAc"
   match "/usersearchinadmin" => "admin#usersearchinadmin"
+  match "/searchvipleadsadmin" => "admin#search_vip"
+  match "/vipleadsearchadminfilter" => "admin#vipleadsearchadminfilter"
   
    namespace :admin do
      root :to => "admin#index"

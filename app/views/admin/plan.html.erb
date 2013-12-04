@@ -1,9 +1,38 @@
-<div class="container nav_second">
+<!-- <div class="container nav_second">
     <div class="row-fluid">
     <h4> <a href="/plans/new"> Plans </h4>
-    <!-- <h5> <a href="/plans/new?maxUsers=3"> Business Plan </h5>
-    <h5> <a href="/plans/new?maxUsers=4"> Pro Plan </h5> -->
+    < <h5> <a href="/plans/new?maxUsers=3"> Business Plan </h5>
+    <h5> <a href="/plans/new?maxUsers=4"> Pro Plan </h5> 
     </div>
+</div> -->
+
+<div class="container nav-second">
+	<div class="row-fluid">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Plan Name</th>
+					<th>No of Leads</th>
+					<th>No of users</th>
+					<th>Price</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @plans.each do |plan| %>
+					<% ur = UserRange.find(plan.user_range_id) %>
+					<tr>
+						<td><%= Plan.find(plan.plan_id).name %></td>
+						<td><%= Plan.find(plan.plan_id).lead_management %></td>
+						<td><%= ur.start_range.to_s() + '-' + ur.end_range.to_s() %></td>
+						<td><%= plan.price %></td>
+						<td></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>
+
 
 

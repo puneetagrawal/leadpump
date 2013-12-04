@@ -9,11 +9,12 @@ def user
 end
 
 def plan
-
+   @plans = Plan.all 
+   @plans = PlanPerUserRange.where(:plan_id => @plans).group("@plans.name")
 end
 
 def statistic
-@vipleads = VipLead.all
+	@leads = Lead.where(:lead_source => "vip")
 end
 
 def payment
@@ -52,6 +53,43 @@ end
 	respond_to do |format|
 		format.js 
 	end
+  end
+  
+  def filter_vip
+	@leads = Lead.where(:lead_source => "vip")
+	@filter_vips = @leads.where(:created_at => params[:vip_from_date]..params[:vip_to_date])
+	respond_to do |format|    
+  		format.js 
+	end
+end
+
+def search_vip
+	leads = Lead.where(:lead_source => "vip")
+	leads = leads.present? ? leads.pluck(:id) : []
+	if params[:term].blank?
+		leads = Lead.select("distinct(name)").where(:id => leads) 
+		list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
+	else
+     like  = "%".concat(params[:term].concat("%"))
+     leads = Lead.select("distinct(name)").where("name like ?", like).where(:id => leads)
+     list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
+     if !leads.present?
+     	leads = Lead.where(:lead_source => "vip")
+     	leads = UserLeads.where(:lead_id => leads)
+     	users = User.where(:id => leads)
+        associates = User.select("distinct(name)").where("name like ? ", like).where(:id=>users)
+        list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
+     end
+   end
+   render json: list
+  end
+
+  def vipleadsearchadminfilter
+    leads = Lead.where(:lead_source => "vip").pluck(:id)
+    @leads = Lead.where("name = ?", params[:viplead]).where(:id=> leads)
+    respond_to do |format|
+      format.js 
+    end
   end
 
 

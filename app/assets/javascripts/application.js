@@ -23,6 +23,7 @@
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
+ 	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 	$('.ckeditor').ckeditor({
 		  // optional config

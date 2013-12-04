@@ -60,5 +60,34 @@ $(document).ready(function(){
 			
 		});
 	});
+	
+	//gaurav
+	
+	$(document).on("change", "#to_date", function (obj){
+	
+	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
+    var to_date = $(this).val();
+    var from_date = $('#from_date').val();
+    if ($('#from_date').val().length == 0)
+    {
+    	from_date = to_date;
+    }
+
+    $.ajax({ 
+      url: "/filter_vip",
+	      data: { 
+	       "vip_to_date": to_date,
+	       "vip_from_date": from_date
+          }
+	   });
+	  });
+
+
 
 });
+
+function vipleadSearchAdminFilter(vipleadId){
+  url = '/vipleadsearchadminfilter';
+  $.get(url, {viplead:vipleadId}, function (data) { 
+  });
+}

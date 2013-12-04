@@ -1,0 +1,59 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>VIP name</td>
+            <td>Associate</td>
+            <td>Company</td>
+            <td>Source</td>
+            <td>Status</td>
+            <td>Date</td>
+        </tr>
+    </thead>
+    <tbody>
+        <%if @leads.present? %>
+            <% if @filter_vips.nil? %>
+                <% @leads.each do |lead|%>
+                    <tr>
+                        <td><%= lead.name.humanize %></td>
+                        <% user = UserLeads.find_by_lead_id(lead.id) %>
+                        <% unless user.blank? %>
+                            <% userid = user.user_id %>
+                            <% user = User.find(userid) %>
+                            <td> <%= user.name.humanize %></td>
+                            <td><%= user.fetchCompany.name %></td>
+                        <% else %>
+                            <td></td>
+                            <td></td>
+                        <% end %>
+                        <td><%= lead.lead_source %></td>
+                        <td><%= lead.status %></td>
+                        <td><%= lead.created_at.strftime("%Y/%m/%d")%></td>
+                    </tr>
+                <% end %>
+            <% else %>
+                <% @filter_vips.each do |filter_lead| %>
+                    <tr>
+                        <td><%= filter_lead.name.humanize %></td>
+                        <% user = UserLeads.find_by_lead_id(filter_lead.id) %>
+                        <% unless user.blank? %>
+                            <% userid = user.user_id %>
+                            <% user = User.find(userid) %>
+                            <td> <%= user.name.humanize %></td>
+                            <td><%= user.fetchCompany.name %></td>
+                        <% else %>
+                            <td></td>
+                            <td></td>
+                        <% end %>
+                        <td><%= filter_lead.lead_source %></td>
+                        <td><%= filter_lead.status %></td>
+                        <td><%= filter_lead.created_at.strftime("%Y/%m/%d")%></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% else  %>
+            <tr>
+                <td>No record found.</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
