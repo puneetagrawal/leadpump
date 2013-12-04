@@ -127,7 +127,7 @@ Leadpump::Application.routes.draw do
   match "/savetwmes" => "company#savetwmes"
   match "/savefbmes" => "company#savefbmes"
   match "/savegmmes" => "company#savegmmes"
-
+  match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
   match "/sendmail" => "home#sendmail"
 

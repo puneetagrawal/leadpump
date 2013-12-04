@@ -20,7 +20,6 @@
   end
 
   def mallitems
-    user = User.find(3)
     @companymallitem = user.fetchcompanymallitem
   end
 
@@ -126,29 +125,7 @@
     message = {"msg"=> "successfully sent invitations."}
     render json: message
   end
-
-
-  # def acceptInvitation
-  #   user = User.find_by_token(params[:token])
-  #   msg = ""
-  #   token = params[:token]
-  #   if !token.blank?
-  #     gmailcontact = GmailFriend.find_by_secret_token(token)
-  #     if !gmailcontact.present?
-  #       msg = "You are unautherise user or your token is invalid"
-  #     elsif gmailcontact.active
-  #       msg = "You have already used this token"
-  #     else
-  #       gmailcontact.update_attributes(:active=>true)
-  #       gmailReferral.create(:first_name)
-  #       #viplead = VipLead.create(:first_name=>gmailcontact.name, :email=>gmailcontact.email, :active=>true, :user_id=>gmailcontact.user_id)
-  #       #viplead.save
-  #       msg = "You are successfuly created as lead"
-  #     end
-  #    end
-  #    flash[:success] = msg 
-  # end
-
+  
   def acceptInvitation
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
@@ -167,40 +144,47 @@
     opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
     msg = "Sorry! your are requesting expired link."
     error = ""
-    if !opt_in_lead.present?
-        if(!params[:sec].blank? || params[:source] == "fb" || params[:source] == "twitter") 
-          lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
-          if lead.save
-            UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
-            OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
-            if params[:source] == "gmail"
-              msg = Stats.saveEconverted(user.id, params[:sec])
-            end
-          else
-            error = lead.errors.full_messages.to_sentence
-          end
-        end
-    end
-    message = {"msg" => msg,"error"=>error}
-    respond_to do |format|
-      format.json { render json: message}
+    # if !opt_in_lead.present?
+    #     if(!params[:sec].blank? || params[:source] == "fb" || params[:source] == "twitter") 
+    #       lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
+    #       if lead.save
+    #         UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
+    #         OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
+    #         if params[:source] == "gmail"
+    #           msg = Stats.saveEconverted(user.id, params[:sec])
+    #         end
+    #       else
+    #         error = lead.errors.full_messages.to_sentence
+    #       end
+    #     end
+    # end
+    if error != ''
+      message = {"msg" => msg,"error"=>error}
+      respond_to do |format|
+        format.json { render json: message}
+      end
+    else
+      @companymallitem = user.fetchcompanymallitem
+      respond_to do |format|
+        format.js 
+      end
     end
   end
 
   def trackEmail
       ref = User.where(:token=>params[:token]).last
-      gmailfriend = ref.present? ? GmailFriend.where(:secret_token=>params[:sec], :user_id=>ref.id) : nil
+      gmailfriend = ref.present? ? GmailFriend.where(:secret_token=>params[:sec], :user_id=>ref.id).last : nil
       Stats.saveEoppened(gmailfriend)
       send_file Rails.root.join("public", "track.png"), type: "image/png", disposition: "inline"
    end
 
   def vipleadsearchfilter
-  vl = VipLead.fetchList(current_user.id)
-  vl = vl.present? ? vl.pluck(:id) : []
-  @vipleads = VipLead.where("first_name = ? or last_name = ?", params[:viplead],params[:viplead]).where(:id=> vl)
-  respond_to do |format|
-    format.js 
-  end
+    vl = VipLead.fetchList(current_user.id)
+    vl = vl.present? ? vl.pluck(:id) : []
+    @vipleads = VipLead.where("first_name = ? or last_name = ?", params[:viplead],params[:viplead]).where(:id=> vl)
+    respond_to do |format|
+      format.js 
+    end
 end
 
 def viewmallitem
@@ -211,13 +195,13 @@ def viewmallitem
 end
 
 def download
-   @mall = Onlinemall.last
-  respond_to do |format|
+  @mall = Onlinemall.find_by_user_id(2)
+  @pf = WickedPdf.new.pdf_from_string(
+          render_to_string('vipleads/download.html.erb',:layout=>false)
+        )
+   respond_to do |format|
       format.pdf do
-        pdf = render_to_string :pdf => @mall.title + " CV",
-                       :margin => {:top     => 20,  
-                                   :bottom  => 20 }
-        send_file pdf
+        send_data @pf, filename: "Invoice-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
 end

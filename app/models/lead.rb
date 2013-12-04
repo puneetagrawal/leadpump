@@ -55,6 +55,18 @@ end
      status = status ? "Active" : "Inactive"
   end
 
+  def self.assigndeletedleadtocompany(user)
+    company = user.fetchCompany
+    userleads = UserLeads.where(:user_id=>user.id)
+    if userleads.present?
+      logger.debug(userleads)
+      userleads.each do |lead|
+        lead.user_id = company.id
+        lead.save
+      end
+    end
+  end
+
 protected
 def savestatus
   self.status = "Active"

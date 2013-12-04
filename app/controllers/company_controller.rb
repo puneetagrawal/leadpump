@@ -16,7 +16,7 @@ class CompanyController < ApplicationController
   end
 
   def create
-    if current_user.checkUserLimit
+    
       @user = User.new(params[:user])
       @user.password = "user.leadpump123"
       @user.role_id = Role.find_by_role_type("employee").id
@@ -27,7 +27,6 @@ class CompanyController < ApplicationController
         begin 
           @user.send_reset_password_instructions
         rescue Exception => e
-          logger.debug(e)
         end
         flash[:success] = "User successfully created"
         redirect_to company_new_path()      
@@ -35,12 +34,12 @@ class CompanyController < ApplicationController
         @users = User.fetchCompanyUserList(current_user)
         render :action =>"new"
       end
-    else
-      flash[:alert] = "Sorry! your user creation limit exceeded."
-      @user = User.new()
-      @users = User.fetchCompanyUserList(current_user)
-      render :action =>"new"
-    end
+    # else
+    #   flash[:alert] = "Sorry! your user creation limit exceeded."
+    #   @user = User.new()
+    #   @users = User.fetchCompanyUserList(current_user)
+    #   render :action =>"new"
+    # end
   end
 
   def edit

@@ -8,4 +8,14 @@ class Onlinemall < ActiveRecord::Base
 
   validates :title, :presence => true
   validates :link, :presence => true
+
+	def to_html
+		Renderer::render_view('vipleads/download.html.erb', {mall: self}, {layout: false})
+	end
+
+  def createpdf
+  	WickedPdf.new.pdf_from_string(
+	  render_to_string('vipleads/viewMallItem.html.erb')
+	)
+  end
 end

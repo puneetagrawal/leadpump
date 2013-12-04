@@ -52,9 +52,11 @@ class Stats < ActiveRecord::Base
 
   def self.saveEoppened(gmailfriend)
     if gmailfriend.present? 
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>")
+      logger.debug(gmailfriend.oppened)
       if !gmailfriend.oppened
         gmailfriend.update_attributes(:oppened=>true)
-        stats = Stats.find_by_secret_token(gmailfriend.user_id)
+        stats = Stats.find_by_user_id(gmailfriend.user_id)
         if stats.present?
           opened = stats.e_oppened.present? ? stats.e_oppened + 1 : 1
           stats.update_attributes(:e_oppened=>opened)

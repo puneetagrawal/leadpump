@@ -25,9 +25,12 @@ class Emailer < ActionMailer::Base
 		mail(to: email, subject: 'Set password for LEADPUMP.com employee user account')
   end
   def sendtestmail()
-    sendgrid_category "Welcome"
-    sendgrid_unique_args :key2 => "newvalue2", :key3 => "value3"
-    @url = SERVER_URL+"/trackEmail"
-    mail(to: 'puneet.agarwal@ongraph.com', subject: 'You are being tracked')
+    user = "user2"
+    headers "X-SMTPAPI" => {
+      category:    [ "socailReferring" ],
+      unique_args: { environment: Rails.env, arguments: user }
+    }.to_json
+    @url = SERVER_URL
+    mail(to: 'vishwanath.yadav@ongraph.com', subject: 'You are being tracked')
   end
 end

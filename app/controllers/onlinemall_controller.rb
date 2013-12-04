@@ -33,8 +33,6 @@ class OnlinemallController < ApplicationController
   end
 
   def mallitemassign
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(params)
     onlinemall = Onlinemall.find(params[:id])
     if onlinemall.present?
       if params[:checked] == "true"
