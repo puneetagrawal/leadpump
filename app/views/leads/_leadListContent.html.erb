@@ -2,21 +2,7 @@
  <thead>
    <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Goal</td><td>Status</td><td>Employee</td><td>Action</td></tr>
  </thead>
- <tbody>    
-  <%if @leads.size > 0%>                
-  <% @leads.each do |ur|%>
-  
-  <tr class="viewLead listView" id="viewLead_<%=ur.lead.id%>"  data-action="leadpopup">
-    <%=render "leadContentRow", :lead=>ur.lead %>
-  </tr>
-  <% end %>         
-  <%else%>
-  <tr>
-    <td colspan="8" style="text-align:center">no lead assign/created by this user
-    </td>
-  </tr>         
-  <% end %>
-</tbody>
-</table>
+ <%=render "leadtablebody"%>
+ </table>
 
 <%=render "common_templates/popupContainer"%>

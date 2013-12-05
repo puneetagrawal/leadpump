@@ -6,12 +6,14 @@
     <tbody>
     <%if @vipleads.present?%>
         <%@vipleads.each do |vip|%>
-          <%=render "vipleadContentRow", :vip=>vip%>
-          <%end%>
-    <%else%>
+            <%if vip.present?%>
+              <%=render "vipleadContentRow", :vip=>vip%>
+            <%end%>
+            <%end%>
+    <%elsif%>
         <tr><td colspan="4">No vip lead created yet<td></tr>
     <%end%>
     </tbody>
 </table>
 </div>
-<%= will_paginate @vipleads, :previous_label=>"Previous", :next_label=>"Next" %>   
+<%#= will_paginate @vipleads, :previous_label=>"Previous", :next_label=>"Next" %>   

@@ -11,6 +11,7 @@ class Lead < ActiveRecord::Base
   number_regex = /\d[0-9]\)*\z/
   validates_format_of :phone, :with =>  number_regex, :message => "-no should be positive number and without space"
 
+  default_scope :order => "created_at DESC"
 
 
 # def self.userLeads(user)
