@@ -7,6 +7,7 @@
   
   def index
     @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
+    @vipleads = @vipleads.collect{|u| u if u.lead.lead_source=="vip"}
   end
 
   def filter_rec
@@ -24,23 +25,32 @@
   end
 
   def create
-    (1..3).each do |index|
-      first_name = params["inputs"]["vip_#{index}"]["first_name"]
-      email = params["inputs"]["vip_#{index}"]["email"]
-      phone = params["inputs"]["vip_#{index}"]["phone"]
-      if first_name.present? || email.present? || phone.present?
-        @viplead = VipLead.new(params["inputs"]["vip_#{index}"])
-        @viplead.user_id = current_user.id
-        if @viplead.save
-          lead = Lead.new(:name=>@viplead.first_name,:email=>@viplead.email,:phone=>@viplead.phone,:lead_source=>"vip")
-          if lead.save
-            UserLeads.create(:user_id=>@viplead.user_id, :lead_id=>lead.id)
-          end
-        end
-      end  
+    viplead1 = Lead.new(params["inputs"]["vip_1"])
+    viplead2 = Lead.new(params["inputs"]["vip_2"])
+    viplead3 = Lead.new(params["inputs"]["vip_3"])
+    error = ''
+    if viplead1.valid? && viplead2.valid? && viplead3.valid?
+        viplead1.save
+        user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => viplead1.id)
+        current_user.saveLeadCount
+        
+        viplead2.save
+        user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => viplead2.id)
+        current_user.saveLeadCount
+
+        viplead3.save
+        user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => viplead3.id)
+        current_user.saveLeadCount
+    else
+      error = "Please correct your email or phone"
     end
-    respond_to do |format|
-      format.js 
+    if error != ''
+      message = {"error"=> error}
+      render json: message
+    else
+      respond_to do |format|
+        format.js 
+      end
     end 
   end
 
@@ -69,7 +79,7 @@
       redirect_to home_index_path  
       return false
     end
-    @vipleads = VipLead.new
+    @lead = Lead.new
   end
 
   def delete
@@ -131,44 +141,55 @@
   def acceptInvitation
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
-      @token = params[:token]
-      @sec = params[:sec]
-      @source = params[:source]
-      @gmailcontact = GmailFriend.where(:secret_token=>params[:sec], :user_id=>@ref.id).last
-      if @gmailcontact.present? && !@gmailcontact.visited
-        Stats.saveEvisited(@ref.id, @gmailcontact)
+      if @ref.checkLeadLimit
+        @token = params[:token]
+        @source = params[:source]
+        @sec = params[:sec]
+        @gmailcontact = GmailFriend.where(:secret_token=>params[:sec], :user_id=>@ref.id).last
+        if @gmailcontact.present? && !@gmailcontact.visited
+          Stats.saveEvisited(@ref.id, @gmailcontact)
+        end
+      else
+        flash[:notice] = "You are requesting wrong link."
+        redirect_to home_index_path
       end
     end
   end
 
   def savereferral
     user = User.find_by_token(params[:ref_id])
-    opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
-    msg = "Sorry! your are requesting expired link."
     error = ""
-    # if !opt_in_lead.present?
-    #     if(!params[:sec].blank? || params[:source] == "fb" || params[:source] == "twitter") 
-    #       lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
-    #       if lead.save
-    #         UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
-    #         OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
-    #         if params[:source] == "gmail"
-    #           msg = Stats.saveEconverted(user.id, params[:sec])
-    #         end
-    #       else
-    #         error = lead.errors.full_messages.to_sentence
-    #       end
-    #     end
-    # end
-    if error != ''
-      message = {"msg" => msg,"error"=>error}
-      respond_to do |format|
-        format.json { render json: message}
+    if @ref.checkLeadLimit
+      opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
+      msg = "Sorry! your link is invalid or expired."
+      if !opt_in_lead.present?
+          if !params[:sec].blank?
+            lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
+            if lead.save
+              UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
+              @ref.saveLeadCount
+              OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
+              msg == "Thanks.You are successfuly Opt in."
+              if params[:source] == "gmail"
+                msg = Stats.saveEconverted(user.id, params[:sec])
+              end
+            else
+              error = lead.errors.full_messages.to_sentence
+            end
+          end
       end
     else
+      msg = "Sorry! your referrer limit have been reached."
+    end
+    if msg == 'Thanks.You are successfuly Opt in.'
       @companymallitem = user.fetchcompanymallitem
       respond_to do |format|
         format.js 
+      end
+    else
+      message = {"msg" => msg,"error"=>error}
+      respond_to do |format|
+        format.json { render json: message}
       end
     end
   end
@@ -182,10 +203,11 @@
 
   def vipleadsearchfilter
     vl = VipLead.fetchList(current_user.id)
-    vl = vl.present? ? vl.pluck(:id) : []
-    @vipleads = VipLead.where("first_name = ? or last_name = ?", params[:viplead],params[:viplead]).where(:id=> vl)
-    respond_to do |format|
-      format.js 
+    vl = vl.present? ? vl.pluck(:lead_id) : []
+    @vipleads = Lead.where("name = ? ", params[:viplead]).where(:id=> vl,:lead_source=>"vip").pluck(:id)
+    @vipleads = UserLeads.where(:lead_id=>@vipleads)
+      respond_to do |format|
+        format.js 
     end
 end
 
@@ -210,18 +232,14 @@ end
 
 def searchvipleads
   vipleads = VipLead.fetchList(current_user.id)
-  vipleads = vipleads.present? ? vipleads.pluck(:id) : []
+  vipleads = vipleads.present? ? vipleads.pluck(:lead_id) : []
   if params[:term].blank?
-   leads = VipLead.select("distinct(first_name)").where(:id=> vipleads)
-   list = leads.map {|l| Hash[id: l.id, label: l.first_name, name: l.first_name]}
+   leads = Lead.select("distinct(name)").where(:id=> vipleads,:lead_source=>"vip")
+   list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
   else
    like  = "%".concat(params[:term].concat("%"))
-   leads = VipLead.select("distinct(first_name)").where("first_name like ?", like).where(:id=>vipleads)
-   list = leads.map {|l| Hash[id: l.id, label: l.first_name, name: l.first_name]}
-   if !leads.present?
-      leads = VipLead.select("distinct(last_name)").where("last_name like ? ", like).where(:id=>vipleads)
-      list = leads.map {|l| Hash[id: l.id, label: l.last_name, name: l.last_name]}
-   end
+   leads = Lead.select("distinct(name)").where("name ilike ?", like).where(:id=>vipleads,:lead_source=>"vip")
+   list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
  end
  render json: list
 end

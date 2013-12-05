@@ -1,7 +1,5 @@
 Leadpump::Application.routes.draw do
 
-  get "statss/index"
-
   match '/appointments/filter_app' => 'appointments#filter_app'
   match '/tweet/ref' => 'tweet_referrals#new'
   resources :discounts_on_periods
@@ -12,6 +10,7 @@ Leadpump::Application.routes.draw do
   resources :plans
   resources :referrals
   resources :tweet_referrals
+  resources :statss
   resources :onlinemall
 
   match "/mallitemassign" => "onlinemall#mallitemassign"
@@ -24,6 +23,8 @@ Leadpump::Application.routes.draw do
 
   match "/createpic" => "picture#create"  
   resources :picture
+
+  match "/statsearch" => "statss#statsearch"
 
 
   devise_for :users, :controllers => {:registrations => "registrations"}

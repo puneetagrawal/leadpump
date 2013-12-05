@@ -91,9 +91,12 @@ function executeFirstStep(obj){
 	$(obj).html('<img src="/assets/ajax-loader.gif" style="margin-left: 40px;">');
 	 url = '/vipleads';
 	 	$.post(url, {inputs:formfields()}, function (data) {
+	 		if(data.error){
+	 			alert(data.error);
+	 			$(obj).html('<a id="proceed_step_1" class="btn yellow" href="javascript:void(0)">Proceed to Next Step</a>');
+	 		}
 			$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
 			$(".stepNo2").removeClass('disabled');
-			initSocialInviter();
 	 });
 }
 

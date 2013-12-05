@@ -1,0 +1,15 @@
+<%if @stats.present?%>
+<%@stats.each do |stat|%>
+<tr><td>email-onsite</td>
+    <td><%=stat.created_at%>
+    </td><td>Default Location</td>
+    <td><%=stat.user.name%></td>
+    <td><%=stat.e_sents%></td>
+    <td><%=stat.e_oppened%></td>
+    <td><%=stat.e_views%></td>
+    <td><%=stat.e_converted%></td>
+</tr>
+<%end%>
+<%else%>
+<tr><td colspan="8">No stats available</td></tr>
+<%end%>
