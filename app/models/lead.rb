@@ -9,7 +9,7 @@ class Lead < ActiveRecord::Base
   validates :lead_source, :presence => true
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
   number_regex = /\d[0-9]\)*\z/
-  validates_format_of :phone, :with =>  number_regex, :message => "-no should be positive number and without space"
+  validates_format_of :phone, :with =>  number_regex, :message => "-no should be positive number and without space", :if => :phone? 
 
   default_scope :order => "created_at DESC"
 
@@ -44,7 +44,7 @@ def self.fetchLeadList(user)
       userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
       users = userList
       userList << user.id
-      leads = UserLeads.select("distinct(lead_id)").where(:user_id => userList)
+      leads = UserLeads.where(:user_id => userList)
       users = users.collect{|user| User.find(user)}
     when :employee
       leads = UserLeads.includes(:lead).where(:user_id => user.id)
