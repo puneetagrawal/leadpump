@@ -6,4 +6,16 @@ class Appointment < ActiveRecord::Base
 
   default_scope :order => "app_date_time ASC"
 
+
+  def self.assigndeletedappointmenttocompany(user)
+    company = user.fetchCompany
+  	appointments = Appointment.where(:user_id=>user.id)
+    if appointments.present?
+      appointments.each do|app|
+        app.user_id = company.id
+        app.save
+      end 
+    end
+  end
+
 end

@@ -13,7 +13,7 @@
 
 
 </style>
-<div class="container">
+<div class="container wrapper">
     <?php include('dashboard-icons.php'); ?>
     <div class="row-fluid">
         <div class="span4">
@@ -29,14 +29,14 @@
                                 strokeColor : "rgba(220,220,220,1)",
                                 pointColor : "rgba(220,220,220,1)",
                                 pointStrokeColor : "#fff",
-                                data : [65,59,90,81,56,55,40]
+                                data : [10,20,30,10,23,44,22]
                             },
                             {
                                 fillColor : "rgba(151,187,205,0.5)",
                                 strokeColor : "rgba(151,187,205,1)",
                                 pointColor : "rgba(151,187,205,1)",
                                 pointStrokeColor : "#fff",
-                                data : [28,48,40,19,96,27,100]
+                                data : [28,48,40,19,46,27,66]
                             }
                         ]
 
@@ -48,7 +48,9 @@
             </div>
         </div>
         <div class="span8">
-            <p><a href="#" class="btn yellow btn-small">Export as comma Separated (Excel) File</a></p>
+            <p>
+                <%= link_to "Export as comma Separated (Excel) File", csvdownload_path(format: "csv"),:class=>"btn yellow btn-small" %>
+            </p>
             <div class="alert">
                 <button data-dismiss="alert" class="close" type="button">×</button>
                 <p>Compaign Statistics Listed below are the raw statistics for your campaigns. Would you like to filter this list by data ranges or other mechanisms in the future <a class="link" href="#">Yes</a> ?  </p>

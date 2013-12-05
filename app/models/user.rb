@@ -1,5 +1,4 @@
 
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, 
@@ -17,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :send_invitation_to_gmail_friends
   has_many :opt_in_leads
   has_many :statss
+  has_many :onlinemalls
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
 
@@ -166,6 +166,13 @@ class User < ActiveRecord::Base
     end
     return company
   end
+
+  def fetchcompanymallitem
+    company = self.fetchCompany
+    logger.debug(company.name)
+    logger.debug(company)
+    company = Onlinemall.where(:user_id=>company.id)
+  end
   
 def saveLeadCount
   user = self.fetchCompany
@@ -220,34 +227,33 @@ end
 
 def self.fetchUserByPlan(plan)
   plan = Plan.where("name ilike ? ",plan).pluck(:id)
-  logger.debug(plan)
   planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
   subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange).pluck(:user_id)
   users = subscription.present? ? subscription.collect{|user| User.find(user)} : []
   return users
 end
 
+def fetchfbsubject
+  company = self.fetchCompany
+  message = 'An Inviation from #{current_user.name} to you.'
+  socialmessage = SocialMessage.find_by_company_id(company.id)
+  if socialmessage.present? && socialmessage.fbsubject.present?
+    message = socialmessage.fbsubject
+  end
+  return message.html_safe
+end
+
+def fetchgmailsubject
+  company = self.fetchCompany
+  message = 'An Inviation from #{current_user.name} to you.'
+  socialmessage = SocialMessage.find_by_company_id(company.id)
+  if socialmessage.present? && socialmessage.gmailsubject.present?
+    message = socialmessage.gmailsubject
+  end
+  return message.html_safe
+end
+
 def fetchEmailMessage
-  company = self.fetchCompany
-  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.gmailMessage.present?
-    message = socialmessage.gmailMessage
-  end
-  return message
-end
-
-def fetchFacebookMessage
-  company = self.fetchCompany
-  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
-  socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.facebookMessage.present?
-    message = socialmessage.facebookMessage
-  end
-  return message
-end
-
-def fetchtwitterMessage
   company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company.id)
@@ -276,6 +282,7 @@ def fetchtwitterMessage
   end
   return message.html_safe
 end
+
 
   protected
 

@@ -276,6 +276,18 @@ textarea {
     width: 680px;
     min-height: 600px;
 }
+.dashboardIcons span{
+    color: #FFDE52;
+}
+
+.s_msg_inv a{
+    color: #333333;
+}
+
+.dashboardIcons span:focus{
+    color: #FFDE52;
+}
+
 .feild_info {
     float: left;    
     margin: 12px 0 0 10px;

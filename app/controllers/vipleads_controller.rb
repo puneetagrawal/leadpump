@@ -20,6 +20,10 @@
   def edit
   end
 
+  def mallitems
+    @companymallitem = user.fetchcompanymallitem
+  end
+
   def create
     viplead1 = Lead.new(params["inputs"]["vip_1"])
     viplead2 = Lead.new(params["inputs"]["vip_2"])
@@ -107,10 +111,11 @@
     sents_count = 0
     if emails.present?
       emailMessage = current_user.fetchEmailMessage
+      subject = current_user.fetchgmailsubject
       emails.each do|email|
         sec_token = GmailFriend.where(:email=>email,:user_id=>current_user.id).last
         sec_token = sec_token.present? ? sec_token.secret_token : ''
-        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token).deliver
+        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token, subject).deliver
         sents_count += 1
         Stats.saveEsents(current_user.id, sents_count, email)
       end
@@ -124,38 +129,16 @@
     token = current_user.token
     if emails.present?
       emailMessage = current_user.fetchFacebookMessage
+      subject = current_user.fetchfbsubject
       emails.each do|email|
-        Emailer.fb_referral_mail(email, token, emailMessage).deliver
+        Emailer.fb_referral_mail(email, token, emailMessage, subject).deliver
       end
     end
     message = {"msg"=> "successfully sent invitations."}
     render json: message
   end
-
-
-  # def acceptInvitation
-  #   user = User.find_by_token(params[:token])
-  #   msg = ""
-  #   token = params[:token]
-  #   if !token.blank?
-  #     gmailcontact = GmailFriend.find_by_secret_token(token)
-  #     if !gmailcontact.present?
-  #       msg = "You are unautherise user or your token is invalid"
-  #     elsif gmailcontact.active
-  #       msg = "You have already used this token"
-  #     else
-  #       gmailcontact.update_attributes(:active=>true)
-  #       gmailReferral.create(:first_name)
-  #       #viplead = VipLead.create(:first_name=>gmailcontact.name, :email=>gmailcontact.email, :active=>true, :user_id=>gmailcontact.user_id)
-  #       #viplead.save
-  #       msg = "You are successfuly created as lead"
-  #     end
-  #    end
-  #    flash[:success] = msg 
-  # end
-
+  
   def acceptInvitation
-    @opt_in_lead  = OptInLead.new()
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
       if @ref.checkLeadLimit
@@ -175,10 +158,10 @@
 
   def savereferral
     user = User.find_by_token(params[:ref_id])
+    error = ""
     if @ref.checkLeadLimit
       opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
       msg = "Sorry! your link is invalid or expired."
-      error = ""
       if !opt_in_lead.present?
           if !params[:sec].blank?
             lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
@@ -186,6 +169,7 @@
               UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
               @ref.saveLeadCount
               OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
+              msg == "Thanks.You are successfuly Opt in."
               if params[:source] == "gmail"
                 msg = Stats.saveEconverted(user.id, params[:sec])
               end
@@ -197,27 +181,53 @@
     else
       msg = "Sorry! your referrer limit have been reached."
     end
-    message = {"msg" => msg,"error"=>error}
-    respond_to do |format|
-      format.json { render json: message}
+    if msg == 'Thanks.You are successfuly Opt in.'
+      @companymallitem = user.fetchcompanymallitem
+      respond_to do |format|
+        format.js 
+      end
+    else
+      message = {"msg" => msg,"error"=>error}
+      respond_to do |format|
+        format.json { render json: message}
+      end
     end
   end
 
   def trackEmail
       ref = User.where(:token=>params[:token]).last
-      gmailfriend = ref.present? ? GmailFriend.where(:secret_token=>params[:sec], :user_id=>ref.id) : nil
+      gmailfriend = ref.present? ? GmailFriend.where(:secret_token=>params[:sec], :user_id=>ref.id).last : nil
       Stats.saveEoppened(gmailfriend)
       send_file Rails.root.join("public", "track.png"), type: "image/png", disposition: "inline"
    end
 
   def vipleadsearchfilter
-  vl = VipLead.fetchList(current_user.id)
-  vl = vl.present? ? vl.pluck(:lead_id) : []
-  @vipleads = Lead.where("name = ? ", params[:viplead]).where(:id=> vl,:lead_source=>"vip").pluck(:id)
-  @vipleads = UserLeads.where(:lead_id=>@vipleads)
+    vl = VipLead.fetchList(current_user.id)
+    vl = vl.present? ? vl.pluck(:lead_id) : []
+    @vipleads = Lead.where("name = ? ", params[:viplead]).where(:id=> vl,:lead_source=>"vip").pluck(:id)
+    @vipleads = UserLeads.where(:lead_id=>@vipleads)
+      respond_to do |format|
+        format.js 
+    end
+end
+
+def viewmallitem
+  @mall = Onlinemall.find(params[:id])
   respond_to do |format|
     format.js 
   end
+end
+
+def download
+  @mall = Onlinemall.find_by_user_id(2)
+  @pf = WickedPdf.new.pdf_from_string(
+          render_to_string('vipleads/download.html.erb',:layout=>false)
+        )
+   respond_to do |format|
+      format.pdf do
+        send_data @pf, filename: "Invoice-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
+      end
+    end
 end
 
 def searchvipleads

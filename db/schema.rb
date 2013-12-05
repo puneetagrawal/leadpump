@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131129202342) do
+ActiveRecord::Schema.define(:version => 20131204104722) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(:version => 20131129202342) do
     t.integer  "company_admin_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "companymallitems", :force => true do |t|
+    t.integer  "onlinemall_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "discounts_on_locations", :force => true do |t|
@@ -105,6 +112,27 @@ ActiveRecord::Schema.define(:version => 20131129202342) do
     t.string   "lname"
     t.string   "status"
     t.integer  "no_of_days"
+  end
+
+  create_table "mallpics", :force => true do |t|
+    t.integer  "onlinemall_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  create_table "onlinemalls", :force => true do |t|
+    t.string   "title"
+    t.string   "link"
+    t.boolean  "active"
+    t.integer  "mallpic_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+    t.string   "description"
   end
 
   create_table "opt_in_leads", :force => true do |t|
@@ -188,6 +216,8 @@ ActiveRecord::Schema.define(:version => 20131129202342) do
     t.integer  "company_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "fbsubject"
+    t.string   "gmailsubject"
   end
 
   create_table "stats", :force => true do |t|

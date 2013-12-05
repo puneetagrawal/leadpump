@@ -1,0 +1,25 @@
+ 
+<div class="container wrapper">
+    <%if current_user.isEmployee || current_user.isCompany%>
+		 <div class="row-fluid">
+	        <%=render "home/companyLogo"%>
+		    <div class="span10">
+		        <%if current_user.isAdmin || current_user.isCompany%>
+		            <div class="pull-left clear">
+		                <h4 class="btn yellow submitlogo">Upload Logo</h4>
+		                <%= form_for @picture, :url => '/createpic' do |form| %>
+		                  <%= form.file_field :avatar, :style =>"display:none" %>
+		                <% end %>
+		            </div>
+		        <%end%>
+		    </div>
+		</div>
+    <%end%>
+    <div class="row-fluid">
+        <ul class="dashboardIcons">
+            <div class="pull-left clear">
+                <h4 class="btn yellow s_msg_inv"><%=link_to "Manage Social Invite Messages", socialMessages_path%></h4>
+            </div>
+        </ul>
+    </div>
+</div>

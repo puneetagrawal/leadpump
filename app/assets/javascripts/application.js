@@ -23,6 +23,7 @@
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
+ 	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 	$('.ckeditor').ckeditor({
 		  // optional config
@@ -76,7 +77,15 @@ $(document).ready(function(){
     });
 
    	$(document).on('click', '.user_delete', function (){
-	  	$(this).parent().parent().parent().remove();
+ 	  	// $(this).parent().parent().parent().remove();
+   		 var search_val = $(this).parent().parent().attr("data-id"); 
+		   $.ajax({
+		    url: "/admin/remove_user",
+		    data: { 
+		     "search_user": search_val
+ 		   }   
+ 		});   
+	  	
 	});
 	
 	initialization();
@@ -122,9 +131,28 @@ $(document).ready(function(){
 		}
 	});
 
+	
+	
 
 });
 
+// function validate() {
+//     var extensions = new Array("jpg", "jpeg", "gif", "png", "bmp");
+//     var image_file = $("#avatar").val();
+//     var image_length = $("#avatar").val().length;
+//     var pos = image_file.lastIndexOf('.') + 1;
+//     var ext = image_file.substring(pos, image_length);
+//     var final_ext = ext.toLowerCase();
+//     if (!final_ext) {
+//         return true
+//     }
+//     for (var i = 0; i < extensions.length; i++) {
+//         if (extensions[i] == final_ext) {
+//             return true
+//         }
+//     }
+//     return alert("Image format not supported....");
+// }
 
 function formfields(){
 	new_obj = {}

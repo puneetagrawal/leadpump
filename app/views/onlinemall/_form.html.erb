@@ -1,0 +1,13 @@
+<h2 class="heading">Add A New Mall Item</h2>
+<%= form_for @onlinemall, :url=> @onlinemall.id.present? ? "/mall/update/#{@onlinemall.id}" : "/onlinemall",:method=>:post, :html => {:class => "form forms pd15"} do |mall| %>
+<%=render "common_templates/showerrors", :object=>@onlinemall%>
+<p><%= mall.label "Title:" %><%= mall.text_field :title %></p>
+<p><%= mall.label "Link:" %><%= mall.text_field :link %></p>
+<%= hidden_field_tag :mallid%>
+<p><%= mall.label "Description:" %><%= mall.text_field :description %></p>
+<%= mall.fields_for :mallpic, Mallpic.new do |pic| %>
+	<label>Image:</label><%= pic.file_field :avatar %>	
+<% end %>
+<p class="submitmallbtn"><input class="btn yellow mallsubmit" type="button" value="Add Mall Item"/></p>
+<div class="clear"></div>
+<%end%>

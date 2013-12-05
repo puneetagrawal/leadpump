@@ -33,6 +33,9 @@ gem 'rails3-jquery-autocomplete'
 gem 'country-select'
 gem 'gmail-contacts', :require => "gmail-contacts"
 gem "paperclip", "~> 3.0"
+gem 'wicked_pdf'
+gem "netrc", "~> 0.7.7"
+gem "httparty"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -49,3 +52,4 @@ gem "paperclip", "~> 3.0"
 # To use debugger
  gem 'debugger'
  gem 'chronic', :require => 'chronic'
+ gem 'sendgrid'

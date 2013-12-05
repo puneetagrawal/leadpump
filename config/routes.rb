@@ -11,6 +11,12 @@ Leadpump::Application.routes.draw do
   resources :referrals
   resources :tweet_referrals
   resources :statss
+  resources :onlinemall
+
+  match "/mallitemassign" => "onlinemall#mallitemassign"
+  match '/mall/update/:id' => 'onlinemall#update', :as => :update
+  match '/mallremove' => 'onlinemall#mallremove'
+  match "/csvdownload" => "statss#csvdownload"      
 
   match "/opt_in_leads/viewContact" => "opt_in_leads#viewContact"    
   resources :opt_in_leads
@@ -35,6 +41,9 @@ Leadpump::Application.routes.draw do
   match "/viplead/filter_rec" => "vipleads#filter_rec"
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
   match "/sendIvitationToFbFriend" => "vipleads#sendIvitationToFbFriend"
+  match "/mallitems" => "vipleads#mallitems"
+  match "/viewmallitem" => "vipleads#viewmallitem"
+  match "/download" => "vipleads#download"
 
   resources :vipleads
   
@@ -59,11 +68,18 @@ Leadpump::Application.routes.draw do
   match '/admin/plan' => 'admin#plan'
   match '/admin/payment' => 'admin#payment'
   match '/admin/user' => 'admin#user'
+  match '/admin/remove_user' => 'admin#destroy'
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
+  match '/filter_vip' => 'admin#filter_vip', :as => 'filter_vip'
   match "/searchUserAc" => "admin#searchUserAc"
   match "/usersearchinadmin" => "admin#usersearchinadmin"
-  
+  match "/searchvipleadsadmin" => "admin#search_vip"
+  match "/vipleadsearchadminfilter" => "admin#vipleadsearchadminfilter"
+  match "/editplanbyadmin" => "admin#editplanbyadmin"
+  match "/setunlimited" => "admin#setunlimited"
+  match "/updateplan" => "admin#updateplan"
+
    namespace :admin do
      root :to => "admin#index"
      resources :users, :subscriptions, :plans, :payments, :vipleads
@@ -110,6 +126,7 @@ Leadpump::Application.routes.draw do
   match '/company/new' => 'company#new'
   match '/company/show' => 'company#show'
   match '/company/create' => 'company#create'
+  match '/settings' => 'company#settings'
   match '/edit/:id' => 'company#edit', :as => :edit
   match '/company/update/:id' => 'company#update', :as => :update
   match '/delete/:id' => 'company#delete', :as => :delete
@@ -117,9 +134,9 @@ Leadpump::Application.routes.draw do
   match "/savetwmes" => "company#savetwmes"
   match "/savefbmes" => "company#savefbmes"
   match "/savegmmes" => "company#savegmmes"
-
+  match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
-  match "/sendmail" => "vipleads#sendmail"
+  match "/sendmail" => "home#sendmail"
 
 
 

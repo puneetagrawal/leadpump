@@ -17,7 +17,6 @@ class CompanyController < ApplicationController
 
   def create
     if current_user.checkUserLimit
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
       @user = User.new(params[:user])
       @user.password = "user.leadpump123"
       @user.role_id = Role.find_by_role_type("employee").id
@@ -28,7 +27,6 @@ class CompanyController < ApplicationController
         begin 
           @user.send_reset_password_instructions
         rescue Exception => e
-          logger.debug(e)
         end
         flash[:success] = "User successfully created"
         redirect_to company_new_path()      
@@ -129,7 +127,7 @@ def savefbmes
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}
   elsif socailMessage.present?
-    socailMessage.update_attributes(:facebookMessage=>params[:text])
+    socailMessage.update_attributes(:facebookMessage=>params[:text],:fbsubject=>params[:subject])
     message = {"msg"=>"Message saved successfully"}
   else
     SocialMessage.create(:facebookMessage=>params[:text], :company_id=>current_user.id)
@@ -143,12 +141,17 @@ def savegmmes
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}
   elsif socailMessage.present?
-    socailMessage.update_attributes(:gmailMessage=>params[:text])
+    socailMessage.update_attributes(:gmailMessage=>params[:text],:gmailsubject=>params[:subject])
     message = {"msg"=>"Message saved successfully"}
   else
     SocialMessage.create(:gmailMessage=>params[:text], :company_id=>current_user.id)
   end
   render json: message
+end
+
+def settings
+  @picture_user = Picture.fetchCompanyLogo(current_user.id)
+   @picture = Picture.new
 end
 
 end

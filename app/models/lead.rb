@@ -39,7 +39,7 @@ def self.fetchLeadList(user)
 	case user.user_role.role_type.to_sym  
     when :admin
       leads = UserLeads.includes(:lead).all  
-      userList = User.where("id != ?", current_user.id)   
+      userList = User.where("id != ?", user.id)   
     when :company
       userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
       users = userList
@@ -54,6 +54,18 @@ end
 
   def self.checkLeadStatus(status)
      status = status ? "Active" : "Inactive"
+  end
+
+  def self.assigndeletedleadtocompany(user)
+    company = user.fetchCompany
+    userleads = UserLeads.where(:user_id=>user.id)
+    if userleads.present?
+      logger.debug(userleads)
+      userleads.each do |lead|
+        lead.user_id = company.id
+        lead.save
+      end
+    end
   end
 
 protected
