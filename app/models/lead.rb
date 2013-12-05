@@ -5,13 +5,15 @@ class Lead < ActiveRecord::Base
 
   has_many :appointments , :dependent => :destroy
   validates :name, :presence => true
-  validates :email, :presence => true
-  validates :lead_source, :presence => true
+  validates :email, :presence => true, :if => Proc.new { |foo| foo.phone.blank? }
+  #validates :phone, :presence => true, :if => Proc.new { |foo| foo.email.blank? ? true :}
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
+  validates_numericality_of :phone, :only_integer => true, :allow_nil => true, 
+    :message => "can only be number."
+  validates :lead_source, :presence => true
   number_regex = /\d[0-9]\)*\z/
-  validates_format_of :phone, :with =>  number_regex, :message => "-no should be positive number and without space", :if => :phone? 
-
-  default_scope :order => "created_at DESC"
+  
+  #default_scope :order => "created_at DESC"
 
 
 # def self.userLeads(user)

@@ -3,18 +3,15 @@ class AppointmentsController < ApplicationController
 def new
  case current_user.user_role.role_type.to_sym  
       when :admin
-        @appointments = Appointment.all   
+        @appointments = Appointment.where("app_date_time > ?", DateTime.now)  
       when :company
         users = Company.where(:company_admin_id => current_user.id).pluck(:company_user_id)
         users << current_user.id
         users = users.present? ? users.uniq : []
-        @appointments = Appointment.where(:user_id=>users)
+        @appointments = Appointment.where(:user_id=>users).where("app_date_time > ?", DateTime.now)
       when :employee
-        @appointments = Appointment.where(:user_id=>current_user.id)
+        @appointments = Appointment.where(:user_id=>current_user.id).where("app_date_time > ?", DateTime.now)
     end
-    ids  = @appointments.present? ? @appointments.pluck(:id) : []
-
-   @filter_appointment = Appointment.where(:app_date=> params[:appointment_date]).where(:id=>ids)
 end
 
 def index
@@ -35,10 +32,8 @@ def create
  end
 
  def filter_app
-  @filter_appointment = Appointment.where(:app_date=> params[:appointment_date]).all
+  @appointments = Appointment.where(:app_date=> params[:appointment_date]).all
  end
-
- 
 
 end
 

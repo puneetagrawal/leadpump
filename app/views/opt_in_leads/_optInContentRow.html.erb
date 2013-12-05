@@ -4,7 +4,7 @@
 			<td><%=opt.source%></td>
 			<td><%=User.find(opt.referrer_id).name%></td>
 			<td><%=User.find(opt.referrer_id).email%></td>
-			<td><%=opt.created_at%></td>
+			<td><%=opt.created_at.strftime("%Y-%m-%d")%></td>
 			<td><a class="btn yellow btn-small viewContact" href="javascript:void(0)">See Contact Details</a></td>
 		</tr>
 	<%end%>

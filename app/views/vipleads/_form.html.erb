@@ -8,7 +8,7 @@
 
             <%=vip.hidden_field :lead_source, name:"vip_#{row}[lead_source]", value:"vip"%>
             <p><%= vip.label "Email" %><%= vip.text_field :email, name: "vip_#{row}[email]", class: "input-large lname" %></p>
-            <p><%= vip.label "Phone" %><%= vip.text_field :phone, name: "vip_#{row}[phone]", class: "input-large phone" %></p>
+            <p><%= vip.label "Phone" %><%= vip.text_field :phone, name: "vip_#{row}[phone]", class: "input-large phone isNormalText" %></p>
         </div> 
     <%end%>
     <div class="clear"></div>

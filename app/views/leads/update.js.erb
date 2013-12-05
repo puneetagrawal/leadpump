@@ -4,4 +4,5 @@
 <%else%>
 	$(".formfields").html('<%=escape_javascript(render partial: "form", :locals =>{:lead => @lead})%>')
 	$("#viewLead_<%=@leadUpdate.id%>").html('<%=escape_javascript(render partial: "leadContentRow", :locals =>{:lead => @leadUpdate})%>')
+	$(".submitLeadBtn").html('<input type="submit" class="btn yellow" value="Create Lead">');
 <%end%>

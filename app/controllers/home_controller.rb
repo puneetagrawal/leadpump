@@ -96,6 +96,7 @@ def deleteRowByajax
    company = Company.where(:company_user_id=>object.id)
    Lead.assigndeletedleadtocompany(object)
    Appointment.assigndeletedappointmenttocompany(object)
+   OptInLead.assignOptinToAdmin(object)
    if company.present?
     company.each do|user|
       user.destroy

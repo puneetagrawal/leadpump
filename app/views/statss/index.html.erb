@@ -52,7 +52,7 @@
                 <%= link_to "Export as comma Separated (Excel) File", csvdownload_path(format: "csv"),:class=>"btn yellow btn-small" %>
             </p>
             <div class="alert">
-                <button data-dismiss="alert" class="close" type="button">×</button>
+                <button data-dismiss="alert" class="close closealert    " type="button">×</button>
                 <p>Compaign Statistics Listed below are the raw statistics for your campaigns. Would you like to filter this list by data ranges or other mechanisms in the future <a class="link" href="#">Yes</a> ?  </p>
             </div>
             <div class="row-fluid">
@@ -60,9 +60,9 @@
                     <form class="form"><span>Show</span><select><option>10</option><option>20</option><option>50</option></select>
                         <span>entries</span></form>
                 </div>
-                <div class="span4 pull-right optFilter">
+                <!-- <div class="span4 pull-right optFilter">
                     <form class="form text-right"><span>Search</span><input type="search" id="statsearch" placeholder="Search" class="input-medium"></form>
-                </div>
+                </div> -->
             </div>
             <div class="border statcontent">
                 <%=render "statContent"%>

@@ -1,7 +1,9 @@
 
 <%if @userUpdate.errors.any? %>
 	$("#showErrors").html('<%=escape_javascript(render partial: "common_templates/showerrors", :locals =>{:object => @userUpdate})%>')	
+	$(".submitUserBtn").html('<input type="button" class="btn yellow compSubmit" value="Update User">');
 <%else%>
 	$(".formfields").html('<%=escape_javascript(render partial: "company/form", :locals =>{:user => @newUser})%>')
 	$("#viewLead_<%=@userUpdate.id%>").html('<%=escape_javascript(render partial: "company/userListRows", :locals =>{:user => @userUpdate})%>')
+	$(".submitUserBtn").html('<input type="submit" class="btn yellow" value="Create User">');
 <%end%>

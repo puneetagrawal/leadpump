@@ -21,4 +21,15 @@ class OptInLead < ActiveRecord::Base
 	#     return leads
 	# end
 
+	def self.assignOptinToAdmin(object)
+		optin = OptInLead.where(:referrer_id=>object.id)
+		if optin.present?
+			company = object.fetchCompany
+			optin.each do |opt|
+				opt.referrer_id = company.id
+				opt.save
+			end
+		end
+	end
+
 end

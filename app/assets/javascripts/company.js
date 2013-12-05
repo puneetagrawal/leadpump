@@ -72,12 +72,10 @@ function companyEdit(obj){
 }
 
 function companySubmit(obj){
-	btnHtml = $(obj).parent().html();
 	$(obj).parent().html('<img src="/assets/ajax-loader.gif" style="margin-left: 40px;">');
 	id = $("#user_id").val();
 	url = '/company/update/'+id+'';
 	$.get(url, {inputs:formfields()}, function (data) {
-		$('.submitUserBtn').html(btnHtml);	
 		showSuccessMsg("User Updated Successfully");
 	});
 }

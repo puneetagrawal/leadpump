@@ -11,7 +11,7 @@
   <tbody>
     <% if @appointments.present? %>
       <% @appointments.each do |a| %>
-        <tr>
+        <tr id="viewLead_<%=a.lead_id%>" class="viewLead listView" data-action="leadpopup">
           <% if a.app_date_time.present?%>
             <td class="time"><%= a.app_date_time.strftime("%I:%M %p") %></td>
             <td class="green_dark"> <%= a.app_date_time.strftime("%Y-%m-%d") %>  </td>
@@ -21,22 +21,12 @@
           <%end%>
         </tr>
       <%end%>
-
-       <% elsif @filter_appointment.present? %>
-      <% @filter_appointment.each do |a| %>
-        <tr>
-          <% if a.app_date_time.present?%>
-            <td class="time"><%= a.app_date_time.strftime("%I:%M %p") %></td>
-            <td class="green_dark"> <%= a.task %>  </td>
-            <td class="blue_dark"> <%= a.user.name.humanize if a.user.present? %>  </td>
-            <td class="green_dark"> <%= a.lead.name %> </td>
-            <td class="blue_dark"> <%= a.app_date_time.strftime("%Y-%m-%d") %>  </td>
-          <%end%>
-        </tr>
-      <%end%>
-
-    <%elsif @appointments.blank? || @filter_appointment.blank? %>
+    <%elsif @appointments.blank?%>
       <tr><td colspan="5"> No record found.</td></tr>
     <%end%>
   </tbody>
 </table>
+
+<%=render "common_templates/popupContainer"%>
+
+

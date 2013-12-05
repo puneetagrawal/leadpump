@@ -23,7 +23,7 @@
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
- 	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
+ 	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd'}).val(); 
 	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 	$('.ckeditor').ckeditor({
 		  // optional config
@@ -245,6 +245,18 @@ function initialization(){
 	$("#picture_avatar").change(function(){
 		$('#new_picture').submit();
 	});
+
+	$(document).on('keyup', '.isNormalText', function (){
+        isNormalText(this);
+    });
+
+    $(document).on('click', '.closealert', function (){
+        closealert(this);
+    });
+}
+
+function closealert(obj){
+	$(obj).parent().fadeOut('slow');
 }
 
 function saveReferral(obj){
@@ -364,9 +376,16 @@ function userSearchFilter(userId){
 
 
 function statSearchFilter(userId){
-
 	// url = '/usersearchinadmin';
 	// $.get(url, {userId:userId}, function (data) {	
 	// });
+}
+
+
+
+function isNormalText(event) {
+    var re = /[^0-9]+/g;
+    var text = event.value.replace(re, '');
+    $(event).val(text);
 }
 

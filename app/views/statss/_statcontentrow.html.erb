@@ -1,7 +1,7 @@
 <%if @stats.present?%>
 <%@stats.each do |stat|%>
-<tr><td>email-onsite</td>
-    <td><%=stat.created_at%>
+<tr><td><%=stat.source%></td>
+    <td><%=stat.created_at.strftime("%Y-%m-%d")%>
     </td><td>Default Location</td>
     <td><%=stat.user.name%></td>
     <td><%=stat.e_sents%></td>
