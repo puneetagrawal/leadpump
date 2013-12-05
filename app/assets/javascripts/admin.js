@@ -102,7 +102,7 @@ $(document).ready(function(){
 			'beforeLoad' : function() {
 				url = '/setunlimited';
 				$.get(url, {plid:plid}, function (data) { 
-					$("#leads_"+plid).html(leads);
+					$("#leads_"+plid).html("unlimited");
 					alert(data.msg);
 					$.fancybox.close();
 				});
