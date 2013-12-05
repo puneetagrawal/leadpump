@@ -2,7 +2,8 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes, :token
+  attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, 
+  :role_id, :addresses_attributes, :subscription_attributes, :token
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses
   has_one :subscription
@@ -18,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :statss
   belongs_to :role
   accepts_nested_attributes_for :addresses, :subscription
+
+  validates :name, :presence => true
 
   after_create :generate_token
 

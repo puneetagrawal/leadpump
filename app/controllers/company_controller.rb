@@ -17,6 +17,7 @@ class CompanyController < ApplicationController
 
   def create
     if current_user.checkUserLimit
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
       @user = User.new(params[:user])
       @user.password = "user.leadpump123"
       @user.role_id = Role.find_by_role_type("employee").id

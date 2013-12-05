@@ -8,9 +8,9 @@ class VipLead < ActiveRecord::Base
   	company = Company.find_by_company_user_id(userId)
   	if company.present?
 	    allUsers = Company.where(:company_admin_id=>company.company_admin_id).pluck(:company_user_id) 
-	    vipleads = VipLead.where(:user_id=>allUsers) 
+	    vipleads = UserLeads.includes(:lead).where(:user_id => allUsers)
   	else
-  		vipleads = VipLead.where(:user_id=>userId) 
+  		vipleads = UserLeads.includes(:lead).where(:user_id => user.id)
   	end
   	case user.user_role.role_type.to_sym  
     when :admin

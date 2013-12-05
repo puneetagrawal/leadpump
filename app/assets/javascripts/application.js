@@ -334,3 +334,11 @@ function userSearchFilter(userId){
 	});
 }
 
+
+function statSearchFilter(userId){
+
+	// url = '/usersearchinadmin';
+	// $.get(url, {userId:userId}, function (data) {	
+	// });
+}
+
