@@ -1,29 +1,15 @@
 <div class="container nav_second">
     <div class="row-fluid">
         <div class="span12">
+          <div class="filter">
+              <input type="text" placeholder="Search by User Name" id="userlistadmin" class="span4" autocomplete="off">
+              <input type="text" id = "payment_from_date" class="filter-date span4" placeholder= "payment_from_date">
+              <input type="text" id = "payment_to_date" class="filter-date span4" placeholder= "payment_to_date">
+          </div>
          <div class="border">
-            <table class="table table-striped">
-                <thead>
-                    <tr><td>Date</td><td>User</td><td>Invoice Id</td><td>Subscription Id</td><td>Amount ($)</td></tr>
-                </thead>
-                <% if @users.present? %>
-                <% @users.each do |user| %>
-                <% if user.subscription.present? %>
-                <tbody>
-                    <tr> <td> <%= user.subscription.created_at.strftime("%m/%d/%Y") %> </td> 
-                       <td><%= user.name.humanize %></td>
-                       <td><%= user.subscription.charge_id %> </td>
-                       <td> <%=user.subscription.customer_id %> </td>
-                       <td> <%= user.subscription.payment %> </td>
-                   </tr>
-               </tbody>
-               <% end %>
-               <% end %>
-               <% else %>
-               <tr>
-                <td> No record found. </td> </tr>
-                <% end %>
-            </table>
+            <div id="filter_payment">
+              <%= render 'payment_index' %>
+            </div>
         </div>
     </div>
 </div>

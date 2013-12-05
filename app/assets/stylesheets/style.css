@@ -1687,7 +1687,61 @@ header h2 a {
 .wrapper{
     margin-top:15px;
 }
-
+/*landing pages*/
+.landing_pages {
+    margin: 40px auto 20px;
+    box-shadow: 0 0 10px #ddd;
+    border: 1px solid #D2D9DF;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    padding:20px;
+}
+.landing_pages .form_block {
+    border-bottom: 0;
+}
+.landing_pages form {
+    margin-left: 40px;
+}
+.landing_pages form div {
+    width: 100%;
+    margin-bottom: 15px;
+}
+.landing_pages form label {
+    font-weight: bold;
+    line-height: 30px;
+    margin-left: -40px;
+}
+.landing_pages form textarea {
+    font-weight: normal;
+}
+.landing_pages form textarea:focus {
+    border: 1px solid #333333;
+}
+.landing_pages form {
+    margin-top: 50px;
+}
+.landing_pages .numberOfDays {
+    width: 100px;
+}
+.landing_pages .header_color {
+    width: 100%;
+    display: block;
+    background: #e59c11;
+    height: 30px;
+    border: 1px solid #ddd;
+}
+.landing_pages .background_color {
+    width: 100%;
+    display: block;
+    background: #62819d;
+    height: 30px;
+    border: 1px solid #ddd;
+}
+.landing_pages img {
+    width: 100%;
+}
 
 
 /*responsive styles*/

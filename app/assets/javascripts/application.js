@@ -58,6 +58,16 @@ $(document).ready(function(){
  		});  
     });
 
+   $(document).on('change', "#plan_id", function () {
+       var plan_id = $(this).val(); 
+		   $.ajax({
+		    url: "/admin/user_per_plan",
+		    data: { 
+		     "plan_id": plan_id
+ 		   }   
+ 		});   
+    });
+
    $(document).on('change', '.lead_source_sel', function () {
         if($(this).val() == "Other") {
 	      $("#text_div").html('<label for="lead_ "> </label><input type="text" value="" placeholder="Please specify" name="lead[lead_source]" id="lead_lead_source">');

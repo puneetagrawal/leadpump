@@ -81,6 +81,23 @@ $(document).ready(function(){
 		});
 	});
 
+	$(document).on("change", "#payment_to_date", function (){
+		//$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		var to_date = $(this).val();
+		var from_date = $('#payment_from_date').val();
+		if ($('#payment_from_date').val().length == 0)
+		{
+			from_date = to_date;
+		}
+		$.ajax({ 
+			url: "/filter_payment",
+			data: { 
+				"payment_to_date": to_date,
+				"payment_from_date": from_date
+			}
+		});
+	});
+
 	$(document).on("click", ".planedit", function (){
 		id = $(this).closest('tr').attr('id');
 		plid = id.split("_")[1];
@@ -124,6 +141,16 @@ $(document).ready(function(){
 		});
 	});	
 
+	$("#ajax_paginate").find("a").each(function(){
+		var linkElement = $(this);
+		var paginationURL = linkElement.attr("href");
+		linkElement.attr({"url":paginationURL, "href": "#"});
+		linkElement.click(function(){
+			$("#user_id").html('<img src="/images/loader.gif">');
+			$("#user_id").load($(this).attr('url'));
+			return false;
+		});
+	});
 });
 
 function vipleadSearchAdminFilter(vipleadId){
@@ -132,5 +159,10 @@ function vipleadSearchAdminFilter(vipleadId){
 	});
 }
 
+function paymentSearchAdminFilter(userId){
+	url = '/paymentsearchfilter';
+	$.get(url, {user:userId}, function (data) { 
+	});
+}
 
 

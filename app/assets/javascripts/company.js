@@ -10,6 +10,9 @@ function initCompanyCreateOrUpdate(){
 	$(".container").on('click', '.compSubmit', function (){
 		companySubmit(this);
 	});	
+	$(".container").on('click', '.land_page_submit', function (){
+		$("#new_landing_page").submit();
+	});	
 
 
 	$(".submitFmes").click(function(){
@@ -32,7 +35,6 @@ function initCompanyCreateOrUpdate(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savetwmes';
 		text = $.trim($(this).siblings('textarea').val());
-		alert(text.length)
 		if (text.length <= 140){
 			$.post(url, {text:text}, function (data) {
 				alert("Message save successfully.");

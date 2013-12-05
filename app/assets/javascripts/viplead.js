@@ -95,8 +95,10 @@ function executeFirstStep(obj){
 	 			alert(data.error);
 	 			$(obj).html('<a id="proceed_step_1" class="btn yellow" href="javascript:void(0)">Proceed to Next Step</a>');
 	 		}
-			$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
+			else{
+	          	$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
 			$(".stepNo2").removeClass('disabled');
+			}
 	 });
 }
 

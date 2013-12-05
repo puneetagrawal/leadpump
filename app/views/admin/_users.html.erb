@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+        	<td>Name</td>
+        	<td>Account Type</td>
+        	<td>Status</td>
+        	<td>Action</td>
+        </tr>
+    </thead>
+    <% if @users.present? %>
+		<% @users.each do |user| %>
+			<tbody>
+				<tr data-id="<%= user.id %>">
+					<td><%= user.name.humanize %></td> 
+					<td><%= user.subscription ? user.subscription.plan_per_user_range.plan.name : '-'%></td>
+					<td>Active</td>
+					<td><%= link_to "Delete", @user, :confirm => "Are you sure you want to delete?", :method => :delete, :class => "user_delete" %> </td>
+				</tr>
+			</tbody>
+		<% end %>
+		<%= will_paginate(@users, :id => "ajax_paginate")%>
+	<% end %>
+</table>
+
+<script>
+ 

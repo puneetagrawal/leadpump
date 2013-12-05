@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
   :role_id, :addresses_attributes, :subscription_attributes, :token
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses
-  has_one :subscription
-  has_one :picture
   has_many :leads
   has_many :vipLeads
   has_many :gmailFriends
@@ -17,7 +15,10 @@ class User < ActiveRecord::Base
   has_many :opt_in_leads
   has_many :statss
   has_many :onlinemalls
+  has_one  :landing_page
   belongs_to :role
+  has_one :subscription
+  has_one :picture
   accepts_nested_attributes_for :addresses, :subscription
 
   validates :name, :presence => true

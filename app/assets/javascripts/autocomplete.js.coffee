@@ -4,6 +4,10 @@ $(document).ready ->
                  source: "/searchvipleadsadmin"
                  select: (event,ui) -> vipleadSearchAdminFilter(ui.item.name)
 
+         $('#userlistadmin').autocomplete
+                 source: "/searchpaymentadmin"
+                 select: (event,ui) -> paymentSearchAdminFilter(ui.item.name)
+
          $('#test').autocomplete
                  source: "/leads/getemails"
                  select: (event,ui) -> leadSearchFilter(ui.item.name)

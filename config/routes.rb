@@ -71,11 +71,15 @@ Leadpump::Application.routes.draw do
   match '/admin/remove_user' => 'admin#destroy'
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
+  match '/admin/user_per_plan' => 'admin#user_per_plan'
   match '/filter_vip' => 'admin#filter_vip', :as => 'filter_vip'
+  match '/filter_payment' => 'admin#filter_payment', :as => 'filter_payment'
   match "/searchUserAc" => "admin#searchUserAc"
   match "/usersearchinadmin" => "admin#usersearchinadmin"
   match "/searchvipleadsadmin" => "admin#search_vip"
+  match "/searchpaymentadmin" => "admin#search_payment"
   match "/vipleadsearchadminfilter" => "admin#vipleadsearchadminfilter"
+  match "/paymentsearchfilter" => "admin#paymentsearchfilter"
   match "/editplanbyadmin" => "admin#editplanbyadmin"
   match "/setunlimited" => "admin#setunlimited"
   match "/updateplan" => "admin#updateplan"
@@ -118,7 +122,9 @@ Leadpump::Application.routes.draw do
   match 'appointment/index' => 'appointments#index'
   
   
-
+  match '/landpage' => 'company#landpage'
+  match '/updatelanding' => 'company#updatelanding'
+  match '/createlanding' => 'company#createlanding'
   match '/company/getemails' => 'company#getemails'
   match '/company/usersearchfilter' => 'company#usersearchfilter'
   match '/company/changeuserstatus' => 'company#changeuserstatus'

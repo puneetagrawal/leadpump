@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+before_filter :authenticate
 require 'will_paginate/array'
 
 def index
@@ -26,6 +27,16 @@ end
 
 def user_record
 	@users = User.all.paginate(:page => params[:page], :per_page => params[:search_val])
+end
+
+def user_per_plan
+  @plan = Plan.find(params[:plan_id])
+  @ppurs = PlanPerUserRange.where(:plan_id => @plan).pluck(:id)
+  @subs = Subscription.where(:plan_per_user_range_id => @ppurs)
+  @users = @subs.collect { |sub| User.find(sub.user)} 
+  respond_to do |format|
+      format.js
+  end
 end
 
 def destroy
@@ -66,6 +77,14 @@ end
 	end
 end
 
+def filter_payment
+  @users = User.scoped
+  @filter_payments = @users.where(:created_at => (params[:payment_from_date].to_date)..(params[:payment_to_date].to_date))
+  respond_to do |format|    
+    format.js 
+  end
+end
+
 def search_vip
 	leads = Lead.where(:lead_source => "vip")
 	leads = leads.present? ? leads.pluck(:id) : []
@@ -87,9 +106,31 @@ def search_vip
    render json: list
   end
 
+  def search_payment
+  @users = User.all
+  #@users = @users.present? ? @users.pluck(:id) : []
+  if params[:term].blank?
+    @users = User.select("distinct(name)").where(:id => @users) 
+    list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
+  else
+     like  = "%".concat(params[:term].concat("%"))
+     @users = User.select("distinct(name)").where("name like ?", like).where(:id => @users)
+     list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
+   end
+   render json: list
+  end
+
   def vipleadsearchadminfilter
     leads = Lead.where(:lead_source => "vip").pluck(:id)
     @leads = Lead.where("name = ?", params[:viplead]).where(:id=> leads)
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def paymentsearchfilter
+    @users = User.all
+    @users = User.where("name = ?", params[:user]).where(:id => @users)
     respond_to do |format|
       format.js 
     end
@@ -132,6 +173,14 @@ def search_vip
     message = {"msg" => msg}
     respond_to do |format|
       format.json { render json: message}
+    end
+  end
+
+  def authenticate
+    if !current_user.isAdmin 
+      flash[:notice] = "Sorry! you are not authorize user to perform this action."
+      redirect_to home_index_path
+      return false
     end
   end
 

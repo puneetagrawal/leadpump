@@ -1,34 +1,16 @@
 <% if @users.present? %>
 	<% @users.each do |user| %>
-		<% if user.present? %>
-			<tbody>
-				<tr data-id="<%= user.id %>"> <td><%= user.name.humanize %></td> 
-					<td><%=user.subscription ? user.subscription.plan_per_user_range.plan.name : '-'%>
-					</td>
-					<td>  Active  </td>
-					<td> <%= link_to "Delete", @user, :confirm => "Are you sure you want to delete?", :method => :delete, :class => "user_delete" %> </td>
-				</tr>
-			</tbody>
-		<% end %>
-	<% end %>
-<% elsif @subscriptions.present? %>
-	<% @subscriptions.each do |sub| %>
-		<% if sub.present? %>
-			<tbody>
-				<tr data-id="<%= sub.user.id %>"> <td><%= sub.user.name.humanize %></td> 
-					<td><%=sub.plan_per_user_range.plan.name%></td>
-					<% if sub.user.active == true %>
-					<td> Active </td>
-					<% else %>
-					<td> Inactive </td>
-					<% end %>
-					<td> <%= link_to "Delete", @user, :confirm => "Are you sure you want to delete?", :method => :delete, :class => "user_delete" %> </td>
-				</tr>
-			</tbody>
-		<% end %>
+		<tbody>
+			<tr data-id="<%= user.id %>"> <td><%= user.name.humanize %></td> 
+				<td><%=user.subscription.present? ? user.subscription.plan_per_user_range.plan.name : '-'%>
+				</td>
+				<td>  Active  </td>
+				<td> <%= link_to "Delete", @user, :confirm => "Are you sure you want to delete?", :method => :delete, :class => "user_delete" %> </td>
+			</tr>
+		</tbody>
 	<% end %>
 <% else %>
 	 <tr>
-		<td> No record found. </td>
+		<td colspan="4"> No record found. </td>
 	 </tr>
 <% end %>

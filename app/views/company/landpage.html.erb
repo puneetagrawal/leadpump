@@ -1,0 +1,97 @@
+<div class="container landing_pages">
+    <div class="row-fluid">
+        <div class="span12">
+            <h2>Landing Pages</h2>
+            <p><strong>A. Internal lading page:</strong> This option allows you to chose and customize the color and text on one of the templates provided below.
+                This will be hosted inside our site. The main benefit of this is your in-coming leads then automatically load right Into our CRM and
+                create prospect records. Additionally there is full tracking all the way back to the friend that sent the pass.
+            </p>
+            <p><strong>B. External landing page:</strong> With this option you would provide below the URL to your current landing page where potential
+                members currently request a pass from your website. Keep in mind you will loose some of the trackability with this option and your
+                leads will be directed to the same spot your current pass requested are routed to at this time. </p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3">
+            <img src="/assets/landing_page_thumb.png" class="img-polaroid">
+            <p>Woman doing aerobics</p>
+        </div>
+        <div class="span3">
+            <img src="/assets/landing_page_thumb2.png" class="img-polaroid">
+            <p>Personal trainer</p>
+        </div>
+        <div class="span3">
+            <img src="/assets/landing_page_thumb3.png" class="img-polaroid">
+            <p>Membership card</p>
+        </div>
+        <div class="span3">
+            <img src="/assets/landing_page_thumb4.png" class="img-polaroid">
+            <p>Guest pass card</p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span8">
+            <%= form_for @landpage, :url=> @landpage.id.present? ? "/updatelanding/#{@landpage.id}" : "/createlanding",:method=>:post, :html => {:class => "form forms pd15"} do |land| %>
+            <%=render "common_templates/showerrors", :object=>@landpage%>
+            <form class="form form_block">
+                <div>
+                    <label><span class="number">1</span>I would like to use a:</label>
+                    <%= land.select :land_type, options_for_select(["Internal landing page","External landing page"], :selected=> @landpage.land_type) %>
+                </div>
+                <div>
+                    <label><span class="number">2</span>If you chose internal which template above?</label>
+                    <%= land.select :temp_name, options_for_select(["Woman doing aerobics","Personal trainer",
+                        "Membership card","Guest pass card"], :selected=> @landpage.temp_name) %>
+                </div>
+                <div>
+                    <label><span class="number">3</span>Header Default Text</label>
+                    <p>Act Now, This offer is not available to the public and expires in the next 48 hours!</p>
+                    <strong>Change text to:</strong>
+                    <%= land.text_area :header_text, :value=>"Limited to 100 Characters" %>
+                </div>
+                <div>
+                    <label><span class="number">4</span>Intro default text:</label>
+                    <p>Take that first step towards looking and feeling your very best. You have landed on a special promotional web
+                        site for "You Gym's Name Here". This means that one of your friends cares about you and your health. You have
+                        been invited to receive a FREE trial membership to "Your Gyms Name Here".</p>
+                    <strong>Change text to:</strong>
+                    <%= land.text_area :intro_text, :value=>"Limited to 100 Characters" %>
+                </div>
+                <div>
+                    <label><span class="number">5</span>Mission Statement default text:</label>
+                    <strong>Our Mission:</strong>
+                    <p>To be "Your City's Name Here" premier family fitness center, committed to providing members and employees of
+                        all ages a fun, friendly environment. To promote a healthy lifestyle through convenient, clean locations, state-of-
+                        the-art equipment, programs and activities that provide an exceptional and unique value to our community.</p>
+                    <strong>Change text to:</strong>
+                    <%= land.text_area :mission_text, :value=>"Limited to 100 Characters"%>
+                </div>
+                <div>
+                    <label><span class="number">6</span>Header color:</label>
+                    <span class="header_color"></span>
+                    <%=land.hidden_field :header_color, :value=>"#E59C11"%>
+                </div>
+                <div>
+                    <label><span class="number">7</span>Background color:</label>
+                    <span class="background_color"></span>
+                    <%=land.hidden_field :bg_color, :value=>"#E59C11"%>
+                </div>
+                <div>
+                    <label><span class="number">8</span>Number of free days?</label>
+                     <%= land.select :no_of_days, options_for_select(1..7, :selected=> @landpage.no_of_days),{},:class=>"numberOfDays " %>
+                </div>
+                <div>
+                    <label><span class="number">9</span>Upload logo</label>
+                    <%= land.fields_for :land_page_logo, LandPageLogo.new do |pic| %>
+                        <label>Image:</label><%= pic.file_field :avatar %>  
+                    <% end %>
+                </div>
+                <div>
+                    <a class="btn green pull-left mr10 land_page_submit" href="javascript:void(0)">Save</a>
+                    <a class="btn red pull-left land_page_preview" href="javascript:void(0)" target="_blank">Preview</a>
+                </div>
+                <div class="clear"></div>
+            <%end%>
+        </div>
+    </div>
+</div>
