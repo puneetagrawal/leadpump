@@ -32,6 +32,7 @@ function initCompanyCreateOrUpdate(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savetwmes';
 		text = $.trim($(this).siblings('textarea').val());
+		alert(text.length)
 		if (text.length <= 140){
 			$.post(url, {text:text}, function (data) {
 				alert("Message save successfully.");
@@ -40,6 +41,7 @@ function initCompanyCreateOrUpdate(){
 		}
 		else{
 			alert("Message cannot be greater than 140 characters.");
+			$('.submitTmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 		}
 	});
 	$(".submitGmes").click(function(){
