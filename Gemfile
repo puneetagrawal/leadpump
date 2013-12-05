@@ -36,6 +36,7 @@ gem "paperclip", "~> 3.0"
 gem 'wicked_pdf'
 gem "netrc", "~> 0.7.7"
 gem "httparty"
+gem "omnicontacts"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
