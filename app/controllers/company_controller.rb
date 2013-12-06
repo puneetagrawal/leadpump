@@ -156,7 +156,10 @@ end
 
 def landpage
   if current_user.isCompany
-    @landpage = LandingPage.new
+    @landpage = LandingPage.find_by_user_id(current_user.id)
+    if !@landpage.present?
+      @landpage = LandingPage.new
+    end
   else
     flash[:notice] = "You are not authorie for this action"
     redirect_to home_index_path
@@ -164,28 +167,25 @@ def landpage
 end
 
 def createlanding
-  logger.debug(params)
-  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
   if params[:landing_page].has_key?(:land_page_logo)
     logo = params[:landing_page][:land_page_logo][:avatar]
     params[:landing_page].delete :land_page_logo
-    logger.debug(params)
   end
   landingpage = LandingPage.new(params[:landing_page])
   landingpage.user_id = current_user.id
   if landingpage.save
     flash[:notice] = "Land page created"
-    logger.debug("**************************************************")
     landlogo = LandPageLogo.new(:avatar=>logo)
     landlogo.landing_page_id = landingpage.id 
     landlogo.save
+    redirect_to settings_path
   else
-    flash[:error] = "something went wrong"
-    logger.debug(">>>>>>>")
-    logger.debug(landingpage.errors.full_messages)
+    flash[:error] = landingpage.errors.full_messages
+     @landpage = LandingPage.find_by_user_id(current_user.id)
+    if !@landpage.present?
+      @landpage = LandingPage.new
+    render "landpage"
   end
-
-  redirect_to settings_path
 end
 
 def updatelanding

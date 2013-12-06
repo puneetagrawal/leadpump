@@ -33,4 +33,10 @@ class Emailer < ActionMailer::Base
     @url = SERVER_URL
     mail(to: 'vishwanath.yadav@ongraph.com', subject: 'You are being tracked')
   end
+
+  def invite_friends(message, email)
+    @message = message
+    mail(:to => email, :subject => "Join LeadPump")
+  end
+
 end

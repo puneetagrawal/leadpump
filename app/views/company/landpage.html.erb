@@ -1,3 +1,6 @@
+  <%= stylesheet_link_tag  "color_pic/", :media => "all" %>
+  <%= javascript_include_tag 'application', 'jquery-ui-1.10.3.custom.min.js','autocomplete-rails.js', 'rails.js','data-turbolinks-track' => true %>
+
 <div class="container landing_pages">
     <div class="row-fluid">
         <div class="span12">
@@ -47,7 +50,7 @@
                     <label><span class="number">3</span>Header Default Text</label>
                     <p>Act Now, This offer is not available to the public and expires in the next 48 hours!</p>
                     <strong>Change text to:</strong>
-                    <%= land.text_area :header_text, :value=>"Limited to 100 Characters" %>
+                    <%= land.text_area :header_text, :value=>@landpage.text_area.present? ? @landpage.text_area : "Limited to 100 Characters" %>
                 </div>
                 <div>
                     <label><span class="number">4</span>Intro default text:</label>
@@ -55,7 +58,7 @@
                         site for "You Gym's Name Here". This means that one of your friends cares about you and your health. You have
                         been invited to receive a FREE trial membership to "Your Gyms Name Here".</p>
                     <strong>Change text to:</strong>
-                    <%= land.text_area :intro_text, :value=>"Limited to 100 Characters" %>
+                    <%= land.text_area :intro_text, :value=>@landpage.intro_text.present? ? @landpage.intro_text : "Limited to 100 Characters" %>
                 </div>
                 <div>
                     <label><span class="number">5</span>Mission Statement default text:</label>
@@ -64,17 +67,17 @@
                         all ages a fun, friendly environment. To promote a healthy lifestyle through convenient, clean locations, state-of-
                         the-art equipment, programs and activities that provide an exceptional and unique value to our community.</p>
                     <strong>Change text to:</strong>
-                    <%= land.text_area :mission_text, :value=>"Limited to 100 Characters"%>
+                    <%= land.text_area :mission_text, :value=>@landpage.mission_text.present? ? @landpage.mission_text : "Limited to 100 Characters"%>
                 </div>
                 <div>
                     <label><span class="number">6</span>Header color:</label>
-                    <span class="header_color"></span>
+                    <span class="header_color" style="background:<%=@landpage.header_color%>"></span>
                     <%=land.hidden_field :header_color, :value=>"#E59C11"%>
                 </div>
                 <div>
                     <label><span class="number">7</span>Background color:</label>
-                    <span class="background_color"></span>
-                    <%=land.hidden_field :bg_color, :value=>"#E59C11"%>
+                    <span class="background_color" style="background:<%=@landpage.bg_color%>"></span>
+                    <%=land.hidden_field :bg_color, :value=>"#62819D"%>
                 </div>
                 <div>
                     <label><span class="number">8</span>Number of free days?</label>

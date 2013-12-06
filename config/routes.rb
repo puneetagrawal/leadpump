@@ -143,7 +143,8 @@ Leadpump::Application.routes.draw do
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
   match "/sendmail" => "home#sendmail"
-  match "/contacts/:importer/callback" => "home#contacts_callback"
+  match "/send_invitation_social" => "home#send_invitation_social"
+  match "/callback" => "home#contacts_callback"
   match "/contacts/failure" => "home#failure"
 
 

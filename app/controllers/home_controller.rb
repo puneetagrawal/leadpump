@@ -121,25 +121,30 @@ respond_to do |format|
 end
 end
 
-# def contacts_callback
-#   @contacts = request.env['omnicontacts.contacts']
-#   @user = request.env['omnicontacts.user']
-#   puts "List of contacts of #{user[:name]} obtained from #{params[:importer]}:"
-#   @contacts.each do |contact|
-#     puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
-#   end
-# end
-
-def failure
-  logger.debug "p;;;;;;;;;;;;;;;;;;;"
-end
-
   def contacts_callback
-    logger.debug "pppppppppppppppppppppp"
-    @contacts = request.env['omnicontacts.contacts']
-    logger.debug @contacts.inspect
-    respond_to do |format|
-      format.html
+   unless request.env['omnicontacts.contacts'].blank?
+      @contacts = request.env['omnicontacts.contacts']
+    end
+  end
+
+  def send_invitation_social
+    message="Please join Leadpump"
+    email_id=params[:check_invite_email]
+    logger.debug email_id.inspect
+    mail_invitaion(message,email_id)
+    redirect_to "/"
+  end
+
+  private
+
+  def mail_invitaion(message,email_id)
+    unless email_id.blank?
+      email_id.each do |email|
+        begin
+          Emailer.invite_friends(message,email).deliver 
+        rescue Exception => e             
+        end         
+      end
     end
   end
 
