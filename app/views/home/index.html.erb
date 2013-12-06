@@ -11,18 +11,3 @@
 </div>
 <%=render "common_templates/popupContainer"%>
 
-<h2>OmniContacts Example</h2>
-
-<a href="/contacts/yahoo">Yahoo</a>
-
-<% if !@contacts.nil?%>
-        <% @contacts.each do |c|%>
-        <ul>
-                <li><%= c[:name]%> :         <%= c[:email]%></li>
-        </ul>        
-        <%end%>
-<%end%>
-
-<%#=link_to "Get Started Now!", GmailContacts::Google.authentication_url("http://"+SERVER_URL+"/vipleads/new"), :class=>"btn yellow"%>
-
-<!-- <img src="/trackEmail" /> -->
