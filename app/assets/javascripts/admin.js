@@ -63,7 +63,7 @@ $(document).ready(function(){
 	});
 	
 	//gaurav
-	
+	$("#to_date").unbind();
 	$(document).on("change", "#to_date", function (){
 		var to_date = $(this).val();
 		var from_date = $('#from_date').val();
@@ -103,16 +103,17 @@ $(document).ready(function(){
 			}
 		});
 	});
-
+	
+	$("#payment_to_date").unbind();
 	$(document).on("change", "#payment_to_date", function (){
 		var to_date = $(this).val();
 		var from_date = $('#payment_from_date').val();
 		if ($('#payment_from_date').val().length == 0)
 		{
 			alert("Please insert the Payment From Date field.");
-			$('#payment_to_date').val("");
+			$(this).val("");
 		}
-		else if (($('#payment_from_date').val().length != 0) && ($('#payment_to_date').val().length != 0))
+		else if (($('#payment_from_date').val().length != 0) && ($(this).val().length != 0))
 		{
 			$.ajax({ 
 				url: "/filter_payment",
