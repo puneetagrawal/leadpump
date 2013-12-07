@@ -4,7 +4,7 @@
  require 'rexml/document'
 
  class VipleadsController < ApplicationController
-  
+  layout 'reflanding', only: [:acceptInvitation]
   def index
     @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
     @vipleads = @vipleads.collect{|u| u if u.lead.lead_source=="vip"}
@@ -142,6 +142,7 @@
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
       if @ref.checkLeadLimit
+        @landpage = VipLead.fetchTemp(@ref)
         @token = params[:token]
         @source = params[:source]
         @sec = params[:sec]

@@ -3,13 +3,14 @@
         <div class="span12">
           <div class="filter">
               <input type="text" placeholder="Search by User Name" id="userlistadmin" class="span4" autocomplete="off">
-              <input type="text" id = "payment_from_date" class="filter-date span4" placeholder= "payment_from_date">
-              <input type="text" id = "payment_to_date" class="filter-date span4" placeholder= "payment_to_date">
+              <input type="text" id = "payment_from_date" class="filter-date span4" placeholder= "Payment From Date">
+              <input type="text" id = "payment_to_date" class="filter-date span4" placeholder= "Payment To Date">
           </div>
          <div class="border">
             <div id="filter_payment">
               <%= render 'payment_index' %>
             </div>
+            <%= will_paginate @users, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;" %>
         </div>
     </div>
 </div>

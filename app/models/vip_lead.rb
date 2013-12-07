@@ -21,6 +21,12 @@ class VipLead < ActiveRecord::Base
   	return vipleads
   end
 
+  def self.fetchTemp(user)
+    company = user.fetchCompany
+    landpage = LandingPage.find_by_user_id(company.id)
+    return landpage
+  end
+
   protected
 
   def saveStatus

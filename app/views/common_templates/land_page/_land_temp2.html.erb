@@ -1,0 +1,46 @@
+<div class="wrapper">
+    <div class="header" style="background:<%=@landpage.header_color%>"></div>
+    <div class="main_bg" style="background:<%=@landpage.bg_color%>">
+        <div class="container guest_pass">
+            <h2 class="main_title"><%=@landpage.header_text%></h2>
+            <div class="full">
+                <div class="left_col">
+                    <h2 class="trial">FREE <%=@landpage.no_of_days%> Day pass</h2>
+                    <div class="img">
+                        <%if @preview.present?%>
+                            <%=fetchlandpreivewimage(@landpage)%>
+                        <%else%>
+                            <%=fetchlandpageheadimage(@landpage)%>
+                        <%end%>
+                    </div>
+                    <div class="gym_logo">
+                        <%=fetchCompanyLogo(current_user.fetchCompany)%>
+                    </div>
+                    </div>
+                </div>
+                <div class="right_col">
+                    <h4>Take that first step towards looking and feeling your very best.</h4>
+                    <p>
+                        <%=@landpage.intro_text%>
+                    </p>
+                    <div class="form">
+                        <h3>Fill out the form to receive your FREE trial</h3>
+                        <%if @preview.present?%>
+                            <%=render "common_templates/land_page/land_form_empt"%>
+                        <%else%>
+                            <%=render "common_templates/land_page/land_form"%>
+                        <%end%>
+                        
+                    </div>
+                </div>
+                <div class="our_mission">
+                    <h3>Our Mission</h3>
+                    <p>
+                        <%=@landpage.mission_text%>
+                    </p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>

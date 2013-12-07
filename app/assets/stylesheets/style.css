@@ -1227,6 +1227,14 @@ header h2 a {
     width: 100px;
     padding-left: 120px;
 }
+
+.yahoo_icon {
+    float: left;
+    background: url("/assets/yahoo-icon.jpg") 0 0 no-repeat;
+    width: 100px;
+    padding-left: 120px;
+}
+
 .twitter_icon {
     float: left;
     background: url("/assets/twitter-icon.png") 0 0 no-repeat;
@@ -1293,6 +1301,8 @@ header h2 a {
 .salesRep .list {
     float: left;
     width: 100%;
+    height: 400px;
+    overflow: auto; 
 }
 .salesRep .list li {
     background-color: #fff;
@@ -1311,7 +1321,7 @@ header h2 a {
     background: #333;
     padding: 10px;
     margin: 10px 0 0 -10px;
-    min-width: 140px;
+    min-width: 130px;
     -moz-border-radius: 0 3px 3px 0;
     -webkit-border-radius: 0 3px 3px 0;
     border-radius: 0 3px 3px 0;
@@ -1687,6 +1697,16 @@ header h2 a {
 .wrapper{
     margin-top:15px;
 }
+
+/*gauges*/
+.gaugeValue {
+    padding: 10px;
+    color: #333;
+}
+.jqx-gauge-label{
+    font-size: 10px !important;
+}
+
 /*landing pages*/
 .landing_pages {
     margin: 40px auto 20px;

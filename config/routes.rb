@@ -62,7 +62,7 @@ Leadpump::Application.routes.draw do
   match '/test' => 'home#test'
 
 
-
+  
   match '/savereferral' => 'vipleads#savereferral'
   match '/admin/index' => 'admin#index'
   match '/admin/plan' => 'admin#plan'
@@ -81,8 +81,12 @@ Leadpump::Application.routes.draw do
   match "/vipleadsearchadminfilter" => "admin#vipleadsearchadminfilter"
   match "/paymentsearchfilter" => "admin#paymentsearchfilter"
   match "/editplanbyadmin" => "admin#editplanbyadmin"
+   match "/invitestatsbyadmin" => "admin#invitestatsbyadmin"
   match "/setunlimited" => "admin#setunlimited"
   match "/updateplan" => "admin#updateplan"
+  match "/change_user_status" => "admin#change_user_status", as: "change_user_status"
+  match "/statisticsearchfilter" => "admin#statisticsearchfilter"
+  match "/userpaymentsearchfilter" => "admin#userpaymentsearchfilter"
 
    namespace :admin do
      root :to => "admin#index"
@@ -120,10 +124,13 @@ Leadpump::Application.routes.draw do
   match 'appointment/new' => 'appointments#new'
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
-  
-  
+
+  match '/viewusergauge' => 'company#viewusergauge'
+  match '/previewsave' => 'company#previewsave'
+  match '/preview/:id' => 'company#preview'
+  match '/refland' => 'company#refland'
   match '/landpage' => 'company#landpage'
-  match '/updatelanding' => 'company#updatelanding'
+  match '/updatelanding/:id' => 'company#updatelanding', :as => :update
   match '/createlanding' => 'company#createlanding'
   match '/company/getemails' => 'company#getemails'
   match '/company/usersearchfilter' => 'company#usersearchfilter'
@@ -142,6 +149,7 @@ Leadpump::Application.routes.draw do
   match "/savegmmes" => "company#savegmmes"
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
+  
   match "/sendmail" => "home#sendmail"
   match "/send_invitation_social" => "home#send_invitation_social"
   match "/callback" => "home#contacts_callback"

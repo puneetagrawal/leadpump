@@ -1,0 +1,3 @@
+$(".gaugestart").html('<%=escape_javascript(render partial: "home/dashboard_gauges_script")%>')
+$(".salesRepUser").html('<%=escape_javascript(render partial: "home/sales_user", :locals =>{:user => @user})%>')
+

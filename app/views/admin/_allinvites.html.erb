@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+        <th>Source</th>    
+        <th>Location</th>
+        <th>Sent</th>
+        <th>Opened</th>
+        <th>Views</th>
+        <th>Converted</th>
+        <th>Date</th>
+    <thead>
+    <tbody>
+        <% if @stats.present? %>
+            <% @stats.each do |stat| %>
+                <tr>
+                    <td><%= stat.source %></td>
+                    <td><%= stat.location %></td>
+                    <td><%= stat.e_sents %></td>
+                    <td><%= stat.e_oppened %></td>
+                    <td><%= stat.e_views %></td>
+                    <td><%= stat.e_converted %></td>
+                    <td><%= stat.created_at.strftime("%Y/%m/%d") %></td>
+                </tr>
+            <% end %>
+        <% end %>                    
+    </tbody>
+</table>

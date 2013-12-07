@@ -65,37 +65,69 @@ $(document).ready(function(){
 	//gaurav
 	
 	$(document).on("change", "#to_date", function (){
-		//$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 		var to_date = $(this).val();
 		var from_date = $('#from_date').val();
 		if ($('#from_date').val().length == 0)
 		{
-			from_date = to_date;
+			alert("Please insert the From Date field.");
+			$('#to_date').val("");
 		}
-		$.ajax({ 
-			url: "/filter_vip",
-			data: { 
-				"vip_to_date": to_date,
-				"vip_from_date": from_date
+		else if (($('#from_date').val().length != 0) && ($('#to_date').val().length != 0))
+		{
+			$.ajax({ 
+				url: "/filter_vip",
+				data: { 
+					"vip_to_date": to_date,
+					"vip_from_date": from_date
+				}
+			});
+		}
+		else if ($('#to_date').val().length == 0)
+		{
+			$.ajax({
+				url: "/statisticsearchfilter"
+			});
+		}
+
+	});
+
+	$(document).on("click", ".invite_stats", function (){
+		id = $(this).closest('tr').attr('id').split("_")[1];
+		$.fancybox.open({
+			href: '#invitePopup',
+			type: 'inline',
+			'beforeLoad' : function() {
+				url = '/invitestatsbyadmin';
+				$.get(url, {inviteid:id}, function (data) {
+				});
 			}
 		});
 	});
 
 	$(document).on("change", "#payment_to_date", function (){
-		//$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 		var to_date = $(this).val();
 		var from_date = $('#payment_from_date').val();
 		if ($('#payment_from_date').val().length == 0)
 		{
-			from_date = to_date;
+			alert("Please insert the Payment From Date field.");
+			$('#payment_to_date').val("");
 		}
-		$.ajax({ 
-			url: "/filter_payment",
-			data: { 
-				"payment_to_date": to_date,
-				"payment_from_date": from_date
-			}
-		});
+		else if (($('#payment_from_date').val().length != 0) && ($('#payment_to_date').val().length != 0))
+		{
+			$.ajax({ 
+				url: "/filter_payment",
+				data: { 
+					"payment_to_date": to_date,
+					"payment_from_date": from_date
+				}
+			});
+		}
+		else if ($('#payment_to_date').val().length == 0)
+		{
+			$.ajax({
+				url: "/userpaymentsearchfilter"
+			});
+		}
 	});
 
 	$(document).on("click", ".planedit", function (){
@@ -146,11 +178,11 @@ $(document).ready(function(){
 		var paginationURL = linkElement.attr("href");
 		linkElement.attr({"url":paginationURL, "href": "#"});
 		linkElement.click(function(){
-			$("#user_id").html('<img src="/images/loader.gif">');
-			$("#user_id").load($(this).attr('url'));
+			$("#user_record").html('<img src="/images/loader.gif">');
+			$("#user_record").load($(this).attr('url'));
 			return false;
 		});
-	});
+	});	
 });
 
 function vipleadSearchAdminFilter(vipleadId){

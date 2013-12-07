@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leadpump</title>
+   <%= stylesheet_link_tag "jquery-ui-1.10.3.custom.min.css","land_page/template_style.css"%>
+   <%= javascript_include_tag 'jquery','refland.js', 'jquery-ui.js' => true %>
+   <%= tag :meta, :name => 'viewport', :content => "width=device-width, initial-scale=1.0" %>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

@@ -4,9 +4,10 @@ class HomeController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
 
   def index
-   @user = User.new
    @picture_user = Picture.fetchCompanyLogo(current_user.id)
    @picture = Picture.new
+   @users = current_user.fetchCompanySalesUsers
+   @leads = Lead.fetchTotalLeads(current_user)
  end
 
  def testsendgrid   
@@ -122,6 +123,8 @@ end
 end
 
   def contacts_callback
+    logger.debug(request)
+    logger.debug(request.env['omnicontacts'])
    unless request.env['omnicontacts.contacts'].blank?
       @contacts = request.env['omnicontacts.contacts']
     end

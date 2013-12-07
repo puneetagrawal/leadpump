@@ -1,5 +1,6 @@
 class CompanyController < ApplicationController
   before_filter :authenticate_user!
+  layout 'reflanding', only: [:preview]
 
   def index
     companyUsers = Company.where(:company_admin_id => current_user.id)
@@ -70,6 +71,16 @@ class CompanyController < ApplicationController
     else
       flash[:alert] = "please try again"
       redirect_to company_index_path()
+    end
+  end
+
+  def viewusergauge
+    @user = User.find(params[:id])
+    @count = @user.id.to_i + 10
+    @leads = Lead.fetchTotalLeads(@user)
+    logger.debug(@leads)
+    respond_to do |format|
+      format.js 
     end
   end
 
@@ -167,33 +178,71 @@ def landpage
 end
 
 def createlanding
-  if params[:landing_page].has_key?(:land_page_logo)
-    logo = params[:landing_page][:land_page_logo][:avatar]
-    params[:landing_page].delete :land_page_logo
+  logo = Company.fetchlogofromparam(params)
+  if params[:landing_page][:land_type] == "External landing page"
+    landingpage = LandingPage.new(:land_type=>"External landing page",:ext_link=>params[:landing_page][:ext_link])
+  else
+    landingpage = LandingPage.new(params[:landing_page])
   end
-  landingpage = LandingPage.new(params[:landing_page])
   landingpage.user_id = current_user.id
   if landingpage.save
     flash[:notice] = "Land page created"
-    landlogo = LandPageLogo.new(:avatar=>logo)
-    landlogo.landing_page_id = landingpage.id 
-    landlogo.save
+    Company.savelandpagelogo(landingpage, logo)
     redirect_to settings_path
   else
-    flash[:error] = landingpage.errors.full_messages
-     @landpage = LandingPage.find_by_user_id(current_user.id)
-    if !@landpage.present?
-      @landpage = LandingPage.new
-    render "landpage"
+    redirect_to landpage_path
   end
 end
 
 def updatelanding
-  if current_user.isCompany
-    @landpage = LandingPage.new
+  logo = Company.fetchlogofromparam(params)
+    if current_user.isCompany
+    @landpage = LandingPage.find(params[:id])
+    if @landpage.present?
+      if params[:landing_page][:land_type] == "External landing page"
+        @landpage.update_attributes(:land_type=>"External landing page",:ext_link=>params[:landing_page][:ext_link])
+      else
+        @landpage.update_attributes(:ext_link=>'',:temp_name=>params[:landing_page][:temp_name],:land_type=>"Internal landing page",
+          :intro_text=>params[:landing_page][:intro_text], :header_text=>params[:landing_page][:header_text],
+          :mission_text=>params[:landing_page][:mission_text], :header_color=>params[:landing_page][:header_color],
+          :bg_color=>params[:landing_page][:bg_color], :no_of_days=>params[:landing_page][:no_of_days])
+      end
+      Company.savelandpagelogo(@landpage, logo)
+      flash[:success] = "LandPage updated successfully"
+      redirect_to settings_path
+    end
   else
     flash[:notice] = "You are not authorie for this action"
     redirect_to home_index_path
+  end
+end
+
+def refland
+end
+
+def previewsave
+  Preview.destroy_all
+  params[:inputs][:landing_page].delete :land_type
+  params[:inputs][:landing_page].delete :temp_name
+  params[:inputs][:landing_page].delete :ext_link
+  logger.debug(params[:inputs][:landing_page])
+  landpage = Preview.new(params[:inputs][:landing_page])
+  landpage.save
+  temp = "2"
+  if params[:inputs][:landing_page][:temp_name] == "Guest pass card"
+    temp = "1"
+  end
+  message = {"temp"=>temp}
+  render json: message
+end
+
+def preview
+  @landpage = Preview.last
+  @preview = true
+  if params[:id].present? && params[:id] == 1
+    @temp = true
+  else
+    @temp = false
   end
 end
 

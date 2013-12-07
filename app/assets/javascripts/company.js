@@ -3,18 +3,44 @@ $(document).ready(function(){
 });
 
 function initCompanyCreateOrUpdate(){
+	$(".userEdit").unbind();
 	$(".container").on('click', '.userEdit', function (){
 		companyEdit(this);
 	});
-
+	$(".compSubmit").unbind();
 	$(".container").on('click', '.compSubmit', function (){
 		companySubmit(this);
 	});	
-	$(".container").on('click', '.land_page_submit', function (){
-		$("#new_landing_page").submit();
+	$(".land_page_submit").unbind();
+	$(".land_page_submit").click(function (){
+		$(".forms").submit();
+	});
+
+	$("#landing_page_land_type").unbind();
+	$("#landing_page_land_type").change(function (){
+		if($(this).val() == "External landing page"){
+			$(".internal_land_page").hide();
+			$(".land_page_preview").hide();
+			$(".externallink").show();
+		}
+		else{
+			$(".internal_land_page").show();
+			$(".land_page_preview").show();
+			$(".externallink").hide();
+		}
+	});
+
+	$(".land_page_preview").unbind();
+	$(".land_page_preview").click(function (){
+		$(this).siblings('span').html('<img src="/assets/ajax-load.gif" style="width:20px;height:20px;margin:10px">');
+		url = '/previewsave';
+		$.post(url, {inputs:formfields()}, function (data) {
+			$("#title span").html('');
+			$("#link").attr('href',"http://localhost:3000/preview/"+data.temp);
+			fakeClick(document.getElementById('link'));
+		});
 	});	
-
-
+	$(".submitFmes").unbind();
 	$(".submitFmes").click(function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savefbmes';
@@ -31,6 +57,7 @@ function initCompanyCreateOrUpdate(){
 			$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 		}
 	});
+	$(".submitTmes").unbind();
 	$(".submitTmes").click(function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savetwmes';
@@ -46,6 +73,7 @@ function initCompanyCreateOrUpdate(){
 			$('.submitTmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 		}
 	});
+	$(".submitGmes").unbind();
 	$(".submitGmes").click(function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savegmmes';
@@ -63,6 +91,16 @@ function initCompanyCreateOrUpdate(){
 		}
 	});	
 }
+
+function fakeClick(anchorObj) {
+   if(document.createEvent) {
+      var evt = document.createEvent("MouseEvents"); 
+      evt.initMouseEvent("click", true, true, window, 
+          0, 0, 0, 0, 0, false, false, false, false, 0, null); 
+      var allowDefault = anchorObj.dispatchEvent(evt);
+  }
+}
+
 
 function companyEdit(obj){
 	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 0;float:left;">')

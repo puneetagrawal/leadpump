@@ -18,7 +18,7 @@ class GmailFriend < ActiveRecord::Base
 
 	def generate_token
 		token = SecureRandom.urlsafe_base64(self.id, false)
-		self.secret_token = token
+		self.secret_token = token[0, 10]
 		self.save
 	end
 

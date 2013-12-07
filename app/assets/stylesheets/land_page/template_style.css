@@ -1,0 +1,360 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+html,
+button,
+input,
+select,
+textarea { color: #222;}
+html {font-size: 1em; line-height: 1.4;}
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+body {
+    margin:0;
+    padding: 0;
+}
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+ audio,
+ canvas,
+ img,
+ video {
+    vertical-align: middle;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+ fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+ textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+   .browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+ .ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+ .hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+ .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+.clear {
+    clear: both;
+    width: 100%;
+}
+a {
+    outline: none;
+}
+
+.fl {
+    float:left;
+}
+.fr {
+    float:right;
+}
+
+.pr {
+    position: relative;
+}
+.whalf {
+    width: 50%;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+.m0 {
+    margin: 0 !important;
+}
+.m15 {
+    margin: 15px;
+}
+.mt10 {
+    margin-top: 10px;
+}
+.img_margin {
+    margin: 0 15px 15px 15px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.displayBlock {
+    display: block;
+}
+h3 {
+    font-size:24px;
+    line-height: 30px;
+    color: #666;
+    margin: 0 0 20px 0;
+}
+h4 {
+    font-size:16px;
+    color: #666;
+}
+.pd15 {
+    padding:15px;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+    font-family: Arial;
+}
+
+.wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.header {
+    width: 100%;
+    height: 70px;
+    background: #E59C11;
+}
+.main_bg {
+    background: #62819D;
+    width: 100%;
+}
+.container {
+    width: 840px;
+    margin: 0 auto;
+    background: #fdfff4;
+    border-radius: 20px;
+    border: 2px solid  #999;
+    box-shadow: 2px 4px 5px #333333;
+    position: relative;
+    top: -40px;
+}
+.main_title {
+    font-size:18px;
+    text-align: center;
+    text-decoration: underline;
+}
+.full {
+    width: 100%;
+}
+.container .left_col {
+    float:left;
+    margin-left: 20px;
+    width: 300px;
+}
+.container .left_col .img {
+    border: 4px solid #333;
+    float: left;
+    border-radius: 10px;
+}
+.container .form {
+    float: left;
+    clear: both;
+    margin-top: 40px;
+    width: 300px;
+    border-radius: 10px;
+    border: 4px solid #333;
+    margin-bottom: 20px;
+
+}
+.container .form h3 {
+    font-size: 14px;
+    text-transform: none;
+    color: #333;
+    text-align: center;
+}
+.container .form p {
+    margin-bottom: 10px;
+    margin-top: 0;
+    width: 100%;
+    clear: both;
+}
+.container .form label {
+    font-size: 14px;
+    margin-right: 10px;
+    width: 100px;
+    float: left;
+    text-align: right;
+}
+
+.container .form input {
+    width: 160px;
+}
+.container .right_col {
+    float: left;
+    margin-left: 26px;
+    width: 460px;
+}
+.container .right_col h4 {
+    font-size:14px;
+    color: #333;
+}
+.container .right_col .trial {
+    font-size: 50px;
+    text-align: center;
+}
+.container .right_col .gym_logo {
+    width: 100%;
+    text-align: center;
+    margin-top: 80px;
+}
+.our_mission {
+    width: 100%;
+    margin-top: 36px;
+}
+.our_mission h3 {
+    font-size:14px;
+    color: #333;
+    margin: 0;
+}
+.our_mission p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    line-height: 16px;
+}
+
+.guest_pass .left_col .img {
+    border: none;
+}
+.guest_pass .left_col .trial {
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+}
+.guest_pass .left_col .gym_logo {
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+}
+.guest_pass .right_col .form {
+    border:none;
+    width: 100%;
+    margin-top: 10px;
+}
+.guest_pass .right_col .form h3 {
+    text-align: left;
+}
+.guest_pass .right_col .form label {
+    width: 150px;
+}
+.guest_pass .our_mission{
+    width: 95%;
+    clear: both;
+    padding:0 20px 20px;
+}
+.guest_pass .our_mission p {
+    font-size: 12px;
+}

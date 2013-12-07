@@ -22,8 +22,7 @@ function initSocialInviter(){
 			executeFirstStep(this);	
 		}
 	});
-
-	$(".social_options ul li").click(function(){
+	$(document).on('click', '.social_options ul li', function (){
 		name = $(this).attr('name');
 		executeSecondStep(name);
 	});
@@ -97,7 +96,7 @@ function executeFirstStep(obj){
 	 		}
 			else{
 	          	$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
-			$(".stepNo2").removeClass('disabled');
+				$(".stepNo2").removeClass('disabled');
 			}
 	 });
 }

@@ -107,6 +107,15 @@ class User < ActiveRecord::Base
       return @msg
   end
 
+  def fetchCompanySalesUsers
+    users = []
+    case self.user_role.role_type.to_sym  
+      when :company
+        users = User.where("id != ?", self.id)
+      end
+      return users
+  end
+
   def self.fetchCompanyUserList(user)
     users = []
     case user.user_role.role_type.to_sym  
@@ -155,6 +164,7 @@ class User < ActiveRecord::Base
   #   return id
   # end
   
+
   def fetchCompany
     company = self
     case self.user_role.role_type.to_sym

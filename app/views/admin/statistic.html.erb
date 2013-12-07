@@ -1,17 +1,14 @@
 <div class="container nav_second">
     <div class="row-fluid">
         <div class="span12">
-            <div class="filter">
-                <input type="text" placeholder="Search by Account or Associate Name" id="vipleadlistadmin" class="span4" autocomplete="off">
-                <input type="text" id = "from_date" class="filter-date span4" placeholder= "from_date">
-                <input type="text" id = "to_date" class="filter-date span4" placeholder= "to_date">
-            </div>
             <div class="border">
-                <div id="filter_vip">
+                <div>
                     <%= render 'index' %>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<%= render "common_templates/popupContainer"%>
+
 

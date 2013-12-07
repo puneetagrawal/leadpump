@@ -1,5 +1,71 @@
+<span class="gaugestart">
+    <%=render "dashboard_gauges_script"%>
+</span>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12">
+            <h2>Sales Dashboard</h2>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <%=render "sales_user_list"%>
+        <div class="span9">
+            <h2 class="heading">Sales Representatives Statistics</h2>
+            <div class="salesRepData">
+                <div class="salesRepUser">
+                    <%if @users.present? %>
+                        <%=render "sales_user", :user=>@users[0]%>
+                    <%end%>
+                </div>
+                <div class="sales_data_filter">
+                    <strong>View</strong>
+                    <ul>
+                        <li><a href="javascript:void(0)">Daily</a></li>
+                        <li><a href="javascript:void(0)">Monthly</a></li>
+                        <li><a href="javascript:void(0)">Projections</a></li>
+                    </ul>
+                </div>
+                <%=render "dashboard_gauges"%>
+            </div>
+            <div class="clear mb10"></div>
+            <div class="row-fluid">
+                <div class="span3">
+                    <h2 class="heading">Leads</h2>
+                    <div class="total_leads">
+                        <div class="gauge">
+                            <div class="demoWidget" style="position: relative;">
+                                <div style="float: left;" class="gaugeContainer" id="leadgauge"></div>
+                                <div class="gaugeValue" style="position: absolute; top: 119px; left: 42px; font-family: Sans-Serif; text-align: center; font-size: 17px; width: 70px;"></div>
+                            </div>
+                        </div>
+                        <span>Total Leads</span>
+                    </div>
+                </div>
+                <div class="span9">
+                    <h2 class="heading">Dashboard</h2>
+                    <div class="dashboardpage">
+                        <ul class="dashboardIcons borderbox">
+				            <%=render "home/companyDashboard"%>
+				        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
  
-<div class="container wrapper">
+<!-- <div class="container wrapper">
     <%if current_user.isEmployee || current_user.isCompany%>
         <%=render "home/companyLogo"%>
     <%end%>
@@ -8,15 +74,6 @@
             <%=render "home/companyDashboard"%>
         </ul>
     </div>
-</div>
+</div> -->
 <%=render "common_templates/popupContainer"%>
 
-<h2>LeadPump</h2>
-
-<!-- <a href="/contacts/gmail">Gmail</a> -->
-<a href="/contacts/yahoo">Yahoo</a>
-<!-- <a href="/contacts/hotmail">HotMail</a> -->
-
-<%#=link_to "Get Started Now!", GmailContacts::Google.authentication_url("http://"+SERVER_URL+"/vipleads/new"), :class=>"btn yellow"%>
-
-<!-- <img src="/trackEmail" /> -->

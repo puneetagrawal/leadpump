@@ -6,7 +6,7 @@ def index
 end
 
 def user
- @users = User.all.paginate(:page => params[:page], :per_page => 10)
+ @users = User.paginate(:page => params[:page], :per_page => 10)
 end
 
 def plan
@@ -19,10 +19,27 @@ end
 
 def statistic
 	@leads = Lead.where(:lead_source => "vip")
+  @allLeads = Lead.all
+  @users = UserLeads.where(:lead_id => @allLeads).pluck(:user_id)
+  @stats = Stats.where(:user_id => @users)
+end
+
+def statisticsearchfilter
+  @leads = Lead.where(:lead_source => "vip")
+  respond_to do |format|
+    format.js { render "filter_vip" }
+  end
 end
 
 def payment
- @users = User.all
+ @users = User.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+end
+
+def userpaymentsearchfilter
+  @users = User.all
+  respond_to do |format|
+    format.js { render "paymentsearchfilter" }
+  end
 end
 
 def user_record
@@ -30,19 +47,24 @@ def user_record
 end
 
 def user_per_plan
-  @plan = Plan.find(params[:plan_id])
-  @ppurs = PlanPerUserRange.where(:plan_id => @plan).pluck(:id)
-  @subs = Subscription.where(:plan_per_user_range_id => @ppurs)
-  @users = @subs.collect { |sub| User.find(sub.user)} 
+  if params[:plan_id].present?
+    @plan = Plan.find(params[:plan_id])
+    @ppurs = PlanPerUserRange.where(:plan_id => @plan).pluck(:id)
+    @subs = Subscription.where(:plan_per_user_range_id => @ppurs)
+    @users = @subs.collect { |sub| User.find(sub.user)} 
+  else
+    @users = User.all
+  end
   respond_to do |format|
       format.js
   end
 end
 
 def destroy
-  @user = User.find(params[:search_user])
-  @user.destroy
-  redirect_to admin_user_path 
+  # @user = User.find(params[:search_user])
+  
+  # @user.destroy
+  # redirect_to admin_user_path 
 end
 
 def searchUserAc
@@ -92,19 +114,18 @@ def search_vip
 		leads = Lead.select("distinct(name)").where(:id => leads) 
 		list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
 	else
-     like  = "%".concat(params[:term].concat("%"))
-     leads = Lead.select("distinct(name)").where("name like ?", like).where(:id => leads)
-     list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
-     if !leads.present?
+   like  = "%".concat(params[:term].concat("%"))
+   leads = Lead.select("distinct(name)").where("name like ?", like).where(:id => leads)
+   list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
+    if !leads.present?
      	leads = Lead.where(:lead_source => "vip")
-     	leads = UserLeads.where(:lead_id => leads)
-     	users = User.where(:id => leads)
-        associates = User.select("distinct(name)").where("name like ? ", like).where(:id=>users)
-        list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
-     end
-   end
-   render json: list
+     	userleads = UserLeads.where(:lead_id => leads)
+      associates = User.select("distinct(name)").where("name like ? ", like).where(:id=> userleads.map(&:user_id))
+      list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
+    end
   end
+  render json: list
+end
 
   def search_payment
   @users = User.all
@@ -123,8 +144,13 @@ def search_vip
   def vipleadsearchadminfilter
     leads = Lead.where(:lead_source => "vip").pluck(:id)
     @leads = Lead.where("name = ?", params[:viplead]).where(:id=> leads)
+    if @leads.blank?
+      @users = User.where("name like ?", params[:viplead])
+      @userleads = UserLeads.where(:user_id => @users)
+      @leads = Lead.where(:id => @userleads ).where(:lead_source => "vip")
+    end
     respond_to do |format|
-      format.js 
+      format.js { render "filter_vip" }
     end
   end
   
@@ -184,4 +210,25 @@ def search_vip
     end
   end
 
+  def change_user_status
+    user = User.find(params[:id])
+    if user.active == true
+      user.active = false
+    else
+      user.active = true
+    end
+    user.save!
+    @users = User.all.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.js
+    end      
+  end
+
+  def invitestatsbyadmin
+    @users = UserLeads.where(:lead_id => params[:inviteid]).pluck(:user_id)
+    @stat = Stats.where(:user_id => @users).first
+    respond_to do |format|
+      format.js
+    end
+  end
 end

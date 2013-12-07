@@ -11,23 +11,37 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_nested_form
-//= require_tree
+//= require jqxcare
+//= require jqxchuart
+//= require jqxgauge	
+//= require Chart
 //= require autocomplete-rails
 //= require bootstrap-datepicker
 //= require appointment
 //= require lead
+//= require company
+//= require admin
+//= require color_pic/landing_color_pic
+//= require invites
+//= require jquery.carouFredSel-6.2.1-packed
+//= require jquery.fancybox
+//= require strip
+//= require viplead
 //= require ckeditor-jquery
+//= require seeusergauge
 
+	
 
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd'}).val(); 
-	$('#defaultCountdown').countdown({until: new Date(2014, 8 - 1, 8)});
 	$('.ckeditor').ckeditor({
 		  // optional config
 	}); 
+
 
     $("#select_user_entry").click(function(){  
 		   var search_val = $(this).val(); 
@@ -59,7 +73,8 @@ $(document).ready(function(){
     });
 
    $(document).on('change', "#plan_id", function () {
-       var plan_id = $(this).val(); 
+       var plan_id = $(this).val();
+       $('.pagination').hide(); 
 		   $.ajax({
 		    url: "/admin/user_per_plan",
 		    data: { 
@@ -141,9 +156,15 @@ $(document).ready(function(){
 		}
 	});
 
-	
-	
-
+	$(document).on("click", "#myTab li a", function(){
+		id = $(this).attr('data-target');
+		if(!$(this).hasClass('active')){
+			$('.active').removeClass('active');
+			$(this).parent('li').addClass('active');
+			$(""+id).addClass('active');
+		}
+    });
+    
 });
 
 // function validate() {
@@ -244,9 +265,7 @@ function initialization(){
 		assignLeadToUser($(this).val(), leadId);
 	});
 
-	$(".ref_submit").click(function (){
-		saveReferral(this);
-	});
+	
 
 	$(".submitlogo").click(function (){
 		$('#picture_avatar').click();
@@ -269,37 +288,7 @@ function closealert(obj){
 	$(obj).parent().fadeOut('slow');
 }
 
-function saveReferral(obj){
-	$(".ref_lead_error").html('');	
-	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
-	name = $("#name").val();
-	email = $("#email").val();
-	ref_id = $("#ref_id").val();
-	source = $("#source").val();
-	phone = $("#phone").val();
-	sec = $("#sec").val();
-	if(name && email && ref_id){
-		url = '/savereferral';
-		$.get(url, {sec:sec, name:name, email:email, phone:phone,source:source,ref_id:ref_id}, function (data) {
 
-			if(data.error != ''){
-				$(".ref_lead_error").html(data.error);	
-				$(obj).html('<input type="button" value="Submit" class="btn yellow social_ref_btn" size="20">');
-			}
-			else{
-				$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');		
-			}
-
-			$(".form").html('<span style="font-size:25px;right:45%;top:200px;position:fixed;">'+data.msg+'</span>');	
-
-		});	
-	}
-	else{
-		alert("all fields are mandatory.")
-		$(obj).html('<input type="button" value="Submit" class="btn yellow social_ref_btn" size="20">');
-	}
-	
-}
 
 function caclulateAmount(){
 	no_of_users = 1;

@@ -1,30 +1,11 @@
-<div class="social_invite showmallitem" style="min-height:300px;">
- <div style="color:red;" class="ref_lead_error "></div>
 
- <%if @ref.present? && ((@source=="fb" || @source=="twitter") || (!@gmailcontact.present? && @gmailcontact.opt_in?))%>
-    <form class = "forms form">
-        <div id="showErrors"></div>
-        <div class="border app_header">
-            <h2 class="heading headmsg">Add A New User</h2>
-            <div class="form pd15 leadform">
-                 <p><label>Name:</label><%= text_field_tag :name %></p>
-                 <p><label>Email:</label><%= text_field_tag :email %></p>
-                 <p><label>Phone:</label><%= text_field_tag :phone %></p>
-                 <p><label>Referred By:</label>
-                    <%= hidden_field_tag :ref_id, @token %>
-                    <%= hidden_field_tag :source, @source %>
-                    <%= hidden_field_tag :sec, @sec %>
-                    <%= text_field_tag :user_id, @ref.name, :readonly=>true %>
-               </p>
-               <p class="ref_submit">
-                <input type="button" size="20" class="btn yellow gmail_ref_btn" value="Submit"/>
-               </p>
-             </div>       
-               <br/>
-        </div>    
-    </form>   
+<%if @ref.present? && ((@source=="fb" || @source=="twitter") || (@gmailcontact.present? && !@gmailcontact.opt_in?))%>
+    <div id="showErrors"></div>
+    <%if @landpage.temp_name == "Guest pass card"%>
+        <%=render "common_templates/land_page/land_temp2"%>
+    <%else%>
+        <%=render "common_templates/land_page/land_temp1"%>
+    <%end%>
 <%else%>
     <span style="font-size:25px;right:25%;top:200px;position:fixed;">You are requesting with wrong link. Please try with another link.</span>
 <%end%>
-
-</div>

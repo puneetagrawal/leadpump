@@ -4,7 +4,12 @@
 			<tr data-id="<%= user.id %>"> <td><%= user.name.humanize %></td> 
 				<td><%=user.subscription.present? ? user.subscription.plan_per_user_range.plan.name : '-'%>
 				</td>
-				<td>  Active  </td>
+				<% if user.active == true %>
+					<% status = "Active" %>
+				<% else %>
+					<% status = "Inactive" %>
+				<% end %>
+				<td><%= link_to status, change_user_status_path(:id => user.id), :remote => true %></td>
 				<td> <%= link_to "Delete", @user, :confirm => "Are you sure you want to delete?", :method => :delete, :class => "user_delete" %> </td>
 			</tr>
 		</tbody>

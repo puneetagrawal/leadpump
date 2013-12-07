@@ -35,6 +35,19 @@ class Lead < ActiveRecord::Base
 # end
 
 
+def self.fetchTotalLeads(user)
+  totallead = 0
+  case user.user_role.role_type.to_sym  
+    when :company
+      users = User.fetchCompanyUserList(user)
+      users << user.id
+      leads = UserLeads.where(:user_id=>users)
+    when :employee
+      leads = UserLeads.includes(:lead).where(:user_id=>user.id)
+    end
+    totallead = leads.present? && leads.size > 0 ? leads.size : 0
+end
+
 def self.fetchLeadList(user)
 	leads = []
 	userList = []

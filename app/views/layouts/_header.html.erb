@@ -1,12 +1,12 @@
 <header>
     <div class="container">
         <h2 class="fl">
-            <%- if current_user %>
-                <%=link_to home_index_path do%>   
+            <% if current_user && current_user.role_id == 1 %>
+                <%=link_to admin_index_path do%>   
                   <img src="/assets/logo.png">
                 <%end %>
-            <%else%>
-                <%=link_to admin_index_path do%>   
+            <% else %>
+                <%=link_to home_index_path do%>  
                   <img src="/assets/logo.png">
                 <%end %>
             <%end%>

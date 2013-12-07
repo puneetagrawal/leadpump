@@ -1,6 +1,41 @@
-  <%= stylesheet_link_tag  "color_pic/", :media => "all" %>
-  <%= javascript_include_tag 'application', 'jquery-ui-1.10.3.custom.min.js','autocomplete-rails.js', 'rails.js','data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag  "color_pic/colorpicker.css", :media => "all" %>
+  <%= javascript_include_tag 'color_pic/colorpicker.js', 'color_pic/eye.js','color_pic/utils.js' => true %>
+<script>
+    $(document).ready(function(){
+    $('#bg_color_sl').ColorPicker({
+        color: '#0000ff',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $("#bg_color_sl").css('backgroundColor', '#' + hex);
+            $("#landing_page_bg_color").val('#' + hex);
+        }
+    });
 
+    $('#hd_color_sl').ColorPicker({
+        color: '#0000ff',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $('#hd_color_sl').css('backgroundColor', '#' + hex);
+            $('#landing_page_header_color').val('#' + hex);
+        }
+    });
+});
+
+</script>
 <div class="container landing_pages">
     <div class="row-fluid">
         <div class="span12">
@@ -34,67 +69,83 @@
     </div>
     <div class="row-fluid">
         <div class="span8">
-            <%= form_for @landpage, :url=> @landpage.id.present? ? "/updatelanding/#{@landpage.id}" : "/createlanding",:method=>:post, :html => {:class => "form forms pd15"} do |land| %>
+            <%= form_for @landpage, :url=> @landpage.id.present? ? "/updatelanding/#{@landpage.id}" : "/createlanding", :target => "_new" ,:method=>:post, :html => {:class => "form forms pd15"} do |land| %>
             <%=render "common_templates/showerrors", :object=>@landpage%>
             <form class="form form_block">
                 <div>
                     <label><span class="number">1</span>I would like to use a:</label>
                     <%= land.select :land_type, options_for_select(["Internal landing page","External landing page"], :selected=> @landpage.land_type) %>
                 </div>
-                <div>
-                    <label><span class="number">2</span>If you chose internal which template above?</label>
-                    <%= land.select :temp_name, options_for_select(["Woman doing aerobics","Personal trainer",
-                        "Membership card","Guest pass card"], :selected=> @landpage.temp_name) %>
+                <div class="externallink" style="<%= !@landpage.ext_link.present? ? 'display:none' : ''%>">
+                    <label><span class="number">2</span>Set external landing page</label>
+                    <%= land.text_field :ext_link, :value=>@landpage.ext_link.present? ? @landpage.ext_link : "" ,:placeholder=>"Enter a valid url"%>
                 </div>
-                <div>
-                    <label><span class="number">3</span>Header Default Text</label>
-                    <p>Act Now, This offer is not available to the public and expires in the next 48 hours!</p>
-                    <strong>Change text to:</strong>
-                    <%= land.text_area :header_text, :value=>@landpage.text_area.present? ? @landpage.text_area : "Limited to 100 Characters" %>
-                </div>
-                <div>
-                    <label><span class="number">4</span>Intro default text:</label>
-                    <p>Take that first step towards looking and feeling your very best. You have landed on a special promotional web
-                        site for "You Gym's Name Here". This means that one of your friends cares about you and your health. You have
-                        been invited to receive a FREE trial membership to "Your Gyms Name Here".</p>
-                    <strong>Change text to:</strong>
-                    <%= land.text_area :intro_text, :value=>@landpage.intro_text.present? ? @landpage.intro_text : "Limited to 100 Characters" %>
-                </div>
-                <div>
-                    <label><span class="number">5</span>Mission Statement default text:</label>
-                    <strong>Our Mission:</strong>
-                    <p>To be "Your City's Name Here" premier family fitness center, committed to providing members and employees of
-                        all ages a fun, friendly environment. To promote a healthy lifestyle through convenient, clean locations, state-of-
-                        the-art equipment, programs and activities that provide an exceptional and unique value to our community.</p>
-                    <strong>Change text to:</strong>
-                    <%= land.text_area :mission_text, :value=>@landpage.mission_text.present? ? @landpage.mission_text : "Limited to 100 Characters"%>
-                </div>
-                <div>
-                    <label><span class="number">6</span>Header color:</label>
-                    <span class="header_color" style="background:<%=@landpage.header_color%>"></span>
-                    <%=land.hidden_field :header_color, :value=>"#E59C11"%>
-                </div>
-                <div>
-                    <label><span class="number">7</span>Background color:</label>
-                    <span class="background_color" style="background:<%=@landpage.bg_color%>"></span>
-                    <%=land.hidden_field :bg_color, :value=>"#62819D"%>
-                </div>
-                <div>
-                    <label><span class="number">8</span>Number of free days?</label>
-                     <%= land.select :no_of_days, options_for_select(1..7, :selected=> @landpage.no_of_days),{},:class=>"numberOfDays " %>
-                </div>
-                <div>
-                    <label><span class="number">9</span>Upload logo</label>
-                    <%= land.fields_for :land_page_logo, LandPageLogo.new do |pic| %>
-                        <label>Image:</label><%= pic.file_field :avatar %>  
-                    <% end %>
-                </div>
-                <div>
+                <span class="internal_land_page" style="<%=@landpage.ext_link.present? ? 'display:none' : ''%>">
+                    <div>
+                        <label><span class="number">2</span>If you chose internal which template above?</label>
+                        <%= land.select :temp_name, options_for_select(["Woman doing aerobics","Personal trainer",
+                            "Membership card","Guest pass card"], :selected=> @landpage.temp_name) %>
+                    </div>
+                    <div>
+                        <label><span class="number">3</span>Header Default Text</label>
+                        <p>Act Now, This offer is not available to the public and expires in the next 48 hours!</p>
+                        <strong>Change text to:</strong>
+                        <%= land.text_area :header_text, :value=>@landpage.header_text.present? ? @landpage.header_text : "Limited to 100 Characters" %>
+                    </div>
+                    <div>
+                        <label><span class="number">4</span>Intro default text:</label>
+                        <p>Take that first step towards looking and feeling your very best. You have landed on a special promotional web
+                            site for "You Gym's Name Here". This means that one of your friends cares about you and your health. You have
+                            been invited to receive a FREE trial membership to "Your Gyms Name Here".</p>
+                        <strong>Change text to:</strong>
+                        <%= land.text_area :intro_text, :value=>@landpage.intro_text.present? ? @landpage.intro_text : "Limited to 100 Characters" %>
+                    </div>
+                    <div>
+                        <label><span class="number">5</span>Mission Statement default text:</label>
+                        <strong>Our Mission:</strong>
+                        <p>To be "Your City's Name Here" premier family fitness center, committed to providing members and employees of
+                            all ages a fun, friendly environment. To promote a healthy lifestyle through convenient, clean locations, state-of-
+                            the-art equipment, programs and activities that provide an exceptional and unique value to our community.</p>
+                        <strong>Change text to:</strong>
+                        <%= land.text_area :mission_text, :value=>@landpage.mission_text.present? ? @landpage.mission_text : "Limited to 100 Characters"%>
+                    </div>
+                    <div>
+                        <label><span class="number">6</span>Header color:</label>
+                        <span class="header_color" id="hd_color_sl" style="background:<%=@landpage.header_color%>"></span>
+                        <%=land.hidden_field :header_color, :value=>@landpage.header_color%>
+                    </div>
+                    <div>
+                        <label><span class="number">7</span>Background color:</label>
+                        <span class="background_color" id="bg_color_sl" style="background:<%=@landpage.bg_color%>"></span>
+                        <%=land.hidden_field :bg_color, :value=>@landpage.bg_color%>
+                    </div>
+                    <div>
+                        <label><span class="number">8</span>Number of free days?</label>
+                         <%= land.select :no_of_days, options_for_select(1..14, :selected=> @landpage.no_of_days),{},:class=>"numberOfDays" %>
+                    </div>
+                    <div>
+                        <label><span class="number">9</span>Upload logo</label>
+                        <%= land.fields_for :land_page_logo, LandPageLogo.new do |pic| %>
+                            <label>Image:</label><%= pic.file_field :avatar %>  
+                        <% end %>
+                    </div>
+                </span>
+                <div id="title">
                     <a class="btn green pull-left mr10 land_page_submit" href="javascript:void(0)">Save</a>
-                    <a class="btn red pull-left land_page_preview" href="javascript:void(0)" target="_blank">Preview</a>
+                    
+                    <a class="btn red pull-left land_page_preview" href="javascript:void(0)" style="<%=@landpage.ext_link.present? ? 'display:none' : ''%>">Preview</a>
+                    <a href="http://localhost:3000/preview" id="link" target="_blank" style="display:none">test</a>
+                    <span></span>
                 </div>
                 <div class="clear"></div>
             <%end%>
         </div>
     </div>
 </div>
+
+<div id="dashboardPopup" class="popup_container">
+    <div id="preview_div" style="width:1000px;height:300px;">
+         <img src="/assets/ajax-loader.gif" style="margin:35%" />
+    </div>
+</div>
+

@@ -1215,6 +1215,12 @@ header h2 a {
     width: 100px;
     padding-left: 120px;
 }
+.yahoo_icon {
+    float: left;
+    background: url("/assets/yahoo-icon.png") 0 0 no-repeat;
+    width: 100px;
+    padding-left: 120px;
+}
 .twitter_icon {
     float: left;
     background: url("/assets/twitter-icon.png") 0 0 no-repeat;

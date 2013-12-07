@@ -1,0 +1,19 @@
+<form>
+    <p><label>*First Name</label><%= text_field_tag :name %></p>
+    <p><label>*Email</label><%= text_field_tag :email %></p>
+    <p><label>*Phone</label><%= text_field_tag :phone %></p>
+    <p><label>*Referring friends name</label><%= text_field_tag :user_id, @ref.name, :readonly=>true %></p>
+    <p><label>Build Muscle</label><input type="checkbox" name="b_muscle"></p>
+    <p><label>Lose Weight</label><input type="checkbox" name="l_weight"></p>
+    <p><label>Tone</label><input type="checkbox" name="tone"></p>
+    <p><label>Rehab</label><input type="checkbox" name="rehab"></p>
+    <p><label>&nbsp;</label><span>* = Required Field</span></p>
+    <%= hidden_field_tag :ref_id, @token %>
+    <%= hidden_field_tag :source, @source %>
+    <%= hidden_field_tag :sec, @sec %>
+    <p><label>&nbsp;</label>
+    <span class="ref_submit">
+        <button type="button" >Submit</button>
+    </span>
+    </p>
+</form>
