@@ -10,35 +10,20 @@
   </thead>
   <tbody>
     <% if @users.present? %>
-      <% if @filter_payments.nil? %>
-        <% @users.each do |user| %>
-          <% if user.subscription.present? %>
-            <tr>
-              <td><%= user.subscription.created_at.strftime("%Y/%m/%d") %></td> 
-              <td><%= user.name.humanize %></td>
-              <td><%= user.subscription.charge_id %> </td>
-              <td><%=user.subscription.customer_id %> </td>
-              <td><%= user.subscription.payment %> </td>
-            </tr>
-          <% end %>
-        <% end %>
-      <% else %>
-        <% @filter_payments.each do |user_payment| %>
-          <% if user_payment.subscription.present? %>
-            <tr>
-              <td><%= user_payment.subscription.created_at.strftime("%Y/%m/%d") %></td> 
-              <td><%= user_payment.name.humanize %></td>
-              <td><%= user_payment.subscription.charge_id %> </td>
-              <td><%=user_payment.subscription.customer_id %> </td>
-              <td><%= user_payment.subscription.payment %> </td>
-            </tr>
-          <% end %>
-        <% end %>
-      <% end %>
+    <% @users.each do |sub| %>
+    <tr>
+      <td><%= sub.user.created_at.strftime("%Y/%m/%d") %></td> 
+      <td><%= sub.user.name.humanize %></td>
+      <td><%= sub.charge_id %> </td>
+      <td><%= sub.customer_id %> </td>
+      <td><%= sub.payment %> </td>
+    </tr>
+    <% end %>
     <% else %>
-      <tr>
-        <td colspan="4"> No record found. </td>
-      </tr>
+    <tr>
+      <td colspan="5"> No record found. </td>
+    </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @users, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;" %>

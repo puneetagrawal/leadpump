@@ -2,6 +2,7 @@ $(document).ready(function(){
 	mallid = '';
 	dltid = '';
 	plid = '';
+	$('.pagination a').attr('data-remote', 'true');
 	$(".mallsubmit").click(function(){
 		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
 		if (isValid != '') {
@@ -61,6 +62,24 @@ $(document).ready(function(){
 			
 		});
 	});
+
+	$("#searchUserAc").keyup(function(e){
+		if(e.keyCode == 13){
+			userSearchFilter($(this).val());
+		}
+	});
+
+	$("#userlistadmin").keyup(function(e){
+		if(e.keyCode == 13){
+			paymentSearchAdminFilter($(this).val());
+		}
+	});
+
+	$("#vipleadlistadmin").keyup(function(e){
+		if(e.keyCode == 13){
+			vipleadSearchAdminFilter($(this).val());
+		}
+	});
 	
 	//gaurav
 	$("#to_date").unbind();
@@ -85,7 +104,7 @@ $(document).ready(function(){
 		else if ($('#to_date').val().length == 0)
 		{
 			$.ajax({
-				url: "/statisticsearchfilter"
+				url: "/filter_vip"
 			});
 		}
 
@@ -94,16 +113,17 @@ $(document).ready(function(){
 	$(document).on("click", ".invite_stats", function (){
 		id = $(this).closest('tr').attr('id').split("_")[1];
 		$.fancybox.open({
-			href: '#invitePopup',
+			href: '#viewPopup',
 			type: 'inline',
 			'beforeLoad' : function() {
+				$("#myModal").css({top:"25%"});
 				url = '/invitestatsbyadmin';
 				$.get(url, {inviteid:id}, function (data) {
 				});
 			}
 		});
 	});
-	
+
 	$("#payment_to_date").unbind();
 	$(document).on("change", "#payment_to_date", function (){
 		var to_date = $(this).val();

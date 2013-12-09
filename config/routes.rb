@@ -81,12 +81,10 @@ Leadpump::Application.routes.draw do
   match "/vipleadsearchadminfilter" => "admin#vipleadsearchadminfilter"
   match "/paymentsearchfilter" => "admin#paymentsearchfilter"
   match "/editplanbyadmin" => "admin#editplanbyadmin"
-   match "/invitestatsbyadmin" => "admin#invitestatsbyadmin"
+  match "/invitestatsbyadmin" => "admin#invitestatsbyadmin"
   match "/setunlimited" => "admin#setunlimited"
   match "/updateplan" => "admin#updateplan"
   match "/change_user_status" => "admin#change_user_status", as: "change_user_status"
-  match "/statisticsearchfilter" => "admin#statisticsearchfilter"
-  match "/userpaymentsearchfilter" => "admin#userpaymentsearchfilter"
 
    namespace :admin do
      root :to => "admin#index"

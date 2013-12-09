@@ -6,7 +6,11 @@ def index
 end
 
 def user
- @users = User.paginate(:page => params[:page], :per_page => 10)
+ @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+ respond_to do |format|
+  format.html
+  format.js
+ end
 end
 
 def plan
@@ -18,42 +22,35 @@ def plan
 end
 
 def statistic
-	@leads = Lead.where(:lead_source => "vip")
-  @allLeads = Lead.all
-  @users = UserLeads.where(:lead_id => @allLeads).pluck(:user_id)
-  @stats = Stats.where(:user_id => @users)
-end
-
-def statisticsearchfilter
-  @leads = Lead.where(:lead_source => "vip")
+	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
+  @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   respond_to do |format|
-    format.js { render "filter_vip" }
+    format.html
+    format.js
   end
 end
 
 def payment
- @users = User.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
-end
-
-def userpaymentsearchfilter
-  @users = User.all
+ @users = User.fetchPaidUser.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   respond_to do |format|
-    format.js { render "paymentsearchfilter" }
-  end
+    format.html
+    format.js
+ end
 end
 
 def user_record
-	@users = User.all.paginate(:page => params[:page], :per_page => params[:search_val])
+	@users = User.all.paginate(:page => params[:page], :per_page => params[:search_val], :order => "created_at DESC")
+  respond_to do |format|
+    format.js { render "user_per_plan" }
+ end
 end
 
 def user_per_plan
   if params[:plan_id].present?
-    @plan = Plan.find(params[:plan_id])
-    @ppurs = PlanPerUserRange.where(:plan_id => @plan).pluck(:id)
-    @subs = Subscription.where(:plan_per_user_range_id => @ppurs)
-    @users = @subs.collect { |sub| User.find(sub.user)} 
+    planname = Plan.find(params[:plan_id])
+    @users = User.fetchUserByPlan(planname).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   else
-    @users = User.all
+    @users = User.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   end
   respond_to do |format|
       format.js
@@ -81,27 +78,42 @@ end
 
   def usersearchinadmin
   	like  = "%".concat(params[:userId].concat("%"))
-  	@users = User.select("distinct(name)").where(" name ilike ? ", like)
-    logger.debug(@users.size)
+  	@users = User.where(" name ilike ? ", like).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     if !@users.present?
-      @users = User.fetchUserByPlan(like)
+      plan = Plan.where("name ilike ?", like)
+      @users = User.fetchUserByPlan(plan).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     end
 	respond_to do |format|
-		format.js 
+		format.js { render "user_per_plan" }
 	end
   end
-  
+
+   
   def filter_vip
-	@leads = Lead.where(:lead_source => "vip")
-	@filter_vips = @leads.where(:created_at => params[:vip_from_date]..params[:vip_to_date])
+  f_dt = params[:vip_from_date].present? ? params[:vip_from_date] : ''
+  t_dt = params[:vip_to_date].present? ? params[:vip_to_date] : ''
+  if(f_dt != '' && t_dt != '')
+    f_dt = Date.strptime(f_dt, "%m/%d/%Y")
+    t_dt = Date.strptime(t_dt, "%m/%d/%Y")
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.created_at >= ? and leads.created_at <= ?","vip",f_dt,t_dt)
+  else
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip")
+  end
 	respond_to do |format|    
   		format.js 
 	end
 end
 
 def filter_payment
-  @users = User.scoped
-  @filter_payments = @users.where(:created_at => (params[:payment_from_date].to_date)..(params[:payment_to_date].to_date))
+  f_dt = params[:payment_from_date].present? ? params[:payment_from_date] : ''
+  t_dt = params[:payment_to_date].present? ? params[:payment_to_date] : ''
+  if(f_dt != '' && t_dt != '')
+    f_dt = Date.strptime(f_dt, "%m/%d/%Y")
+    t_dt = Date.strptime(t_dt, "%m/%d/%Y")
+    @users = Subscription.includes(:user).where("subscriptions.payment IS NOT NULL and subscriptions.created_at >= ? and subscriptions.created_at <= ?",f_dt,t_dt)
+  else
+    @users = User.fetchPaidUser
+  end
   respond_to do |format|    
     format.js 
   end
@@ -109,7 +121,6 @@ end
 
 def search_vip
 	leads = Lead.where(:lead_source => "vip")
-	leads = leads.present? ? leads.pluck(:id) : []
 	if params[:term].blank?
 		leads = Lead.select("distinct(name)").where(:id => leads) 
 		list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
@@ -117,9 +128,10 @@ def search_vip
    like  = "%".concat(params[:term].concat("%"))
    leads = Lead.select("distinct(name)").where("name like ?", like).where(:id => leads)
    list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
-    if !leads.present?
-     	leads = Lead.where(:lead_source => "vip")
-     	userleads = UserLeads.where(:lead_id => leads)
+   logger.debug("************************")
+   if !leads.present?
+      logger.debug(">>>>>>>>>>>>>>>>>>")
+      userleads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip")
       associates = User.select("distinct(name)").where("name like ? ", like).where(:id=> userleads.map(&:user_id))
       list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
     end
@@ -128,11 +140,10 @@ def search_vip
 end
 
   def search_payment
-  @users = User.all
-  #@users = @users.present? ? @users.pluck(:id) : []
+  @users = User.fetchPaidUser
   if params[:term].blank?
-    @users = User.select("distinct(name)").where(:id => @users) 
-    list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
+    @users = User.select("distinct(name)").where(:id => @users)
+    list = @users.map {|u| Hash[id: u.user.id, label: u.user.name, name: u.user.name]}
   else
      like  = "%".concat(params[:term].concat("%"))
      @users = User.select("distinct(name)").where("name like ?", like).where(:id => @users)
@@ -142,12 +153,10 @@ end
   end
 
   def vipleadsearchadminfilter
-    leads = Lead.where(:lead_source => "vip").pluck(:id)
-    @leads = Lead.where("name = ?", params[:viplead]).where(:id=> leads)
+    like  = "%".concat(params[:viplead].concat("%"))
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.name ilike ?", "vip", like)
     if @leads.blank?
-      @users = User.where("name like ?", params[:viplead])
-      @userleads = UserLeads.where(:user_id => @users)
-      @leads = Lead.where(:id => @userleads ).where(:lead_source => "vip")
+      @leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip")
     end
     respond_to do |format|
       format.js { render "filter_vip" }
@@ -155,8 +164,8 @@ end
   end
   
   def paymentsearchfilter
-    @users = User.all
-    @users = User.where("name = ?", params[:user]).where(:id => @users)
+    like  = "%".concat(params[:user].concat("%"))
+    @users = Subscription.includes(:user).where("users.name ilike ? and subscriptions.payment IS NOT NULL",like)
     respond_to do |format|
       format.js 
     end
@@ -210,23 +219,8 @@ end
     end
   end
 
-  def change_user_status
-    user = User.find(params[:id])
-    if user.active == true
-      user.active = false
-    else
-      user.active = true
-    end
-    user.save!
-    @users = User.all.paginate(:page => params[:page], :per_page => 10)
-    respond_to do |format|
-      format.js
-    end      
-  end
-
   def invitestatsbyadmin
-    @users = UserLeads.where(:lead_id => params[:inviteid]).pluck(:user_id)
-    @stat = Stats.where(:user_id => @users).first
+    @stat = Stats.find_by_user_id(params[:inviteid])
     respond_to do |format|
       format.js
     end

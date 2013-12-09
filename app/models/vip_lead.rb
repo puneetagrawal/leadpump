@@ -14,7 +14,7 @@ class VipLead < ActiveRecord::Base
   	end
   	case user.user_role.role_type.to_sym  
     when :admin
-      vipleads = VipLead.all   
+      vipleads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip")  
     when :normalUser
     	vipleads = []
 	  end   

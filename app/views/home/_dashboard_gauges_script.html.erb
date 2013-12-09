@@ -32,19 +32,19 @@ function initgauge(){
     $('#newcashgauge').jqxGauge('value', n);
 
     $('#leadgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' kph');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     $('#gaugeContainer').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' kph');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');    
     });
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' kph');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
     });
     $('#memsoldgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' kph');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
     });
     $('#newcashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' kph');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
 }
 </script>

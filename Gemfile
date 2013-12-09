@@ -51,6 +51,6 @@ gem "omnicontacts"
 # gem 'capistrano'
 
 # To use debugger
- gem 'debugger'
- gem 'chronic', :require => 'chronic'
- gem 'sendgrid'
+gem 'debugger'
+gem 'chronic', :require => 'chronic'
+gem 'sendgrid'

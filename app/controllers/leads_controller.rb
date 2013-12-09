@@ -188,18 +188,17 @@ def socialInviter
 end
 
 def saveappointment
-  time = DateTime.strptime(params[:time], '%Y-%m-%d %I:%M:%p')
+  time = DateTime.strptime(params[:time], '%m/%d/%Y %I:%M:%p')
   logger.debug(time)
   lead = params[:leadId] ? Lead.find(params[:leadId]) : nil
   msg = "Please try again."
   if lead.present?
     appoint = Appointment.find_by_lead_id(lead.id)
     if appoint.present?
-      appoint.update_attributes(:task=>params[:task],:app_date_time=>time,:app_date=>params[:date])
+      appoint.update_attributes(:task=>params[:task],:app_date_time=>time,:app_date=>params[:date],:user_id=>current_user.id)
     else
       apoint = Appointment.create(:task=>params[:task],:app_date=>params[:date],:app_date_time=>time,:lead_id=>lead.id, :user_id=>current_user.id)  
     end
-    
     msg = "Appointment schedule successfully"
   end
   data = {"msg" => msg}
