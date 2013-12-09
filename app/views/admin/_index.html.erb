@@ -1,26 +1,37 @@
 <ul class="nav nav-tabs" id="myTab">
-    <li class="active">
+    <li class="<%=params[:stats] == 'invite' ? '' : 'active'%>">
         <a href="javascript:void(0)" data-target="#vip_stats" data-toggle="tab" data-element="invite_stats">VIP Statistics</a>
     </li>
-    <li>
+    <li class="<%=params[:stats] == 'invite' ? 'active' : ''%>">
         <a href="javascript:void(0)" data-target="#invite_stats" data-toggle="tab" data-element="vip_stats">Invite Statistics</a>
     </li>
 </ul>
 <div class="tab-content">
-  <div class="tab-pane active" id="vip_stats">
-    <div class="filter">
+    <div class="tab-pane <%=params[:stats] == 'invite' ? '' : 'active'%>" id="vip_stats">
+      <div class="filter">
         <input type="text" placeholder="Search by Account or Associate Name" id="vipleadlistadmin" class="span4" autocomplete="off">
         <input type="text" id = "from_date" class="filter-date span4" placeholder= "From Date" >
         <input type="text" id = "to_date" class="filter-date span4" placeholder= "To Date">
-    </div>
-    <span id="filter_vip">
+      </div>
+      <span id="filter_vip">
         <%= render "vipstats" %>
-    </span>
-  </div>
-  <div class="tab-pane" id="invite_stats">
-    <%= render "allinvites" %>
-  </div>
+      </span>
+      <%= will_paginate @leads, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;",:params => { :stats => "vip"} %>
+    </div>
+    <div class="tab-pane <%=params[:stats] == 'invite' ? 'active' : ''%>" id="invite_stats">
+      <div class="filter">
+        <input type="text" placeholder="Search by Account or Associate Name" id="vipleadlistadmin" class="span4" autocomplete="off">
+        <input type="text" id = "from_date" class="filter-date span4" placeholder= "From Date" >
+        <input type="text" id = "to_date" class="filter-date span4" placeholder= "To Date">
+      </div>
+      <span id="filter_vip">
+        <%= render "allinvites" %>
+      </span>
+      <%= will_paginate @stats, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;", :params => { :stats => "invite"} %>
+    </div>
 </div>
+
+
 
 
 

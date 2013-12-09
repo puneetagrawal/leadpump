@@ -18,10 +18,12 @@ def plan
 end
 
 def statistic
-	@leads = Lead.where(:lead_source => "vip")
-  @allLeads = Lead.all
-  @users = UserLeads.where(:lead_id => @allLeads).pluck(:user_id)
-  @stats = Stats.where(:user_id => @users)
+	@leads = Lead.where(:lead_source => "vip").paginate(:page => params[:page], :per_page => 1, :order => "created_at DESC")
+  @stats = Stats.all.paginate(:page => params[:page], :per_page => 1, :order => "created_at DESC")
+  respond_to do |format|
+    format.html
+    format.js
+  end
 end
 
 def statisticsearchfilter

@@ -2,6 +2,7 @@ $(document).ready(function(){
 	mallid = '';
 	dltid = '';
 	plid = '';
+	$('.pagination a').attr('data-remote', 'true');
 	$(".mallsubmit").click(function(){
 		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
 		if (isValid != '') {
@@ -103,7 +104,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
+
 	$("#payment_to_date").unbind();
 	$(document).on("change", "#payment_to_date", function (){
 		var to_date = $(this).val();
