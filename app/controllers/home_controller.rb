@@ -125,6 +125,8 @@ end
   def contacts_callback
     logger.debug request.inspect
     logger.debug "llllllllllllllllllllll"
+    logger.debug params[:importer]
+    logger.debug "bbbbbbbbbbbbbbbbbbbbbb"
     logger.debug request.env['omnicontacts.contacts'].inspect
     unless request.env['omnicontacts.contacts'].blank?
       @contacts = request.env['omnicontacts.contacts']
