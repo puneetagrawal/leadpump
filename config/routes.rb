@@ -152,8 +152,8 @@ Leadpump::Application.routes.draw do
   
   match "/sendmail" => "home#sendmail"
   match "/send_invitation_social" => "home#send_invitation_social"
-  match "/callback/:provider/contact_callback" => "home#contacts_callback"
-  match "/callback" => "home#contacts_callback"
+  match "/contacts/:provider/callback" => "home#contacts_callback"
+  # match "/callback" => "home#contacts_callback"
   match "/contacts/failure" => "home#failure"
 
 
