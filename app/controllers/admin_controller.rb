@@ -22,7 +22,7 @@ def plan
 end
 
 def statistic
-	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
   @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   respond_to do |format|
     format.html
