@@ -6,7 +6,11 @@ def index
 end
 
 def user
- @users = User.paginate(:page => params[:page], :per_page => 10)
+ @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+ respond_to do |format|
+  format.html
+  format.js
+ end
 end
 
 def plan
@@ -18,8 +22,8 @@ def plan
 end
 
 def statistic
-	@leads = Lead.where(:lead_source => "vip").paginate(:page => params[:page], :per_page => 1, :order => "created_at DESC")
-  @stats = Stats.all.paginate(:page => params[:page], :per_page => 1, :order => "created_at DESC")
+	@leads = Lead.where(:lead_source => "vip").paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   respond_to do |format|
     format.html
     format.js
@@ -34,19 +38,26 @@ def statisticsearchfilter
 end
 
 def payment
- @users = User.fetchPaidUser.paginate(:page => params[:page], :per_page => params[:search_val])
+ @users = User.fetchPaidUser.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  respond_to do |format|
+    format.html
+    format.js
+ end
 end
 
 def user_record
-	@users = User.all.paginate(:page => params[:page], :per_page => params[:search_val])
+	@users = User.all.paginate(:page => params[:page], :per_page => params[:search_val], :order => "created_at DESC")
+  respond_to do |format|
+    format.js { render "user_per_plan" }
+ end
 end
 
 def user_per_plan
   if params[:plan_id].present?
     planname = Plan.find(params[:plan_id])
-    @users = User.fetchUserByPlan(planname)
+    @users = User.fetchUserByPlan(planname).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   else
-    @users = User.all
+    @users = User.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   end
   respond_to do |format|
       format.js
@@ -74,13 +85,13 @@ end
 
   def usersearchinadmin
   	like  = "%".concat(params[:userId].concat("%"))
-  	@users = User.where(" name ilike ? ", like)
+  	@users = User.where(" name ilike ? ", like).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     if !@users.present?
       plan = Plan.where("name ilike ?", like)
-      @users = User.fetchUserByPlan(plan)
+      @users = User.fetchUserByPlan(plan).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     end
 	respond_to do |format|
-		format.js 
+		format.js { render "user_per_plan" }
 	end
   end
   
@@ -207,20 +218,6 @@ end
       redirect_to home_index_path
       return false
     end
-  end
-
-  def change_user_status
-    user = User.find(params[:id])
-    if user.active == true
-      user.active = false
-    else
-      user.active = true
-    end
-    user.save!
-    @users = User.all.paginate(:page => params[:page], :per_page => 10)
-    respond_to do |format|
-      format.js
-    end      
   end
 
   def invitestatsbyadmin

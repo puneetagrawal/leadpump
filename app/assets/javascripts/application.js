@@ -74,7 +74,6 @@ $(document).ready(function(){
 
    $(document).on('change', "#plan_id", function () {
        var plan_id = $(this).val();
-       $('.pagination').hide(); 
 		   $.ajax({
 		    url: "/admin/user_per_plan",
 		    data: { 

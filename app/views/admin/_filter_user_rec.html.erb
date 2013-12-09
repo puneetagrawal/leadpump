@@ -4,3 +4,4 @@
     </thead>
     <%=render "userContentRowInAdmin"%>
 </table>
+<%= will_paginate @users, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;" %>
