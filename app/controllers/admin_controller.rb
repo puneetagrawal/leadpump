@@ -110,9 +110,9 @@ def filter_payment
   if(f_dt != '' && t_dt != '')
     f_dt = Date.strptime(f_dt, "%m/%d/%Y")
     t_dt = Date.strptime(t_dt, "%m/%d/%Y")
-    @users = Subscription.includes(:user).where("subscriptions.payment IS NOT NULL and subscriptions.created_at >= ? and subscriptions.created_at <= ?",f_dt,t_dt)
+    @users = Subscription.includes(:user).where("subscriptions.payment IS NOT NULL and subscriptions.created_at >= ? and subscriptions.created_at <= ?",f_dt,t_dt).paginate(:page => params[:page], :per_page => 10, :order => "users.created_at DESC")
   else
-    @users = User.fetchPaidUser
+    @users = User.fetchPaidUser.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   end
   respond_to do |format|    
     format.js 
@@ -165,9 +165,9 @@ end
   
   def paymentsearchfilter
     like  = "%".concat(params[:user].concat("%"))
-    @users = Subscription.includes(:user).where("users.name ilike ? and subscriptions.payment IS NOT NULL",like)
+    @users = Subscription.includes(:user).where("users.name ilike ? and subscriptions.payment IS NOT NULL",like).paginate(:page => params[:page], :per_page => 10, :order => "users.created_at DESC")
     respond_to do |format|
-      format.js 
+      format.js { render "filter_payment" }
     end
   end
 
