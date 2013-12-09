@@ -61,6 +61,18 @@ $(document).ready(function(){
 			
 		});
 	});
+
+	$("#searchUserAc").keyup(function(e){
+		if(e.keyCode == 13){
+			userSearchFilter($(this).val());
+		}
+	});
+
+	$("#userlistadmin").keyup(function(e){
+		if(e.keyCode == 13){
+			paymentSearchAdminFilter($(this).val());
+		}
+	});
 	
 	//gaurav
 	$("#to_date").unbind();

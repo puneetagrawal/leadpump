@@ -65,7 +65,7 @@ def fillpopupcontent
 end
 
 def changestatus
-  if(params[:urls].include? 'company')
+  if((params[:urls].include? 'company') || (params[:urls].include? 'admin')) 
     @user = User.find(params[:leadId])
   else
     @lead = Lead.find(params[:leadId])
@@ -76,7 +76,7 @@ def changestatus
 end
 
 def saveleadstatus
-  if(params[:urls].include?'company')
+  if((params[:urls].include? 'company') || (params[:urls].include? 'admin'))
     object = User.find(params[:leadId])  
     object.active = params[:status] == "false" ? false : true
     status = Lead.checkLeadStatus(object.active)
@@ -92,7 +92,7 @@ def saveleadstatus
 end
 
 def deleteRowByajax
-  if params[:uri].include?'company'
+  if((params[:uri].include? 'company') || (params[:uri].include? 'admin'))
    object = User.find(params[:leadId])
    company = Company.where(:company_user_id=>object.id)
    Lead.assigndeletedleadtocompany(object)

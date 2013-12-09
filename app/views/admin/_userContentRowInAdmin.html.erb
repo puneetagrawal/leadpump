@@ -1,16 +1,17 @@
 <% if @users.present? %>
 	<% @users.each do |user| %>
 		<tbody>
-			<tr data-id="<%= user.id %>"> <td><%= user.name.humanize %></td> 
-				<td><%=user.subscription.present? ? user.subscription.plan_per_user_range.plan.name : '-'%>
+			<tr id="user_<%= user.id %>"> 
+				<td><%= user.name.humanize %></td> 
+				<td><%=user.role.role_type%></td>
+				<td><%=user.fetchPlanName%>
 				</td>
-				<% if user.active == true %>
-					<% status = "Active" %>
-				<% else %>
-					<% status = "Inactive" %>
-				<% end %>
-				<td><%= link_to status, change_user_status_path(:id => user.id), :remote => true %></td>
-				<td> <%= link_to "Delete", @user, :confirm => "Are you sure you want to delete?", :method => :delete, :class => "user_delete" %> </td>
+				<td class="leadActive leadAction" id="status_<%=user.id%>">
+					<span class="span leadAction"><%=user.active ? 'Active' : 'Inactive'%></span>
+				</td>
+				<td>
+					<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
+				</td>
 			</tr>
 		</tbody>
 	<% end %>

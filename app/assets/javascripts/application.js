@@ -367,7 +367,6 @@ function removeFlash(){
 }
 
 function userSearchFilter(userId){
-
 	url = '/usersearchinadmin';
 	$.get(url, {userId:userId}, function (data) {	
 	});

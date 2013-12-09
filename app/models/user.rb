@@ -163,7 +163,15 @@ class User < ActiveRecord::Base
   #   end
   #   return id
   # end
-  
+
+  def self.fetchPaidUser
+    subscription = Subscription.where("payment IS NOT NULL")
+  end
+
+  def fetchPlanName  
+    company = self.fetchCompany
+    plan = company.present? && company.subscription.present? ? company.subscription.plan_per_user_range.plan.name : ''
+  end
 
   def fetchCompany
     company = self
@@ -237,10 +245,15 @@ def self.numeric?(object)
 end
 
 def self.fetchUserByPlan(plan)
-  plan = Plan.where("name ilike ? ",plan).pluck(:id)
   planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
   subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange).pluck(:user_id)
-  users = subscription.present? ? subscription.collect{|user| User.find(user)} : []
+  companyUsers = Company.where(:company_admin_id=>subscription).pluck(:company_user_id)
+  logger.debug(subscription)
+  logger.debug(companyUsers)
+  subscription.push(companyUsers.flatten!)
+  logger.debug(subscription)
+  users = subscription.present? ? subscription.collect{|user| find_user(user) }.compact : []
+  logger.debug(users)
   return users
 end
 
@@ -294,7 +307,13 @@ def fetchtwitterMessage
   return message.html_safe
 end
 
-
+def self.find_user(id)
+  logger.debug(id)
+    begin
+      return User.find(id)
+    rescue
+    end
+  end
   protected
 
   def generate_token
@@ -302,6 +321,9 @@ end
     self.token = token[0, 10]
     self.save
   end
+
+
+  
 
 
 end
