@@ -2,9 +2,9 @@
     <div class="row-fluid">
         <div class="span4 pull-left optFilter">
             <div class="form">
-                <!-- <span>Show</span>
+                <span>Show</span>
                 <select  id="select_user_entry"><option>10</option><option>20</option><option>50</option></select>
-                <span>entries</span> -->
+                <span>entries</span>
                 <p style="margin:10px 40px"><%= collection_select(:plan, :id, Plan.all, :id, :name, :prompt=>"Filter By Plan") %></p>
             </div> 
         </div>
@@ -20,10 +20,8 @@
                     <%= render 'filter_user_rec' %>
                 </div> 
             </div>
-            <%= will_paginate @users, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;" %>
         </div>
     </div>
 </div>
-
 <%=render "common_templates/popupContainer"%>
 

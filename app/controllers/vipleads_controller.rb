@@ -8,11 +8,14 @@
   
   def index
     @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
-    @vipleads = @vipleads.collect{|u| u if u.lead.lead_source=="vip"}
   end
 
   def filter_rec
-    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
+    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => 2)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
