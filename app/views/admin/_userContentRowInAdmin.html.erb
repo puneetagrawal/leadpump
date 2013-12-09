@@ -1,7 +1,7 @@
 <% if @users.present? %>
 	<% @users.each do |user| %>
 		<tbody>
-			<%if user.present?%>
+			<%if user.present? && user.role.present?%>
 				<tr id="viewLead_<%= user.id %>"> 
 					<td><%= user.name.humanize %></td> 
 					<td><%=user.role.role_type%></td>
