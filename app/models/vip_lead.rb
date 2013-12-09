@@ -27,6 +27,45 @@ class VipLead < ActiveRecord::Base
     return landpage
   end
 
+  def self.saveLead(viplead, user)
+    viplead.save
+    user_lead = UserLeads.new(:user_id => user.id, :lead_id => viplead.id)
+    user.saveLeadCount
+  end
+
+  def self.fetchgmaillink(token,sec_token, user)
+    company = user.fetchCompany
+    landing = LandingPage.find_by_user_id(user.id)
+    if landing.present? && landing.land_type == "External landing page"
+      url = parselink(landing.ext_link)
+    else
+      url = "http://"+SERVER_URL+"/acceptInvitation?token=#{token}&sec=#{sec_token}&source=gmail" 
+    end
+    return url
+  end
+
+  def self.fetchfblink(token, user)
+    company = user.fetchCompany
+    landing = LandingPage.find_by_user_id(user.id)
+    if landing.present? && landing.land_type == "External landing page"
+      url = parselink(landing.ext_link)
+    else
+      url = "http://"+SERVER_URL+"/acceptInvitation?token=#{token}&source=fb" 
+    end
+    return url
+  end
+
+  def self.parselink(link)
+    begin
+        uri = URI.parse(link)
+        resp = uri.kind_of?(URI::HTTP)
+      rescue URI::InvalidURIError
+        resp = false
+        link = "http://#{link}"
+      end
+      return link
+  end
+
   protected
 
   def saveStatus

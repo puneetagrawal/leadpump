@@ -299,7 +299,7 @@ end
 
   def generate_token
     token = SecureRandom.urlsafe_base64(self.id, false)
-    self.token = token
+    self.token = token[0, 10]
     self.save
   end
 

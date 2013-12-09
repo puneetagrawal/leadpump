@@ -3,5 +3,5 @@ class UserLeads < ActiveRecord::Base
   belongs_to :user
   belongs_to :lead
 
-  default_scope :order => "created_at DESC"
+  
 end

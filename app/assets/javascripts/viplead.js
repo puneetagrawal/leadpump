@@ -4,23 +4,7 @@ $(document).ready(function(){
 
 function initSocialInviter(){
 	$(".proceed_step1").click(function(){
-		var exit = false;
-		$(".viprow").each(function() {
-		    exit = false;
-		    $(this).find('p input').each(function(){
-		        if($(this).val() == '') { 
-		           exit = true;
-		           alert(" Please fill all fields, then proceed further..!!");
-		           return false;
-		        }
-		    });
-		    if (exit){
-		        return false;
-		    }
-		  });
-		if(!exit){
-			executeFirstStep(this);	
-		}
+		movetostep1(this);
 	});
 	$(document).on('click', '.social_options ul li', function (){
 		name = $(this).attr('name');
@@ -34,8 +18,8 @@ function initSocialInviter(){
 			'beforeLoad' : function() {
 				url = '/showvipleads';
 				$.get(url, {id:id}, function (data) {
-			});
-		}
+				});
+			}
 		});	
 	});
 	$(document).on('click', '.sendFbmail', function (){
@@ -85,20 +69,43 @@ function initSocialInviter(){
 	});
 }
 
-function executeFirstStep(obj){
+function movetostep1(obj){
+	var exit = false;
+	skip = $(obj).attr('id');
+	if(skip != 'skip'){
+		$(".viprow").each(function() {
+			exit = false;
+			$(this).find('p input').each(function(){
+				if($(this).val() == '') { 
+					exit = true;
+					alert(" Please fill all fields, then proceed further..!!");
+					return false;
+				}
+			});
+			if (exit){
+				return false;
+			}
+		});
+	}
+	if(!exit){
+		executeFirstStep(obj, skip);	
+	}
+}
+
+function executeFirstStep(obj, skip){
 	btntxt = $(obj).text();
 	$(obj).html('<img src="/assets/ajax-loader.gif" style="margin-left: 40px;">');
-	 url = '/vipleads';
-	 	$.post(url, {inputs:formfields()}, function (data) {
-	 		if(data.error){
-	 			alert(data.error);
-	 			$(obj).html('<a id="proceed_step_1" class="btn yellow" href="javascript:void(0)">Proceed to Next Step</a>');
-	 		}
-			else{
-	          	$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
-				$(".stepNo2").removeClass('disabled');
-			}
-	 });
+	url = '/vipleads';
+	$.post(url, {inputs:formfields(), skip:skip}, function (data) {
+		if(data.error){
+			alert(data.error);
+			$(obj).html('<a id="proceed_step_1" class="btn yellow" href="javascript:void(0)">Proceed to Next Step</a>');
+		}
+		else{
+			$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
+			$(".stepNo2").removeClass('disabled');
+		}
+	});
 }
 
 function executeSecondStep(name){
