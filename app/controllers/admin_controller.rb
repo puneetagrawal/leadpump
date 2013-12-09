@@ -22,18 +22,11 @@ def plan
 end
 
 def statistic
-	@leads = Lead.where(:lead_source => "vip").paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   respond_to do |format|
     format.html
     format.js
-  end
-end
-
-def statisticsearchfilter
-  @leads = Lead.where(:lead_source => "vip")
-  respond_to do |format|
-    format.js { render "filter_vip" }
   end
 end
 
@@ -96,8 +89,15 @@ end
   end
   
   def filter_vip
-	@leads = Lead.where(:lead_source => "vip")
-	@filter_vips = @leads.where(:created_at => params[:vip_from_date]..params[:vip_to_date])
+  f_dt = params[:vip_from_date].present? ? params[:vip_from_date] : ''
+  t_dt = params[:vip_to_date].present? ? params[:vip_to_date] : ''
+  if(f_dt != '' && t_dt != '')
+    f_dt = Date.strptime(f_dt, "%m/%d/%Y")
+    t_dt = Date.strptime(t_dt, "%m/%d/%Y")
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.created_at >= ? and leads.created_at <= ?","vip",f_dt,t_dt)
+  else
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip")
+  end
 	respond_to do |format|    
   		format.js 
 	end
@@ -120,7 +120,6 @@ end
 
 def search_vip
 	leads = Lead.where(:lead_source => "vip")
-	leads = leads.present? ? leads.pluck(:id) : []
 	if params[:term].blank?
 		leads = Lead.select("distinct(name)").where(:id => leads) 
 		list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
@@ -128,9 +127,10 @@ def search_vip
    like  = "%".concat(params[:term].concat("%"))
    leads = Lead.select("distinct(name)").where("name like ?", like).where(:id => leads)
    list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
-    if !leads.present?
-     	leads = Lead.where(:lead_source => "vip")
-     	userleads = UserLeads.where(:lead_id => leads)
+   logger.debug("************************")
+   if !leads.present?
+      logger.debug(">>>>>>>>>>>>>>>>>>")
+      userleads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip")
       associates = User.select("distinct(name)").where("name like ? ", like).where(:id=> userleads.map(&:user_id))
       list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
     end
@@ -152,12 +152,10 @@ end
   end
 
   def vipleadsearchadminfilter
-    leads = Lead.where(:lead_source => "vip").pluck(:id)
-    @leads = Lead.where("name = ?", params[:viplead]).where(:id=> leads)
+    like  = "%".concat(params[:viplead].concat("%"))
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.name ilike ?", "vip", like)
     if @leads.blank?
-      @users = User.where("name like ?", params[:viplead])
-      @userleads = UserLeads.where(:user_id => @users)
-      @leads = Lead.where(:id => @userleads ).where(:lead_source => "vip")
+      @leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip")
     end
     respond_to do |format|
       format.js { render "filter_vip" }
@@ -221,8 +219,7 @@ end
   end
 
   def invitestatsbyadmin
-    @users = UserLeads.where(:lead_id => params[:inviteid]).pluck(:user_id)
-    @stat = Stats.where(:user_id => @users).first
+    @stat = Stats.find_by_user_id(params[:inviteid])
     respond_to do |format|
       format.js
     end
