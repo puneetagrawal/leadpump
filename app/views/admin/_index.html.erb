@@ -19,11 +19,11 @@
       <%= will_paginate @leads, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;",:params => { :stats => "vip"} %>
     </div>
     <div class="tab-pane <%=params[:stats] == 'invite' ? 'active' : ''%>" id="invite_stats">
-      <div class="filter">
+      <!-- <div class="filter">
         <input type="text" placeholder="Search by Account or Associate Name" id="vipleadlistadmin" class="span4" autocomplete="off">
         <input type="text" id = "from_date" class="filter-date span4" placeholder= "From Date" >
         <input type="text" id = "to_date" class="filter-date span4" placeholder= "To Date">
-      </div>
+      </div> -->
       <span id="filter_vip">
         <%= render "allinvites" %>
       </span>
