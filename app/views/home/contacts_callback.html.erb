@@ -1,6 +1,6 @@
 <div id="show_contact_dialog" style="text-align:center;">
   <%= form_tag("/send_invitation_social") do %>
-    <% if !@contacts.nil?%>
+    <%# if !@contacts.nil?%>
       <% @contacts.each do |contact|%>
       <ul>
               <% unless contact[:email].blank? %>
@@ -8,7 +8,7 @@
                 <li><%= contact[:email]%></li>
               <% end %>
       </ul>
-      <%end%>
+      <%#end%>
   <%end%>
      <%= submit_tag("invite friend") %>
   <% end %>
