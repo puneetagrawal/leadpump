@@ -1,14 +1,17 @@
 <div id="show_contact_dialog" style="text-align:center;">
   <%= form_tag("/send_invitation_social") do %>
-    <% if !@contacts.nil?%>
+    <%# if !@contacts.nil?%>
       <% @contacts.each do |contact|%>
       <ul>
               <% unless contact[:email].blank? %>
                 <li><%= check_box_tag "check_invite_email[]",contact[:email],false %></li>
                 <li><%= contact[:email]%></li>
               <% end %>
+              <% if params[:provider] == "hotmail" %>
+              <li><%= contact[:name]%></li>
+              <% end %>
       </ul>
-      <%end%>
+      <%#end%>
   <%end%>
      <%= submit_tag("invite friend") %>
   <% end %>

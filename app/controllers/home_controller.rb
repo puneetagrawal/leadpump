@@ -123,9 +123,10 @@ end
 end
 
   def contacts_callback
-    logger.debug(request)
-    logger.debug(request.env['omnicontacts'])
-   unless request.env['omnicontacts.contacts'].blank?
+    logger.debug request.inspect
+    logger.debug "llllllllllllllllllllll"
+    logger.debug request.env['omnicontacts.contacts'].inspect
+    unless request.env['omnicontacts.contacts'].blank?
       @contacts = request.env['omnicontacts.contacts']
     end
   end
