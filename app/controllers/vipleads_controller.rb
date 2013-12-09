@@ -5,6 +5,7 @@
 
  class VipleadsController < ApplicationController
   layout 'reflanding', only: [:acceptInvitation]
+  
   def index
     @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
     @vipleads = @vipleads.collect{|u| u if u.lead.lead_source=="vip"}
@@ -30,21 +31,13 @@
     viplead3 = Lead.new(params["inputs"]["vip_3"])
     error = ''
     if viplead1.valid? && viplead2.valid? && viplead3.valid?
-        viplead1.save
-        user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => viplead1.id)
-        current_user.saveLeadCount
-        
-        viplead2.save
-        user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => viplead2.id)
-        current_user.saveLeadCount
-
-        viplead3.save
-        user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => viplead3.id)
-        current_user.saveLeadCount
+      VipLead.saveLead(viplead1,current_user)
+      VipLead.saveLead(viplead2,current_user)
+      VipLead.saveLead(viplead3,current_user)
     else
       error = "Please correct your email or phone"
     end
-    if error != ''
+    if error != '' && params[:skip] != 'skip'
       message = {"error"=> error}
       render json: message
     else
@@ -115,7 +108,8 @@
       emails.each do|email|
         sec_token = GmailFriend.where(:email=>email,:user_id=>current_user.id).last
         sec_token = sec_token.present? ? sec_token.secret_token : ''
-        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token, subject).deliver
+        url = VipLead.fetchgmaillink(token,sec_token, current_user)
+        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token, subject, url).deliver
         sents_count += 1
         Stats.saveEsents(current_user.id, sents_count, email)
       end
@@ -131,7 +125,8 @@
       emailMessage = current_user.fetchFacebookMessage
       subject = current_user.fetchfbsubject
       emails.each do|email|
-        Emailer.fb_referral_mail(email, token, emailMessage, subject).deliver
+        url = VipLead.fetchfblink(token, current_user)
+        Emailer.fb_referral_mail(email, token, emailMessage, subject, url).deliver
       end
     end
     message = {"msg"=> "successfully sent invitations."}

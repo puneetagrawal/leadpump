@@ -34,14 +34,7 @@ def statisticsearchfilter
 end
 
 def payment
- @users = User.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
-end
-
-def userpaymentsearchfilter
-  @users = User.all
-  respond_to do |format|
-    format.js { render "paymentsearchfilter" }
-  end
+ @users = User.fetchPaidUser.paginate(:page => params[:page], :per_page => params[:search_val])
 end
 
 def user_record
@@ -50,10 +43,8 @@ end
 
 def user_per_plan
   if params[:plan_id].present?
-    @plan = Plan.find(params[:plan_id])
-    @ppurs = PlanPerUserRange.where(:plan_id => @plan).pluck(:id)
-    @subs = Subscription.where(:plan_per_user_range_id => @ppurs)
-    @users = @subs.collect { |sub| User.find(sub.user)} 
+    planname = Plan.find(params[:plan_id])
+    @users = User.fetchUserByPlan(planname)
   else
     @users = User.all
   end
@@ -83,10 +74,10 @@ end
 
   def usersearchinadmin
   	like  = "%".concat(params[:userId].concat("%"))
-  	@users = User.select("distinct(name)").where(" name ilike ? ", like)
-    logger.debug(@users.size)
+  	@users = User.where(" name ilike ? ", like)
     if !@users.present?
-      @users = User.fetchUserByPlan(like)
+      plan = Plan.where("name ilike ?", like)
+      @users = User.fetchUserByPlan(plan)
     end
 	respond_to do |format|
 		format.js 
@@ -102,8 +93,15 @@ end
 end
 
 def filter_payment
-  @users = User.scoped
-  @filter_payments = @users.where(:created_at => (params[:payment_from_date].to_date)..(params[:payment_to_date].to_date))
+  f_dt = params[:payment_from_date].present? ? params[:payment_from_date] : ''
+  t_dt = params[:payment_to_date].present? ? params[:payment_to_date] : ''
+  if(f_dt != '' && t_dt != '')
+    f_dt = Date.strptime(f_dt, "%m/%d/%Y")
+    t_dt = Date.strptime(t_dt, "%m/%d/%Y")
+    @users = Subscription.includes(:user).where("subscriptions.payment IS NOT NULL and subscriptions.created_at >= ? and subscriptions.created_at <= ?",f_dt,t_dt)
+  else
+    @users = User.fetchPaidUser
+  end
   respond_to do |format|    
     format.js 
   end
@@ -130,11 +128,10 @@ def search_vip
 end
 
   def search_payment
-  @users = User.all
-  #@users = @users.present? ? @users.pluck(:id) : []
+  @users = User.fetchPaidUser
   if params[:term].blank?
-    @users = User.select("distinct(name)").where(:id => @users) 
-    list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
+    @users = User.select("distinct(name)").where(:id => @users)
+    list = @users.map {|u| Hash[id: u.user.id, label: u.user.name, name: u.user.name]}
   else
      like  = "%".concat(params[:term].concat("%"))
      @users = User.select("distinct(name)").where("name like ?", like).where(:id => @users)
@@ -157,8 +154,8 @@ end
   end
   
   def paymentsearchfilter
-    @users = User.all
-    @users = User.where("name = ?", params[:user]).where(:id => @users)
+    like  = "%".concat(params[:user].concat("%"))
+    @users = Subscription.includes(:user).where("users.name ilike ? and subscriptions.payment IS NOT NULL",like)
     respond_to do |format|
       format.js 
     end
