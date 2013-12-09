@@ -76,7 +76,8 @@ end
 		format.js 
 	end
   end
-  
+
+   
   def filter_vip
   f_dt = params[:vip_from_date].present? ? params[:vip_from_date] : ''
   t_dt = params[:vip_to_date].present? ? params[:vip_to_date] : ''
