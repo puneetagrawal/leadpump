@@ -1,18 +1,20 @@
 <% if @users.present? %>
 	<% @users.each do |user| %>
 		<tbody>
-			<tr id="viewLead_<%= user.id %>"> 
-				<td><%= user.name.humanize %></td> 
-				<td><%=user.role.role_type%></td>
-				<td><%=user.fetchPlanName%>
-				</td>
-				<td class="leadActive leadAction" id="status_<%=user.id%>">
-					<span class="span leadAction"><%=user.active ? 'Active' : 'Inactive'%></span>
-				</td>
-				<td>
-					<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
-				</td>
-			</tr>
+			<%if user.present?%>
+				<tr id="viewLead_<%= user.id %>"> 
+					<td><%= user.name.humanize %></td> 
+					<td><%=user.role.role_type%></td>
+					<td><%=user.fetchPlanName%>
+					</td>
+					<td class="leadActive leadAction" id="status_<%=user.id%>">
+						<span class="span leadAction"><%=user.active ? 'Active' : 'Inactive'%></span>
+					</td>
+					<td>
+						<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
+					</td>
+				</tr>
+			<%end%>
 		</tbody>
 	<% end %>
 <% else %>
