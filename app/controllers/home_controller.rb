@@ -126,6 +126,7 @@ end
     logger.debug request.inspect
     logger.debug "llllllllllllllllllllll"
     logger.debug request.env['omnicontacts.contacts'].inspect
+    # logger.debug contacts_as_json
     unless request.env['omnicontacts.contacts'].blank?
       @contacts = request.env['omnicontacts.contacts']
     end
