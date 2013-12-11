@@ -51,7 +51,7 @@ function initgauge(){
     mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
     mem_avg = "<%=@gross_values['m_avg'.to_sym]%>" != 0 ? "<%=@gross_values['m_avg'.to_sym]%>" : 220;
     m_total = mem_avg * 80;
-    mem_interval = (mem_avg*80/10);
+    mem_interval = (mem_avg * 80)/10
     m_range = m_total/4;
 
     $("#membersoldgauge").jqxGauge({ 

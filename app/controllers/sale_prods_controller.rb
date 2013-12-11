@@ -4,11 +4,13 @@ class SaleProdsController < ApplicationController
     @sale_tody = SaleProd.fetchProdDataToDay(current_user, Date.today)
     @gross_values = SaleProd.fetchGrossPaper(@sale_todate, @sale_tody)
     @date = Date.today
-    logger.debug(@gross_paper)
   end
 
   def new
   	@saleProd = SaleProd.new
+    @incom_mail = Lead.fetchTodayLeadOfUser(current_user)
+    @appointment = Appointment.fetchTodayAppointmentOfUser(current_user)
+    @sociallead = Lead.fetchTodaySocailLeadOfUser(current_user)
   end
 
   def create
