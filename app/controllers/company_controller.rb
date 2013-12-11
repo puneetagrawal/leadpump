@@ -225,13 +225,14 @@ end
 def previewsave
   Preview.destroy_all
   params[:inputs][:landing_page].delete :land_type
+  temp_name = params[:inputs][:landing_page][:temp_name]
   params[:inputs][:landing_page].delete :temp_name
   params[:inputs][:landing_page].delete :ext_link
   logger.debug(params[:inputs][:landing_page])
   landpage = Preview.new(params[:inputs][:landing_page])
   landpage.save
   temp = "2"
-  if params[:inputs][:landing_page][:temp_name] == "Guest pass card"
+  if temp_name == "Guest pass card"
     temp = "1"
   end
   message = {"temp"=>temp}
@@ -241,7 +242,7 @@ end
 def preview
   @landpage = Preview.last
   @preview = true
-  if params[:id].present? && params[:id] == 1
+  if params[:id].present? && params[:id] == "1"
     @temp = true
   else
     @temp = false
