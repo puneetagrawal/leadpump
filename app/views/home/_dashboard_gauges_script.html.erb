@@ -79,9 +79,9 @@ function initgauge(){
 
     $("#cashgauge").jqxGauge({ 
         max: c_total, 
-        labels: { interval: mem_interval},
-        ticksMinor: { interval: mem_interval/4, size: '5%' },
-        ticksMajor: { interval: mem_interval/2, size: '9%' },
+        labels: { interval: cash_interval},
+        ticksMinor: { interval: cash_interval/4, size: '5%' },
+        ticksMajor: { interval: cash_interval/2, size: '9%' },
         ranges: [{ startValue: 0, endValue: c_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
         { startValue: c_range, endValue: c_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
         { startValue: c_range * 2, endValue: c_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
