@@ -53,6 +53,8 @@ function initgauge(){
     m_total = mem_avg * 80;
     mem_interval = getinterval(mem_avg);
     m_range = m_total/4;
+    alert(mem_sold)
+    alert(mem_total)
 
     $("#membersoldgauge").jqxGauge({ 
         max: m_total, 
