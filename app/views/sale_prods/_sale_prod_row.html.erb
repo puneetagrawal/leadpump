@@ -1,14 +1,14 @@
 <p>
     <%= sale.label "Incoming Main Cals:" %>
-    <%= sale.text_field :call, :class=>"isNormalText" %>
+    <%= sale.text_field :call, :value=>@incom_mail, :class=>"isNormalText" %>
 </p>
 <p>
     <%= sale.label "Appointment Shows:" %>
-    <%= sale.text_field :appointment, :class=>"isNormalText" %>
+    <%= sale.text_field :appointment, :value=>@appointment, :class=>"isNormalText" %>
 </p>
 <p>
     <%= sale.label "Buddy Referral:" %>
-    <%= sale.text_field :referral, :class=>"isNormalText" %>
+    <%= sale.text_field :referral, :value=>@sociallead, :class=>"isNormalText" %>
 </p>
 <p>
     <%= sale.label "Web-Net:" %>

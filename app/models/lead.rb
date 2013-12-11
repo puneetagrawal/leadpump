@@ -67,6 +67,36 @@ def self.fetchLeadList(user)
     hash = {:leads=>leads,:userList=>users}
 end
 
+def self.fetchTodayLeadOfUser(user)
+  case user.user_role.role_type.to_sym  
+    when :admin
+      leads = Lead.where("lead_source not in (?) and created_at >= ?", ["email","fb","twitter"], Date.today)
+    when :company
+      userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+      users = userList
+      userList << user.id
+      leads = UserLeads.includes(:lead).where("leads.lead_source not in (?) and leads.created_at >= ?", ["email","fb","twitter"], Date.today).where(:user_id => userList)
+    when :employee
+      leads = UserLeads.includes(:lead).where("leads.lead_source not in (?) and leads.created_at >= ?", ["email","fb","twitter"], Date.today).where(:user_id => user.id)
+    end
+    leads = leads.present? ? leads.size : 0
+end
+
+def self.fetchTodaySocailLeadOfUser(user)
+  case user.user_role.role_type.to_sym  
+    when :admin
+      leads = Lead.where("lead_source in (?) and created_at >= ?", ["email","fb","twitter"], Date.today)
+    when :company
+      userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+      users = userList
+      userList << user.id
+      leads = UserLeads.includes(:lead).where("leads.lead_source in (?) and leads.created_at >= ?", ["email","fb","twitter"], Date.today).where(:user_id => userList)
+    when :employee
+      leads = UserLeads.includes(:lead).where("leads.lead_source in (?) and leads.created_at >= ?", ["email","fb","twitter"], Date.today).where(:user_id => user.id)
+    end
+    leads = leads.present? ? leads.size : 0
+end
+
   def self.checkLeadStatus(status)
      status = status ? "Active" : "Inactive"
   end
