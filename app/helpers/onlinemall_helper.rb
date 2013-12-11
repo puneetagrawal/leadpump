@@ -40,7 +40,7 @@ module OnlinemallHelper
 	def fetchCompanyLogo(company)
     img = '<img src="images/gymslogo.png"/>'
     if company.picture.present?
-      img = image_tag company.picture.avatar.url(), :class=>'img-polaroid'
+      img = image_tag company.picture.avatar.url(:medium), :class=>'img-polaroid'
     end
     return img.html_safe
   end 
