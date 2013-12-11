@@ -769,7 +769,7 @@ header h2 a {
 }
 .salesData .form .table input[type="text"]{
     padding: 0;
-    width: 30px;
+    width: 80px;
     font-size: 12px;
     height: 20px;
     margin-bottom: 0;

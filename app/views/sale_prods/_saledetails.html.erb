@@ -1,0 +1,33 @@
+<table class="table table-striped">
+	<thead>
+		<tr><td>No.</td><td>Type</td><td>Amount Sold</td><td>Cash</td><td>Cheque</td><td>Amount Due</td>
+			<td class="td100">Name of the New Member</td><td>Source</td><td class="td50">Rep</td><td class="td50">Contract Number</td><td>Comm.</td></tr>
+		</thead>
+		<tbody>
+			<%if @sale_tody.present?%>
+				<% i = 0 %>
+				<%@sale_tody.each do |prod|%>
+					<%if prod.sale_reports.present?%>
+						<%prod.sale_reports.each do |sale|%>
+							<%i += 1%>
+							<tr>
+								<td><%=i%></td>
+								<td><%=sale.s_type%></td>
+								<td><%=sale.contract%></td>
+								<td><%=sale.amount%></td>
+								<td><%=sale.cheque%></td>
+								<td><%=sale.eft%></td>
+								<td><%=sale.name%></td>
+								<td><%=sale.source%></td>
+								<td class="td100"><%=sale.report%></td>
+								<td><%=sale.mem_no%></td>
+								<td><%=sale.commission%></td>
+							</tr>
+						<%end%>
+					<%end%>
+				<%end%>
+			<%else%>
+				<tr><td colspan="11">No data available</td></tr>
+			<%end%>
+		</tbody>
+	</table>

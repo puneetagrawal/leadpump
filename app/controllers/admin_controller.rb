@@ -126,13 +126,13 @@ def search_vip
 		list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
 	else
    like  = "%".concat(params[:term].concat("%"))
-   leads = Lead.select("distinct(name)").where("name like ?", like).where(:id => leads)
+   leads = Lead.select("distinct(name)").where("name ilike ?", like).where(:id => leads)
    list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
    logger.debug("************************")
    if !leads.present?
       logger.debug(">>>>>>>>>>>>>>>>>>")
       userleads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip")
-      associates = User.select("distinct(name)").where("name like ? ", like).where(:id=> userleads.map(&:user_id))
+      associates = User.select("distinct(name)").where("name ilike ? ", like).where(:id=> userleads.map(&:user_id))
       list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
     end
   end

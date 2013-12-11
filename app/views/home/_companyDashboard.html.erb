@@ -10,6 +10,22 @@
 	<span>Appointments</span>                 
 	<%end %>
 </li> 
+
+<li>
+	<%=link_to(sale_prods_path, html_options = {}) do %>
+	<i class="icon icon_salesdata"></i>
+	<span>Sales Data</span>
+	<span></span>                  
+	<%end %>
+</li>
+
+<li>
+	<%=link_to(new_sale_prod_path, html_options = {}) do %>
+	<i class="icon icon_daily_report"></i>
+	<span>Daily Report</span>
+	<span></span>                  
+	<%end %>
+</li>
 <%if current_user.isEmployee%> 
 	<li>
 		<%=link_to(vipleads_path(), html_options = {}) do %>

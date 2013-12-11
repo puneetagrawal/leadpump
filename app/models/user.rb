@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, 
-  :role_id, :addresses_attributes, :subscription_attributes, :token
+  :role_id, :addresses_attributes, :subscription_attributes, :token, :reset_status
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses
   has_many :vipLeads
@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :opt_in_leads
   has_many :statss
   has_many :onlinemalls
+  has_many :saleProds
   has_one  :landing_page
   belongs_to :role
   has_one :subscription
@@ -109,8 +110,11 @@ class User < ActiveRecord::Base
   def fetchCompanySalesUsers
     users = []
     case self.user_role.role_type.to_sym  
-      when :company
+      when :admin
         users = User.where("id != ?", self.id)
+      when :company
+        company = Company.where(:company_admin_id=>self.id).pluck(:company_user_id)
+        users = User.where(:id=> company)
       end
       return users
   end

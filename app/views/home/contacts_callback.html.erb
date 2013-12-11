@@ -1,19 +1,19 @@
 <div id="show_contact_dialog" style="text-align:center;">
   <%= form_tag("/send_invitation_social") do %>
     <% unless @contacts.blank? %>
-      <% @contacts.each do |contact|%>
-        <ul>
-          <% unless contact[:email].blank? %>
-            <li><%= check_box_tag "check_invite_email[]",contact[:email],false %></li>
-            <li><%= contact[:email]%></li>
-          <% end %>
-          <% if params[:provider] == "hotmail" %>
-          <li><%= contact[:name]%></li>
-          <% end %>
-        </ul>
+    <% @contacts.each do |contact|%>
+    <ul>
+      <% unless contact[:email].blank? %>
+        <li><%= check_box_tag "check_invite_email[]",contact[:email],false %></li>
+        <li><%= contact[:email]%></li>
       <% end %>
-     <%= submit_tag("invite friend") %>
-     <% else %>
+      <% if params[:provider] == "hotmail" %>
+        <li><%= contact[:name]%></li>
+      <% end %>
+    </ul>
+    <% end %>
+    <%= submit_tag("invite friend") %>
+    <% else %>
       <strong>There are no Contact email Address</strong>
     <%end%>
   <% end %>

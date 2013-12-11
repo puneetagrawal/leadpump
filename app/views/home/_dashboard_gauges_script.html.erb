@@ -4,47 +4,135 @@ $(document).ready(function () {
 });
 
 function initgauge(){
-    $('.gaugeContainer').jqxGauge({
-        ranges: [{ startValue: 0, endValue: 55, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 5, startWidth: 1 },
-        { startValue: 55, endValue: 110, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 10, startWidth: 5 },
-        { startValue: 110, endValue: 165, style: { fill: '#ff8000', stroke: '#ff8000' }, endWidth: 13, startWidth: 10 },
-        { startValue: 165, endValue: 220, style: { fill: '#e02629', stroke: '#e02629' }, endWidth: 16, startWidth: 13 }],
-        ticksMinor: { interval: 5, size: '5%' },
-        ticksMajor: { interval: 10, size: '9%' },
-        value: 0,
+    lead = "<%=@leads%>";
+    lead = lead != 0 ? parseInt(lead) : 0;
+    leadmax = lead != 0 ? 500  : 1000
+    lead_interval = leadmax/10 
+    l_range = leadmax/4;
+
+    $("#leadgauge").jqxGauge({ 
+        max: leadmax, 
+        labels: { interval: lead_interval},
+        ticksMinor: { interval: lead_interval/4, size: '5%' },
+        ticksMajor: { interval: lead_interval/2, size: '9%' },
+        ranges: [{ startValue: 0, endValue: l_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        { startValue: l_range, endValue: l_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        { startValue: l_range * 2, endValue: l_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        { startValue: l_range * 3, endValue: l_range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        value: lead,
         colorScheme: 'scheme05',
         animationDuration: 1200,
         width: 180
-    }); 
+    });
+
+    eft = "<%=@gross_values['g_eft'.to_sym]%>";
+    eft_avg = "<%=@gross_values['e_avg'.to_sym]%>" !=0 ? "<%=@gross_values['e_avg'.to_sym]%>" : 220;
+    total = eft_avg * 40
+    eft_interval = getinterval(eft_avg);
+    e_range = total/4
+
+    $("#eftgauge").jqxGauge({ 
+        max: total, 
+        labels: { interval: eft_interval},
+        ticksMinor: { interval: eft_interval/4, size: '5%' },
+        ticksMajor: { interval: eft_interval/2, size: '9%' },
+        ranges: [{ startValue: 0, endValue: e_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        { startValue: e_range, endValue: e_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        { startValue: e_range * 2, endValue: e_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        { startValue: e_range * 3, endValue: e_range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        value: eft,
+        colorScheme: 'scheme05',
+        animationDuration: 1200,
+        width: 180
+    });
+
+   
+
+    mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
+    mem_avg = "<%=@gross_values['m_avg'.to_sym]%>" != 0 ? "<%=@gross_values['m_avg'.to_sym]%>" : 220;
+    m_total = mem_avg * 40;
+    mem_interval = getinterval(mem_avg);
+    m_range = m_total/4;
+
+    $("#membersoldgauge").jqxGauge({ 
+        max: m_total, 
+        labels: { interval: mem_interval},
+        ticksMinor: { interval: mem_interval/4, size: '5%' },
+        ticksMajor: { interval: mem_interval/2, size: '9%' },
+        ranges: [{ startValue: 0, endValue: m_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        { startValue: m_range, endValue: m_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        { startValue: m_range * 2, endValue: m_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        { startValue: m_range * 3, endValue: m_range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        value: mem_sold,
+        colorScheme: 'scheme05',
+        animationDuration: 1200,
+        width: 180
+    });
+
+
+
+    cash = "<%=@gross_values['g_cash'.to_sym]%>";
+    cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
+    c_total = cash_avg * 40;
+    cash_interval =  getinterval(cash_avg);
+    c_range = m_total/4;
+
+    $("#cashgauge").jqxGauge({ 
+        max: m_total, 
+        labels: { interval: mem_interval},
+        ticksMinor: { interval: mem_interval/4, size: '5%' },
+        ticksMajor: { interval: mem_interval/2, size: '9%' },
+        ranges: [{ startValue: 0, endValue: c_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        { startValue: c_range, endValue: c_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        { startValue: c_range * 2, endValue: c_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        { startValue: c_range * 3, endValue: c_range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        value: cash,
+        colorScheme: 'scheme05',
+        animationDuration: 1200,
+        width: 180
+    });
+    cash = cash != 0 ? parseInt(cash) : 0 
+    eft = eft != 0 ? parseInt(eft) : 0 
+    total_gross = cash + eft;
+    t_g = total_gross != 0 ? total_gross * 2 : 220;
+    t_g_interval = parseInt(t_g/10);
+    g_range = parseInt(t_g/4);
+
+    $("#totalgrossgauge").jqxGauge({ 
+        max: t_g, 
+        labels: { interval: t_g_interval},
+        ticksMinor: { interval: t_g_interval/4, size: '5%' },
+        ticksMajor: { interval: t_g_interval/2, size: '9%' },
+        ranges: [{ startValue: 0, endValue: g_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        { startValue: g_range, endValue: g_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        { startValue: g_range * 2, endValue: g_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        { startValue: g_range * 3, endValue: g_range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        value: total_gross,
+        colorScheme: 'scheme05',
+        animationDuration: 1200,
+        width: 180
+    });
     
-    
-    lead = "<%=@leads%>";
-    count = "<%=@count%>";
-    lead = lead ? parseInt(lead) : 0;
-    g = count ? parseInt(count) + 10 : 160;
-    m = count ? parseInt(count) + 20 : 50;
-    t = count ? parseInt(count) + 30 : 90;
-    n = count ? parseInt(count) + 30 : 50;
-    $("#leadgauge").jqxGauge('value', lead);  
-    $('#gaugeContainer').jqxGauge('value', g);
-    $('#totalgrossgauge').jqxGauge('value', m);
-    $('#memsoldgauge').jqxGauge('value', t);
-    $('#newcashgauge').jqxGauge('value', n);
 
     $('#leadgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
-    $('#gaugeContainer').on('valueChanging', function (e) {
+    $('#eftgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');    
     });
     $('#totalgrossgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
     });
-    $('#memsoldgauge').on('valueChanging', function (e) {
+    $('#membersoldgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
     });
-    $('#newcashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
+    $('#cashgauge').on('valueChanging', function (e) {
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
     });
+}
+
+function getinterval(maxvalue){
+    interval = parseInt(maxvalue) * 40
+    return interval/10
 }
 </script>

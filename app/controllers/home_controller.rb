@@ -8,6 +8,9 @@ class HomeController < ApplicationController
    @picture = Picture.new
    @users = current_user.fetchCompanySalesUsers
    @leads = Lead.fetchTotalLeads(current_user)
+   #saletodate = SaleProd.fetchProdDataTotal(current_user)
+   saletodate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
+   @gross_values = SaleProd.fetchGrossMap(saletodate)
  end
 
  def testsendgrid   

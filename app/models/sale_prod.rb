@@ -1,0 +1,106 @@
+class SaleProd < ActiveRecord::Base
+  attr_accessible :appointment, :call, :mail, :net, :referral, :user_id
+  has_many :sale_reports
+  belongs_to :user
+
+  accepts_nested_attributes_for :sale_reports
+
+  def self.fetchProdDataUpToDate(user, date)
+  	to_date = SaleProd.fetchToDate(date)
+  	prod = SaleProd.where("created_at >= ? and created_at < ?", to_date, date+1).where(:user_id=>user)
+  	if user.isAdmin
+  		prod = SaleProd.where("created_at >= ? and created_at < ?",to_date, date+1)
+  	end
+    if user.isCompany
+      users = user.fetchCompanySalesUsers
+      users = users.collect{|user| user.id}
+      users << user.id
+      prod = SaleProd.where("created_at >= ? and created_at < ?",to_date, date+1).where(:user_id=>users)
+    end
+  	return prod
+  end
+
+  def self.fetchProdDataToDay(user, date)
+  	prod = SaleProd.where("created_at >= ? and created_at < ?", date, date+1).where(:user_id=>user)
+  	if user.isAdmin
+  		prod = SaleProd.where("created_at = ?", date)
+  	end
+    if user.isCompany
+      users = user.fetchCompanySalesUsers
+      users = users.collect{|user| user.id}
+      users << user.id
+      prod = SaleProd.where("created_at >= ? and created_at < ?",date, date+1).where(:user_id=>users)
+    end
+  	return prod
+  end
+
+  def self.fetchProdDataTotal(user)
+    prod = SaleProd.where("created_at < ?",Date.today+1).where(:user_id=>user)
+    if user.isAdmin
+      prod = SaleProd.where("created_at < ?", Date.today+1)
+    end
+    if user.isCompany
+      users = user.fetchCompanySalesUsers
+      users = users.collect{|user| user.id}
+      users << user.id
+      prod = SaleProd.where("created_at < ?",Date.today+1).where(:user_id=>users)
+    end
+    return prod
+  end
+  
+  def self.fetchGrossPaper(sale_todate, sale_tody)
+  	grossmaptody = SaleProd.fetchGrossMap(sale_tody)
+  	grossmaptodate = SaleProd.fetchGrossMap(sale_todate)
+  	return {:g_todate=>grossmaptodate,:g_tody=>grossmaptody}
+  end
+
+  def self.fetchgrossvalue(list)
+  	return list.inject(0, :+)
+  end
+
+  def self.fetchGrossMap(sale)
+  	g_paper = 0
+  	g_cash = 0
+  	g_eft = 0
+    g_mem = 0
+  	if !sale.blank?
+  		sale.each do |s_tdt|
+  			if s_tdt.sale_reports.present?
+  				g_paper += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.cheque}.compact)
+  				g_cash += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.amount}.compact)
+  				g_eft += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.eft}.compact)
+          g_mem += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.contract}.compact)
+  			end
+  		end
+  	end
+  	call = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.call}.compact)
+  	app = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.appointment}.compact)
+  	mail = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.mail}.compact)
+  	net = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.net}.compact)
+  	ref = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.referral}.compact)
+  	total = call + app + mail + net + ref
+
+  	g_avg = SaleProd.fetchAvg(g_paper)
+  	c_avg = SaleProd.fetchAvg(g_cash)
+  	e_avg = SaleProd.fetchAvg(g_eft)
+    m_avg = SaleProd.fetchAvg(g_eft)
+  	g_prjt = SaleProd.fetchProjection(g_avg)
+  	c_prjt = SaleProd.fetchProjection(c_avg)
+  	e_prjt = SaleProd.fetchProjection(e_avg)
+  	return {:g_paper=>g_paper,:g_cash=>g_cash,:g_mem=>g_mem,:g_eft=>g_eft,:g_avg=>g_avg,:c_avg=>c_avg,:e_avg=>e_avg,:m_avg=>m_avg,
+  		:g_prjt=>g_prjt,:c_prjt=>c_prjt,:e_prjt=>e_prjt, :call=>call,:app=>app,:mail=>mail,:net=>net,:ref=>ref,:total=>total}
+  end
+
+  def self.fetchToDate(date)
+  	return date.at_beginning_of_month - 1
+  end
+
+  def self.fetchAvg(amount)
+  	avg =  amount/Date.today.day
+  end
+
+  def self.fetchProjection(amount)
+  	return Date.today.end_of_month.day * amount
+  end
+  
+end

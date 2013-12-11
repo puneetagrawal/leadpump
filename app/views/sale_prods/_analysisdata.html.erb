@@ -1,0 +1,42 @@
+<div class="pull-left span5 pd15">
+	<div class="pull-left span3 pd15">
+		Sales Analysis:
+	</div>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr><td></td><td>Today</td><td>To Date</td></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Incoming Mail Calls:</td>
+				<td><%=@gross_values["g_tody".to_sym]["call".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["call".to_sym]%></td>
+			</tr>
+			<tr>
+				<td>Appointment Shows:</td>
+				<td><%=@gross_values["g_tody".to_sym]["app".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["app".to_sym]%></td>
+			</tr>
+			<tr>
+				<td>Buddy Referrer:</td>
+				<td><%=@gross_values["g_tody".to_sym]["ref".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["ref".to_sym]%></td>
+			</tr>
+			<tr>
+				<td>Web-Net:</td>
+				<td><%=@gross_values["g_tody".to_sym]["net".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["net".to_sym]%></td>
+			</tr>
+			<tr>
+				<td>Direct mail:</td>
+				<td><%=@gross_values["g_tody".to_sym]["mail".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["mail".to_sym]%></td>
+			</tr>
+			<tr>
+				<td>Total Sales:</td>
+				<td><%=@gross_values["g_tody".to_sym]["total".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["total".to_sym]%></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

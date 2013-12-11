@@ -1,3 +1,5 @@
+
+$("#sales_repo_change").html('<%=escape_javascript(render partial: "home/sales_gauge_data", :locals =>{:user => @user})%>')
+$("#sales_repo_change").html('<%=escape_javascript(render partial: "home/leadgauge", :locals =>{:user => @lead})%>')
 $(".gaugestart").html('<%=escape_javascript(render partial: "home/dashboard_gauges_script")%>')
-$(".salesRepUser").html('<%=escape_javascript(render partial: "home/sales_user", :locals =>{:user => @user})%>')
 
