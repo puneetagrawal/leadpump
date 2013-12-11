@@ -12,6 +12,7 @@ Leadpump::Application.routes.draw do
   resources :tweet_referrals
   resources :statss
   resources :onlinemall
+  resources :sale_prods
 
   match "/mallitemassign" => "onlinemall#mallitemassign"
   match '/mall/update/:id' => 'onlinemall#update', :as => :update
@@ -153,6 +154,9 @@ Leadpump::Application.routes.draw do
   match "/contacts/:provider/callback" => "home#contacts_callback"
   # match "/callback" => "home#contacts_callback"
   match "/contacts/failure" => "home#failure"
+
+  match "/sale_prods/addnewprodrow" => "sale_prods#addnewprodrow"
+  match "/sale_prods/showproduction" => "sale_prods#showproduction"
 
 
 

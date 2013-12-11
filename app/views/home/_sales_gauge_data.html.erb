@@ -1,0 +1,14 @@
+<div class="salesRepUser">
+    <%if @user.present?%>
+        <%=render "home/sales_user", :user=>@user%>
+    <%end%>
+</div>
+<div class="sales_data_filter">
+    <strong>View</strong>
+    <ul>
+        <li><a href="javascript:void(0)">Daily</a></li>
+        <li><a href="javascript:void(0)">Monthly</a></li>
+        <li><a href="javascript:void(0)">Projections</a></li>
+    </ul>
+</div>
+<%=render "home/dashboard_gauges"%>

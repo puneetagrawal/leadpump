@@ -12,35 +12,13 @@
         <%=render "sales_user_list"%>
         <div class="span9">
             <h2 class="heading">Sales Representatives Statistics</h2>
-            <div class="salesRepData">
-                <div class="salesRepUser">
-                    <%if @users.present? %>
-                        <%=render "sales_user", :user=>@users[0]%>
-                    <%end%>
-                </div>
-                <div class="sales_data_filter">
-                    <strong>View</strong>
-                    <ul>
-                        <li><a href="javascript:void(0)">Daily</a></li>
-                        <li><a href="javascript:void(0)">Monthly</a></li>
-                        <li><a href="javascript:void(0)">Projections</a></li>
-                    </ul>
-                </div>
-                <%=render "dashboard_gauges"%>
+            <div class="salesRepData" id="sales_repo_change">
+                <%=render "sales_gauge_data"%>
             </div>
             <div class="clear mb10"></div>
             <div class="row-fluid">
                 <div class="span3">
-                    <h2 class="heading">Leads</h2>
-                    <div class="total_leads">
-                        <div class="gauge">
-                            <div class="demoWidget" style="position: relative;">
-                                <div style="float: left;" class="gaugeContainer" id="leadgauge"></div>
-                                <div class="gaugeValue" style="position: absolute; top: 119px; left: 42px; font-family: Sans-Serif; text-align: center; font-size: 17px; width: 70px;"></div>
-                            </div>
-                        </div>
-                        <span>Total Leads</span>
-                    </div>
+                    <%=render "home/leadgauge"%>
                 </div>
                 <div class="span9">
                     <h2 class="heading">Dashboard</h2>

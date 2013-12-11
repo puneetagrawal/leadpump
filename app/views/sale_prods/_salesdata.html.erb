@@ -1,0 +1,19 @@
+<h2 class="heading">Sales Report</h2>
+<p class="pd15"><span class="span2">Date:</span><span class="span3"><%=@date%></span></p>
+<h4 class="subheading">Details</h4>
+<form class="form">
+	<%=render "saledetails"%>
+</form>
+<h4 class="subheading">Statistical Data</h4>
+<div class="salesReportData">
+	<%=render "paperdata"%>
+</div>
+<div class="salesReportData">
+	<%=render "cashdata"%>
+</div>
+<div class="salesReportData">
+	<%=render "eftreport"%>
+</div>
+<div class="salesReportData">
+	<%=render "analysisdata"%>
+</div>
