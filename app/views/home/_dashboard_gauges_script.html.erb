@@ -75,10 +75,10 @@ function initgauge(){
     cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
     c_total = cash_avg * 40;
     cash_interval =  getinterval(cash_avg);
-    c_range = m_total/4;
+    c_range = c_total/4;
 
     $("#cashgauge").jqxGauge({ 
-        max: m_total, 
+        max: c_total, 
         labels: { interval: mem_interval},
         ticksMinor: { interval: mem_interval/4, size: '5%' },
         ticksMajor: { interval: mem_interval/2, size: '9%' },
