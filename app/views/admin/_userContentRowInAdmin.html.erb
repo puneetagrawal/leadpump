@@ -1,6 +1,7 @@
 <% if @users.present? %>
 	<% @users.each do |user| %>
 		<tbody>
+			<%if user.present?%>
 			<tr id="viewLead_<%= user.id %>"> 
 				<td><%= user.name.humanize %></td> 
 				<td><%=user.role.role_type%></td>
@@ -16,6 +17,7 @@
 					<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
 				</td>
 			</tr>
+			<%end%>
 		</tbody>
 	<% end %>
 <% else %>
