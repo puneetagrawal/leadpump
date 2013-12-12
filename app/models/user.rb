@@ -169,8 +169,13 @@ class User < ActiveRecord::Base
   end
 
   def fetchPlanName  
+    plan = ''
     company = self.fetchCompany
-    plan = company.present? && company.subscription.present? ? company.subscription.plan_per_user_range.plan.name : ''
+    logger.debug(company.id)
+    if company.present? && company.subscription.present? 
+      plan = company.subscription.plan_per_user_range.plan.name
+    end
+    return plan
   end
 
   def fetchCompany

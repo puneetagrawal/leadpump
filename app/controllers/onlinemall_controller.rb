@@ -9,7 +9,8 @@ class OnlinemallController < ApplicationController
   end
 
   def create
-  	@onlinemall = Onlinemall.new(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title], :link=>params[:onlinemall][:link],:user_id=>current_user.id)
+  	logger.debug params[:onlinemall]
+    @onlinemall = Onlinemall.new(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title], :link=>params[:onlinemall][:link], :file => params[:onlinemall][:file],:user_id=>current_user.id)
   	mallpic = nil
   	if !params["onlinemall"]["mallpic_attributes"]["0"]["avatar"].blank?
   		mallpic = Mallpic.new(:avatar=>params["onlinemall"]["mallpic_attributes"]["0"]["avatar"])

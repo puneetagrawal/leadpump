@@ -65,6 +65,7 @@ Leadpump::Application.routes.draw do
   
   match '/savereferral' => 'vipleads#savereferral'
   match '/admin/index' => 'admin#index'
+  match '/users/sign_in/admin' => 'admin#index'
   match '/admin/plan' => 'admin#plan'
   match '/admin/payment' => 'admin#payment'
   match '/admin/user' => 'admin#user'
@@ -85,6 +86,9 @@ Leadpump::Application.routes.draw do
   match "/setunlimited" => "admin#setunlimited"
   match "/updateplan" => "admin#updateplan"
   match "/change_user_status" => "admin#change_user_status", as: "change_user_status"
+  match "/filter_user" => "admin#filter_user"
+  match '/admin/saveplantype' => 'admin#saveplantype'
+  match '/admin/alterplantype' => 'admin#alterplantype'
 
    namespace :admin do
      root :to => "admin#index"

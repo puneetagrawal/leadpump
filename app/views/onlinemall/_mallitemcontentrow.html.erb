@@ -9,7 +9,13 @@
     <img src="/assets/company-logo.png" class="img-polaroid">
     <%end%>
 </td>
-
+<td>
+	<%if om.file.present?%>
+    <%= image_tag om.file.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+    <%else%>
+    	<img src="/assets/company-logo.png" class="img-polaroid">
+    <%end%>
+</td>
 <td><%=fetchcheckbox(om,current_user)%></td>
 
 <td>

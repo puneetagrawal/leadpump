@@ -128,6 +128,7 @@ $(document).ready(function(){
 	$(document).on("change", "#payment_to_date", function (){
 		var to_date = $(this).val();
 		var from_date = $('#payment_from_date').val();
+		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 		if ($('#payment_from_date').val().length == 0)
 		{
 			alert("Please insert the Payment From Date field.");
@@ -149,6 +150,35 @@ $(document).ready(function(){
 				url: "/userpaymentsearchfilter"
 			});
 		}
+	});
+
+	$("#user_to_date").unbind();
+	$(document).on("change", "#user_to_date", function (){
+		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+		var to_date = $(this).val();
+		var from_date = $('#user_from_date').val();
+		if ($('#user_from_date').val().length == 0)
+		{
+			alert("Please insert the From Date field.");
+			$('#user_to_date').val("");
+		}
+		else if (($('#user_from_date').val().length != 0) && ($('#user_to_date').val().length != 0))
+		{
+			$.ajax({ 
+				url: "/filter_user",
+				data: { 
+					"user_to_date": to_date,
+					"user_from_date": from_date
+				}
+			});
+		}
+		else if ($('#user_to_date').val().length == 0)
+		{
+			$.ajax({
+				url: "/filter_user"
+			});
+		}
+
 	});
 
 	$(document).on("click", ".planedit", function (){

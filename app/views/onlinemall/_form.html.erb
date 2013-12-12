@@ -4,10 +4,11 @@
 <p><%= mall.label "Title:" %><%= mall.text_field :title %></p>
 <p><%= mall.label "Link:" %><%= mall.text_field :link %></p>
 <%= hidden_field_tag :mallid%>
-<p><%= mall.label "Description:" %><%= mall.text_field :description %></p>
+<p><%= mall.label "Description:" %><%= mall.text_area :description, :class => "ckeditor" %>
 <%= mall.fields_for :mallpic, Mallpic.new do |pic| %>
 	<label>Image:</label><%= pic.file_field :avatar %>	
 <% end %>
+<label>File:</label><%= mall.file_field :file %>	
 <p class="submitmallbtn"><input class="btn yellow mallsubmit" type="button" value="Add Mall Item"/></p>
 <div class="clear"></div>
 <%end%>

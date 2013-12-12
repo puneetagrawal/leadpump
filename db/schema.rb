@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131206124854) do
+ActiveRecord::Schema.define(:version => 20131211114713) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -155,10 +155,14 @@ ActiveRecord::Schema.define(:version => 20131206124854) do
     t.string   "link"
     t.boolean  "active"
     t.integer  "mallpic_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "user_id"
     t.string   "description"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "opt_in_leads", :force => true do |t|
