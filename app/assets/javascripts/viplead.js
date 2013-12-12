@@ -50,7 +50,7 @@ function initSocialInviter(){
 		emaillist = [];
 		$(".gmailContactChekbox").each(function(){
 			if($(this).is(":checked")){
-				emaillist.push($(this).siblings('.email_label').text());	
+				emaillist.push($(this).parent().siblings('.email_label').text());	
 			}
 		});
 

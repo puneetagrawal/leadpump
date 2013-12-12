@@ -10,14 +10,6 @@
     @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
   end
 
-  def filter_rec
-    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => 2)
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
   def show
   end
 
@@ -218,13 +210,16 @@ def viewmallitem
 end
 
 def download
+  logger.debug(params)
+   params.delete :format
+   logger.debug(params)
   @mall = Onlinemall.find_by_user_id(2)
   @pf = WickedPdf.new.pdf_from_string(
           render_to_string('vipleads/download.html.erb',:layout=>false)
         )
    respond_to do |format|
       format.pdf do
-        send_data @pf, filename: "Invoice-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
+        send_data @pf, filename: "pass-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
 end

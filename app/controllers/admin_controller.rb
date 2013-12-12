@@ -7,6 +7,10 @@ end
 
 def user
   @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  @admin = User.where(:role_id => 1).count
+  @company = User.where(:role_id => 2).count
+  @employee = User.where(:role_id => 3).count
+  @n_user = User.where(:role_id => 4).count
   respond_to do |format|
      format.html
      format.js
@@ -253,8 +257,7 @@ end
 
   def alterplantype
     @user = User.find(params[:userId])
-    @user = @user.fetchCompany
-    @plan = @user.subscription.plan_per_user_range.plan
+    @plan = @user.fetchPlan
     respond_to do |format|
       format.js
     end

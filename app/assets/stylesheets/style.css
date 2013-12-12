@@ -1764,6 +1764,42 @@ header h2 a {
 }
 
 
+/*logo listing*/
+.logo_listing {
+    background: #fff;
+    float: left;
+    width: 100%;
+    padding: 20px;
+}
+.logo_con {
+    width: 160px;
+    padding: 15px;
+    border-radius: 3px;
+    background: #fff;
+    float: left;
+    margin: 0 15px 15px;
+    border:1px solid #ddd;
+
+}
+.logo_con img {
+    padding: 3px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.logo_con .action_btn {
+    width: 100%;
+    margin-top: 5px;
+}
+.logo_con .action_btn a {
+    min-width: 20px;
+    padding: 4px 5px;
+    margin:0 1px;
+    font-size: 14px;
+}
+.logo_con .action_btn a i {
+    margin-right: 5px;
+}
+
 /*responsive styles*/
 @media (max-width: 767px){
     .no-space [class*="span"]{

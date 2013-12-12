@@ -2,7 +2,7 @@ class Emailer < ActionMailer::Base
   include SendGrid
   helper :referrals
 
-  default from: "Support@LeadPump.com"
+  default from: "LeadPump@Leadpump.com"
   def gmail_referral_mail(email, token, message, sec_token, subject, url)
     sendgrid_category "Welcome"
     sendgrid_unique_args :key2 => "newvalue2", :key3 => "value3"
@@ -14,7 +14,6 @@ class Emailer < ActionMailer::Base
   end
   def fb_referral_mail(email, token, message, subject, url)
     @email = email.to_s
-    @url  = fetchfblink(token, user)
     @url  = url
     @message = message
     mail(to: @email, subject: subject)

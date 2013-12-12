@@ -33,6 +33,10 @@ end
 def terms
 end
 
+def test
+   @companymallitem = current_user.fetchcompanymallitem
+end
+
 def sendmail
   Emailer.sendtestmail().deliver
 end 

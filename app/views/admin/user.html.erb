@@ -22,10 +22,10 @@
         <div class="span12 nav_second">
             <table class="table">
             <tr>
-                <td>Admins: <%= User.where(:role_id => 1).count %></span></td>
-                <td>Companies: <%= User.where(:role_id => 2).count %></td>
-                <td>Employees: <%= User.where(:role_id => 3).count %></td>
-                <td>Normal Users: <%= User.where(:role_id => 4).count %></td   >
+                <td>Admins: <%=@admin%></span></td>
+                <td>Companies: <%=@company%></td>
+                <td>Employees: <%=@employee%></td>
+                <td>Normal Users: <%=@n_user%></td>
             </tr>
         </table><br/>
             <div class="border">

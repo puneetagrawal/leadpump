@@ -124,8 +124,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$("#payment_to_date").unbind();
-	$(document).on("change", "#payment_to_date", function (){
+	$("#payment_to_date").change(function (){
 		var to_date = $(this).val();
 		var from_date = $('#payment_from_date').val();
 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
@@ -152,8 +151,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#user_to_date").unbind();
-	$(document).on("change", "#user_to_date", function (){
+	$("#user_to_date").change(function (){
 		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
 		var to_date = $(this).val();
 		var from_date = $('#user_from_date').val();
@@ -203,7 +201,6 @@ $(document).ready(function(){
 				url = '/setunlimited';
 				$.get(url, {plid:plid}, function (data) { 
 					$("#leads_"+plid).html("unlimited");
-					$("#leads_"+plid).html("Unlimited");
 					alert(data.msg);
 					$.fancybox.close();
 				});
@@ -234,6 +231,37 @@ $(document).ready(function(){
 			return false;
 		});
 	});	
+
+	$("#select_user_entry").change(function () {
+       var search_val = $(this).val(); 
+		   $.ajax({
+		    url: "/admin/user_rec",
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});   
+    });	
+
+   $(document).on("click", ".pagination a", function(){
+   	var search_val = $("#select_user_entry").val(); 
+		   $.ajax({
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});  
+    });
+
+   $("#plan_id").change(function () {
+   	   $("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+       var plan_id = $(this).val();
+		   $.ajax({
+		    url: "/admin/user_per_plan",
+		    data: { 
+		     "plan_id": plan_id
+ 		   }   
+ 		});   
+    });
+
 });
 
 function vipleadSearchAdminFilter(vipleadId){

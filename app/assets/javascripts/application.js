@@ -31,11 +31,8 @@
 //= require viplead
 //= require ckeditor-jquery
 //= require seeusergauge
-//= require ckeditor/ckeditor
-//= require_tree .
 //= require saleprod
 
-input_html => {:toolbar => 'MyToolbar'}
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
@@ -43,49 +40,7 @@ $(document).ready(function(){
 	$('.ckeditor').ckeditor({
 		  // optional config
 	}); 
-
-
-    $("#select_user_entry").click(function(){ 
-    	   $("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-		   var search_val = $(this).val(); 
-		   $.ajax({
-		    url: "/viplead/filter_rec",
-		    data: { 
-		     "search_val": search_val
- 		   }   
- 		});   
-	 }); 
-
-    $(document).on('change', "#select_user_entry", function () {
-       var search_val = $(this).val(); 
-		   $.ajax({
-		    url: "/admin/user_rec",
-		    data: { 
-		     "search_val": search_val
- 		   }   
- 		});   
-    });	
-
-   $(document).on("click", ".pagination a", function(){
-   	var search_val = $("#select_user_entry").val(); 
-		   $.ajax({
-		    data: { 
-		     "search_val": search_val
- 		   }   
- 		});  
-    });
-
-   $(document).on('change', "#plan_id", function () {
-   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-       var plan_id = $(this).val();
-		   $.ajax({
-		    url: "/admin/user_per_plan",
-		    data: { 
-		     "plan_id": plan_id
- 		   }   
- 		});   
-    });
-
+    
    $(document).on('change', '.lead_source_sel', function () {
         if($(this).val() == "Other") {
 	      $("#text_div").html('<label for="lead_ "> </label><input type="text" value="" placeholder="Please specify" name="lead[lead_source]" id="lead_lead_source">');
@@ -170,24 +125,6 @@ $(document).ready(function(){
     
 });
 
-// function validate() {
-//     var extensions = new Array("jpg", "jpeg", "gif", "png", "bmp");
-//     var image_file = $("#avatar").val();
-//     var image_length = $("#avatar").val().length;
-//     var pos = image_file.lastIndexOf('.') + 1;
-//     var ext = image_file.substring(pos, image_length);
-//     var final_ext = ext.toLowerCase();
-//     if (!final_ext) {
-//         return true
-//     }
-//     for (var i = 0; i < extensions.length; i++) {
-//         if (extensions[i] == final_ext) {
-//             return true
-//         }
-//     }
-//     return alert("Image format not supported....");
-// }
-
 function formfields(){
 	new_obj = {}
 	$.each($('.forms').serializeArray(), function(i, obj){
@@ -256,7 +193,7 @@ function initialization(){
 		}
 	});
 
-	$(".container").on('click', '.span', function (event){
+	$(".container").on('click', '.plan_span', function (event){
 		alterplantype($(this).parent().attr('id'));	
 	});
 

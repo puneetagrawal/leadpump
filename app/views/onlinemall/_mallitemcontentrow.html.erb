@@ -1,7 +1,7 @@
 
 <td style="width: 70%;"><%=om.title%></td>
 <td style="width: 70%;"><%=fetchAssociate(om)%></td>
-<td><%=om.description%></td>
+<td><%=om.description.present? ? om.description.html_safe : ''%></td>
 <td>
     <%if om.mallpic.present?%>
     <%= image_tag om.mallpic.last.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
@@ -13,7 +13,7 @@
 	<%if om.file.present?%>
     <%= image_tag om.file.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
     <%else%>
-    	<img src="/assets/company-logo.png" class="img-polaroid">
+    	-
     <%end%>
 </td>
 <td><%=fetchcheckbox(om,current_user)%></td>

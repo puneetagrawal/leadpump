@@ -171,14 +171,18 @@ class User < ActiveRecord::Base
     subscription = Subscription.where("payment IS NOT NULL")
   end
 
-  def fetchPlanName  
-    plan = ''
+  def fetchPlan  
+    plan = nil
     company = self.fetchCompany
-    logger.debug(company.id)
     if company.present? && company.subscription.present? 
-      plan = company.subscription.plan_per_user_range.plan.name
+      plan = company.subscription.plan_per_user_range.plan
     end
     return plan
+  end
+
+  def fetchPlanName  
+    plan = self.fetchPlan
+    return plan.present? ? plan.name : ''
   end
 
   def fetchCompany
