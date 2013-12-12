@@ -1,0 +1,39 @@
+<tr id="prod_<%=@id.present? ? @id : '1'%>">
+	<td>1</td>
+	<td>
+		<%= rep.text_field :s_type, name: "rep[1][s_type]"  %>
+	</td>
+	<td>
+		<span class="dollar">$</span>
+		<%= rep.text_field :contract, name: "rep[1][contract]", :class=>"isNormalText" %>
+	</td>
+	<td>
+		<span class="dollar">$</span>
+		<%= rep.text_field :amount, name: "rep[1][amount]", :class=>"isNormalText" %>
+	</td>
+	<td>
+		<span class="dollar">$</span>
+		<%= rep.text_field :cheque, name: "rep[1][cheque]", :class=>"isNormalText" %>
+	</td>
+	<td>
+		<span class="dollar">$</span>
+		<%= rep.text_field :eft, name: "rep[1][eft]", :class=>"isNormalText"%>
+	</td>
+	<td class="td100">
+		<%= rep.text_field :name, name: "rep[1][name]" %>
+	</td>
+	<td>
+		<%= rep.text_field :source, name: "rep[1][source]"%>
+	</td>
+	<td>
+		<%#= rep.select "rep[1][report]", [["Low", 1], ["Medium", 2], ["High", 3]] %>
+		<%#= rep.select ("rep[1]", :report, ['Direct Mailer', 'Lead box', 'LeadPump - Traditional','LeadPump - Opt in', 'Member Referral','Radio ad','Telephone inquiry','Website','Walk in']) %>
+	</td>
+	<!-- <td>
+		<%#= rep.text_field :mem_no, name: "rep[1][mem_no]", :class=>"isNormalText" %>
+	</td>
+	<td>
+		<%#= rep.text_field :commission, name: "rep[1][commission]", :class=>"isNormalText" %>
+	</td> -->
+</tr>
+

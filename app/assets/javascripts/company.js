@@ -36,7 +36,7 @@ function initCompanyCreateOrUpdate(){
 		url = '/previewsave';
 		$.post(url, {inputs:formfields()}, function (data) {
 			$("#title span").html('');
-			$("#link").attr('href',"http://localhost:3000/preview/"+data.temp);
+			$("#link").attr('href',ROOT_PATH+"preview/"+data.temp);
 			fakeClick(document.getElementById('link'));
 		});
 	});	

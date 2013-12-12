@@ -8,6 +8,9 @@ class HomeController < ApplicationController
    @picture = Picture.new
    @users = current_user.fetchCompanySalesUsers
    @leads = Lead.fetchTotalLeads(current_user)
+   #saletodate = SaleProd.fetchProdDataTotal(current_user)
+   saletodate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
+   @gross_values = SaleProd.fetchGrossMap(saletodate)
  end
 
  def testsendgrid   
@@ -126,6 +129,7 @@ end
     logger.debug request.inspect
     logger.debug "llllllllllllllllllllll"
     logger.debug request.env['omnicontacts.contacts'].inspect
+    # logger.debug contacts_as_json
     unless request.env['omnicontacts.contacts'].blank?
       @contacts = request.env['omnicontacts.contacts']
     end

@@ -1,0 +1,33 @@
+<div class="container wrapper">
+    <div class="row-fluid">
+        <div class="span8" style="width:100%">
+            <div class="border salesData">
+                <h2 class="heading">Daily Sales Production</h2>
+                <h4 class="subheading">Details</h4>
+            	<%= form_for @saleProd, :html => {:class => "form"} do |sale| %>
+                    <p class="text-center">
+                    <a class="btn yellow btn-small mt10 addprod" href="javascript:void(0)">Add a New Row</a>
+                    </p>
+                    <%= sale.fields_for :sale_report, SaleReport.new do |rep| %>
+		                <table class="table table-striped prod-table">
+		                    <thead>
+		                    <tr><td>No.</td><td>Type</td><td>Total contract value</td><td>Cash</td><td>Cheque</td><td>Monthly Dues/EFT</td><td>Name of member</td><td>Source</td><td>Sales rep.</td>
+		                        <!-- <td class="td100">Membership number</td><td>Commission</td> --></tr>
+		                    </thead>
+		                    <tbody>
+		                        <%=render "sale_report_row", :rep=>rep%>
+		                    </tbody>
+		                </table>
+	                <%end%>
+	                <h4 class="subheading">Sales Analysis</h4>
+	                <div class="form pd15">
+	                	<%=render "sale_prod_row", :sale=>sale%>
+	                    <p>
+	                        <input class="btn yellow" type="submit" value="Submit">
+	                    </p>
+	                </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

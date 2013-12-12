@@ -20,6 +20,7 @@ class CompanyController < ApplicationController
     if current_user.checkUserLimit
       @user = User.new(params[:user])
       @user.password = "user.leadpump123"
+      @user.reset_status = true
       @user.role_id = Role.find_by_role_type("employee").id
       if @user.save      
         company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
@@ -29,6 +30,7 @@ class CompanyController < ApplicationController
           @user.send_reset_password_instructions
         rescue Exception => e
         end
+        @user.update_attributes(:reset_status => false)
         flash[:success] = "User successfully created"
         redirect_to company_new_path()      
       else
@@ -76,9 +78,9 @@ class CompanyController < ApplicationController
 
   def viewusergauge
     @user = User.find(params[:id])
-    @count = @user.id.to_i + 10
     @leads = Lead.fetchTotalLeads(@user)
-    logger.debug(@leads)
+    saletodate = SaleProd.fetchProdDataUpToDate(@user, Date.today)
+    @gross_values = SaleProd.fetchGrossMap(saletodate)
     respond_to do |format|
       format.js 
     end
@@ -223,13 +225,14 @@ end
 def previewsave
   Preview.destroy_all
   params[:inputs][:landing_page].delete :land_type
+  temp_name = params[:inputs][:landing_page][:temp_name]
   params[:inputs][:landing_page].delete :temp_name
   params[:inputs][:landing_page].delete :ext_link
   logger.debug(params[:inputs][:landing_page])
   landpage = Preview.new(params[:inputs][:landing_page])
   landpage.save
   temp = "2"
-  if params[:inputs][:landing_page][:temp_name] == "Guest pass card"
+  if temp_name == "Guest pass card"
     temp = "1"
   end
   message = {"temp"=>temp}
@@ -239,7 +242,7 @@ end
 def preview
   @landpage = Preview.last
   @preview = true
-  if params[:id].present? && params[:id] == 1
+  if params[:id].present? && params[:id] == "1"
     @temp = true
   else
     @temp = false

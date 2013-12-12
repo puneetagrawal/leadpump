@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/Diego81/omnicontacts.git
+  revision: 11738f3ffea4ca5f19b60ba07c223c9e4e8c4918
+  specs:
+    omnicontacts (0.3.5)
+      json
+      rack
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 294d6c63b3aa5d63d03f58872622c732a54b73bc
   specs:
@@ -100,9 +108,6 @@ GEM
     multi_xml (0.5.5)
     nested_form (0.3.2)
     netrc (0.7.7)
-    omnicontacts (0.3.4)
-      json
-      rack
     orm_adapter (0.4.0)
     paperclip (3.3.1)
       activemodel (>= 3.0.0)
@@ -195,7 +200,7 @@ DEPENDENCIES
   jquery-rails
   nested_form
   netrc (~> 0.7.7)
-  omnicontacts
+  omnicontacts (~> 0.3.5)!
   paperclip (~> 3.0)
   pg
   rails (= 3.2.15)

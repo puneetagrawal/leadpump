@@ -33,11 +33,9 @@
 //= require seeusergauge
 //= require ckeditor/ckeditor
 //= require_tree .
+//= require saleprod
 
 input_html => {:toolbar => 'MyToolbar'}
-
-	
-
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
