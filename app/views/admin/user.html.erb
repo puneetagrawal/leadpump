@@ -1,26 +1,27 @@
 <div class="container nav_second">
     <div class="row-fluid">
-        <h3 style="text-align:center">Manage User Accounts</h3> 
+        <h3 class="admin_title">Manage User Accounts</h3> 
         <div class="span4 pull-left optFilter">
             <div class="form">
-                <span>Show</span>
                 <select  id="select_user_entry"><option>10</option><option>20</option><option>50</option></select>
                 <span>entries</span>
-                <p style="margin:10px 40px"><%= collection_select(:plan, :id, Plan.all, :id, :name, :prompt=>"Filter By Plan") %></p>
+                <p><%= collection_select(:plan, :id, Plan.all, :id, :name, :prompt=>"Filter By Plan") %></p>
             </div>
         </div>
         <div class="span6 pull-right optFilter">
-            <div class="form text-right">
-                <span>Search</span>
-                <input class="input-medium" placeholder="Search" type="search" id="searchUserAc">
-            </div><br />
-            <div class="filter">
-                <input type="text" id= "user_from_date" class="filter-date span6" placeholder= "From Date">
-                <input type="text" id= "user_to_date" class="filter-date span6" placeholder= "To Date">
-            </div>
+            <div class="row">
+                <div class="searchfilter">
+                    <span>Search</span>
+                    <input class="input-medium" placeholder="Search" type="search" id="searchUserAc">
+                </div>
+                <div class="datefilter">
+                    <input type="text" id= "user_from_date" class="filter-date input-medium" placeholder= "From Date">
+                    <input type="text" id= "user_to_date" class="filter-date input-medium" placeholder= "To Date">
+                </div>
+            </div>  
         </div>
         <div class="span12 nav_second">
-            <table class="table">
+            <table class="table" style="background: #eee;">
             <tr>
                 <td>Admins: <%= User.where(:role_id => 1).count %></span></td>
                 <td>Companies: <%= User.where(:role_id => 2).count %></td>

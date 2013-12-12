@@ -1,14 +1,14 @@
-<div class="span4 margin_width">    
-    <div class="taskAsgn">
+<div class="span4 margin_width" style="text-align:left;">    
+    <div>
         <div class="border">
             <h2 class="heading headmsg">Edit Plan</h2>
             <div class="form pd15">
                 <p>
                     <label>No of leads </label>
-                    <%= text_field_tag :leads, @plans.plan.lead_management %>
-                     <input type="button" name="setunlimited" value="Set Unlimited" id="setunlimited" style="margin:-20px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px"> 
+                    <%= text_field_tag :leads, @plans.plan.lead_management, :style => "width: 100%" %>
+                     <a id="setunlimited" href="javascript:void(0)">Set Unlimited</a>
                 </p>
-                <p><label>Price </label><%= text_field_tag :price, @plans.price %></p>
+                <p><label>Price </label><%= text_field_tag :price, @plans.price, :style => "width: 100%" %></p>
                 <p class="editplanbtn">
                     <input type="submit" class="btn yellow" name="submitplanedit" value="submit" id="submitplanedit"/>
                 </p>

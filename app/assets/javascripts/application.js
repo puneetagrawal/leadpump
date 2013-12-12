@@ -29,13 +29,11 @@
 //= require jquery.fancybox
 //= require strip
 //= require viplead
-//= require ckeditor-jquery
 //= require seeusergauge
-//= require ckeditor/ckeditor
-//= require_tree .
+//= require ckeditor/config
 //= require saleprod
+//= require ckeditor-jquery
 
-input_html => {:toolbar => 'MyToolbar'}
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
@@ -393,20 +391,11 @@ function removeFlash(){
 	setTimeout(hideSuccessMsg, 2500);
 }
 
-function userSearchFilter(userId){
-	url = '/usersearchinadmin';
-	$.get(url, {userId:userId}, function (data) {	
-	});
-}
-
-
 function statSearchFilter(userId){
 	// url = '/usersearchinadmin';
 	// $.get(url, {userId:userId}, function (data) {	
 	// });
 }
-
-
 
 function isNormalText(event) {
     var re = /[^0-9]+/g;
