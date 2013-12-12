@@ -59,6 +59,7 @@ Leadpump::Application.routes.draw do
 
   match 'home/social_inviter' => 'referrals#new'
   match 'home/terms' => 'home#terms'
+  match 'home/privacy' => 'home#privacy'
   match '/test' => 'home#test'
 
 

@@ -37,6 +37,9 @@ def test
    @companymallitem = current_user.fetchcompanymallitem
 end
 
+def privacy
+end
+
 def sendmail
   Emailer.sendtestmail().deliver
 end 

@@ -673,8 +673,12 @@ header h2 a {
     background: url("/assets/home.png") 22px 5px no-repeat transparent;
 }
 .punchline {
-    margin: 5px 0 0 320px;
+    margin: 5px 0 0 0px;
     font-weight: bold;
+    position: absolute;
+    left: 50%;
+    width: 140px;
+    margin-left: -70px;
 }
 
 /*footer*/
@@ -1862,6 +1866,7 @@ header h2 a {
     border-radius:5px;
     text-align:center;
     display:none;
+    float: left;
 }
 
 .small_popup{

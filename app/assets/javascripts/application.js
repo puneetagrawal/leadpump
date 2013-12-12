@@ -29,9 +29,13 @@
 //= require jquery.fancybox
 //= require strip
 //= require viplead
-//= require ckeditor-jquery
 //= require seeusergauge
+<<<<<<< HEAD
+=======
+//= require ckeditor/config
+>>>>>>> f736b013b99a16ca418a35766fdcaeccc0a506aa
 //= require saleprod
+//= require ckeditor-jquery
 
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
@@ -330,20 +334,11 @@ function removeFlash(){
 	setTimeout(hideSuccessMsg, 2500);
 }
 
-function userSearchFilter(userId){
-	url = '/usersearchinadmin';
-	$.get(url, {userId:userId}, function (data) {	
-	});
-}
-
-
 function statSearchFilter(userId){
 	// url = '/usersearchinadmin';
 	// $.get(url, {userId:userId}, function (data) {	
 	// });
 }
-
-
 
 function isNormalText(event) {
     var re = /[^0-9]+/g;

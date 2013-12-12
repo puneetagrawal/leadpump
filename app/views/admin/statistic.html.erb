@@ -1,12 +1,19 @@
 <div class="container nav_second">
+	<h3 class="admin_title">Manage Statistics</h3>
     <div class="row-fluid">
         <div class="span12">
-            <div class="border">
-                <div>
-                    <%= render 'index' %>
-                </div>
-            </div>
-        </div>
+        	<ul class="nav nav-tabs" id="myTab">
+    			<li class="<%=params[:stats] == 'invite' ? '' : 'active'%>">
+    				<a href="javascript:void(0)" data-target="#vip_stats" data-toggle="tab" data-element="invite_stats">VIP Statistics</a>
+    			</li>
+    			<li class="<%=params[:stats] == 'invite' ? 'active' : ''%>">
+        			<a href="javascript:void(0)" data-target="#invite_stats" data-toggle="tab" data-element="vip_stats">Invite Statistics</a>
+    			</li>
+			</ul>
+        	<div class="filter">
+            	<%= render 'index' %>
+        	</div>
+    	</div>
     </div>
 </div>
 <%= render "common_templates/popupContainer"%>

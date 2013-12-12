@@ -12,9 +12,9 @@
  *= require bootstrap/bootstrap-responsive.min.css
  *= require bootstrap-datepicker
  *= require style.css
+ *= require admin.css
  *= require jquery-ui-1.10.3.custom.min.css
  *= require jquery.fancybox.css
  *= require_self
-  
  */
 

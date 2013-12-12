@@ -1,16 +1,21 @@
 <div class="container nav_second">
+  <h3 class="admin_title">Manage Payments</h3>
   <div class="row-fluid">
-    <div class="span12">
-      <div class="filter">
-        <input type="text" placeholder="Search by User Name" id="userlistadmin" class="span4" autocomplete="off">
-        <input type="text" id = "payment_from_date" class="filter-date span4" placeholder= "Payment From Date">
-        <input type="text" id = "payment_to_date" class="filter-date span4" placeholder= "Payment To Date">
+    <div class="span4">
+      <input type="text" placeholder="Search by User" id="userlistadmin" class="input-medium" autocomplete="off">
+    </div>
+    <div class="pull-right">
+      <input type="text" id = "payment_from_date" class="filter-date input-medium" placeholder= "From Date">
+        <input type="text" id = "payment_to_date" class="filter-date input-medium" placeholder= "To Date">
+    </div>
+  </div>
+  <div class="row-fluid">
+    
+    <div class="border">
+      <div id="filter_payment">
+        <%= render 'payment_index' %>
       </div>
-      <div class="border">
-        <div id="filter_payment">
-          <%= render 'payment_index' %>
-        </div>
-      </div>
+    </div>
     </div>
   </div>
 </div>

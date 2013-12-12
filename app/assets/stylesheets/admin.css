@@ -1,0 +1,21 @@
+.admin_title {
+    text-align: center;
+}
+
+#select_user_entry {
+	margin: 10px 0px;
+}
+
+.searchfilter {
+	margin: 10px 0px;
+	text-align: right;
+}
+
+.datefilter {
+	text-align: right;
+}
+input[type="text"] {
+	font-weight:normal;
+	font-size:16px;
+	font-family: arial;
+}

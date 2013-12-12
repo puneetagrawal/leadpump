@@ -276,4 +276,10 @@ function paymentSearchAdminFilter(userId){
 	});
 }
 
+function userSearchFilter(userId){
+	url = '/usersearchinadmin';
+	$.get(url, {userId:userId}, function (data) {	
+	});
+}
+
 
