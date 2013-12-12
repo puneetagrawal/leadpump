@@ -1,9 +1,9 @@
 <% if @users.present? %>
 	<% @users.each do |user| %>
-		<tbody>
-			<tr id="viewLead_<%= user.id %>"> 
+		<tbod>
+		<%=user.id%>	<tr id="viewLead_<%= user.id %>"> 
 				<td><%= user.name.humanize %></td> 
-				<td><%=user.role.role_type%></td>
+				<td><%=user.role.present? ? user.role.role_type : ''%></td>
 				<td class="leadActive leadAction" id="plan_<%=user.id%>">
 					<span class="plan_span"><%=user.fetchPlanName%></span>
 				</td>
