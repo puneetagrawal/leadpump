@@ -6,11 +6,11 @@ def index
 end
 
 def user
- @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
- respond_to do |format|
-  format.html
-  format.js
- end
+  @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  respond_to do |format|
+     format.html
+     format.js
+  end
 end
 
 def plan
@@ -41,7 +41,7 @@ end
 def user_record
 	@users = User.all.paginate(:page => params[:page], :per_page => params[:search_val], :order => "created_at DESC")
   respond_to do |format|
-    format.js { render "user_per_plan" }
+    format.js { render "user" }
  end
 end
 
@@ -53,7 +53,7 @@ def user_per_plan
     @users = User.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   end
   respond_to do |format|
-      format.js
+      format.js { render "user" }
   end
 end
 
@@ -84,7 +84,7 @@ end
       @users = User.fetchUserByPlan(plan).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     end
 	respond_to do |format|
-		format.js { render "user_per_plan" }
+		format.js { render "user" }
 	end
   end
   
@@ -99,8 +99,23 @@ end
     @leads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip")
   end
 	respond_to do |format|    
-  		format.js 
+  	format.js 
 	end
+end
+
+ def filter_user
+  t_dt = params[:user_to_date].present? ? params[:user_to_date] : ''
+  f_dt = params[:user_from_date].present? ? params[:user_from_date] : ''
+  if(f_dt != '' && t_dt != '')
+    f_dt = Date.strptime(f_dt, "%m/%d/%Y")
+    t_dt = Date.strptime(t_dt, "%m/%d/%Y")
+    @users = User.where("created_at >= ? and created_at <= ?", f_dt, t_dt ).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC") 
+  else
+    @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC") 
+  end
+  respond_to do |format|    
+    format.js { render "user" }
+  end
 end
 
 def filter_payment
@@ -127,12 +142,15 @@ def search_vip
    like  = "%".concat(params[:term].concat("%"))
    leads = Lead.select("distinct(name)").where("name like ?", like).where(:id => leads)
    list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
-   logger.debug("************************")
    if !leads.present?
-      logger.debug(">>>>>>>>>>>>>>>>>>")
       userleads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip")
       associates = User.select("distinct(name)").where("name like ? ", like).where(:id=> userleads.map(&:user_id))
       list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
+      if associates.empty?
+        users = User.where(:id => userleads.map(&:user_id))
+        companies = users.collect { |u| u.fetchCompany }
+        list = companies.map {|c| Hash[id: c.id, label: c.name, name: c.name]}
+      end
     end
   end
   render json: list
@@ -154,8 +172,15 @@ end
   def vipleadsearchadminfilter
     like  = "%".concat(params[:viplead].concat("%"))
     @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.name ilike ?", "vip", like)
+    @users = UserLeads.includes(:user).includes(:lead).where("users.name ilike ? and leads.lead_source= ?",like,"vip")
+    @userid = @users.collect { |u| u.user_id }
+    @company = Company.where(:company_admin_id => @userid.uniq).pluck(:id)
     if @leads.blank?
-      @leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip")
+      if @company.present? 
+        @leads = UserLeads.where(:user_id => @company)
+      else
+        @leads= @users
+      end
     end
     respond_to do |format|
       format.js { render "filter_vip" }
@@ -224,4 +249,23 @@ end
       format.js
     end
   end
+
+  def alterplantype
+    @user = User.find(params[:userId])
+    @user = @user.fetchCompany
+    @plan = @user.subscription.plan_per_user_range.plan
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def saveplantype
+    user = User.find(params[:userId])
+    plan = Plan.find(params[:planId]) 
+    if user.subscription.present?
+      user.subscription.plan_per_user_range.update_attributes(:plan_id=>plan.id)
+    end
+    msg = {"plan"=> plan.name}
+    render json:msg
+    end
 end

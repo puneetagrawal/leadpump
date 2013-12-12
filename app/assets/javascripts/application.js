@@ -31,6 +31,10 @@
 //= require viplead
 //= require ckeditor-jquery
 //= require seeusergauge
+//= require ckeditor/ckeditor
+//= require_tree .
+
+input_html => {:toolbar => 'MyToolbar'}
 
 	
 
@@ -43,7 +47,8 @@ $(document).ready(function(){
 	}); 
 
 
-    $("#select_user_entry").click(function(){  
+    $("#select_user_entry").click(function(){ 
+    	   $("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
 		   var search_val = $(this).val(); 
 		   $.ajax({
 		    url: "/viplead/filter_rec",
@@ -73,6 +78,7 @@ $(document).ready(function(){
     });
 
    $(document).on('change', "#plan_id", function () {
+   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
        var plan_id = $(this).val();
 		   $.ajax({
 		    url: "/admin/user_per_plan",
@@ -252,9 +258,18 @@ function initialization(){
 		}
 	});
 
+	$(".container").on('click', '.span', function (event){
+		alterplantype($(this).parent().attr('id'));	
+	});
+
 	$(".container").on('change', '#status_lead', function (){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
 	});
+
+	$(".container").on('change', '#alter_plan', function (){
+		savePlanType($(this).parent().attr('id'), $(this).val())
+	});
+
 	$(document).on("click",".cancelFancybox", function (){
 		$.fancybox.close();
 	});
@@ -346,6 +361,21 @@ function saveLeadStatus(id, status){
 	url = '/home/saveleadstatus';
 	$.post(url, {leadId:id,status:status, urls:urls}, function (data) {
 		$("#status_"+id).html('<span class="span">'+data.status+'</span>')	
+	});
+}
+
+function alterplantype(id){
+	id = id.split("_")[1]
+	url = '/admin/alterplantype'
+	$.post(url, {userId:id}, function (data) {	
+	});
+}
+
+function savePlanType(id, plan){
+	id = id.split("_")[1]
+	url = '/admin/saveplantype';
+	$.post(url, {userId:id,planId:plan}, function (data) {
+		$("#plan_"+id).html('<span class="span">'+data.plan+'</span>');	
 	});
 }
 
