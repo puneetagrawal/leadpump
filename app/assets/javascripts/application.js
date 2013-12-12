@@ -30,10 +30,6 @@
 //= require strip
 //= require viplead
 //= require seeusergauge
-<<<<<<< HEAD
-=======
-//= require ckeditor/config
->>>>>>> f736b013b99a16ca418a35766fdcaeccc0a506aa
 //= require saleprod
 //= require ckeditor-jquery
 
