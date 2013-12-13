@@ -36,6 +36,7 @@
       message = {"error"=> error}
       render json: message
     else
+      logger.debug("SDFSDFSDFSDFsdfsdfsdfsfsdfsdfsdfsfsdfsfs")
       respond_to do |format|
         format.js 
       end
