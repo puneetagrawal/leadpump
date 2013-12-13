@@ -273,9 +273,9 @@ end
 
 def fetchfbsubject
   company = self.fetchCompany
-  message = 'An Inviation from #{current_user.name} to you.'
+  message = "An Inviation from #{self.name.humanize} to you. "
   socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.fbsubject.present?
+  if !socialmessage.present? && socialmessage.fbsubject.present?
     message = socialmessage.fbsubject
   end
   return message.html_safe
@@ -283,7 +283,7 @@ end
 
 def fetchgmailsubject
   company = self.fetchCompany
-  message = 'An Inviation from #{current_user.name} to you.'
+  message = "An Inviation from #{self.name.humanize} to you."
   socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.gmailsubject.present?
     message = socialmessage.gmailsubject

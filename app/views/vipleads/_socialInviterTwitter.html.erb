@@ -9,11 +9,11 @@
         <h3>Share on Twitter</h3>
         <p>Share this message with your friends on Twitter. The following tweet will be posted to your twitter stream.</p>
         <form class="form">
-           <textarea disabled="disabled"><%=current_user.fetchtwitterMessage%></textarea>
+           <div class="twitter_div"> <%=current_user.fetchtwitterMessage.html_safe %> </div>
            <div id="share_text" style="display:none;"> </div>   
            <div id="new-button"> </div> 
            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://signin.leadpump.com/acceptInvitation?token=<%=current_user.token%>&source=twitter"
-           data-text="<%=current_user.fetchtwitterMessage%>"
+           data-text="<%= current_user.fetchtwitterMessage.html_safe%>"
            data-count="none"> Tweet </a>
        </form>
    </div>

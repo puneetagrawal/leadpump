@@ -1,3 +1,1 @@
-$(".formcontainer").addClass('hide');
-$(".socialcontainer").removeClass('hide');
-$(".social_options ul li").each(function(){$(this).removeClass("hide")});
+$(".vipContainer").html('<%=escape_javascript(render partial: "vipleads/socialInviteStep2")%>');

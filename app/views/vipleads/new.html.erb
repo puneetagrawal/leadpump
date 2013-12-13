@@ -10,13 +10,11 @@
 							<div class="stepNo2 step-title  btn"><span class="step-order">2.</span> <span class="step-name">Step 2</span></div>
 							<div class="stepNo3 step-title  btn"><span class="step-order">3.</span> <span class="step-name">Step 3</span></div>
 						</div>
-							<%= @emailAuth.present? ? 'dfdfdf' : ' hide' %>
-							<span class="socialcontainer <%= @emailAuth.present? ? '' : ' hide' %>">
-								<%=render "socialInviteStep2"%>
-							</span>
-							<span class="formcontainer<%= @emailAuth.present? ? ' hide' : '' %>">
-								<%=render "form"%>
-							</span>
+							<%if @emailAuth.present? %>
+					        <%=render "socialInviterEmail"%>
+					       <%else%>
+					        <%=render "form"%>
+					       <%end%>
 						</span>
 					</span>
 				</div>

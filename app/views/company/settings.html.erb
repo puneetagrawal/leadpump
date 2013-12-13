@@ -1,12 +1,13 @@
  
 <div class="container wrapper">
     <%if current_user.isEmployee || current_user.isCompany%>
-		 <div class="row-fluid">
+		  <div class="row-fluid">
 	        <%=render "home/companyLogo"%>
+	         <div class="row-fluid">
 		    <div class="span10">
 		        <%if current_user.isAdmin || current_user.isCompany%>
-		            <div class="pull-left clear">
-		                <h4 class="btn yellow submitlogo">Upload Logo</h4>
+		            <div class="pull-left clear mt10">
+		                <a class="btn yellow submitlogo">Upload Logo</a>
 		                <%= form_for @picture, :url => '/createpic' do |form| %>
 		                  <%= form.file_field :avatar, :style =>"display:none" %>
 		                <% end %>
@@ -14,15 +15,19 @@
 		        <%end%>
 		    </div>
 		</div>
+		</div>
     <%end%>
     <div class="row-fluid">
-        <ul class="dashboardIcons">
-            <div class="pull-left clear">
-                <h4 class="btn yellow s_msg_inv"><%=link_to "Manage Social Invite Messages", socialMessages_path%></h4>
-            </div>
-             <div class="pull-left clear">
-                <h4 class="btn yellow s_msg_inv"><%=link_to "Manage Landing Page", landpage_path%></h4>
-            </div>
-        </ul>
+    	<div class="span12">
+	        <ul class="settings_menu">
+	            <li>
+	                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
+	            </li>
+	             <li>
+	                <%=link_to "Manage Landing Page", landpage_path, :class=> "btn yellow"%></h4>
+	            </li>
+
+	        </ul>
+    	</div>
     </div>
 </div>

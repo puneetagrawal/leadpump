@@ -7,10 +7,8 @@
         <h3>Share on Facebook</h3>
         <p>Share this message with your friends on Facebook. The following tweet will be posted to your Facebook stream.</p>
         <form class="form">
-            <textarea disabled="disabled">
-               <%=current_user.fetchFacebookMessage%>
-            </textarea>
-            <a class="btn yellow fbfetchfreinds" href="javascript:void(0)">Share on facebook</a>
+            <div class="twitter_div"> <%=current_user.fetchFacebookMessage.html_safe %> </div>
+           <a class="btn yellow fbfetchfreinds" href="javascript:void(0)">Share on facebook</a>
                        
         </form>
     </div>

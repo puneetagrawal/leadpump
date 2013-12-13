@@ -214,8 +214,6 @@ function initialization(){
 		assignLeadToUser($(this).val(), leadId);
 	});
 
-	
-
 	$(".submitlogo").click(function (){
 		$('#picture_avatar').click();
 	});
