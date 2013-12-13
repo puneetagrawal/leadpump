@@ -13,6 +13,13 @@ $(document).ready(function(){
 		}
 	});
 
+	$(".admincreateuser").click(function(){
+		admincreateuserpopup();
+	});
+	$(document).on('click', ".createUser", function () {
+		admincreateuser(this);
+	});
+
 	$('.mall_chek').click(function(){
 		checked = $(this).is(':checked'); 
 		id = $(this).attr('id').split("_")[1];
@@ -150,18 +157,16 @@ $(document).ready(function(){
 			});
 		}
 	});
-
+	$("#user_to_date").unbind();
 	$("#user_to_date").change(function (){
-		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
 		var to_date = $(this).val();
 		var from_date = $('#user_from_date').val();
-		if ($('#user_from_date').val().length == 0)
-		{
+		if (from_date == ''){
 			alert("Please insert the From Date field.");
-			$('#user_to_date').val("");
+			return false
 		}
-		else if (($('#user_from_date').val().length != 0) && ($('#user_to_date').val().length != 0))
-		{
+		else if ((from_date.length != 0) && (to_date.length != 0)){
+			$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 			$.ajax({ 
 				url: "/filter_user",
 				data: { 
@@ -170,13 +175,6 @@ $(document).ready(function(){
 				}
 			});
 		}
-		else if ($('#user_to_date').val().length == 0)
-		{
-			$.ajax({
-				url: "/filter_user"
-			});
-		}
-
 	});
 
 	$(document).on("click", ".planedit", function (){
@@ -263,6 +261,36 @@ $(document).ready(function(){
     });
 
 });
+
+function admincreateuserpopup(){
+	$.fancybox.open({
+		href: '#createTask',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/admin/usercreatepopup';
+			$.get(url, {}, function (data) {		
+				$(".error").html('');
+			});
+		}
+	});
+}
+
+function admincreateuser(obj){
+	$(obj).html('<img src="/assets/ajax-loader.gif">');
+	company = $("#users").val();
+	name = $("#name").val();
+	email = $("#email").val();
+	if(company == '' || name == '' || email == ''){
+		$(".error").html("All fields are required.");
+		$(obj).html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+	}
+	else{
+		url = '/createUser';
+		$.get(url, {email:email,company:company,name:name}, function (data) { 
+			$(obj).html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+		});
+	}
+}
 
 function vipleadSearchAdminFilter(vipleadId){
 	url = '/vipleadsearchadminfilter';

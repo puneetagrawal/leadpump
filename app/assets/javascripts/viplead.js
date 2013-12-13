@@ -6,6 +6,10 @@ function initSocialInviter(){
 	$(".proceed_step1").click(function(){
 		movetostep1(this);
 	});
+	$(document).on('click', '.process_steps .step-visited', function (){
+		enablestep($(this).attr('class'));
+	});
+
 	$(document).on('click', '.social_options ul li', function (){
 		name = $(this).attr('name');
 		executeSecondStep(name);
@@ -89,6 +93,7 @@ function movetostep1(obj){
 	}
 	if(!exit){
 		executeFirstStep(obj, skip);	
+		$(obj).html('<a id="skip_step_1" class="btn yellow" href="javascript:void(0)">Skip</a>');
 	}
 }
 
@@ -102,21 +107,43 @@ function executeFirstStep(obj, skip){
 			$(obj).html('<a id="proceed_step_1" class="btn yellow" href="javascript:void(0)">Proceed to Next Step</a>');
 		}
 		else{
-			$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
-			$(".stepNo2").removeClass('disabled');
+			$(".stepNo1").addClass('step-visited').prepend('<i class="icon-ok icon-white step-mark"></i>');
+
 		}
 	});
 }
 
 function executeSecondStep(name){
-	$(".stepNo2").addClass("step-visited disabled").prepend('<i class="icon-ok icon-white step-mark"></i>');
+	if(!$(".stepNo2").hasClass('step-visited')){
+		$(".stepNo2").addClass("step-visited").prepend('<i class="icon-ok icon-white step-mark"></i>');
+	}
 	$(".social_options ul li").each(function(){$(this).addClass("hide")});
 	$("."+name).removeClass('hide');
-	$(".stepNo3").removeClass('disabled');
 }
 
 function vipleadSearchFilter(vipleadId){
 	url = '/vipleadsearchfilter';
 	$.get(url, {viplead:vipleadId}, function (data) {	
 	});
+}
+
+function enablestep(step){
+	if(step.indexOf("stepNo1") > -1){
+		$(".formcontainer").removeClass('hide');
+		$(".socialcontainer").addClass('hide');
+		$(".social_options ul li").each(function(){
+			if(!$(this).hasClass('hide')){ 
+				$(this).addClass("hide")
+			}
+		}); 
+	}
+	else if(step.indexOf("stepNo2") > -1){
+		if(!$(".formcontainer").hasClass('hide')){$(".formcontainer").addClass('hide')};
+		$(".social_options ul li").each(function(){$(this).removeClass("hide")});
+		$(".pre_formated_email").each(function(){
+			if(!$(this).hasClass('hide')){ 
+				$(this).addClass("hide")
+			}
+		}); 
+	}
 }

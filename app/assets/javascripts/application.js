@@ -34,9 +34,9 @@
 //= require ckeditor-jquery
 
 $(document).ready(function(){
- 	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
- 	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
- 	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd'}).val(); 
+ 	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }); 
+ 	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }); 
+ 	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd'}); 
 	$('.ckeditor').ckeditor({
 		  // optional config
 	}); 

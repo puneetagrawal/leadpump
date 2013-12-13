@@ -29,7 +29,7 @@ class VipLead < ActiveRecord::Base
 
   def self.saveLead(viplead, user)
     viplead.save
-    user_lead = UserLeads.new(:user_id => user.id, :lead_id => viplead.id)
+    user_lead = UserLeads.create(:user_id => user.id, :lead_id => viplead.id)
     user.saveLeadCount
   end
 

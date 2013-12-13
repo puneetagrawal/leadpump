@@ -2,21 +2,7 @@
 	<% @users.each do |user| %>
 		<tbody>
 			<%if user.present?%>
-			<tr id="viewLead_<%= user.id %>"> 
-				<td><%= user.name.humanize %></td> 
-				<td><%=user.role.role_type%></td>
-				<td class="leadActive leadAction" id="plan_<%=user.id%>">
-					<span class="plan_span"><%=user.fetchPlanName%></span>
-				</td>
-				</td>
-				<td class="leadActive leadAction" id="status_<%=user.id%>">
-					<span class="span leadAction"><%=user.active ? 'Active' : 'Inactive'%></span>
-				</td>
-				<td><%= user.created_at.strftime("%Y/%m/%d") %>
-				<td>
-					<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
-				</td>
-			</tr>
+			<%=render "userrow", :user=>user%>
 			<%end%>
 		</tbody>
 	<% end %>

@@ -30,4 +30,18 @@ class Company < ActiveRecord::Base
   		end
   		return logo
 	end
+
+	def self.createUser(useradmin, user)
+		logger.debug(useradmin)
+		logger.debug(user)
+		company = Company.new(:company_admin_id => useradmin.id, :company_user_id => user.id)
+        company.save
+        useradmin.update_attributes(:users_created=> useradmin.users_created+1)
+        begin 
+          user.send_reset_password_instructions
+        rescue Exception => e
+        end
+        user.update_attributes(:reset_status => false)
+        return user
+    end
 end

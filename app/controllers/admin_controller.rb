@@ -1,3 +1,4 @@
+
 class AdminController < ApplicationController
 before_filter :authenticate
 require 'will_paginate/array'
@@ -271,5 +272,33 @@ end
     end
     msg = {"plan"=> plan.name}
     render json:msg
+    end
+
+    def usercreatepopup
+      @companies = User.where(:role_id=>2)
+      respond_to do |format|
+        format.js
+      end
+    end
+
+    def createUser
+      @error = ''
+      userAdmin = User.find(params[:company])
+      if userAdmin.checkUserLimit 
+        @user = User.new(:email=>params[:email], :name=>params[:name], :password=>"user.leadpump123")
+        @user.reset_status = true
+        @user.role_id = Role.find_by_role_type("employee").id
+        if @user.save
+          @user = Company.createUser(userAdmin, @user)
+          @empcount = User.where(:role_id=>3).count
+        else
+          @error = @user.errors.full_messages.to_sentence
+        end
+      else
+        @error = "Under this company no more user can be added."
+      end
+      respond_to do |format|
+        format.js
+      end
     end
 end
