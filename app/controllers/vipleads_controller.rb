@@ -43,7 +43,7 @@
   end
 
   def new
-    if current_user.isSocialInvitable
+    if current_user.isSocialInvitable || current_user.isAdmin
       if params[:token].present?
         token = params[:token]
         @contacts = GmailContacts::Google.new(token).contacts
@@ -67,6 +67,7 @@
       redirect_to home_index_path  
       return false
     end
+    @picture_user = Picture.fetchCompanyLogo(current_user.id)
     @lead = Lead.new
   end
 

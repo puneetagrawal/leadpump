@@ -1,0 +1,10 @@
+<%if @error.blank?%>
+	$(".table-striped tbody tr:first").before('<%=escape_javascript(render partial: "userrow", :locals=>{:user=>@user})%>')
+	$(".emp").html('<%=@empcount%>')
+	alert("user created successfully")
+
+	$.fancybox.close();
+<%else%>
+	$(".fancybox-inner .error").html('<%=@error%>');
+	$('.fancybox-inner .createUser').html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+<%end%>

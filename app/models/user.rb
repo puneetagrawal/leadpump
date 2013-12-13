@@ -74,6 +74,8 @@ class User < ActiveRecord::Base
 
   def isSocialInvitable
     company = self.fetchCompany
+    logger.debug("3543434343434")
+    logger.debug(company.id)
     allow = false
     if company.subscription.present? && !company.subscription.plan_per_user_range.plan.social_referrals.blank?
         allow = true
@@ -271,9 +273,9 @@ end
 
 def fetchfbsubject
   company = self.fetchCompany
-  message = 'An Inviation from #{current_user.name} to you.'
+  message = "An Inviation from #{self.name.humanize} to you. "
   socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.fbsubject.present?
+  if !socialmessage.present? && socialmessage.fbsubject.present?
     message = socialmessage.fbsubject
   end
   return message.html_safe
@@ -281,7 +283,7 @@ end
 
 def fetchgmailsubject
   company = self.fetchCompany
-  message = 'An Inviation from #{current_user.name} to you.'
+  message = "An Inviation from #{self.name.humanize} to you."
   socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.gmailsubject.present?
     message = socialmessage.gmailsubject

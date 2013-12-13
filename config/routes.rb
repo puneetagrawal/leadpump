@@ -90,6 +90,8 @@ Leadpump::Application.routes.draw do
   match "/filter_user" => "admin#filter_user"
   match '/admin/saveplantype' => 'admin#saveplantype'
   match '/admin/alterplantype' => 'admin#alterplantype'
+  match '/admin/usercreatepopup' => 'admin#usercreatepopup'
+  match '/createUser' => 'admin#createUser'
 
    namespace :admin do
      root :to => "admin#index"

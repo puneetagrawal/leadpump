@@ -9,7 +9,6 @@ class OnlinemallController < ApplicationController
   end
 
   def create
-  	logger.debug params[:onlinemall]
     @onlinemall = Onlinemall.new(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title], :link=>params[:onlinemall][:link], :file => params[:onlinemall][:file],:user_id=>current_user.id)
   	mallpic = nil
   	if !params["onlinemall"]["mallpic_attributes"]["0"]["avatar"].blank?
