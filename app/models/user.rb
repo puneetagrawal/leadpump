@@ -221,7 +221,6 @@ def checkLeadLimit
     allow = false
   when :employee
     user = self.fetchCompany
-    logger.debug(user.id)
     limit = user.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
       if user.leads_created == limit.to_i
@@ -231,12 +230,13 @@ def checkLeadLimit
   when :company
     limit = self.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
-      usrLeads = UserLeads.where(:user_id=>self.id)
       if self.leads_created == limit.to_i
         allow = false
       end
     end
   end
+  logger.debug(",,,,,,,,,,,,,,,")
+  logger.debug(allow)
   return allow
 end
 

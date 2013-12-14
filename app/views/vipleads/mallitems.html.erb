@@ -1,8 +1,9 @@
 
-<div class="container">
+<div class="container wrapper">
     <div class="row-fluid">
         <div class="span12">
-            <div class="logo_listing m_item_main">
+           <div class="logo_listing m_item_main">
+            <h2 style="text-align:center;">Download or Print Coupons here for free trial.</h2>
             <%if @companymallitem.present?%>
             <%@companymallitem.each do|mall|%>
                 <div class="logo_con ">
@@ -15,7 +16,7 @@
                     <div class="action_btn viewmallitem" id="view_<%=mall.id%>">
                         <%=link_to "javascript:void(0)" ,:class=>"btn yellow pull-left" do%>   
                         <i class="icon-download" ></i>
-                        View
+                        Download or Print
                         <%end %>
                     </div>
                 </div>

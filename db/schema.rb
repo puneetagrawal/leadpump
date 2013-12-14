@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211114713) do
+ActiveRecord::Schema.define(:version => 20131214094458) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20131211114713) do
     t.boolean  "oppened",      :default => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.string   "source"
   end
 
   create_table "land_page_logos", :force => true do |t|
@@ -292,6 +293,18 @@ ActiveRecord::Schema.define(:version => 20131211114713) do
     t.string   "gmailsubject"
   end
 
+  create_table "stats", :force => true do |t|
+    t.string   "source",      :default => "email"
+    t.string   "location",    :default => "Default Location"
+    t.integer  "e_sents"
+    t.integer  "e_oppened"
+    t.integer  "e_views"
+    t.integer  "e_converted"
+    t.integer  "user_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
   create_table "subscriptions", :force => true do |t|
     t.integer  "plan_per_user_range_id"
     t.string   "stripe_card_token"
@@ -310,6 +323,7 @@ ActiveRecord::Schema.define(:version => 20131211114713) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

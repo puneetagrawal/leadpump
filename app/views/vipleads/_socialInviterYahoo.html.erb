@@ -5,12 +5,13 @@
     </div>
     <div class="span4">
         <h3>Share on Yahoo</h3>
-        <p>Share this message with your friends on Yahoo. The following tweet will be posted to your Yahoo stream.</p>
+        <p>Share this message with your friends on Yahoo. The following Message will be Send to your Yahoo Friends.</p>
         <form class="form">
-            <textarea disabled="disabled">
-               <%#=current_user.fetchFacebookMessage%>
-            </textarea>
-            <a href="/contacts/yahoo">Yahoo</a>
+            <p><strong>Subject:</strong> <%=current_user.fetchgmailsubject%> to you</p>
+            <div class="email_msg">
+                <p><%= current_user.fetchEmailMessage %></p> 
+            </div>
+            <a href="/contacts/yahoo" class="btn yellow">Yahoo</a>
         </form>
     </div>
 </div>

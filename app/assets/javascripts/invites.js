@@ -14,8 +14,14 @@ $(document).ready(function(){
 
 function fetchEmailContact(){
 	$(".forms").addClass('hide');
-	$(".social-email").removeClass('hide');
+	uri = window.location.pathname;
+	if(uri.indexOf("yahoo") > -1){
+		$(".social-yahoo").removeClass('hide');
+	}
+	else{
+		$(".social-email").removeClass('hide');	
+	}
 	url = '/fetchContacts';
-	$.get(url, {}, function (data) {			
+	$.get(url, {uri:uri}, function (data) {			
 	});
 }
