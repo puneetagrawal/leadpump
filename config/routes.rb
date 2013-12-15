@@ -41,7 +41,7 @@ Leadpump::Application.routes.draw do
   match "/vipleadsearchfilter" => "vipleads#vipleadsearchfilter"
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
   match "/sendIvitationToFbFriend" => "vipleads#sendIvitationToFbFriend"
-  match "/mallitems" => "vipleads#mallitems"
+  match "/mallitems/:id" => "vipleads#mallitems"
   match "/viewmallitem" => "vipleads#viewmallitem"
   match "/download" => "vipleads#download"
 
@@ -157,7 +157,7 @@ Leadpump::Application.routes.draw do
   
   match "/sendmail" => "home#sendmail"
   match "/send_invitation_social" => "home#send_invitation_social"
-  match "/contacts/:provider/callback" => "home#contacts_callback"
+  match "/contacts/:provider/callback" => "vipleads#new"
   # match "/callback" => "home#contacts_callback"
   match "/contacts/failure" => "home#failure"
 
