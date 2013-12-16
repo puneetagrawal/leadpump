@@ -72,11 +72,12 @@ module Leadpump
        #  password: "4trading",
 	      # ssl: true
         :address => "smtp.sendgrid.net",
-        :port => 25,
+        :port => 465,
         :domain => "leadpump.com",
         :authentication => :plain,
         :user_name => "leadpump",
-        :password => "4trading"
+        :password => "4trading",
+        :ssl => true
       } 
     end
 end

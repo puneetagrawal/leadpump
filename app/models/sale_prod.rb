@@ -59,36 +59,52 @@ class SaleProd < ActiveRecord::Base
   end
 
   def self.fetchGrossMap(sale)
-  	g_paper = 0
+  	g_gross = 0
   	g_cash = 0
   	g_eft = 0
     g_mem = 0
+    call = 0
+    mail = 0
+    ref = 0
   	if !sale.blank?
   		sale.each do |s_tdt|
   			if s_tdt.sale_reports.present?
-  				g_paper += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.cheque}.compact)
   				g_cash += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.amount}.compact)
   				g_eft += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.eft}.compact)
-          g_mem += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.contract}.compact)
+          g_gross += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.contract}.compact)
+          g_mem += s_tdt.sale_reports.size
+          call += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Walk in"}.compact.count
+          logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+          logger.debug(call)
+          mail += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Telephone inquiry"}.compact.count
+          logger.debug(mail )
+          ref += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Website"}.compact.count
   			end
   		end
   	end
-  	call = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.call}.compact)
-  	app = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.appointment}.compact)
-  	mail = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.mail}.compact)
-  	net = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.net}.compact)
-  	ref = SaleProd.fetchgrossvalue(sale.collect{|sale| sale.referral}.compact)
-  	total = call + app + mail + net + ref
-
-  	g_avg = SaleProd.fetchAvg(g_paper)
+  	
+  	
+    m_avg = SaleProd.fetchAvg(g_mem)
   	c_avg = SaleProd.fetchAvg(g_cash)
   	e_avg = SaleProd.fetchAvg(g_eft)
-    m_avg = SaleProd.fetchAvg(g_eft)
-  	g_prjt = SaleProd.fetchProjection(g_avg)
+    g_avg = SaleProd.fetchAvg(g_gross)
+    
+    g_prjt = SaleProd.fetchProjection(g_avg)
   	c_prjt = SaleProd.fetchProjection(c_avg)
   	e_prjt = SaleProd.fetchProjection(e_avg)
-  	return {:g_paper=>g_paper,:g_cash=>g_cash,:g_mem=>g_mem,:g_eft=>g_eft,:g_avg=>g_avg,:c_avg=>c_avg,:e_avg=>e_avg,:m_avg=>m_avg,
-  		:g_prjt=>g_prjt,:c_prjt=>c_prjt,:e_prjt=>e_prjt, :call=>call,:app=>app,:mail=>mail,:net=>net,:ref=>ref,:total=>total}
+    m_prjt = SaleProd.fetchProjection(m_avg)
+  	return {:g_cash=>g_cash,:g_mem=>g_mem,:g_eft=>g_eft,:g_gross=>g_gross,:c_avg=>c_avg,:e_avg=>e_avg,:m_avg=>m_avg,
+      :g_avg=>g_avg,:c_prjt=>c_prjt,:e_prjt=>e_prjt,:g_prjt=>g_prjt, :m_prjt=>m_prjt,:call=>call,
+      :mail=>mail,:ref=>ref}
+  end
+
+  def self.fetchAppointment(date, user)
+    users = User.fetchCompanyUserList(user)
+    users = users.uniq
+    to_date = SaleProd.fetchToDate(date)
+    to_dt_app = Appointment.where("created_at >= ? and created_at < ?", to_date, date+1).where(:user_id=>users).count
+    tod_app = Appointment.where("created_at >= ? and created_at < ?", date, date+1).where(:user_id=>users).count
+    return {:today_app=>tod_app, :to_dt_app=>to_dt_app}
   end
 
   def self.fetchToDate(date)
@@ -96,7 +112,7 @@ class SaleProd < ActiveRecord::Base
   end
 
   def self.fetchAvg(amount)
-  	avg =  amount/Date.today.day
+  	avg =  amount.to_f/Date.today.day
   end
 
   def self.fetchProjection(amount)

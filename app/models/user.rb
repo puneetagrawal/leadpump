@@ -130,9 +130,7 @@ class User < ActiveRecord::Base
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users = users.collect{|user| User.find(user)}
       when :employee
-        company = Company.find_by_company_user_id(user.id).company_admin_id
-        users = Company.where(:company_admin_id => company).pluck(:company_user_id)
-        users = users.collect{|user| User.find(user)}
+        users << user
     end
   end
 

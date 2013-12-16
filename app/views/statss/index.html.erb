@@ -11,32 +11,38 @@
 
 <style type="text/css" media="all">
 
-
 </style>
 <div class="container wrapper">
-    <?php include('dashboard-icons.php'); ?>
     <div class="row-fluid">
         <div class="span4">
             <div class="graph_con">
-                <canvas id="canvas" height="450" width="430"></canvas>
+                <canvas id="canvas" height="450" width="380"></canvas>
                 <script>
-
+                    data = "<%=@datelist%>"
+                    data = data.split(",")
                     var lineChartData = {
-                        labels : ["January","February","March","April","May","June","July"],
+                        labels : data,
                         datasets : [
                             {
                                 fillColor : "rgba(220,220,220,0.5)",
                                 strokeColor : "rgba(220,220,220,1)",
                                 pointColor : "rgba(220,220,220,1)",
                                 pointStrokeColor : "#fff",
-                                data : [10,20,30,10,23,44,22]
+                                data : [10,0,30,0,50,0,0,80,0,0,0,0,20,30,10,23,44,22,5,6,2,1,0,0,0,0,0,0,0,44]
                             },
                             {
                                 fillColor : "rgba(151,187,205,0.5)",
                                 strokeColor : "rgba(151,187,205,1)",
                                 pointColor : "rgba(151,187,205,1)",
                                 pointStrokeColor : "#fff",
-                                data : [28,48,40,19,46,27,66]
+                                data : [30,10,0,20,40,0,0,10,0,05,0,0,20,30,10,23,44,22,5,6,2,10,0,0,0,0,0,0,0,0]
+                            },
+                            {
+                                fillColor : "rgba(255, 174, 0)",
+                                strokeColor : "rgba(255, 174, 0)",
+                                pointColor : "rgba(255, 174, 0)",
+                                pointStrokeColor : "#fff",
+                                data : [10,0,20,0,0,50,0,0,06,0,30,07,20,30,10,23,44,22,5,6,2,1,0,0,0,0,0,0,0,4]
                             }
                         ]
 

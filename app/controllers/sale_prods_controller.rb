@@ -3,14 +3,15 @@ class SaleProdsController < ApplicationController
     @sale_todate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
     @sale_tody = SaleProd.fetchProdDataToDay(current_user, Date.today)
     @gross_values = SaleProd.fetchGrossPaper(@sale_todate, @sale_tody)
+    @appointment = SaleProd.fetchAppointment(Date.today, current_user)
     @date = Date.today
   end
 
   def new
   	@saleProd = SaleProd.new
-    @incom_mail = Lead.fetchTodayLeadOfUser(current_user)
-    @appointment = Appointment.fetchTodayAppointmentOfUser(current_user)
-    @sociallead = Lead.fetchTodaySocailLeadOfUser(current_user)
+    @sale_tody = SaleProd.fetchProdDataToDay(current_user, Date.today)
+    @gross_values = SaleProd.fetchGrossPaper([], @sale_tody)
+    @appointment = SaleProd.fetchAppointment(Date.today, current_user)
   end
 
   def create
@@ -37,8 +38,8 @@ class SaleProdsController < ApplicationController
     @sale_todate = SaleProd.fetchProdDataUpToDate(current_user, date)
     @sale_tody = SaleProd.fetchProdDataToDay(current_user, date)
     @gross_values = SaleProd.fetchGrossPaper(@sale_todate, @sale_tody)
+    @appointment = SaleProd.fetchAppointment(Date.today, current_user)
     @date = date
-    logger.debug(@gross_values)
     respond_to do |format|
       format.js 
     end

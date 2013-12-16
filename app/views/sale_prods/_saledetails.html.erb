@@ -1,7 +1,7 @@
 <table class="table table-striped">
 	<thead>
-		<tr><td>No.</td><td>Type</td><td>Amount Sold</td><td>Cash</td><td>Cheque</td><td>Amount Due</td>
-			<td class="td100">Name of the New Member</td><td>Source</td><td class="td50">Rep</td><td class="td50">Contract Number</td><td>Comm.</td></tr>
+		<tr><td>No.</td><td>Membership Type</td><td>Total Contract Amount</td><td>Total Amount Collected</td><td>Monthly Dues Amount</td>
+			<td class="td100">Name of the Member</td><td>Source</td></tr>
 		</thead>
 		<tbody>
 			<%if @sale_tody.present?%>
@@ -13,15 +13,11 @@
 							<tr>
 								<td><%=i%></td>
 								<td><%=sale.s_type%></td>
-								<td><%=sale.contract%></td>
-								<td><%=sale.amount%></td>
-								<td><%=sale.cheque%></td>
-								<td><%=sale.eft%></td>
+								<td><%=!sale.contract.blank? ? "$#{sale.contract}" : ''%></td>
+								<td><%=!sale.amount.blank? ? "$#{sale.amount}" : ''%></td>
+								<td><%=!sale.eft.blank? ? "$#{sale.eft}" : ''%></td>
 								<td><%=sale.name%></td>
 								<td><%=sale.source%></td>
-								<td class="td100"><%=sale.report%></td>
-								<td><%=sale.mem_no%></td>
-								<td><%=sale.commission%></td>
 							</tr>
 						<%end%>
 					<%end%>
