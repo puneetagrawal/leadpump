@@ -177,7 +177,7 @@
           UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
           user.saveLeadCount
           OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
-          if params[:source] == "gmail" && if !params[:sec].blank?
+          if params[:source] == "gmail" && !params[:sec].blank?
             msg = Stats.saveEconverted(user.id, params[:sec])
           end
           msg = "thanks"
