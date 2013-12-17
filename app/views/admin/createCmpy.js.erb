@@ -1,6 +1,6 @@
 <%if @error.blank?%>
 	$(".table-striped tbody tr:first").before('<%=escape_javascript(render partial: "userrow", :locals=>{:user=>@user})%>')
-	$(".comp").html('<%=@companycount%>')
+	$(".cmpy").html('<%=@cmpycnt%>')
 	alert("Company created successfully")
 	$.fancybox.close();
 <%else%>

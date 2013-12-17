@@ -28,7 +28,7 @@ end
 
 def statistic
 	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
-  @stats = Stats.all.paginate(:page => params[:page], :per_page => 50, :order => "created_at DESC")
+  @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   respond_to do |format|
     format.js
     format.html
@@ -286,54 +286,56 @@ end
     end
     msg = {"plan"=> plan.name}
     render json:msg
-    end
+  end
 
-    def usercreatepopup
-      @companies = User.where(:role_id=>2)
-      respond_to do |format|
-        format.js
-      end
+  def usercreatepopup
+    @companies = User.where(:role_id=>2)
+    respond_to do |format|
+      format.js
     end
+  end
 
-    def cmpycreatepopup
-      respond_to do |format|
-        format.js
-      end
+  def cmpycreatepopup
+    respond_to do |format|
+      format.js
     end
+  end
 
-    def createUser
-      @error = ''
-      userAdmin = User.find(params[:company])
-      if userAdmin.checkUserLimit 
-        @user = User.new(:email=>params[:email], :name=>params[:name], :password=>"user.leadpump123")
-        @user.reset_status = true
-        @user.role_id = Role.find_by_role_type("employee").id
-        if @user.save
-          @user = Company.createUser(userAdmin, @user)
-          @empcount = User.where(:role_id=>3).count
-        else
-          @error = @user.errors.full_messages.to_sentence
-        end
-      else
-        @error = "Under this company no more user can be added."
-      end
-      respond_to do |format|
-        format.js
-      end
-    end
-
-    def createCmpy
-      @error = ''
-      @user = User.new(:email => params[:cmpyemail], :name => params[:cmpyname], :password => "company.leadpump123")
+  def createUser
+    @error = ''
+    userAdmin = User.find(params[:company])
+    if userAdmin.checkUserLimit 
+      @user = User.new(:email=>params[:email], :name=>params[:name], :password=>"user.leadpump123")
       @user.reset_status = true
-      @user.role_id = Role.find_by_role_type("company").id
-      @user.subscription = Subscription.new(:plan_per_user_range_id => 20, :expiry_date => Date.today+45.days, :users_count => 100, :locations_count => 100, :plan_type => "monthly")
-      @companycount = User.where(:role_id=>2).count
-      if !@user.save
+      @user.role_id = Role.find_by_role_type("employee").id
+      if @user.save
+        @user = Company.createUser(userAdmin, @user)
+        @empcount = User.where(:role_id=>3).count
+      else
         @error = @user.errors.full_messages.to_sentence
       end
-      respond_to do |format|
-        format.js
-      end
+    else
+      @error = "Under this company no more user can be added."
     end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def createCmpy
+    @error = ''
+    @user = User.new(:email => params[:cmpyemail], :name => params[:cmpyname], :password => "company.leadpump123")
+    @user.reset_status = true
+    @user.role_id = Role.find_by_role_type("company").id
+    @user.subscription = Subscription.new(:plan_per_user_range_id => 20, :expiry_date => Date.today+45.days, :users_count => 100, :locations_count => 100, :plan_type => "monthly")
+    @cmpycnt = User.where(:role_id => 2).count
+    if @user.save
+      @user.send_reset_password_instructions
+    else
+      @error = @user.errors.full_messages.to_sentence
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 end
