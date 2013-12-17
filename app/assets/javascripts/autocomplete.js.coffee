@@ -23,3 +23,7 @@ $(document).ready ->
          $('#statsearch').autocomplete
                  source: "/statsearch"
                  select: (event,ui) -> userSearchFilter(ui.item.name)
+
+         $('#optlist').autocomplete
+                 source: "/optlist"
+                 select: (event,ui) -> optSearchFilter(ui.item.name)

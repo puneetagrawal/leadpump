@@ -3,6 +3,7 @@
     <tr><td>Source</td><td>Associate</td><td>Sender Email</td><td>Date Converted</td><td>Action</td></tr>
     </thead>
     <tbody>
-    <%=render "optInContentRow"%>
+    	<%=render "optInContentRow"%>
     </tbody>
 </table>
+<%= will_paginate @opts, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;" %>

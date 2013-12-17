@@ -5,7 +5,10 @@
             <div class="form">
                 <select  id="select_user_entry"><option>10</option><option>20</option><option>50</option></select>
                 <span>entries</span>
-                <p><%= collection_select(:plan, :id, Plan.all, :id, :name, :prompt=>"Filter By Plan") %></p>
+                <p>
+                    <%= collection_select(:plan, :id, Plan.all, :id, :name, :prompt=>"Filter By Plan") %>
+                    <%= collection_select(:user, :id, User.where(:role_id => 2),:id, :name,:prompt => "Filter By Company") %>
+                </p>
             </div>
         </div>
         <div class="span6 pull-right optFilter">
@@ -21,7 +24,8 @@
             </div>  
         </div>
         <div class="span12 nav_second">
-            <div class="pull-right btn yellow admincreateuser">Create User</div>
+            <div class="btn yellow admincreatecompany">Create Company</div>
+            <div class="btn yellow admincreateuser">Create User</div>
             <table class="table" style="background: #eee;">
             <tr>
                 <td>Admins: <%=@admin%></span></td>
@@ -39,4 +43,3 @@
     </div>
 </div>
 <%=render "common_templates/popupContainer"%>
-
