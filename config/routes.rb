@@ -19,7 +19,10 @@ Leadpump::Application.routes.draw do
   match '/mallremove' => 'onlinemall#mallremove'
   match "/csvdownload" => "statss#csvdownload"      
 
-  match "/opt_in_leads/viewContact" => "opt_in_leads#viewContact"    
+  match "/opt_in_leads/viewContact" => "opt_in_leads#viewContact"
+  match "/optlist" => "opt_in_leads#optlist"   
+  match "/optsearchfilter" => "opt_in_leads#optsearchfilter"   
+  match "/viplead/filter_opt" => "opt_in_leads#filter_opt"
   resources :opt_in_leads
 
   match "/createpic" => "picture#create"  
@@ -74,6 +77,7 @@ Leadpump::Application.routes.draw do
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
   match '/admin/user_per_plan' => 'admin#user_per_plan'
+  match '/admin/user_per_cmpy' => 'admin#user_per_cmpy'
   match '/filter_vip' => 'admin#filter_vip', :as => 'filter_vip'
   match '/filter_payment' => 'admin#filter_payment', :as => 'filter_payment'
   match "/searchUserAc" => "admin#searchUserAc"
@@ -91,7 +95,9 @@ Leadpump::Application.routes.draw do
   match '/admin/saveplantype' => 'admin#saveplantype'
   match '/admin/alterplantype' => 'admin#alterplantype'
   match '/admin/usercreatepopup' => 'admin#usercreatepopup'
+  match '/admin/cmpycreatepopup' => 'admin#cmpycreatepopup'
   match '/createUser' => 'admin#createUser'
+  match '/createCmpy' => 'admin#createCmpy'
 
    namespace :admin do
      root :to => "admin#index"

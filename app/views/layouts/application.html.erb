@@ -13,10 +13,7 @@
 <body>
 
 <script type="text/javascript" charset="utf-8">var ROOT_PATH = '<%= root_url %>';</script>  
-
-
 <%= render 'layouts/header' %>
-
  <% if flash[:error] %>
     <p class="flashes alert alert-error"><%= flash[:alert] %></p>
   <% end %>
@@ -30,11 +27,10 @@
     <p class="flashes alert alert-success"><%= flash[:success] %></p>
   <% end %>
    <!--  <p class="flashes successMsg"></p> -->
-
   <script type="text/javascript">
       emailAuth = '<%=@emailAuth %>';
   </script>
-<%= yield %>
+  <%= yield %>
 <%= render 'layouts/footer' %>
 </body>
 </html>

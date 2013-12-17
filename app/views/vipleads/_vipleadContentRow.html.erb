@@ -1,16 +1,12 @@
 	
-	<tr class="viewLead listView" id="viewLead_<%=vip.lead.id%>"  data-action="leadpopup">
-		<td>
-	  		<span id="emp_<%=vip.lead.id%>"><%=vip.user.name%>
-		</td>
-		<td><%=vip.lead.name %></td>
-		<td><%=vip.lead.phone%></td>
-		<td class="leadActive leadAction" id="status_<%=vip.lead.id%>">
-		  <span class="leadAction span"><%= vip.lead.status %></span>
-		</td>
-		<td class="leadAction">
-		  <%=link_to "Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete"}%> | 
-		  <%=fetchTasklink(vip.lead.id)%>
-		</td>    
-	</tr>
+<tr class="viewLead listView" id="viewLead_<%=lead.lead.id%>"  data-action="leadpopup">
+	<td><%= lead.lead.name.humanize %></td>
+    <td><%= lead.user.present? ? lead.user.name.humanize : "" %></td>
+    <td><%= lead.lead.phone %></td>
+    <td><%= lead.lead.status %></td>
+    <td class="leadAction">
+	  <%=link_to "Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete"}%> | 
+	  <%=fetchTasklink(lead.lead.id)%>
+	</td>   
+</tr>
 

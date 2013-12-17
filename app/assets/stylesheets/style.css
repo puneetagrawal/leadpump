@@ -380,16 +380,24 @@ a:focus {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-footer {
-    margin-top: 40px;
+/*footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+
+   margin-top: 40px;
     background: #666;
     padding: 10px 0;
     color: #eee;
-}
+}*/
+    
 #footer {
+    bottom: 0px;
     padding: 10px 0 1px 0;
     width: 100%;
-
+    /*position: fixed;*/
 }
 #subfooter {
     background: rgba(0, 0, 0, 0) url("/assets/bg_subfooter.png") repeat-x 0 0;

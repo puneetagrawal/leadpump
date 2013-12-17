@@ -16,8 +16,17 @@ $(document).ready(function(){
 	$(".admincreateuser").click(function(){
 		admincreateuserpopup();
 	});
+
+	$(".admincreatecompany").click(function(){
+		admincreatecmpypopup();
+	});
+
 	$(document).on('click', ".createUser", function () {
 		admincreateuser(this);
+	});
+
+	$(document).on('click', ".createCmpy", function () {
+		admincreatecmpy(this);
 	});
 
 	$('.mall_chek').click(function(){
@@ -76,17 +85,17 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#userlistadmin").keyup(function(e){
-		if(e.keyCode == 13){
-			paymentSearchAdminFilter($(this).val());
-		}
-	});
+	//$("#userlistadmin").keyup(function(e){
+		//if(e.keyCode == 13){
+			//paymentSearchAdminFilter($(this).val());
+		//}
+	//});
 
-	$("#vipleadlistadmin").keyup(function(e){
-		if(e.keyCode == 13){
-			vipleadSearchAdminFilter($(this).val());
-		}
-	});
+	//$("#vipleadlistadmin").keyup(function(e){
+		//if(e.keyCode == 13){
+		//	vipleadSearchAdminFilter($(this).val());
+		//}
+	//});
 	
 	//gaurav
 	$("#to_date").unbind();
@@ -140,7 +149,7 @@ $(document).ready(function(){
 			alert("Please insert the Payment From Date field.");
 			$(this).val("");
 		}
-		else if (($('#payment_from_date').val().length != 0) && ($(this).val().length != 0))
+		else if (($('#payment_from_date').val().length != 0) && ($('#payment_from_date').val().length != 0))
 		{
 			$.ajax({ 
 				url: "/filter_payment",
@@ -176,6 +185,15 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	//$(document).on("change","#userlistadmin",function (){
+//		if ($(this).val().length == 0)
+//		{
+//			$.ajax({
+//				url: "/admin/payment"
+//			});
+//		}
+//	});
 
 	$(document).on("click", ".planedit", function (){
 		id = $(this).closest('tr').attr('id');
@@ -230,6 +248,28 @@ $(document).ready(function(){
 		});
 	});	
 
+	$(document).on('change', "#plan_id", function () {
+   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+       var plan_id = $(this).val();
+		   $.ajax({
+		    url: "/admin/user_per_plan",
+		    data: { 
+		     "plan_id": plan_id
+ 		   }   
+ 		});   
+    });
+  
+    $(document).on('change', "#user_id", function () {
+   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+       var user_id = $(this).val();
+		   $.ajax({
+		    url: "/admin/user_per_cmpy",
+		    data: { 
+		     "user_id": user_id
+ 		   }   
+ 		});   
+    });
+
 	$("#select_user_entry").change(function () {
        var search_val = $(this).val(); 
 		   $.ajax({
@@ -248,17 +288,7 @@ $(document).ready(function(){
  		   }   
  		});  
     });
-
-   $("#plan_id").change(function () {
-   	   $("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-       var plan_id = $(this).val();
-		   $.ajax({
-		    url: "/admin/user_per_plan",
-		    data: { 
-		     "plan_id": plan_id
- 		   }   
- 		});   
-    });
+  
 
 });
 
@@ -268,6 +298,19 @@ function admincreateuserpopup(){
 		type: 'inline',
 		'beforeLoad' : function() {
 			url = '/admin/usercreatepopup';
+			$.get(url, {}, function (data) {		
+				$(".error").html('');
+			});
+		}
+	});
+}
+
+function admincreatecmpypopup(){
+	$.fancybox.open({
+		href: '#createTask',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/admin/cmpycreatepopup';
 			$.get(url, {}, function (data) {		
 				$(".error").html('');
 			});
@@ -288,6 +331,22 @@ function admincreateuser(obj){
 		url = '/createUser';
 		$.get(url, {email:email,company:company,name:name}, function (data) { 
 			$(obj).html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+		});
+	}
+}
+
+function admincreatecmpy(obj){
+	$(obj).html('<img src="/assets/ajax-loader.gif">');
+	name = $("#cmpyname").val();
+	email = $("#cmpyemail").val();
+	if(name == '' || email == ''){
+		$(".error").html("All fields are required.");
+		$(obj).html('<input type="button" name="submitCmpy" value="Create" class="btn yellow">');
+	}
+	else{
+		url = '/createCmpy';
+		$.get(url, {cmpyemail:email,cmpyname:name}, function (data) { 
+			$(obj).html('<input type="button" name="submitCmpy" value="Create" class="btn yellow">');
 		});
 	}
 }

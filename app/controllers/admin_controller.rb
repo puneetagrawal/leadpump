@@ -28,15 +28,15 @@ end
 
 def statistic
 	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
-  @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  @stats = Stats.all.paginate(:page => params[:page], :per_page => 50, :order => "created_at DESC")
   respond_to do |format|
-    format.html
     format.js
+    format.html
   end
 end
 
 def payment
- @users = User.fetchPaidUser.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+@users = User.fetchPaidUser.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   respond_to do |format|
     format.html
     format.js
@@ -59,6 +59,19 @@ def user_per_plan
   end
   respond_to do |format|
       format.js { render "user" }
+  end
+end
+
+def user_per_cmpy
+  if params[:user_id].present?
+    user = User.find(params[:user_id])
+    @users = User.fetchCompanyUserList(user).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    @users << user
+  else
+    @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  end  
+  respond_to do |format|
+    format.js { render "user" }
   end
 end
 
@@ -163,13 +176,13 @@ def search_vip
 end
 
   def search_payment
-  @users = User.fetchPaidUser
+  @paidusers = User.fetchPaidUser.pluck(:user_id)
   if params[:term].blank?
-    @users = User.select("distinct(name)").where(:id => @users)
-    list = @users.map {|u| Hash[id: u.user.id, label: u.user.name, name: u.user.name]}
+    @users = User.select("distinct(name)").where(:id => @paidusers)
+    list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
   else
      like  = "%".concat(params[:term].concat("%"))
-     @users = User.select("distinct(name)").where("name like ?", like).where(:id => @users)
+     @users = User.select("distinct(name)").where("name ilike ?", like).where(:id => @paidusers)
      list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
    end
    render json: list
@@ -182,10 +195,10 @@ end
     @userid = @users.collect { |u| u.user_id }
     @company = Company.where(:company_admin_id => @userid.uniq).pluck(:id)
     if @leads.blank?
-      if @company.present? 
-        @leads = UserLeads.where(:user_id => @company)
+      if @users.present? 
+        @leads = @users
       else
-        @leads= @users
+        @leads= UserLeads.where(:user_id => @company)
       end
     end
     respond_to do |format|
@@ -258,7 +271,8 @@ end
 
   def alterplantype
     @user = User.find(params[:userId])
-    @plan = @user.fetchPlan
+    company = @user.fetchCompany
+    @plan = company.subscription.plan_per_user_range.plan
     respond_to do |format|
       format.js
     end
@@ -281,6 +295,12 @@ end
       end
     end
 
+    def cmpycreatepopup
+      respond_to do |format|
+        format.js
+      end
+    end
+
     def createUser
       @error = ''
       userAdmin = User.find(params[:company])
@@ -296,6 +316,21 @@ end
         end
       else
         @error = "Under this company no more user can be added."
+      end
+      respond_to do |format|
+        format.js
+      end
+    end
+
+    def createCmpy
+      @error = ''
+      @user = User.new(:email => params[:cmpyemail], :name => params[:cmpyname], :password => "company.leadpump123")
+      @user.reset_status = true
+      @user.role_id = Role.find_by_role_type("company").id
+      date =  Date.today+45.days
+      @user.subscription = Subscription.new(:plan_per_user_range_id => 20, :expiry_date => Date.today+45.days, :users_count => 100, :locations_count => 100, :plan_type => "monthly")
+      if !@user.save
+        @error = @user.errors.full_messages.to_sentence
       end
       respond_to do |format|
         format.js

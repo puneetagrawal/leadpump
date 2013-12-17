@@ -8,7 +8,18 @@
   layout 'reflanding', only: [:acceptInvitation]
   
   def index
-    @vipleads = VipLead.fetchList(current_user.id).paginate(:page => params[:page], :per_page => params[:search_val])
+    @leads = VipLead.fetchList(current_user.id).paginate( :page => params[:page], :per_page => 1)
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
+  def filter_rec
+    @leads = VipLead.fetchList(current_user.id).paginate( :page => params[:page], :per_page => params[:search_val])
+    respond_to do |format|
+      format.js { render "index" }
+    end
   end
 
   def show
@@ -208,20 +219,23 @@
 
   def vipleadsearchfilter
     vl = VipLead.fetchList(current_user.id)
-    vl = vl.present? ? vl.pluck(:lead_id) : []
-    @vipleads = Lead.where("name = ? ", params[:viplead]).where(:id=> vl,:lead_source=>"vip").pluck(:id)
-    @vipleads = UserLeads.where(:lead_id=>@vipleads)
-      respond_to do |format|
-        format.js 
+    like  = "%".concat(params[:viplead].concat("%"))
+    @leads = UserLeads.includes(:lead).select("leads.name").where("name ilike ? and user_leads.id IN (?)" , like, vl)
+    @users = User.where("name ilike ? ", like).where(:id=> vl.map(&:user_id)).pluck(:id)
+    if @leads.blank?
+        @leads = UserLeads.where(:user_id => @users)
     end
-end
-
-def viewmallitem
-  @mall = Onlinemall.find(params[:id])
-  respond_to do |format|
-    format.js 
+    respond_to do |format|
+      format.js 
+    end
   end
-end
+
+  def viewmallitem
+    @mall = Onlinemall.find(params[:id])
+    respond_to do |format|
+      format.js 
+    end
+  end
 
 def download
   logger.debug(params)
@@ -235,22 +249,24 @@ def download
       format.pdf do
         send_data @pf, filename: "pass-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
       end
+  end
+
+  def searchvipleads
+    leads =VipLead.fetchList(current_user.id)
+    if params[:term].blank?
+      leads = UserLeads.includes(:lead).select("distinct(leads.name)").where(:id => leads) 
+      list = leads.map {|l| Hash[id: l.id, label: l.lead.name, name: l.lead.name]}
+    else
+     like  = "%".concat(params[:term].concat("%"))
+     leads = UserLeads.includes(:lead).select("distinct(leads.name)").where("name ilike ? and user_leads.id IN (?)" , like, leads) 
+     list = leads.map {|l| Hash[id: l.id, label: l.lead.name, name: l.lead.name]}
+     if !leads.present?
+        userleads = VipLead.fetchList(current_user.id)
+        associates = User.select("distinct(name)").where("name ilike ? ", like).where(:id=> userleads.map(&:user_id))
+        list = associates.map {|a| Hash[id: a.id, label: a.name, name: a.name]}
+      end
     end
+    render json: list
+  end
 end
 
-def searchvipleads
-  vipleads = VipLead.fetchList(current_user.id)
-  vipleads = vipleads.present? ? vipleads.pluck(:lead_id) : []
-  if params[:term].blank?
-   leads = Lead.select("distinct(name)").where(:id=> vipleads,:lead_source=>"vip")
-   list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
-  else
-   like  = "%".concat(params[:term].concat("%"))
-   leads = Lead.select("distinct(name)").where("name ilike ?", like).where(:id=>vipleads,:lead_source=>"vip")
-   list = leads.map {|l| Hash[id: l.id, label: l.name, name: l.name]}
- end
- render json: list
-end
-
-
-end
