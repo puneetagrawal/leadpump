@@ -172,21 +172,18 @@
       opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
       msg = "Sorry! your link is invalid or expired."
       if !opt_in_lead.present?
-          if !params[:sec].blank?
-            logger.debug("dfdsdsoptin fddfjinndfsdfsdfsdfdfdsfsfsdfsnnnnnnnn")
-            lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
-            if lead.save
-              UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
-              user.saveLeadCount
-              OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
-              if params[:source] == "gmail"
-                msg = Stats.saveEconverted(user.id, params[:sec])
-              end
-              msg = "thanks"
-            else
-              error = lead.errors.full_messages.to_sentence
-            end
+        lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
+        if lead.save
+          UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
+          user.saveLeadCount
+          OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
+          if params[:source] == "gmail" && !params[:sec].blank?
+            msg = Stats.saveEconverted(user.id, params[:sec])
           end
+          msg = "thanks"
+        else
+          error = lead.errors.full_messages.to_sentence
+        end
       end
     else
       msg = "Sorry! your referrer limit have been reached."
@@ -237,18 +234,19 @@
     end
   end
 
-def download
-  logger.debug(params)
+  def download
+   logger.debug(params)
    params.delete :format
    logger.debug(params)
-  @mall = Onlinemall.find_by_user_id(2)
-  @pf = WickedPdf.new.pdf_from_string(
+    @mall = Onlinemall.find(params[:mall_id])
+    @pf = WickedPdf.new.pdf_from_string(
           render_to_string('vipleads/download.html.erb',:layout=>false)
         )
    respond_to do |format|
       format.pdf do
         send_data @pf, filename: "pass-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
       end
+    end
   end
 
   def searchvipleads
