@@ -1,5 +1,5 @@
-<%if @opt_in_lead.present?%>
-	<% @opt_in_lead.each do |opt|%>
+<%if @opts.present?%>
+	<% @opts.each do |opt|%>
 		<tr  id="optRow_<%=opt.id%>">
 			<td><%=opt.source%></td>
 			<td><%=User.find(opt.referrer_id).name%></td>

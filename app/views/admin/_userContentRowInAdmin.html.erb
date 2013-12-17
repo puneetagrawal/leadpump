@@ -4,8 +4,9 @@
 			<tr id="viewLead_<%= user.id %>"> 
 				<td><%= user.name.humanize %></td> 
 				<td><%=user.role.role_type%></td>
+				<td><%= user.fetchCompany.name %></td>
 				<td class="leadActive leadAction" id="plan_<%=user.id%>">
-					<span class="span"><%=user.fetchPlanName%></span>
+					<span class="accnt"><%=user.fetchPlanName%></span>
 				</td>
 				</td>
 				<td class="leadActive leadAction" id="status_<%=user.id%>">

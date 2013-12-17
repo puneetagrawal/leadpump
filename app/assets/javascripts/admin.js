@@ -69,17 +69,17 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#userlistadmin").keyup(function(e){
-		if(e.keyCode == 13){
-			paymentSearchAdminFilter($(this).val());
-		}
-	});
+	//$("#userlistadmin").keyup(function(e){
+		//if(e.keyCode == 13){
+			//paymentSearchAdminFilter($(this).val());
+		//}
+	//});
 
-	$("#vipleadlistadmin").keyup(function(e){
-		if(e.keyCode == 13){
-			vipleadSearchAdminFilter($(this).val());
-		}
-	});
+	//$("#vipleadlistadmin").keyup(function(e){
+		//if(e.keyCode == 13){
+		//	vipleadSearchAdminFilter($(this).val());
+		//}
+	//});
 	
 	//gaurav
 	$("#to_date").unbind();
@@ -134,7 +134,7 @@ $(document).ready(function(){
 			alert("Please insert the Payment From Date field.");
 			$(this).val("");
 		}
-		else if (($('#payment_from_date').val().length != 0) && ($(this).val().length != 0))
+		else if (($('#payment_from_date').val().length != 0) && ($('#payment_from_date').val().length != 0))
 		{
 			$.ajax({ 
 				url: "/filter_payment",
@@ -180,6 +180,15 @@ $(document).ready(function(){
 		}
 
 	});
+
+	//$(document).on("change","#userlistadmin",function (){
+//		if ($(this).val().length == 0)
+//		{
+//			$.ajax({
+//				url: "/admin/payment"
+//			});
+//		}
+//	});
 
 	$(document).on("click", ".planedit", function (){
 		id = $(this).closest('tr').attr('id');
@@ -234,7 +243,30 @@ $(document).ready(function(){
 			return false;
 		});
 	});	
+
+	$(document).on('change', "#plan_id", function () {
+   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+       var plan_id = $(this).val();
+		   $.ajax({
+		    url: "/admin/user_per_plan",
+		    data: { 
+		     "plan_id": plan_id
+ 		   }   
+ 		});   
+    });
+  
+    $(document).on('change', "#company_id", function () {
+   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+       var user_id = $(this).val();
+		   $.ajax({
+		    url: "/admin/user_per_cmpy",
+		    data: { 
+		     "user_id": user_id
+ 		   }   
+ 		});   
+    });
 });
+
 
 function vipleadSearchAdminFilter(vipleadId){
 	url = '/vipleadsearchadminfilter';

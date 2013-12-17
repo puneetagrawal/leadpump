@@ -36,23 +36,38 @@
 
 $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
- 	$('#date_filter').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
- 	$('.filter-date').datepicker({ dateFormat: 'yy-mm-dd'}).val(); 
+ 	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
+ 	$('.filter-date').datepicker({ dateFormat: "yy-mm-dd"}).val(); 
 	$('.ckeditor').ckeditor({
 		  // optional config
 	}); 
 
+	$('#onlinemall_description').ckeditor({
+		debugger;
+        toolbar: 'Full',
+        enterMode : CKEDITOR.ENTER_BR,
+        shiftEnterMode: CKEDITOR.ENTER_P
+	});
 
-    $("#select_user_entry").click(function(){ 
-    	   $("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-		   var search_val = $(this).val(); 
+    $(document).on('change', "#select_vip_entry", function () {
+       var search_val = $(this).val(); 
 		   $.ajax({
 		    url: "/viplead/filter_rec",
 		    data: { 
 		     "search_val": search_val
  		   }   
  		});   
-	 }); 
+    });
+
+    $(document).on('change', "#select_opt_entry", function () {
+       var search_val = $(this).val(); 
+		   $.ajax({
+		    url: "/viplead/filter_opt",
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});   
+    });
 
     $(document).on('change', "#select_user_entry", function () {
        var search_val = $(this).val(); 
@@ -71,17 +86,6 @@ $(document).ready(function(){
 		     "search_val": search_val
  		   }   
  		});  
-    });
-
-   $(document).on('change', "#plan_id", function () {
-   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-       var plan_id = $(this).val();
-		   $.ajax({
-		    url: "/admin/user_per_plan",
-		    data: { 
-		     "plan_id": plan_id
- 		   }   
- 		});   
     });
 
    $(document).on('change', '.lead_source_sel', function () {
@@ -165,6 +169,17 @@ $(document).ready(function(){
 			$(""+id).addClass('active');
 		}
     });
+
+    $(document).on("change", "#vipleadlist", function (){
+		$("#vlList").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+		var vip = $(this).val();
+		if ($(this).val().length == 0)
+		{
+			$.ajax({
+				url: "/vipleads"
+			});
+		}
+	});
     
 });
 
@@ -254,7 +269,7 @@ function initialization(){
 		}
 	});
 
-	$(".container").on('click', '.span', function (event){
+	$(".container").on('click', '.accnt', function (event){
 		alterplantype($(this).parent().attr('id'));	
 	});
 
@@ -371,7 +386,7 @@ function savePlanType(id, plan){
 	id = id.split("_")[1]
 	url = '/admin/saveplantype';
 	$.post(url, {userId:id,planId:plan}, function (data) {
-		$("#plan_"+id).html('<span class="span">'+data.plan+'</span>');	
+		$("#plan_"+id).html('<span class="accnt">'+data.plan+'</span>');	
 	});
 }
 
@@ -402,4 +417,11 @@ function isNormalText(event) {
     var text = event.value.replace(re, '');
     $(event).val(text);
 }
+
+function optSearchFilter(optId){
+	url = '/optsearchfilter';
+	$.get(url, {optId:optId}, function (data) {	
+	});
+}
+
 

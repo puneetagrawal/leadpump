@@ -9,17 +9,20 @@
             <p><a class="btn yellow btn-small" href="#">Export as comma Separated (Excel) File</a> </p>
             <div class="row-fluid">
                 <div class="span4 pull-left optFilter">
-                    <form class="form"><span>Show</span><select><option>10</option><option>20</option><option>50</option></select>
-                        <span>entries</span></form>
+                    <div class="form">
+                        <span>Show</span>
+                        <select  id="select_opt_entry"><option>10</option><option>20</option><option>50</option></select>
+                        <span>entries</span>
+                    </div>
                 </div>
                 <div class="span3 pull-right optFilter">
-                    <form class="form text-right"><span>Search</span><input class="input-medium" placeholder="Search" type="search"></form>
+                    <form class="form text-right"><span>Search</span><input class="input-medium" id="optlist" placeholder="Search Source/Associate" type="search"></form>
                 </div>
             </div>
             <div class="border">
                 <%=render "optInContent"%>
             </div>
-            <div class="row-fluid">
+            <!--<div class="row-fluid">
                 <div class="span4 pull-left mt10">Showing 1 to 3 of 3 entries</div>
                 <div class="span3 pull-right">
                     <ul class="pager">
@@ -30,7 +33,7 @@
                             <a class="link" href="#">Next &rarr;</a>
                         </li>
                     </ul></div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

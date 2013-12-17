@@ -12,7 +12,7 @@
     <% if @users.present? %>
     <% @users.each do |sub| %>
     <tr>
-      <td><%= sub.user.created_at.strftime("%Y/%m/%d") %></td> 
+      <td><%= sub.created_at.strftime("%Y/%m/%d") %></td> 
       <td><%= sub.user.name.humanize %></td>
       <td><%= sub.charge_id %> </td>
       <td><%= sub.customer_id %> </td>

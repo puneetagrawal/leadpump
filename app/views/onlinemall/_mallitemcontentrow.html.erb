@@ -11,9 +11,7 @@
 </td>
 <td>
 	<%if om.file.present?%>
-    <%= image_tag om.file.url(:thumb), :class=>"img-polaroid", :style=>"width:50px" %>
-    <%else%>
-    	<img src="/assets/company-logo.png" class="img-polaroid" style="width:50px">
+        <%= om.file_file_name %>
     <%end%>
 </td>
 <td><%=fetchcheckbox(om,current_user)%></td>

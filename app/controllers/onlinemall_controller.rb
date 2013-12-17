@@ -1,7 +1,7 @@
 class OnlinemallController < ApplicationController
   def index
     if current_user.isCompany || current_user.isAdmin
-    	@onlinemalls = Onlinemall.all
+    	@onlinemalls = Onlinemall.order("created_at DESC")
     	@onlinemall = Onlinemall.new
     else
       redirect_to home_index_path
@@ -60,7 +60,7 @@ class OnlinemallController < ApplicationController
 
   def update  
     @mallupdate = Onlinemall.find(params[:id]) 
-    @mallupdate.update_attributes(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title],:link=>params[:onlinemall][:link])
+    @mallupdate.update_attributes(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title],:link=>params[:onlinemall][:link], :file => params[:onlinemall][:file])
     if params[:onlinemall].has_key?(:mallpic_attributes)
       @mallupdate.mallpic[0].avatar = params["onlinemall"]["mallpic_attributes"]["0"]["avatar"]
       if @mallupdate.mallpic[0].save
