@@ -327,8 +327,8 @@ end
       @user = User.new(:email => params[:cmpyemail], :name => params[:cmpyname], :password => "company.leadpump123")
       @user.reset_status = true
       @user.role_id = Role.find_by_role_type("company").id
-      date =  Date.today+45.days
       @user.subscription = Subscription.new(:plan_per_user_range_id => 20, :expiry_date => Date.today+45.days, :users_count => 100, :locations_count => 100, :plan_type => "monthly")
+      @companycount = User.where(:role_id=>2).count
       if !@user.save
         @error = @user.errors.full_messages.to_sentence
       end
