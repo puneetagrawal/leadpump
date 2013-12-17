@@ -66,7 +66,7 @@ class SaleProd < ActiveRecord::Base
     call = 0
     mail = 0
     ref = 0
-  	if !sale.blank?
+  	if !sale.blank? && sale.present?
   		sale.each do |s_tdt|
   			if s_tdt.sale_reports.present?
   				g_cash += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.amount}.compact)
@@ -74,15 +74,11 @@ class SaleProd < ActiveRecord::Base
           g_gross += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.contract}.compact)
           g_mem += s_tdt.sale_reports.size
           call += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Walk in"}.compact.count
-          logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-          logger.debug(call)
           mail += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Telephone inquiry"}.compact.count
-          logger.debug(mail )
           ref += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Website"}.compact.count
   			end
   		end
   	end
-  	
   	
     m_avg = SaleProd.fetchAvg(g_mem)
   	c_avg = SaleProd.fetchAvg(g_cash)

@@ -5,10 +5,10 @@
 </div>
 <div class="sales_data_filter">
     <strong>View</strong>
-    <ul>
-        <li><a href="javascript:void(0)">Daily</a></li>
-        <li><a href="javascript:void(0)">Monthly</a></li>
-        <li><a href="javascript:void(0)">Projections</a></li>
+    <ul id="u_<%=@user.present? ? @user.id : current_user.id%>">
+        <li><a href="javascript:void(0)" style="color:#FFDE52" name="daily_rep" class="report">Daily</a></li>
+        <li><a href="javascript:void(0)" style="color:#FFDE52" name="monthly_rep" class="report">Monthly</a></li>
+        <li><a href="javascript:void(0)" style="color:#FFDE52" name="project_rep" class="report">Projections</a></li>
     </ul>
 </div>
 <%=render "home/dashboard_gauges"%>
