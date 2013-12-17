@@ -50,14 +50,12 @@ function initgauge(){
 
     mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
     mem_avg = "<%=@gross_values['m_avg'.to_sym]%>" != 0 ? "<%=@gross_values['m_avg'.to_sym]%>" : 220;
-    m_total = mem_avg * 40;
-    m_total = parseInt(m_total);
-    mem_interval = (mem_avg * 40)/10
-    mem_interval = parseInt(mem_interval);
+    m_total = 220;
+    mem_interval = 220/10
     m_range = m_total/4;
 
     $("#membersoldgauge").jqxGauge({ 
-        max: 50, 
+        max: m_total, 
         labels: { interval: mem_interval},
         ticksMinor: { interval: mem_interval/4, size: '5%' },
         ticksMajor: { interval: mem_interval/2, size: '9%' },
