@@ -202,8 +202,10 @@ class User < ActiveRecord::Base
 
   def fetchcompanymallitem
     company = self.fetchCompany
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     logger.debug(company.name)
     logger.debug(company)
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     company = Onlinemall.where(:user_id=>company.id)
   end
   
