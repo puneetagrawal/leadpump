@@ -237,18 +237,19 @@
     end
   end
 
-def download
-  logger.debug(params)
+  def download
+   logger.debug(params)
    params.delete :format
    logger.debug(params)
-  @mall = Onlinemall.find_by_user_id(2)
-  @pf = WickedPdf.new.pdf_from_string(
+    @mall = Onlinemall.find(params[:mall_id])
+    @pf = WickedPdf.new.pdf_from_string(
           render_to_string('vipleads/download.html.erb',:layout=>false)
         )
    respond_to do |format|
       format.pdf do
         send_data @pf, filename: "pass-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
       end
+    end
   end
 
   def searchvipleads
