@@ -74,6 +74,8 @@ class User < ActiveRecord::Base
 
   def isSocialInvitable
     company = self.fetchCompany
+    logger.debug("3543434343434")
+    logger.debug(company.id)
     allow = false
     if company.subscription.present? && !company.subscription.plan_per_user_range.plan.social_referrals.blank?
         allow = true
@@ -128,9 +130,7 @@ class User < ActiveRecord::Base
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users = users.collect{|user| User.find(user)}
       when :employee
-        company = Company.find_by_company_user_id(user.id).company_admin_id
-        users = Company.where(:company_admin_id => company).pluck(:company_user_id)
-        users = users.collect{|user| User.find(user)}
+        users << user
     end
   end
 
@@ -140,7 +140,9 @@ class User < ActiveRecord::Base
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
       user = User.find_by_id(companyId)
-      email = user.email
+      if user.present?
+        email = user.email
+      end
     end
     return email
   end
@@ -171,14 +173,18 @@ class User < ActiveRecord::Base
     subscription = Subscription.where("payment IS NOT NULL")
   end
 
-  def fetchPlanName  
-    plan = ''
+  def fetchPlan  
+    plan = nil
     company = self.fetchCompany
-    logger.debug(company.id)
     if company.present? && company.subscription.present? 
-      plan = company.subscription.plan_per_user_range.plan.name
+      plan = company.subscription.plan_per_user_range.plan
     end
     return plan
+  end
+
+  def fetchPlanName  
+    plan = self.fetchPlan
+    return plan.present? ? plan.name : ''
   end
 
   def fetchCompany
@@ -215,7 +221,6 @@ def checkLeadLimit
     allow = false
   when :employee
     user = self.fetchCompany
-    logger.debug(user.id)
     limit = user.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
       if user.leads_created == limit.to_i
@@ -225,12 +230,13 @@ def checkLeadLimit
   when :company
     limit = self.subscription.plan_per_user_range.plan.lead_management
     if User.numeric?limit
-      usrLeads = UserLeads.where(:user_id=>self.id)
       if self.leads_created == limit.to_i
         allow = false
       end
     end
   end
+  logger.debug(",,,,,,,,,,,,,,,")
+  logger.debug(allow)
   return allow
 end
 
@@ -267,9 +273,9 @@ end
 
 def fetchfbsubject
   company = self.fetchCompany
-  message = 'An Inviation from #{current_user.name} to you.'
+  message = "An Inviation from #{self.name.humanize} to you. "
   socialmessage = SocialMessage.find_by_company_id(company.id)
-  if socialmessage.present? && socialmessage.fbsubject.present?
+  if !socialmessage.present? && socialmessage.fbsubject.present?
     message = socialmessage.fbsubject
   end
   return message.html_safe
@@ -277,7 +283,7 @@ end
 
 def fetchgmailsubject
   company = self.fetchCompany
-  message = 'An Inviation from #{current_user.name} to you.'
+  message = "An Inviation from #{self.name.humanize} to you."
   socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.gmailsubject.present?
     message = socialmessage.gmailsubject

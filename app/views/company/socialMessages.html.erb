@@ -8,11 +8,11 @@
     <div class="span7">
         <p>Enter facebook message that you want to send on facebook.</p>
         <form class="form">
-            
-            <%=text_field_tag :fbsubject, current_user.fetchfbsubject, :placeholder=>"Enter Subject Line Here."%>
+          <%=text_field_tag :fbsubject, current_user.fetchfbsubject, :placeholder=>"Enter Subject Line Here.", :class=>"fb_social_height" %>
             <textarea class="ckeditor">
                 <%=current_user.fetchFacebookMessage%>
             </textarea>
+            <br/>
             <span class="submitFmes">
                 <a class="btn yellow" href="javascript:void(0)">Submit</a>
             </span>
@@ -31,6 +31,7 @@
             <textarea class="ckeditor">
                 <%=current_user.fetchtwitterMessage%>
             </textarea>
+               <br/>
             <span class="submitTmes">
                 <a class="btn yellow" href="javascript:void(0)">Submit</a>
             </span>
@@ -40,16 +41,17 @@
 
 <div class="pre_formated_email">
     <div class="span4">
-        <h3>Share this invitations on Gmail with one simple click</h3>
+        <h3>Share this invitations on Gmail or Yahoo with one simple click</h3>
         <p class="text-center"><img src="/assets/mail-icon.png" /></p>
     </div>
     <div class="span7">
-        <p>Enter Gmail message that you want to send on email.</p>
+        <p>Enter Email message that you want to send on Gmail or Yahoo.</p>
         <form class="form">
-            <%=text_field_tag :emailsubject, current_user.fetchgmailsubject, :placeholder=>"Enter Subject Line Here."%>
+            <%=text_field_tag :emailsubject, current_user.fetchgmailsubject, :placeholder=>"Enter Subject Line Here.", :class=>"fb_social_height"%>
             <textarea class="ckeditor">
                 <%=current_user.fetchEmailMessage%>
             </textarea>
+               <br/>
             <span class="submitGmes">
                 <a class="btn yellow" href="javascript:void(0)">Submit</a>
             </span>

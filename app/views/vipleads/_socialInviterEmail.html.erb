@@ -3,14 +3,10 @@
     <h3>Send this offer to your friends</h3>
     <div>
         <p><strong>From:</strong> Bret Beshey &lt;<%=current_user.getCompanyEmail%>&gt;</p>
-        <p><strong>Subject:</strong> An invitation from  <%=current_user.name%> to you</p>
+        <p><strong>Subject:</strong> <%=current_user.fetchgmailsubject%> to you</p>
         <div class="email_msg">
-            <p><%=current_user.fetchEmailMessage%>. As one of my friends you qualify to receive a FREE
-                7 day membership pass. I thought you might be interested and would join <%=current_user.name%>.</p>
-                <p>Hope to see you in the club soon.</p>
-                <p>Click the link below to get your pass now.</p>
-                <p>Talk to you soon!</p>
-            </div>
+            <p><%= current_user.fetchEmailMessage %></p> 
+        </div>
         </div>
     </div>
     <div class="span4">

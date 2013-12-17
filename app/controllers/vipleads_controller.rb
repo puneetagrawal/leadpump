@@ -47,6 +47,7 @@
       message = {"error"=> error}
       render json: message
     else
+      logger.debug("SDFSDFSDFSDFsdfsdfsdfsfsdfsdfsdfsfsdfsfs")
       respond_to do |format|
         format.js 
       end
@@ -54,30 +55,28 @@
   end
 
   def new
-    if current_user.isSocialInvitable
+    if current_user.isSocialInvitable || current_user.isAdmin
       if params[:token].present?
         token = params[:token]
-        @contacts = GmailContacts::Google.new(token).contacts
-        if @contacts.present?
-          @contacts.each do |contact|
-            email = contact.email != '' ? contact.email : ''
-            name = GmailFriend.getName(contact,email)
-            if email.present? && name.present?
-              gmailcontact = GmailFriend.where(:user_id => current_user.id, :email => email)
-              if !gmailcontact.present?
-                gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>current_user.id)
-                gmailfreind.save
-              end
-            end
-          end
+        @gmail_contacts = GmailContacts::Google.new(token).contacts
+        if @gmail_contacts.present?
+          GmailFriend.savegmailContact(@gmail_contacts, current_user)
         end
         @emailAuth = true 
-      end      
+      elsif params[:oauth_token].present?
+        logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        unless request.env['omnicontacts.contacts'].blank?
+          @yahoo_contacts = request.env['omnicontacts.contacts']
+          GmailFriend.saveyahooContact(@yahoo_contacts, current_user)
+        end
+        @emailAuth = true 
+      end         
     else
       flash[:notice] = "Sorry! you are not autherise user."
       redirect_to home_index_path  
       return false
     end
+    @picture_user = Picture.fetchCompanyLogo(current_user.id)
     @lead = Lead.new
   end
 
@@ -91,7 +90,11 @@
   end
 
   def fetchContacts
-    @contacts = GmailFriend.where(:user_id=> current_user.id)
+    if(params[:uri].include? 'yahoo')
+      @contacts = GmailFriend.where(:user_id=> current_user.id,:source=>"yahoo")
+    else
+      @contacts = GmailFriend.where(:user_id=> current_user.id, :source=>"gmail")
+    end
     respond_to do |format|
       format.js 
     end
@@ -140,6 +143,7 @@
   end
   
   def acceptInvitation
+    logger.debug("")
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
       if @ref.checkLeadLimit
@@ -161,20 +165,23 @@
   def savereferral
     user = User.find_by_token(params[:ref_id])
     error = ""
-    if @ref.checkLeadLimit
+    url = ""
+    msg = ""
+    if user.checkLeadLimit
       opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
       msg = "Sorry! your link is invalid or expired."
       if !opt_in_lead.present?
           if !params[:sec].blank?
+            logger.debug("dfdsdsoptin fddfjinndfsdfsdfsdfdfdsfsfsdfsnnnnnnnn")
             lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
             if lead.save
               UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
-              @ref.saveLeadCount
+              user.saveLeadCount
               OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
-              msg == "Thanks.You are successfuly Opt in."
               if params[:source] == "gmail"
                 msg = Stats.saveEconverted(user.id, params[:sec])
               end
+              msg = "thanks"
             else
               error = lead.errors.full_messages.to_sentence
             end
@@ -183,17 +190,21 @@
     else
       msg = "Sorry! your referrer limit have been reached."
     end
-    if msg == 'Thanks.You are successfuly Opt in.'
-      @companymallitem = user.fetchcompanymallitem
-      respond_to do |format|
-        format.js 
-      end
-    else
-      message = {"msg" => msg,"error"=>error}
-      respond_to do |format|
-        format.json { render json: message}
-      end
+    logger.debug(msg)
+    if msg == 'thanks'
+      url = "http://#{SERVER_URL}/mallitems/#{params[:ref_id]}"
     end
+    message = {"msg" => msg,"error"=>error,"url"=>url}
+    respond_to do |format|
+      format.json { render json: message}
+    end
+  end
+
+  def mallitems
+    user = User.find_by_token(params[:id])
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(user.id)
+    @companymallitem = user.fetchcompanymallitem
   end
 
   def trackEmail
@@ -223,15 +234,17 @@
     end
   end
 
-  def download
-    @mall = Onlinemall.find_by_user_id(2)
-    @pf = WickedPdf.new.pdf_from_string(
-            render_to_string('vipleads/download.html.erb',:layout=>false)
-          )
-     respond_to do |format|
-        format.pdf do
-          send_data @pf, filename: "Invoice-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
-        end
+def download
+  logger.debug(params)
+   params.delete :format
+   logger.debug(params)
+  @mall = Onlinemall.find_by_user_id(2)
+  @pf = WickedPdf.new.pdf_from_string(
+          render_to_string('vipleads/download.html.erb',:layout=>false)
+        )
+   respond_to do |format|
+      format.pdf do
+        send_data @pf, filename: "pass-#{@mall.title}.pdf", type: 'application/pdf', disposition: 'inline'
       end
   end
 

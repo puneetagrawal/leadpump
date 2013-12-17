@@ -8,9 +8,9 @@ class VipLead < ActiveRecord::Base
   	company = Company.find_by_company_user_id(userId)
   	if company.present?
 	    allUsers = Company.where(:company_admin_id=>company.company_admin_id).pluck(:company_user_id) 
-	    vipleads = UserLeads.includes(:lead).where(:user_id => allUsers)
+	    vipleads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip").where(:user_id => allUsers)
   	else
-  		vipleads = UserLeads.includes(:lead).where(:user_id => user.id)
+  		vipleads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip").where(:user_id => user.id)
   	end
   	case user.user_role.role_type.to_sym  
     when :admin
@@ -29,7 +29,7 @@ class VipLead < ActiveRecord::Base
 
   def self.saveLead(viplead, user)
     viplead.save
-    user_lead = UserLeads.new(:user_id => user.id, :lead_id => viplead.id)
+    user_lead = UserLeads.create(:user_id => user.id, :lead_id => viplead.id)
     user.saveLeadCount
   end
 

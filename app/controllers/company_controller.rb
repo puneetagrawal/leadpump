@@ -23,14 +23,7 @@ class CompanyController < ApplicationController
       @user.reset_status = true
       @user.role_id = Role.find_by_role_type("employee").id
       if @user.save      
-        company = Company.new(:company_admin_id => current_user.id, :company_user_id => @user.id)
-        company.save
-        current_user.update_attributes(:users_created=> current_user.users_created+1)
-        begin 
-          @user.send_reset_password_instructions
-        rescue Exception => e
-        end
-        @user.update_attributes(:reset_status => false)
+        Company.createUser(current_user, @user)
         flash[:success] = "User successfully created"
         redirect_to company_new_path()      
       else
@@ -164,7 +157,7 @@ end
 
 def settings
   @picture_user = Picture.fetchCompanyLogo(current_user.id)
-   @picture = Picture.new
+  @picture = Picture.new
 end
 
 def landpage

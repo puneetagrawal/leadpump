@@ -30,7 +30,6 @@
 //= require strip
 //= require viplead
 //= require seeusergauge
-//= require ckeditor/config
 //= require saleprod
 //= require ckeditor-jquery
 
@@ -69,26 +68,7 @@ $(document).ready(function(){
  		});   
     });
 
-    $(document).on('change', "#select_user_entry", function () {
-       var search_val = $(this).val(); 
-		   $.ajax({
-		    url: "/admin/user_rec",
-		    data: { 
-		     "search_val": search_val
- 		   }   
- 		});   
-    });	
-
-   $(document).on("click", ".pagination a", function(){
-   	var search_val = $("#select_user_entry").val(); 
-		   $.ajax({
-		    data: { 
-		     "search_val": search_val
- 		   }   
- 		});  
-    });
-
-   $(document).on('change', '.lead_source_sel', function () {
+    $(document).on('change', '.lead_source_sel', function () {
         if($(this).val() == "Other") {
 	      $("#text_div").html('<label for="lead_ "> </label><input type="text" value="" placeholder="Please specify" name="lead[lead_source]" id="lead_lead_source">');
 	    }
@@ -183,24 +163,6 @@ $(document).ready(function(){
     
 });
 
-// function validate() {
-//     var extensions = new Array("jpg", "jpeg", "gif", "png", "bmp");
-//     var image_file = $("#avatar").val();
-//     var image_length = $("#avatar").val().length;
-//     var pos = image_file.lastIndexOf('.') + 1;
-//     var ext = image_file.substring(pos, image_length);
-//     var final_ext = ext.toLowerCase();
-//     if (!final_ext) {
-//         return true
-//     }
-//     for (var i = 0; i < extensions.length; i++) {
-//         if (extensions[i] == final_ext) {
-//             return true
-//         }
-//     }
-//     return alert("Image format not supported....");
-// }
-
 function formfields(){
 	new_obj = {}
 	$.each($('.forms').serializeArray(), function(i, obj){
@@ -289,8 +251,6 @@ function initialization(){
 		leadId = $("#leadid").val();
 		assignLeadToUser($(this).val(), leadId);
 	});
-
-	
 
 	$(".submitlogo").click(function (){
 		$('#picture_avatar').click();

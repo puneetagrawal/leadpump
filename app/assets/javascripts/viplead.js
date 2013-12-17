@@ -50,7 +50,7 @@ function initSocialInviter(){
 		emaillist = [];
 		$(".gmailContactChekbox").each(function(){
 			if($(this).is(":checked")){
-				emaillist.push($(this).siblings('.email_label').text());	
+				emaillist.push($(this).parent().siblings('.email_label').text());	
 			}
 		});
 
@@ -109,7 +109,9 @@ function executeFirstStep(obj, skip){
 }
 
 function executeSecondStep(name){
-	$(".stepNo2").addClass("step-visited disabled").prepend('<i class="icon-ok icon-white step-mark"></i>');
+	if(!$(".stepNo2").hasClass('step-visited')){
+		$(".stepNo2").addClass("step-visited").prepend('<i class="icon-ok icon-white step-mark"></i>');
+	}
 	$(".social_options ul li").each(function(){$(this).addClass("hide")});
 	$("."+name).removeClass('hide');
 	$(".stepNo3").removeClass('disabled');

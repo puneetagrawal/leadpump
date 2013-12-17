@@ -13,6 +13,13 @@ $(document).ready(function(){
 		}
 	});
 
+	$(".admincreateuser").click(function(){
+		admincreateuserpopup();
+	});
+	$(document).on('click', ".createUser", function () {
+		admincreateuser(this);
+	});
+
 	$('.mall_chek').click(function(){
 		checked = $(this).is(':checked'); 
 		id = $(this).attr('id').split("_")[1];
@@ -124,8 +131,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$("#payment_to_date").unbind();
-	$(document).on("change", "#payment_to_date", function (){
+	$("#payment_to_date").change(function (){
 		var to_date = $(this).val();
 		var from_date = $('#payment_from_date').val();
 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
@@ -151,19 +157,16 @@ $(document).ready(function(){
 			});
 		}
 	});
-
 	$("#user_to_date").unbind();
-	$(document).on("change", "#user_to_date", function (){
-		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+	$("#user_to_date").change(function (){
 		var to_date = $(this).val();
 		var from_date = $('#user_from_date').val();
-		if ($('#user_from_date').val().length == 0)
-		{
+		if (from_date == ''){
 			alert("Please insert the From Date field.");
-			$('#user_to_date').val("");
+			return false
 		}
-		else if (($('#user_from_date').val().length != 0) && ($('#user_to_date').val().length != 0))
-		{
+		else if ((from_date.length != 0) && (to_date.length != 0)){
+			$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 			$.ajax({ 
 				url: "/filter_user",
 				data: { 
@@ -172,13 +175,6 @@ $(document).ready(function(){
 				}
 			});
 		}
-		else if ($('#user_to_date').val().length == 0)
-		{
-			$.ajax({
-				url: "/filter_user"
-			});
-		}
-
 	});
 
 	//$(document).on("change","#userlistadmin",function (){
@@ -212,7 +208,6 @@ $(document).ready(function(){
 				url = '/setunlimited';
 				$.get(url, {plid:plid}, function (data) { 
 					$("#leads_"+plid).html("unlimited");
-					$("#leads_"+plid).html("Unlimited");
 					alert(data.msg);
 					$.fancybox.close();
 				});
@@ -267,6 +262,57 @@ $(document).ready(function(){
     });
 });
 
+	$("#select_user_entry").change(function () {
+       var search_val = $(this).val(); 
+		   $.ajax({
+		    url: "/admin/user_rec",
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});   
+    });	
+
+   $(document).on("click", ".pagination a", function(){
+   	var search_val = $("#select_user_entry").val(); 
+		   $.ajax({
+		    data: { 
+		     "search_val": search_val
+ 		   }   
+ 		});  
+    });
+  
+
+});
+
+function admincreateuserpopup(){
+	$.fancybox.open({
+		href: '#createTask',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/admin/usercreatepopup';
+			$.get(url, {}, function (data) {		
+				$(".error").html('');
+			});
+		}
+	});
+}
+
+function admincreateuser(obj){
+	$(obj).html('<img src="/assets/ajax-loader.gif">');
+	company = $("#users").val();
+	name = $("#name").val();
+	email = $("#email").val();
+	if(company == '' || name == '' || email == ''){
+		$(".error").html("All fields are required.");
+		$(obj).html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+	}
+	else{
+		url = '/createUser';
+		$.get(url, {email:email,company:company,name:name}, function (data) { 
+			$(obj).html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+		});
+	}
+}
 
 function vipleadSearchAdminFilter(vipleadId){
 	url = '/vipleadsearchadminfilter';

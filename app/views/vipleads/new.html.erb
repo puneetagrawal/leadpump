@@ -1,16 +1,5 @@
 <div class="container">
-	<div class="row-fluid">
-		<div class="span2">
-			<div class="pull-left">
-				<img class="img-polaroid" src="/assets/company-logo.png"/>
-			</div>
-		</div>
-		<div class="span10">
-			<div class="pull-left clear">
-				<h2>Company Name</h2>
-			</div>
-		</div>
-	</div>
+	<%=render "home/companyLogo"%>
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="mt20">
@@ -18,15 +7,17 @@
 					<span class="span12">
 						<div class="process_steps">
 							<div class="stepNo1 step-title btn btn-success step-active"> <span class="step-order">1.</span> <span class="step-name">Step 1</span></div>
-							<div class="stepNo2 step-title disabled btn"><span class="step-order">2.</span> <span class="step-name">Step 2</span></div>
-							<div class="stepNo3 step-title disabled btn"><span class="step-order">3.</span> <span class="step-name">Step 3</span></div>
+							<div class="stepNo2 step-title  btn"><span class="step-order">2.</span> <span class="step-name">Step 2</span></div>
+							<div class="stepNo3 step-title  btn"><span class="step-order">3.</span> <span class="step-name">Step 3</span></div>
 						</div>
 						<span class="vipContainer">
 							<%if @emailAuth.present? %>
-								<%=render "socialInviterEmail"%>
-							<%else%>
-								<%=render "form"%>
-							<%end%>
+					        <%=render "socialInviterEmail"%>
+					        <%=render "socialInviterYahoo"%>
+					       <%else%>
+					        <%=render "form"%>
+					       <%end%>
+					   </span>
 						</span>
 					</span>
 				</div>

@@ -11,8 +11,9 @@
                     <%= sale.fields_for :sale_report, SaleReport.new do |rep| %>
 		                <table class="table table-striped prod-table">
 		                    <thead>
-		                    <tr><td>No.</td><td>Type</td><td>Total contract value</td><td>Cash</td><td>Cheque</td><td>Monthly Dues/EFT</td><td>Name of member</td><td>Source</td><td>Sales rep.</td>
-		                        <!-- <td class="td100">Membership number</td><td>Commission</td> --></tr>
+		                    <tr>
+		                    	<td>No.</td><td>Membership Type</td><td>Total Contract Amount</td><td>Total Amount Collected</td><td>Monthly Dues Amount</td><td>Name of Member</td><td>Source</td>
+		                    </tr>
 		                    </thead>
 		                    <tbody>
 		                        <%=render "sale_report_row", :rep=>rep%>

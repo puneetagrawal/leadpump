@@ -42,10 +42,9 @@ Leadpump::Application.routes.draw do
   match "/showvipleads" => "vipleads#showvipleads"
   match "/searchvipleads" => "vipleads#searchvipleads"
   match "/vipleadsearchfilter" => "vipleads#vipleadsearchfilter"
-  match "/viplead/filter_rec" => "vipleads#filter_rec"
   match "/sendIvitationToGmailFriend" => "vipleads#sendIvitationToGmailFriend"
   match "/sendIvitationToFbFriend" => "vipleads#sendIvitationToFbFriend"
-  match "/mallitems" => "vipleads#mallitems"
+  match "/mallitems/:id" => "vipleads#mallitems"
   match "/viewmallitem" => "vipleads#viewmallitem"
   match "/download" => "vipleads#download"
 
@@ -95,6 +94,8 @@ Leadpump::Application.routes.draw do
   match "/filter_user" => "admin#filter_user"
   match '/admin/saveplantype' => 'admin#saveplantype'
   match '/admin/alterplantype' => 'admin#alterplantype'
+  match '/admin/usercreatepopup' => 'admin#usercreatepopup'
+  match '/createUser' => 'admin#createUser'
 
    namespace :admin do
      root :to => "admin#index"
@@ -160,7 +161,7 @@ Leadpump::Application.routes.draw do
   
   match "/sendmail" => "home#sendmail"
   match "/send_invitation_social" => "home#send_invitation_social"
-  match "/contacts/:provider/callback" => "home#contacts_callback"
+  match "/contacts/:provider/callback" => "vipleads#new"
   # match "/callback" => "home#contacts_callback"
   match "/contacts/failure" => "home#failure"
 

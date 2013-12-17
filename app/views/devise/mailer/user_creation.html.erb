@@ -1,0 +1,11 @@
+
+<p>Hello <%= @resource.email %>!</p>
+
+<p>Welcome to LEADPUMP.com. Your health club is on its way to revolutionizing leads and 
+	sales through our patent pending technology. The General Manager of your club has 
+	created your employee account to access LEADPUMP.com</p>
+
+<p>Please click on the link to set your new password.</p>
+<p><%= link_to 'Set your password now', edit_password_url(@resource, :reset_password_token => @token) %></p>
+
+<p>In good health,<br />Team LEADPUMP</p>
