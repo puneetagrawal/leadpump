@@ -169,6 +169,7 @@ Leadpump::Application.routes.draw do
 
   match "/sale_prods/addnewprodrow" => "sale_prods#addnewprodrow"
   match "/sale_prods/showproduction" => "sale_prods#showproduction"
+  match "/sale_prods/showreport" => "sale_prods#showreport"
 
 
 

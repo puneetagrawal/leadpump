@@ -19,15 +19,12 @@ function saveReferral(obj){
 		$.get(url, {sec:sec, name:name, email:email, phone:phone,source:source,ref_id:ref_id}, function (data) {
 			$(obj).html('<button class="ref_submit" type="button">Submit</button>');
 			if(data.url){
-				alert("sdfsdfddddd")
 				window.location = data.url;
 			}
 			else if(data.error){
-				alert("sdfsdfddddd")
 				alert(data.error)
 			}
 			else if(data.msg){
-				alert("fidst")
 				alert(data.msg)
 			}
 		});	

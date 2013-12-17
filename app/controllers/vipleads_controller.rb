@@ -4,6 +4,7 @@
  require 'rexml/document'
 
  class VipleadsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:acceptInvitation, :mallitems,:savereferral,:trackEmail,:viewmallitem,:download]
   layout 'reflanding', only: [:acceptInvitation]
   
   def index
@@ -204,7 +205,9 @@
     user = User.find_by_token(params[:id])
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     logger.debug(user.id)
+    logger.debug(user.fetchcompanymallitem.size)
     @companymallitem = user.fetchcompanymallitem
+
   end
 
   def trackEmail

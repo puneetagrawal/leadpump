@@ -1,5 +1,5 @@
 class CompanyController < ApplicationController
-  before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
   layout 'reflanding', only: [:preview]
 
   def index

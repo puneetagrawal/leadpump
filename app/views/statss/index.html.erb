@@ -16,43 +16,47 @@
     <div class="row-fluid">
         <div class="span4">
             <div class="graph_con">
-                <canvas id="canvas" height="450" width="380"></canvas>
+                <canvas id="canvas" height="300" width="380"></canvas>
                 <script>
                     dates = "<%=@datelist%>"
                     dates = dates.split(",")
-                    sentsdata = "<%=@statsgraphdata['e_sent'.to_sym]%>"
+
+                    sentsdata = "<%=@statsgraphdata['e_sent'.to_sym]%>";
+                    sentsdata = sentsdata.split(",")
                     converteddata = "<%=@statsgraphdata['e_con'.to_sym]%>"
+                    converteddata = converteddata.split(",")
                     nonqualified = "<%=@statsgraphdata['e_view'.to_sym]%>"
+                    nonqualified = nonqualified.split(",")
                     var lineChartData = {
-                        labels : dates,
-                        datasets : [
-                            {
-                                fillColor : "rgba(220,220,220,0.5)",
-                                strokeColor : "rgba(220,220,220,1)",
-                                pointColor : "rgba(220,220,220,1)",
-                                pointStrokeColor : "#fff",
-                                data : [10,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,5,0]
+                    labels : dates,
+                    scaleSteps : 2,
+                    datasets : [
+                        {
+                            fillColor : "rgba(220,220,220,0.5)",
+                            strokeColor : "rgba(220,220,220,1)",
+                            pointColor : "rgba(220,220,220,1)",
+                            pointStrokeColor : "#fff",
+                            data : sentsdata
+                        },
+                        {
+                            fillColor : "rgba(151,187,205,0.5)",
+                            strokeColor : "rgba(151,187,205,1)",
+                            pointColor : "rgba(151,187,205,1)",
+                            pointStrokeColor : "#fff",
+                            data : converteddata
+                        },
+                        {
+                            fillColor : "rgba(40,180,50,0.5)",
+                            strokeColor : "rgba(40,180,50,1)",
+                            pointColor : "rgba(40,180,50,1)",
+                            pointStrokeColor : "#fff",
+                            data : nonqualified
+                        }
+            ]
+            
+        }
 
-                            },
-                            {
-                                fillColor : "rgba(151,187,205,0.5)",
-                                strokeColor : "rgba(151,187,205,1)",
-                                pointColor : "rgba(151,187,205,1)",
-                                pointStrokeColor : "#fff",
-                                data : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
-                            },
-                            {
-                                fillColor : "rgba(255, 174, 0)",
-                                strokeColor : "rgba(255, 174, 0)",
-                                pointColor : "rgba(255, 174, 0)",
-                                pointStrokeColor : "#fff",
-                                data : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2]
-                            }
-                        ]
-
-                    }
-
-                    var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+    var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
 
                 </script>
             </div>
