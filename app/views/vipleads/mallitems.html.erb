@@ -3,8 +3,8 @@
     <div class="row-fluid">
         <div class="span12">
            <div class="logo_listing m_item_main">
-            <h2 style="text-align:center;">Download or Print Coupons here for free trial.</h2>
             <%if @companymallitem.present?%>
+            <h2 style="text-align:center;">Download or Print Coupons here for free trial.</h2>
             <%@companymallitem.each do|mall|%>
                 <div class="logo_con ">
                     <h2><%=mall.title%></h2>
@@ -21,6 +21,8 @@
                     </div>
                 </div>
             <%end%>
+            <%else%>
+                <h2 style="text-align:center;">Sorry! No items presents.</h2>
             <%end%>
             </div>
         </div>
