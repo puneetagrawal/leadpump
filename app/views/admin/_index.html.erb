@@ -1,6 +1,6 @@
 <div class="tab-content">
     <div class="tab-pane <%=params[:stats] == 'invite' ? '' : 'active'%>" id="vip_stats">
-      <div class="row-fluid">
+      <!-- <div class="row-fluid">
         <div class="span4">
           <input type="text" placeholder="Search Account & Associate" id="vipleadlistadmin" class="input-large" autocomplete="off">
         </div>
@@ -8,7 +8,7 @@
           <input type="text" id = "from_date" class="filter-date input-medium" placeholder= "From Date" >
           <input type="text" id = "to_date" class="filter-date input-medium" placeholder= "To Date">
         </div>
-      </div>
+      </div> -->
       <span id="filter_vip">
         <%= render "vipstats" %>
       </span>

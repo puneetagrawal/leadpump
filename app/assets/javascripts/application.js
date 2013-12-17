@@ -42,7 +42,7 @@ $(document).ready(function(){
 	}); 
 
 	$('#onlinemall_description').ckeditor({
-		debugger;
+		
         toolbar: 'Full',
         enterMode : CKEDITOR.ENTER_BR,
         shiftEnterMode: CKEDITOR.ENTER_P

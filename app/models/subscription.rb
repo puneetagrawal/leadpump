@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :stripe_card_token, :customer_id, :charge_id, :payment, :plan_per_user_range_id, :user_id, :users_count, :locations_count, :plan_type
+  attr_accessible :stripe_card_token, :customer_id, :charge_id, :payment, :plan_per_user_range_id, :user_id, :users_count, :locations_count, :plan_type, :expiry_date
   belongs_to :plan_per_user_range
   belongs_to :user
   

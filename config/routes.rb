@@ -95,7 +95,9 @@ Leadpump::Application.routes.draw do
   match '/admin/saveplantype' => 'admin#saveplantype'
   match '/admin/alterplantype' => 'admin#alterplantype'
   match '/admin/usercreatepopup' => 'admin#usercreatepopup'
+  match '/admin/cmpycreatepopup' => 'admin#cmpycreatepopup'
   match '/createUser' => 'admin#createUser'
+  match '/createCmpy' => 'admin#createCmpy'
 
    namespace :admin do
      root :to => "admin#index"
