@@ -45,4 +45,23 @@ class SaleProdsController < ApplicationController
     end
   end
 
+  def showreport
+    logger.debug(params)
+    @user = User.find(params[:id])
+    date = Date.today
+    @sale_todate = SaleProd.fetchProdDataUpToDate(@user, date)
+    @sale_tody = SaleProd.fetchProdDataToDay(@user, date)
+    if params[:name] == "daily_rep"
+      @gross_values = SaleProd.fetchGrossMap(@sale_tody)
+    elsif params[:name] == "monthly_rep"
+      @gross_values = SaleProd.fetchGrossMap(@sale_todate)
+    elsif params[:name] == "project_rep"
+      @project = "test"
+      @gross_values = SaleProd.fetchGrossMap(@sale_todate)
+    end
+    respond_to do |format|
+      format.js 
+    end
+  end
+
 end

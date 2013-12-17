@@ -27,4 +27,12 @@ $(document).ready(function(){
 		});
     });
 
+	$(document).on('click', '.report', function (){
+		name = $(this).attr('name');
+		id = $(this).closest('ul').attr('id').split("_")[1];
+		url = '/sale_prods/showreport';
+		$.post(url, {id:id,name:name}, function (data) {
+		});
+	});
+
 });

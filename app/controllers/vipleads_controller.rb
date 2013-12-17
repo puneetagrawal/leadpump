@@ -4,6 +4,7 @@
  require 'rexml/document'
 
  class VipleadsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:acceptInvitation, :mallitems]
   layout 'reflanding', only: [:acceptInvitation]
   
   def index
