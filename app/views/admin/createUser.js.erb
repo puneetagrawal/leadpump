@@ -2,7 +2,6 @@
 	$(".table-striped tbody tr:first").before('<%=escape_javascript(render partial: "userrow", :locals=>{:user=>@user})%>')
 	$(".emp").html('<%=@empcount%>')
 	alert("user created successfully")
-
 	$.fancybox.close();
 <%else%>
 	$(".fancybox-inner .error").html('<%=@error%>');

@@ -60,7 +60,7 @@ class Stats < ActiveRecord::Base
     if gmailfriend.present? 
       if !gmailfriend.oppened
         gmailfriend.update_attributes(:oppened=>true)
-        stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1).last
+        stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",gmailfriend.user_id,Date.today, Date.today+1).last
         if stats.present?
           opened = stats.e_oppened.present? ? stats.e_oppened + 1 : 1
           stats.update_attributes(:e_oppened=>opened)
