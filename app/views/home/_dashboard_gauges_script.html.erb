@@ -50,8 +50,10 @@ function initgauge(){
 
     mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
     mem_avg = "<%=@gross_values['m_avg'.to_sym]%>" != 0 ? "<%=@gross_values['m_avg'.to_sym]%>" : 220;
-    m_total = mem_avg * 80;
-    mem_interval = (mem_avg * 80)/10
+    m_total = mem_avg * 40;
+    m_total = parseInt(m_total);
+    mem_interval = (mem_avg * 40)/10
+    mem_interval = parseInt(mem_interval);
     m_range = m_total/4;
 
     $("#membersoldgauge").jqxGauge({ 
@@ -68,8 +70,6 @@ function initgauge(){
         animationDuration: 1200,
         width: 180
     });
-
-
 
     cash = "<%=@gross_values['g_cash'.to_sym]%>";
     cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
@@ -91,15 +91,14 @@ function initgauge(){
         animationDuration: 1200,
         width: 180
     });
-    cash = cash != 0 ? parseInt(cash) : 0 
-    eft = eft != 0 ? parseInt(eft) : 0 
-    total_gross = cash + eft;
-    t_g = total_gross != 0 ? total_gross * 2 : 220;
-    t_g_interval = parseInt(t_g/10);
-    g_range = parseInt(t_g/4);
+    total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
+    t_avg = "<%=@gross_values['g_avg'.to_sym]%>" != 0 ? "<%=@gross_values['g_avg'.to_sym]%>" : 220;
+    g_total = t_avg * 40;
+    t_g_interval = getinterval(t_avg);
+    g_range = g_total/4;
 
     $("#totalgrossgauge").jqxGauge({ 
-        max: t_g, 
+        max: g_total, 
         labels: { interval: t_g_interval},
         ticksMinor: { interval: t_g_interval/4, size: '5%' },
         ticksMajor: { interval: t_g_interval/2, size: '9%' },
@@ -124,7 +123,7 @@ function initgauge(){
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
     });
     $('#membersoldgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     $('#cashgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');

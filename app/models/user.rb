@@ -130,9 +130,7 @@ class User < ActiveRecord::Base
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users = users.collect{|user| User.find(user)}
       when :employee
-        company = Company.find_by_company_user_id(user.id).company_admin_id
-        users = Company.where(:company_admin_id => company).pluck(:company_user_id)
-        users = users.collect{|user| User.find(user)}
+        users << user
     end
   end
 
@@ -142,7 +140,9 @@ class User < ActiveRecord::Base
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
       user = User.find_by_id(companyId)
-      email = user.email
+      if user.present?
+        email = user.email
+      end
     end
     return email
   end

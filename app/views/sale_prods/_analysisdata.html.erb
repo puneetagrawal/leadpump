@@ -8,34 +8,34 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>Incoming Mail Calls:</td>
+				<td>Walk ins:</td>
 				<td><%=@gross_values["g_tody".to_sym]["call".to_sym]%></td>
 				<td><%=@gross_values["g_todate".to_sym]["call".to_sym]%></td>
 			</tr>
 			<tr>
-				<td>Appointment Shows:</td>
-				<td><%=@gross_values["g_tody".to_sym]["app".to_sym]%></td>
-				<td><%=@gross_values["g_todate".to_sym]["app".to_sym]%></td>
+				<td>Appointment Sets:</td>
+				<td><%=@appointment["today_app".to_sym]%></td>
+				<td><%=@appointment["to_dt_app".to_sym]%></td>
 			</tr>
 			<tr>
-				<td>Buddy Referrer:</td>
-				<td><%=@gross_values["g_tody".to_sym]["ref".to_sym]%></td>
-				<td><%=@gross_values["g_todate".to_sym]["ref".to_sym]%></td>
-			</tr>
-			<tr>
-				<td>Web-Net:</td>
-				<td><%=@gross_values["g_tody".to_sym]["net".to_sym]%></td>
-				<td><%=@gross_values["g_todate".to_sym]["net".to_sym]%></td>
-			</tr>
-			<tr>
-				<td>Direct mail:</td>
+				<td>Telephone inquiries:</td>
 				<td><%=@gross_values["g_tody".to_sym]["mail".to_sym]%></td>
 				<td><%=@gross_values["g_todate".to_sym]["mail".to_sym]%></td>
 			</tr>
 			<tr>
+				<td>Tours given:</td>
+				<td><%=@gross_values["g_tody".to_sym]["net".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["net".to_sym]%></td>
+			</tr>
+			<tr>
+				<td>Membership sold:</td>
+				<td><%=@gross_values["g_tody".to_sym]["g_mem".to_sym]%></td>
+				<td><%=@gross_values["g_todate".to_sym]["g_mem".to_sym]%></td>
+			</tr>
+			<tr>
 				<td>Total Sales:</td>
-				<td><%=@gross_values["g_tody".to_sym]["total".to_sym]%></td>
-				<td><%=@gross_values["g_todate".to_sym]["total".to_sym]%></td>
+				<td><%#=@gross_values["g_tody".to_sym]["total".to_sym]%></td>
+				<td><%#=@gross_values["g_todate".to_sym]["total".to_sym]%></td>
 			</tr>
 		</tbody>
 	</table>
