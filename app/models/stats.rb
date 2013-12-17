@@ -16,7 +16,7 @@ class Stats < ActiveRecord::Base
    	recipient = GmailFriend.where(:email=>email, :user_id=>user).last
    	if recipient.present? && !recipient.sent
    		recipient.update_attributes(:sent=>true)
-	   	stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1)
+	   	stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1).last
 	    if stats.present?
 	      sent = stats.e_sents.present? ? stats.e_sents + 1 : 1
 	      stats.update_attributes(:e_sents=>sent)
@@ -28,7 +28,7 @@ class Stats < ActiveRecord::Base
 
    def self.saveEconverted(user, sec_token)
    	recipient = GmailFriend.find_by_secret_token(sec_token)
-   	stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1)
+   	stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1).last
    	msg = "Sorry! your link is invalid or expired."
    	if recipient.present? && !recipient.opt_in
       recipient.update_attributes(:opt_in=>true)
@@ -44,7 +44,7 @@ class Stats < ActiveRecord::Base
   end
 
   def self.saveEvisited(user, recipient)
-   	stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1)
+   	stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1).last
     if recipient.present? && !recipient.visited
       recipient.update_attributes(:visited=>true)
      	if stats.present?
@@ -60,7 +60,7 @@ class Stats < ActiveRecord::Base
     if gmailfriend.present? 
       if !gmailfriend.oppened
         gmailfriend.update_attributes(:oppened=>true)
-        stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1)
+        stats = Stats.where("user_id = ? and created_at >= ? and created_at < ?",user,Date.today, Date.today+1).last
         if stats.present?
           opened = stats.e_oppened.present? ? stats.e_oppened + 1 : 1
           stats.update_attributes(:e_oppened=>opened)

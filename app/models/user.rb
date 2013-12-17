@@ -140,7 +140,9 @@ class User < ActiveRecord::Base
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
       user = User.find_by_id(companyId)
-      email = user.email
+      if user.present?
+        email = user.email
+      end
     end
     return email
   end
