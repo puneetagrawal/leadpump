@@ -231,7 +231,7 @@ function initialization(){
 		}
 	});
 
-	$(".container").on('click', '.accnt', function (event){
+	$(".container").on('click', '.plan_span', function (event){
 		alterplantype($(this).parent().attr('id'));	
 	});
 
@@ -346,7 +346,7 @@ function savePlanType(id, plan){
 	id = id.split("_")[1]
 	url = '/admin/saveplantype';
 	$.post(url, {userId:id,planId:plan}, function (data) {
-		$("#plan_"+id).html('<span class="accnt">'+data.plan+'</span>');	
+		$("#plan_"+id).html('<span class="plan_span">'+data.plan+'</span>');	
 	});
 }
 
