@@ -5,9 +5,10 @@
            <div class="logo_listing m_item_main">
             <%if @companymallitem.present?%>
             <h2 style="text-align:center;">Download or Print Coupons here for free trial.</h2>
-            <%@companymallitem.each do|mall|%>
+            <%@companymallitem.each do|ol|%>
+            <%mall = Onlinemall.find(ol.onlinemall_id)%>
                 <div class="logo_con ">
-                    <h2><%=mall.title%></h2>
+                    <h2><%=mall.onlinemall.title%></h2>
                     <%if mall.mallpic.present?%>
                     <%= image_tag mall.mallpic.last.avatar.url(:medium) %>
                     <%else%>

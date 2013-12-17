@@ -204,9 +204,10 @@ class User < ActiveRecord::Base
     company = self.fetchCompany
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     logger.debug(company.name)
-    logger.debug(company)
+    logger.debug(company.id)
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    company = Onlinemall.where(:user_id=>company.id)
+    mallitems = Companymallitem.where(:user_id=>company.id)
+    return mallitems
   end
   
 def saveLeadCount

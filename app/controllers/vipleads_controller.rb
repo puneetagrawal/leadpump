@@ -194,7 +194,9 @@
     user = User.find_by_token(params[:id])
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     logger.debug(user.id)
+    logger.debug(user.fetchcompanymallitem.size)
     @companymallitem = user.fetchcompanymallitem
+
   end
 
   def trackEmail
