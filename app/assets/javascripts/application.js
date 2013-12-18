@@ -256,8 +256,16 @@ function initialization(){
 		$('#picture_avatar').click();
 	});
 
+	$(".submitviplogo").click(function (){
+		$('#picture_viplogo').click();
+	});
+
+	$("#picture_viplogo").change(function(){
+		$('#viplogo').submit();
+	});
+
 	$("#picture_avatar").change(function(){
-		$('#new_picture').submit();
+		$('#c_logo').submit();
 	});
 
 	$(document).on('keyup', '.isNormalText', function (){

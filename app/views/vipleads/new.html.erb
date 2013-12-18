@@ -1,21 +1,23 @@
 <div class="container">
-	<%=render "home/companyLogo"%>
+	<%=render "home/company_vip_logo"%>
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="mt20">
 				<div class="row-fluid">
 					<span class="span12">
 						<div class="process_steps">
-							<div class="stepNo1 step-title btn btn-success step-active"> <span class="step-order">1.</span> <span class="step-name">Step 1</span></div>
+							<div class="stepNo1 step-title btn btn-success step-active <%=!current_user.fetchCompany.vipon ? ' step-visited disabled' : ''%>"> <span class="step-order">1.</span> <span class="step-name">Step 1</span></div>
 							<div class="stepNo2 step-title  btn"><span class="step-order">2.</span> <span class="step-name">Step 2</span></div>
 							<div class="stepNo3 step-title  btn"><span class="step-order">3.</span> <span class="step-name">Step 3</span></div>
 						</div>
 						<span class="vipContainer">
-							<%if @emailAuth.present? %>
-					        <%=render "socialInviterEmail"%>
-					        <%=render "socialInviterYahoo"%>
+							<%if @emailAuth.present?%>
+						        <%=render "socialInviterEmail"%>
+						        <%=render "socialInviterYahoo"%>
+					        <%elsif !current_user.fetchCompany.vipon%>
+					        	<%=render "socialInviteStep2"%>
 					       <%else%>
-					        <%=render "form"%>
+					        	<%=render "form"%>
 					       <%end%>
 					   </span>
 						</span>

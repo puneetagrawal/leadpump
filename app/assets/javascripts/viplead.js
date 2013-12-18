@@ -10,6 +10,12 @@ function initSocialInviter(){
 		name = $(this).attr('name');
 		executeSecondStep(name);
 	});
+	$(".vipseting").click(function (){
+		openvipsetings();
+	});
+	$(".editvipseting").click(function (){
+		savevipsetings(this);
+	});
 	$(document).on('click', '.viewVipLead', function (){
 		id = $(this).closest('tr').attr('id').split("_")[1]
 		$.fancybox.open({
@@ -33,7 +39,7 @@ function initSocialInviter(){
 
 		if(username.length){
 			url = '/sendIvitationToFbFriend';
-			$.get(url, {username:username}, function (data) {
+			$.post(url, {username:username}, function (data) {
 				alert(data.msg);
 				$.fancybox.close();
 				$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
@@ -56,7 +62,7 @@ function initSocialInviter(){
 
 		if(emaillist.length){
 			url = '/sendIvitationToGmailFriend';
-			$.get(url, {emaillist:emaillist}, function (data) {
+			$.post(url, {emaillist:emaillist}, function (data) {
 				alert(data.msg);
 				$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 				$.fancybox.close();
@@ -66,6 +72,31 @@ function initSocialInviter(){
 			alert("please select members.");
 			$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 		}
+	});
+}
+
+function openvipsetings(){
+	$.fancybox.open({
+		href: '#vipseting',
+		type: 'inline'
+	});	
+}
+
+function savevipsetings(obj){
+	$(obj).html('<img src="/assets/ajax-loader.gif">');
+	vipon = '';
+	if($(".viponsetting").is(":checked")){
+		vipon = "true";
+	}
+	vipvalue = $("#noofvip").val();
+	if(vipvalue == ''){
+		vipvalue = 3;
+	}
+	url = '/savevipsetings';
+	$.get(url, {vipon:vipon,vipvalue:vipvalue}, function (data) {	
+		alert("successfully updated");
+		$(obj).html('<input type="button" value="submit" name="vipsetting" class="btn yellow">');
+		$.fancybox.close();
 	});
 }
 

@@ -15,6 +15,7 @@ $(document).ready(function(){
 function fetchEmailContact(){
 	$(".forms").addClass('hide');
 	uri = window.location.pathname;
+	token = tokend != '' ? tokend : '';
 	if(uri.indexOf("yahoo") > -1){
 		$(".social-yahoo").removeClass('hide');
 	}
@@ -22,6 +23,6 @@ function fetchEmailContact(){
 		$(".social-email").removeClass('hide');	
 	}
 	url = '/fetchContacts';
-	$.get(url, {uri:uri}, function (data) {			
+	$.get(url, {uri:uri,token:token}, function (data) {			
 	});
 }

@@ -1,0 +1,9 @@
+
+$("#sales_repo_change").html('<%=escape_javascript(render partial: "home/sales_gauge_data", :locals =>{:user => @user})%>')
+
+<%if @project.present?%>
+	$(".gaugestart").html('<%=escape_javascript(render partial: "home/dahboard_gauge_script2")%>')
+<%else%>
+	$(".gaugestart").html('<%=escape_javascript(render partial: "home/dashboard_gauges_script")%>')
+<%end%>
+

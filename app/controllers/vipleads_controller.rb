@@ -8,7 +8,7 @@
   layout 'reflanding', only: [:acceptInvitation]
   
   def index
-    @leads = VipLead.fetchList(current_user.id).paginate( :page => params[:page], :per_page => 1)
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "vip", current_user.id).paginate( :page => params[:page], :per_page => 100)
     respond_to do |format|
       format.js
       format.html
@@ -33,22 +33,22 @@
   end
 
   def create
-    viplead1 = Lead.new(params["inputs"]["vip_1"])
-    viplead2 = Lead.new(params["inputs"]["vip_2"])
-    viplead3 = Lead.new(params["inputs"]["vip_3"])
+    associate = params["inputs"]["lead"]["associate"]
     error = ''
-    if viplead1.valid? && viplead2.valid? && viplead3.valid?
-      VipLead.saveLead(viplead1,current_user)
-      VipLead.saveLead(viplead2,current_user)
-      VipLead.saveLead(viplead3,current_user)
-    else
-      error = "Please correct your email or phone"
+    (1..5).each do |vip| 
+      if !params["inputs"]["vip_#{vip}"].blank?
+        viplead = Lead.new(params["inputs"]["vip_#{vip}"])
+        if viplead.valid?
+          VipLead.saveLead(viplead,current_user,associate)
+        else
+          error = "Please correct your email or phone"
+        end
+      end
     end
     if error != '' && params[:skip] != 'skip'
       message = {"error"=> error}
       render json: message
     else
-      logger.debug("SDFSDFSDFSDFsdfsdfsdfsfsdfsdfsdfsfsdfsfs")
       respond_to do |format|
         format.js 
       end
@@ -58,17 +58,17 @@
   def new
     if current_user.isSocialInvitable || current_user.isAdmin
       if params[:token].present?
-        token = params[:token]
-        @gmail_contacts = GmailContacts::Google.new(token).contacts
+        @token = params[:token]
+        @gmail_contacts = GmailContacts::Google.new(@token).contacts
         if @gmail_contacts.present?
-          GmailFriend.savegmailContact(@gmail_contacts, current_user)
+          GmailFriend.savegmailContact(@gmail_contacts, current_user, @token)
         end
         @emailAuth = true 
       elsif params[:oauth_token].present?
-        logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         unless request.env['omnicontacts.contacts'].blank?
+          @token = params[:oauth_token]
           @yahoo_contacts = request.env['omnicontacts.contacts']
-          GmailFriend.saveyahooContact(@yahoo_contacts, current_user)
+          GmailFriend.saveyahooContact(@yahoo_contacts, current_user, @token)
         end
         @emailAuth = true 
       end         
@@ -91,10 +91,11 @@
   end
 
   def fetchContacts
+    token = params[:token]
     if(params[:uri].include? 'yahoo')
-      @contacts = GmailFriend.where(:user_id=> current_user.id,:source=>"yahoo")
+      @contacts = GmailFriend.order("name ASC").where(:user_id=> current_user.id,:source=>"yahoo",:access_token=>token)
     else
-      @contacts = GmailFriend.where(:user_id=> current_user.id, :source=>"gmail")
+      @contacts = GmailFriend.order("name ASC").where(:user_id=> current_user.id, :source=>"gmail",:access_token=>token)
     end
     respond_to do |format|
       format.js 
@@ -144,7 +145,6 @@
   end
   
   def acceptInvitation
-    logger.debug("")
     if params[:token].present?
       @ref = User.where(:token=>params[:token]).last
       if @ref.checkLeadLimit

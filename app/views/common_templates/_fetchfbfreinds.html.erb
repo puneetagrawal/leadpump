@@ -12,7 +12,7 @@
               <%if @fbfreinds.present?%>
                 <% @fbfreinds.each do |contact| %>
                   <tr>
-                    <td><%=check_box_tag "freindId_#{contact[1][:username]}", 'yes', false, :class => 'fbchekbox' %></td>
+                    <td><%=check_box_tag "freindId_#{contact[1][:username]}", 'yes', true, :class => 'fbchekbox' %></td>
                     <td class="email_label"><%=contact[1][:name]%></td>
                     <td></td>
                   </tr>
