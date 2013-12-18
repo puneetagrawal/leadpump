@@ -282,7 +282,9 @@ end
     user = User.find(params[:userId])
     plan = Plan.find(params[:planId]) 
     if user.subscription.present?
-      user.subscription.plan_per_user_range.update_attributes(:plan_id=>plan.id)
+      plnperuser = PlanPerUserRange.where(:plan_id=>plan.id).last
+      logger.debug(plnperuser.id)
+      user.subscription.update_attributes(:plan_per_user_range_id=>plnperuser.id)
     end
     msg = {"plan"=> plan.name}
     render json:msg
