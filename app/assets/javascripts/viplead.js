@@ -140,7 +140,6 @@ function executeFirstStep(obj, skip){
 }
 
 function executeSecondStep(name){
-	alert(name)
 	if(!$(".stepNo2").hasClass('step-visited')){
 		$(".stepNo2").addClass("step-visited").prepend('<i class="icon-ok icon-white step-mark"></i>');
 	}
