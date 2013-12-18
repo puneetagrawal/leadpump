@@ -25,7 +25,8 @@ Leadpump::Application.routes.draw do
   match "/viplead/filter_opt" => "opt_in_leads#filter_opt"
   resources :opt_in_leads
 
-  match "/createpic" => "picture#create"  
+  match "/createpic" => "picture#create"
+  match "/createvippic" => "picture#createvippic"  
   resources :picture
 
   match "/statsearch" => "statss#statsearch"
@@ -157,7 +158,8 @@ Leadpump::Application.routes.draw do
   match "/socialMessages" => "company#socialMessages"
   match "/savetwmes" => "company#savetwmes"
   match "/savefbmes" => "company#savefbmes"
-  match "/savegmmes" => "company#savegmmes"
+  match "/savegmmes" => "company#savegmmes" 
+  match "/savevipsetings" => "company#savevipsetings"  
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
   

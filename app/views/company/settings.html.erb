@@ -8,11 +8,28 @@
 		        <%if current_user.isAdmin || current_user.isCompany%>
 		            <div class="pull-left clear mt10">
 		                <a class="btn yellow submitlogo">Upload Logo</a>
-		                <%= form_for @picture, :url => '/createpic' do |form| %>
+		                <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
 		                  <%= form.file_field :avatar, :style =>"display:none" %>
 		                <% end %>
 		            </div>
 		        <%end%>
+		        <div class="pull-left clear mt10">
+		        	<div class="row-fluid">
+					    <div class="span2">
+					        <div class="pull-left">
+					            <%if @picture_user.present?%>
+					                <%= image_tag @picture_user.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+					            <%else%>
+					                <img src="/assets/company-logo.png" class="img-polaroid">
+					            <%end%>
+					        </div>
+					    </div>
+					</div>
+	                <a class="btn yellow submitviplogo">Upload Vip Logo</a>
+	                <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
+	                  <%= form.file_field :viplogo, :style =>"display:none" %>
+	                <% end %>
+	            </div>
 		    </div>
 		</div>
 		</div>
@@ -24,10 +41,14 @@
 	                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
 	            </li>
 	             <li>
-	                <%=link_to "Manage Landing Page", landpage_path, :class=> "btn yellow"%></h4>
+	                <%=link_to "Manage Landing Page", landpage_path, :class=> "btn yellow"%>
 	            </li>
-
+	             <li>
+	                <%=link_to "Manage Vips Creation", "javascript:void(0)", :class=> "btn yellow vipseting"%>
+	            </li>
 	        </ul>
     	</div>
     </div>
 </div>
+
+<%=render "common_templates/popupContainer"%>

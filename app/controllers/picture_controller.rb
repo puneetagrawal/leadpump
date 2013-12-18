@@ -15,6 +15,20 @@ class PictureController < ApplicationController
   	redirect_to settings_path
   end
 
+def createvippic
+    @picture_exist = Picture.find_by_user_id(current_user.id)
+    begin 
+    if !@picture_exist.present?
+      @picture = Picture.create(:viplogo=>params[:picture][:viplogo],:user_id=>current_user.id)
+    else
+      @picture_exist.update_attributes(:viplogo=>params[:picture][:viplogo])
+    end
+    rescue Exception => e
+      flash[:error] = "Please try again"
+    end
+    redirect_to settings_path
+  end
+
   def show
   end
 

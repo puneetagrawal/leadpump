@@ -27,7 +27,8 @@ class VipLead < ActiveRecord::Base
     return landpage
   end
 
-  def self.saveLead(viplead, user)
+  def self.saveLead(viplead, user, associate)
+    viplead.associate = associate
     viplead.save
     user_lead = UserLeads.create(:user_id => user.id, :lead_id => viplead.id)
     user.saveLeadCount

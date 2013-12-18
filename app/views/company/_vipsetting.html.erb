@@ -1,0 +1,20 @@
+<div class="span4 margin_width" style="text-align:left;">    
+    <div>
+        <div class="border">
+            <h2 class="heading headmsg">Edit Plan</h2>
+            <div class="form pd15">
+                <p>
+                    <label>On/Off vips</label>
+                    <%=check_box_tag "vipon", 'yes', current_user.fetchCompany.vipon ? true : false, :class => 'viponsetting' %>
+                </p>
+                <p><label>No of vips </label>
+                    <%=select_tag "noofvip", options_for_select(1..5),:selected=>current_user.fetchCompany.vipcount,:prompt => "Select No Of Vips",:style=>"width:200px;margin:10px 0 10px 0;" %>
+                </p>
+                <p class="editvipseting">
+                    <input type="button" class="btn yellow" name="vipsetting" value="submit"/>
+                </p>
+                <div class="clear"></div>
+            </div>        
+        </div> 
+    </div>        
+</div>

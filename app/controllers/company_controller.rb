@@ -160,6 +160,15 @@ def settings
   @picture = Picture.new
 end
 
+def savevipsetings
+  if !params[:vipon].blank?
+     current_user.update_attributes(:vipon=>true, :vipcount=>params[:vipvalue].to_i)
+  else
+     current_user.update_attributes(:vipon=>false)
+  end
+  render json: {"msg"=>""}
+end
+
 def landpage
   if current_user.isCompany
     @landpage = LandingPage.find_by_user_id(current_user.id)

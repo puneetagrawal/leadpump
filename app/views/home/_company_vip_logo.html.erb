@@ -1,0 +1,13 @@
+<div class="row-fluid">
+    <div class="span2">
+        <div class="pull-left">
+            <%if @picture_user.present?%>
+                <%= image_tag @picture_user.viplogo.url() %>
+            <%else%>
+                <img src="/assets/company-logo.png">
+            <%end%>
+        </div>
+    </div>
+</div>
+
+

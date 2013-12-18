@@ -15,7 +15,7 @@
             <% @leads.each do |lead|%>
                 <tr id="invite_<%= lead.user.id %>" data-action="invitepopup">
                     <td><%= lead.lead.name.humanize %></td>
-                    <td> <%= lead.user.name.humanize %></td>
+                    <td> <%= lead.lead.assciate.humanize %></td>
                     <td><%= lead.user.fetchCompany.name %></td>
                     <td><%= lead.lead.lead_source %></td>
                     <td><%= lead.lead.status %></td>

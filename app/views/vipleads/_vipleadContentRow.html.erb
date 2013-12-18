@@ -1,7 +1,7 @@
 	
 <tr class="viewLead listView" id="viewLead_<%=lead.lead.id%>"  data-action="leadpopup">
 	<td><%= lead.lead.name.humanize %></td>
-    <td><%= lead.user.present? ? lead.user.name.humanize : "" %></td>
+    <td><%= lead.lead.associate.present? ? lead.lead.associate.humanize : "" %></td>
     <td><%= lead.lead.phone %></td>
     <td><%= lead.lead.status %></td>
     <td class="leadAction">
