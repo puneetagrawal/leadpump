@@ -2085,3 +2085,7 @@ header .container {
 .footer .container {
     min-height: 1px;
 }
+
+.mr2{
+    margin:2px !important;
+}

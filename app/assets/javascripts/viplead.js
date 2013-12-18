@@ -140,10 +140,18 @@ function executeFirstStep(obj, skip){
 }
 
 function executeSecondStep(name){
+	alert(name)
 	if(!$(".stepNo2").hasClass('step-visited')){
 		$(".stepNo2").addClass("step-visited").prepend('<i class="icon-ok icon-white step-mark"></i>');
 	}
-	$(".social_options ul li").each(function(){$(this).addClass("hide")});
+	$(".social_options ul li").each(function(){
+		if(!$(this).hasClass('hide')){
+			$(this).addClass("hide")	
+		}
+	});
+	if(name == "common"){
+		$(".social_options ul li.e-m").removeClass("hide");
+	}
 	$("."+name).removeClass('hide');
 	$(".stepNo3").removeClass('disabled');
 }
