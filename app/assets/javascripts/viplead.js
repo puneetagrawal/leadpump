@@ -6,6 +6,17 @@ function initSocialInviter(){
 	$(".proceed_step1").click(function(){
 		movetostep1(this);
 	});
+
+	$(document).on('click', '.select_all', function (){
+		$("#select_all").prop('checked','checked');
+		selectAll();
+	});
+
+	$(document).on('click', '.select_none', function (){
+		$("#deselect_all").prop('checked','');
+		deselectAll();
+	});
+
 	$(document).on('click', '.social_options ul li', function (){
 		name = $(this).attr('name');
 		executeSecondStep(name);
@@ -73,6 +84,26 @@ function initSocialInviter(){
 			$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 		}
 	});
+}
+
+function selectAll(){
+	if($(".chekboxess").length > 0){
+		$(".chekboxess").each(function(){
+			console.log($(this).is(":checked"))
+			$(this).prop('checked', "checked");
+		});
+	}
+}
+
+function deselectAll(){
+	var select = true;
+	if($(".chekboxess").length > 0){
+		$(".chekboxess").each(function(){
+			if($(this).is(":checked")){
+				$(this).prop('checked', '');
+			}
+		});
+	}
 }
 
 function openvipsetings(){
