@@ -7,7 +7,7 @@
                 <div class="logo_con">
                     <h2><%=@mall.title%></h2>
                     <%if @mall.mallpic.present?%>
-                        <%= wicked_pdf_image_tag_for_public @mall.mallpic.last.avatar.url(:meduim) %>
+                        <%= wicked_pdf_image_tag_for_public(@mall.mallpic.last.avatar.url(), options = { :width => 300, :height => 200}) %>
                     <%else%>
                         <%= wicked_pdf_image_tag('not-found.png', options = { :width => 300, :height => 200}) %>
                     <%end%>
