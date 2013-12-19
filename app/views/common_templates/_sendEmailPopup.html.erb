@@ -6,17 +6,28 @@
     <div class="modal-body">
         <table class="table table-striped">
             <thead>
-                <tr><td>#</td><td>Name</td><td>Email</td></tr>
+                <tr><td>#</td><td>Email</td><td>Name</td></tr>
             </thead>
             <tbody>
               <%if @contacts.present?%>
-                <% @contacts.each do |contact| %>
+              <tr>
+                  <td colspan="2">
+                    <label class="select_all"><%=check_box_tag "select_all", 'yes', true, :class => 'mr2' %>Select All</label>
+                  </td>
+                  <td><label class="select_none"><%=check_box_tag "deselect_all", 'yes', false, :class => 'mr2' %>Select None</label></td>
                   <tr>
-                    <td><%=check_box_tag "freindId_#{contact.id}", 'yes', false, :class => 'gmailContactChekbox' %></td>
+                <% @contacts.each do |contact| %>
+
+                  <tr>
+                    <td><%=check_box_tag "freindId_#{contact.id}", 'yes', true, :class => 'gmailContactChekbox chekboxess' %></td>
                     <td class="email_label"><%=contact.email%></td>
                     <td><%=contact.name.humanize%></td>
                   </tr>
                 <%end%>
+              <%else%>
+                <tr rowspan="4">
+                    <td>No record found.</td>
+                </tr>
               <%end%>
             </tbody>
         </table>

@@ -10,13 +10,23 @@
             </thead>
             <tbody>
               <%if @fbfreinds.present?%>
+              <tr>
+                  <td colspan="2">
+                    <label class="select_all"><%=check_box_tag "select_all", 'yes', true, :class => 'mr2' %>Select All</label>
+                  </td>
+                  <td><label class="select_none"><%=check_box_tag "deselect_all", 'yes', false, :class => 'mr2' %>Select None</label></td>
+                  <tr>
                 <% @fbfreinds.each do |contact| %>
                   <tr>
-                    <td><%=check_box_tag "freindId_#{contact[1][:username]}", 'yes', false, :class => 'fbchekbox' %></td>
+                    <td><%=check_box_tag "freindId_#{contact[1][:username]}", 'yes', true, :class => 'fbchekbox chekboxess' %></td>
                     <td class="email_label"><%=contact[1][:name]%></td>
                     <td></td>
                   </tr>
                 <%end%>
+              <%else%>
+                <tr rowspan="5">
+                    <td colspan="3">No Contacts Found</td>
+                  </tr>
               <%end%>
             </tbody>
         </table>

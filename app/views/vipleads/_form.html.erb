@@ -1,8 +1,9 @@
 <%= form_for @lead, :url => '/vipleads', :method => :post, :html => { :class => "forms form social_inviter"} do |vip| %>
     <%=render "common_templates/showerrors", :object=>@lead%>
-    <p><%= vip.label "Referrer's Name" %><%= vip.text_field :user_id, :value => current_user.name, class: "input-large", :disabled=>true %></p>
-
-    <%(1..3).each do |row|%>
+    <div class="viprow">
+        <p><%= vip.label "Referrer's Name" %><%= vip.text_field :associate, class: "input-large"%></p>
+    </div>   
+    <%(1..current_user.fetchCompany.vipcount).each do |row|%>
         <div class="viprow">
             <p><%= vip.label "Name" %><%= vip.text_field :name, name: "vip_#{row}[name]", class: "input-large fname" %></p>
 

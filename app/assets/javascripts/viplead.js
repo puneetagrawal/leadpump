@@ -6,9 +6,26 @@ function initSocialInviter(){
 	$(".proceed_step1").click(function(){
 		movetostep1(this);
 	});
+
+	$(document).on('click', '.select_all', function (){
+		$("#select_all").prop('checked','checked');
+		selectAll();
+	});
+
+	$(document).on('click', '.select_none', function (){
+		$("#deselect_all").prop('checked','');
+		deselectAll();
+	});
+
 	$(document).on('click', '.social_options ul li', function (){
 		name = $(this).attr('name');
 		executeSecondStep(name);
+	});
+	$(".vipseting").click(function (){
+		openvipsetings();
+	});
+	$(".editvipseting").click(function (){
+		savevipsetings(this);
 	});
 	$(document).on('click', '.viewVipLead', function (){
 		id = $(this).closest('tr').attr('id').split("_")[1]
@@ -33,7 +50,7 @@ function initSocialInviter(){
 
 		if(username.length){
 			url = '/sendIvitationToFbFriend';
-			$.get(url, {username:username}, function (data) {
+			$.post(url, {username:username}, function (data) {
 				alert(data.msg);
 				$.fancybox.close();
 				$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
@@ -56,7 +73,7 @@ function initSocialInviter(){
 
 		if(emaillist.length){
 			url = '/sendIvitationToGmailFriend';
-			$.get(url, {emaillist:emaillist}, function (data) {
+			$.post(url, {emaillist:emaillist}, function (data) {
 				alert(data.msg);
 				$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 				$.fancybox.close();
@@ -66,6 +83,50 @@ function initSocialInviter(){
 			alert("please select members.");
 			$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 		}
+	});
+}
+
+function selectAll(){
+	if($(".chekboxess").length > 0){
+		$(".chekboxess").each(function(){
+			$(this).prop('checked', "checked");
+		});
+	}
+}
+
+function deselectAll(){
+	var select = true;
+	if($(".chekboxess").length > 0){
+		$(".chekboxess").each(function(){
+			if($(this).is(":checked")){
+				$(this).prop('checked', false);
+			}
+		});
+	}
+}
+
+function openvipsetings(){
+	$.fancybox.open({
+		href: '#vipseting',
+		type: 'inline'
+	});	
+}
+
+function savevipsetings(obj){
+	$(obj).html('<img src="/assets/ajax-loader.gif">');
+	vipon = '';
+	if($(".viponsetting").is(":checked")){
+		vipon = "true";
+	}
+	vipvalue = $("#noofvip").val();
+	if(vipvalue == ''){
+		vipvalue = 3;
+	}
+	url = '/savevipsetings';
+	$.get(url, {vipon:vipon,vipvalue:vipvalue}, function (data) {	
+		alert("successfully updated");
+		$(obj).html('<input type="button" value="submit" name="vipsetting" class="btn yellow">');
+		$.fancybox.close();
 	});
 }
 
@@ -112,7 +173,14 @@ function executeSecondStep(name){
 	if(!$(".stepNo2").hasClass('step-visited')){
 		$(".stepNo2").addClass("step-visited").prepend('<i class="icon-ok icon-white step-mark"></i>');
 	}
-	$(".social_options ul li").each(function(){$(this).addClass("hide")});
+	$(".social_options ul li").each(function(){
+		if(!$(this).hasClass('hide')){
+			$(this).addClass("hide")	
+		}
+	});
+	if(name == "common"){
+		$(".social_options ul li.e-m").removeClass("hide");
+	}
 	$("."+name).removeClass('hide');
 	$(".stepNo3").removeClass('disabled');
 }

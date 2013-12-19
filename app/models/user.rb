@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, 
-  :role_id, :addresses_attributes, :subscription_attributes, :token, :reset_status
+  :role_id, :addresses_attributes, :subscription_attributes, :token, :reset_status, :vipon, :vipcount
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses
   has_many :vipLeads
@@ -278,8 +278,10 @@ def fetchfbsubject
   company = self.fetchCompany
   message = "An Inviation from #{self.name.humanize} to you. "
   socialmessage = SocialMessage.find_by_company_id(company.id)
-  if !socialmessage.present? && socialmessage.fbsubject.present?
-    message = socialmessage.fbsubject
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  logger.debug(company)
+  if socialmessage.present? && socialmessage.fbsubject.present?
+     message = socialmessage.fbsubject
   end
   return message.html_safe
 end

@@ -1,8 +1,9 @@
 class GmailFriend < ActiveRecord::Base
-	attr_accessible :email, :name, :opt_in, :secret_token, :sent, :user_id, :visited, :oppened, :source
+	attr_accessible :email, :name, :opt_in, :secret_token, :sent, :user_id, :visited, :oppened, :source, :access_token
 	belongs_to :user
 	
 	after_create :generate_token
+
 
 	def self.getName(contact, email)
 		name = ''
@@ -14,29 +15,29 @@ class GmailFriend < ActiveRecord::Base
 		end 
 	end
 
-	def self.savegmailContact(contacts, user)
+	def self.savegmailContact(contacts, user, token)
 		contacts.each do |contact|
 			email = contact.email != '' ? contact.email : ''
 			name = GmailFriend.getName(contact,email)
 			if email.present? && name.present?
-				gmailcontact = GmailFriend.where(:user_id => user.id, :email => email, :source=>"gmail")
+				gmailcontact = GmailFriend.where(:user_id => user.id, :email => email, :source=>"gmail",:access_token=>token)
 				if !gmailcontact.present?
-					gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>user.id, :source=>"gmail")
+					gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>user.id, :source=>"gmail", :access_token=>token)
 					gmailfreind.save
 				end
 			end
 		end
 	end
 
-	def self.saveyahooContact(contacts, user)
+	def self.saveyahooContact(contacts, user, token)
 		contacts.each do |contact|
 			 unless contact[:email].blank? 
 		        email = contact[:email] != '' ? contact[:email] : ''
 				name = GmailFriend.getName('', email)
 				if email.present? && name.present?
-					yahoocontact = GmailFriend.where(:user_id => user.id, :email => email, :source=>"yahoo")
+					yahoocontact = GmailFriend.where(:user_id => user.id, :email => email, :source=>"yahoo", :access_token=>token)
 					if !yahoocontact.present?
-						gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>user.id, :source=>"yahoo")
+						gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>user.id, :source=>"yahoo",:access_token=>token)
 						gmailfreind.save
 					end
 				end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214094458) do
+ActiveRecord::Schema.define(:version => 20131218104937) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20131214094458) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.string   "source"
+    t.string   "access_token"
   end
 
   create_table "land_page_logos", :force => true do |t|
@@ -139,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20131214094458) do
     t.string   "lname"
     t.string   "status"
     t.integer  "no_of_days"
+    t.string   "associate"
   end
 
   create_table "mallpics", :force => true do |t|
@@ -178,12 +180,16 @@ ActiveRecord::Schema.define(:version => 20131214094458) do
 
   create_table "pictures", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "viplogo_file_name"
+    t.string   "viplogo_content_type"
+    t.integer  "viplogo_file_size"
+    t.datetime "viplogo_updated_at"
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|
@@ -323,7 +329,6 @@ ActiveRecord::Schema.define(:version => 20131214094458) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -366,6 +371,8 @@ ActiveRecord::Schema.define(:version => 20131214094458) do
     t.integer  "users_created",          :default => 0
     t.integer  "leads_created",          :default => 0
     t.boolean  "reset_status",           :default => false
+    t.boolean  "vipon"
+    t.integer  "vipcount"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

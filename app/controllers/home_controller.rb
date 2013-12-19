@@ -46,7 +46,8 @@ end
 
 
 def fetchfbfreinds
-  @fbfreinds = params[:info]  
+  @fbfreinds = params[:info] 
+  @fbfreinds = @fbfreinds.sort_by { |hsh| hsh[1]["name"] } 
   respond_to do |format|
     format.js 
   end
