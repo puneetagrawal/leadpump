@@ -2,14 +2,14 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span12">
-            <div class="logo_listing">
+            <div class="" style="text-align:center;">
             <%if @mall.present?%>
-                <div class="logo_con" style="margin:0 15px 15px 40%;width:auto">
-                    <h2><%=@mall.title%></h2>
+                <div class="logo_con" style="width:auto">
+                    <h3><%=@mall.title%></h2>
                     <%if @mall.mallpic.present?%>
-                        <%= image_tag @mall.mallpic.last.avatar.url(:medium) %>
+                        <%= image_tag @mall.mallpic.last.avatar.url(:medium) :style=>"height:250px;width:50%"%>
                     <%else%>
-                    <img src="/assets/company-logo.png">
+                        <img src="/assets/company-logo.png" style="height:250px;width:50%">
                     <%end%>
                     <div class="action_btn">
                         <%=link_to download_path(mall_id: @mall.id, format: 'pdf') ,:class=>"btn yellow pull-left" do%>   
