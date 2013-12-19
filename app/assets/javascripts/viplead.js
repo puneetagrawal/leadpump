@@ -8,11 +8,12 @@ function initSocialInviter(){
 	});
 
 	$(document).on('click', '.select_all', function (){
-		alert(">>>>>>>>>>>>>>>>>>>>");
+		$("#select_all").prop('checked','checked');
 		selectAll();
 	});
 
 	$(document).on('click', '.select_none', function (){
+		$("#deselect_all").prop('checked','');
 		deselectAll();
 	});
 
@@ -88,8 +89,7 @@ function initSocialInviter(){
 function selectAll(){
 	if($(".chekboxess").length > 0){
 		$(".chekboxess").each(function(){
-			console.log($(this).is(":checked"))
-			$(this).attr('checked');
+			$(this).prop('checked', "checked");
 		});
 	}
 }

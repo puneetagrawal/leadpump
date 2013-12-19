@@ -329,7 +329,6 @@ ActiveRecord::Schema.define(:version => 20131218104937) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
