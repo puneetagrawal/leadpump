@@ -9,7 +9,8 @@ Leadpump::Application.configure do
   STRIPE_PUB_KEY = "pk_live_IEcenF7CwslP7o1kXeRcYCQS"
   FACEBOOK_KEY = "563196563757857"
   FACEBOOK_SECRET = "ac0561d3179ef6507205091ccc4bb018"
-  
+  PDF_PATH = "/usr/bin/wkhtmltopdf.sh"
+
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.

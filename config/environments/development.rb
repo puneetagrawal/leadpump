@@ -9,6 +9,7 @@ Leadpump::Application.configure do
   STRIPE_PUB_KEY = "pk_test_khzNUZcEtnlUCiom3lA2nQtI"
   FACEBOOK_KEY = "468207766612651"
   FACEBOOK_SECRET = "34084682effefb870f5d4b6115463bb6"
+  PDF_PATH = "/usr/bin/wkhtmltopdf"
 
   config.cache_classes = false
 
