@@ -98,16 +98,16 @@ $(document).ready(function(){
 	//});
 	
 	//gaurav
-	$("#to_date").unbind();
-	$(document).on("change", "#to_date", function (){
+	$("#vip_to_date").unbind();
+	$(document).on("change", "#vip_to_date", function (){
 		var to_date = $(this).val();
-		var from_date = $('#from_date').val();
-		if ($('#from_date').val().length == 0)
+		var from_date = $('#vip_from_date').val();
+		if (from_date.length == 0)
 		{
 			alert("Please insert the From Date field.");
-			$('#to_date').val("");
+			$('#vip_to_date').val("");
 		}
-		else if (($('#from_date').val().length != 0) && ($('#to_date').val().length != 0))
+		else if ((from_date.length != 0) && (to_date.length != 0))
 		{
 			$.ajax({ 
 				url: "/filter_vip",
@@ -117,10 +117,37 @@ $(document).ready(function(){
 				}
 			});
 		}
-		else if ($('#to_date').val().length == 0)
+		else if (to_date.length == 0)
 		{
 			$.ajax({
 				url: "/filter_vip"
+			});
+		}
+
+	});
+
+	$(document).on("change", "#invite_to_date", function (){
+		var to_date = $(this).val();
+		var from_date = $('#invite_from_date').val();
+		if (from_date.length == 0)
+		{
+			alert("Please insert the From Date field.");
+			$('#invite_to_date').val("");
+		}
+		else if ((from_date.length != 0) && (to_date.length != 0))
+		{
+			$.ajax({ 
+				url: "/filter_invite",
+				data: { 
+					"invite_to_date": to_date,
+					"invite_from_date": from_date
+				}
+			});
+		}
+		else if (to_date.length == 0)
+		{
+			$.ajax({
+				url: "/filter_invite"
 			});
 		}
 
@@ -162,7 +189,7 @@ $(document).ready(function(){
 		else if ($('#payment_to_date').val().length == 0)
 		{
 			$.ajax({
-				url: "/userpaymentsearchfilter"
+				url: "/filter_payment"
 			});
 		}
 	});
@@ -280,16 +307,15 @@ $(document).ready(function(){
  		});   
     });	
 
-   $(document).on("click", ".pagination a", function(){
+   $(document).on("click", ".pagination a", function(){   
    	var search_val = $("#select_user_entry").val(); 
+   	console.log("ajax");
 		   $.ajax({
 		    data: { 
 		     "search_val": search_val
- 		   }   
+ 		   }
  		});  
     });
-  
-
 });
 
 function admincreateuserpopup(){
@@ -366,6 +392,12 @@ function paymentSearchAdminFilter(userId){
 function userSearchFilter(userId){
 	url = '/usersearchinadmin';
 	$.get(url, {userId:userId}, function (data) {	
+	});
+}
+
+function invitesearchfilter(statid){
+	url = "/invitesearchfilter";
+	$.get(url, {stat: statid}, function (data) {
 	});
 }
 

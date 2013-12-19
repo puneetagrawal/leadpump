@@ -24,3 +24,21 @@
         <% end %>                    
     </tbody>
 </table>
+<%= will_paginate @stats, :previous_label=>"Previous", :next_label=>"Next", :style=>"float:right;", :params => { :stats => "invite"} %>
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $('.filter-date').datepicker({ dateFormat: "yy-mm-dd"}).val(); 
+        $('#vipleadlistadmin').autocomplete({
+            source: "/searchvipleadsadmin",
+            select: function(event, ui) {
+                return vipleadSearchAdminFilter(ui.item.name);
+            }
+        });
+        $('#invitesearch').autocomplete({
+            source: "/invitelist",
+            select: function(event, ui) {
+                return invitesearchfilter(ui.item.name);
+            }
+        });
+    });
+</script>

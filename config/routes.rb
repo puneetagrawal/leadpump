@@ -79,13 +79,16 @@ Leadpump::Application.routes.draw do
   match '/admin/user_per_plan' => 'admin#user_per_plan'
   match '/admin/user_per_cmpy' => 'admin#user_per_cmpy'
   match '/filter_vip' => 'admin#filter_vip', :as => 'filter_vip'
+  match '/filter_invite' => 'admin#filter_invite'
   match '/filter_payment' => 'admin#filter_payment', :as => 'filter_payment'
   match "/searchUserAc" => "admin#searchUserAc"
   match "/usersearchinadmin" => "admin#usersearchinadmin"
   match "/searchvipleadsadmin" => "admin#search_vip"
+  match "/invitelist" => "admin#invitelist"
   match "/searchpaymentadmin" => "admin#search_payment"
   match "/vipleadsearchadminfilter" => "admin#vipleadsearchadminfilter"
   match "/paymentsearchfilter" => "admin#paymentsearchfilter"
+  match "/invitesearchfilter" => "admin#invitesearchfilter"
   match "/editplanbyadmin" => "admin#editplanbyadmin"
   match "/invitestatsbyadmin" => "admin#invitestatsbyadmin"
   match "/setunlimited" => "admin#setunlimited"

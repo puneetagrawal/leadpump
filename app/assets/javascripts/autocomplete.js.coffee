@@ -27,3 +27,7 @@ $(document).ready ->
          $('#optlist').autocomplete
                  source: "/optlist"
                  select: (event,ui) -> optSearchFilter(ui.item.name)
+
+         $('#invitesearch').autocomplete
+                source: "/invitelist"
+                select: (event,ui) -> invitesearchfilter(ui.item.name)
