@@ -2089,3 +2089,7 @@ header .container {
 .mr2{
     margin:2px !important;
 }
+
+.gaugemargin li{
+    margin-right: 1% !important;
+}

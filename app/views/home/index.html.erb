@@ -10,29 +10,7 @@
     </div>
     <div class="row-fluid">
         <%=render "sales_user_list"%>
-        <%if current_user.isCompany%>
-        <div class="span9">
-            <h2 class="heading">Sales Representatives Statistics</h2>
-            <div class="salesRepData" id="sales_repo_change">
-                <%=render "sales_gauge_data"%>
-            </div>
-            <div class="clear mb10"></div>
-            <div class="row-fluid">
-                <div class="span3 lead_gaug">
-                    <%=render "home/leadgauge"%>
-                </div>
-                <div class="span9">
-                    <h2 class="heading">Dashboard</h2>
-                    <div class="dashboardpage">
-                        <ul class="dashboardIcons borderbox">
-				            <%=render "home/companyDashboard"%>
-				        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <% else %>
-             <div class="span12">
+        <div class="<%=current_user.isCompany ? 'span9' : 'span12'%>">
             <h2 class="heading">Sales Representatives Statistics</h2>
             <div class="salesRepData" id="sales_repo_change">
                 <%=render "sales_gauge_data"%>
@@ -52,11 +30,8 @@
                 </div>
             </div>
         </div>
-        <% end %>
     </div>
 </div>
-
-<!-- <a href="/contacts/hotmail">HotMail</a> -->
 
 <%=render "common_templates/popupContainer"%>
 
