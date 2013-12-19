@@ -19,10 +19,10 @@
                 <tr>
                     <td><%= @stat.source %></td>
                     <td><%= @stat.location %></td>
-                    <td><%= @stat.e_sents %></td>
-                    <td><%= @stat.e_oppened %></td>
-                    <td><%= @stat.e_views %></td>
-                    <td><%= @stat.e_converted %></td>
+                    <td><%= @stat.e_sents.present? ? @stat.e_sents : 0 %></td>
+                    <td><%= @stat.e_oppened.present? ? @stat.e_oppened : 0 %></td>
+                    <td><%= @stat.e_views.present? ? @stat.e_views : 0 %></td>
+                    <td><%= @stat.e_converted.present? ? @stat.e_converted : 0 %></td>
                 </tr>
             <% else %>
                 <tr>
