@@ -12,7 +12,7 @@
                     <%if mall.mallpic.present?%>
                     <%= image_tag mall.mallpic.last.avatar.url(:medium) %>
                     <%else%>
-                    <img src="/assets/company-logo.png">
+                    <img src="/assets/not-found.png">
                     <%end%>
                     <div class="action_btn viewmallitem" id="view_<%=mall.id%>">
                         <%=link_to "javascript:void(0)" ,:class=>"btn yellow pull-left" do%>   

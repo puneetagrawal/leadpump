@@ -9,7 +9,7 @@
                     <%if @mall.mallpic.present?%>
                         <%= image_tag @mall.mallpic.last.avatar.url(:medium), :style=>"height:250px;width:50%"%>
                     <%else%>
-                        <img src="/assets/company-logo.png" style="height:250px;width:50%">
+                        <img src="/assets/not-found.png" style="height:250px;width:50%">
                     <%end%>
                     <div class="action_btn">
                         <%=link_to download_path(mall_id: @mall.id, format: 'pdf') ,:class=>"btn yellow pull-left" do%>   
