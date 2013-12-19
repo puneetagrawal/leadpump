@@ -13,14 +13,16 @@ $(document).ready(function(){
 });
 
 function fetchEmailContact(){
-	$(".forms").addClass('hide');
+	if(!$(".forms").hasClass('hide')){
+		$(".forms").addClass('hide');	
+	}
 	uri = window.location.pathname;
 	token = tokend != '' ? tokend : '';
 	if(uri.indexOf("yahoo") > -1){
-		$(".social-yahoo").removeClass('hide');
+		//$(".social-yahoo").removeClass('hide');
 	}
 	else{
-		$(".social-email").removeClass('hide');	
+		//$(".social-email").removeClass('hide');	
 	}
 	url = '/fetchContacts';
 	$.get(url, {uri:uri,token:token}, function (data) {			

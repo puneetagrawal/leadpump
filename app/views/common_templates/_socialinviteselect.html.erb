@@ -1,0 +1,20 @@
+<div class="span4 margin_width" style="text-align:left;">    
+    <div>
+        <div class="border">
+            <h2 class="heading headmsg">Social Referring</h2>
+            <div class="form pd15">
+                <p>
+                    <label>Select Social Inviters </label>
+                    <%=select_tag "inviter_select", options_for_select([["Gmail Socail Connect","gmail"],["Yahoo Social Connect","yahoo"]]),:prompt => "Select Inviter",:style=>"width:200px;margin:10px 0 10px 0;" %>
+                </p>
+                <p class="email-inviter hide">
+                    <%=link_to "Connect Via Gmail", GmailContacts::Google.authentication_url("http://"+SERVER_URL+"/vipleads/new"), :class=>"btn yellow"%>
+                </p>
+                 <p class="yahoo-inviter hide">
+                    <a href="/contacts/yahoo" class="btn yellow">Connect via Yahoo</a>
+                </p>
+                <div class="clear"></div>
+            </div>        
+        </div> 
+    </div>        
+</div>
