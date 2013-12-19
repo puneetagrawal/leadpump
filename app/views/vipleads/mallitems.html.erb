@@ -8,7 +8,7 @@
             <%@companymallitem.each do|ol|%>
             <%mall = Onlinemall.find(ol.onlinemall_id)%>
                 <div class="logo_con ">
-                    <h3><%=mall.title%></h2>
+                    <h3 title="<%=mall.title%>"><%=getsubstring(mall.title)%></h2>
                     <%if mall.mallpic.present?%>
                     <%= image_tag mall.mallpic.last.avatar.url(:medium) %>
                     <%else%>

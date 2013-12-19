@@ -45,4 +45,10 @@ module OnlinemallHelper
     return img.html_safe
   end 
 
+  def getsubstring(title)
+  	logger.debug(title.length)
+  	title = title.present? ? title.length > 9 ? "#{title[0..7]}.." : title : ''
+  	return title
+  end
+
 end
