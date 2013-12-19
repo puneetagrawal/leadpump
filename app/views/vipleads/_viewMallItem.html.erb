@@ -7,7 +7,7 @@
                 <div class="logo_con" style="width:auto">
                     <h3><%=@mall.title%></h2>
                     <%if @mall.mallpic.present?%>
-                        <%= image_tag @mall.mallpic.last.avatar.url(:medium) :style=>"height:250px;width:50%"%>
+                        <%= image_tag @mall.mallpic.last.avatar.url(:medium), :style=>"height:250px;width:50%"%>
                     <%else%>
                         <img src="/assets/company-logo.png" style="height:250px;width:50%">
                     <%end%>
