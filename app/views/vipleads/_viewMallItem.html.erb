@@ -4,7 +4,7 @@
         <div class="span12">
             <div class="" style="text-align:center;">
             <%if @mall.present?%>
-                <div class="logo_con" style="width:auto">
+                <div class="logo_con" style="width:auto;float:none;">
                     <h3><%=@mall.title%></h2>
                     <%if @mall.mallpic.present?%>
                         <%= image_tag @mall.mallpic.last.avatar.url(:medium), :style=>"height:250px;width:50%"%>
