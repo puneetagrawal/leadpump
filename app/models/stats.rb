@@ -95,7 +95,7 @@ class Stats < ActiveRecord::Base
     date = Date.today
     date_cur = Date.today - 10
     (date_cur..date).each do|dd| 
-      stats = Stats.where("updated_at >= ? and updated_at < ?",dd, dd+1).where(:user_id=>current_user.id)
+      stats = Stats.where("updated_at >= ? and updated_at < ?",dd, dd+1).where(:user_id=>user.id)
       e_converted += "#{stats.collect{|stat| stat.e_converted}.compact.inject(0, :+)},"
       e_views += "#{stats.collect{|stat| stat.e_views}.compact.inject(0, :+)},"
       e_sent += "#{stats.collect{|stat| stat.e_sents}.compact.inject(0, :+)},"
