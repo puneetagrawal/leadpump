@@ -4,7 +4,7 @@ class StatssController < ApplicationController
     @response = HTTParty.get('https://api.sendgrid.com/api/stats.get.json?api_user=leadpump&api_key=4trading&list=true')
   	@stats = Stats.where(:user_id=>current_user.id)
     @datelist = Stats.fetchDateList
-    @statsgraphdata = Stats.fetchgraphdata(current_user.id)
+    @statsgraphdata = Stats.fetchgraphdata(current_user)
   end
 
   def statsearch
