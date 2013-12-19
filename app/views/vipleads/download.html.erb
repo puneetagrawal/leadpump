@@ -4,10 +4,10 @@
         <div class="span12">
             <div class="logo_listing">
             <%if @mall.present?%>
-                <div class="logo_con">
+                <div class="logo_con" style="text-align:center">
                     <h2><%=@mall.title%></h2>
                     <%if @mall.mallpic.present?%>
-                        <%= wicked_pdf_image_tag_for_public(@mall.mallpic.last.avatar.url(), options = { :width => 300, :height => 200}) %>
+                        <%= wicked_pdf_image_tag_for_public(@mall.mallpic.last.avatar.url(), options = { :width => 500, :height => 300}) %>
                     <%else%>
                         <%= wicked_pdf_image_tag('not-found.png', options = { :width => 300, :height => 200}) %>
                     <%end%>
