@@ -27,12 +27,8 @@ def plan
 end
 
 def statistic
-	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 5, :order => "leads.created_at DESC")
-  @stats = Stats.all.paginate(:page => params[:page], :per_page => 5, :order => "created_at DESC")
-  respond_to do |format|
-    format.js
-    format.html
-  end
+	@leads = UserLeads.includes(:lead).where("leads.lead_source = ?", "vip").paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
+  @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
 end
 
 def payment
@@ -113,13 +109,28 @@ end
   if(f_dt != '' && t_dt != '')
     f_dt = Date.strptime(f_dt, "%m/%d/%Y")
     t_dt = Date.strptime(t_dt, "%m/%d/%Y")
-    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.created_at >= ? and leads.created_at <= ?","vip",f_dt,t_dt)
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.created_at >= ? and leads.created_at <= ?","vip",f_dt,t_dt).paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
   else
-    @leads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip")
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ?","vip").paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
   end
 	respond_to do |format|    
   	format.js 
 	end
+end
+
+def filter_invite
+  f_dt = params[:invite_from_date].present? ? params[:invite_from_date] : ''
+  t_dt = params[:invite_to_date].present? ? params[:invite_to_date] : ''
+  if(f_dt != '' && t_dt != '')
+    f_dt = Date.strptime(f_dt, "%m/%d/%Y")
+    t_dt = Date.strptime(t_dt, "%m/%d/%Y")
+    @stats = Stats.where("created_at >= ? and created_at <= ?", f_dt,t_dt).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  else
+    @stats = Stats.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  end
+  respond_to do |format|    
+    format.js 
+  end
 end
 
  def filter_user
@@ -176,33 +187,45 @@ def search_vip
 end
 
   def search_payment
-  @paidusers = User.fetchPaidUser.pluck(:user_id)
-  if params[:term].blank?
-    @users = User.select("distinct(name)").where(:id => @paidusers)
-    list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
-  else
-     like  = "%".concat(params[:term].concat("%"))
-     @users = User.select("distinct(name)").where("name ilike ?", like).where(:id => @paidusers)
-     list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
-   end
-   render json: list
+    @paidusers = User.fetchPaidUser.pluck(:user_id)
+    if params[:term].blank?
+      @users = User.select("distinct(name)").where(:id => @paidusers)
+      list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
+    else
+      like  = "%".concat(params[:term].concat("%"))
+      @users = User.select("distinct(name)").where("name ilike ?", like).where(:id => @paidusers)
+      list = @users.map {|u| Hash[id: u.id, label: u.name, name: u.name]}
+    end
+    render json: list
+  end
+
+  def invitelist
+    if params[:term].blank?
+      stats = Stats.select("distinct(source)")
+      list.map {|s| Hash[id: s.id, label: s.source, name: s.source]}
+    else
+      like = "%".concat(params[:term].concat("%"))
+      stats = Stats.select("distinct(source)").where("source ilike ?", like)
+      list = stats.map {|s| Hash[id: s.id, label: s.source, name: s.source]}
+    end
+    render json: list      
   end
 
   def vipleadsearchadminfilter
     like  = "%".concat(params[:viplead].concat("%"))
-    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.name ilike ?", "vip", like)
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and leads.name ilike ?", "vip", like).paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
     @users = UserLeads.includes(:user).includes(:lead).where("users.name ilike ? and leads.lead_source= ?",like,"vip")
     @userid = @users.collect { |u| u.user_id }
-    @company = Company.where(:company_admin_id => @userid.uniq).pluck(:id)
+    @company = Company.where(:company_admin_id => @userid.uniq).pluck(:id).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     if @leads.blank?
-      if @users.present? 
-        @leads = @users
-      else
+      if @company.present? 
         @leads= UserLeads.where(:user_id => @company)
+      else
+        @leads= @users.paginate(:page => params[:page], :per_page => 10, :order => "leads.created_at DESC")
       end
     end
     respond_to do |format|
-      format.js { render "filter_vip" }
+      format.js 
     end
   end
   
@@ -211,6 +234,14 @@ end
     @users = Subscription.includes(:user).where("users.name ilike ? and subscriptions.payment IS NOT NULL",like).paginate(:page => params[:page], :per_page => 10, :order => "users.created_at DESC")
     respond_to do |format|
       format.js { render "filter_payment" }
+    end
+  end
+
+  def invitesearchfilter
+    like = "%".concat(params[:stat].concat("%"))
+    @stats = Stats.where("source ilike ?", like).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -340,4 +371,5 @@ end
       format.js
     end
   end
+
 end

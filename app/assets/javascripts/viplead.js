@@ -89,7 +89,6 @@ function initSocialInviter(){
 function selectAll(){
 	if($(".chekboxess").length > 0){
 		$(".chekboxess").each(function(){
-			console.log($(this).is(":checked"))
 			$(this).prop('checked', "checked");
 		});
 	}
@@ -100,7 +99,7 @@ function deselectAll(){
 	if($(".chekboxess").length > 0){
 		$(".chekboxess").each(function(){
 			if($(this).is(":checked")){
-				$(this).prop('checked', '');
+				$(this).prop('checked', false);
 			}
 		});
 	}

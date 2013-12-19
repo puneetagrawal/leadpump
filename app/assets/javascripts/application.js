@@ -41,6 +41,10 @@ $(document).ready(function(){
 		  // optional config
 	}); 
 
+	$("#myTab").click(function(){
+		$('.nav li a')[0].attr('class','active');
+	});
+
 	$('#onlinemall_description').ckeditor({
 		
         toolbar: 'Full',
