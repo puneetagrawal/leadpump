@@ -49,9 +49,13 @@ end
 def user_per_plan
   if params[:plan_id].present?
     planname = Plan.find(params[:plan_id])
-    @users = User.fetchUserByPlan(planname).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    if params[:userid].present?
+      @users = User.where(:id => params[:userid]).fetchUserByPlan(planname).paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
+    else
+      @users = User.fetchUserByPlan(planname).paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
+    end
   else
-    @users = User.all.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    @users = User.all.paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
   end
   respond_to do |format|
       format.js { render "user" }
@@ -59,12 +63,24 @@ def user_per_plan
 end
 
 def user_per_cmpy
-  if params[:user_id].present?
-    user = User.find(params[:user_id])
-    @users = User.fetchCompanyUserList(user).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
-    @users << user
+  if params[:userid].present?
+    @users = []
+    user = User.find(params[:userid])
+    if params[:plan_id].present?
+      planname = Plan.find(params[:plan_id])
+      @cmpyusers = User.fetchCompanyUserList(user)
+      @cmpyusers << user
+      @cmpyusers = @cmpyusers.map(&:id)
+      @planusers = User.fetchUserByPlan(planname).map(&:id)
+      @users = @cmpyusers & @planusers
+      @users = User.where(:id => @users.uniq)
+      @users = @users.present? ? @users.paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC") : [] 
+    else
+      @users = User.fetchCompanyUserList(user).paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
+      @users << user
+    end
   else
-    @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+    @users = User.paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
   end  
   respond_to do |format|
     format.js { render "user" }

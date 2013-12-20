@@ -265,12 +265,8 @@ def self.fetchUserByPlan(plan)
   planperuserrange = PlanPerUserRange.where(:plan_id=> plan).pluck(:id)
   subscription = Subscription.includes(:user).where(:plan_per_user_range_id=>planperuserrange).pluck(:user_id)
   companyUsers = Company.where(:company_admin_id=>subscription).pluck(:company_user_id)
-  logger.debug(subscription)
-  logger.debug(companyUsers)
   subscription.push(companyUsers.flatten!)
-  logger.debug(subscription)
   users = subscription.present? ? subscription.collect{|user| find_user(user) }.compact : []
-  logger.debug(users)
   return users
 end
 

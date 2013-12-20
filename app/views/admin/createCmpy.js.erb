@@ -1,7 +1,7 @@
 <%if @error.blank?%>
 	$(".table-striped tbody tr:first").before('<%=escape_javascript(render partial: "userrow", :locals=>{:user=>@user})%>')
 	$(".cmpy").html('<%=@cmpycnt%>')
-	$('#user_id').append($('<option></option>').val(@user.id).html(@user.name));
+	// $('#user_id').append($('<option></option>').val(@user.id).html(@user.name));
 	alert("Company created successfully")
 	$.fancybox.close();
 <%else%>

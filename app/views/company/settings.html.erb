@@ -7,7 +7,7 @@
 		    <div class="span10">
 		        <%if current_user.isAdmin || current_user.isCompany%>
 		            <div class="pull-left clear mt10">
-		                <a class="btn yellow submitlogo">Upload Logo</a>
+		                <a class="btn yellow submitlogo">Upload "Company" logo</a>
 		                <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
 		                  <%= form.file_field :avatar, :style =>"display:none" %>
 		                <% end %>
@@ -25,7 +25,7 @@
 					        </div>
 					    </div>
 					</div>
-	                <a class="btn yellow submitviplogo">Upload Vip Logo</a>
+	                <a class="btn yellow submitviplogo">Upload "Social inviter process logo"</a>
 	                <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
 	                  <%= form.file_field :viplogo, :style =>"display:none" %>
 	                <% end %>
