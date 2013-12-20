@@ -1,7 +1,7 @@
 
 class HomeController < ApplicationController
 	require 'httparty'
-  before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, :only => [:pass]
 
   def index
    @picture_user = Picture.fetchCompanyLogo(current_user.id)
