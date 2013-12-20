@@ -2090,6 +2090,9 @@ header .container {
     margin:2px !important;
 }
 
+.creation {
+    padding-bottom: 5px;
+}
 .gaugemargin li{
     margin-right: 1% !important;
 }

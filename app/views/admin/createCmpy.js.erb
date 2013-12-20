@@ -1,9 +1,9 @@
 <%if @error.blank?%>
 	$(".table-striped tbody tr:first").before('<%=escape_javascript(render partial: "userrow", :locals=>{:user=>@user})%>')
 	$(".cmpy").html('<%=@cmpycnt%>')
+	// $('#user_id').append($('<option></option>').val(@user.id).html(@user.name));
 	alert("Company created successfully")
 	$.fancybox.close();
-	//$('#user_id').append($('<option></option>').val("<%=@user.id%>").html("<%@user.name%>"));
 <%else%>
 	$(".fancybox-inner .error").html('<%=@error%>');
 	$('.fancybox-inner .createCmpy').html('<input type="button" name="submitCmpy" value="Create" class="btn yellow">');

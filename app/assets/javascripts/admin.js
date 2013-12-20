@@ -195,6 +195,9 @@ $(document).ready(function(){
 	});
 	$("#user_to_date").unbind();
 	$("#user_to_date").change(function (){
+		$('#select_user_entry')[0].selectedIndex = 0;
+		$('#plan_id')[0].selectedIndex = 0;
+		$('#user_id')[0].selectedIndex = 0;
 		var to_date = $(this).val();
 		var from_date = $('#user_from_date').val();
 		if (from_date == ''){
@@ -209,6 +212,12 @@ $(document).ready(function(){
 					"user_to_date": to_date,
 					"user_from_date": from_date
 				}
+			});
+		}
+		else if (to_date.length == 0)
+		{
+			$.ajax({
+				url: "/filter_user",
 			});
 		}
 	});
@@ -277,32 +286,39 @@ $(document).ready(function(){
 
 	$(document).on('change', "#plan_id", function () {
    		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-       var plan_id = $(this).val();
-		   $.ajax({
+        var plan_id = $(this).val();
+        var userno = $('#select_user_entry').val();
+        var userid = $('#user_id').val();
+		    $.ajax({
 		    url: "/admin/user_per_plan",
 		    data: { 
-		     "plan_id": plan_id
+		     "plan_id": plan_id, "userno": userno, "userid": userid
  		   }   
  		});   
     });
   
     $(document).on('change', "#user_id", function () {
    		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-       var user_id = $(this).val();
+       	var userid = $(this).val();
+       	var plan_id = $('#plan_id').val();
+        var userno = $('#select_user_entry').val();
 		   $.ajax({
 		    url: "/admin/user_per_cmpy",
 		    data: { 
-		     "user_id": user_id
+		     "plan_id": plan_id, "userno": userno, "userid": userid
  		   }   
  		});   
     });
 
 	$("#select_user_entry").change(function () {
-       var search_val = $(this).val(); 
+       var userno = $(this).val(); 
+       var plan_id = $('#plan_id').val();
+        var userid = $('#user_id').val();
 		   $.ajax({
-		    url: "/admin/user_rec",
+		    //url: "/admin/user_per_plan",
+		    url: "/admin/user_per_cmpy",
 		    data: { 
-		     "search_val": search_val
+		     "plan_id": plan_id, "userno": userno, "userid": userid
  		   }   
  		});   
     });	

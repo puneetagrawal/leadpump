@@ -26,9 +26,10 @@
         <p class="text-center"><img src="/assets/twitter-icon.png"></p>
     </div>
     <div class="span7">
-        <p>Enter Tweets message that you want to tweet on twiter.</p>
+        <p>Enter Tweets message that you want to tweet on twitter.</p>
         <form class="form">
-            <textarea class="ckeditor">
+            <!-- <input type="hidden" name="hidden_snippet" id="hidden_snippet" value="" /> -->
+            <textarea class="ckeditor" id="twitter">
                 <%=current_user.fetchtwitterMessage%>
             </textarea>
                <br/>
