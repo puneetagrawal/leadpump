@@ -152,6 +152,9 @@ end
     redirect_to "/"
   end
 
+  def pass
+  end
+
   private
 
   def mail_invitaion(message,email_id)

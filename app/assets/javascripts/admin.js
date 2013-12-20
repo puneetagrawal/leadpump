@@ -290,7 +290,8 @@ $(document).ready(function(){
         var userno = $('#select_user_entry').val();
         var userid = $('#user_id').val();
 		    $.ajax({
-		    url: "/admin/user_per_plan",
+		    //url: "/admin/user_per_plan",
+		    url: "/admin/adminfilter",
 		    data: { 
 		     "plan_id": plan_id, "userno": userno, "userid": userid
  		   }   
@@ -303,7 +304,8 @@ $(document).ready(function(){
        	var plan_id = $('#plan_id').val();
         var userno = $('#select_user_entry').val();
 		   $.ajax({
-		    url: "/admin/user_per_cmpy",
+		    //url: "/admin/user_per_cmpy",
+		    url: "/admin/adminfilter",
 		    data: { 
 		     "plan_id": plan_id, "userno": userno, "userid": userid
  		   }   
@@ -315,8 +317,8 @@ $(document).ready(function(){
        var plan_id = $('#plan_id').val();
         var userid = $('#user_id').val();
 		   $.ajax({
-		    //url: "/admin/user_per_plan",
-		    url: "/admin/user_per_cmpy",
+		    //url: "/admin/user_per_cmpy",
+		    url: "/admin/adminfilter",
 		    data: { 
 		     "plan_id": plan_id, "userno": userno, "userid": userid
  		   }   
