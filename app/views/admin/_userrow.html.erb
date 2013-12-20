@@ -1,16 +1,18 @@
-<tr id="viewLead_<%= user.id %>"> 
-	<td><%= user.name %></td> 
-	<td><%=user.role.role_type%></td>
-	<td><%= user.fetchCompany.name %></td>
-	<td class="leadActive leadAction" id="plan_<%=user.id%>">
-		<%=render "alterplantype", :plan=>user.fetchPlan%>
+<%if user.fetchCompany.present?%>
+	<tr id="viewLead_<%= user.id %>"> 
+		<td><%= user.name %></td> 
+		<td><%=user.role.role_type%></td>
+		<td><%= user.fetchCompany.name %></td>
+		<td class="leadActive leadAction" id="plan_<%=user.id%>">
+			<%=render "alterplantype", :plan=>user.fetchPlan%>
+		</td>
 	</td>
-</td>
-<td class="leadActive leadAction" id="status_<%=user.id%>">
-	<%=render "common_templates/changeStatus", :user=>user, :lead=>nil%>
-</td>
-<td><%= user.created_at.strftime("%Y/%m/%d") %>
-	<td>
-		<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
+	<td class="leadActive leadAction" id="status_<%=user.id%>">
+		<%=render "common_templates/changeStatus", :user=>user, :lead=>nil%>
 	</td>
-</tr>
+	<td><%= user.created_at.strftime("%Y/%m/%d") %>
+		<td>
+			<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
+		</td>
+	</tr>
+<%end%>
