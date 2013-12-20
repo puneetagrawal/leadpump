@@ -42,7 +42,7 @@ $(document).ready(function(){
 	}); 
 
 	$("#myTab").click(function(){
-		$('.nav li a')[0].attr('class','active');
+		$('#home_link').addClass('decoration');
 	});
 
 	$('#onlinemall_description').ckeditor({

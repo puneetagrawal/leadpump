@@ -20,7 +20,7 @@
                     <td><%= lead.lead.lead_source %></td>
                     <td><%= lead.lead.status %></td>
                     <td><%= lead.lead.created_at.strftime("%Y/%m/%d")%></td>
-                    <td><%= link_to "Invite Stats", "javascript:void(0)", html={ :class => "invite_stats" } %></td>
+                    <td><%= link_to "Invite Status", "javascript:void(0)", html={ :class => "invite_stats" } %></td>
                 </tr>
             <% end %>
         <% else  %>

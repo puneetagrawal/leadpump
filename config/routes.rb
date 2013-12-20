@@ -60,11 +60,11 @@ Leadpump::Application.routes.draw do
   match '/home/validateEmail' => 'home#validateEmail'
   match '/welcome' => 'home#welcome'
   match '/home/deleteRowByajax' => 'home#deleteRowByajax'
-
   match 'home/social_inviter' => 'referrals#new'
   match 'home/terms' => 'home#terms'
   match 'home/privacy' => 'home#privacy'
   match '/test' => 'home#test'
+  match '/pass' => 'home#pass'
 
 
   
@@ -78,6 +78,7 @@ Leadpump::Application.routes.draw do
   match '/admin/statistic' => 'admin#statistic' 
   match '/admin/user_rec' => 'admin#user_record'
   match '/admin/user_per_plan' => 'admin#user_per_plan'
+  match '/admin/adminfilter' => 'admin#adminfilter'
   match '/admin/user_per_cmpy' => 'admin#user_per_cmpy'
   match '/filter_vip' => 'admin#filter_vip', :as => 'filter_vip'
   match '/filter_invite' => 'admin#filter_invite'

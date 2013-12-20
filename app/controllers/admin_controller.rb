@@ -87,6 +87,38 @@ def user_per_cmpy
   end
 end
 
+def adminfilter
+  if params[:userid].present?
+    @users = []
+    user = User.find(params[:userid])
+    if params[:plan_id].present?
+      planname = Plan.find(params[:plan_id])
+      @cmpyusers = User.fetchCompanyUserList(user)
+      @cmpyusers << user
+      @cmpyusers = @cmpyusers.map(&:id)
+      @planusers = User.fetchUserByPlan(planname).map(&:id)
+      @users = @cmpyusers & @planusers
+      @users = User.where(:id => @users.uniq)
+      @users = @users.present? ? @users.paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC") : [] 
+    else
+      @users = User.fetchCompanyUserList(user).paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
+      @users << user
+    end
+  elsif params[:plan_id].present?
+    planname = Plan.find(params[:plan_id])
+    if params[:userid].present?
+      @users = User.where(:id => params[:userid]).fetchUserByPlan(planname).paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
+    else
+      @users = User.fetchUserByPlan(planname).paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
+    end
+  else
+    @users = User.paginate(:page => params[:page], :per_page => params[:userno], :order => "created_at DESC")
+  end
+  respond_to do |format|
+    format.js { render "user" }
+  end
+end
+
 def destroy
   # @user = User.find(params[:search_user])
   
@@ -113,9 +145,9 @@ end
       plan = Plan.where("name ilike ?", like)
       @users = User.fetchUserByPlan(plan).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     end
-	respond_to do |format|
-		format.js { render "user" }
-	end
+  	respond_to do |format|
+  		format.js { render "user" }
+  	end
   end
 
    
@@ -156,6 +188,10 @@ end
     f_dt = Date.strptime(f_dt, "%m/%d/%Y")
     t_dt = Date.strptime(t_dt, "%m/%d/%Y")
     @users = User.where("created_at >= ? and created_at <= ?", f_dt, t_dt ).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC") 
+    logger.debug f_dt
+    logger.debug t_dt
+    logger.debug @users
+    logger.debug("<<<<<<<<<<<<<<<<<<")
   else
     @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC") 
   end

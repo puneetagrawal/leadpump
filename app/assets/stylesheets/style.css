@@ -2096,3 +2096,13 @@ header .container {
 .gaugemargin li{
     margin-right: 1% !important;
 }
+.decoration {
+    color: #fff;
+    background: #ff0000;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 5px;
+}
+.passhead {
+    padding-top: 10px;
+}
