@@ -193,9 +193,6 @@ class User < ActiveRecord::Base
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
       company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
-    when :company
-      companyId = Company.find_by_company_admin_id(self.id)
-      company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
     end
     return company
   end
