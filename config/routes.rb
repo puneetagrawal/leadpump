@@ -97,7 +97,7 @@ Leadpump::Application.routes.draw do
   match "/change_user_status" => "admin#change_user_status", as: "change_user_status"
   match "/filter_user" => "admin#filter_user"
   match '/admin/saveplantype' => 'admin#saveplantype'
-  match '/admin/alterplantype' => 'admin#alterplantype'
+  #match '/admin/alterplantype' => 'admin#alterplantype'
   match '/admin/usercreatepopup' => 'admin#usercreatepopup'
   match '/admin/cmpycreatepopup' => 'admin#cmpycreatepopup'
   match '/createUser' => 'admin#createUser'
@@ -122,7 +122,7 @@ Leadpump::Application.routes.draw do
   match '/update/:id' => 'leads#update', :as => :update
   match '/leads/leadassign' => 'leads#leadassign'
   match '/leads/leadassigntouser' => 'leads#leadassigntouser'
-  match '/leads/changeleadstatus' => 'leads#changeleadstatus'
+  #match '/leads/changeleadstatus' => 'leads#changeleadstatus'
   match '/leads/saveleadstatus' => 'leads#saveleadstatus'
   match '/leads/filterbyname' => 'leads#filterbyname'
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'

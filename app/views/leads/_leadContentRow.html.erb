@@ -4,7 +4,7 @@
 <td><%=lead.lead_source%></td>
 <td><%=lead.goal%></td>
 <td class="leadActive leadAction" id="status_<%=lead.id%>">
-  <span class="leadAction span"><%= lead.status %></span>
+  <%=render "common_templates/changeStatus", :lead=>lead, :user=>nil%>
 </td>
 <td>
   <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>
@@ -14,6 +14,5 @@
   <%=link_to "Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete"}%>
   <%=checkIfCompanyAdmin(lead.id)%> | 
   <%=fetchTasklink(lead.id)%>
-  
 </td>    
   

@@ -229,15 +229,15 @@ function initialization(){
 		caclulateAmount()
 	}			
 	
-	$(".container").on('click', '.span', function (event){
-		if(!view){
-			changeleadstatus($(this).parent().attr('id'));	
-		}
-	});
+	// $(".container").on('click', '.span', function (event){
+	// 	if(!view){
+	// 		changeleadstatus($(this).parent().attr('id'));	
+	// 	}
+	// });
 
-	$(".container").on('click', '.plan_span', function (event){
-		alterplantype($(this).parent().attr('id'));	
-	});
+	// $(".container").on('click', '.plan_span', function (event){
+	// 	alterplantype($(this).parent().attr('id'));	
+	// });
 
 	$(".container").on('change', '#status_lead', function (){
 		saveLeadStatus($(this).parent().attr('id'), $(this).val())
@@ -329,36 +329,36 @@ function assignLeadToUser(userId, leadId){
 	});
 }
 
-function changeleadstatus(id){
-	id = id.split("_")[1]
-	urls = window.location.pathname;
-	url = '/home/changestatus'
-	$.post(url, {leadId:id, urls:urls}, function (data) {	
-		// $("#leadActive_"+leadId).html()	
-	});
-}
+// function changeleadstatus(id){
+// 	id = id.split("_")[1]
+// 	urls = window.location.pathname;
+// 	url = '/home/changestatus'
+// 	$.post(url, {leadId:id, urls:urls}, function (data) {	
+// 		// $("#leadActive_"+leadId).html()	
+// 	});
+// }
 
 function saveLeadStatus(id, status){
 	id = id.split("_")[1]
 	urls = window.location.pathname;
 	url = '/home/saveleadstatus';
 	$.post(url, {leadId:id,status:status, urls:urls}, function (data) {
-		$("#status_"+id).html('<span class="span">'+data.status+'</span>')	
+		//$("#status_"+id).html('<span class="span">'+data.status+'</span>')	
 	});
 }
 
-function alterplantype(id){
-	id = id.split("_")[1]
-	url = '/admin/alterplantype'
-	$.post(url, {userId:id}, function (data) {	
-	});
-}
+// function alterplantype(id){
+// 	id = id.split("_")[1]
+// 	url = '/admin/alterplantype'
+// 	$.post(url, {userId:id}, function (data) {	
+// 	});
+// }
 
 function savePlanType(id, plan){
 	id = id.split("_")[1]
 	url = '/admin/saveplantype';
 	$.post(url, {userId:id,planId:plan}, function (data) {
-		$("#plan_"+id).html('<span class="plan_span">'+data.plan+'</span>');	
+		//$("#plan_"+id).html('<span class="plan_span">'+data.plan+'</span>');	
 	});
 }
 
