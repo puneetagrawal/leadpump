@@ -136,7 +136,7 @@ def savefbmes
     socailMessage.update_attributes(:facebookMessage=>params[:text],:fbsubject=>params[:subject])
     message = {"msg"=>"Message saved successfully"}
   else
-    SocialMessage.create(:facebookMessage=>params[:text], :company_id=>current_user.id)
+    SocialMessage.create(:facebookMessage=>params[:text],:fbsubject=>params[:subject], :company_id=>current_user.id)
   end
   render json: message
 end
@@ -150,7 +150,7 @@ def savegmmes
     socailMessage.update_attributes(:gmailMessage=>params[:text],:gmailsubject=>params[:subject])
     message = {"msg"=>"Message saved successfully"}
   else
-    SocialMessage.create(:gmailMessage=>params[:text], :company_id=>current_user.id)
+    SocialMessage.create(:gmailMessage=>params[:text],:gmailsubject=>params[:subject], :company_id=>current_user.id)
   end
   render json: message
 end

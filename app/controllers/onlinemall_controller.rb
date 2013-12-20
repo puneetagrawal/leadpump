@@ -1,8 +1,10 @@
 class OnlinemallController < ApplicationController
   def index
-    if current_user.isCompany || current_user.isAdmin
-    	@onlinemalls = Onlinemall.order("created_at DESC")
-    	@onlinemall = Onlinemall.new
+    @onlinemall = Onlinemall.new
+    if current_user.isAdmin
+      @onlinemalls = Onlinemall.order("created_at DESC")
+    elsif current_user.isCompany
+    	@onlinemalls = Onlinemall.order("created_at DESC").where(:user_id=>[current_user.id,1])
     else
       redirect_to home_index_path
     end

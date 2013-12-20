@@ -352,14 +352,14 @@ end
     end
   end
 
-  def alterplantype
-    @user = User.find(params[:userId])
-    company = @user.fetchCompany
-    @plan = company.subscription.plan_per_user_range.plan
-    respond_to do |format|
-      format.js
-    end
-  end
+  # def alterplantype
+  #   @user = User.find(params[:userId])
+  #   company = @user.fetchCompany
+  #   @plan = company.subscription.plan_per_user_range.plan
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
 
   def saveplantype
     user = User.find(params[:userId])

@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  after_create :generate_token
+  after_create :generate_token,:saveVipsetings
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :title, :body
@@ -173,12 +173,18 @@ class User < ActiveRecord::Base
     subscription = Subscription.where("payment IS NOT NULL")
   end
 
-  def fetchPlan  
+  def fetchPlan
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(self.id)  
     plan = nil
     company = self.fetchCompany
+    logger.debug(company)
     if company.present? && company.subscription.present? 
       plan = company.subscription.plan_per_user_range.plan
     end
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(plan)
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     return plan
   end
 
@@ -192,9 +198,6 @@ class User < ActiveRecord::Base
     case self.user_role.role_type.to_sym
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
-      company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
-    when :company
-      companyId = Company.find_by_company_admin_id(self.id)
       company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
     end
     return company
@@ -270,11 +273,11 @@ def fetchfbsubject
   company = self.fetchCompany
   message = "An Inviation from #{self.name.humanize} to you. "
   socialmessage = SocialMessage.find_by_company_id(company.id)
-  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>")
-  logger.debug(company)
   if socialmessage.present? && socialmessage.fbsubject.present?
      message = socialmessage.fbsubject
   end
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  logger.debug(message)
   return message.html_safe
 end
 
@@ -330,11 +333,13 @@ def self.find_user(id)
   def generate_token
     token = SecureRandom.urlsafe_base64(self.id, false)
     self.token = token[0, 10]
+
+  end
+
+  def saveVipsetings
+    self.vipcount = 3
+    self.vipon = true
     self.save
   end
 
-
-  
-
-
-end
+end#main

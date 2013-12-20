@@ -115,13 +115,13 @@ def leadassigntouser
   end
 end
 
-def changeleadstatus
-  @lead = Lead.find(params[:leadId])  
-  #@status = @lead.active ? "Active" : "Inactive"
-  respond_to do |format|
-    format.js 
-  end
-end
+# def changeleadstatus
+#   @lead = Lead.find(params[:leadId])  
+#   #@status = @lead.active ? "Active" : "Inactive"
+#   respond_to do |format|
+#     format.js 
+#   end
+# end
 
 def saveleadstatus
   if(params[:urls].include?'company')

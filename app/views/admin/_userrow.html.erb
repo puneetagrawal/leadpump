@@ -3,11 +3,11 @@
 	<td><%=user.role.role_type%></td>
 	<td><%= user.fetchCompany.name %></td>
 	<td class="leadActive leadAction" id="plan_<%=user.id%>">
-		<span class="plan_span"><%=user.fetchPlanName%></span>
+		<%=render "alterplantype", :plan=>user.fetchPlan%>
 	</td>
 </td>
 <td class="leadActive leadAction" id="status_<%=user.id%>">
-	<span class="span leadAction"><%=user.active ? 'Active' : 'Inactive'%></span>
+	<%=render "common_templates/changeStatus", :user=>user, :lead=>nil%>
 </td>
 <td><%= user.created_at.strftime("%Y/%m/%d") %>
 	<td>
