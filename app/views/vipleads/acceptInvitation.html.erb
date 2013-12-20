@@ -1,7 +1,7 @@
 
 <%if @ref.present? && ((@source=="fb" || @source=="twitter") || (@gmailcontact.present? && !@gmailcontact.opt_in?))%>
     <div id="showErrors"></div>
-    <%if @landpage.temp_name == "Guest pass card"%>
+    <%if @landpage.present? && @landpage.temp_name == "Guest pass card"%>
         <%=render "common_templates/land_page/land_temp2"%>
     <%else%>
         <%=render "common_templates/land_page/land_temp1"%>
