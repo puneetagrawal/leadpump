@@ -54,14 +54,19 @@
   def new
     if current_user.isSocialInvitable || current_user.isAdmin
       if params[:token].present?
+        logger.debug(params)
         @token = params[:token]
         @gmail_contacts = GmailContacts::Google.new(@token).contacts
+        logger.debug(@gmail_contacts)
         if @gmail_contacts.present?
           GmailFriend.savegmailContact(@gmail_contacts, current_user, @token)
         end
         @emailAuth = true 
-      elsif params[:oauth_token].present?
+        elsif params[:oauth_token].present?
         unless request.env['omnicontacts.contacts'].blank?
+          logger.debug(request.env['omnicontacts.user'])
+          logger.debug(request.env['omnicontacts.contacts'])
+          logger.debug(request.env['omnicontacts.user']).inspect
           @token = params[:oauth_token]
           @yahoo_contacts = request.env['omnicontacts.contacts']
           GmailFriend.saveyahooContact(@yahoo_contacts, current_user, @token)

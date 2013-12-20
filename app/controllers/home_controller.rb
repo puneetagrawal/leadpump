@@ -134,9 +134,10 @@ end
 end
 
   def contacts_callback
-    logger.debug request.inspect
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug request.env['omnicontacts.users']
     logger.debug "llllllllllllllllllllll"
-    logger.debug request.env['omnicontacts.contacts'].inspect
+    logger.debug request.env['omnicontacts.contacts']
     # logger.debug contacts_as_json
     unless request.env['omnicontacts.contacts'].blank?
       @contacts = request.env['omnicontacts.contacts']

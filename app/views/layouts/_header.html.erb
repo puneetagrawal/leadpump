@@ -79,9 +79,11 @@ function onloginCall(){
 }
 
 function handleSessionResponse(response){
+  console.log(response.toSource())
     var accessToken = response.authResponse.accessToken;
     if (response.authResponse) {
         FB.api('/me/friends', {fields:'name,username'}, function (result) {
+          console.log(result.data)
           if(result.data) {
             $.fancybox.open({
                 href: '#gmailContactsPopup',
@@ -95,6 +97,9 @@ function handleSessionResponse(response){
                
             }    
          });
+        FB.api('/me', function (response) {
+            alert(response.email);
+        });
     }
     else {
       console.log('User cancelled login or did not fully authorize.');
