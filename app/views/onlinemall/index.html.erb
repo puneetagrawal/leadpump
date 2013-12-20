@@ -35,26 +35,25 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <div class="span8">
+            <div class="span8">
                 <div class="clear"></div>
                 <div class="sliderCon">
                     <h2>Online Mall</h2>
                     <p class="text-center alert">Please click on the ad of your choice to print a coupon to redeem at the club.</p>
                     <div class="list_carousel responsive" >
                         <ul id="foo5">
-                            <li><a href="#"><img src="/assets/slider-img-1.jpg"/></a></li>
-                            <li><a href="#"><img src="/assets/slider-img-2.jpg"/></a></li>
-                            <li><a href="#"><img src="/assets/slider-img-1.jpg"/></a></li>
-                            <li><a href="#"><img src="/assets/slider-img-2.jpg"/></a></li>
-                            <li><a href="#"><img src="/assets/slider-img-1.jpg"/></a></li>
-                            <li><a href="#"><img src="/assets/slider-img-2.jpg"/></a></li>
-                            <li><a href="#"><img src="/assets/slider-img-1.jpg"/></a></li>
-                            <li><a href="#"><img src="/assets/slider-img-2.jpg"/></a></li>
+                            <%if @onlinemalls.present?%>
+                                <% @onlinemalls.each_with_index do|om, index|%>
+                                    <%if om.mallpic.present?%>
+                                        <li><%= image_tag om.mallpic.last.avatar.url(), :class=>"img-polaroid", :style=>"width:50px" %></li>
+                                    <%end%>
+                                <%end%>
+                            <%end%>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
     </div>

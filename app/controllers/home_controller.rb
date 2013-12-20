@@ -153,8 +153,6 @@ end
   end
 
   def pass
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(params)
     user = User.find(params[:id])
     company = user.fetchCompany
     landpage = LandingPage.where(:user_id=>company.id).last
