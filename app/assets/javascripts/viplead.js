@@ -7,6 +7,10 @@ function initSocialInviter(){
 		movetostep1(this);
 	});
 
+	$("#inviter_select").change(function(){
+		changeInviter(this);
+	});
+
 	$(document).on('click', '.select_all', function (){
 		$("#select_all").prop('checked','checked');
 		selectAll();
@@ -84,6 +88,21 @@ function initSocialInviter(){
 			$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 		}
 	});
+}
+
+function changeInviter(obj){
+	if($(obj).val() == "yahoo"){
+		if(!$(".email-inviter").hasClass('hide')){
+			$(".email-inviter").addClass('hide');
+		}
+		$(".yahoo-inviter").removeClass('hide');
+	}
+	else{
+		if(!$(".yahoo-inviter").hasClass('hide')){
+			$(".yahoo-inviter").addClass('hide');
+		}
+		$(".email-inviter").removeClass('hide');
+	}
 }
 
 function selectAll(){
@@ -173,16 +192,20 @@ function executeSecondStep(name){
 	if(!$(".stepNo2").hasClass('step-visited')){
 		$(".stepNo2").addClass("step-visited").prepend('<i class="icon-ok icon-white step-mark"></i>');
 	}
-	$(".social_options ul li").each(function(){
-		if(!$(this).hasClass('hide')){
-			$(this).addClass("hide")	
-		}
-	});
-	if(name == "common"){
-		$(".social_options ul li.e-m").removeClass("hide");
+	if(name != "common"){
+		$(".social_options ul li").each(function(){
+			if(!$(this).hasClass('hide')){
+				$(this).addClass("hide")	
+			}
+		});
+		$("."+name).removeClass('hide');
 	}
-	$("."+name).removeClass('hide');
-	$(".stepNo3").removeClass('disabled');
+	else{
+		$.fancybox.open({
+			href: '#socialinvitepopup',
+			type: 'inline'
+		});	
+	}
 }
 
 function vipleadSearchFilter(vipleadId){

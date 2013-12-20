@@ -28,10 +28,6 @@
   def edit
   end
 
-  def mallitems
-    @companymallitem = user.fetchcompanymallitem
-  end
-
   def create
     associate = params["inputs"]["lead"]["associate"]
     error = ''
@@ -200,9 +196,6 @@
 
   def mallitems
     user = User.find_by_token(params[:id])
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(user.id)
-    logger.debug(user.fetchcompanymallitem.size)
     @companymallitem = user.fetchcompanymallitem
 
   end

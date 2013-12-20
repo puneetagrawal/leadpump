@@ -5,9 +5,7 @@ $(document).ready(function () {
 
 function initgauge(){
     eft = "<%=@gross_values['e_prjt'.to_sym]%>";
-    alert(eft)
     eft_avg = eft != "0" ? eft : 220;
-    alert(eft_avg)
     total = eft_avg * 40
     eft_interval = getinterval(total);
     e_range = total/4
