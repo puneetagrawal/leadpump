@@ -173,7 +173,7 @@
       opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
       msg = "Sorry! your link is invalid or expired."
       if !opt_in_lead.present?
-        lead  = Lead.new(:name=>params[:name],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
+        lead  = Lead.new(:name=>params[:name],:lname=>params[:lname],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
         if lead.save
           UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
           user.saveLeadCount
@@ -189,9 +189,8 @@
     else
       msg = "Sorry! your referrer limit have been reached."
     end
-    logger.debug(msg)
     if msg == 'thanks'
-      url = "http://#{SERVER_URL}/mallitems/#{params[:ref_id]}"
+      url = "http://#{SERVER_URL}/pass?id=#{user.id}"
     end
     message = {"msg" => msg,"error"=>error,"url"=>url}
     respond_to do |format|
@@ -202,7 +201,6 @@
   def mallitems
     user = User.find_by_token(params[:id])
     @companymallitem = user.fetchcompanymallitem
-
   end
 
   def trackEmail

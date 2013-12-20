@@ -1,8 +1,3 @@
-<html>
-    <head>
-        <title>Pass</title>
-    </head>
-    <body>
         <div class="container">
             <div class="passhead">
                 <h3>Express Guest Pass</h3>
@@ -10,7 +5,7 @@
             <p>Save Time -</p>
             <p>Please fill in your information, print the pass and sign it. Don’t forget to bring valid Identification with you. Present both to the front desk upon arrival to the club.</p>
             <div class="passform">
-                <h4 style="text-align:center">Days FREE To A Healthier You!</h3>  
+                <h4 style="text-align:center"><%=@dayscount%> Days FREE To A Healthier You!</h4>  
                 <table class="table">          
                     <tr>
                         <td>
@@ -63,8 +58,8 @@
                                 <option value="l">Longer</option>
                             </select>
                         </td>
-                    <tr>
-                <table>
+                    </tr>
+                </table>
                 <p>Staff Only Area:</p>
                 <h4>Membership Advisor: ________________________________</h4>
                 <h4>Expires on:______________/_____________________/___________________</h4>
@@ -76,7 +71,7 @@
                 <li>3.You will be given a tour to discover our amenities.</li>
                 <li>4.Valid for first time guest’s only.</li>
             </ol>
-            <h4 style="text-align:center">WAIVER OF LIABILITY FOR GYM USE</h3>
+            <h4 style="text-align:center">WAIVER OF LIABILITY FOR GYM USE</h4>
             <p>I/We hereby understand and acknowledge that the training, programs and events held by the Gym I am attending with this guest pass may expose me to many inherent risks, including accidents, injury, illness, or even death. I/We assume all risk of injuries associated with participation including, but not limited to, falls, contact with other participants, the effects of the weather, including high heat and/or humidity, and all other such risks being known and appreciated by me.</p>
             <p>I/We hereby acknowledge my responsibility in communicating any physical and psychological concerns that might conflict with participation in activity. I/We acknowledge that I am physically fit and mentally capable of performing the physical activity I choose to participate in.</p>
             <p>After having read this waiver and knowing these facts, and in consideration of acceptance of my participation the Gym furnishing services to me, I agree, for myself and anyone entitled to act on my behalf, to <b>HOLD HARMLESS, WAIVE AND RELEASE</b></p>
@@ -89,5 +84,3 @@
             <p>Name______________________________  Signature___________________________ Date_____________</p>
             <button class="pull-right" onclick="window.print();">Print Page</button>
         </div>
-    </body>
-</html>

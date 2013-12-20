@@ -153,6 +153,12 @@ end
   end
 
   def pass
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(params)
+    user = User.find(params[:id])
+    company = user.fetchCompany
+    landpage = LandingPage.where(:user_id=>company.id).last
+    @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end
 
   private
