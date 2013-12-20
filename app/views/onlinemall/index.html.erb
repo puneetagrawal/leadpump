@@ -45,7 +45,7 @@
                             <%if @onlinemalls.present?%>
                                 <% @onlinemalls.each_with_index do|om, index|%>
                                     <%if om.mallpic.present?%>
-                                        <li><%= image_tag om.mallpic.last.avatar.url(), :class=>"img-polaroid", :style=>"width:50px" %></li>
+                                        <li><%= image_tag om.mallpic.last.avatar.url() %></li>
                                     <%end%>
                                 <%end%>
                             <%end%>
