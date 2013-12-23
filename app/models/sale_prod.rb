@@ -109,7 +109,7 @@ class SaleProd < ActiveRecord::Base
 
   def self.fetchAvg(amount)
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>*********************************")
-    logger.deubug(amount)
+    logger.debug(amount)
   	avg =  amount.to_f/Date.today.day
   end
 
