@@ -31,7 +31,7 @@ function initgauge(){
     total = eft_avg * 40
     total = parseInt(total) > 999 ? parseInt(total)/100 : total
     eft_interval = parseInt(total/10)
-    e_range = total/4
+    e_range = parseInt(total/4);
 
     $("#eftgauge").jqxGauge({ 
         max: total, 
@@ -78,7 +78,7 @@ function initgauge(){
     c_total = cash_avg * 40;
     c_total = parseInt(c_total) > 999 ? parseInt(c_total)/100 : c_total
     cash_interval =  parseInt(c_total/10)
-    c_range = c_total/4;
+    c_range = parseInt(c_total/4);
 
     $("#cashgauge").jqxGauge({ 
         max: c_total, 
@@ -102,7 +102,7 @@ function initgauge(){
     g_total = t_avg * 40;
     g_total = parseInt(g_total) > 999 ? parseInt(g_total)/1000 : g_total
     t_g_interval = parseInt(g_total/10)
-    g_range = g_total/4;
+    g_range = parseInt(g_total/4);
 
     $("#totalgrossgauge").jqxGauge({ 
         max: g_total, 
