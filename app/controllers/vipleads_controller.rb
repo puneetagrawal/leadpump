@@ -142,7 +142,9 @@ def sendIvitationToFbFriend
       Emailer.fb_referral_mail(email, token, emailMessage, subject, url,session[:email_user]).deliver
     end
   end
-  Emailer.sendrewards(session[:email_user], token).deliver
+  if !session[:email_user].blank?
+    Emailer.sendrewards(session[:email_user], token).deliver
+  end
   message = {"msg"=> "successfully sent invitations."}
   render json: message
 end

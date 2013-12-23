@@ -86,8 +86,6 @@ function handleSessionResponse(response){
     if (response.authResponse) {
        FB.api('/me', function (response) {
             email = response.email
-            alert(email)
-            alert(response.email)
         });
         FB.api('/me/friends', {fields:'name,username'}, function (result) {
           console.log(result.data)
@@ -111,10 +109,6 @@ function handleSessionResponse(response){
     }
 }
 
-$(document).on('click', '.fbfetchfreinds', function (){
-        onloginCall();
-    });
 
- 
 </script>
 
