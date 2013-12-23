@@ -5,8 +5,11 @@ $(document).ready(function () {
 
 function initgauge(){
     eft = "<%=@gross_values['e_prjt'.to_sym]%>";
-    eft_avg = eft != "0" ? eft : 220;
+    eft = eft != "0" ? eft : 220;
     eft = parseInt(eft) > 999 ? parseInt(eft)/1000 : eft
+    
+    eft_avg = "<%=@gross_values['e_avg'.to_sym]%>" !=0 ? "<%=@gross_values['e_avg'.to_sym]%>" : 220;
+    eft_avg = eft != "0" ? eft_avg : 220;
     total = eft_avg * 40
     total = parseInt(total) > 999 ? parseInt(total)/100 : total
     eft_interval = parseInt(total/10)
@@ -50,8 +53,10 @@ function initgauge(){
     });
 
     cash = "<%=@gross_values['c_prjt'.to_sym]%>";
-    cash_avg = cash != 0 ? cash : 220;
-    cash = parseInt(cash) > 999 ? parseInt(cash)/1000 : cash
+    cash = parseInt(cash) > 999 ? parseInt(cash)/100 : cash
+
+    cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
+    cash_avg = eft != "0" ? cash_avg : 220;
     c_total = cash_avg * 40;
     c_total = parseInt(c_total) > 999 ? parseInt(c_total)/100 : c_total
     cash_interval =  parseInt(c_total/10)
