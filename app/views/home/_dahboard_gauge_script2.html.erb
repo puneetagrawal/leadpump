@@ -6,9 +6,11 @@ $(document).ready(function () {
 function initgauge(){
     eft = "<%=@gross_values['e_prjt'.to_sym]%>";
     eft_avg = eft != "0" ? eft : 220;
+    eft = parseInt(eft) > 999 ? parseInt(eft)/1000 : eft
     total = eft_avg * 40
-    eft_interval = getinterval(total);
-    e_range = total/4
+    total = parseInt(total) > 999 ? parseInt(total)/100 : total
+    eft_interval = parseInt(total/10)
+    e_range = parseInt(total/4);
 
     $("#eftgauge").jqxGauge({ 
         max: total, 
@@ -49,9 +51,11 @@ function initgauge(){
 
     cash = "<%=@gross_values['c_prjt'.to_sym]%>";
     cash_avg = cash != 0 ? cash : 220;
+    cash = parseInt(cash) > 999 ? parseInt(cash)/1000 : cash
     c_total = cash_avg * 40;
-    cash_interval =  getinterval(cash_avg);
-    c_range = c_total/4;
+    c_total = parseInt(c_total) > 999 ? parseInt(c_total)/100 : c_total
+    cash_interval =  parseInt(c_total/10)
+    c_range = parseInt(c_total/4);
 
     $("#cashgauge").jqxGauge({ 
         max: c_total, 
@@ -67,11 +71,14 @@ function initgauge(){
         animationDuration: 1200,
         width: 180
     });
+
     total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
     t_avg =  total_gross != 0 ? total_gross : 220;
+    total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/1000 : total_gross
     g_total = t_avg * 40;
-    t_g_interval = getinterval(t_avg);
-    g_range = g_total/4;
+    g_total = parseInt(g_total) > 999 ? parseInt(g_total)/100 : g_total
+    t_g_interval = parseInt(g_total/10)
+    g_range = parseInt(g_total/4);
 
     $("#totalgrossgauge").jqxGauge({ 
         max: g_total, 
