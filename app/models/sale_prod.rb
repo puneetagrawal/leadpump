@@ -108,10 +108,14 @@ class SaleProd < ActiveRecord::Base
   end
 
   def self.fetchAvg(amount)
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>*********************************")
+    logger.deubug(amount)
   	avg =  amount.to_f/Date.today.day
   end
 
   def self.fetchProjection(amount)
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(amount)
   	return Date.today.end_of_month.day * amount
   end
   

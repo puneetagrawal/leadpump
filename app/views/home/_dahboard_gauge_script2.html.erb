@@ -73,24 +73,23 @@ function initgauge(){
     });
 
     total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
-    t_avg =  total_gross != 0 ? total_gross : 220;
-    total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/1000 : total_gross
-    g_total = t_avg * 40;
-    g_total = parseInt(g_total) > 999 ? parseInt(g_total)/100 : g_total
-    t_g_interval = parseInt(g_total/10)
-    g_range = parseInt(g_total/4);
+     t_avg =  total_gross != 0 ? total_gross : 220;
+     total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/1000 : total_gross
+    // g_total = parseInt(g_total) > 999 ? parseInt(g_total)/100 : g_total
+    // t_g_interval = parseInt(g_total/10)
+    // g_range = parseInt(g_total/4);
 
     $("#totalgrossgauge").jqxGauge({ 
-        max: g_total, 
-        labels: { interval: t_g_interval},
-        ticksMinor: { interval: t_g_interval/4, size: '5%' },
-        ticksMajor: { interval: t_g_interval/2, size: '9%' },
-        ranges: [{ startValue: 0, endValue: g_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
-        { startValue: g_range, endValue: g_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
-        { startValue: g_range * 2, endValue: g_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
-        { startValue: g_range * 3, endValue: g_range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        // max: g_total, 
+        // labels: { interval: t_g_interval},
+        // ticksMinor: { interval: t_g_interval/4, size: '5%' },
+        // ticksMajor: { interval: t_g_interval/2, size: '9%' },
+        // ranges: [{ startValue: 0, endValue: g_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        // { startValue: g_range, endValue: g_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        // { startValue: g_range * 2, endValue: g_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        // { startValue: g_range * 3, endValue: g_range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
         value: total_gross,
-        colorScheme: 'scheme05',
+        // colorScheme: 'scheme05',
         animationDuration: 1200,
         width: 180
     });
