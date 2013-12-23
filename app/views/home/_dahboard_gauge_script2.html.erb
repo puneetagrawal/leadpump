@@ -72,8 +72,9 @@ function initgauge(){
         width: 180
     });
 
-    total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
-     t_avg =  total_gross != 0 ? total_gross : 220;
+     total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
+     total_gross =  total_gross != 0 ? total_gross : 220;
+     alert(total_gross)
      total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/100 : total_gross
     // g_total = parseInt(g_total) > 999 ? parseInt(g_total)/100 : g_total
     // t_g_interval = parseInt(g_total/10)
@@ -99,16 +100,16 @@ function initgauge(){
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');    
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $ (k)');    
     });
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $ (k)');
     });
     $('#membersoldgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $ (k)');
     });
 }
 
