@@ -74,7 +74,7 @@ function initgauge(){
 
     total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
      t_avg =  total_gross != 0 ? total_gross : 220;
-     total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/1000 : total_gross
+     total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/100 : total_gross
     // g_total = parseInt(g_total) > 999 ? parseInt(g_total)/100 : g_total
     // t_g_interval = parseInt(g_total/10)
     // g_range = parseInt(g_total/4);
