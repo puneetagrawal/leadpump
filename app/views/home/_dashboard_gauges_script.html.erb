@@ -29,7 +29,7 @@ function initgauge(){
     eft = parseInt(eft) > 999 ? parseInt(eft)/1000 : eft
     eft_avg = "<%=@gross_values['e_avg'.to_sym]%>" !=0 ? "<%=@gross_values['e_avg'.to_sym]%>" : 220;
     total = eft_avg * 40
-    total = parseInt(total) > 999 ? parseInt(total)/1000 : total
+    total = parseInt(total) > 999 ? parseInt(total)/100 : total
     eft_interval = parseInt(total/10)
     e_range = total/4
 
@@ -76,7 +76,7 @@ function initgauge(){
     cash = parseInt(cash) > 999 ? parseInt(cash)/1000 : cash
     cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
     c_total = cash_avg * 40;
-    c_total = parseInt(c_total) > 999 ? parseInt(c_total)/1000 : c_total
+    c_total = parseInt(c_total) > 999 ? parseInt(c_total)/100 : c_total
     cash_interval =  parseInt(c_total/10)
     c_range = c_total/4;
 
