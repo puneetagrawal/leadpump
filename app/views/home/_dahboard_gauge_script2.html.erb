@@ -6,7 +6,7 @@ $(document).ready(function () {
 function initgauge(){
     eft = "<%=@gross_values['e_prjt'.to_sym]%>";
     eft = eft != "0" ? eft : 220;
-    eft = parseInt(eft) > 999 ? parseInt(eft)/1000 : eft
+    eft = parseInt(eft) > 999 ? parseInt(eft)/100 : eft
     
     eft_avg = "<%=@gross_values['e_avg'.to_sym]%>" !=0 ? "<%=@gross_values['e_avg'.to_sym]%>" : 220;
     eft_avg = eft != "0" ? eft_avg : 220;
