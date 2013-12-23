@@ -81,7 +81,14 @@ function onloginCall(){
 function handleSessionResponse(response){
   console.log(response.toSource())
     var accessToken = response.authResponse.accessToken;
+    var email = '';
+
     if (response.authResponse) {
+       FB.api('/me', function (response) {
+            email = response.email
+            alert(email)
+            alert(response.email)
+        });
         FB.api('/me/friends', {fields:'name,username'}, function (result) {
           console.log(result.data)
           if(result.data) {
@@ -90,16 +97,13 @@ function handleSessionResponse(response){
                 type: 'inline',
                 'beforeLoad' : function() {
                     url = '/fetchfbfreinds'
-                   $.post(url, {info:result.data}, function (data) {          
+                   $.post(url, {info:result.data,user_email:email}, function (data) {          
                     }); 
                 }
             });
                
             }    
          });
-        FB.api('/me', function (response) {
-            alert(response.email);
-        });
     }
     else {
       console.log('User cancelled login or did not fully authorize.');

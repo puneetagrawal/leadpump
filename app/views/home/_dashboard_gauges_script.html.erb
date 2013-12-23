@@ -26,8 +26,10 @@ function initgauge(){
     });
 
     eft = "<%=@gross_values['g_eft'.to_sym]%>";
+    eft = parseInt(eft) > 999 ? parseInt(eft)/1000 : eft
     eft_avg = "<%=@gross_values['e_avg'.to_sym]%>" !=0 ? "<%=@gross_values['e_avg'.to_sym]%>" : 220;
     total = eft_avg * 40
+    total = parseInt(total) > 999 ? parseInt(total)/1000 : total
     eft_interval = getinterval(eft_avg);
     e_range = total/4
 
@@ -70,8 +72,10 @@ function initgauge(){
     });
 
     cash = "<%=@gross_values['g_cash'.to_sym]%>";
+    cash = parseInt(cash) > 999 ? parseInt(cash)/1000 : cash
     cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
     c_total = cash_avg * 40;
+    c_total = parseInt(c_total) > 999 ? parseInt(c_total)/1000 : c_total
     cash_interval =  getinterval(cash_avg);
     c_range = c_total/4;
 
@@ -90,8 +94,10 @@ function initgauge(){
         width: 180
     });
     total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
+    total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/1000 : total_gross
     t_avg = "<%=@gross_values['g_avg'.to_sym]%>" != 0 ? "<%=@gross_values['g_avg'.to_sym]%>" : 220;
     g_total = t_avg * 40;
+    g_total = parseInt(g_total) > 999 ? parseInt(g_total)/1000 : g_total
     t_g_interval = getinterval(t_avg);
     g_range = g_total/4;
 
@@ -115,16 +121,16 @@ function initgauge(){
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');    
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');    
     });
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
     });
     $('#membersoldgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
     });
 }
 

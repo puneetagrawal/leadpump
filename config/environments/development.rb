@@ -7,8 +7,16 @@ Leadpump::Application.configure do
   SERVER_URL = "localhost:3000"
   STRIPE_API_KEY = "sk_test_MDqPbXEEDmOnzrqwJhyzmYeF"
   STRIPE_PUB_KEY = "pk_test_khzNUZcEtnlUCiom3lA2nQtI"
+  
   FACEBOOK_KEY = "468207766612651"
   FACEBOOK_SECRET = "34084682effefb870f5d4b6115463bb6"
+
+  GMAIL_KEY = "BwJTLUiL8eIj510FTv4nhf9v"
+  GMAIL_SECRET = "608684261069-rbrbj98g11mld8lhhrbto536rcg20c9c.apps.googleusercontent.com"
+
+  YAHOO_KEY = "0e3144bc3873c87a36439f404c3753a240feaec7"
+  YAHOO_SECRET = "dj0yJmk9VDd0UG5Ncm96VXFVJmQ9WVdrOVlYTmtjMnRFTjJjbWNHbzlNekl6T0RZd05qWXkmcz1jb25zdW1lcnNlY3JldCZ4PTdm"
+  
   PDF_PATH = "/usr/bin/wkhtmltopdf"
 
   config.cache_classes = false

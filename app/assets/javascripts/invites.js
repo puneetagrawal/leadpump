@@ -13,7 +13,6 @@ $(document).ready(function(){
 });
 
 function fetchEmailContact(){
-	
 	if(!$(".forms").hasClass('hide')){
 		$(".forms").addClass('hide');	
 	}

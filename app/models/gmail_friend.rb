@@ -17,13 +17,16 @@ class GmailFriend < ActiveRecord::Base
 
 	def self.savegmailContact(contacts, user, token)
 		contacts.each do |contact|
-			email = contact.email != '' ? contact.email : ''
-			name = GmailFriend.getName(contact,email)
-			if email.present? && name.present?
-				gmailcontact = GmailFriend.where(:user_id => user.id, :email => email, :source=>"gmail",:access_token=>token)
-				if !gmailcontact.present?
-					gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>user.id, :source=>"gmail", :access_token=>token)
-					gmailfreind.save
+			unless contact[:email].blank? 
+				logger.debug(contact)
+				email = contact[:email] != '' ? contact[:email] : ''
+				name = contact[:name] != '' ? contact[:name] : ''
+				if email.present? && name.present?
+					gmailcontact = GmailFriend.where(:user_id => user.id, :email => email, :source=>"gmail",:access_token=>token)
+					if !gmailcontact.present?
+						gmailfreind = GmailFriend.create(:name=>name, :email=>email, :user_id=>user.id, :source=>"gmail", :access_token=>token)
+						gmailfreind.save
+					end
 				end
 			end
 		end
@@ -33,7 +36,7 @@ class GmailFriend < ActiveRecord::Base
 		contacts.each do |contact|
 			 unless contact[:email].blank? 
 		        email = contact[:email] != '' ? contact[:email] : ''
-				name = GmailFriend.getName('', email)
+				name = contact[:name] != '' ? contact[:name] : ''
 				if email.present? && name.present?
 					yahoocontact = GmailFriend.where(:user_id => user.id, :email => email, :source=>"yahoo", :access_token=>token)
 					if !yahoocontact.present?

@@ -177,6 +177,8 @@ Leadpump::Application.routes.draw do
   match "/sale_prods/showproduction" => "sale_prods#showproduction"
   match "/sale_prods/showreport" => "sale_prods#showreport"
 
+  #match '/auth/:provider/callback' => 'vipleads#new'
+
 
 
 

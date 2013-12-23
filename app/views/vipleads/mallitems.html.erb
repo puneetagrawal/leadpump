@@ -3,6 +3,7 @@
     <div class="row-fluid">
         <div class="span12">
            <div class="logo_listing m_item_main">
+            <%=@companymallitem.size%>
             <%if @companymallitem.present?%>
             <h2 style="text-align:center;">Download or Print Coupons here for free trial.</h2>
             <%@companymallitem.each do|ol|%>

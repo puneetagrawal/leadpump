@@ -8,7 +8,7 @@
                     <%=select_tag "inviter_select", options_for_select([["Gmail","gmail"],["Yahoo","yahoo"]]),:prompt => "Select Inviter",:style=>"width:200px;margin:10px 0 10px 0;" %>
                 </p>
                 <p class="email-inviter hide">
-                    <%=link_to "Connect Via Gmail", GmailContacts::Google.authentication_url("http://"+SERVER_URL+"/vipleads/new"), :class=>"btn yellow"%>
+                    <%=link_to "Connect Via Gmail", "/contacts/gmail", :class=>"btn yellow"%>
                 </p>
                  <p class="yahoo-inviter hide">
                     <a href="/contacts/yahoo" class="btn yellow">Connect via Yahoo</a>

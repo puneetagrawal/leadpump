@@ -46,6 +46,9 @@ end
 
 
 def fetchfbfreinds
+  logger.debug(params[:user_email])
+  session[:email_user] = params[:user_email]
+  logger.debug(session[:email_user])
   @fbfreinds = params[:info] 
   @fbfreinds = @fbfreinds.sort_by { |hsh| hsh[1]["name"] } 
   respond_to do |format|
