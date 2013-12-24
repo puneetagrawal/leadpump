@@ -174,17 +174,13 @@ class User < ActiveRecord::Base
   end
 
   def fetchPlan
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(self.id)  
+    
     plan = nil
     company = self.fetchCompany
-    logger.debug(company)
     if company.present? && company.subscription.present? 
       plan = company.subscription.plan_per_user_range.plan
     end
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(plan)
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    
     return plan
   end
 
@@ -194,12 +190,16 @@ class User < ActiveRecord::Base
   end
 
   def fetchCompany
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(self.id)
     company = self
     case self.user_role.role_type.to_sym
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
-      company = companyId.present? ? User.find_by_id(companyId.company_admin_id) : company
+      company = User.find_by_id(companyId.company_admin_id)
     end
+    logger.debug("**********")
+    logger.debug(company.id)
     return company
   end
 
