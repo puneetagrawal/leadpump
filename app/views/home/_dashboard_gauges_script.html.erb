@@ -37,13 +37,13 @@ function initgauge(){
     var total = eft_avg * 40;
     total = total ? Math.round(total / 100) : 0;
     var e_range = Math.round(total / 4);
-    var e_int = Math.round(total / 10));
+    var e_int = Math.round(total / 10);
 
     $("#eftgauge").jqxGauge({ 
         max: total, 
         labels: { interval: e_int},
-        ticksMinor: { interval: parseInt(e_int/4), size: '5%' },
-        ticksMajor: { interval: parseInt(e_int/2), size: '9%' },
+        ticksMinor: { interval: Math.round(e_int / 4), size: '5%' },
+        ticksMajor: { interval: Math.round(e_int / 2), size: '9%' },
         ranges: [{ startValue: 0, endValue: e_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
         { startValue: e_range, endValue: e_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
         { startValue: e_range * 2, endValue: e_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
@@ -64,8 +64,8 @@ function initgauge(){
     $("#membersoldgauge").jqxGauge({ 
         max: m_total, 
         labels: { interval: m_int},
-        ticksMinor: { interval: parseInt(m_int/4), size: '5%' },
-        ticksMajor: { interval: parseInt(m_int/2), size: '9%' },
+        ticksMinor: { interval: Math.round(m_int / 4), size: '5%' },
+        ticksMajor: { interval: Math.round(m_int / 2), size: '9%' },
         ranges: [{ startValue: 0, endValue: m_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
         { startValue: m_range, endValue: m_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
         { startValue: m_range * 2, endValue: m_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
@@ -90,8 +90,8 @@ function initgauge(){
     $("#cashgauge").jqxGauge({ 
         max: c_total, 
         labels: { interval: c_int},
-        ticksMinor: { interval: c_int/4, size: '5%' },
-        ticksMajor: { interval: c_int/2, size: '9%' },
+        ticksMinor: { interval: Math.round(c_int / 4), size: '5%' },
+        ticksMajor: { interval: Math.round(c_int / 2), size: '9%' },
         ranges: [{ startValue: 0, endValue: c_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
         { startValue: c_range, endValue: c_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
         { startValue: c_range * 2, endValue: c_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
@@ -113,8 +113,8 @@ function initgauge(){
     $("#totalgrossgauge").jqxGauge({ 
         max: g_total, 
         labels: { interval: t_int},
-        ticksMinor: { interval: t_int/4, size: '5%' },
-        ticksMajor: { interval: t_int/2, size: '9%' },
+        ticksMinor: { interval: Math.round(t_int / 4), size: '5%' },
+        ticksMajor: { interval: Math.round(t_int / 2), size: '9%' },
         ranges: [{ startValue: 0, endValue: g_range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
         { startValue: g_range, endValue: g_range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
         { startValue: g_range * 2, endValue: g_range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
