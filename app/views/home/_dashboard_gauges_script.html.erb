@@ -35,9 +35,9 @@ function initgauge(){
     eft = eft ? parseInt(eft/1000) : 0;
     var eft_avg = "<%=@gross_values['e_avg'.to_sym]%>" !=0 ? "<%=@gross_values['e_avg'.to_sym]%>" : 220;
     var total = eft_avg * 40;
-    total = total ? parseInt(total/100) : 0;
-    var e_range = parseInt(total/4);
-    var e_int = parseInt(total/10);
+    total = total ? Math.round(total / 100) : 0;
+    var e_range = Math.round(total / 4);
+    var e_int = Math.round(total / 10));
 
     $("#eftgauge").jqxGauge({ 
         max: total, 
@@ -58,8 +58,8 @@ function initgauge(){
     var mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
     mem_sold = mem_sold != 0 ? parseInt(mem_sold) : 0;
     var m_total = 220;
-    var m_range = parseInt(m_total/4);
-    var m_int = parseInt(m_total/10);
+    var m_range = Math.round(m_total / 4);
+    var m_int = Math.round(m_total / 10);
 
     $("#membersoldgauge").jqxGauge({ 
         max: m_total, 
@@ -81,10 +81,10 @@ function initgauge(){
     cash = cash ? parseInt(cash/1000) : 0;
     var cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
     var c_total = cash_avg * 40;
-    c_total = c_total ? parseInt(c_total/100) : 0;
-    var c_range = parseInt(c_total/4);
+    c_total = c_total ? Math.round(c_total / 100) : 0;
+    var c_range = Math.round(c_total / 4);
     alert(c_total);
-    var c_int = parseInt(c_total/10);
+    var c_int = Math.round(c_total / 10);
     alert(c_int)
 
     $("#cashgauge").jqxGauge({ 
@@ -106,9 +106,9 @@ function initgauge(){
     total_gross = total_gross ? parseInt(total_gross/1000) : 0;
     var t_avg = "<%=@gross_values['g_avg'.to_sym]%>" != 0 ? "<%=@gross_values['g_avg'.to_sym]%>" : 220;
     var g_total = t_avg * 40;
-    g_total = g_total ? parseInt(g_total/100) : 0;
-    var g_range = parseInt(g_total/4);
-    var t_int = parseInt(g_total/10);
+    g_total = g_total ? Math.round(g_total / 100) : 0;
+    var g_range = Math.round(g_total / 4);
+    var t_int = Math.round(g_total / 10);
 
     $("#totalgrossgauge").jqxGauge({ 
         max: g_total, 
