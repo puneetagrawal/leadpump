@@ -4,9 +4,9 @@ $(document).ready(function () {
 });
 
 function initgauge(){
-    eft = "<%=@gross_values['e_prjt'.to_sym]%>";
+    var eft = "<%=@gross_values['e_prjt'.to_sym]%>";
     eft = eft != "0" ? eft : 220;
-    eft = parseInt(eft) > 999 ? parseInt(eft)/1000 : eft
+    eft = parseInt(eft) > 999 ? parseInt(eft)/1000 : eft;
     
     // eft_avg = "<%=@gross_values['e_avg'.to_sym]%>" !=0 ? "<%=@gross_values['e_avg'.to_sym]%>" : 220;
     // eft_avg = eft != "0" ? eft_avg : 220;
@@ -36,7 +36,7 @@ function initgauge(){
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');    
     });
 
-    mem_sold = "<%=@gross_values['m_prjt'.to_sym]%>";
+    var mem_sold = "<%=@gross_values['m_prjt'.to_sym]%>";
     mem_sold = mem_sold != 0 ? parseInt(mem_sold) : 0
     // m_total = 220;
     // mem_interval = 220/10
@@ -58,7 +58,7 @@ function initgauge(){
     //     width: 180
     // });
 
-    cash = "<%=@gross_values['c_prjt'.to_sym]%>";
+    var cash = "<%=@gross_values['c_prjt'.to_sym]%>";
     cash = parseInt(cash) > 999 ? parseInt(cash)/1000 : cash
 
     // cash_avg = "<%=@gross_values['c_avg'.to_sym]%>" != 0 ? "<%=@gross_values['c_avg'.to_sym]%>" : 220;
@@ -83,7 +83,7 @@ function initgauge(){
     //     width: 180
     // });
 
-     total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
+     var total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
      total_gross =  total_gross != 0 ? total_gross : 220;
      total_gross = parseInt(total_gross) > 999 ? parseInt(total_gross)/1000 : total_gross
      $('#totalgrossgauge').jqxGauge('value', total_gross);
