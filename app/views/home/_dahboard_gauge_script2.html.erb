@@ -27,7 +27,7 @@ function initgauge1(){
     eft = eft ? parseInt(eft)/1000 : 0;
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');    
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');    
     });
 
     
@@ -41,13 +41,13 @@ function initgauge1(){
     cash = cash ? parseInt(cash)/1000 : 0;
     $('#cashgauge').jqxGauge('value', cash)
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
     });
      
     total_gross = total_gross ? parseInt(total_gross)/1000 : 0
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
     });
 
     var test = "<%=@leads.present? ? 'true' : 'false'%>"

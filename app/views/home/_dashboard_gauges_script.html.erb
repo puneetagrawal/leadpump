@@ -26,7 +26,7 @@ function initgauge(){
     eft = eft ? parseInt(eft/1000) : 0;
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');    
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');    
     });
    
 
@@ -42,21 +42,21 @@ function initgauge(){
     cash = cash ? parseInt(cash/1000) : 0;
     $('#cashgauge').jqxGauge('value', cash);
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
     });
 
     var total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
     total_gross = total_gross ? parseInt(total_gross/1000) : 0;
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
     });
 
     var lead = "<%=@leads%>";
     lead = lead != 0 ? parseInt(lead) : 0;
     $('#leadgauge').jqxGauge('value', lead);
     $('#leadgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
     });
     
 }
