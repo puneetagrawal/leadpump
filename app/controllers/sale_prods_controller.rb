@@ -46,7 +46,6 @@ class SaleProdsController < ApplicationController
   end
 
   def showreport
-    logger.debug(params)
     @user = User.find(params[:id])
     date = Date.today
     @sale_todate = SaleProd.fetchProdDataUpToDate(@user, date)
