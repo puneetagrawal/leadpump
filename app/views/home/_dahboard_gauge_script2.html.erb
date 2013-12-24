@@ -37,6 +37,7 @@ function initgauge(){
     });
 
     mem_sold = "<%=@gross_values['m_prjt'.to_sym]%>";
+    mem_sold = mem_sold != 0 ? parseInt(mem_sold) : 0
     // m_total = 220;
     // mem_interval = 220/10
     // m_range = m_total/4;
