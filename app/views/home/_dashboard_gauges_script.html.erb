@@ -83,7 +83,9 @@ function initgauge(){
     var c_total = cash_avg * 40;
     c_total = c_total ? parseInt(c_total/100) : 0;
     var c_range = parseInt(c_total/4);
+    alert(c_total);
     var c_int = parseInt(c_total/10);
+    alert(c_int)
 
     $("#cashgauge").jqxGauge({ 
         max: c_total, 
