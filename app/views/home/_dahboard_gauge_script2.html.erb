@@ -24,30 +24,30 @@ function initgauge1(){
     }
     
 
-    eft = eft ? parseInt(eft) > 999 ? parseInt(eft)/1000 : eft : 0;
+    eft = eft ? parseInt(eft)/1000 : 0;
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');    
     });
 
     
-    mem_sold = mem_sold ? parseInt(mem_sold) > 999 ? parseInt(mem_sold)/1000 : mem_sold : 0;
+    mem_sold = mem_sold ? parseInt(mem_sold) : 0;
     $('#membersoldgauge').jqxGauge('value', mem_sold);
     $('#membersoldgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     
 
-    cash = cash ? parseInt(cash) > 999 ? parseInt(cash)/1000 : cash : 0;
+    cash = cash ? parseInt(cash)/1000 : 0;
     $('#cashgauge').jqxGauge('value', cash)
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $ (k)');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
     });
      
-    total_gross = total_gross ? parseInt(total_gross) > 999 ? parseInt(total_gross)/1000 : total_gross : 0
+    total_gross = total_gross ? parseInt(total_gross)/1000 : 0
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $ (k)');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + ' $(k)');
     });
 
     var test = "<%=@leads.present? ? 'true' : 'false'%>"
