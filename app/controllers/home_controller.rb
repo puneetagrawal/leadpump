@@ -15,19 +15,12 @@ class HomeController < ApplicationController
 
  def testsendgrid   
   response = HTTParty.get('https://api.sendgrid.com/api/stats.get.json?api_user=leadpump&api_key=4trading&days=2&category=socailReferring')
-  #response = "Hiiiiiii"
-  #RestClient.get 'http://example.com/resource', {:params => {:id => 50, 'foo' => 'bar'}}
-  #puts ">>>>>>>>>>>>>>>>>>>>>>>" + response
-  logger.debug(response)
-
   response = response.gsub("[", " ")
   response = response.gsub("]", " ")
   response = response.gsub("{", " ")
   response = response.gsub("}", " ")
   response = response.split(",")[13]
   response = response.split(":")[1]
-  
-  logger.debug(response)
 end
 
 def terms
@@ -137,11 +130,6 @@ end
 end
 
   def contacts_callback
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug request.env['omnicontacts.users']
-    logger.debug "llllllllllllllllllllll"
-    logger.debug request.env['omnicontacts.contacts']
-    # logger.debug contacts_as_json
     unless request.env['omnicontacts.contacts'].blank?
       @contacts = request.env['omnicontacts.contacts']
     end

@@ -74,6 +74,7 @@ class CompanyController < ApplicationController
     @leads = Lead.fetchTotalLeads(@user)
     saletodate = SaleProd.fetchProdDataUpToDate(@user, Date.today)
     @gross_values = SaleProd.fetchGrossMap(saletodate)
+    @project = "true"
     respond_to do |format|
       format.js 
     end
@@ -234,7 +235,6 @@ def previewsave
   temp_name = params[:inputs][:landing_page][:temp_name]
   params[:inputs][:landing_page].delete :temp_name
   params[:inputs][:landing_page].delete :ext_link
-  logger.debug(params[:inputs][:landing_page])
   landpage = Preview.new(params[:inputs][:landing_page])
   landpage.save
   temp = "2"

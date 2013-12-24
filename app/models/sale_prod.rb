@@ -79,21 +79,16 @@ class SaleProd < ActiveRecord::Base
   			end
   		end
   	end
-  	logger.debug("#{g_cash}>>>>>>>mem =  #{g_mem} && eft= #{g_eft} && gross= #{g_gross}")
     m_avg = SaleProd.fetchAvg(g_mem)
   	c_avg = SaleProd.fetchAvg(g_cash)
   	e_avg = SaleProd.fetchAvg(g_eft)
     g_avg = SaleProd.fetchAvg(g_gross)
     
-    logger.debug("#{c_avg}>>>>>>>mem =  #{m_avg} && eft= #{e_avg} && gross= #{g_avg}")
-
     g_prjt = SaleProd.fetchProjection(g_avg)
   	c_prjt = SaleProd.fetchProjection(c_avg)
   	e_prjt = SaleProd.fetchProjection(e_avg)
     m_prjt = SaleProd.fetchProjection(m_avg)
 
-    logger.debug("#{c_prjt}>>>>>>>mem =  #{m_prjt} && eft= #{e_prjt} && gross= #{g_prjt}")
-    
   	return {:g_cash=>g_cash,:g_mem=>g_mem,:g_eft=>g_eft,:g_gross=>g_gross,:c_avg=>c_avg,:e_avg=>e_avg,:m_avg=>m_avg,
       :g_avg=>g_avg,:c_prjt=>c_prjt,:e_prjt=>e_prjt,:g_prjt=>g_prjt, :m_prjt=>m_prjt,:call=>call,
       :mail=>mail,:ref=>ref}
