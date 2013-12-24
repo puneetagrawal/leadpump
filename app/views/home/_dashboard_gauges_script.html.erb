@@ -74,6 +74,7 @@ function initgauge(){
         animationDuration: 400,
         width: 180
     });
+    mem_sold = parseInt(mem_sold)
     $('#membersoldgauge').jqxGauge('value', mem_sold);
 
     cash = "<%=@gross_values['g_cash'.to_sym]%>";
