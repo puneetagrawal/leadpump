@@ -56,7 +56,7 @@ function initgauge(){
     lead = lead != 0 ? parseInt(lead) : 0;
     $('#leadgauge').jqxGauge('value', lead);
     $('#leadgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
+        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
     
 }
