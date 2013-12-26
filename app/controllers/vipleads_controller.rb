@@ -112,6 +112,11 @@ end
 
 def sendIvitationToGmailFriend
   emails = params[:emaillist]
+  if params[:u_email].present?
+    session[:email_user] = params[:u_email]
+  end
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  logger.debug(session[:email_user])
   token = current_user.token
   sents_count = 0
   if emails.present?
@@ -128,9 +133,6 @@ def sendIvitationToGmailFriend
   end
   if session[:email_user].present?
     Emailer.sendrewards(session[:email_user], token).deliver
-  end
-  if params[:u_email].present?
-    Emailer.sendrewards(params[:u_email], token).deliver
   end
   message = {"msg"=> "successfully sent invitations."}
   render json: message
