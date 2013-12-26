@@ -115,8 +115,7 @@ function testt(){
 
   WL.login({ scope: scopesArr}).then(
       function(response) {
-          alert(response)
-          getContactPropertiesacts(response);
+          getContacts();
       },
       function(response) {
           log("Could not connect, status = " + response.status);
@@ -124,9 +123,8 @@ function testt(){
   );
 }
 
-function getContactPropertiesacts() {
-    alert(response.token)
-    WL.api({ path: "/me/contacts", method: "GET", scope: 'wl.contacts_email' }).then(
+function getContacts() {
+    WL.api({ path: "/me/contacts", method: "GET" }).then(
         onGetContacts,
         function(response) {
             log("Cannot get contacts: " + JSON.stringify(response.error).replace(/,/g, ",\n"));
