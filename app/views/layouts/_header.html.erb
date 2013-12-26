@@ -126,7 +126,7 @@ function testt(){
 }
 
 function getContacts() {
-    WL.api({ path: "/me/contacts", method: "GET", scope: scopesArr }).then(
+    WL.api({ path: "/me/contacts", method: "GET", scope: 'wl.contacts_email' }).then(
         onGetContacts,
         function(response) {
             log("Cannot get contacts: " + JSON.stringify(response.error).replace(/,/g, ",\n"));
