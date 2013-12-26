@@ -1,0 +1,24 @@
+
+<div class="modal-header">
+  <button type="button" class="close cancelFancybox" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3>Invite Friends Via Email</h3>
+</div>
+<div class="modal-body">
+  <table class="table table-striped data-table">
+    <thead>
+      <tr><td>#</td><td>Email</td><td>Name</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <label class="select_all"><%=check_box_tag "select_all", 'yes', true, :class => 'mr2' %>Select All</label>
+        </td>
+        <td><label class="select_none"><%=check_box_tag "deselect_all", 'yes', false, :class => 'mr2' %>Select None</label></td>
+        <tr>
+        
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <p class="sendReferralEmailBtn"><a class="btn yellow" href="javascript:void(0)">Send Invitations</a></p>
+    </div>
