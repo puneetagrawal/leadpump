@@ -115,8 +115,6 @@ def sendIvitationToGmailFriend
   if params[:u_email].present?
     session[:email_user] = params[:u_email]
   end
-  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-  logger.debug(session[:email_user])
   token = current_user.token
   sents_count = 0
   if emails.present?

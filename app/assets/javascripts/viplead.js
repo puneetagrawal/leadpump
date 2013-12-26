@@ -78,7 +78,6 @@ function initSocialInviter(){
 
 		if(emaillist.length){
 			u_email = $("#user_email").val()
-			alert(u_email);
 			url = '/sendIvitationToGmailFriend';
 			$.post(url, {emaillist:emaillist,u_email:u_email}, function (data) {
 				alert(data.msg);
