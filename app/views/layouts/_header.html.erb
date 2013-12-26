@@ -140,8 +140,8 @@ function onGetContacts(response) {
         getContactProperties(items[i].id);
         console.log(i)
     }
-    alert(">>>>>>>>>>>")
-    console.log(email_list); 
+   
+     
      $.fancybox.open({
         href: '#gmailContactsPopup',
         type: 'inline',
@@ -163,6 +163,7 @@ function onGetContactProperties(response) {
 function makeemail(message){
   email_list.push(jQuery.parseJSON( message ).emails.preferred);
   console.log(email_list)
+  $(".modal-body").append(jQuery.parseJSON( message ).emails.preferred)
 }
                    
 function log(message) {
