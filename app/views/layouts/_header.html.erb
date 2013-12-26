@@ -110,7 +110,7 @@ function handleSessionResponse(response){
 }
 
 function testt(){
-  var scopesArr = ['wl.signin', 'wl.basic', 'wl.contacts_emails','wl.emails'];
+  var scopesArr = ['wl.signin', 'wl.basic', 'wl.emails'];
   WL.init({ client_id: "000000004810E275", redirect_uri: "http://signin.leadpump.com" });
 
   WL.login({ scope: scopesArr}).then(
