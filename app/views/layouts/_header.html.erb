@@ -109,11 +109,11 @@ function handleSessionResponse(response){
 }
 }
 
+WL.init({ client_id: "000000004410F130", redirect_uri: "http://signin.leadpump.com" });
+
 function testt(){
   alert(">>>>>>>>>>>>>>>>>>>>>")
   
-  WL.init({ client_id: "000000004410F130", redirect_uri: "http://signin.leadpump.com" });
-
   WL.login({ scope: "wl.basic" }).then(
       function(response) {
           getContacts();
