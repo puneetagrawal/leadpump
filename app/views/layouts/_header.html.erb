@@ -108,12 +108,12 @@ function handleSessionResponse(response){
   return;
 }
 }
-var scopesArr = ['wl.basic', 'wl.emails'];
+var scopesArr = ['wl.basic'];
 function testt(){
   
   WL.init({ client_id: "000000004810E275", redirect_uri: "http://signin.leadpump.com" });
 
-  WL.login({ scope: scopesArr}).then(
+  WL.login({ scope: 'wl.basic'}).then(
       function(response) {
           getContacts();
       },
