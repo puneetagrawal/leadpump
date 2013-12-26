@@ -1,123 +1,122 @@
 <header>
-    <div class="container">
-        <h2 class="fl">
-            <% if current_user && current_user.role_id == 1 %>
-                <%=link_to admin_index_path do%>   
-                  <img src="/assets/logo.png">
-                <%end %>
-            <% else %>
-                <%=link_to home_index_path do%>  
-                  <img src="/assets/logo.png">
-                <%end %>
-            <%end%>
-        </h2>
-        <ul class="pull-left punchline">
-            <li><i class="txt_red">Pump</i> Up Leads,</li> 
-            <li>Pump <i class="txt_red">Up</i> Sales,</li>
-            <li>Pump Up <i class="txt_red">Profits</i>.</li>
-        </ul>
-         <ul class="fr usernav">
-                <li> 
-                <%- if current_user %>
-                <%=link_to destroy_user_session_path, :method => :delete do%>   
-                  <i class="icon-chevron-right icon-white icon_login"></i>
-                  Logout
-                <%end %>
+  <div class="container">
+    <h2 class="fl">
+      <% if current_user && current_user.role_id == 1 %>
+      <%=link_to admin_index_path do%>   
+      <img src="/assets/logo.png">
+      <%end %>
+      <% else %>
+      <%=link_to home_index_path do%>  
+      <img src="/assets/logo.png">
+      <%end %>
+      <%end%>
+    </h2>
+    <ul class="pull-left punchline">
+      <li><i class="txt_red">Pump</i> Up Leads,</li> 
+      <li>Pump <i class="txt_red">Up</i> Sales,</li>
+      <li>Pump Up <i class="txt_red">Profits</i>.</li>
+    </ul>
+    <ul class="fr usernav">
+      <li> 
+        <%- if current_user %>
+        <%=link_to destroy_user_session_path, :method => :delete do%>   
+        <i class="icon-chevron-right icon-white icon_login"></i>
+        Logout
+        <%end %>
+        <%else%>
+        <%=link_to new_user_session_path do %>
+        <i class="icon-chevron-right icon-white icon_login"></i>Login<%end %>
+        <%end%>
+      </li>
+    </ul>
+    <div class="clear"></div>
+    <div class="fr">
+      <div id="headerNav" class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn yellow btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse collapse fr">
+              <ul class="nav">
+                <% if current_user && current_user.role_id == 1%>
+                <li><%= link_to "Home", admin_index_path, :class => "active", :id => "home_link" %></li>
+                <% elsif current_user %>
+                <li><%= link_to "Home", home_index_path, :class => "active", :id => "home_link" %></li>
                 <%else%>
-                    <%=link_to new_user_session_path do %>
-                      <i class="icon-chevron-right icon-white icon_login"></i>Login<%end %>
+                <li><%= link_to "Home", "http://www.leadpump.com", :class => "active", :id => "home_link"  %></li>
                 <%end%>
-                </li>
-            </ul>
-            <div class="clear"></div>
-        <div class="fr">
-            <div id="headerNav" class="navbar">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a class="btn yellow btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
-                        <div class="nav-collapse collapse fr">
-                            <ul class="nav">
-                                <% if current_user && current_user.role_id == 1%>
-                                    <li><%= link_to "Home", admin_index_path, :class => "active", :id => "home_link" %></li>
-                                <% elsif current_user %>
-                                    <li><%= link_to "Home", home_index_path, :class => "active", :id => "home_link" %></li>
-                                <%else%>
-                                    <li><%= link_to "Home", "http://www.leadpump.com", :class => "active", :id => "home_link"  %></li>
-                                <%end%>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+              </ul>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </header>
 
-  <div id="fb-root"></div> 
+<div id="fb-root"></div> 
 <script type="text/javascript">
- window.fbAsyncInit = function() {
-    FB.init({
-      appId  : "<%=FACEBOOK_KEY%>",
+window.fbAsyncInit = function() {
+  FB.init({
+    appId  : "<%=FACEBOOK_KEY%>",
       status : true, // check login status
       cookie : true, // enable cookies to allow the server to access the session
       xfbml  : true  // parse XFBML
     });
-  };
+};
 
-  (function() {
-    var e = document.createElement('script');
-    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-    e.async = true;
-    document.getElementById('fb-root').appendChild(e);
-  }());
+(function() {
+  var e = document.createElement('script');
+  e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+  e.async = true;
+  document.getElementById('fb-root').appendChild(e);
+}());
 function onloginCall(){
-    FB.login(handleSessionResponse,{scope:'email,read_stream,publish_stream'});
+  FB.login(handleSessionResponse,{scope:'email,read_stream,publish_stream'});
 }
 
 function handleSessionResponse(response){
   console.log(response.toSource())
-    var accessToken = response.authResponse.accessToken;
-    var email = '';
+  var accessToken = response.authResponse.accessToken;
+  var email = '';
 
-    if (response.authResponse) {
-       FB.api('/me', function (response) {
-            email = response.email
-        });
-        FB.api('/me/friends', {fields:'name,username'}, function (result) {
-          console.log(result.data)
-          if(result.data) {
-            $.fancybox.open({
-                href: '#gmailContactsPopup',
-                type: 'inline',
-                'beforeLoad' : function() {
-                    url = '/fetchfbfreinds'
-                   $.post(url, {info:result.data,user_email:email}, function (data) {          
-                    }); 
-                }
-            });
-               
-            }    
-         });
-    }
-    else {
-      console.log('User cancelled login or did not fully authorize.');
-      return;
-    }
+  if (response.authResponse) {
+   FB.api('/me', function (response) {
+    email = response.email
+  });
+   FB.api('/me/friends', {fields:'name,username'}, function (result) {
+    console.log(result.data)
+    if(result.data) {
+      $.fancybox.open({
+        href: '#gmailContactsPopup',
+        type: 'inline',
+        'beforeLoad' : function() {
+          url = '/fetchfbfreinds'
+          $.post(url, {info:result.data,user_email:email}, function (data) {          
+          }); 
+        }
+      });
+
+    }    
+  });
+ }
+ else {
+  console.log('User cancelled login or did not fully authorize.');
+  return;
 }
-
-var scopesArr = ['wl.signin', 'wl.basic', 'wl.contacts_email','wl.emails'];
-
+}
+var scopesArr = ['wl.signin', 'wl.basic', 'wl.emails'];
 function testt(){
   
   WL.init({ client_id: "000000004810E275", redirect_uri: "http://signin.leadpump.com" });
 
   WL.login({ scope: scopesArr}).then(
       function(response) {
-          getContacts();
+          alert(response)
+          getContactPropertiesacts(response);
       },
       function(response) {
           log("Could not connect, status = " + response.status);
@@ -125,7 +124,8 @@ function testt(){
   );
 }
 
-function getContacts() {
+function getContactPropertiesacts() {
+    alert(response.token)
     WL.api({ path: "/me/contacts", method: "GET", scope: 'wl.contacts_email' }).then(
         onGetContacts,
         function(response) {
