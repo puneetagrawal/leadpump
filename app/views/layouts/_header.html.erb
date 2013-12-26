@@ -161,13 +161,21 @@ function onGetContactProperties(response) {
     makeemail(JSON.stringify(response).replace(/,/g, ",\n"));
 }
 function makeemail(message){
-  email_list.push(jQuery.parseJSON( message ).emails.preferred);
-  console.log(email_list)
-  $("#gmailcontacts").append(jQuery.parseJSON( message ).emails.preferred)
+  var email = jQuery.parseJSON( message ).emails.preferred;
+  console.log(email)
+  if(email){
+    append_email(email)  
+  }
 }
                    
 function log(message) {
     
+}
+
+function append_email(email){
+  var htmll = '<tr><td><input type="checkbox" "'+email+'" checked class = "gmailContactChekbox '+ 
+  'chekboxess"></td><td class="email_label">'+email+'</td><td>'+email+'</td></tr>';
+  $("#gmailcontacts .data-table tbody").append(htmll);
 }
 
 </script>
