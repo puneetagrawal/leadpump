@@ -52,7 +52,7 @@
   end
 
   def new
-   
+   logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
    if current_user.isSocialInvitable || current_user.isAdmin
     if params[:code].present?
       email = request.env['omnicontacts.user'][:email]

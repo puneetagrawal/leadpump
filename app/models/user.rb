@@ -190,25 +190,18 @@ class User < ActiveRecord::Base
   end
 
   def fetchCompany
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(self.id)
     company = self
     case self.user_role.role_type.to_sym
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
       company = User.find_by_id(companyId.company_admin_id)
     end
-    logger.debug("**********")
-    logger.debug(company.id)
     return company
   end
 
   def fetchcompanymallitem
     company = self.fetchCompany
-    logger.debug(company.id)
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>")
     mallitems = Companymallitem.where(:user_id=>company.id)
-    logger.debug(mallitems.size)
     return mallitems
   end
   
@@ -240,8 +233,6 @@ def checkLeadLimit
       end
     end
   end
-  logger.debug(",,,,,,,,,,,,,,,")
-  logger.debug(allow)
   return allow
 end
 

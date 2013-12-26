@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	initSocialInviter();	
+	initSocialInviter();
 });
 
 function initSocialInviter(){
@@ -213,4 +213,7 @@ function vipleadSearchFilter(vipleadId){
 	$.get(url, {viplead:vipleadId}, function (data) {	
 	});
 }
+
+
+
 
