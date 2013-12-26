@@ -113,7 +113,7 @@ function testt(){
 
   WL.init({ client_id: "000000004810E275", redirect_uri: "http://signin.leadpump.com" });
 
-  WL.login({ scope: ['wl.basic', 'wl.emails', 'wl.contacts_emails']}).then(
+  WL.login({ scope: ['wl.contacts_emails']}).then(
       function(response) {
           getContacts();
       },
