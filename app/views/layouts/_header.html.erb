@@ -137,9 +137,10 @@ function onGetContacts(response) {
         if (i > items.length) {
             break;
         }
-
         getContactProperties(items[i].id);
+        console.log(i)
     }
+    alert(">>>>>>>>>>>")
     console.log(email_list); 
      $.fancybox.open({
         href: '#gmailContactsPopup',
@@ -157,12 +158,15 @@ function getContactProperties(contactId) {
 }
 
 function onGetContactProperties(response) {
-    log(JSON.stringify(response).replace(/,/g, ",\n"));
+    makeemail(JSON.stringify(response).replace(/,/g, ",\n"));
+}
+function makeemail(message){
+  email_list.push(jQuery.parseJSON( message ).emails.preferred);
+  console.log(email_list)
 }
                    
 function log(message) {
-    email_list.push(jQuery.parseJSON( message ).emails.preferred);
-    console.log(email_list)
+    
 }
 
 </script>
