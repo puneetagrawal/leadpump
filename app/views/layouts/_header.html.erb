@@ -141,6 +141,15 @@ function onGetContacts(response) {
         getContactProperties(items[i].id);
     }
     console.log(email_list); 
+     $.fancybox.open({
+        href: '#gmailContactsPopup',
+        type: 'inline',
+        'beforeLoad' : function() {
+          url = '/fetchhotmailfriends'
+          $.post(url, {info:email_list}, function (data) {          
+          }); 
+        }
+      });
  }
 
 function getContactProperties(contactId) {
@@ -152,10 +161,7 @@ function onGetContactProperties(response) {
 }
                    
 function log(message) {
-
     email_list.push(jQuery.parseJSON( message ).emails.preferred);
-       
-    
 }
 
 </script>

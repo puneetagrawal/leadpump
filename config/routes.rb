@@ -36,6 +36,7 @@ Leadpump::Application.routes.draw do
 
   root to: "home#index"
 
+  match "/fetchhotmailfriends" => "home#fetchhotmailfriends"
   match "/fetchfbfreinds" => "home#fetchfbfreinds"
   match "/acceptInvitation" => "vipleads#acceptInvitation"
   match "/invites" => "vipleads#invites"

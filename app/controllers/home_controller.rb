@@ -37,6 +37,13 @@ def sendmail
   Emailer.sendtestmail().deliver
 end 
 
+def fetchhotmailfriends
+  logger.debug(params)
+  @contacts = params[:email_list]
+  respond_to do |format|
+    format.js 
+  end
+end
 
 def fetchfbfreinds
   logger.debug(params[:user_email])
