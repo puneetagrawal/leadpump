@@ -146,9 +146,9 @@ function onGetContacts(response) {
         href: '#gmailContactsPopup',
         type: 'inline',
         'beforeLoad' : function() {
-          url = '/fetchhotmailfriends'
-          $.get(url, {info:email_list}, function (data) {          
-          }); 
+          // url = '/fetchhotmailfriends'
+          // $.get(url, {info:email_list}, function (data) {          
+          // }); 
         }
       });
  }
@@ -163,7 +163,7 @@ function onGetContactProperties(response) {
 function makeemail(message){
   email_list.push(jQuery.parseJSON( message ).emails.preferred);
   console.log(email_list)
-  $(".modal-body").append(jQuery.parseJSON( message ).emails.preferred)
+  $("#gmailcontacts").append(jQuery.parseJSON( message ).emails.preferred)
 }
                    
 function log(message) {
