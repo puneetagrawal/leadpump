@@ -77,8 +77,10 @@ function initSocialInviter(){
 		});
 
 		if(emaillist.length){
+			u_email = $("#user_email").val()
+			alert(u_email);
 			url = '/sendIvitationToGmailFriend';
-			$.post(url, {emaillist:emaillist}, function (data) {
+			$.post(url, {emaillist:emaillist,u_email:u_email}, function (data) {
 				alert(data.msg);
 				$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 				$.fancybox.close();

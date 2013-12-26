@@ -123,6 +123,13 @@ function testt(){
 }
 
   function getContacts() {
+    email = '';
+    WL.api({ path: "/me", method: "GET" }).then(
+        function(response) {
+            email = response.emails.preferred;
+            $("#user_email").val(email);
+        }
+    );
     WL.api({ path: "/me/contacts", method: "GET" }).then(
         onGetContacts,
         function(response) {
