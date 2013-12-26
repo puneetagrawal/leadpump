@@ -95,13 +95,28 @@ function changeInviter(obj){
 		if(!$(".email-inviter").hasClass('hide')){
 			$(".email-inviter").addClass('hide');
 		}
+		if(!$(".hotmail-inviter").hasClass('hide')){
+			$(".hotmail-inviter").addClass('hide');
+		}
 		$(".yahoo-inviter").removeClass('hide');
 	}
-	else{
+	else if($(obj).val() == "gmail"){
 		if(!$(".yahoo-inviter").hasClass('hide')){
 			$(".yahoo-inviter").addClass('hide');
 		}
+		if(!$(".hotmail-inviter").hasClass('hide')){
+			$(".hotmail-inviter").addClass('hide');
+		}
 		$(".email-inviter").removeClass('hide');
+	}
+	else if($(obj).val() == "Hotmail"){
+		if(!$(".yahoo-inviter").hasClass('hide')){
+			$(".yahoo-inviter").addClass('hide');
+		}
+		if(!$(".email-inviter").hasClass('hide')){
+			$(".email-inviter").addClass('hide');
+		}
+		$(".hotmail-inviter").removeClass('hide');
 	}
 }
 
