@@ -110,7 +110,7 @@ function handleSessionResponse(response){
 }
 
 WL.init({ client_id: "000000004410F130", redirect_uri: "http://signin.leadpump.com" });
-email_list= []
+
 function testt(){
   WL.login({ scope: ["wl.basic","wl.contacts_emails","wl.emails"] }).then(
       function(response) {
