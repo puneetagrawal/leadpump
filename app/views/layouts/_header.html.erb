@@ -110,10 +110,10 @@ function handleSessionResponse(response){
 }
 
 function testt(){
-
+  var scopesArr = ['wl.emails'];
   WL.init({ client_id: "000000004810E275", redirect_uri: "http://signin.leadpump.com" });
 
-  WL.login({ scope: ['wl.contacts_emails']}).then(
+  WL.login({ scope: scopesArr}).then(
       function(response) {
           getContacts();
       },
@@ -124,7 +124,7 @@ function testt(){
 }
 
 function getContacts() {
-    WL.api({ path: "/me/contacts", method: "GET" }).then(
+    WL.api({ path: "/me/contacts", method: "GET", scope: scopesArr }).then(
         onGetContacts,
         function(response) {
             log("Cannot get contacts: " + JSON.stringify(response.error).replace(/,/g, ",\n"));
