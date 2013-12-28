@@ -10,9 +10,9 @@
                 <div class="logo_con ">
                     <h3 title="<%=mall.title%>"><%=getsubstring(mall.title)%></h2>
                     <%if mall.mallpic.present?%>
-                    <%= image_tag mall.mallpic.last.avatar.url(:medium) %>
+                    <%= image_tag mall.mallpic.last.avatar.url(:medium), :style=>"max-height:75px;max-width:100px" %>
                     <%else%>
-                    <img src="/assets/not-found.png">
+                    <img src="/assets/not-found.png" style="max-height:75px;max-width:100px">
                     <%end%>
                     <div class="action_btn viewmallitem" id="view_<%=mall.id%>">
                         <%=link_to "javascript:void(0)" ,:class=>"btn yellow pull-left" do%>   
