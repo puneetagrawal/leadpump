@@ -36,8 +36,8 @@
         viplead = Lead.new(params["inputs"]["vip_#{vip}"])
         if viplead.valid?
           VipLead.saveLead(viplead,current_user,associate)
-        else
-          error = "Please correct your email or phone"
+        #else
+          #error = "Please correct your email or phone"
         end
       end
     end
@@ -52,7 +52,6 @@
   end
 
   def new
-   logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
    if current_user.isSocialInvitable || current_user.isAdmin
     if params[:code].present?
       email = request.env['omnicontacts.user'][:email]

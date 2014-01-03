@@ -1,9 +1,9 @@
         <div class="container">
             <div class="passhead">
-                <h3>Express Guest Pass</h3>
+                <h3 style="text-align:center">Express Guest Pass</h3>
             </div>
-            <p>Save Time -</p>
-            <p>Please fill in your information, print the pass and sign it. Don’t forget to bring valid Identification with you. Present both to the front desk upon arrival to the club.</p>
+            <h4>Save Time -</h4>
+            <p><%=@dayscount%> days FREE To A Healthier You!, print the pass and sign it. Don’t forget to bring valid Identification with you. Present both to the front desk upon arrival to the club.</p>
             <div class="passform">
                 <h4 style="text-align:center"><%=@dayscount%> Days FREE To A Healthier You!</h4>  
                 <table class="table">          
@@ -108,7 +108,7 @@
                                 <option value="AS">American&nbsp;Samoa</option>
                                 <option value="PW">Palau</option>
                             </select>
-                            <label>Guest of::</label>
+                            <label>Guest of:</label>
                             <input class="input-large" type="text">
                             <label>How long have you considered a program?</label>
                             <select class="input-large">

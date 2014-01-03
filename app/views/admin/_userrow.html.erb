@@ -3,7 +3,7 @@
 	<td><%=user.role.role_type%></td>
 	<td><%= user.fetchCompany.name %></td>
 	<td class="leadActive leadAction" id="plan_<%=user.id%>">
-		<%=render "alterplantype", :plan=>user.fetchPlan%>
+		<%=render "alterplantype", :plan=>user.fetchPlan %>
 	</td>
 </td>
 <td class="leadActive leadAction" id="status_<%=user.id%>">

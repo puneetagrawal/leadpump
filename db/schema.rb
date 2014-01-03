@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131218104937) do
+ActiveRecord::Schema.define(:version => 20140103133220) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -171,11 +171,11 @@ ActiveRecord::Schema.define(:version => 20131218104937) do
   create_table "opt_in_leads", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.integer  "phone"
+    t.integer  "phone",       :limit => 8
     t.string   "source"
     t.integer  "referrer_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "pictures", :force => true do |t|
@@ -329,6 +329,7 @@ ActiveRecord::Schema.define(:version => 20131218104937) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

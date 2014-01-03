@@ -172,13 +172,13 @@ function movetostep1(obj){
 	if(skip != 'skip'){
 		$(".viprow").each(function() {
 			exit = false;
-			$(this).find('p input').each(function(){
-				if($(this).val() == '') { 
-					exit = true;
-					alert(" Please fill all fields, then proceed further..!!");
-					return false;
-				}
-			});
+			// $(this).find('p input').each(function(){
+			// 	if($(this).val() == '') { 
+			// 		exit = true;
+			// 		alert(" Please fill all fields, then proceed further..!!");
+			// 		return false;
+			// 	}
+			// });
 			if (exit){
 				return false;
 			}

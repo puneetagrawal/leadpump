@@ -4,11 +4,11 @@
         <div class="span12">
            <div class="logo_listing m_item_main">
             <%if @companymallitem.present?%>
-            <h2 style="text-align:center;">Download or Print Coupons here for free trial.</h2>
+            <h2 style="text-align:center;">Download or Print Coupons here.</h2>
             <%@companymallitem.each do|ol|%>
             <%mall = Onlinemall.find(ol.onlinemall_id)%>
                 <div class="logo_con ">
-                    <h3 title="<%=mall.title%>"><%=getsubstring(mall.title)%></h2>
+                    <h3 title="<%=mall.title%>"><%=mall.title%></h3>
                     <%if mall.mallpic.present?%>
                     <%= image_tag mall.mallpic.last.avatar.url(:medium), :style=>"max-height:75px;max-width:100px" %>
                     <%else%>
