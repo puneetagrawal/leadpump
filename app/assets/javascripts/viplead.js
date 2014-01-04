@@ -4,6 +4,8 @@ $(document).ready(function(){
 });
 
 function initSocialInviter(){
+	alert(">>>>>>>>>>>>");
+	$(".proceed_step1").unbind();
 	$(".proceed_step1").click(function(){
 		movetostep1(this);
 	});
@@ -112,7 +114,7 @@ function changeInviter(obj){
 		$(".email-inviter").removeClass('hide');
 	}
 	else if($(obj).val() == "Hotmail"){
-		WL.logout();
+		
 		if(!$(".yahoo-inviter").hasClass('hide')){
 			$(".yahoo-inviter").addClass('hide');
 		}
@@ -168,6 +170,7 @@ function savevipsetings(obj){
 }
 
 function movetostep1(obj){
+
 	var exit = false;
 	skip = $(obj).attr('id');
 	// if(skip != 'skip'){

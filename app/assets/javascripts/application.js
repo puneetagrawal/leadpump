@@ -46,7 +46,6 @@ $(document).ready(function(){
 	});
 
 	$('#onlinemall_description').ckeditor({
-		
         toolbar: 'Full',
         enterMode : CKEDITOR.ENTER_BR,
         shiftEnterMode: CKEDITOR.ENTER_P
