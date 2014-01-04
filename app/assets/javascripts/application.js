@@ -34,6 +34,7 @@
 //= require ckeditor-jquery
 
 $(document).ready(function(){
+	pic_uid = ''; 
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
  	$('.filter-date').datepicker({ dateFormat: "yy-mm-dd"}).val(); 
@@ -256,6 +257,10 @@ function initialization(){
 	});
 
 	$(".submitlogo").click(function (){
+		pic_uid = '';
+		if($("#u_id").length){
+			pic_uid = $(this).closest('td').attr('id').split("_")[1];
+		}
 		$('#picture_avatar').click();
 	});
 
@@ -268,7 +273,13 @@ function initialization(){
 	});
 
 	$("#picture_avatar").change(function(){
-		$('#c_logo').submit();
+		if(pic_uid != ''){
+			$('.uid_'+pic_uid).submit();
+		}
+		else{
+			$('#c_logo').submit();
+		}
+		
 	});
 
 	$(document).on('keyup', '.isNormalText', function (){

@@ -1,11 +1,11 @@
-<td class="leadAction">
+<td class="leadAction" id="uid_<%=user.id%>">
 	<%=user.id%>
 	<%if user.picture.present?%>
         <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:20%;" %>
     <%end%>
     <div class="pull-left clear leadAction" style="margin-top:3px;">
 	    <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a>
-	    <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo", :style=>"margin:0px;" } do |form| %>
+	    <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo",:class=>"uid_#{user.id}", :style=>"margin:0px;" } do |form| %>
 	      <%= hidden_field_tag :u_id, user.id%>
 	      <%= form.file_field :avatar, :style =>"display:none" %>
 	    <% end %>
