@@ -1,15 +1,14 @@
 <td class="leadAction">
 	<%if user.picture.present?%>
-        <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
-    <%else%>
-        <div class="pull-left clear mt10 leadAction">
-        <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a>
-        <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
-          <%= hidden_field_tag :u_id, user.id%>
-          <%= form.file_field :avatar, :style =>"display:none" %>
-        <% end %>
-    </div>
+        <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:35%;" %>
     <%end%>
+    <div class="pull-left clear mt10 leadAction">
+	    <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a>
+	    <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
+	      <%= hidden_field_tag :u_id, user.id%>
+	      <%= form.file_field :avatar, :style =>"display:none" %>
+	    <% end %>
+	</div>
 </td>
 <td><%=user.name%></td>
 <td><%=user.email%></td>

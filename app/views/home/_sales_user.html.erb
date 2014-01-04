@@ -1,6 +1,10 @@
 <a href="javascript:void(0)">
 	<div class="salesPrsn img-polaroid">
-		<img class="img-polaroid" src="/assets/client_img.png" style="height:60px;"/>
+		<%if user.picture.present?%>
+	        <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid", :style=>"height:60px;" %>
+        <%else%>
+        	<img class="img-polaroid" src="/assets/client_img.png" style="height:60px;"/>
+	    <%end%>
 	</div>
 	<div class="pull-left name">
 		<span style="color:#FFDE52"><%=user.name%></span><span style="color:#FFDE52"><%=user.role.role_type.humanize%></span>

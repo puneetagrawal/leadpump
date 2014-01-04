@@ -24,7 +24,7 @@ function initgauge1(){
     }
     
 
-    eft = eft ? parseInt(eft)/1000 : 0;
+    eft = getRange(eft, 'eft_scope');
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');    
@@ -38,13 +38,13 @@ function initgauge1(){
     });
     
 
-    cash = cash ? parseInt(cash)/1000 : 0;
+    cash = getRange(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cash)
     $('#cashgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
     });
      
-    total_gross = total_gross ? parseInt(total_gross)/1000 : 0
+    total_gross = getRange(total_gross, 'gross_scope');
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
