@@ -31,26 +31,26 @@
 //= require viplead
 //= require seeusergauge
 //= require saleprod
-//= require ckeditor-jquery
+
 
 $(document).ready(function(){
 	alert("sssssssssssssssssssssssssssss")
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
  	$('.filter-date').datepicker({ dateFormat: "yy-mm-dd"}).val(); 
-	$('.ckeditor').ckeditor({
-		  // optional config
-	}); 
+	// $('.ckeditor').ckeditor({
+	// 	  // optional config
+	// }); 
 
 	$("#myTab").click(function(){
 		$('#home_link').addClass('decoration');
 	});
 
-	$('#onlinemall_description').ckeditor({
-        toolbar: 'Full',
-        enterMode : CKEDITOR.ENTER_BR,
-        shiftEnterMode: CKEDITOR.ENTER_P
-	});
+	// $('#onlinemall_description').ckeditor({
+ //        toolbar: 'Full',
+ //        enterMode : CKEDITOR.ENTER_BR,
+ //        shiftEnterMode: CKEDITOR.ENTER_P
+	// });
 
     $(document).on('change', "#select_vip_entry", function () {
        var search_val = $(this).val(); 
