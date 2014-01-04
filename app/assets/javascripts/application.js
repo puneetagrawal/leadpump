@@ -34,13 +34,12 @@
 //= require ckeditor-jquery
 
 $(document).ready(function(){
-	alert("sssssssssssssssssssssssssssss")
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
  	$('.filter-date').datepicker({ dateFormat: "yy-mm-dd"}).val(); 
-	// $('.ckeditor').ckeditor({
-	// 	  // optional config
-	// }); 
+	$('.ckeditor').ckeditor({
+		  // optional config
+	}); 
 
 	$("#myTab").click(function(){
 		$('#home_link').addClass('decoration');
