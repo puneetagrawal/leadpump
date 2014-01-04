@@ -23,7 +23,7 @@ function initgauge(){
     });
 
     var eft = "<%=@gross_values['g_eft'.to_sym]%>";
-    eft = eft ? parseInt(eft/1000) : 0;
+    eft = getRange(eft, 'eft_scope');
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');    
@@ -39,14 +39,14 @@ function initgauge(){
 
     
     var cash = "<%=@gross_values['g_cash'.to_sym]%>";
-    cash = cash ? parseInt(cash/1000) : 0;
+    cash = getRange(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cash);
     $('#cashgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
     });
 
     var total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
-    total_gross = total_gross ? parseInt(total_gross/1000) : 0;
+    total_gross = getRange(total_gross, 'gross_scope');
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value) + '$');
@@ -61,4 +61,24 @@ function initgauge(){
     
 }
 
+
+function getRange(no, id){
+    no = no ? parseInt(no) : 0
+    if(no >= 0 && no <= 100){
+        value = no;
+    }
+    else if(no > 100 && no <= 1000){
+        value = no/10;
+        $("#"+id).html('(in 100)')
+    }
+    else if(no > 1000 && no <= 10000){
+        value = no/100;
+        $("#"+id).html('(in 1000)')
+    }   
+    else{
+        value = no/1000;
+        $("#"+id).html('(in 10000)')
+    }
+    return value;
+}
 </script>

@@ -6,11 +6,12 @@
             <div class="full">
                 <div class="left_col">
                     <div class="img">
-                        <%if @preview.present?%>
-                            <%=fetchlandpreivewimage(@landpage)%>
-                        <%else%>
-                            <%=fetchlandpageheadimage(@landpage)%>
-                        <%end%>
+                        <%=fetchlandpageheadimage(@landpage)%>
+                        <%#if @preview.present?%>
+                            <%#=fetchlandpreivewimage(@landpage)%>
+                        <%#else%>
+                            <%#=fetchlandpageheadimage(@landpage)%>
+                        <%#end%>
                     </div>
                     <div class="form">
                         <h3>Fill out the form to receive your FREE trial</h3>
@@ -28,7 +29,11 @@
                     <h2 class="trial">
                         <%=@landpage.present? ? @landpage.no_of_days : '1'%>-Days FREE</h2>
                      <div class="gym_logo">
-                        <%#=fetchCompanyLogo(@ref.fetchCompany)%>
+                        <%if @ref.present?%>
+                            <%=fetchCompanyLogo(@ref.fetchCompany)%>
+                        <%elsif current_user.present?%>
+                            <%=fetchCompanyLogo(current_user.fetchCompany)%>
+                        <%end%>
                     </div> 
                     <div class="our_mission">
                         <h3>Our Mission</h3>

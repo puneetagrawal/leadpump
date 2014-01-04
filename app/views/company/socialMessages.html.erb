@@ -1,6 +1,12 @@
 
 <div class="container wrapper" >
+
 <div class="pre_formated_email social-fb">
+    
+    <%# if @companies.present? %>
+        <%#=select_tag "company_admins", options_from_collection_for_select(@companies, "id", "name"),:prompt => "Select Company",:style=>"width:200px;margin:-10px 0 32px 10px;" %>
+    <%#end%>
+
     <div class="span4">
         <h3>Share this invitations on Facebook with one simple click</h3>
         <p class="text-center"><img src="/assets/facebook-icon.png"></p>

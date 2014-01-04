@@ -74,8 +74,6 @@ class User < ActiveRecord::Base
 
   def isSocialInvitable
     company = self.fetchCompany
-    logger.debug("3543434343434")
-    logger.debug(company.id)
     allow = false
     if company.subscription.present? && !company.subscription.plan_per_user_range.plan.social_referrals.blank?
         allow = true

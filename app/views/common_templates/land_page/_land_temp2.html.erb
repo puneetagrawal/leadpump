@@ -7,14 +7,19 @@
                 <div class="left_col">
                     <h2 class="trial">FREE <%=@landpage.no_of_days%> Day pass</h2>
                     <div class="img">
-                        <%if @preview.present?%>
-                            <%=fetchlandpreivewimage(@landpage)%>
-                        <%else%>
-                            <%=fetchlandpageheadimage(@landpage)%>
-                        <%end%>
+                        <%=fetchlandpageheadimage(@landpage)%>
+                        <%#if @preview.present?%>
+                            <%#=fetchlandpreivewimage(@landpage)%>
+                        <%#else%>
+                            <%#=fetchlandpageheadimage(@landpage)%>
+                        <%#end%>
                     </div>
                     <div class="gym_logo">
-                        <%=fetchCompanyLogo(@landpage.user.fetchCompany)%>
+                        <%if @ref.present?%>
+                            <%=fetchCompanyLogo(@landpage.user.fetchCompany)%>
+                        <%elsif current_user.present?%>
+                            <%=fetchCompanyLogo(current_user.fetchCompany)%>
+                        <%end%>
                     </div>
                     </div>
                 </div>

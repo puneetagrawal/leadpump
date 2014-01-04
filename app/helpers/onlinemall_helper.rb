@@ -22,18 +22,29 @@ module OnlinemallHelper
 	end
 
 	def fetchlandpageheadimage(landpage)
-		img = '<img src="/assets/land_page/women.png">'
-		if landpage.present?
-			img = image_tag landpage.land_page_logos[0].avatar.url(:medium), :class=>"img-polaroid" 
+		logger.debug("******************************")
+		logger.debug(landpage.temp_name)
+		if landpage.temp_name == "Guest pass card"
+			img = '<img src="/assets/land_page/template4.png">'
+		elsif landpage.temp_name == "Woman doing aerobics"
+			img = '<img src="/assets/land_page/women.png">'
+		elsif landpage.temp_name == "Membership card"
+			img = '<img src="/assets/land_page/template3.png">'
+		elsif landpage.temp_name == "Personal trainer"
+			img = '<img src="/assets/land_page/template2.png">'
 		end
+		# if landpage.present?
+		# 	img = image_tag landpage.land_page_logos[0].avatar.url(:medium), :class=>"img-polaroid" 
+		# end
 		return img.html_safe
 	end
-
 	def fetchlandpreivewimage(landpage)
+		logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+		logger.debug(landpage.temp_name)
 		img = '<img src="/assets/land_page/women.png">'
-		if landpage.present? && landpage.avatar.present?
-			img = image_tag landpage.avatar.url(:medium), :class=>"img-polaroid" 
-		end
+		# if landpage.present? && landpage.avatar.present?
+		# 	img = image_tag landpage.avatar.url(:medium), :class=>"img-polaroid" 
+		# end
 		return img.html_safe
 	end
 

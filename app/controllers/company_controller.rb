@@ -13,6 +13,7 @@ class CompanyController < ApplicationController
 
   def new
   	@user = User.new()
+    @picture = Picture.new()
     @users = User.fetchCompanyUserList(current_user)
   end
 
@@ -233,7 +234,7 @@ def previewsave
   Preview.destroy_all
   params[:inputs][:landing_page].delete :land_type
   temp_name = params[:inputs][:landing_page][:temp_name]
-  params[:inputs][:landing_page].delete :temp_name
+  #params[:inputs][:landing_page].delete :temp_name
   params[:inputs][:landing_page].delete :ext_link
   landpage = Preview.new(params[:inputs][:landing_page])
   landpage.save

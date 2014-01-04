@@ -2,17 +2,22 @@ class PictureController < ApplicationController
   
 
   def create
-  	@picture_exist = Picture.find_by_user_id(current_user.id)
+    user = params[:u_id].present? ? User.find(params[:u_id]) : current_user
+  	@picture_exist = Picture.find_by_user_id(user.id)
     begin 
   	if !@picture_exist.present?
-  		@picture = Picture.create(:avatar=>params[:picture][:avatar],:user_id=>current_user.id)
+  		@picture = Picture.create(:avatar=>params[:picture][:avatar],:user_id=>user.id)
   	else
   		@picture_exist.update_attributes(:avatar=>params[:picture][:avatar])
   	end
   rescue Exception => e
     flash[:error] = "Please try again"
   end
-  	redirect_to settings_path
+    if params[:u_id].present?
+      redirect_to company_new_path()
+    else
+    	redirect_to settings_path
+    end
   end
 
 def createvippic

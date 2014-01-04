@@ -62,18 +62,7 @@ function initCompanyCreateOrUpdate(){
 		debugger;
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savetwmes';
-		//Convert html message to plain text
-		//var html=CKEDITOR.instances.twitter.getSnapshot();
-        //var dom=document.createElement("DIV");
-        //dom.innerHTML=html;
-        //var plain_text=(dom.textContent || dom.innerText);
-
-        //create and set a 128 char snippet to the hidden form field
-        //var snippet=plain_text.substr(0,127);
-        //document.getElementById("hidden_snippet").value=snippet;
 		text = $.trim($(this).siblings('textarea').val());
-		//text = $('#hidden_snippet').val();
-		//text = 
 		if (text.length <= 140){
 			$.post(url, {text:text}, function (data) {
 				alert("Message save successfully.");

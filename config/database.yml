@@ -6,7 +6,7 @@
 development: &dev
   adapter: postgresql
   host: localhost
-  database: postgres
+  database: dev_leadpump
   pool: 5
   timeout: 5000
   username: postgres
