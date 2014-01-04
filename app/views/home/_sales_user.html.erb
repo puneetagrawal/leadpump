@@ -1,9 +1,9 @@
 <a href="javascript:void(0)">
 	<div class="salesPrsn img-polaroid">
 		<%if user.picture.present?%>
-	        <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid", :style=>"height:60px;" %>
+	        <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid", :style=>"height:45px;" %>
         <%else%>
-        	<img class="img-polaroid" src="/assets/client_img.png" style="height:60px;"/>
+        	<img class="img-polaroid" src="/assets/client_img.png" style="height:45px;"/>
 	    <%end%>
 	</div>
 	<div class="pull-left name">

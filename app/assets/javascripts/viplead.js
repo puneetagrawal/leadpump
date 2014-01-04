@@ -112,6 +112,7 @@ function changeInviter(obj){
 		$(".email-inviter").removeClass('hide');
 	}
 	else if($(obj).val() == "Hotmail"){
+		WL.logout();
 		if(!$(".yahoo-inviter").hasClass('hide')){
 			$(".yahoo-inviter").addClass('hide');
 		}

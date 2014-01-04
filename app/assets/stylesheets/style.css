@@ -2106,3 +2106,6 @@ header .container {
 .passhead {
     padding-top: 10px;
 }
+.mh60{
+    min-height: 60px;
+}
