@@ -1,4 +1,5 @@
 <td class="leadAction">
+	<%=user.id%>
 	<%if user.picture.present?%>
         <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid", :style=>"width:20%;" %>
     <%end%>
