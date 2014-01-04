@@ -4,7 +4,6 @@ $(document).ready(function(){
 });
 
 function initSocialInviter(){
-	alert(">>>>>>>>>>>>");
 	$(".proceed_step1").unbind();
 	$(".proceed_step1").click(function(){
 		movetostep1(this);
