@@ -53,7 +53,6 @@ Leadpump::Application.configure do
   # ActionMailer Config
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  config.assets.prefix = '/dev/assets'
 
   Paperclip.options[:command_path] = "/usr/bin/"
   
