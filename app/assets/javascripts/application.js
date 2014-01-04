@@ -396,24 +396,4 @@ function optSearchFilter(optId){
 	});
 }
 
-function getRange(no, id){
-    no = no ? parseInt(no) : 0
-    if(no >= 0 && no <= 100){
-        value = no;
-    }
-    else if(no > 100 && no <= 1000){
-        value = no/10;
-        $("#"+id).html('(in 10)')
-    }
-    else if(no > 1000 && no <= 10000){
-        value = no/100;
-        $("#"+id).html('(in 100)')
-    }   
-    else{
-        value = no/1000;
-        $("#"+id).html('(in 1000)')
-    }
-    return value;
-}
-
 
