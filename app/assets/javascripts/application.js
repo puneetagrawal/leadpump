@@ -31,7 +31,7 @@
 //= require viplead
 //= require seeusergauge
 //= require saleprod
-
+//= require ckeditor-jquery
 
 $(document).ready(function(){
 	alert("sssssssssssssssssssssssssssss")
@@ -46,11 +46,11 @@ $(document).ready(function(){
 		$('#home_link').addClass('decoration');
 	});
 
-	// $('#onlinemall_description').ckeditor({
- //        toolbar: 'Full',
- //        enterMode : CKEDITOR.ENTER_BR,
- //        shiftEnterMode: CKEDITOR.ENTER_P
-	// });
+	$('#onlinemall_description').ckeditor({
+        toolbar: 'Full',
+        enterMode : CKEDITOR.ENTER_BR,
+        shiftEnterMode: CKEDITOR.ENTER_P
+	});
 
     $(document).on('change', "#select_vip_entry", function () {
        var search_val = $(this).val(); 
