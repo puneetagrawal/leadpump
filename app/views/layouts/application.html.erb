@@ -5,7 +5,7 @@
    <%= stylesheet_link_tag  "application", "jquery-ui-1.10.3.custom.min.css",'table_css/main.css','table_css/reset.css', :media => "all" %>
    <%= stylesheet_link_tag 'application-print', :media => 'print' %>
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag 'jquery-ui-1.10.3.custom.min.js','autocomplete-rails.js', 'rails.js','data-turbolinks-track','subscriptions.js.coffee','autocomplete.js.coffee' %>
+  <%= javascript_include_tag 'application', 'jquery-ui-1.10.3.custom.min.js','autocomplete-rails.js', 'rails.js','data-turbolinks-track','subscriptions.js.coffee','autocomplete.js.coffee' %>
     <%= javascript_include_tag '/javascripts/ckeditor/ckeditor.js' %>
   <%= tag :meta, :name => 'stripe-key', :content => STRIPE_PUBLIC_KEY %>
   <%= tag :meta, :name => 'viewport', :content => "width=device-width, initial-scale=1.0" %>
