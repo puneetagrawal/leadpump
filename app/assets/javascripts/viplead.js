@@ -169,24 +169,25 @@ function savevipsetings(obj){
 function movetostep1(obj){
 	var exit = false;
 	skip = $(obj).attr('id');
-	if(skip != 'skip'){
-		$(".viprow").each(function() {
-			exit = false;
-			// $(this).find('p input').each(function(){
-			// 	if($(this).val() == '') { 
-			// 		exit = true;
-			// 		alert(" Please fill all fields, then proceed further..!!");
-			// 		return false;
-			// 	}
-			// });
-			if (exit){
-				return false;
-			}
-		});
-	}
-	if(!exit){
-		executeFirstStep(obj, skip);	
-	}
+	// if(skip != 'skip'){
+	// 	$(".viprow").each(function() {
+	// 		exit = false;
+	// 		// $(this).find('p input').each(function(){
+	// 		// 	if($(this).val() == '') { 
+	// 		// 		exit = true;
+	// 		// 		alert(" Please fill all fields, then proceed further..!!");
+	// 		// 		return false;
+	// 		// 	}
+	// 		// });
+	// 		if (exit){
+	// 			return false;
+	// 		}
+	// 	});
+	// }
+	// if(!exit){
+	// 	executeFirstStep(obj, skip);	
+	// }
+	executeFirstStep(obj, skip);
 }
 
 function executeFirstStep(obj, skip){
