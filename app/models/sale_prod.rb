@@ -96,10 +96,11 @@ class SaleProd < ActiveRecord::Base
 
   def self.fetchAppointment(date, user)
     users = User.fetchCompanyUserList(user)
+    users << user
     users = users.uniq
     to_date = SaleProd.fetchToDate(date)
-    to_dt_app = Appointment.where("created_at >= ? and created_at < ?", to_date, date+1).where(:user_id=>users).count
-    tod_app = Appointment.where("created_at >= ? and created_at < ?", date, date+1).where(:user_id=>users).count
+    to_dt_app = Appointment.where("updated_at >= ? and updated_at < ?", to_date, date+1).where(:user_id=>users).count
+    tod_app = Appointment.where("updated_at >= ? and updated_at < ?", date, date+1).where(:user_id=>users).count
     return {:today_app=>tod_app, :to_dt_app=>to_dt_app}
   end
 

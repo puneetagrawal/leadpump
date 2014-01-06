@@ -28,14 +28,12 @@ function initgauge1(){
     $('#eftgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text('$ ' + Math.round(eft));   
     });
-
     
     mem_sold = mem_sold ? parseInt(mem_sold) : 0;
     $('#membersoldgauge').jqxGauge('value', mem_sold);
     $('#membersoldgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
     });
-    
 
     cashs = getRange(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cashs)

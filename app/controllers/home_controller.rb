@@ -154,10 +154,10 @@ end
   end
 
   def pass
-    user = User.find(params[:id])
-    company = user.fetchCompany
-    landpage = LandingPage.where(:user_id=>company.id).last
-    @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
+    # user = User.find(params[:id])
+    # company = user.fetchCompany
+    # landpage = LandingPage.where(:user_id=>company.id).last
+    # @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end
 
   def print_pass
@@ -167,6 +167,14 @@ end
         send_data @pf, filename: "pass.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
+    #  respond_to do |format|
+    #   format.js do
+    #     pdf = PrintedProductPdf.new(@products)
+    #     send_data pdf.render,
+    #               :disposition => "attachment; filename=product_#{Date.today.to_s}.pdf",
+    #               :type => "application/pdf"
+    # end
+  end
   end
 
   private
