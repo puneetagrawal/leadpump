@@ -18,11 +18,11 @@ class SaleProdsController < ApplicationController
   	@saleprod = SaleProd.new(params[:sale_prod])
   	@saleprod.user_id = current_user.id
   	params[:rep].each_with_index do |re,i|
-		i = i+1
-		@saleprod.sale_reports << SaleReport.new(params[:rep]["#{i}"])	  		
-	end
-	@saleprod.save
-	redirect_to sale_prods_path
+  		i = i+1
+  		@saleprod.sale_reports << SaleReport.new(params[:rep]["#{i}"])	  		
+  	end
+  	@saleprod.save
+  	redirect_to sale_prods_path
   end
 
   def addnewprodrow

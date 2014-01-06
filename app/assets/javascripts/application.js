@@ -260,8 +260,11 @@ function initialization(){
 		pic_uid = '';
 		if($("#u_id").length){
 			pic_uid = $(this).closest('td').attr('id').split("_")[1];
+			$('.file_'+pic_uid).click();
 		}
-		$('#picture_avatar').click();
+		else{
+			$('#picture_avatar').click();	
+		}
 	});
 
 	$(".submitviplogo").click(function (){
@@ -272,14 +275,12 @@ function initialization(){
 		$('#viplogo').submit();
 	});
 
+	$(".pic_avt").change(function(){
+		savepic();
+	});
+
 	$("#picture_avatar").change(function(){
-		if(pic_uid != ''){
-			$('.uid_'+pic_uid).submit();
-		}
-		else{
-			$('#c_logo').submit();
-		}
-		
+		savepic();
 	});
 
 	$(document).on('keyup', '.isNormalText', function (){
@@ -295,7 +296,14 @@ function closealert(obj){
 	$(obj).parent().fadeOut('slow');
 }
 
-
+function savepic(){
+	if(pic_uid != ''){
+		$('.uid_'+pic_uid).submit();
+	}
+	else{
+		$('#c_logo').submit();
+	}
+}
 
 function caclulateAmount(){
 	no_of_users = 1;
