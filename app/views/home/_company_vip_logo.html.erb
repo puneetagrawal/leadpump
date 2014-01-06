@@ -2,7 +2,7 @@
     <div class="span12 mr10">
         <div class="">
             <%if @picture_user.present?%>
-                <%= image_tag @picture_user.viplogo.url(), :style=>"height:300px;width:1000px;" %>
+                <%= image_tag @picture_user.viplogo.url(:large), :style=>"height:300px;width:1000px;" %>
             <%else%>
                 <img src="/assets/company-logo.png" style="height:300px;width:1000px">
             <%end%>
