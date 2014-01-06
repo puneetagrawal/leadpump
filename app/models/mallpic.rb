@@ -5,7 +5,7 @@ class Mallpic < ActiveRecord::Base
   belongs_to :onlinemall
 
   validates :avatar, :presence => true
-  validate :file_dimensions
+  #validate :file_dimensions
 
   private
 

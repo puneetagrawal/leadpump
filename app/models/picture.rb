@@ -1,7 +1,7 @@
 class Picture < ActiveRecord::Base
   attr_accessible :avatar, :user_id, :viplogo
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>",:small => "70x70" }, :default_url => "/images/:style/missing.png"
-  has_attached_file :viplogo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100",:small => "70x70" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :viplogo, :styles => { :medium => "300x300>", :thumb => "100x100",:large=>"1000x300" }, :default_url => "/images/:style/missing.png"
   belongs_to :user
 
 
