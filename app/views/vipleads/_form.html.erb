@@ -1,15 +1,15 @@
 <%= form_for @lead, :url => '/vipleads', :method => :post, :html => { :class => "forms form social_inviter"} do |vip| %>
     <%=render "common_templates/showerrors", :object=>@lead%>
     <div class="viprow">
-        <p><%= vip.label "Member Name" %><%= vip.text_field :associate, class: "input-large"%></p>
+        <p><label>Member Name</label><%= vip.text_field :associate, class: "input-large"%></p>
     </div>   
     <%(1..current_user.fetchCompany.vipcount).each do |row|%>
         <div class="viprow">
-            <p><%= vip.label "First Name" %><%= vip.text_field :name, name: "vip_#{row}[name]", class: "input-large fname" %></p>
+            <p><label>First Name</label><%= vip.text_field :name, name: "vip_#{row}[name]", class: "input-large fname" %></p>
 
             <%=vip.hidden_field :lead_source, name:"vip_#{row}[lead_source]", value:"vip"%>
-            <p><%= vip.label "Last Name" %><%= vip.text_field :lname, name: "vip_#{row}[lname]", class: "input-large lname" %></p>
-            <p><%= vip.label "Phone" %><%= vip.text_field :phone, name: "vip_#{row}[phone]", class: "input-large phone isNormalText" %></p>
+            <p><label>Last Name</label><%= vip.text_field :lname, name: "vip_#{row}[lname]", class: "input-large lname" %></p>
+            <p><label>Phone</label><%= vip.text_field :phone, name: "vip_#{row}[phone]", class: "input-large phone isNormalText" %></p>
         </div> 
     <%end%>
     <div class="clear"></div>

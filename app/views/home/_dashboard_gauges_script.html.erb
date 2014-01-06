@@ -62,31 +62,26 @@ function initgauge(){
 }
 
 function getRange(no, id){
-    console.log(no);
-
     no = no ? parseInt(no) : 0
     if(no >= 0 && no <= 220){
         value = no;
         count = 0;
     }
-    else if(no > 220 && no <= 1000){
+    else if(no > 220 && no <= 2200){
         value = no/10;
-        $("#"+id).html('(in 10)')
+        $("#"+id).html('(in 10)');
         count = 10;
     }
-    else if(no > 1000 && no <= 10000){
+    else if(no > 2200 && no <= 22000){
         value = no/100;
-        $("#"+id).html('(in 100)')
+        $("#"+id).html('(in 100)');
         count = 100;
     }   
     else{
-
         value = no/1000;
-        $("#"+id).html('(in 1000)')
+        $("#"+id).html('(in 1000)');
         count = 1000;
     }
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    console.log(count)
     return value;
 }
 
