@@ -23,10 +23,10 @@ function initgauge1(){
         total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
     }
 
-    eft = getRange(eft, 'eft_scope');
-    $('#eftgauge').jqxGauge('value', eft);
+    efts = getRange(eft, 'eft_scope');
+    $('#eftgauge').jqxGauge('value', efts);
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + eft * count);
+        $(this).siblings('.gaugeValue').text('$ ' + Math.round(eft));   
     });
 
     
@@ -37,16 +37,16 @@ function initgauge1(){
     });
     
 
-    cash = getRange(cash, 'cash_scope');
-    $('#cashgauge').jqxGauge('value', cash)
+    cashs = getRange(cash, 'cash_scope');
+    $('#cashgauge').jqxGauge('value', cashs)
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + cash * count);
+        $(this).siblings('.gaugeValue').text('$ ' + Math.round(cash));
     });
      
-    total_gross = getRange(total_gross, 'gross_scope');
-    $('#totalgrossgauge').jqxGauge('value', total_gross);
+    total_grosss = getRange(total_gross, 'gross_scope');
+    $('#totalgrossgauge').jqxGauge('value', total_grosss);
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + total_gross * count);
+        $(this).siblings('.gaugeValue').text('$ ' + Math.round(total_gross));
     });
 
     var test = "<%=@leads.present? ? 'true' : 'false'%>"
@@ -62,26 +62,31 @@ function initgauge1(){
 }
 
 function getRange(no, id){
+    console.log(no);
+
     no = no ? parseInt(no) : 0
-    if(no >= 0 && no <= 100){
+    if(no >= 0 && no <= 220){
         value = no;
         count = 0;
     }
-    else if(no > 100 && no <= 1000){
+    else if(no > 220 && no <= 1000){
         value = no/10;
-        $("#"+id).html('(in 100)')
+        $("#"+id).html('(in 10)')
         count = 10;
     }
     else if(no > 1000 && no <= 10000){
         value = no/100;
-        $("#"+id).html('(in 1000)')
+        $("#"+id).html('(in 100)')
         count = 100;
     }   
     else{
+
         value = no/1000;
-        $("#"+id).html('(in 10000)')
+        $("#"+id).html('(in 1000)')
         count = 1000;
     }
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    console.log(count)
     return value;
 }
 </script>
