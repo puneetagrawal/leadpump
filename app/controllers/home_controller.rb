@@ -175,7 +175,6 @@ end
     #               :type => "application/pdf"
     # end
   end
-  end
 
   private
 
