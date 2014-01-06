@@ -6,7 +6,7 @@ $(document).ready(function(){
 function initSocialInviter(){
 	$(".proceed_step1").unbind();
 	$(".proceed_step1").click(function(){
-		movetostep1(this);alert("hdhdhdh");
+		movetostep1(this);
 	});
 
 	$("#inviter_select").change(function(){
