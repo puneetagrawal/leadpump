@@ -154,10 +154,19 @@ end
   end
 
   def pass
-    user = User.find(params[:id])
-    company = user.fetchCompany
-    landpage = LandingPage.where(:user_id=>company.id).last
-    @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
+    # user = User.find(params[:id])
+    # company = user.fetchCompany
+    # landpage = LandingPage.where(:user_id=>company.id).last
+    # @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
+  end
+
+  def print_pass
+    @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
+    respond_to do |format|
+      format.pdf do
+        send_data @pf, filename: "pass.pdf", type: 'application/pdf', disposition: 'inline'
+      end
+    end
   end
 
   private
