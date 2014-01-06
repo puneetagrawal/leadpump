@@ -1,10 +1,10 @@
 <p>
     <%= sale.label "Walk ins" %>
-    <%= sale.text_field :call, :value=>@gross_values["g_tody".to_sym]["call".to_sym], :class=>"isNormalText", :disabled=>"disabled" %>
+    <%= sale.text_field :call, :value=>@gross_values["g_tody".to_sym]["call".to_sym], :class=>"isNormalText" %>
 </p>
 <p>
     <%= sale.label "Telephone inquiries:" %>
-    <%= sale.text_field :mail, :value=>@gross_values["g_tody".to_sym]["mail".to_sym],:class=>"isNormalText", :disabled=>"disabled" %>
+    <%= sale.text_field :mail, :value=>@gross_values["g_tody".to_sym]["mail".to_sym],:class=>"isNormalText" %>
 </p>
 <p>
     <%= sale.label "Appointment Set:" %>
@@ -12,7 +12,7 @@
 </p>
 <p>
     <%= sale.label "Tours given:" %>
-    <%= sale.text_field :referral, :value=>@sociallead, :class=>"isNormalText", :disabled=>"disabled" %>
+    <%= sale.text_field :referral, :value=>@gross_values["g_tody".to_sym]["net".to_sym], :class=>"isNormalText"%>
 </p>
 <p>
     <%= sale.label "Membership sold:" %>
