@@ -65,7 +65,7 @@ class SaleProd < ActiveRecord::Base
     g_mem = 0
     call = 0
     mail = 0
-    ref = 0
+    net = 0
   	if !sale.blank? && sale.present?
   		sale.each do |s_tdt|
   			if s_tdt.sale_reports.present?
@@ -73,9 +73,9 @@ class SaleProd < ActiveRecord::Base
   				g_eft += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.eft}.compact)
           g_gross += SaleProd.fetchgrossvalue(s_tdt.sale_reports.collect{|sale| sale.contract}.compact)
           g_mem += s_tdt.sale_reports.size
-          call += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Walk in"}.compact.count
-          mail += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Telephone inquiry"}.compact.count
-          ref += s_tdt.sale_reports.collect{|sale| sale if sale.source == "Website"}.compact.count
+          call += s_tdt.call ? s_tdt.call : 0
+          mail += s_tdt.mail ? s_tdt.mail : 0
+          net +=  s_tdt.net ? s_tdt.net : 0
   			end
   		end
   	end
@@ -91,7 +91,7 @@ class SaleProd < ActiveRecord::Base
 
   	return {:g_cash=>g_cash,:g_mem=>g_mem,:g_eft=>g_eft,:g_gross=>g_gross,:c_avg=>c_avg,:e_avg=>e_avg,:m_avg=>m_avg,
       :g_avg=>g_avg,:c_prjt=>c_prjt,:e_prjt=>e_prjt,:g_prjt=>g_prjt, :m_prjt=>m_prjt,:call=>call,
-      :mail=>mail,:ref=>ref}
+      :mail=>mail,:net=>net}
   end
 
   def self.fetchAppointment(date, user)
