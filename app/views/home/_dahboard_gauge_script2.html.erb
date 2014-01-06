@@ -22,12 +22,11 @@ function initgauge1(){
         cash = "<%=@gross_values['g_cash'.to_sym]%>";
         total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
     }
-    
 
     eft = getRange(eft, 'eft_scope');
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(count != 0 ? (e.args.value * count) : e.args.value));
+        $(this).siblings('.gaugeValue').text('$ ' + eft * count);
     });
 
     
@@ -41,13 +40,13 @@ function initgauge1(){
     cash = getRange(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cash)
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(count != 0 ? (e.args.value * count) : e.args.value));
+        $(this).siblings('.gaugeValue').text('$ ' + cash * count);
     });
      
     total_gross = getRange(total_gross, 'gross_scope');
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(count != 0 ? e.args.value * count : e.args.value));
+        $(this).siblings('.gaugeValue').text('$ ' + total_gross * count);
     });
 
     var test = "<%=@leads.present? ? 'true' : 'false'%>"

@@ -27,7 +27,7 @@ function initgauge(){
     eft = getRange(eft, 'eft_scope');
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(count != 0 ? (e.args.value * count) : e.args.value));    
+        $(this).siblings('.gaugeValue').text('$ ' + eft * count);    
     });
    
 
@@ -43,14 +43,14 @@ function initgauge(){
     cash = getRange(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cash);
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(count != 0 ? (e.args.value * count) : e.args.value));
+        $(this).siblings('.gaugeValue').text('$ ' + cash * count);
     });
 
     var total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
     total_gross = getRange(total_gross, 'gross_scope');
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(count != 0 ? e.args.value * count : e.args.value));
+        $(this).siblings('.gaugeValue').text('$ ' + total_gross * count);
     });
 
     var lead = "<%=@leads%>";
@@ -62,6 +62,8 @@ function initgauge(){
 }
 
 function getRange(no, id){
+    console.log(no);
+
     no = no ? parseInt(no) : 0
     if(no >= 0 && no <= 100){
         value = no;
@@ -78,10 +80,13 @@ function getRange(no, id){
         count = 100;
     }   
     else{
+
         value = no/1000;
         $("#"+id).html('(in 10000)')
         count = 1000;
     }
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    console.log(count)
     return value;
 }
 
