@@ -34,6 +34,7 @@
 //= require ckeditor-jquery
 
 $(document).ready(function(){
+
 	pic_uid = ''; 
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
  	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
@@ -166,6 +167,12 @@ $(document).ready(function(){
 	});
     
 });
+
+function createplan(){
+	url = "https://api.stripe.com/v1/plans";
+	$.post(url, {}, function (data) {			
+	});
+}
 
 function formfields(){
 	new_obj = {}
