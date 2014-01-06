@@ -30,6 +30,7 @@
 
   def create
     associate = params["inputs"]["lead"]["associate"]
+    session[:associate] = associate ? associate : current_user.name
     error = ''
     (1..5).each do |vip| 
       if !params["inputs"]["vip_#{vip}"].blank?

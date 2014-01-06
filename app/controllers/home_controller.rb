@@ -161,6 +161,8 @@ end
   end
 
   def print_pass
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(params)
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
     respond_to do |format|
       format.pdf do
@@ -169,10 +171,10 @@ end
     end
     #  respond_to do |format|
     #   format.js do
-    #     pdf = PrintedProductPdf.new(@products)
-    #     send_data pdf.render,
-    #               :disposition => "attachment; filename=product_#{Date.today.to_s}.pdf",
-    #               :type => "application/pdf"
+    #     send_data filename: "foo.pdf",
+    #               type: "application/pdf",
+    #               disposition: "attachment"
+    #   end
     # end
   end
 
