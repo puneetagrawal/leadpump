@@ -116,6 +116,7 @@ def sendIvitationToGmailFriend
   end
   token = current_user.token
   sents_count = 0
+  company = current_user.fetchCompany.email
   if emails.present?
     emailMessage = current_user.fetchEmailMessage
     subject = current_user.fetchgmailsubject
@@ -129,7 +130,7 @@ def sendIvitationToGmailFriend
     end
   end
   if session[:email_user].present?
-    Emailer.sendrewards(session[:email_user], token).deliver
+    Emailer.sendrewards(session[:email_user], company, token).deliver
   end
   message = {"msg"=> "successfully sent invitations."}
   render json: message
@@ -138,6 +139,7 @@ end
 def sendIvitationToFbFriend
   emails = params[:username]
   token = current_user.token
+  company = current_user.fetchCompany.email
   if emails.present?
     emailMessage = current_user.fetchFacebookMessage
     subject = current_user.fetchfbsubject
@@ -147,7 +149,7 @@ def sendIvitationToFbFriend
     end
   end
   if !session[:email_user].blank?
-    Emailer.sendrewards(session[:email_user], token).deliver
+    Emailer.sendrewards(session[:email_user], company, token).deliver
   end
   message = {"msg"=> "successfully sent invitations."}
   render json: message
