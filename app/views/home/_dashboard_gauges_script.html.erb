@@ -27,7 +27,7 @@ function initgauge(){
     eft = getRange(eft, 'eft_scope');
     $('#eftgauge').jqxGauge('value', eft);
     $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + eft * count);    
+        $(this).siblings('.gaugeValue').text('$ ' + Math.round(eft * count));    
     });
    
 
@@ -43,14 +43,14 @@ function initgauge(){
     cash = getRange(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cash);
     $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + cash * count);
+        $(this).siblings('.gaugeValue').text('$ ' + Math.round(cash * count));
     });
 
     var total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
     total_gross = getRange(total_gross, 'gross_scope');
     $('#totalgrossgauge').jqxGauge('value', total_gross);
     $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + total_gross * count);
+        $(this).siblings('.gaugeValue').text('$ ' + Math.round(total_gross * count));
     });
 
     var lead = "<%=@leads%>";
