@@ -40,7 +40,6 @@ function initgauge(){
 
     
     var cash = "<%=@gross_values['g_cash'.to_sym]%>";
-    alert(cash);
     cash = getRange(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cash);
     $('#cashgauge').on('valueChanging', function (e) {
