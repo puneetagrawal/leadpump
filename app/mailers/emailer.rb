@@ -30,10 +30,10 @@ class Emailer < ActionMailer::Base
 		mail(to: email, subject: 'Set password for LEADPUMP.com employee user account')
   end
 
-  def sendrewards(email, user_token)
+  def sendrewards(email, cmpny, user_token)
     @url = SERVER_URL+"/mallitems/#{user_token}"
     email = email.to_s
-    mail(to: email, subject: 'Get Your Free Rewards.')
+    mail(from: cmpny,to: email, subject: 'Get Your Free Rewards.')
   end
   
   def sendtestmail()
