@@ -8,16 +8,10 @@
             <div class="form pd15">
                 <p>
                     <label>Select Social Inviters </label>
-                    <%=select_tag "inviter_select", options_for_select([["Gmail","gmail"],["Yahoo","yahoo"],["Hotmail","Hotmail"]]),:prompt => "Select Inviter",:style=>"width:200px;margin:10px 0 10px 0;" %>
+                    <%=select_tag "inviter_select", options_for_select([["Gmail","gmail"],["Yahoo","yahoo"],["Hotmail","Hotmail"],["Msn","Msn"],["Outlook","Outlook"]]),:prompt => "Select Inviter",:style=>"width:200px;margin:10px 0 10px 0;" %>
                 </p>
-                <p class="email-inviter hide">
-                    <%=link_to "Connect Via Gmail", "/contacts/gmail", :class=>"btn yellow"%>
-                </p>
-                 <p class="yahoo-inviter hide">
-                    <a href="/contacts/yahoo" class="btn yellow">Connect via Yahoo</a>
-                </p>
-                <p class="hotmail-inviter hide">
-                    <a href="javascript:void(0)" class="btn yellow" onclick="testt()">Connect via Hotmail</a>
+                <p class="inviter-container">
+                    
                 </p>
                 <div class="clear"></div>
             </div>        

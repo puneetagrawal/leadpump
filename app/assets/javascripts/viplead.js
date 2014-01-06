@@ -95,32 +95,19 @@ function initSocialInviter(){
 
 function changeInviter(obj){
 	if($(obj).val() == "yahoo"){
-		if(!$(".email-inviter").hasClass('hide')){
-			$(".email-inviter").addClass('hide');
-		}
-		if(!$(".hotmail-inviter").hasClass('hide')){
-			$(".hotmail-inviter").addClass('hide');
-		}
-		$(".yahoo-inviter").removeClass('hide');
+		$(".inviter-container").html('<a class="btn yellow" href="/contacts/yahoo">Connect via Yahoo</a>');
 	}
 	else if($(obj).val() == "gmail"){
-		if(!$(".yahoo-inviter").hasClass('hide')){
-			$(".yahoo-inviter").addClass('hide');
-		}
-		if(!$(".hotmail-inviter").hasClass('hide')){
-			$(".hotmail-inviter").addClass('hide');
-		}
-		$(".email-inviter").removeClass('hide');
+		$(".inviter-container").html('<a class="btn yellow" href="/contacts/gmail">Connect Via Gmail</a>');
 	}
 	else if($(obj).val() == "Hotmail"){
-		
-		if(!$(".yahoo-inviter").hasClass('hide')){
-			$(".yahoo-inviter").addClass('hide');
-		}
-		if(!$(".email-inviter").hasClass('hide')){
-			$(".email-inviter").addClass('hide');
-		}
-		$(".hotmail-inviter").removeClass('hide');
+		$(".inviter-container").html('<a onclick="testt()" class="btn yellow" href="javascript:void(0)">Connect via Hotmail</a>');
+	}
+	else if($(obj).val() == "Msn"){
+		$(".inviter-container").html('<a onclick="testt()" class="btn yellow" href="javascript:void(0)">Connect via Msn</a>');
+	}
+	else if($(obj).val() == "Outlook"){
+		$(".inviter-container").html('<a onclick="testt()" class="btn yellow" href="javascript:void(0)">Connect via Outlook</a>');
 	}
 }
 
@@ -169,7 +156,6 @@ function savevipsetings(obj){
 }
 
 function movetostep1(obj){
-
 	var exit = false;
 	skip = $(obj).attr('id');
 	// if(skip != 'skip'){

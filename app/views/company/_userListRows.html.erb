@@ -7,7 +7,7 @@
 	    <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a>
 	    <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo",:class=>"uid_#{user.id}", :style=>"margin:0px;" } do |form| %>
 	      <%= hidden_field_tag :u_id, user.id%>
-	      <%= form.file_field :avatar, :style =>"display:none" %>
+	      <%= form.file_field :avatar, :class=>"file_#{user.id} pic_avt",:style =>"display:none" %>
 	    <% end %>
 	</div>
 </td>

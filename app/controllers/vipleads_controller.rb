@@ -241,9 +241,7 @@ def viewmallitem
 end
 
 def download
- logger.debug(params)
  params.delete :format
- logger.debug(params)
  @mall = Onlinemall.find(params[:mall_id])
  @pf = WickedPdf.new.pdf_from_string(
   render_to_string('vipleads/download.html.erb',:layout=>false)
