@@ -9,7 +9,8 @@ function initgauge(){
     var interval = 220/10;
     var range = 220/4;
 
-    $(".gaugeContainer").jqxGauge({ 
+    
+    $(".container220").jqxGauge({ 
         max: total, 
         labels: { interval: 22},
         ticksMinor: { interval: interval/4, size: '5%' },
@@ -23,8 +24,26 @@ function initgauge(){
         width: 180
     });
 
+    var t_csh_due = 500;
+    var interval_csh_due = 500/10;
+    var range_csh_due = 500/4;
+
+    $(".container500").jqxGauge({ 
+        max: t_csh_due, 
+        labels: { interval: 50},
+        ticksMinor: { interval: interval_csh_due/4, size: '5%' },
+        ticksMajor: { interval: interval_csh_due/2, size: '9%' },
+        ranges: [{ startValue: 0, endValue: range_csh_due, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        { startValue: range_csh_due, endValue: range_csh_due * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        { startValue: range_csh_due * 2, endValue: range_csh_due * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        { startValue: range_csh_due * 3, endValue: range_csh_due * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        colorScheme: 'scheme05',
+        animationDuration: 400,
+        width: 180
+    });
+
     var eft = "<%=@gross_values['g_eft'.to_sym]%>";
-    efts = getRange(eft, 'eft_scope');
+    efts = getRange1(eft, 'eft_scope');
     $('#eftgauge').jqxGauge('value', efts);
     $('#eftgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text('$ ' + Math.round(eft));    
@@ -40,7 +59,7 @@ function initgauge(){
 
     
     var cash = "<%=@gross_values['g_cash'.to_sym]%>";
-    cashs = getRange(cash, 'cash_scope');
+    cashs = getRange1(cash, 'cash_scope');
     $('#cashgauge').jqxGauge('value', cashs);
     $('#cashgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text('$ ' + Math.round(cash));
@@ -73,6 +92,30 @@ function getRange(no, id){
         count = 10;
     }
     else if(no > 2200 && no <= 22000){
+        value = no/100;
+        $("#"+id).html('(in 100)');
+        count = 100;
+    }   
+    else{
+        value = no/1000;
+        $("#"+id).html('(in 1000)');
+        count = 1000;
+    }
+    return value;
+}
+
+function getRange1(no, id){
+    no = no ? parseInt(no) : 0
+    if(no >= 0 && no <= 500){
+        value = no;
+        count = 0;
+    }
+    else if(no > 500 && no <= 5000){
+        value = no/10;
+        $("#"+id).html('(in 10)');
+        count = 10;
+    }
+    else if(no > 5000 && no <= 50000){
         value = no/100;
         $("#"+id).html('(in 100)');
         count = 100;

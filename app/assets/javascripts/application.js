@@ -421,4 +421,10 @@ function optSearchFilter(optId){
 	});
 }
 
+function test2(){
+	alert(">>>>>>>>>>>>>")
+	url = '/print_pass';
+	$.get(url, {optId:"optId"}, function (data) {	
+	});
+}
 
