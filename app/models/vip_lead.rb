@@ -69,7 +69,7 @@ class VipLead < ActiveRecord::Base
 
   def self.fetchAssociate(user)
     associate = user.name
-    leads = UserLeads.includes(:lead).where("user_id=>? and lead.associate IS NOT NULL",2).last
+    leads = UserLeads.includes(:lead).where("user_id=? and lead.associate IS NOT NULL",2).last
     if leads.present?
       associate = leads.lead.associate
     end
