@@ -44,4 +44,20 @@ class Company < ActiveRecord::Base
         user.update_attributes(:reset_status => false)
         return user
     end
+
+    def self.removeAllPrintPassSessions(session)
+    	session[:fn] = ''
+    	session[:add] = ''
+    	session[:zp] = ''
+    	session[:ag] = ''
+    	session[:ct] = ''
+    	session[:em] = ''
+    	session[:ph] = ''
+    	session[:gst] = ''
+	    session[:prg] = ''
+	    session[:st] = ''
+	    session[:cex] = ''
+	    session[:hc] = ''
+	    session[:fg] = ''
+    end
 end

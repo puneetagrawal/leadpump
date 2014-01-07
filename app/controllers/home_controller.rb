@@ -1,7 +1,7 @@
 
 class HomeController < ApplicationController
 	require 'httparty'
-  skip_before_filter :authenticate_user!, :only => [:pass]
+  skip_before_filter :authenticate_user!, :only => [:pass,:print_pass]
 
   def index
    @picture_user = Picture.fetchCompanyLogo(current_user.id)
@@ -154,15 +154,15 @@ end
   end
 
   def pass
-    # user = User.find(params[:id])
-    # company = user.fetchCompany
-    # landpage = LandingPage.where(:user_id=>company.id).last
-    # @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
+    Company.removeAllPrintPassSessions(session)
+    user = User.find(params[:id])
+    company = user.fetchCompany
+    landpage = LandingPage.where(:user_id=>company.id).last
+    @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end
 
   def print_pass
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(params)
+    @down = "true"
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
     respond_to do |format|
       format.pdf do
@@ -176,6 +176,14 @@ end
     #               disposition: "attachment"
     #   end
     # end
+  end
+
+  def storepassinsession
+    session[params[:fn].to_sym] = params[:val]
+    msg = {"success"=>"dd"}
+    respond_to do |format|
+      format.json { render json: msg}
+    end
   end
 
   private

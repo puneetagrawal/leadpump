@@ -2,18 +2,20 @@
     <tr>
         <td>
             <label>Guest full name:</label>
-            <input class="input-large" type="text">
+            <input class="input-large" type="text" value="<%=@down.present? ? session[:fn] : ''%>" onblur="setsession('fn',$(this).val())">
             <label>Address:</label>
-            <input class="input-large" type="text">
+            <input class="input-large" type="text" value="<%=@down.present? ? session[:add] : ''%>"  onblur="setsession('add',$(this).val())">
             <label>Zip:</label>
-            <input class="input-small" type="text">
+            <input class="input-small" type="text" value="<%=@down.present? ? session[:zp] : ''%>" onblur="setsession('zp',$(this).val())">
             <label>Are you a member of a health club?</label>
-            <select class="input-small">
+            <select class="input-small hc_sl" onchange="setsession('hc',$(this).val())">
+                <option value="">-Select-</option>
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </select>
             <label>What are your fitness goals?</label>
-            <select class="input-large">
+            <select class="input-large fg_sl" onchange="setsession('fg',$(this).val())">
+                <option value="">Select Goal</option>
                 <option value="Lose weight">Lose weight</option>
                 <option value="Improve strength">Improve strength</option>
                 <option value="Cardiovascular">Cardiovascular</option>
@@ -28,13 +30,14 @@
         </td>
         <td>
             <label>Age:</label>
-            <input class="input-small" type="text">
+            <input class="input-small" type="text" value="<%=@down.present? ? session[:ag] : ''%>" onblur="setsession('ag',$(this).val())">
             <label>City:</label>
-            <input class="input-large" type="text">
+            <input class="input-large" type="text" value="<%=@down.present? ? session[:ct] : ''%>" onblur="setsession('ct',$(this).val())">
             <label>E-mail:</label>
-            <input class="input-large" type="text">
+            <input class="input-large" type="text" value="<%=@down.present? ? session[:em] : ''%>" onblur="setsession('em',$(this).val())">
             <label>Do you currently exercise?</label>
-            <select class="input-small">
+            <select class="input-small cex_sl" onchange="setsession('cex',$(this).val())">
+                <option value="">Select Excercise</option>
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
                 <option value="sometimes">Sometimes</option>
@@ -42,10 +45,10 @@
         </td>
         <td>
             <label>Phone:</label>
-            <input class="input-large" type="text">
+            <input class="input-large" type="text" value="<%=@down.present? ? session[:ph] : ''%>"  onblur="setsession('ph',$(this).val())">
             <label>State:</label>
-            <select class="input-large">
-                <option value="default" selected="">-Select-</option>
+            <select class="input-large st_sl" onchange="setsession('st',$(this).val())">
+                <option value="">Select State</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -105,12 +108,13 @@
                 <option value="PW">Palau</option>
             </select>
             <label>Guest of:</label>
-            <input class="input-large" type="text">
+            <input class="input-large" type="text" value="<%=@down.present? ? session[:gst] : ''%>" onblur="setsession('gst',$(this).val())"> 
             <label>How long have you considered a program?</label>
-            <select class="input-large">
-                <option value="m">0-6 months</option>
-                <option value="y">6m-1yr</option>
-                <option value="l">Longer</option>
+            <select class="input-large pg_sl" onchange="setsession('prg',$(this).val())">
+                <option value="">Select Program</option>
+                <option value="0-6 months">0-6 months</option>
+                <option value="6m-1yr">6m-1yr</option>
+                <option value="Longer">Longer</option>
             </select>
         </td>
     </tr>
@@ -127,3 +131,18 @@
     <li>3.You will be given a tour to discover our amenities.</li>
     <li>4.Valid for first time guest’s only.</li>
 </ol>
+
+<script>
+$(document).ready(function(){
+    $('.pg_sl').val('<%=session[:prg]%>');
+    $('.st_sl').val('<%=session[:st]%>');
+    $('.cex_sl').val('<%=session[:cex]%>');
+    $('.hc_sl').val('<%=session[:hc]%>');
+    $('.fg_sl').val('<%=session[:fg]%>');
+});
+function setsession(fn,val){
+    url = '/storepassinsession';
+    $.get(url, {fn:fn,val:val}, function (data) { 
+    });
+}
+</script>
