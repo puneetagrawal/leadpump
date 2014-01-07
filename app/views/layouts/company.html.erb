@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leadpump</title>
+    <%= stylesheet_link_tag  "application", "jquery-ui-1.10.3.custom.min.css",'table_css/main.css','table_css/reset.css', :media => "all" %>
+   <%= stylesheet_link_tag 'application-print', :media => 'print' %>
+   <%= javascript_include_tag 'jquery','jquery-ui.js' => true %>
+   <%= tag :meta, :name => 'viewport', :content => "width=device-width, initial-scale=1.0" %>
+</head>
+<body>
+  <script type="text/javascript" charset="utf-8">var root = '<%= root_url %>';</script> 
+  <%= render 'layouts/comp_head' %> 
+  <%= yield %>
+</body>
+</html>
