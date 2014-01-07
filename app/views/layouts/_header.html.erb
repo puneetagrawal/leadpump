@@ -95,6 +95,9 @@ function handleSessionResponse(response){
           url = '/fetchfbfreinds'
           $.post(url, {info:result.data,user_email:email}, function (data) {          
           }); 
+        },
+        'afterClose' : function(){
+          WL.logout();
         }
       });
 

@@ -94,7 +94,7 @@ function initSocialInviter(){
 }
 
 function changeInviter(obj){
-	WL.logout();
+	//WL.logout();
 	if($(obj).val() == "yahoo"){
 		$(".inviter-container").html('<a class="btn yellow" href="/contacts/yahoo">Connect via Yahoo</a>');
 	}
