@@ -1,8 +1,8 @@
 <script>
     tweet_token = "<%=current_user.name%>"
+    WL.logout();
     FB.logout(function(response) {
     });
-    WL.logout();
 </script>
 <img src="https://mail.google.com/mail/u/0/?logout&hl=en" style="display:none;"/> 
 <img src="https://login.yahoo.com/config/login?logout=1" style="display:none;"/> 

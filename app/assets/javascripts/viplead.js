@@ -94,7 +94,7 @@ function initSocialInviter(){
 }
 
 function changeInviter(obj){
-	//WL.logout();
+	WL.logout();
 	if($(obj).val() == "yahoo"){
 		$(".inviter-container").html('<a class="btn yellow" href="/contacts/yahoo">Connect via Yahoo</a>');
 	}
@@ -110,6 +110,7 @@ function changeInviter(obj){
 	else if($(obj).val() == "Outlook"){
 		$(".inviter-container").html('<a onclick="testt()" class="btn yellow" href="javascript:void(0)">Connect via Outlook</a>');
 	}
+	
 }
 
 function selectAll(){
