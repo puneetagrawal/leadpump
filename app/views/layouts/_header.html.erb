@@ -112,7 +112,19 @@ WL.init({ client_id: "000000004410F130", redirect_uri: "http://signin.leadpump.c
 function testt(){
   WL.login({ scope: ["wl.basic","wl.contacts_emails","wl.emails"] }).then(
       function(response) {
-          getContacts();
+        $.fancybox.open({
+          href: '#hotmailContactsPopup',
+          type: 'inline',
+          'beforeLoad' : function() {
+              var first_tr = '<tr><td colspan="2">' +
+                      '<label class="select_all"><input checked="checked" class="mr2" '+ 'id="select_all" name="select_all" type="checkbox" value="yes">'+'Select All</label></td>'+
+                        '<td><label class="select_none"><input class="mr2"'+
+                            'id="deselect_all"  name="deselect_all" type="checkbox"'+    'value="yes">Select None</label></td></tr>';
+              $("#hotmailcontacts .data-table tbody").html(first_tr);
+            }
+        });
+        console.log(">>>>>>>>>>>>>>");
+        getContacts();
       },
       function(response) {
           log("Could not connect, status = " + response.status);
@@ -122,10 +134,7 @@ function testt(){
 
   function getContacts() {
     email = '';
-    $.fancybox.open({
-      href: '#hotmailContactsPopup',
-      type: 'inline'
-    });
+    
     WL.api({ path: "/me", method: "GET" }).then(
         function(response) {
             email = response.emails.preferred;
