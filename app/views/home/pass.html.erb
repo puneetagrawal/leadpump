@@ -15,7 +15,7 @@
             <p>Name______________________________  Signature___________________________ Date_____________</p>
             <!-- <button class="pull-right" onclick="window.print();">Print Page</button> -->
             <p style="float:right">
-                <%= link_to "Print Page", print_pass_path(format: 'pdf'), :class=>"btn yellow"%>
+                <%= link_to "Print Page", print_pass_path(user: @company,format: 'pdf'), :class=>"btn yellow"%>
             <p>
             <!-- <p onclick="test2()" class="btn">download pdf</p> -->
         </div>
