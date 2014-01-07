@@ -2,6 +2,7 @@
 class HomeController < ApplicationController
 	require 'httparty'
   skip_before_filter :authenticate_user!, :only => [:pass,:print_pass,:storepassinsession]
+  layout 'company', only: [:pass,:print_pass]
 
   def index
    if !current_user.isAdmin
@@ -158,9 +159,10 @@ end
   end
 
   def pass
+    #@company = User.find(2)
     Company.removeAllPrintPassSessions(session)
     user = User.find(params[:id])
-    company = user.fetchCompany
+    @company = user.fetchCompany
     landpage = LandingPage.where(:user_id=>company.id).last
     @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end

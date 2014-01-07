@@ -1,14 +1,7 @@
         <div class="container">
-            <div class="passhead">
-                <h3 style="text-align:center">Express Guest Pass</h3>
-            </div>
             <h4>Save Time -</h4>
             <p><%=@dayscount%> days FREE To A Healthier You!, print the pass and sign it. Don’t forget to bring valid Identification with you. Present both to the front desk upon arrival to the club.</p>
-            <div class="passform">
-                <h4 style="text-align:center"><%=@dayscount%> Days FREE To A Healthier You!</h4> 
-                <%= render "/home/printPass" %>
-                
-                
+            <%= render "/home/printPass" %>
             <h4 style="text-align:center">WAIVER OF LIABILITY FOR GYM USE</h4>
             <p>I/We hereby understand and acknowledge that the training, programs and events held by the Gym I am attending with this guest pass may expose me to many inherent risks, including accidents, injury, illness, or even death. I/We assume all risk of injuries associated with participation including, but not limited to, falls, contact with other participants, the effects of the weather, including high heat and/or humidity, and all other such risks being known and appreciated by me.</p>
             <p>I/We hereby acknowledge my responsibility in communicating any physical and psychological concerns that might conflict with participation in activity. I/We acknowledge that I am physically fit and mentally capable of performing the physical activity I choose to participate in.</p>
