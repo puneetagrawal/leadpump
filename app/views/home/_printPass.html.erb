@@ -1,3 +1,6 @@
+<%if @down.present?%>
+    <%#=render "layouts/comp_head"%>
+<%end%>
 <div class="passform" style="border:1px solid green;border-radius:10px;">
     <div class="passhead">
         <h3 style="text-align:center">Express Guest Pass</h3>
@@ -12,7 +15,7 @@
             </td>
             <td>
                 <label style="width:50%;">Address:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.add : ''%>"  onblur="setsession('add',$(this).val())">
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.add : ''%>"  onblur="setsession('add',$(this).val())" style="widt:60%">
             </td>
             <td>
                 <label style="width:50%;">Zip:</label>
