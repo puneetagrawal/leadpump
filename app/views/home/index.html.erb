@@ -32,11 +32,12 @@
         </div>
     </div>
 </div>
-<!-- 
-<p>
-    <a href="javascript:void(0)" onclick="createplan()">Create Plan</a>
-</p>
- -->
+<script>
+function signUserOut() {
+    WL.logout();
+}
+</script>
+<button onclick='signUserOut()'>Click here to sign out!</button>
 
 <%=render "common_templates/popupContainer"%>
 
