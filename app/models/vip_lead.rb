@@ -67,6 +67,15 @@ class VipLead < ActiveRecord::Base
       return link
   end
 
+  def fetchAssociate(user)
+    associate = user.name
+    leads = UserLeads.includes(:lead).where("user_id=>? and lead.associate IS NOT NULL",2).last
+    if leads.present?
+      associate = leads.lead.associate
+    end
+    return associate
+  end
+
   protected
 
   def saveStatus

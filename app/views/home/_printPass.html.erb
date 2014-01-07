@@ -2,50 +2,29 @@
     <tr>
         <td>
             <label>Guest full name:</label>
-            <input class="input-large" type="text" value="<%=@down.present? ? session[:fn] : ''%>" onblur="setsession('fn',$(this).val())">
+            <input class="input-large" type="text" value="<%=@temp.present? ? @temp.fn : ''%>" onblur="setsession('fn',$(this).val())">
             <label>Address:</label>
-            <input class="input-large" type="text" value="<%=@down.present? ? session[:add] : ''%>"  onblur="setsession('add',$(this).val())">
+            <input class="input-large" type="text" value="<%=@temp.present? ? @temp.add : ''%>"  onblur="setsession('add',$(this).val())">
             <label>Zip:</label>
-            <input class="input-small" type="text" value="<%=@down.present? ? session[:zp] : ''%>" onblur="setsession('zp',$(this).val())">
+            <input class="input-small" type="text" value="<%=@temp.present? ? @temp.zp : ''%>" onblur="setsession('zp',$(this).val())">
             <label>Are you a member of a health club?</label>
-            <select class="input-small hc_sl" onchange="setsession('hc',$(this).val())">
-                <option value="">-Select-</option>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-            </select>
+            <%=select_tag "hc_sl", options_for_select(["No","Yes"],:selected=>"#{@temp.present? ? @temp.hc : ''}"),:prompt => "Select Club",:class=>"fg_sl",:onchange=>"setsession('hc',$(this).val())" %>
             <label>What are your fitness goals?</label>
-            <select class="input-large fg_sl" onchange="setsession('fg',$(this).val())">
-                <option value="">Select Goal</option>
-                <option value="Lose weight">Lose weight</option>
-                <option value="Improve strength">Improve strength</option>
-                <option value="Cardiovascular">Cardiovascular</option>
-                <option value="Stress management">Stress management</option>
-                <option value="Injury rehab">Injury rehab</option>
-                <option value="Improve stamina">Improve stamina</option>
-                <option value="General conditioning">General conditioning</option>
-                <option value="Overall health">Overall health</option>
-                <option value="Doctor recommended">Doctor recommended</option>
-                <option value="Other">General conditioning</option>
-            </select>
+            <%=select_tag "fg_sl", options_for_select(["Lose weight","Improve strength","Cardiovascular","Stress management","Injury rehab","Improve stamina","General conditioning","Overall health","Doctor recommended","General conditioning"],:selected=>"#{@temp.present? ? @temp.fg : ''}"),:prompt => "Select Goal",:class=>"fg_sl",:onchange=>"setsession('fg',$(this).val())" %>
         </td>
         <td>
             <label>Age:</label>
-            <input class="input-small" type="text" value="<%=@down.present? ? session[:ag] : ''%>" onblur="setsession('ag',$(this).val())">
+            <input class="input-small" type="text" value="<%=@temp.present? ? @temp.ag : ''%>" onblur="setsession('ag',$(this).val())">
             <label>City:</label>
-            <input class="input-large" type="text" value="<%=@down.present? ? session[:ct] : ''%>" onblur="setsession('ct',$(this).val())">
+            <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ct : ''%>" onblur="setsession('ct',$(this).val())">
             <label>E-mail:</label>
-            <input class="input-large" type="text" value="<%=@down.present? ? session[:em] : ''%>" onblur="setsession('em',$(this).val())">
+            <input class="input-large" type="text" value="<%=@temp.present? ? @temp.em : ''%>" onblur="setsession('em',$(this).val())">
             <label>Do you currently exercise?</label>
-            <select class="input-small cex_sl" onchange="setsession('cex',$(this).val())">
-                <option value="">Select Excercise</option>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-                <option value="sometimes">Sometimes</option>
-            </select>
+            <%=select_tag "cex_sl", options_for_select(["No","Yes","Sometimes"],:selected=>"#{@temp.present? ? @temp.cex : ''}"),:prompt => "Select Excercise",:class=>"cex_sl",:onchange=>"setsession('cex',$(this).val())" %>
         </td>
         <td>
             <label>Phone:</label>
-            <input class="input-large" type="text" value="<%=@down.present? ? session[:ph] : ''%>"  onblur="setsession('ph',$(this).val())">
+            <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ph : ''%>"  onblur="setsession('ph',$(this).val())">
             <label>State:</label>
             <select class="input-large st_sl" onchange="setsession('st',$(this).val())">
                 <option value="">Select State</option>
@@ -108,14 +87,9 @@
                 <option value="PW">Palau</option>
             </select>
             <label>Guest of:</label>
-            <input class="input-large" type="text" value="<%=@down.present? ? session[:gst] : ''%>" onblur="setsession('gst',$(this).val())"> 
+            <input class="input-large" type="text" value="<%=@temp.present? ? @temp.gst : ''%>" onblur="setsession('gst',$(this).val())"> 
             <label>How long have you considered a program?</label>
-            <select class="input-large pg_sl" onchange="setsession('prg',$(this).val())">
-                <option value="">Select Program</option>
-                <option value="0-6 months">0-6 months</option>
-                <option value="6m-1yr">6m-1yr</option>
-                <option value="Longer">Longer</option>
-            </select>
+            <%=select_tag "prg_sl", options_for_select(["0-6 months","6m-1yr","Longer"],:selected=>"#{@temp.present? ? @temp.prg : ''}"),:prompt => "Select Program",:class=>"cex_sl",:onchange=>"setsession('prg',$(this).val())" %>
         </td>
     </tr>
 </table>
@@ -133,13 +107,6 @@
 </ol>
 
 <script>
-$(document).ready(function(){
-    $('.pg_sl').val('<%=session[:prg]%>');
-    $('.st_sl').val('<%=session[:st]%>');
-    $('.cex_sl').val('<%=session[:cex]%>');
-    $('.hc_sl').val('<%=session[:hc]%>');
-    $('.fg_sl').val('<%=session[:fg]%>');
-});
 function setsession(fn,val){
     url = '/storepassinsession';
     $.get(url, {fn:fn,val:val}, function (data) { 
