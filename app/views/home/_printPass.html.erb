@@ -7,31 +7,64 @@
     <table class="table">          
         <tr>
             <td>
-                <label>Guest full name:</label>
+                <label style="width:50%;">Guest full name:</label>
                 <input class="input-large" type="text" value="<%=@temp.present? ? @temp.fn : ''%>" onblur="setsession('fn',$(this).val())">
-                <label>Address:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.add : ''%>"  onblur="setsession('add',$(this).val())">
-                <label>Zip:</label>
-                <input class="input-small" type="text" value="<%=@temp.present? ? @temp.zp : ''%>" onblur="setsession('zp',$(this).val())">
-                <label>Are you a member of a health club?</label>
-                <%=select_tag "hc_sl", options_for_select(["No","Yes"],:selected=>"#{@temp.present? ? @temp.hc : ''}"),:prompt => "Select Club",:class=>"fg_sl",:onchange=>"setsession('hc',$(this).val())" ,:style=>"width:215px !important;"%>
-                <label>What are your fitness goals?</label>
-                <%=select_tag "fg_sl", options_for_select(["Lose weight","Improve strength","Cardiovascular","Stress management","Injury rehab","Improve stamina","General conditioning","Overall health","Doctor recommended","General conditioning"],:selected=>"#{@temp.present? ? @temp.fg : ''}"),:prompt => "Select Goal",:class=>"fg_sl",:onchange=>"setsession('fg',$(this).val())",:style=>"width:215px !important;" %>
             </td>
             <td>
-                <label>Age:</label>
-                <input class="input-small" type="text" value="<%=@temp.present? ? @temp.ag : ''%>" onblur="setsession('ag',$(this).val())">
-                <label>City:</label>
+                <label style="width:50%;">Address:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.add : ''%>"  onblur="setsession('add',$(this).val())">
+            </td>
+            <td>
+                <label style="width:50%;">Zip:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.zp : ''%>" onblur="setsession('zp',$(this).val())">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="width:50%;">Age:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ag : ''%>" onblur="setsession('ag',$(this).val())">
+            </td>
+            <td>
+                <label style="width:50%;">City:</label>
                 <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ct : ''%>" onblur="setsession('ct',$(this).val())">
-                <label>E-mail:</label>
+            </td>
+            <td>
+                <label style="width:50%;">E-mail:</label>
                 <input class="input-large" type="text" value="<%=@temp.present? ? @temp.em : ''%>" onblur="setsession('em',$(this).val())">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="width:50%;">Phone:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ph : ''%>"  onblur="setsession('ph',$(this).val())">
+            </td>
+            <td>
+                <label style="width:50%;">Guest of:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.gst : ''%>" onblur="setsession('gst',$(this).val())"> 
+            </td>
+            <td>
+                <label>How long have you considered a program?</label>
+                <%=select_tag "prg_sl", options_for_select(["0-6 months","6m-1yr","Longer"],:selected=>"#{@temp.present? ? @temp.prg : ''}"),:prompt => "Select Program",:class=>"cex_sl",:onchange=>"setsession('prg',$(this).val())",:style=>"width:215px !important;" %>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>
                 <label>Do you currently exercise?</label>
                 <%=select_tag "cex_sl", options_for_select(["No","Yes","Sometimes"],:selected=>"#{@temp.present? ? @temp.cex : ''}"),:prompt => "Select Excercise",:class=>"cex_sl",:onchange=>"setsession('cex',$(this).val())",:style=>"width:215px !important;" %>
             </td>
             <td>
-                <label>Phone:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ph : ''%>"  onblur="setsession('ph',$(this).val())">
-                <label>State:</label>
+                <label>Are you a member of a health club?</label>
+                <%=select_tag "hc_sl", options_for_select(["No","Yes"],:selected=>"#{@temp.present? ? @temp.hc : ''}"),:prompt => "Select Club",:class=>"fg_sl",:onchange=>"setsession('hc',$(this).val())" ,:style=>"width:215px !important;"%>
+            </td>
+            <td>
+                <label>What are your fitness goals?</label>
+                <%=select_tag "fg_sl", options_for_select(["Lose weight","Improve strength","Cardiovascular","Stress management","Injury rehab","Improve stamina","General conditioning","Overall health","Doctor recommended","General conditioning"],:selected=>"#{@temp.present? ? @temp.fg : ''}"),:prompt => "Select Goal",:class=>"fg_sl",:onchange=>"setsession('fg',$(this).val())",:style=>"width:215px !important;" %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="width:50%;">State:</label>
                 <select class="input-large st_sl" onchange="setsession('st',$(this).val())" style="width:215px !important;">
                     <option value="">Select State</option>
                     <option value="AL">Alabama</option>
@@ -92,10 +125,6 @@
                     <option value="AS">American&nbsp;Samoa</option>
                     <option value="PW">Palau</option>
                 </select>
-                <label>Guest of:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.gst : ''%>" onblur="setsession('gst',$(this).val())"> 
-                <label>How long have you considered a program?</label>
-                <%=select_tag "prg_sl", options_for_select(["0-6 months","6m-1yr","Longer"],:selected=>"#{@temp.present? ? @temp.prg : ''}"),:prompt => "Select Program",:class=>"cex_sl",:onchange=>"setsession('prg',$(this).val())",:style=>"width:215px !important;" %>
             </td>
         </tr>
     </table>
