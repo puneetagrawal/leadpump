@@ -164,7 +164,7 @@ def acceptInvitation
       @token = params[:token]
       @source = params[:source]
       @sec = params[:sec]
-      @associate = Viplead.fetchAssociate(@ref)
+      @associate = VipLead.fetchAssociate(@ref)
       @gmailcontact = GmailFriend.where(:secret_token=>params[:sec], :user_id=>@ref.id).last
       if @gmailcontact.present? && !@gmailcontact.visited
         Stats.saveEvisited(@ref.id, @gmailcontact)
