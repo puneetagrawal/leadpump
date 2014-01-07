@@ -168,6 +168,7 @@ Leadpump::Application.routes.draw do
   match "/savevipsetings" => "company#savevipsetings"  
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
+  match "/storepassinsession" => "home#storepassinsession"
   
   match "/sendmail" => "home#sendmail"
   match "/send_invitation_social" => "home#send_invitation_social"
