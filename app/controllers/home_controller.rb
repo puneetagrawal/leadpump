@@ -151,7 +151,7 @@ end
   end
 
   def send_invitation_social
-    message="Please join Leadpump"
+    message="Please join Leadpump "
     email_id=params[:check_invite_email]
     logger.debug email_id.inspect
     mail_invitaion(message,email_id)
@@ -159,12 +159,12 @@ end
   end
 
   def pass
-    @company = User.find(2)
-    # Company.removeAllPrintPassSessions(session)
-    # user = User.find(params[:id])
-    # @company = user.fetchCompany
-    # landpage = LandingPage.where(:user_id=>@company.id).last
-    # @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
+    #@company = User.find(2)
+    Company.removeAllPrintPassSessions(session)
+    user = User.find(params[:id])
+    @company = user.fetchCompany
+    landpage = LandingPage.where(:user_id=>@company.id).last
+    @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end
 
   def print_pass
