@@ -8,7 +8,7 @@
   layout 'reflanding', only: [:acceptInvitation]
   
   def index
-    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "vip", current_user.id).paginate( :page => params[:page], :per_page => 100)
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "vip", current_user.id).paginate( :page => params[:page], :per_page => 10)
     respond_to do |format|
       format.js
       format.html
@@ -30,15 +30,15 @@
 
   def create
     associate = params["inputs"]["lead"]["associate"]
-    associate = associate ? current_user.name : ''
+    associate = associate ? associate : current_user.name
     error = ''
     (1..5).each do |vip| 
       if !params["inputs"]["vip_#{vip}"].blank?
         viplead = Lead.new(params["inputs"]["vip_#{vip}"])
         if viplead.valid?
           VipLead.saveLead(viplead,current_user,associate)
-        else
-          error = "Please correct your email or phone"
+        #else
+          #error = "Please correct your email or phone"
         end
       end
     end
