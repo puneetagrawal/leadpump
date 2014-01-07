@@ -1,7 +1,8 @@
 
 class HomeController < ApplicationController
 	require 'httparty'
-  skip_before_filter :authenticate_user!, :only => [:pass,:print_pass,:storepassinsession]
+  skip_before_filter :authenticate_user!, :only => [:pass,:print_pass,:storepassinsession,
+    :calculateAmount]
   layout 'company_layout', only: [:pass,:print_pass]
 
   def index
