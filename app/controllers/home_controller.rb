@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
 	require 'httparty'
   skip_before_filter :authenticate_user!, :only => [:pass,:print_pass,:storepassinsession]
-  layout 'company', only: [:pass,:print_pass]
+  layout 'company_layout', only: [:pass,:print_pass]
 
   def index
    if !current_user.isAdmin
