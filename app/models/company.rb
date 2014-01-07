@@ -46,18 +46,7 @@ class Company < ActiveRecord::Base
     end
 
     def self.removeAllPrintPassSessions(session)
-    	session[:fn] = ''
-    	session[:add] = ''
-    	session[:zp] = ''
-    	session[:ag] = ''
-    	session[:ct] = ''
-    	session[:em] = ''
-    	session[:ph] = ''
-    	session[:gst] = ''
-	    session[:prg] = ''
-	    session[:st] = ''
-	    session[:cex] = ''
-	    session[:hc] = ''
-	    session[:fg] = ''
+    	TemporaryData.first.update_attributes(:fn=>"",:add=>"",:zp=>"",:ag=>"",:ct=>"",
+    		:em=>"",:ph=>"",:gst=>"",:st=>"",:cex=>"",:hc=>"",:fg=>"")
     end
 end

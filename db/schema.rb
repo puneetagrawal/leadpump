@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140104075433) do
+ActiveRecord::Schema.define(:version => 20140107070248) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -325,6 +325,25 @@ ActiveRecord::Schema.define(:version => 20140104075433) do
     t.integer  "payment"
     t.string   "customer_id"
     t.string   "charge_id"
+  end
+
+  create_table "temporary_data", :force => true do |t|
+    t.string   "associate"
+    t.string   "fn"
+    t.string   "add"
+    t.string   "zp"
+    t.string   "ag"
+    t.string   "ct"
+    t.string   "em"
+    t.string   "ph"
+    t.string   "gst"
+    t.string   "prg"
+    t.string   "st"
+    t.string   "cex"
+    t.string   "hc"
+    t.string   "fg"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tweet_referrals", :force => true do |t|

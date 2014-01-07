@@ -1,16 +1,20 @@
 
 class HomeController < ApplicationController
 	require 'httparty'
-  skip_before_filter :authenticate_user!, :only => [:pass,:print_pass]
+  skip_before_filter :authenticate_user!, :only => [:pass,:print_pass,:storepassinsession]
 
   def index
-   @picture_user = Picture.fetchCompanyLogo(current_user.id)
-   @picture = Picture.new
-   @users = current_user.fetchCompanySalesUsers
-   @leads = Lead.fetchTotalLeads(current_user)
-   #saletodate = SaleProd.fetchProdDataTotal(current_user)
-   saletodate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
-   @gross_values = SaleProd.fetchGrossMap(saletodate)
+   if !current_user.isAdmin
+     @picture_user = Picture.fetchCompanyLogo(current_user.id)
+     @picture = Picture.new
+     @users = current_user.fetchCompanySalesUsers
+     @leads = Lead.fetchTotalLeads(current_user)
+     #saletodate = SaleProd.fetchProdDataTotal(current_user)
+     saletodate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
+     @gross_values = SaleProd.fetchGrossMap(saletodate)
+   else
+    redirect_to admin_index_path
+   end
  end
 
  def testsendgrid   
@@ -162,7 +166,8 @@ end
   end
 
   def print_pass
-    @down = "true"
+    @temp = TemporaryData.first
+    logger.debug(@temp.prg)
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
     respond_to do |format|
       format.pdf do
@@ -179,8 +184,9 @@ end
   end
 
   def storepassinsession
-    session[params[:fn].to_sym] = params[:val]
+    TemporaryData.first.update_attributes(params[:fn].to_sym => params[:val])
     msg = {"success"=>"dd"}
+    TemporaryData.first.prg
     respond_to do |format|
       format.json { render json: msg}
     end

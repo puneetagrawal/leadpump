@@ -172,7 +172,6 @@ class User < ActiveRecord::Base
   end
 
   def fetchPlan
-    
     plan = nil
     company = self.fetchCompany
     if company.present? && company.subscription.present? 

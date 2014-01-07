@@ -30,15 +30,15 @@
 
   def create
     associate = params["inputs"]["lead"]["associate"]
-    session[:associate] = associate ? associate : current_user.name
+    associate = associate ? current_user.name : ''
     error = ''
     (1..5).each do |vip| 
       if !params["inputs"]["vip_#{vip}"].blank?
         viplead = Lead.new(params["inputs"]["vip_#{vip}"])
         if viplead.valid?
           VipLead.saveLead(viplead,current_user,associate)
-        #else
-          #error = "Please correct your email or phone"
+        else
+          error = "Please correct your email or phone"
         end
       end
     end
@@ -164,6 +164,7 @@ def acceptInvitation
       @token = params[:token]
       @source = params[:source]
       @sec = params[:sec]
+      @associate = Viplead.fetchAssociate(@ref)
       @gmailcontact = GmailFriend.where(:secret_token=>params[:sec], :user_id=>@ref.id).last
       if @gmailcontact.present? && !@gmailcontact.visited
         Stats.saveEvisited(@ref.id, @gmailcontact)
