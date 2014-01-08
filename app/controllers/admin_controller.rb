@@ -327,7 +327,7 @@ end
       unless params[:leads].blank?
         @plan.plan.update_attributes(:lead_management=>params[:leads])
       end
-      msg = "Set Unlimited Successfully"
+      msg = "Updated Successfully"
     else
       msg = "Something went wrong. Please try later."
     end

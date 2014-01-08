@@ -39,16 +39,24 @@ function initLeadCreateOrUpdate(){
 	$(".container").on('click', '.leadDelete', function (){
 		deleteFancyBox(this);
 	});
-	$("#deleteContent").on('click', '.leadDeleteBtn', function (){
+	$("#deleteLeadPopup").on('click', '.leadDeleteBtn', function (){
 		deleteLead(this);
+	});
+	$(".container").on('click', '.assignLead', function (){
+		leadId = $(this).parent().attr('id').split("_")[1];
+		getAutoCompleteForLeadAssign(leadId);
+	});
+	$("#assignLeadSelect").on('change', '.leadAssignSelect', function (){
+		leadId = $("#leadid").val();
+		assignLeadToUser($(this).val(), leadId);
 	});
 	$(".container").on('click', '.task', function (){
 		openTask(this);
 	});
-	$("#assignLeadSelect").on('change', '.createLeadTask', function (){
-		leadId = $("#leadid").val();
-		assignLeadToUser($(this).val(), leadId);
-	});
+	// $(".container").on('change', '.createLeadTask', function (){
+	// 	leadId = $("#leadid").val();
+	// 	assignLeadToUser($(this).val(), leadId);
+	// });
 	$("#test").keyup(function(e){
 		if(e.keyCode == 13){
 			leadSearchFilter($(this).val())
@@ -64,25 +72,29 @@ function tasksave(){
 		date = $("#app_date").val();
 		time = $("#app_date").val()+" "+$("#hr").val()+":"+$("#min").val()+":"+$("#zon").val();
 		leadId = $("#leadid").val();
+		var btn = '<input type="button" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px" id="submitApoint" value="submit" name="submitApoint">'
 		if(task == ''){
 			alert("please schedule task");
+			$(this).html(btn);
 		}
 		else if(date == ''){
 			alert("please select date");
+			$(this).html(btn);
 		}
 		else if($("#hr").val() == ''){
 			alert("please schedule time");
+			$(this).html(btn);
 		}
 		else {
 			url = '/leads/saveappointment';
 			$.get(url, {task:task,date:date,time:time,leadId:leadId}, function (data) {
 				alert(data.msg);
-				$(this).html('<input type="button" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px" id="submitApoint" value="submit" name="submitApoint">');
+				$(this).html(btn);
 				$("#viewLead_"+leadId).find(".task").text("ReTask");
 				$.fancybox.close();
 			});
 		}
-		$(this).html('<input type="button" style="margin:0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52" id="submitApoint" value="submit" name="submitApoint">');
+		
 	});
 }
 
@@ -134,3 +146,25 @@ function leadSearchFilter(leadId){
 	$.get(url, {leadId:leadId}, function (data) {	
 	});
 }
+
+function getAutoCompleteForLeadAssign(id){	
+	$.fancybox.open({
+		href: '#leadAssignPopup',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/leads/leadassign';
+			$.post(url, {leadId:id}, function (data) {		
+			});
+		}
+	});
+}
+
+function assignLeadToUser(userId, leadId){
+	url = '/leads/leadassigntouser';
+	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
+		$("#emp_"+leadId).html(data.name);
+		$("#asignBtn_"+leadId).html('| <a class="leadAction assignLead" href="javascript:void(0)">Reassign</a>');
+		//$("#users_"+leadId).remove();	
+		$.fancybox.close();
+	});
+}	

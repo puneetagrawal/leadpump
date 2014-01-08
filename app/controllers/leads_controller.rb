@@ -81,7 +81,7 @@ def createtask
   @min = ''
   @zone = ''
   if @appointment.present?
-    @date = @appointment.app_date_time.strftime("%d-%m-%Y")
+    @date = @appointment.app_date_time.strftime("%m/%d/%Y")
     @task = @appointment.task
     @hour = @appointment.app_date_time.hour
     @min = @appointment.app_date_time.min
