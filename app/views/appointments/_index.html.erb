@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th class="app_index">Time</th>
-      <th class="app_index"> Date </th>
+      <th class="app_index"> Date(m/d/y) </th>
       <th class="app_index"> Submitted By </th>
       <th class="app_index"> Lead Name </th>
       <th class="app_index">Schedule </th>
@@ -14,7 +14,7 @@
         <tr id="viewLead_<%=a.lead_id%>" class="viewLead listView" data-action="leadpopup">
           <% if a.app_date_time.present?%>
             <td class="time"><%= a.app_date_time.strftime("%I:%M %p") %></td>
-            <td class="green_dark"> <%= a.app_date_time.strftime("%Y-%m-%d") %>  </td>
+            <td class="green_dark"> <%= a.app_date_time.strftime("%m/%d/%Y") %>  </td>
             <td class="blue_dark"> <%= a.user.name.humanize if a.user.present? %>  </td>
             <td class="green_dark"> <%= a.lead.name %> </td>
             <td class="blue_dark"> <%= a.task %> </td>

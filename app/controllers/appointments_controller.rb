@@ -1,39 +1,17 @@
 class AppointmentsController < ApplicationController
 
 def new
- case current_user.user_role.role_type.to_sym  
-      when :admin
-        @appointments = Appointment.where("app_date_time > ?", DateTime.now)  
-      when :company
-        users = Company.where(:company_admin_id => current_user.id).pluck(:company_user_id)
-        users << current_user.id
-        users = users.present? ? users.uniq : []
-        @appointments = Appointment.where(:user_id=>users).where("app_date_time > ?", DateTime.now)
-      when :employee
-        @appointments = Appointment.where(:user_id=>current_user.id).where("app_date_time > ?", DateTime.now)
-    end
+  @appointments = Appointment.fetchuserappointments(current_user, DateTime.now)
 end
 
 def index
  
 end
 
-def create
-  @appointment = Appointment.new(params[:appointment])
-  date = @appointment.app_date if @appointment.app_date.present?
-  time = Chronic.parse(@appointment.app_time).strftime("%H:%M") if @appointment.app_time.present?
-    if @appointment.save
-     	@appointment.update_attributes(:app_time => time, :app_date => date)
-      redirect_to appointment_new_path()
-    else
-      @appointments = Appointment.all
-        render :new
-    end
- end
-
- def filter_app
-  @appointments = Appointment.where(:app_date=> params[:appointment_date]).all
- end
+def filter_app
+  date = DateTime.strptime(params[:appointment_date], '%m/%d/%Y')
+  @appointments = Appointment.fetchuserappointmentFilter(current_user, date)
+end
 
 end
 
