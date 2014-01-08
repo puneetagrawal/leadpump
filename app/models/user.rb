@@ -188,11 +188,17 @@ class User < ActiveRecord::Base
 
   def fetchCompany
     company = self
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug(company.id)
     case self.user_role.role_type.to_sym
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
+      logger.debug(companyId.id)
       company = User.find_by_id(companyId.company_admin_id)
+      logger.debug(company)
+      logger.debug("****************")
     end
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     return company
   end
 

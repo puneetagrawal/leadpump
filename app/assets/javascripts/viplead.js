@@ -212,7 +212,11 @@ function executeSecondStep(name){
 	else{
 		$.fancybox.open({
 			href: '#socialinvitepopup',
-			type: 'inline'
+			type: 'inline',
+			'afterLoad' : function() {
+				$("#inviter_select").val('');
+				$(".inviter-container").html('');
+			}
 		});	
 	}
 }
