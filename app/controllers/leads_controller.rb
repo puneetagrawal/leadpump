@@ -189,15 +189,20 @@ end
 
 def saveappointment
   time = DateTime.strptime(params[:time], '%m/%d/%Y %I:%M:%p')
-  logger.debug(time)
+  date = DateTime.strptime(params[:date], '%m/%d/%Y')
   lead = params[:leadId] ? Lead.find(params[:leadId]) : nil
   msg = "Please try again."
   if lead.present?
     appoint = Appointment.find_by_lead_id(lead.id)
     if appoint.present?
-      appoint.update_attributes(:task=>params[:task],:app_date_time=>time,:app_date=>params[:date],:user_id=>current_user.id)
+      appoint.update_attributes(:task=>params[:task],:app_date_time=>time,:app_date=>date,:user_id=>current_user.id)
     else
-      apoint = Appointment.create(:task=>params[:task],:app_date=>params[:date],:app_date_time=>time,:lead_id=>lead.id, :user_id=>current_user.id)  
+      apoint = Appointment.new(:task=>params[:task],:app_date=>date,:app_date_time=>time,:lead_id=>lead.id, :user_id=>current_user.id)  
+      if apoint.save
+        logger.debug(">>>>>>>>>>>>>>>>>>>>>")
+      else
+        logger.debug(apoint.errors.full_messages)
+      end      
     end
     msg = "Appointment schedule successfully"
   end
