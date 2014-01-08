@@ -56,6 +56,7 @@ $(document).ready(function(){
 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
 		url = '/mallremove'
 		$.get(url, {id:dltid}, function (data) {
+			$(this).html('Delete');
 			alert(data.msg);
 			$("#mallitem_"+dltid).remove();
 			$.fancybox.close()
@@ -67,7 +68,10 @@ $(document).ready(function(){
 		dltid = id;
 		$.fancybox.open({
 			href: '#deleteMallPopup',
-			type: 'inline'
+			type: 'inline',
+			'beforeLoad' : function(){
+				$(".mallBtn").html('Delete');
+			}
 		});
 	});
 
@@ -369,12 +373,12 @@ function admincreateuser(obj){
 	email = $("#email").val();
 	if(company == '' || name == '' || email == ''){
 		$(".error").html("All fields are required.");
-		$(obj).html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+		$(obj).html('<input type="button" class="btn yellow" value="Create">');
 	}
 	else{
 		url = '/createUser';
 		$.get(url, {email:email,company:company,name:name}, function (data) { 
-			$(obj).html('<input type="button" class="btn yellow" value="Create" name="submitApoint">');
+			$(obj).html('<input type="button" class="btn yellow" value="Create">');
 		});
 	}
 }

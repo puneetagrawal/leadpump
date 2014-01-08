@@ -198,11 +198,6 @@ function fillPopupContent(obj) {
 }
 
 function initialization(){
-	$(".container").on('click', '.assignLead', function (){
-		leadId = $(this).parent().attr('id').split("_")[1];
-		getAutoCompleteForLeadAssign(leadId);
-	});
-
 	$('input[name="paymentOptionRadio"]').change(function(){
 		if($(this).attr('class') == 'creditCard'){
 			$("#creditCardDiv").show();
@@ -258,10 +253,7 @@ function initialization(){
 		$.fancybox.close();
 	});
 
-	$("#assignLeadSelect").on('change', '.leadAssignSelect', function (){
-		leadId = $("#leadid").val();
-		assignLeadToUser($(this).val(), leadId);
-	});
+	
 
 	$(".submitlogo").click(function (){
 		pic_uid = '';
@@ -332,27 +324,9 @@ function caclulateAmount(){
 	});
 }
 
-function getAutoCompleteForLeadAssign(id){	
-	$.fancybox.open({
-		href: '#leadAssignPopup',
-		type: 'inline',
-		'beforeLoad' : function() {
-			url = '/leads/leadassign';
-			$.post(url, {leadId:id}, function (data) {		
-			});
-		}
-	});
-}	
 
-function assignLeadToUser(userId, leadId){
-	url = '/leads/leadassigntouser';
-	$.post(url, {leadId:leadId, userId:userId}, function (data) {	
-		$("#emp_"+leadId).html(data.name);
-		$("#asignBtn_"+leadId).html('| <a class="leadAction assignLead" href="javascript:void(0)">Reassign</a>');
-		$("#users_"+leadId).remove();	
-		$.fancybox.close();
-	});
-}
+
+
 
 // function changeleadstatus(id){
 // 	id = id.split("_")[1]
