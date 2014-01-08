@@ -193,9 +193,9 @@ class User < ActiveRecord::Base
     case self.user_role.role_type.to_sym
     when :employee
       companyId = Company.find_by_company_user_id(self.id)
-      logger.debug(companyId.id)
+      logger.debug(companyId.company_admin_id)
       company = User.find_by_id(companyId.company_admin_id)
-      logger.debug(company)
+      logger.debug(company.id)
       logger.debug("****************")
     end
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
