@@ -100,7 +100,7 @@ $(document).ready(function(){
 		//	vipleadSearchAdminFilter($(this).val());
 		//}
 	//});
-	
+
 	//gaurav
 	$("#vip_to_date").unbind();
 	$(document).on("change", "#vip_to_date", function (){
@@ -235,109 +235,108 @@ $(document).ready(function(){
 //		}
 //	});
 
-	$(document).on("click", ".planedit", function (){
-		id = $(this).closest('tr').attr('id');
-		plid = id.split("_")[1];
-		$.fancybox.open({
-			href: '#editPlanPopup',
-			type: 'inline',
-			'beforeLoad' : function() {
-				url = '/editplanbyadmin';
-				$.get(url, {planid:plid}, function (data) {
-				});
-			}
-		});
+$(document).on("click", ".planedit", function (){
+	id = $(this).closest('tr').attr('id');
+	plid = id.split("_")[1];
+	$.fancybox.open({
+		href: '#editPlanPopup',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/editplanbyadmin';
+			$.get(url, {planid:plid}, function (data) {
+			});
+		}
 	});
+});
 
-	$(document).on("click", "#setunlimited", function (){
-		$.fancybox.open({
-			href: '#editPlanPopup',
-			type: 'inline',
-			'beforeLoad' : function() {
-				url = '/setunlimited';
-				$.get(url, {plid:plid}, function (data) { 
-					$("#leads_"+plid).html("unlimited");
-					alert(data.msg);
-					$.fancybox.close();
-				});
-			}
-		});
-	});	
-	$(document).on("click", ".editplanbtn", function (){
-		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
-		url = '/updateplan';
-		leads = $("#leads").val();
-		price = $("#price").val();
-		$.get(url, {plid:plid,leads:leads,price:price}, function (data) { 
-			alert(data.msg);
-			$("#price_"+plid).html(price);
-			$("#leads_"+plid).html(leads);
-			$(this).html('');
-			$.fancybox.close();
-		});
-	});	
+$(document).on("click", "#setunlimited", function (){
+	$.fancybox.open({
+		href: '#editPlanPopup',
+		type: 'inline',
+		'beforeLoad' : function() {
+			url = '/setunlimited';
+			$.get(url, {plid:plid}, function (data) { 
+				$("#leads_"+plid).html("unlimited");
+				alert(data.msg);
+				$.fancybox.close();
+			});
+		}
+	});
+});	
+$(document).on("click", ".editplanbtn", function (){
+	$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+	url = '/updateplan';
+	leads = $("#leads").val();
+	price = $("#price").val();
+	$.get(url, {plid:plid,leads:leads,price:price}, function (data) { 
+		alert(data.msg);
+		$("#price_"+plid).html(price);
+		$("#leads_"+plid).html(leads);
+		$(this).html('');
+		$.fancybox.close();
+	});
+});	
 
-	$("#ajax_paginate").find("a").each(function(){
-		var linkElement = $(this);
-		var paginationURL = linkElement.attr("href");
-		linkElement.attr({"url":paginationURL, "href": "#"});
-		linkElement.click(function(){
-			$("#user_record").html('<img src="/images/loader.gif">');
-			$("#user_record").load($(this).attr('url'));
-			return false;
-		});
-	});	
+$("#ajax_paginate").find("a").each(function(){
+	var linkElement = $(this);
+	var paginationURL = linkElement.attr("href");
+	linkElement.attr({"url":paginationURL, "href": "#"});
+	linkElement.click(function(){
+		$("#user_record").html('<img src="/images/loader.gif">');
+		$("#user_record").load($(this).attr('url'));
+		return false;
+	});
+});	
 
-	$(document).on('change', "#plan_id", function () {
-   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-        var plan_id = $(this).val();
-        var userno = $('#select_user_entry').val();
-        var userid = $('#user_id').val();
-		    $.ajax({
+$(document).on('change', "#plan_id", function () {
+	$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+	var plan_id = $(this).val();
+	var userno = $('#select_user_entry').val();
+	var userid = $('#user_id').val();
+	$.ajax({
 		    //url: "/admin/user_per_plan",
 		    url: "/admin/adminfilter",
 		    data: { 
-		     "plan_id": plan_id, "userno": userno, "userid": userid
- 		   }   
- 		});   
-    });
-  
-    $(document).on('change', "#user_id", function () {
-   		$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
-       	var userid = $(this).val();
-       	var plan_id = $('#plan_id').val();
-        var userno = $('#select_user_entry').val();
-		   $.ajax({
+		    	"plan_id": plan_id, "userno": userno, "userid": userid
+		    }   
+		});   
+});
+
+$(document).on('change', "#user_id", function () {
+	$("#user_record").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">');
+	var userid = $(this).val();
+	var plan_id = $('#plan_id').val();
+	var userno = $('#select_user_entry').val();
+	$.ajax({
 		    //url: "/admin/user_per_cmpy",
 		    url: "/admin/adminfilter",
 		    data: { 
-		     "plan_id": plan_id, "userno": userno, "userid": userid
- 		   }   
- 		});   
-    });
+		    	"plan_id": plan_id, "userno": userno, "userid": userid
+		    }   
+		});   
+});
 
-	$("#select_user_entry").change(function () {
-       var userno = $(this).val(); 
-       var plan_id = $('#plan_id').val();
-        var userid = $('#user_id').val();
-		   $.ajax({
+$("#select_user_entry").change(function () {
+	var userno = $(this).val(); 
+	var plan_id = $('#plan_id').val();
+	var userid = $('#user_id').val();
+	$.ajax({
 		    //url: "/admin/user_per_cmpy",
 		    url: "/admin/adminfilter",
 		    data: { 
-		     "plan_id": plan_id, "userno": userno, "userid": userid
- 		   }   
- 		});   
-    });	
+		    	"plan_id": plan_id, "userno": userno, "userid": userid
+		    }   
+		});   
+});	
 
-   $(document).on("click", ".pagination a", function(){   
-   	var search_val = $("#select_user_entry").val(); 
-   	console.log("ajax");
-		   $.ajax({
-		    data: { 
-		     "search_val": search_val
- 		   }
- 		});  
-    });
+$(document).on("click", ".pagination a", function(){   
+	var search_val = $("#select_user_entry").val(); 
+	$.ajax({
+		data: { 
+			"search_val": search_val
+		}
+	});  
+});
 });
 
 function admincreateuserpopup(){

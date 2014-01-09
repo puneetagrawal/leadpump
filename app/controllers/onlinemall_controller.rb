@@ -2,9 +2,9 @@ class OnlinemallController < ApplicationController
   def index
     @onlinemall = Onlinemall.new
     if current_user.isAdmin
-      @onlinemalls = Onlinemall.order("created_at DESC")
+      @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC")
     elsif current_user.isCompany
-    	@onlinemalls = Onlinemall.order("created_at DESC").where(:user_id=>[current_user.id,1])
+    	@onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC").where(:user_id=>[current_user,1])
     else
       redirect_to home_index_path
     end
@@ -19,7 +19,7 @@ class OnlinemallController < ApplicationController
 	  		@onlinemall.save
 	  		mallpic.onlinemall_id = @onlinemall.id
 	  		mallpic.save
-        if current_user.role.id == 2
+        if current_user.isCompany
           Companymallitem.create(:onlinemall_id=>@onlinemall.id,:user_id=>current_user.id)
         end
 	  		flash[:notice] = "Mall item added successfully"

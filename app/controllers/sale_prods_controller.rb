@@ -4,6 +4,7 @@ class SaleProdsController < ApplicationController
     @sale_tody = SaleProd.fetchProdDataToDay(current_user, Date.today)
     @gross_values = SaleProd.fetchGrossPaper(@sale_todate, @sale_tody)
     @appointment = SaleProd.fetchAppointment(Date.today, current_user)
+    #@total = @appointment + @gross_values["g_tody".to_sym]["total".to_sym]
     @date = Date.today
   end
 

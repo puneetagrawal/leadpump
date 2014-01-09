@@ -142,7 +142,7 @@ def filterbyname
     hash = Lead.fetchLeadList(current_user) 
     @leads = hash['leads'.to_sym]
   else
-    @leads = UserLeads.where(:user_id=>params[:userId])
+    @leads = UserLeads.includes(:lead).where(:user_id=>params[:userId])
   end
   respond_to do |format|
     format.js 
@@ -155,7 +155,7 @@ def leadsearchfilter
   leadlist = leadlist.pluck(:lead_id)
   like = "%#{params[:leadId]}%"
   lead = Lead.where("name ilike ? or lname ilike ? or lead_source ilike ?", like,like,like).where(:id=>leadlist) 
-  @leads = UserLeads.select("distinct(lead_id)").where(:lead_id=>lead)
+  @leads = UserLeads.includes(:lead).select("distinct(lead_id)").where(:lead_id=>lead)
   respond_to do |format|
     format.js 
   end
