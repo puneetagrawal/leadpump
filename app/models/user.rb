@@ -132,6 +132,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.deleteusersfromcompany(companyusers)
+    users = Company.where(:company_user_id=>companyusers)
+    if users.present?
+      users.each do|company|
+        logger.debug("HHHHHHHHHHHHHHHHHHHH")
+        logger.debug(company.company_user_id)
+        #company.destroy
+      end
+    end
+  end
+
   def getCompanyEmail
     email = self.email
     case self.user_role.role_type.to_sym
