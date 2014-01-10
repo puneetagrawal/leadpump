@@ -7,7 +7,7 @@ def index
 end
 
 def user
-  @users = User.where("role_id != ?", 1).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+  @users = User.includes(:subscription).includes(:role).where("role_id != ?", 1).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
   @admin = User.where(:role_id => 1).count
   @company = User.where(:role_id => 2).count
   @employee = User.where(:role_id => 3).count
