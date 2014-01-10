@@ -102,15 +102,14 @@ end
   end
 
   def self.assigndeletedleadtocompany(user)
-    company = User.find(1)
     if user.isEmployee
       company = user.fetchCompany
-    end
-    userleads = UserLeads.where(:user_id=>user.id)
-    if userleads.present?
-      userleads.each do |lead|
-        lead.user_id = company.id
-        lead.save
+      userleads = UserLeads.where(:user_id=>user.id)
+      if userleads.present?
+        userleads.each do |lead|
+          lead.user_id = company.id
+          lead.save
+        end
       end
     end
   end

@@ -64,4 +64,5 @@ group :development do
 	gem 'rack-mini-profiler'
 	gem "bullet"
 	gem 'debugger'
+	gem "rails_best_practices"
 end

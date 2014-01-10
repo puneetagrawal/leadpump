@@ -112,14 +112,13 @@ end
 def deleteRowByajax
   if((params[:uri].include? 'company') || (params[:uri].include? 'admin'))
    object = User.find(params[:leadId])
-   company = Company.where(:company_user_id=>object.id)
-   if object.isCompany
-    company = Company.where(:company_admin_id=>object.id)
-   end
-   Lead.assigndeletedleadtocompany(object)
-   Appointment.assigndeletedappointmenttocompany(object)
-   OptInLead.assignOptinToAdmin(object)
+   company = User.fetchCompanyUserList(object)
+   company << object
+   company = company.uniq
    if company.present?
+    Lead.assigndeletedleadtocompany(object)
+    Appointment.assigndeletedappointmenttocompany(object)
+    OptInLead.assignOptinToAdmin(object)
     company.each do|user|
       user.destroy
     end
