@@ -48,6 +48,7 @@ class CompanyController < ApplicationController
 
   def update
     @userUpdate = User.find(params[:id]) 
+    @picture = Picture.new()
     if @userUpdate.update_attributes(params["inputs"]["user"])
       @user = User.new
     else

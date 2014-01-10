@@ -9,6 +9,11 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/migrate_sql
+/public/system/
+/test/fixtures/temporary_data.yml
+/test/unit/temporary_data_test.rb
+/app/views/home/pass11.html.erb
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

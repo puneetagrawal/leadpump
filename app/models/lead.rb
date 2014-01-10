@@ -59,7 +59,7 @@ def self.fetchLeadList(user)
       userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
       users = userList
       userList << user.id
-      leads = UserLeads.where(:user_id => userList)
+      leads = UserLeads.includes(:lead).where(:user_id => userList)
       users = users.collect{|user| User.find(user)}
     when :employee
       leads = UserLeads.includes(:lead).where(:user_id => user.id)

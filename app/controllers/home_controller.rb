@@ -7,8 +7,6 @@ class HomeController < ApplicationController
 
   def index
    if !current_user.isAdmin
-     @picture_user = Picture.fetchCompanyLogo(current_user.id)
-     @picture = Picture.new
      @users = current_user.fetchCompanySalesUsers
      @leads = Lead.fetchTotalLeads(current_user)
      #saletodate = SaleProd.fetchProdDataTotal(current_user)

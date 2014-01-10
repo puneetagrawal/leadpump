@@ -38,14 +38,14 @@ class Appointment < ActiveRecord::Base
   def self.fetchuserappointments(user,date)
       case user.user_role.role_type.to_sym  
       when :admin
-        appointments = Appointment.where("app_date_time > ?", date)  
+        appointments = Appointment.includes(:lead).includes(:user).where("app_date_time > ?", date)  
       when :company
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users << user.id
         users = users.present? ? users.uniq : []
-        appointments = Appointment.where(:user_id=>users).where("app_date_time > ?", date)
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>users).where("app_date_time > ?", date)
       when :employee
-        appointments = Appointment.where(:user_id=>user.id).where("app_date_time > ?", date)
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>user.id).where("app_date_time > ?", date)
     end
     return appointments
   end
@@ -53,14 +53,14 @@ class Appointment < ActiveRecord::Base
   def self.fetchuserappointmentFilter(user,date)
       case user.user_role.role_type.to_sym  
       when :admin
-        appointments = Appointment.where("app_date = ?", date)  
+        appointments = Appointment.includes(:lead).includes(:user).where("app_date = ?", date)  
       when :company
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users << user.id
         users = users.present? ? users.uniq : []
-        appointments = Appointment.where(:user_id=>users).where("app_date = ?", date)
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>users).where("app_date = ?", date)
       when :employee
-        appointments = Appointment.where(:user_id=>user.id).where("app_date = ?", date)
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>user.id).where("app_date = ?", date)
     end
     return appointments
   end

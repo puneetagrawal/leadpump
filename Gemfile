@@ -54,6 +54,14 @@ gem "omniauth-google-oauth2"
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
 gem 'chronic', :require => 'chronic'
 gem 'sendgrid'
+gem 'unicorn'
+gem 'memcache-client'
+gem "lol_dba"
+
+group :development do
+	gem 'rack-mini-profiler'
+	gem "bullet"
+	gem 'debugger'
+end
