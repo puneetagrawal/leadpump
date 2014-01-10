@@ -112,14 +112,21 @@ end
 def deleteRowByajax
   if((params[:uri].include? 'company') || (params[:uri].include? 'admin'))
    object = User.find(params[:leadId])
-   company = User.fetchCompanyUserList(object)
+   userss = []
+   company = []
    company << object
-   company = company.uniq
-   if company.present?
     Lead.assigndeletedleadtocompany(object)
     Appointment.assigndeletedappointmenttocompany(object)
     OptInLead.assignOptinToAdmin(object)
+   if object.isCompany
+    company = User.fetchCompanyUserList(object)
+   end
+   if company.present?
     company.each do|user|
+      logger.debug("$$$$$$$$$$$")
+      logger.debug(user.id)
+      cmp = Company.where(:company_user_id=>user).last
+      cmp.destroy
       user.destroy
     end
   end
@@ -137,6 +144,7 @@ if object.destroy
 else
   msg = {"msg"=>"successfull"}
 end
+#msg = {"msg"=>"successfull"}
 respond_to do |format|
   format.json { render json: msg}
 end
