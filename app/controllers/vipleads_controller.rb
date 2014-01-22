@@ -184,14 +184,15 @@ def savereferral
   url = ""
   msg = ""
   if user.checkLeadLimit
-    opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>params[:source]).last
+    opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>"LEADPUMP optin").last
     msg = "Sorry! your link is invalid or expired."
     if !opt_in_lead.present?
-      lead  = Lead.new(:name=>params[:name],:lname=>params[:lname],:email=>params[:email],:lead_source=>params[:source],:phone=>params[:phone])
+      lead  = Lead.new(:name=>params[:name],:lname=>params[:lname],:email=>params[:email],:lead_source=>"LEADPUMP optin",:phone=>params[:phone])
       if lead.save
         UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
         user.saveLeadCount
-        OptInLead.create(:name=>params[:name],:source=>params[:source], :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
+        LeadNotes.create(:lead_id=>lead.id,:notes=>"",:time_stam=>DateTime.now)
+        OptInLead.create(:name=>params[:name],:source=>"LEADPUMP optin", :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
         if params[:source] == "gmail" && !params[:sec].blank?
           msg = Stats.saveEconverted(user.id, params[:sec])
         end
@@ -213,8 +214,8 @@ def savereferral
 end
 
 def mallitems
-  #user = User.where(:token=>params[:id]).last
-  user = User.find(2)
+  user = User.where(:token=>params[:id]).last
+  #user = User.find(2)
   logger.debug(user.id)
   @companymallitem = user.fetchcompanymallitem
   logger.debug(@companymallitem)

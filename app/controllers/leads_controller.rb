@@ -26,6 +26,7 @@ class LeadsController < ApplicationController
       if @lead.save
         user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
         user_lead.save
+        LeadNotes.create(:lead_id=>@lead.id,:notes=>params[:lead][:notes],:time_stam=>DateTime.now)
         current_user.saveLeadCount
         flash[:notice] = "New lead created successfully"
         redirect_to new_lead_path
@@ -48,6 +49,7 @@ class LeadsController < ApplicationController
   def update  
     @leadUpdate = Lead.find(params[:id]) 
     if @leadUpdate.update_attributes(params["inputs"]["lead"])
+      LeadNotes.create(:lead_id=>@leadUpdate.id,:notes=>params["inputs"]["lead"]["notes"],:time_stam=>DateTime.now)
       @lead = Lead.new
     end
     respond_to do |format|
@@ -199,9 +201,7 @@ def saveappointment
     else
       apoint = Appointment.new(:task=>params[:task],:app_date=>date,:app_date_time=>time,:lead_id=>lead.id, :user_id=>current_user.id)  
       if apoint.save
-        logger.debug(">>>>>>>>>>>>>>>>>>>>>")
       else
-        logger.debug(apoint.errors.full_messages)
       end      
     end
     msg = "Appointment schedule successfully"
