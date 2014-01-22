@@ -24,7 +24,7 @@
             <p><%= lead.label "# of days:" %><%= lead.select :no_of_days, (1 .. 30), :prompt => "Select No. Of Days" %></p>
             <p><%= lead.label "Potential enrollment $:" %><%= lead.text_field :enrolment_value %></p>
             <p><%= lead.label "Potential dues $:" %><%= lead.text_field :dues_value %></p>
-            <p><%= lead.label "Notes:" %><%= lead.text_field :notes %></p>
+            <p><%= lead.label "Notes:" %><%= lead.text_field :notes,  %></p>
             <p class="submitLeadBtn">
              <%if current_user.checkLeadLimit %>   
                 <input type="submit" class="btn yellow" value="Enter Lead"/>

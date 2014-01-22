@@ -8,7 +8,7 @@
             <p><%= label_tag "Email:" %><%= text_field_tag :email, @lead.email %></p>
             <p><%= label_tag "Source:" %><%= text_field_tag :lead_source, @lead.lead_source %></p>
             <p><%= label_tag "Status:" %><%= text_field_tag :active, @lead.active %></p>
-            <p><%= label_tag "Notes:" %><%= text_field_tag :notes, @lead.notes %></p>
+            <p><%= gettimestams(@lead) %></p>
             <p><input type="button" class="btn yellow fancybox_close" value="Cancel"/></p>
             <div class="clear"></div>
         </div>        

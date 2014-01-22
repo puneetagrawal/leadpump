@@ -21,7 +21,7 @@
                 <tr><td># of days</td><td>-</td><td><%=@lead.no_of_days%></td></tr>
                 <tr><td>Potential-Enrolment</td><td>-</td><td><%=@lead.enrolment_value%></td></tr>
                 <tr><td>Potential-Dues</td><td>-</td><td><%=@lead.dues_value%></td></tr>
-                <tr><td>Notes</td><td>-</td><td><%=@lead.notes%></td></tr>
+                <%= gettimestams(@lead) %>
             </tbody>
         </table>
     </div>

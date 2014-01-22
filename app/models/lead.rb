@@ -4,6 +4,7 @@ class Lead < ActiveRecord::Base
   after_create :savestatus
 
   has_many :appointments , :dependent => :destroy
+  has_many :lead_notes , :dependent => :destroy, :class_name => "LeadNotes"
   validates :name, :presence => true
   validates :email, :presence => true, :if => Proc.new { |foo| foo.phone.blank? } 
   #validates :phone, :presence => true, :if => Proc.new { |foo| foo.email.blank? ? true :}
