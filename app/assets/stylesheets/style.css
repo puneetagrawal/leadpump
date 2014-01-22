@@ -1357,10 +1357,11 @@ header h2 a {
     position: absolute;
     top: 5px;
     left: 5px;
+    width: 100%;
 }
 .salesRepUser .salesPrsn {
-    width: 45px;
-    height: 45px;
+    width: 88px;
+    height: 88px;
     float: left;
     margin-right: 10px;
 }
@@ -1421,6 +1422,7 @@ header h2 a {
 
 .total_leads .gauge {
     margin-bottom: 10px;
+    margin-left: 5px;
 }
 .total_leads span.gauge_arrow {
     display: inline;
@@ -2108,4 +2110,9 @@ header .container {
 }
 .mh60{
     min-height: 60px;
+}
+
+.user78{
+    height: 78px;
+    width: 78px;
 }

@@ -6,11 +6,12 @@
 <%= hidden_field_tag :mallid%>
 <p><%= mall.label "Description:" %>
 	<%#= mall.cktext_area :description, :class => "someclass", :ckeditor => {:language => "uk"}%>
-	<%= mall.text_area :description, :class => "ckeditor" %>
+	<%= mall.text_area :description, :class => "ckeditor" %></p>
 <%= mall.fields_for :mallpic, Mallpic.new do |pic| %>
-	<label>Image:</label><%= pic.file_field :avatar %>	
+	<p><label>Image:</label><%= pic.file_field :avatar %>	</p>
 <% end %>
-<label>File:</label><%= mall.file_field :file %>	
+<p><label>File:</label><%= mall.file_field :file %>	<br />
+<span style="color:#E8C943;"> File format has to be PDF </p>
 <p class="submitmallbtn"><input class="btn yellow mallsubmit" type="button" value="Add Mall Item"/></p>
 <div class="clear"></div>
 <%end%>

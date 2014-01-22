@@ -165,12 +165,12 @@ end
   end
 
   def pass
-    #@company = User.find(2)
-    Company.removeAllPrintPassSessions(session)
-    user = User.find(params[:id])
-    @company = user.fetchCompany
-    landpage = LandingPage.where(:user_id=>@company.id).last
-    @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
+    @company = User.find(2)
+    # Company.removeAllPrintPassSessions(session)
+    # user = User.find(params[:id])
+    # @company = user.fetchCompany
+    # landpage = LandingPage.where(:user_id=>@company.id).last
+    # @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end
 
   def print_pass
