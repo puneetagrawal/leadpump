@@ -112,11 +112,11 @@ class SaleProd < ActiveRecord::Base
   end
 
   def self.fetchAvg(amount)
-  	avg =  amount.to_f/Date.today.day
+  	avg =  (amount.to_f/Date.today.day).round(2)
   end
 
   def self.fetchProjection(amount)
-  	return Date.today.end_of_month.day * amount
+  	return (Date.today.end_of_month.day * amount).round(2)
   end
   
 end

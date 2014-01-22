@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107070248) do
+ActiveRecord::Schema.define(:version => 20140122083032) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -108,9 +108,9 @@ ActiveRecord::Schema.define(:version => 20140107070248) do
   create_table "landing_pages", :force => true do |t|
     t.string   "land_type"
     t.string   "temp_name"
-    t.string   "header_text"
-    t.string   "intro_text"
-    t.string   "mission_text"
+    t.text     "header_text"
+    t.text     "intro_text"
+    t.text     "mission_text"
     t.string   "header_color"
     t.string   "bg_color"
     t.string   "no_of_days"
@@ -225,9 +225,9 @@ ActiveRecord::Schema.define(:version => 20140107070248) do
   end
 
   create_table "previews", :force => true do |t|
-    t.string   "header_text"
-    t.string   "intro_text"
-    t.string   "mission_text"
+    t.text     "header_text"
+    t.text     "intro_text"
+    t.text     "mission_text"
     t.string   "header_color"
     t.string   "bg_color"
     t.string   "no_of_days"
@@ -290,9 +290,9 @@ ActiveRecord::Schema.define(:version => 20140107070248) do
   end
 
   create_table "social_messages", :force => true do |t|
-    t.string   "facebookMessage"
-    t.string   "twitterMessage"
-    t.string   "gmailMessage"
+    t.text     "facebookMessage"
+    t.text     "twitterMessage"
+    t.text     "gmailMessage"
     t.integer  "company_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -394,6 +394,7 @@ ActiveRecord::Schema.define(:version => 20140107070248) do
     t.boolean  "reset_status",           :default => false
     t.boolean  "vipon"
     t.integer  "vipcount"
+    t.string   "associate"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

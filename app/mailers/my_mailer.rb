@@ -8,7 +8,7 @@ class MyMailer < Devise::Mailer
     @token = token
     @resource = record
     if @resource.reset_status
-      mail(:to => @resource.email, :subject => "Welcome To LeadPump", :content_type => "text/html") do |format|
+      mail(:to => @resource.email, :subject => "Welcome To Lead Pump for your health club", :content_type => "text/html") do |format|
          format.html { render "/devise/mailer/user_creation" }
       end
     else

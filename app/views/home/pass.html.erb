@@ -2,17 +2,7 @@
             <h4>Save Time -</h4>
             <p><%=@dayscount%> days FREE To A Healthier You!, print the pass and sign it. Don’t forget to bring valid Identification with you. Present both to the front desk upon arrival to the club.</p>
             <%= render "/home/printPass" %>
-            <h4 style="text-align:center">WAIVER OF LIABILITY FOR GYM USE</h4>
-            <p>I/We hereby understand and acknowledge that the training, programs and events held by the Gym I am attending with this guest pass may expose me to many inherent risks, including accidents, injury, illness, or even death. I/We assume all risk of injuries associated with participation including, but not limited to, falls, contact with other participants, the effects of the weather, including high heat and/or humidity, and all other such risks being known and appreciated by me.</p>
-            <p>I/We hereby acknowledge my responsibility in communicating any physical and psychological concerns that might conflict with participation in activity. I/We acknowledge that I am physically fit and mentally capable of performing the physical activity I choose to participate in.</p>
-            <p>After having read this waiver and knowing these facts, and in consideration of acceptance of my participation the Gym furnishing services to me, I agree, for myself and anyone entitled to act on my behalf, to <b>HOLD HARMLESS, WAIVE AND RELEASE</b></p>
-            <p>The gym, its officers, agents, employees, organizers, representatives, and successors from any responsibility, liabilities, demands, or claims of any kind a rising out of my participation in the gym training, programs and/or events.</p>
-            <p>By my signature I/We indicate that I/We have read and understand this Waiver of Liability. I am aware that this is a waiver and a release of liability and I voluntarily agree to its terms.</p>
-            <p>Name______________________________  Signature___________________________ Date_____________</p>
-            <p>In case of an emergency please contact:</p>
-            <p>Name______________________________  Phone ___________________________</p>
-            <p>Parents signature if you are a minor:</p>
-            <p>Name______________________________  Signature___________________________ Date_____________</p>
+            
             <!-- <button class="pull-right" onclick="window.print();">Print Page</button> -->
             <p style="float:right">
                 <%= link_to "Print Page", print_pass_path(user: @company,format: 'pdf'), :class=>"btn yellow"%>

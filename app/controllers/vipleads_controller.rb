@@ -31,6 +31,8 @@
   def create
     associate = params["inputs"]["lead"]["associate"]
     associate = associate ? associate : current_user.name
+    current_user.associate = associate
+    current_user.save
     error = ''
     (1..5).each do |vip| 
       if !params["inputs"]["vip_#{vip}"].blank?
@@ -211,7 +213,8 @@ def savereferral
 end
 
 def mallitems
-  user = User.where(:token=>params[:id]).last
+  #user = User.where(:token=>params[:id]).last
+  user = User.find(2)
   logger.debug(user.id)
   @companymallitem = user.fetchcompanymallitem
   logger.debug(@companymallitem)

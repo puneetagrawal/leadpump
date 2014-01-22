@@ -14,12 +14,13 @@
                     <div class="action_btn">
                         <%=link_to download_path(mall_id: @mall.id, format: 'pdf') ,:class=>"btn yellow pull-left" do%>   
                         <i class="icon-download" ></i>
-                        Download
+                        Download or Print
                         <%end %>
-                        <%=link_to "javascript:void(0)" ,:class=>"btn yellow pull-left", :onclick=>"window.print();return false" do%>   
-                        <i class="icon-print" ></i>
-                        Print
-                        <%end %>
+                        <%#=link_to "javascript:void(0)" ,:class=>"btn yellow pull-left", :onclick=>"window.print();return false" do%> 
+                        <%#=link_to download_path(mall_id: @mall.id, format: 'pdf') ,:class=>"btn yellow pull-left" do%>     
+                        <!-- <i class="icon-print" ></i>
+                        Print -->
+                        <%#end %>
                     </div>
                     <div class="clear"></div>
                 </div>

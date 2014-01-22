@@ -1,5 +1,5 @@
 <%if @down.present?%>
-    <%#=render "layouts/comp_head"%>
+<%#=render "layouts/comp_head"%>
 <%end%>
 <div class="passform" style="border:1px solid green;border-radius:10px;">
     <div class="passhead">
@@ -20,49 +20,6 @@
             <td>
                 <label style="width:50%;">Zip:</label>
                 <input class="input-large" type="text" value="<%=@temp.present? ? @temp.zp : ''%>" onblur="setsession('zp',$(this).val())">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label style="width:50%;">Age:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ag : ''%>" onblur="setsession('ag',$(this).val())">
-            </td>
-            <td>
-                <label style="width:50%;">City:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ct : ''%>" onblur="setsession('ct',$(this).val())">
-            </td>
-            <td>
-                <label style="width:50%;">E-mail:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.em : ''%>" onblur="setsession('em',$(this).val())">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label style="width:50%;">Phone:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ph : ''%>"  onblur="setsession('ph',$(this).val())">
-            </td>
-            <td>
-                <label style="width:50%;">Guest of:</label>
-                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.gst : ''%>" onblur="setsession('gst',$(this).val())"> 
-            </td>
-            <td>
-                <label>How long have you considered a program?</label>
-                <%=select_tag "prg_sl", options_for_select(["0-6 months","6m-1yr","Longer"],:selected=>"#{@temp.present? ? @temp.prg : ''}"),:prompt => "Select Program",:class=>"cex_sl",:onchange=>"setsession('prg',$(this).val())",:style=>"width:215px !important;" %>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>
-                <label>Do you currently exercise?</label>
-                <%=select_tag "cex_sl", options_for_select(["No","Yes","Sometimes"],:selected=>"#{@temp.present? ? @temp.cex : ''}"),:prompt => "Select Excercise",:class=>"cex_sl",:onchange=>"setsession('cex',$(this).val())",:style=>"width:215px !important;" %>
-            </td>
-            <td>
-                <label>Are you a member of a health club?</label>
-                <%=select_tag "hc_sl", options_for_select(["No","Yes"],:selected=>"#{@temp.present? ? @temp.hc : ''}"),:prompt => "Select Club",:class=>"fg_sl",:onchange=>"setsession('hc',$(this).val())" ,:style=>"width:215px !important;"%>
-            </td>
-            <td>
-                <label>What are your fitness goals?</label>
-                <%=select_tag "fg_sl", options_for_select(["Lose weight","Improve strength","Cardiovascular","Stress management","Injury rehab","Improve stamina","General conditioning","Overall health","Doctor recommended","General conditioning"],:selected=>"#{@temp.present? ? @temp.fg : ''}"),:prompt => "Select Goal",:class=>"fg_sl",:onchange=>"setsession('fg',$(this).val())",:style=>"width:215px !important;" %>
             </td>
         </tr>
         <tr>
@@ -129,6 +86,50 @@
                     <option value="PW">Palau</option>
                 </select>
             </td>
+            <td>
+                <label style="width:50%;">City:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ct : ''%>" onblur="setsession('ct',$(this).val())">
+            </td>
+            <td>
+                <label style="width:50%;">E-mail:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.em : ''%>" onblur="setsession('em',$(this).val())">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="width:50%;">Phone:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ph : ''%>"  onblur="setsession('ph',$(this).val())">
+            </td>
+            <td>
+                <label style="width:50%;">Guest of:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.gst : ''%>" onblur="setsession('gst',$(this).val())"> 
+            </td>
+            <td>
+                <label>How long have you considered a program?</label>
+                <%=select_tag "prg_sl", options_for_select(["0-6 months","6m-1yr","Longer"],:selected=>"#{@temp.present? ? @temp.prg : ''}"),:prompt => "Select Program",:class=>"cex_sl",:onchange=>"setsession('prg',$(this).val())",:style=>"width:215px !important;" %>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>
+                <label>Do you currently exercise?</label>
+                <%=select_tag "cex_sl", options_for_select(["No","Yes","Sometimes"],:selected=>"#{@temp.present? ? @temp.cex : ''}"),:prompt => "Select Excercise",:class=>"cex_sl",:onchange=>"setsession('cex',$(this).val())",:style=>"width:215px !important;" %>
+            </td>
+            <td>
+                <label>Are you a member of a health club?</label>
+                <%=select_tag "hc_sl", options_for_select(["No","Yes"],:selected=>"#{@temp.present? ? @temp.hc : ''}"),:prompt => "Select One",:class=>"fg_sl",:onchange=>"setsession('hc',$(this).val())" ,:style=>"width:215px !important;"%>
+            </td>
+            <td>
+                <label>What are your fitness goals?</label>
+                <%=select_tag "fg_sl", options_for_select(["Lose weight","Improve strength","Cardiovascular","Stress management","Injury rehab","Improve stamina","General conditioning","Overall health","Doctor recommended","General conditioning"],:selected=>"#{@temp.present? ? @temp.fg : ''}"),:prompt => "Select Goal",:class=>"fg_sl",:onchange=>"setsession('fg',$(this).val())",:style=>"width:215px !important;" %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="width:50%;">Age:</label>
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.ag : ''%>" onblur="setsession('ag',$(this).val())">
+            </td>
+            
         </tr>
     </table>
 
@@ -143,7 +144,17 @@
     <li>3.You will be given a tour to discover our amenities.</li>
     <li>4.Valid for first time guest’s only.</li>
 </ol>
-
+<h4 style="text-align:center">WAIVER OF LIABILITY FOR GYM USE</h4>
+<p>I/We hereby understand and acknowledge that the training, programs and events held by the Gym I am attending with this guest pass may expose me to many inherent risks, including accidents, injury, illness, or even death. I/We assume all risk of injuries associated with participation including, but not limited to, falls, contact with other participants, the effects of the weather, including high heat and/or humidity, and all other such risks being known and appreciated by me.</p>
+<p>I/We hereby acknowledge my responsibility in communicating any physical and psychological concerns that might conflict with participation in activity. I/We acknowledge that I am physically fit and mentally capable of performing the physical activity I choose to participate in.</p>
+<p>After having read this waiver and knowing these facts, and in consideration of acceptance of my participation the Gym furnishing services to me, I agree, for myself and anyone entitled to act on my behalf, to <b>HOLD HARMLESS, WAIVE AND RELEASE</b></p>
+<p>The gym, its officers, agents, employees, organizers, representatives, and successors from any responsibility, liabilities, demands, or claims of any kind a rising out of my participation in the gym training, programs and/or events.</p>
+<p>By my signature I/We indicate that I/We have read and understand this Waiver of Liability. I am aware that this is a waiver and a release of liability and I voluntarily agree to its terms.</p>
+<p>Name______________________________  Signature___________________________ Date_____________</p>
+<p>In case of an emergency please contact:</p>
+<p>Name______________________________  Phone ___________________________</p>
+<p>Parents signature if you are a minor:</p>
+<p>Name______________________________  Signature___________________________ Date_____________</p>
 <script>
 function setsession(fn,val){
     url = '/storepassinsession';

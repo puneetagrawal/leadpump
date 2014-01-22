@@ -1329,6 +1329,7 @@ header h2 a {
     position: absolute;
     top: 5px;
     left: 5px;
+    width: 100%;
 }
 .salesRepUser .salesPrsn {
     width: 45px;
@@ -1390,6 +1391,7 @@ header h2 a {
 
 .total_leads .gauge {
     margin-bottom: 10px;
+    margin-left:5px;
 }
 .total_leads span.gauge_arrow {
     display: inline;
