@@ -1422,7 +1422,7 @@ header h2 a {
 
 .total_leads .gauge {
     margin-bottom: 10px;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 .total_leads span.gauge_arrow {
     display: inline;
@@ -2113,6 +2113,8 @@ header .container {
 }
 
 .user78{
+
     height: 78px;
     width: 78px;
+
 }
