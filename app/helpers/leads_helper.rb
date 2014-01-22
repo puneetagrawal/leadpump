@@ -73,7 +73,7 @@ module LeadsHelper
 				
 				text += "#{ld.notes}"
 				text += "</td><td>"
-				text += "#{ld.time_stam.strftime('%a %b %d %H:%M:%S %Z %Y')}"
+				text += "#{ld.time_stam.strftime('%a %b %d %H:%M:%S %Y')}"
 				text += "</td></tr>"
 			end
 		end
