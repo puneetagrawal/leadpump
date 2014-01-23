@@ -69,7 +69,7 @@ module Leadpump
     config.action_mailer.smtp_settings = {
         address: "smtpout.secureserver.net",
         port: 465,
-        domain: "leadpump.com",
+        domain: "leadpump",
         authentication: "plain",
         user_name: "support@leadpump.com",
         password: "4trading",
