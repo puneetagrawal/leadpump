@@ -24,6 +24,25 @@ function initgauge(){
         width: 180
     });
 
+    var t_csh_due_th = 1000;
+    var interval_csh_due_th = 1000/10;
+    var range_csh_due_th = 1000/4;
+
+
+    $(".container1000").jqxGauge({ 
+        max: t_csh_due_th, 
+        labels: { interval: 22},
+        ticksMinor: { interval: interval_csh_due_th/4, size: '5%' },
+        ticksMajor: { interval: interval_csh_due_th/2, size: '9%' },
+        ranges: [{ startValue: 0, endValue: range_csh_due_th, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
+        { startValue: range_csh_due_th, endValue: range_csh_due_th * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
+        { startValue: range_csh_due_th * 2, endValue: range_csh_due_th * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
+        { startValue: range_csh_due_th * 3, endValue: range_csh_due_th * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
+        colorScheme: 'scheme05',
+        animationDuration: 400,
+        width: 180
+    });
+
     var t_csh_due = 500;
     var interval_csh_due = 500/10;
     var range_csh_due = 500/4;
@@ -66,7 +85,7 @@ function initgauge(){
     });
 
     var total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
-    total_grosss = getRange(total_gross, 'gross_scope');
+    total_grosss = getRange2(total_gross, 'gross_scope');
     $('#totalgrossgauge').jqxGauge('value', total_grosss);
     $('#totalgrossgauge').on('valueChanging', function (e) {
         $(this).siblings('.gaugeValue').text('$ ' + Math.round(total_gross));
@@ -143,6 +162,46 @@ function getRange1(no, id){
         count = 10000;
     }
     else if(no > 5000000 && no <= 50000000){
+        value = no/100000;
+        $("#"+id).html('(in 100000)');
+        count = 100000;
+    }
+    else{
+        value = no/1000000;
+        $("#"+id).html('(in 1000000)');
+        count = 1000000;
+    }
+    return value;
+}
+
+function getRange2(no, id){
+    no = no ? parseInt(no) : 0
+    if(no >= 0 && no <= 1000){
+        value = no;
+        $("#"+id).html('');
+        count = 0;
+    }
+    else if(no > 1000 && no <= 10000){
+        value = no/10;
+        $("#"+id).html('(in 10)');
+        count = 10;
+    }
+    else if(no > 10000 && no <= 100000){
+        value = no/100;
+        $("#"+id).html('(in 100)');
+        count = 100;
+    }   
+    else if(no > 100000 && no <= 1000000){
+        value = no/1000;
+        $("#"+id).html('(in 1000)');
+        count = 1000;
+    }
+    else if(no > 1000000 && no <= 10000000){
+        value = no/10000;
+        $("#"+id).html('(in 10000)');
+        count = 10000;
+    }
+    else if(no > 10000000 && no <= 100000000){
         value = no/100000;
         $("#"+id).html('(in 100000)');
         count = 100000;
