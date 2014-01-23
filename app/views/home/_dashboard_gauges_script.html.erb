@@ -25,13 +25,14 @@ function initgauge(){
     });
 
     var t_csh_due_th = 1000;
-    var interval_csh_due_th = 1000/100;
+    var interval_csh_due_th = 1000/10;
     var range_csh_due_th = 1000/4;
 
-
+    console.log(interval_csh_due_th/4)
+    console.log(interval_csh_due_th/2)
     $(".container1000").jqxGauge({ 
         max: t_csh_due_th, 
-        labels: { interval: 22},
+        labels: { interval: 100},
         ticksMinor: { interval: interval_csh_due_th/4, size: '5%' },
         ticksMajor: { interval: interval_csh_due_th/2, size: '9%' },
         ranges: [{ startValue: 0, endValue: range_csh_due_th, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
