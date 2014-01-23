@@ -214,8 +214,8 @@ def savereferral
 end
 
 def mallitems
-  user = User.where(:token=>params[:id]).last
-  #user = User.find(2)
+  #user = User.where(:token=>params[:id]).last
+  user = User.find(2)
   logger.debug(user.id)
   @companymallitem = user.fetchcompanymallitem
   logger.debug(@companymallitem)
