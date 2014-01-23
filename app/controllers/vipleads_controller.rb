@@ -148,6 +148,8 @@ def sendIvitationToFbFriend
     subject = current_user.fetchfbsubject
     emails.each do|email|
       url = VipLead.fetchfblink(token, current_user)
+      logger.debug(">>>>>>>>>>>>")
+      logger.debug(session[:email_user])
       Emailer.fb_referral_mail(email, token, emailMessage, subject, url,session[:email_user]).deliver
     end
   end
