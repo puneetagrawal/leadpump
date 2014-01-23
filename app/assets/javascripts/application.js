@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_nested_form
+//= require jqxcare
+//= require jqxchuart
+//= require jqxgauge
 //= require highcharts
 //= require exporting
 //= require Chart
