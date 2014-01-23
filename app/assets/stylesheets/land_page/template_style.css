@@ -315,13 +315,13 @@ body {
 }
 .our_mission h3 {
     font-size:14px;
-    color: #333;
+    /*color: #333;*/
     margin: 0;
 }
 .our_mission p {
     margin: 0;
     font-size: 14px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: #333;
     line-height: 16px;
 }
