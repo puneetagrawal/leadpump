@@ -84,6 +84,7 @@ function getRange(no, id){
     no = no ? parseInt(no) : 0
     if(no >= 0 && no <= 220){
         value = no;
+        $("#"+id).html('');
         count = 0;
     }
     else if(no > 220 && no <= 2200){
@@ -118,6 +119,7 @@ function getRange1(no, id){
     no = no ? parseInt(no) : 0
     if(no >= 0 && no <= 500){
         value = no;
+        $("#"+id).html('');
         count = 0;
     }
     else if(no > 500 && no <= 5000){

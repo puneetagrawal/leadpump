@@ -1421,8 +1421,8 @@ header h2 a {
 }
 
 .total_leads .gauge {
-    margin-bottom: 10px;
-    margin-left: 10px;
+    float: none;
+    margin: 0 auto 10px;
 }
 .total_leads span.gauge_arrow {
     display: inline;
@@ -2117,4 +2117,7 @@ header .container {
     height: 78px;
     width: 78px;
 
+}
+ #leadgauge{
+    height: 185px !important;
 }

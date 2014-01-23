@@ -24,13 +24,17 @@ module OnlinemallHelper
 	def fetchlandpageheadimage(landpage)
 		logger.debug("******************************")
 		logger.debug(landpage.temp_name)
-		if landpage.temp_name == "Guest pass card"
-			img = '<img src="/assets/land_page/template4.png">'
-		elsif landpage.temp_name == "Woman doing aerobics"
-			img = '<img src="/assets/land_page/women.png">'
-		elsif landpage.temp_name == "Membership card"
-			img = '<img src="/assets/land_page/template3.png">'
-		elsif landpage.temp_name == "Personal trainer"
+		if landpage.present?
+			if landpage.temp_name == "Guest pass card"
+				img = '<img src="/assets/land_page/template4.png">'
+			elsif landpage.temp_name == "Woman doing aerobics"
+				img = '<img src="/assets/land_page/women.png">'
+			elsif landpage.temp_name == "Membership card"
+				img = '<img src="/assets/land_page/template3.png">'
+			elsif landpage.temp_name == "Personal trainer"
+				img = '<img src="/assets/land_page/template2.png">'
+			end
+		else
 			img = '<img src="/assets/land_page/template2.png">'
 		end
 		# if landpage.present?

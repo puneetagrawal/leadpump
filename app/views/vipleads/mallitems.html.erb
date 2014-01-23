@@ -13,8 +13,8 @@
                     <%else%>
                     <img src="/assets/not-found.png" style="float:left;max-height:75px;max-width:100px">
                     <%end%>
-                    <h3 title="<%=mall.title%>" style="float:left;word-wrap: break-word;"><%=mall.title%></h3>
-                    <div class="action_btn viewmallitem" id="view_<%=mall.id%>" style="float:left;">
+                    <div class="action_btn viewmallitem" id="view_<%=mall.id%>" style="float:left;width:auto;margin-left:20px;">
+                        <h3 title="<%=mall.title%>" style="word-wrap: break-word;"><%=mall.title%></h3>
                         <%=link_to "javascript:void(0)" ,:class=>"btn yellow pull-left" do%>   
                         <i class="icon-download" ></i>
                         Download or Print
