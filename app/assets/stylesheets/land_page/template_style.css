@@ -281,15 +281,15 @@ body {
     clear: both;
 }
 .container .form label {
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 10px;
-    width: 100px;
+    width: 135px;
     float: left;
     text-align: right;
 }
 
 .container .form input {
-    width: 160px;
+    width: 140px;
 }
 .container .right_col {
     float: left;
@@ -357,4 +357,8 @@ body {
 }
 .guest_pass .our_mission p {
     font-size: 12px;
+}
+
+.ml70{
+    margin-left: 70px;
 }

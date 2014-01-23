@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_nested_form
-//= require jqxcare
-//= require jqxchuart
-//= require jqxgauge	
+//= require highcharts
+//= require exporting
 //= require Chart
 //= require autocomplete-rails
 //= require bootstrap-datepicker
@@ -36,7 +35,7 @@
 $(document).ready(function(){
 
 	pic_uid = ''; 
- 	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd' }).val(); 
+ 	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd',minDate:0 }).val(); 
  	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
  	$('.filter-date').datepicker({ dateFormat: "yy-mm-dd"}).val(); 
 	$('.ckeditor').ckeditor({
@@ -165,8 +164,15 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+    //setFooterPostion();
     
 });
+
+function setFooterPostion(){
+    var heart = $(".container wrapper").height() > $(window).height() - 165 ? $(".container wrapper").height() + 165 : $(window).height() - 155;
+    $(".wrapper").height(heart);
+}
 
 function createplan(){
 	url = "https://api.stripe.com/v1/plans";

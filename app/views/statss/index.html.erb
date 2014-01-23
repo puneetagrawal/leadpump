@@ -1,11 +1,11 @@
 <script type="text/javascript" language="javascript">
-    $(function() {
-        $('#foo5').carouFredSel({
-            width: '100%',
-            scroll: 1
-        });
-
+$(function() {
+    $('#foo5').carouFredSel({
+        width: '100%',
+        scroll: 1
     });
+
+});
 </script>
 
 
@@ -16,55 +16,85 @@
     <div class="row-fluid">
         <div class="span4">
             <div class="graph_con">
-                <canvas id="canvas" height="300" width="380"></canvas>
-                <script>
-                    dates = "<%=@datelist%>"
-                    dates = dates.split(",")
+                <!-- <canvas id="canvas" height="300" width="380"></canvas> -->
+                <div id="container" style="min-width: 380px; height: 400px;"></div>
+                <script type="text/javascript">
+                $(function () {
+                    d = "<%= raw @statsgraphdata['dates'.to_sym] %>"
+                    sentsdata = "<%= raw @statsgraphdata['e_sent'.to_sym] %>";
+                    sentsdata = sentsdata.split(",").map(Number)
+                    
+                    converteddata = "<%= raw @statsgraphdata['e_con'.to_sym] %>"
+                    converteddata = converteddata.split(",").map(Number)
+                    
+                    nonqualified = "<%= raw @statsgraphdata['e_view'.to_sym] %>"
+                    nonqualified = nonqualified.split(",").map(Number)
+                    $('#container').highcharts({
+                        chart: {
+                            type: 'area'
+                        },
+                        title: {
+                            text: 'Email Stats'
+                        },
 
-                    sentsdata = "<%=@statsgraphdata['e_sent'.to_sym]%>";
-                    sentsdata = sentsdata.split(",")
-                    converteddata = "<%=@statsgraphdata['e_con'.to_sym]%>"
-                    converteddata = converteddata.split(",")
-                    nonqualified = "<%=@statsgraphdata['e_view'.to_sym]%>"
-                    nonqualified = nonqualified.split(",")
-                    var lineChartData = {
-                    labels : dates,
-                    scaleSteps : 2,
-                    datasets : [
-                        {
-                            fillColor : "rgba(0,0,255,0.5)",
-                            strokeColor : "rgba(0,0,255,1)",
-                            pointColor : "rgba(0,0,255,1)",
-                            pointStrokeColor : "#0000FF",
-                            data : sentsdata
-                        },
-                        {
-                            fillColor : "rgba(0,128,0,0.6)",
-                            strokeColor : "rgba(0,128,0,0.6)",
-                            pointColor : "rgba(0,128,0,0.6)",
-                            pointStrokeColor : "#008000",
-                            data : converteddata
-                        },
-                        {
-                            fillColor : "rgba(255,255,0,0.5)",
-                            strokeColor : "rgba(255,255,0,1)",
-                            pointColor : "rgba(255,255,0,1)",
-                            pointStrokeColor : "#FFFF00",
-                            data : nonqualified
+                        xAxis: {
+                            title: {
+                                text:  d
+                            },
+                            labels: {
+                                formatter: function() {
+                        return this.value; // clean, unformatted number for year
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value;
+                    }
+                }
+            },
+            tooltip: {
+                pointFormat: '{point.y} {series.name} on {point.x}'
+            },
+            plotOptions: {
+                area: {
+                    pointStart: 1,
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
                         }
-            ]
-            
-        }
+                    }                }
+                },
+                series: [{
 
-    var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+                    name: 'Sents',
+                    data: sentsdata
+                }, {
+                    name: 'converted',
+                    data: converteddata
+                },{
+                    name: 'Views',
+                    data: nonqualified
+                }]
+            });
+});
 
-                </script>
-            </div>
-        </div>
-        <div class="span8">
-            <p>
-                <%= link_to "Export as comma Separated (Excel) File", csvdownload_path(format: "csv"),:class=>"btn yellow btn-small" %>
-            </p>
+</script>
+</div>
+</div>
+<div class="span8">
+    <p>
+        <%= link_to "Export as comma Separated (Excel) File", csvdownload_path(format: "csv"),:class=>"btn yellow btn-small" %>
+    </p>
             <!-- <div class="alert">
                 <button data-dismiss="alert" class="close closealert    " type="button">×</button>
                 <p>Compaign Statistics Listed below are the raw statistics for your campaigns. Would you like to filter this list by data ranges or other mechanisms in the future <a class="link" href="#">Yes</a> ?  </p>
@@ -73,7 +103,7 @@
                 <div class="span5 pull-left optFilter">
                     <form class="form"><span>Show</span><select><option>10</option><option>20</option><option>50</option></select>
                         <span>entries</span></form>
-                </div>
+                    </div>
                 <!-- <div class="span4 pull-right optFilter">
                     <form class="form text-right"><span>Search</span><input type="search" id="statsearch" placeholder="Search" class="input-medium"></form>
                 </div> -->
