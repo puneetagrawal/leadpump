@@ -67,20 +67,20 @@ module Leadpump
     }
 
     config.action_mailer.smtp_settings = {
-        address: "smtp.gmail.com",
-        port: 465,
-        domain: "gmail",
-        authentication: "plain",
-        user_name: "9170vs@gmail.com",
-        password: "loveyoumom.2012",
-	      ssl: true
-        # :address => "smtp.sendgrid.net",
-        # :port => 465,
-        # :domain => "leadpump.com",
-        # :authentication => :plain,
-        # :user_name => "leadpump",
-        # :password => "4trading",
-        # :ssl => true
+       #  address: "smtp.gmail.com",
+       #  port: 465,
+       #  domain: "gmail",
+       #  authentication: "plain",
+       #  user_name: "9170vs@gmail.com",
+       #  password: "loveyoumom.2012",
+	      # ssl: true
+        :address => "smtp.sendgrid.net",
+        :port => 465,
+        :domain => "leadpump.com",
+        :authentication => :plain,
+        :user_name => "leadpump",
+        :password => "4trading",
+        :ssl => true
       } 
     end
 end
