@@ -168,13 +168,20 @@ $(document).ready(function(){
 		}
 	});
 
-    //setFooterPostion();
+    setFooterPostion();
     
 });
 
 function setFooterPostion(){
-    var heart = $(".container wrapper").height() > $(window).height() - 165 ? $(".container wrapper").height() + 165 : $(window).height() - 155;
-    $(".wrapper").height(heart);
+    // var heart = $(".container wrapper").height() > $(window).height() - 165 ? $(".container wrapper").height() + 165 : $(window).height() - 155;
+    // $(".wrapper").height(heart);
+    var docHeight = $(window).height();
+    var footerHeight = $('#footer').height();
+    var footerTop = $('#footer').position().top + footerHeight;
+   
+    if (footerTop < docHeight) {
+     $('#footer').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+    }
 }
 
 function createplan(){
