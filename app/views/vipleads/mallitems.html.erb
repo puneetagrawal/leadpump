@@ -9,9 +9,9 @@
             <%mall = Onlinemall.find(ol.onlinemall_id)%>
                 <div class="logo_con" style="width:95%;">
                     <%if mall.mallpic.present?%>
-                    <%= image_tag mall.mallpic.last.avatar.url(:medium), :style=>"float:left;max-height:75px;max-width:100px" %>
+                    <%= image_tag mall.mallpic.last.avatar.url(), :style=>"float:left;max-height:100px;max-width:250px" %>
                     <%else%>
-                    <img src="/assets/not-found.png" style="float:left;max-height:75px;max-width:100px">
+                    <img src="/assets/not-found.png" style="float:left;max-height:100px;max-width:250px">
                     <%end%>
                     <div class="action_btn viewmallitem" id="view_<%=mall.id%>" style="float:left;width:auto;margin-left:20px;">
                         <h3 title="<%=mall.title%>" style="word-wrap: break-word;"><%=mall.title%></h3>

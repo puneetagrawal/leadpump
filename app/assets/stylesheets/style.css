@@ -2113,18 +2113,13 @@ header .container {
 }
 
 .user78{
-
-    height: 78px;
-    width: 78px;
-
+    max-height: 78px;
+    max-width: 78px;
 }
  #leadgauge{
     height: 185px !important;
 }
 
-.logo_dimension{
-    max-width: 250px;
-    max-height: 100px;
-}
+
 
 

@@ -5,9 +5,9 @@
         <%if @mall.present?%>
 				<div style="float:left;margin:20px;width:100px;height:auto;cursor:pointer" class="viewmallitem" id="mall_<%=@mall.id%>">
 					<%if @mall.mallpic.present?%>
-				    	<%= image_tag @mall.mallpic.last.avatar.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+				    	<%= image_tag @mall.mallpic.last.avatar.url(:medium), :class=>"img-polaroid", :style=>"max-height:300px;max-width:30%" %>
 				    <%else%>
-				    	<img src="/assets/company-logo.png" class="img-polaroid">
+				    	<img src="/assets/company-logo.png" class="img-polaroid" style="max-height:300px;max-width:30%">
 			    	<%end%>
 			    	<span style="float:left;margin:10px">
 			    		<%=@mall.title%>
