@@ -216,11 +216,9 @@ def savereferral
 end
 
 def mallitems
-  #user = User.where(:token=>params[:id]).last
-  user = User.find(2)
-  logger.debug(user.id)
+  user = User.where(:token=>params[:id]).last
+  #user = User.find(2)
   @companymallitem = user.fetchcompanymallitem
-  logger.debug(@companymallitem)
 end
 
 def trackEmail
