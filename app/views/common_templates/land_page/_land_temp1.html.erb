@@ -30,6 +30,7 @@
                      <div class="gym_logo">
                         <%if @ref.present?%>
                             <%=fetchCompanyLogo(@ref.fetchCompany)%>
+                            <%=fetchCompanyLogo1(@ref.fetchCompany)%>
                         <%elsif current_user.present?%>
                             <%=fetchCompanyLogo(current_user.fetchCompany)%>
                         <%end%>
