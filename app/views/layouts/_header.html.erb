@@ -86,7 +86,7 @@ function handleSessionResponse(response){
 // <p>My membership advisory gave me some FREE 7-day passes to share with friends and family members and I thought of you.</p>
 // <p>Click the link below to get your pass...hope to see you in the club soon!</p>
 // <p>Your friend</p>';
-  msg = "<%=current_user.fetchFacebookMessage.gsub('\n','').html_safe%>";
+  msg = "<%=current_user.fetchFacebookMessage.html_safe.gsub('\n','')%>";
  // msg = msg.replace(/\n/g,'<br>').replace(/"/g,'');
   msg = $(msg).text();
   urls = '<%=VipLead.fetchfblink(current_user)%>';
