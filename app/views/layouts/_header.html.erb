@@ -81,7 +81,7 @@ function onloginCall(){
 function handleSessionResponse(response){
   var accessToken = response.authResponse.accessToken;
   var email = '';
-  msg = "<%=current_user.fetchFacebookMessage.gsub("'", "\\\'").html_safe%>";
+  msg = '<%=current_user.fetchFacebookMessage.gsub("\'", "").html_safe%>';
 
   msg = $(msg).text();
   urls = '<%=VipLead.fetchfblink(current_user)%>';
