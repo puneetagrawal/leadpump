@@ -7,9 +7,9 @@
                 <div class="logo_con" style="width:auto;float:none;">
                     <h3><%=@mall.title%></h2>
                     <%if @mall.mallpic.present?%>
-                        <%= image_tag @mall.mallpic.last.avatar.url(), :style=>"max-height:300px;max-width:30%"%>
+                        <%= image_tag @mall.mallpic.last.avatar.url(), :style=>"max-width:300;max-height:300px;"%>
                     <%else%>
-                        <img src="/assets/not-found.png" style="max-height:300px;max-width:30%">
+                        <img src="/assets/not-found.png" style="max-width:300;max-height:300px;">
                     <%end%>
                     <div class="action_btn">
                         <%=link_to download_path(mall_id: @mall.id, format: 'pdf') ,:class=>"btn yellow pull-left" do%>   
