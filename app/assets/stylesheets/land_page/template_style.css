@@ -362,3 +362,7 @@ body {
 .ml70{
     margin-left: 70px;
 }
+.logo_dimension{
+    max-width: 250px;
+    max-height: 100px;
+}
