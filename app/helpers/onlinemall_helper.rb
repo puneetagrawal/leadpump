@@ -22,8 +22,6 @@ module OnlinemallHelper
 	end
 
 	def fetchlandpageheadimage(landpage)
-		logger.debug("******************************")
-		logger.debug(landpage.temp_name)
 		if landpage.present?
 			if landpage.temp_name == "Guest pass card"
 				img = '<img src="/assets/land_page/template4.png">'
@@ -51,16 +49,9 @@ module OnlinemallHelper
 	end
 
 	def fetchCompanyLogo(company)
-    img = '<img src="images/gymslogo.png" style="width:250px;height:100px;"/>'
+    img = '<img src="images/gymslogo.png" style="max-width:250px;max-height:100px;"/>'
     if company.picture.present?
-      img = image_tag company.picture.avatar.url(), :class=>'img-polaroid mh60'
-    end
-    return img.html_safe
-  end 
-  def fetchCompanyLogo1(company)
-    img = '<img src="images/gymslogo.png" style="width:250px;height:100px;"/>'
-    if company.picture.present?
-      img = image_tag company.picture.avatar.url(:thumb), :class=>'img-polaroid mh60'
+      img = image_tag company.picture.avatar.url(), :class=>'img-polaroid mh60 logo_dimension'
     end
     return img.html_safe
   end 

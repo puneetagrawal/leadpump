@@ -2122,4 +2122,9 @@ header .container {
     height: 185px !important;
 }
 
+.logo_dimension{
+    max-width: 250px;
+    max-height: 100px;
+}
+
 
