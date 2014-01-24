@@ -2119,7 +2119,13 @@ header .container {
  #leadgauge{
     height: 185px !important;
 }
+.cal_design .datepicker-inline{
+    width: 235px;
+}
 
-
+.cal_design .datepicker{
+    background: none repeat scroll 0 0 lightblue !important;
+    padding: 28px !important;
+}
 
 

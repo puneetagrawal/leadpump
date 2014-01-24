@@ -60,22 +60,17 @@ module LeadsHelper
 	end
 
 	def gettimestams(lead)
-		text = ''
+		text = '<tr><td>Notes</td>'
 		if lead.lead_notes.present?
 			lead.lead_notes.each do |ld|
-				logger.debug(ld.notes)
-				logger.debug(ld.time_stam.strftime('%a %b %d %H:%M:%S %Z %Y'))
-				if text == ''
-					text += "<tr><td>Notes</td><td>"
+				if text == '<tr><td>Notes</td>'
+					text += "<td>#{ld.notes}</td> <td>#{ld.time_stam.strftime('%a %b %d %H:%M:%S %Y')}</td></tr>"
 				else
-					text += "<tr><td></td><td>"
+					text += "<tr> <td></td> <td>#{ld.notes}</td> <td>#{ld.time_stam.strftime('%a %b %d %H:%M:%S %Y')}</td></tr>"
 				end
-				
-				text += "#{ld.notes}"
-				text += "</td><td>"
-				text += "#{ld.time_stam.strftime('%a %b %d %H:%M:%S %Y')}"
-				text += "</td></tr>"
 			end
+		else
+			text += "<td>-</td><td></td></tr>"
 		end
 		render(:inline=> text)
 	end

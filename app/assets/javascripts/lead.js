@@ -67,7 +67,7 @@ function initLeadCreateOrUpdate(){
 
 function tasksave(){
 	$(".taskBtn").click(function (){
-		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
+		$(this).html('<img src="/assets/ajax-loader.gif" style="margin:8px;">');
 		task = $("#createLeadTask").val();
 		date = $("#app_date").val();
 		time = $("#app_date").val()+" "+$("#hr").val()+":"+$("#min").val()+":"+$("#zon").val();
