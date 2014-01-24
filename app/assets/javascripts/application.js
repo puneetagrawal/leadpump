@@ -34,6 +34,7 @@
 //= require seeusergauge
 //= require saleprod
 //= require ckeditor-jquery
+//= require wl
 
 $(document).ready(function(){
 
