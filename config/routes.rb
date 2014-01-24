@@ -49,6 +49,7 @@ Leadpump::Application.routes.draw do
   match "/mallitems/:id" => "vipleads#mallitems"
   match "/viewmallitem" => "vipleads#viewmallitem"
   match "/download" => "vipleads#download"
+  match "/sendfbrewards" => "vipleads#sendfbrewards"
 
   resources :vipleads
   

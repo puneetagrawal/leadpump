@@ -58,7 +58,7 @@
 </header>
 
 <div id="fb-root"></div> 
-<script type="text/javascript">
+<script>
 window.fbAsyncInit = function() {
   FB.init({
     appId  : "<%=FACEBOOK_KEY%>",
@@ -81,109 +81,54 @@ function onloginCall(){
 function handleSessionResponse(response){
   var accessToken = response.authResponse.accessToken;
   var email = '';
-
+  msg = '<%=current_user.fetchFacebookMessage.html_safe%>';
+  msg = $(msg).text();
+  urls = '<%=VipLead.fetchfblink(current_user)%>';
+  subject = '<%=current_user.fetchfbsubject%>';
+  img_url = 'http://signin.leadpump.com/assets/logo1.png';
   if (response.authResponse) {
-   FB.api('/me', function (response) {
-    email = response.email
-  });
-   FB.api('/me/friends', {fields:'name,username'}, function (result) {
-    if(result.data) {
-      $.fancybox.open({
-        href: '#gmailContactsPopup',
-        type: 'inline',
-        'beforeLoad' : function() {
-          url = '/fetchfbfreinds'
-          $.post(url, {info:result.data,user_email:email}, function (data) {          
-          }); 
-        },
-        'afterClose' : function(){
-          $("#inviter_select").val('yahoo');
-        }
-      });
+    FB.api('/me', function (response) {
+      email = response.email
+    });
+    FB.ui({
+     method: 'stream.publish',
+     message: 'Leadpump',
+     attachment: {
+       name: 'Leadpump',
+       caption: subject,
+       description: (msg),
+       href: urls,
+       media: [{ 'type': 'image',
+              'src': 'http://signin.leadpump.com/assets/logo1.png',
+              'href': urls}]
+     },
+     action_links: [
+       { text: 'Code', href: urls }
+     ],
+     user_message_prompt: ''
+   },
+   function(response) {
+     if (response && response.post_id) {
+       alert('Post was published.');
+       FB.logout(function(response) {
+        });
+       url = '/sendfbrewards';
+        $.post(url, {user_email:email}, function (data) {    
+        });
+     } else {
+       alert('Post was not published.');
+       FB.logout(function(response) {
+        });
+     }
+   }
 
-    }    
-  });
+ );
+   
  }
  else {
   console.log('User cancelled login or did not fully authorize.');
   return;
 }
 }
-
-WL.init({ client_id: "000000004410F130", redirect_uri: "http://signin.leadpump.com" });
-
-function testt(){
-  WL.login({ scope: ["wl.basic","wl.contacts_emails","wl.emails"] }).then(
-      function(response) {
-        $.fancybox.open({
-          href: '#hotmailContactsPopup',
-          type: 'inline',
-          'beforeLoad' : function() {
-              var first_tr = '<tr><td colspan="2">' +
-                      '<label class="select_all"><input checked="checked" class="mr2" '+ 'id="select_all" name="select_all" type="checkbox" value="yes">'+'Select All</label></td>'+
-                        '<td><label class="select_none"><input class="mr2"'+
-                            'id="deselect_all"  name="deselect_all" type="checkbox"'+    'value="yes">Select None</label></td></tr>';
-              $("#hotmailcontacts .data-table tbody").html(first_tr);
-            }
-        });
-        getContacts();
-      },
-      function(response) {
-          log("Could not connect, status = " + response.status);
-      }
-  );
-}
-
-  function getContacts() {
-    email = '';
-    WL.api({ path: "/me", method: "GET" }).then(
-        function(response) {
-            email = response.emails.preferred;
-            $("#user_email").val(email);
-        }
-    );
-    WL.api({ path: "/me/contacts", method: "GET" }).then(
-        onGetContacts,
-        function(response) {
-            log("Cannot get contacts: " + JSON.stringify(response.error).replace(/,/g, ",\n"));
-        }
-    );
-}
-
-function onGetContacts(response) {
-    var items = response.data;
-    for (var i = 0; i < items.length; i++) {
-        if (i > items.length) {
-            break;
-        }
-        getContactProperties(items[i].id);
-    }
-     
- }
-
-function getContactProperties(contactId) {
-    WL.api({ path: contactId, method: "GET" }).then(onGetContactProperties);
-}
-
-function onGetContactProperties(response) {
-    makeemail(JSON.stringify(response).replace(/,/g, ",\n"));
-}
-function makeemail(message){
-  var email = jQuery.parseJSON( message ).emails.preferred;
-  if(email){
-    append_email(email);    
-  }
-}
-                   
-function log(message) {
-    $("#hotmailcontacts .data-table tbody").append(message);
-}
-
-function append_email(email){
-  var html = '<tr><td><input type="checkbox" "'+email+'" checked class = "gmailContactChekbox '+ 
-  'chekboxess"></td><td class="email_label">'+email+'</td><td>'+email+'</td></tr>';
-  $("#hotmailcontacts .data-table tbody").append(html);
-}
-
 </script>
-
+<%= javascript_include_tag 'hotmail.js' %>

@@ -47,8 +47,9 @@ class VipLead < ActiveRecord::Base
     return url
   end
 
-  def self.fetchfblink(token, user)
+  def self.fetchfblink(user)
     company = user.fetchCompany
+    token = user.token
     landing = LandingPage.find_by_user_id(user.id)
     if landing.present? && landing.land_type == "External landing page"
       url = parselink(landing.ext_link)
