@@ -82,9 +82,6 @@ function handleSessionResponse(response){
   var accessToken = response.authResponse.accessToken;
   var email = '';
   msg = 'I wanted to share with you that I just decided to join The Edge Fitness Clubs. They have 10 convenient locations that are clean and filled with state of the art equipment. I am looking forward to staying in shape and having fun while doing so. My membership advisory gave me some FREE 7-day passes to share with friends and family members and I thought of you. Click the link below to get your pass...hope to see you in the club soon! Your friend';
-  //msg = "<%=current_user.fetchFacebookMessage.html_safe.gsub('\n','')%>";
- // msg = msg.replace(/\n/g,'<br>').replace(/"/g,'');
-  //msg = $(msg).text();
   urls = '<%=VipLead.fetchfblink(current_user)%>';
   subject = '<%=current_user.fetchfbsubject%>';
   img_url = 'http://signin.leadpump.com/assets/logo1.png';
