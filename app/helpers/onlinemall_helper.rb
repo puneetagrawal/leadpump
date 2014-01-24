@@ -43,8 +43,6 @@ module OnlinemallHelper
 		return img.html_safe
 	end
 	def fetchlandpreivewimage(landpage)
-		logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-		logger.debug(landpage.temp_name)
 		img = '<img src="/assets/land_page/women.png">'
 		# if landpage.present? && landpage.avatar.present?
 		# 	img = image_tag landpage.avatar.url(:medium), :class=>"img-polaroid" 
@@ -53,6 +51,13 @@ module OnlinemallHelper
 	end
 
 	def fetchCompanyLogo(company)
+    img = '<img src="images/gymslogo.png" style="width:250px;height:100px;"/>'
+    if company.picture.present?
+      img = image_tag company.picture.avatar.url(), :class=>'img-polaroid mh60'
+    end
+    return img.html_safe
+  end 
+  def fetchCompanyLogo1(company)
     img = '<img src="images/gymslogo.png" style="width:250px;height:100px;"/>'
     if company.picture.present?
       img = image_tag company.picture.avatar.url(:thumb), :class=>'img-polaroid mh60'
