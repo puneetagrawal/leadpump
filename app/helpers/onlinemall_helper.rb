@@ -61,7 +61,6 @@ module OnlinemallHelper
     img = '<img src="images/gymslogo.png" style="width:250px;height:100px;"/>'
     if company.picture.present?
       img = image_tag company.picture.avatar.url(:thumb), :class=>'img-polaroid mh60'
->>>>>>> 40ca9e96ef7dffce3971ed5f15a348e92baee5c3
     end
     return img.html_safe
   end 
