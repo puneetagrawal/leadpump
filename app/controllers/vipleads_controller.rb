@@ -196,7 +196,7 @@ def savereferral
   if user.checkLeadLimit
     opt_in_lead = OptInLead.where(:email=>params[:email],:referrer_id=>user.id, :source=>"LEADPUMP optin").last
     msg = "Sorry! your link is invalid or expired."
-    if !opt_in_lead.present?
+    if !opt_in_lead.present? || params[:source] == "fb"
       lead  = Lead.new(:name=>params[:name],:lname=>params[:lname],:email=>params[:email],:lead_source=>"LEADPUMP optin",:phone=>params[:phone])
       if lead.save
         UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
