@@ -15,8 +15,8 @@
         <p>Enter Facebook message that you want to send on Facebook.</p>
         <form class="form">
           <%=text_field_tag :fbsubject, current_user.fetchfbsubject, :placeholder=>"Enter Subject Line Here.", :class=>"fb_social_height" %>
-            <textarea class="ckeditor">
-                <%=current_user.fetchFacebookMessage%>
+            <textarea style="width:50%">
+                <%=strip_tags(current_user.fetchFacebookMessage.html_safe)%>
             </textarea>
             <br/>
             <span class="submitFmes">
@@ -35,8 +35,8 @@
         <p>Enter message that you want to send on Twitter.</p>
         <form class="form">
             <!-- <input type="hidden" name="hidden_snippet" id="hidden_snippet" value="" /> -->
-            <textarea class="ckeditor" id="twitter">
-                <%=current_user.fetchtwitterMessage%>
+            <textarea id="twitter" style="width:50%">
+                <%=strip_tags(current_user.fetchtwitterMessage.html_safe)%>
             </textarea>
                <br/>
             <span class="submitTmes">
