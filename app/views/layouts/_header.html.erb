@@ -82,7 +82,7 @@ function handleSessionResponse(response){
   var accessToken = response.authResponse.accessToken;
   var email = '';
   // msg = '<p>I wanted to share with you that I just decided to join The Edge Fitness Clubs. They have 10 convenient <b>locations</b> that</p> are clean and filled with state of the art equipment. I am looking forward to staying in shape and having fun while doing so. My membership advisory gave me some FREE 7-day passes to share with friends and family members and I thought of you. Click the link below to get your pass...hope to see you in the club soon! Your friend';
-  msg = '<%=current_user.present? ? strip_tags(current_user.fetchFacebookMessage.html_safe) : ''%>'
+  msg = "<%=current_user.present? ? strip_tags(current_user.fetchFacebookMessage.html_safe.gsub!(/\n/, " ")) : ''%>"
   console.log(msg)
   //msg = msg.text();
   //console.log(msg)
