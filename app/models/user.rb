@@ -285,8 +285,6 @@ def fetchfbsubject
   if socialmessage.present? && socialmessage.fbsubject.present?
      message = socialmessage.fbsubject
   end
-  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-  logger.debug(message)
   return message.html_safe
 end
 
