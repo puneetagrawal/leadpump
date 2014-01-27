@@ -169,6 +169,7 @@ def sendfbrewards
 end
 
 def acceptInvitation
+  logger.debug(params)
   if params[:token].present?
     @ref = User.where(:token=>params[:token]).last
     if @ref.checkLeadLimit
