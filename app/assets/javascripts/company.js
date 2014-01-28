@@ -47,7 +47,6 @@ function initCompanyCreateOrUpdate(){
 		url = '/savefbmes';
 		subject = $.trim($("#fbsubject").val());
 		text = $.trim($(this).siblings('textarea').val());
-		alert(text.length)
 		if(subject.length > 140){
 			alert("Subject cannot be greater than 140 characters.");
 			$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');

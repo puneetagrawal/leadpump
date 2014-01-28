@@ -81,32 +81,29 @@ function onloginCall(){
 function handleSessionResponse(response){
   var accessToken = response.authResponse.accessToken;
   var email = '';
-  // msg = '<p>I wanted to share with you that I just decided to join The Edge Fitness Clubs. They have 10 convenient <b>locations</b> that</p> are clean and filled with state of the art equipment. I am looking forward to staying in shape and having fun while doing so. My membership advisory gave me some FREE 7-day passes to share with friends and family members and I thought of you. Click the link below to get your pass...hope to see you in the club soon! Your friend';
-
-  msg = "<%=current_user.present? ? strip_tags(current_user.fetchFacebookMessage.html_safe) : ''%>"
-  //msg = msg.text();
-  //console.log(msg)
-  urls = '<%=current_user.present? ? VipLead.fetchfblink(current_user).html_safe : ''%>';
-  subject = '<%=current_user.present? ? current_user.fetchfbsubject : ''%>';
-  img_url = 'http://signin.leadpump.com/assets/logo1.png';
+  var description = "<%=current_user.present? ? strip_tags(current_user.fetchFacebookMessage.html_safe.gsub!(/\n/, '<br />')) : ''%>"
+  var link = '<%=current_user.present? ? VipLead.fetchfblink(current_user).html_safe : ''%>';
+  var subject = '<%=current_user.present? ? current_user.fetchfbsubject : ''%>';
+  var img_url = '<%=current_user.present? ? Picture.fetchCompanyLogo(current_user.id) : ''%>';
+  var message = '<%=current_user.present? ? current_user.fetchCompany.name : ''%>';
   if (response.authResponse) {
     FB.api('/me', function (response) {
       email = response.email
     });
     FB.ui({
      method: 'stream.publish',
-     message: 'Leadpump',
+     message: message,
      attachment: {
        name: 'Leadpump',
        caption: subject,
-       description: (msg),
-       href: urls,
+       description: (description),
+       href: link,
        media: [{ 'type': 'image',
-              'src': 'http://signin.leadpump.com/assets/logo1.png',
-              'href': urls}]
+              'src': img_url,
+              'href': link}]
      },
      action_links: [
-       { text: 'Code', href: urls }
+       { text: 'Code', href: link }
      ],
      user_message_prompt: ''
    },
