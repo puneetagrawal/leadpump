@@ -26,11 +26,10 @@
                     <p><%=@landpage.present? ? @landpage.intro_text : 'Intro Text'%>
                     </p>
                     <h2 class="trial">
-                        <%=@landpage.present? ? @landpage.no_of_days : '1'%>-Days FREE</h2>
+                        <%=@landpage.present? ? @landpage.no_of_days : '7'%>-Days FREE</h2>
                      <div class="gym_logo">
                         <%if @ref.present?%>
                             <%=fetchCompanyLogo(@ref.fetchCompany)%>
-
                         <%elsif current_user.present?%>
                             <%=fetchCompanyLogo(current_user.fetchCompany)%>
                         <%end%>
