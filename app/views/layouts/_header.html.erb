@@ -84,7 +84,7 @@ function handleSessionResponse(response){
   var description = "<%=current_user.present? ? strip_tags(current_user.fetchFacebookMessage.html_safe.gsub!(/\n/, '<br />')) : ''%>"
   var link = '<%=current_user.present? ? VipLead.fetchfblink(current_user).html_safe : ''%>';
   var subject = '<%=current_user.present? ? current_user.fetchfbsubject : ''%>';
-  var img_url = '<%=current_user.present? ? fetchCompanyLogo(current_user) : ''%>';
+  var img_url = '<%=current_user.present? ? fetchcompanyimageforfb(current_user) : ''%>';
   var message = '<%=current_user.present? ? current_user.fetchCompany.name : ''%>';
   if (response.authResponse) {
     FB.api('/me', function (response) {

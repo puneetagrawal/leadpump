@@ -48,6 +48,15 @@ module OnlinemallHelper
 		return img.html_safe
 	end
 
+    def fetchcompanyimageforfb(company)
+		img = '<img src="images/gymslogo.png" style="max-width:250px;max-height:100px;"/>'
+	    if company.picture.present?
+	    	url = "http://"+SERVER_URL+company.picture.avatar.url()
+	      	img = image_tag url, :class=>'img-polaroid mh60 logo_dimension'
+	    end
+    	return img.html_safe
+    end
+
 	def fetchCompanyLogo(company)
     img = '<img src="images/gymslogo.png" style="max-width:250px;max-height:100px;"/>'
     if company.picture.present?
@@ -57,7 +66,6 @@ module OnlinemallHelper
   end 
 
   def getsubstring(title)
-  	logger.debug(title.length)
   	title = title.present? ? title.length > 9 ? "#{title[0..7]}.." : title : ''
   	return title
   end
