@@ -40,23 +40,29 @@ function initCompanyCreateOrUpdate(){
 			fakeClick(document.getElementById('link'));
 		});
 	});	
+
 	$(".submitFmes").unbind();
 	$(".submitFmes").click(function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savefbmes';
 		subject = $.trim($("#fbsubject").val());
-		if(subject.length <= 140){
-			text = $.trim($(this).siblings('textarea').val());
+		text = $.trim($(this).siblings('textarea').val());
+		if(subject.length > 140){
+			alert("Subject cannot be greater than 140 characters.");
+			$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
+		}
+		else if(text.length > 220){
+			alert("Message cannot be greater than 220 characters.");
+			$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
+		}
+		else{
 			$.post(url, {text:text,subject:subject}, function (data) {
 				alert("Message save successfully.");
 				$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 			});
 		}
-		else{
-			alert("Subject cannot be greater than 140 characters.");
-			$('.submitFmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
-		}
 	});
+
 	$(".submitTmes").unbind();
 	$(".submitTmes").click(function(){
 		debugger;

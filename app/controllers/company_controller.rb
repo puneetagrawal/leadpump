@@ -136,11 +136,9 @@ def savefbmes
   if params[:text].blank?
     message = {"msg"=>"Please Enter some text."}
   elsif socailMessage.present?
-    text = params[:text].gsub!(/\n/, "<br />");
     socailMessage.update_attributes(:facebookMessage=>params[:text],:fbsubject=>params[:subject])
     message = {"msg"=>"Message saved successfully"}
   else
-    #text = params[:text].gsub!(/\n/, "<br />");
     SocialMessage.create(:facebookMessage=>params[:text],:fbsubject=>params[:subject], :company_id=>current_user.id)
   end
   render json: message
