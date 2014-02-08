@@ -166,8 +166,8 @@ end
 
   def pass
     #@company = User.find(2)
-    Company.removeAllPrintPassSessions(session)
-    user = User.find(params[:id])
+    #Company.removeAllPrintPassSessions(session)
+    user = User.find(2)
     @company = user.fetchCompany
     landpage = LandingPage.where(:user_id=>@company.id).last
     @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
@@ -175,6 +175,7 @@ end
 
   def print_pass
     @temp = TemporaryData.first
+    @dayscount = params[:dy].present? ? params[:dy] : 7
     @down = "true"
     @company = User.find(params[:user])
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
