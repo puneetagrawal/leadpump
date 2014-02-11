@@ -11,7 +11,7 @@ $(document).ready(function(){
 	});
 
 	$('#salesCalender').datepicker({
-		format: 'yy-mm-dd',
+		format: 'mm-dd-yy',
 		flat: true,
 		calendars: 1,
 		starts: 1
