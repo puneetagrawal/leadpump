@@ -10,7 +10,7 @@ class HomeController < ApplicationController
      @users = current_user.fetchCompanySalesUsers
      @leads = Lead.fetchTotalLeads(current_user)
      #saletodate = SaleProd.fetchProdDataTotal(current_user)
-     saletodate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
+     saletodate = SaleProd.fetchProdDataUpTotal(current_user, Date.today)
      @gross_values = SaleProd.fetchGrossMap(saletodate)
    else
     redirect_to admin_index_path
@@ -159,13 +159,12 @@ end
   def send_invitation_social
     message="Please join Leadpump "
     email_id=params[:check_invite_email]
-    logger.debug email_id.inspect
     mail_invitaion(message,email_id)
     redirect_to "/"
   end
 
   def pass
-    #@company = User.find(2)
+    @company = User.find(2)
     Company.removeAllPrintPassSessions(session)
     user = User.find(params[:id])
     @company = user.fetchCompany
@@ -177,7 +176,7 @@ end
     @temp = TemporaryData.first
     @dayscount = params[:dy].present? ? params[:dy] : 7
     @down = "true"
-    @company = User.find(params[:user])
+    @company = User.find(2)
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
     respond_to do |format|
       format.pdf do

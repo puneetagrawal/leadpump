@@ -63,10 +63,14 @@ module LeadsHelper
 		text = '<tr><td>Notes</td>'
 		if lead.lead_notes.present?
 			lead.lead_notes.each do |ld|
+				start_time = ld.time_stam 
+				start_time.rfc822                          # => "Tue, 23 Feb 2010 10:58:23 -0500"
+				pst = ActiveSupport::TimeZone["Pacific Time (US & Canada)"]
+				time = pst.at(start_time).strftime("%m-%d-%Y %H:%M:%S") # => "08:00 AM PST"
 				if text == '<tr><td>Notes</td>'
-					text += "<td>#{ld.notes}</td> <td>#{ld.time_stam.strftime('%a %b %d %H:%M:%S %Y')}</td></tr>"
+					text += "<td>#{ld.notes}</td> <td>#{time}</td></tr>"
 				else
-					text += "<tr> <td></td> <td>#{ld.notes}</td> <td>#{ld.time_stam.strftime('%a %b %d %H:%M:%S %Y')}</td></tr>"
+					text += "<tr> <td></td> <td>#{ld.notes}</td> <td>#{time}</td></tr>"
 				end
 			end
 		else

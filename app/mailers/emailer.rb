@@ -33,7 +33,7 @@ class Emailer < ActionMailer::Base
   def sendrewards(email, cmpny, user_token)
     @url = SERVER_URL+"/mallitems/#{user_token}"
     email = email.to_s
-    mail(from: cmpny,to: email, subject: 'Get Your Free Rewards.')
+    mail(from: cmpny,to: email, subject: 'Welcome to the club')
   end
   
   def sendtestmail()

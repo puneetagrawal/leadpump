@@ -5,6 +5,20 @@ class SaleProd < ActiveRecord::Base
 
   #accepts_nested_attributes_for :sale_reports
 
+  def self.fetchProdDataUpTotal(user, date)
+    if user.isAdmin
+      prod = SaleProd.includes(:sale_reports).where("created_at < ?",date+1)
+    elsif user.isCompany
+      users = user.fetchCompanySalesUsers
+      users = users.collect{|user| user.id}
+      users << user.id
+      prod = SaleProd.includes(:sale_reports).where("created_at < ?",date+1).where(:user_id=>users)
+    else
+      prod = SaleProd.includes(:sale_reports).where("created_at < ?", date+1).where(:user_id=>user)
+    end
+    return prod
+  end
+
   def self.fetchProdDataUpToDate(user, date)
   	to_date = SaleProd.fetchToDate(date)
   	if user.isAdmin

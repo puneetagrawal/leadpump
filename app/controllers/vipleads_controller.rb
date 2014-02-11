@@ -119,7 +119,7 @@ def sendIvitationToGmailFriend
   end
   token = current_user.token
   sents_count = 0
-  company = current_user.fetchCompany.email
+  company = current_user.fetchCompany.name
   if emails.present?
     emailMessage = current_user.fetchEmailMessage
     subject = current_user.fetchgmailsubject

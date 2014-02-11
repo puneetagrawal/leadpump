@@ -884,6 +884,7 @@ header h2 a {
 .signupCon .trialInfo {
     float: left;
     width: 62%;
+    color: #00B200;
 }
 .signupCon .checkboxCon {
     float: left;
