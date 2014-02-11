@@ -35,12 +35,12 @@ class SaleProdsController < ApplicationController
   end
 
   def showproduction
-    date = Date.strptime(params[:date], "%d/%m/%Y")
+    date = Date.strptime(params[:date], "%m-%d-%Y")
     @sale_todate = SaleProd.fetchProdDataUpToDate(current_user, date)
     @sale_tody = SaleProd.fetchProdDataToDay(current_user, date)
     @gross_values = SaleProd.fetchGrossPaper(@sale_todate, @sale_tody)
     @appointment = SaleProd.fetchAppointment(Date.today, current_user)
-    @date = date
+    @date = params[:date]
     respond_to do |format|
       format.js 
     end

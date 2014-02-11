@@ -21,7 +21,7 @@ $(document).ready(function(){
 	    var curr_date = d.getDate();
 	    var curr_month = d.getMonth() + 1; //Months are zero based
 	    var curr_year = d.getFullYear();
-	    date = curr_date + "/" + curr_month + "/" + curr_year
+	    date = curr_month + "-" + curr_date + "-" + curr_year
 		url = '/sale_prods/showproduction';
 		$.post(url, {date:date}, function (data) {
 		});
