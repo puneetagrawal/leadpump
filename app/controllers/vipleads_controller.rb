@@ -5,6 +5,7 @@
 
  class VipleadsController < ApplicationController
   include VipleadsHelper
+  include ApplicationHelper
   skip_before_filter :authenticate_user!, :only => [:acceptInvitation, :mallitems,:savereferral,:trackEmail,:viewmallitem,:download]
   before_filter :check_plan, :only => [:new, :index]
   layout 'reflanding', only: [:acceptInvitation]
