@@ -238,7 +238,7 @@ def checkLeadLimit
     logger.debug("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     if check_plan_expired(self)
       logger.debug("&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@")
-      if !User.numeric?limit || self.leads_created <= limit.to_i
+      if self.leads_created <= limit.to_i
         logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         allow = true
       end
