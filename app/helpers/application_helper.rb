@@ -7,5 +7,14 @@ module ApplicationHelper
 	      image_tag "file://#{Rails.root.join('public', 'images', img)}", options
 	    end
 	  end
+
+  def check_plan_expired(user)
+  	allow = true
+	date = user.subscription.expiry_date
+	if date > Date.today
+		allow = true
+	end
+	return allow
+  end
 	
 end

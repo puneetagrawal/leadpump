@@ -1,6 +1,7 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
+  include ApplicationHelper
   attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, 
   :role_id, :addresses_attributes, :subscription_attributes, :token, :reset_status, :vipon, :vipcount,
   :associate
@@ -137,8 +138,6 @@ class User < ActiveRecord::Base
     users = Company.where(:company_user_id=>companyusers)
     if users.present?
       users.each do|company|
-        logger.debug("HHHHHHHHHHHHHHHHHHHH")
-        logger.debug(company.company_user_id)
         #company.destroy
       end
     end
@@ -222,23 +221,23 @@ def saveLeadCount
 end
 
 def checkLeadLimit
-  allow = true
+  allow = false
   case self.user_role.role_type.to_sym
   when :admin
     allow = false
   when :employee
     user = self.fetchCompany
     limit = user.subscription.plan_per_user_range.plan.lead_management
-    if User.numeric?limit
-      if user.leads_created == limit.to_i
-        allow = false
+    if check_plan_expired(user)
+      if !User.numeric?limit || user.leads_created <= limit.to_i
+        allow = true
       end
     end
   when :company
     limit = self.subscription.plan_per_user_range.plan.lead_management
-    if User.numeric?limit
-      if self.leads_created == limit.to_i
-        allow = false
+    if check_plan_expired(self)
+      if !User.numeric?limit || self.leads_created <= limit.to_i
+        allow = true
       end
     end
   end
@@ -252,7 +251,7 @@ def checkUserLimit
     allow = false
   else
     limit = self.subscription.users_count
-    if self.users_created >= limit
+    if self.users_created >= limit && check_plan_expired(self)
       allow = false
     end
   end

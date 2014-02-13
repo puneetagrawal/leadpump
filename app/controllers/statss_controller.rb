@@ -1,5 +1,6 @@
 class StatssController < ApplicationController
-  
+  include VipleadsHelper
+  before_filter :check_plan, :only => [:index]
   def index
     @response = HTTParty.get('https://api.sendgrid.com/api/stats.get.json?api_user=leadpump&api_key=4trading&list=true')
   	@stats = Stats.includes(:user).where(:user_id=>current_user.id)
@@ -25,6 +26,15 @@ class StatssController < ApplicationController
       format.html
       format.csv { send_data @stats.to_csv }
       #format.xls { send_data @stats.to_csv(col_sep: "\t") }
+    end
+  end
+
+
+  private 
+  def check_plan
+    if !is_vip_allow(current_user)
+      flash[:notice] = "Sorry! you are not authorize user"
+      redirect_to home_index_path
     end
   end
 end

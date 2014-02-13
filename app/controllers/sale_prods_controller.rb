@@ -1,11 +1,13 @@
 class SaleProdsController < ApplicationController
+include SaleProdsHelper
+  before_filter :is_daily_rep_allowed, :only => [:index, :new]
   def index
-    @sale_todate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
-    @sale_tody = SaleProd.fetchProdDataToDay(current_user, Date.today)
-    @gross_values = SaleProd.fetchGrossPaper(@sale_todate, @sale_tody)
-    @appointment = SaleProd.fetchAppointment(Date.today, current_user)
-    #@total = @appointment + @gross_values["g_tody".to_sym]["total".to_sym]
-    @date = Date.today.strftime('%m-%d-%Y')
+      @sale_todate = SaleProd.fetchProdDataUpToDate(current_user, Date.today)
+      @sale_tody = SaleProd.fetchProdDataToDay(current_user, Date.today)
+      @gross_values = SaleProd.fetchGrossPaper(@sale_todate, @sale_tody)
+      @appointment = SaleProd.fetchAppointment(Date.today, current_user)
+      #@total = @appointment + @gross_values["g_tody".to_sym]["total".to_sym]
+      @date = Date.today.strftime('%m-%d-%Y')
   end
 
   def new
@@ -61,6 +63,14 @@ class SaleProdsController < ApplicationController
     end
     respond_to do |format|
       format.js 
+    end
+  end
+
+  private
+  def is_daily_rep_allowed
+    if !is_daily_rep_allow(current_user)
+      flash[:notice] = "Sorry! you are not authorize user"
+      redirect_to home_index_path
     end
   end
 

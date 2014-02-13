@@ -31,10 +31,12 @@ class RegistrationsController < Devise::RegistrationsController
               :customer => customer.id
         )
         if resource.save
-         Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p'), amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, charge.id)
+         date = planType == "monthly" ? Date.today + 45 : Date.today + 380
+         Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, charge.id)
           #Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p'), amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType)
           sign_in(resource_name, resource)  
-          redirect_to success_path()
+          flash[:notice] = "Thankyou for registration."
+          redirect_to home_index_path()
         else
         end
       
