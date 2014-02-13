@@ -12,9 +12,9 @@ subscription =
           if($("input:radio[name='paymentOptionRadio']:checked").attr('class') == 'creditCard')
             $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif" style="float:right;margin-right:40px">')
             if $('#card_number').length
-              #$('#new_user')[0].submit()
-              subscription.validateCard()
-              return false
+              $('#new_user')[0].submit()
+              #subscription.validateCard()
+              #return false
             else
               true
           else

@@ -20,19 +20,19 @@ class RegistrationsController < Devise::RegistrationsController
       total_amount = amt["amount"].to_i * 100
       
         email = params["user"]["email"].to_s
-        customer = Stripe::Customer.create(
-          :email => email,
-          :description => "Subscribed for #{@planPerUser.plan.name} plan.",
-          :card  => params["user"]["subscription_attributes"]["stripe_card_token"]
-          )
-        charge = Stripe::Charge.create(
-              :amount => total_amount, # in cents
-              :currency => "usd",
-              :customer => customer.id
-        )
+        # customer = Stripe::Customer.create(
+        #   :email => email,
+        #   :description => "Subscribed for #{@planPerUser.plan.name} plan.",
+        #   :card  => params["user"]["subscription_attributes"]["stripe_card_token"]
+        #   )
+        # charge = Stripe::Charge.create(
+        #       :amount => total_amount, # in cents
+        #       :currency => "usd",
+        #       :customer => customer.id
+        # )
         if resource.save
          date = planType == "monthly" ? Date.today + 45 : Date.today + 380
-         Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, charge.id)
+         Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, "dd", "dd")
           #Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p'), amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType)
           sign_in(resource_name, resource)  
           flash[:notice] = "Thankyou for registration."
