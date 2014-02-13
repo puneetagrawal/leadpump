@@ -235,14 +235,11 @@ def checkLeadLimit
     end
   when :company
     limit = self.subscription.plan_per_user_range.plan.lead_management
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(check_plan_expired(self))
-    logger.debug(User.numeric?limit)
-    logger.debug(self.leads_created)
-    logger.debug(limit.to_i)
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     if check_plan_expired(self)
+      logger.debug("&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@")
       if !User.numeric?limit || self.leads_created <= limit.to_i
+        logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         allow = true
       end
     end
