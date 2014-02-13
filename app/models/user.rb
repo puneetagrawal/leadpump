@@ -237,7 +237,7 @@ def checkLeadLimit
     limit = self.subscription.plan_per_user_range.plan.lead_management
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     logger.debug(check_plan_expired(self))
-    logger.debug(!User.numeric?limit)
+    logger.debug(User.numeric?limit)
     logger.debug(self.leads_created)
     logger.debug(limit.to_i)
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
