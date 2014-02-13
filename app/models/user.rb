@@ -250,7 +250,7 @@ def checkUserLimit
   when :admin
     allow = false
   else
-    limit = self.subscription.present? ? self.subscription.users_count : 10
+    limit = self.subscription.present? ? self.subscription.users_count.present? ? self.subscription.users_count : 10 : 10
     if self.users_created >= limit && check_plan_expired(self)
       allow = false
     end
