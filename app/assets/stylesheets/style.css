@@ -2129,4 +2129,35 @@ header .container {
     padding: 28px !important;
 }
 
+#error_explanation {
+    background: none repeat scroll 0 0 #DCB8B8 !important;
+    float: left;
+    margin-bottom: 20px;
+    padding: 7px 7px 0;
+    width: 90%;
+    float:left;
+}
+
+#error_explanation h2 {
+    background-color: none !important;
+    color: #BF5254;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px !important;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+#error_explanation > ul {
+    clear: both !important;
+    float: left !important;
+    list-style: none outside none;
+}
+
+#error_explanation ul li {
+    font-size: 12px;
+    list-style: none !important;
+}
 

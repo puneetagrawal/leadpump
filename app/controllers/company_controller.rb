@@ -34,6 +34,7 @@ class CompanyController < ApplicationController
     else
       flash[:alert] = "Sorry! your user creation limit exceeded."
       @user = User.new()
+      @picture = Picture.new()
       @users = User.fetchCompanyUserList(current_user)
       render :action =>"new"
     end
