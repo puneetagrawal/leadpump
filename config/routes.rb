@@ -70,7 +70,9 @@ Leadpump::Application.routes.draw do
   match '/print_pass' => 'home#print_pass'
   match '/upgrade_plan' => 'home#upgrade_plan'
   match '/make_payment' => 'home#make_payment'
-
+  match '/plan_upg_mail' => 'home#plan_upg_mail'
+  match '/plan_cancel' => 'home#plan_cancel'
+  match '/thanks' => 'home#thanks'
 
   
   match '/savereferral' => 'vipleads#savereferral'

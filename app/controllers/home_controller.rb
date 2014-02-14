@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
 	require 'httparty'
   include ApplicationHelper
-  skip_before_filter :authenticate_user!, :only => [:pass,:print_pass,:storepassinsession,
+  skip_before_filter :authenticate_user!, :only => [:thanks,:pass,:print_pass,:storepassinsession,
     :calculateAmount]
     layout 'company_layout', only: [:pass,:print_pass]
 
@@ -125,8 +125,6 @@ def deleteRowByajax
   end
   if company.present?
     company.each do|user|
-      logger.debug("$$$$$$$$$$$")
-      logger.debug(user.id)
       cmp = Company.where(:company_user_id=>user).last
       cmp.destroy
       user.destroy
@@ -219,22 +217,22 @@ def print_pass
     begin
       if company.subscription.customer_id.present?
         customer_id = company.subscription.customer_id
-        # charge = Stripe::Charge.create(
-        # :amount => total_amount, # in cents
-        # :currency => "usd",
-        # :customer => customer.id
-        # )
+        charge = Stripe::Charge.create(
+        :amount => total_amount, # in cents
+        :currency => "usd",
+        :customer => customer.id
+        )
       else
         customer = Stripe::Customer.create(
         :email => email,
         :description => "Subscribed for #{@planPerUser.plan.name} plan.",
         :card  => stripe_token
         )
-      # charge = Stripe::Charge.create(
-      # :amount => total_amount, # in cents
-      # :currency => "usd",
-      # :customer => customer.id
-      # )
+        charge = Stripe::Charge.create(
+        :amount => total_amount, # in cents
+        :currency => "usd",
+        :customer => customer.id
+        )
         customer_id = customer.id
       end
       date = planType == "monthly" ? Date.today + 45 : Date.today + 380
@@ -268,6 +266,35 @@ def print_pass
       render :action => "upgrade_plan"
       return false
     end
+  end
+
+  def plan_upg_mail
+    begin
+      company = current_user.fetchCompany
+      email = company.email_list
+      name = current_user.name
+      user_email = current_user.email
+      Emailer.send_upgrade_mail(email,name, user_email).deliver 
+    rescue Exception => e             
+    end 
+    @msg = {:msg=>"sent successfully"}
+    respond_to do |format|
+      format.json { render json: @msg}
+    end
+  end
+
+  def plan_cancel
+    current_user.has_cancelled = true
+    current_user.original_email = current_user.email
+    current_user.email = "#{current_user.email}zXc"
+    current_user.save
+    @msg = {:msg=>"sent successfully"}
+    respond_to do |format|
+      format.json { render json: @msg}
+    end
+  end
+  def thanks
+    sign_out current_user
   end
 
   private

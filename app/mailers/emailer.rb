@@ -51,4 +51,8 @@ class Emailer < ActionMailer::Base
     mail(:to => email, :subject => "Join LeadPump")
   end
 
+  def send_upgrade_mail(email,name, user_email)
+    mail(:from=> "#{name} <#{company_email}>", :to => email, :subject => "Please upgrade your account")
+  end
+
 end

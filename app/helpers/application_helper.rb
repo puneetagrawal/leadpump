@@ -29,5 +29,15 @@ module ApplicationHelper
 			end
 		end
 	end
+	
+	def check_trial_period(user)
+		allow = false
+		if user.isCompany
+			if user.trial && user.subscription.charge_id.blank?
+				allow = true
+			end
+		end
+		return allow
+	end
 
 	end

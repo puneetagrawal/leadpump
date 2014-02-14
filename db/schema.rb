@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140214113115) do
+ActiveRecord::Schema.define(:version => 20140214145441) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -404,6 +404,8 @@ ActiveRecord::Schema.define(:version => 20140214113115) do
     t.integer  "vipcount"
     t.string   "associate"
     t.boolean  "trial"
+    t.boolean  "has_cancelled"
+    t.string   "original_email"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

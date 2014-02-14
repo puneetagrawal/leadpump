@@ -48,9 +48,26 @@
 		                <%=link_to "Manage Vips Creation", "javascript:void(0)", :class=> "btn yellow vipseting"%>
 		            </li>
 	            <%end%>
+	            <%if check_trial_period(current_user)%>
+	            	<li>
+		                <%=link_to "Cancel your trial", "javascript:void(0)", :class=> "btn yellow cancel_plan"%>
+		            </li>
+	            <%end%>
 	        </ul>
     	</div>
     </div>
 </div>
-
+<div id="cancel_sub" class="popup_container">
+  <div style="z-index:99999;top:3%">
+    <div style="font-size:20px;text-align:center;" id="dltmall" class="small_popup">
+  	<span style="font-weight:bold;">
+		Are you sure that you do not want to continue with us.
+		<div style="margin-top: 100px;">
+			<span class="pop_yellow_btn cancel_subscription">Cancel Subscription</span>
+			<span class="pop_yellow_btn cancelFancybox">close</span>
+		</div>
+	</span>
+  </div>
+  </div>
+</div>
 <%=render "common_templates/popupContainer"%>

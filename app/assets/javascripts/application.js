@@ -53,6 +53,28 @@ $(document).ready(function(){
 		});
 	});
 
+	$(".cancel_plan").click(function(){
+		$.fancybox.open({
+			href: '#cancel_sub',
+			type: 'inline',
+		});
+	});
+
+	$(".plan_upg_mail").click(function(){
+		url = "/plan_upg_mail";
+		$.post(url, {}, function (data) {
+			alert("Message sent successfully");
+			$.fancybox.close();		
+		});
+	});
+
+	$(".cancel_subscription").click(function(){
+		url = "/plan_cancel";
+		$.post(url, {}, function (data) {
+			window.location = "http://localhost:3000/thanks"
+		});
+	});
+
 	$("#myTab").click(function(){
 		$('#home_link').addClass('decoration');
 	});
