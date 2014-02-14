@@ -2,6 +2,6 @@ require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler.new
 
-scheduler.at "13:50:00" do
+scheduler.in "60s" do
 	User.create_charge_for_trail_user
 end
