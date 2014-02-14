@@ -61,17 +61,20 @@ $(document).ready(function(){
 	});
 
 	$(".plan_upg_mail").click(function(){
+		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = "/plan_upg_mail";
 		$.post(url, {}, function (data) {
 			alert("Message sent successfully");
+			$(this).html('Send Request');
 			$.fancybox.close();		
 		});
 	});
 
 	$(".cancel_subscription").click(function(){
+		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = "/plan_cancel";
 		$.post(url, {}, function (data) {
-			window.location = "http://localhost:3000/thanks"
+			window.location = "http://signin.leadpump.com/thanks"
 		});
 	});
 
