@@ -1,0 +1,12 @@
+<p>
+	<label>Users</label>
+	<%= select_tag "discountOnUsers", options_for_select((@planPerUser.user_range.start_range..@planPerUser.user_range.end_range).collect{ |dl| [dl, dl] }),:class => "moreUserLink input-small"%>
+	<span class="feild_info">All user must be on same plan.</span>
+</p>
+<p>
+	<label>No of Locations</label>
+	<span id="locationSelectBox">
+		<%= select_tag "no_of_locations", options_for_select((1..@planPerUser.user_range.start_range).collect{ |dl| [dl, dl] }), :class => "input-small" %>
+		<span class="feild_info">Must have one user per location.</span>
+	</span>
+</p>

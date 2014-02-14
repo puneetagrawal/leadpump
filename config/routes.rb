@@ -67,7 +67,9 @@ Leadpump::Application.routes.draw do
   match 'home/privacy' => 'home#privacy'
   match '/test' => 'home#test'
   match '/pass' => 'home#pass'
-   match '/print_pass' => 'home#print_pass'
+  match '/print_pass' => 'home#print_pass'
+  match '/upgrade_plan' => 'home#upgrade_plan'
+  match '/make_payment' => 'home#make_payment'
 
 
   

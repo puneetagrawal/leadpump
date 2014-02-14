@@ -1,8 +1,5 @@
 <span id="creditCardDiv">
 	<%= hidden_field_tag "planPerUserId",  @planPerUser.id%>
-	<%= sub.hidden_field :stripe_card_token %>
-	<%= sub.hidden_field :plan_per_user_range_id, :value=>@planPerUser.id %>
-
 	<p><%= label_tag :Type %><%= select_tag "credit_card", options_for_select([ "VISA", "MasterCard","American Express", "Discover" ], "MasterCard") %></p>
 	<p>
 		<%= label_tag :card_number, "Credit Card Number" %>

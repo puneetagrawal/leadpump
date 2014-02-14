@@ -38,6 +38,18 @@ function signUserOut() {
 }
 </script>
 <!-- <button onclick='signUserOut()'>Click here to sign out!</button> -->
+<div id="upgrade_terms" class="popup_container">
+  <div style="z-index:99999;top:3%">
+    <div style="font-size:20px;text-align:center;" id="dltmall" class="small_popup">
+    <span style="font-weight:bold;">Are You Sure want to upgrade your current plan.
+      <div style="margin-top: 100px;">
+        <%=link_to "Upgrade", new_plan_path(:maxUsers => @upgrade_user), :class=>"pop_yellow_btn"%>
+        <span class="pop_yellow_btn cancelFancybox">Cancel</span>
+      </div>
+    </span>
+  </div>
+  </div>
+</div>
 
 <%=render "common_templates/popupContainer"%>
 

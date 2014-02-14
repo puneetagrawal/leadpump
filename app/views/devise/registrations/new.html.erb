@@ -14,7 +14,7 @@
 						<%= devise_error_messages! %>
 						<div class="errors" id="stripe_error">
 							<%if @cardError.present?%>
-								<%=@cardError%>
+							<%=@cardError%>
 							<%end%>
 						</div>
 						<%= render :template => "devise/registrations/_signupUserFields", :locals => { :f => f} %>	
@@ -26,7 +26,9 @@
 						<h2><span class="number">3</span>Your billing information</h2>
 						<%= render :template => "common_templates/_labelsForDiscounts", :locals => { :f => f} %>	
 						<%= f.fields_for :subscription, Subscription.new do |sub| %>
-						<%= render :template => "devise/registrations/_creditCardDetails", :locals => { :sub => sub} %>	
+						<%= sub.hidden_field :stripe_card_token %>
+						<%= sub.hidden_field :plan_per_user_range_id, :value=>@planPerUser.id %>
+						<%= render :template => "devise/registrations/_creditCardDetails"%>	
 						<%end%>
 						<span id="couponDiv" style="display:none">
 							<p><%= label_tag :couponCode, "Coupon Code" %><%= text_field_tag :couponCode, nil, name: nil %></p>	

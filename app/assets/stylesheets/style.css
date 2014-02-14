@@ -230,13 +230,13 @@ h4 {
    ========================================================================== */
 
    body {
-     font-family: Arial;
- }
+       font-family: Arial;
+   }
 
 
 
- /*form*/
- input, textarea {
+   /*form*/
+   input, textarea {
     border:1px solid #ddd;
     background: #fff;
     width: 100%;
@@ -391,358 +391,358 @@ a:focus {
     background: #666;
     padding: 10px 0;
     color: #eee;
-}*/
+    }*/
     
-#footer {
-    bottom: 0px;
-    padding: 10px 0 1px 0;
-    width: 100%;
-    /*position: fixed;*/
-}
-#subfooter {
-    background: rgba(0, 0, 0, 0) url("/assets/bg_subfooter.png") repeat-x 0 0;
-    padding-top: 10px;
-    margin-top: 40px;
-}
-#mainfooter {
-    background: rgba(0, 0, 0, 0) url("/assets/bg_footer.png") repeat-x 0 0;
-    padding-top: 10px;
-    margin-top: -10px;
-}
-#subfooter>div {
-    background-color: #D8ECFB;
-    padding-bottom: 10px;
-}
-#mainfooter .footer {
-    background-color: #000;
-    text-align: left;
-    color: #FFF;
-    padding: 5px 0 5px 0;
-}
-.footerLinks {
-    margin-top: 50px;
-}
-.footerLinks h2 {
-    font-size: 14px;
-    line-height: 20px;
-    margin-bottom: 5px;
-}
-.footerLinks ul li {
-    font-size:14px;
-}
-.footerLinks ul li a {
-    color: #333;
-    text-decoration: none;
-    font-size:14px;
-}
-.footerLinks ul li a:hover {
-    text-decoration: underline;
-}
-.for_mobile {
-    float: left;
-}
-.for_mobile li {
-    float: left;
-    text-align: center;
-    width: 55px;
-}
-.iphone_icon {
-    width: 40px;
-    height: 40px;
-    clear: both;
-    display: inline-block;
-    background: url("/assets/for-mobile.png") -49px 0 no-repeat;
-}
-.ipad_icon {
-    width: 40px;
-    height: 40px;
-    clear: both;
-    display: inline-block;
-    background: url("/assets/for-mobile.png") -97px 0 no-repeat;
-}
-.android_icon {
-    width: 40px;
-    height: 40px;
-    clear: both;
-    display: inline-block;
-    background: url("/assets/for-mobile.png") 0px 0 no-repeat;
-}
+    #footer {
+        bottom: 0px;
+        padding: 10px 0 1px 0;
+        width: 100%;
+        /*position: fixed;*/
+    }
+    #subfooter {
+        background: rgba(0, 0, 0, 0) url("/assets/bg_subfooter.png") repeat-x 0 0;
+        padding-top: 10px;
+        margin-top: 40px;
+    }
+    #mainfooter {
+        background: rgba(0, 0, 0, 0) url("/assets/bg_footer.png") repeat-x 0 0;
+        padding-top: 10px;
+        margin-top: -10px;
+    }
+    #subfooter>div {
+        background-color: #D8ECFB;
+        padding-bottom: 10px;
+    }
+    #mainfooter .footer {
+        background-color: #000;
+        text-align: left;
+        color: #FFF;
+        padding: 5px 0 5px 0;
+    }
+    .footerLinks {
+        margin-top: 50px;
+    }
+    .footerLinks h2 {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 5px;
+    }
+    .footerLinks ul li {
+        font-size:14px;
+    }
+    .footerLinks ul li a {
+        color: #333;
+        text-decoration: none;
+        font-size:14px;
+    }
+    .footerLinks ul li a:hover {
+        text-decoration: underline;
+    }
+    .for_mobile {
+        float: left;
+    }
+    .for_mobile li {
+        float: left;
+        text-align: center;
+        width: 55px;
+    }
+    .iphone_icon {
+        width: 40px;
+        height: 40px;
+        clear: both;
+        display: inline-block;
+        background: url("/assets/for-mobile.png") -49px 0 no-repeat;
+    }
+    .ipad_icon {
+        width: 40px;
+        height: 40px;
+        clear: both;
+        display: inline-block;
+        background: url("/assets/for-mobile.png") -97px 0 no-repeat;
+    }
+    .android_icon {
+        width: 40px;
+        height: 40px;
+        clear: both;
+        display: inline-block;
+        background: url("/assets/for-mobile.png") 0px 0 no-repeat;
+    }
 
-/*dashboard*/
+    /*dashboard*/
 
-.dashboardIcons {
-    width:100%;
-    padding: 15px;
-}
-.dashboardIcons li {
-    width:100px;
-    float:left;
-    border:1px solid #ddd;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    border-radius:5px;
-    padding:6px;
-    margin:0 20px 20px 0;
-    position: relative;
-    background: #fff;
-}
-.dashboardIcons li a {
-    display:block;
-    background: #444;
-}
-.dashboardIcons li a:hover {
-    background: #333;
-    text-decoration: none;
-}
-.dashboardIcons li img {
-    width:88px;
-    height:88px;
-    text-align:center;
-}
-.dashboardIcons li span {
-    clear:both; 
-    width:100%;
-    text-align:center;
-    display:block; 
-}
-.icon {
-    width: 100px;
-    height: 88px;
-    display: block;
-    background-image: url("/assets/icon-sprite.png");
-    background-repeat: no-repeat;
-}
-.icon_dashboard {
-    background-position: 5px 0;
-}
-.icon_leads {
-    background-position: 5px -85px;
-}
-.icon_appointment {
-    background-position: 5px -170px;
-}
-.icon_salesdata {
-    background-position: 5px -260px
-}
-.icon_socialInviter {
-    background-position: 5px -348px;
-}
-.icon_opt_in_lead {
-    background-position: 5px -434px;
-}
-.icon_vip_leads {
-    background-position: 5px -526px;
-}
-.icon_statistics {
-    background-position: 5px -611px;
-}
-.icon_mall_item {
-    background-position: 5px -702px;
-}
-.icon_daily_report {
-    background-position: 5px -789px;
-}
-.icon_super_admin {
-    background-position: 5px -872px;
-}
-.icon_setting {
-    background-position: 5px -968px;
-}
-.upgrade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background:url("/assets/upgrade.png") 0 0 no-repeat;
-    width: 40px;
-    height: 40px;
-}
-.heading {
-    background:#ffde52;
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;    
-    box-sizing: border-box;   
-    font-size:24px;
-    padding:0px 10px;
-    text-align:center;
-    margin:0;
-}
-.border {
-    border:1px solid #ddd;
-}
-.form p {
-    clear: both;
-    width: 98%;
-}
-.form select {
-    height:34px;
-    border-radius: 0;
-}
-.form select:focus {
-    box-shadow:none;
-    border:1px solid #333;
-    outline: none;
-}
-.form input[type="text"], .form input[type="password"], .form input[type="email"], .form input[type="search"] {
-    height:24px;
-}
-.form input[type="text"]:focus, .form input[type="password"]:focus, .form input[type="email"]:focus, .form input[type="search"]:focus {
-    box-shadow:none;
-    border:1px solid #333;
-}
+    .dashboardIcons {
+        width:100%;
+        padding: 15px;
+    }
+    .dashboardIcons li {
+        width:100px;
+        float:left;
+        border:1px solid #ddd;
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        border-radius:5px;
+        padding:6px;
+        margin:0 20px 20px 0;
+        position: relative;
+        background: #fff;
+    }
+    .dashboardIcons li a {
+        display:block;
+        background: #444;
+    }
+    .dashboardIcons li a:hover {
+        background: #333;
+        text-decoration: none;
+    }
+    .dashboardIcons li img {
+        width:88px;
+        height:88px;
+        text-align:center;
+    }
+    .dashboardIcons li span {
+        clear:both; 
+        width:100%;
+        text-align:center;
+        display:block; 
+    }
+    .icon {
+        width: 100px;
+        height: 88px;
+        display: block;
+        background-image: url("/assets/icon-sprite.png");
+        background-repeat: no-repeat;
+    }
+    .icon_dashboard {
+        background-position: 5px 0;
+    }
+    .icon_leads {
+        background-position: 5px -85px;
+    }
+    .icon_appointment {
+        background-position: 5px -170px;
+    }
+    .icon_salesdata {
+        background-position: 5px -260px
+    }
+    .icon_socialInviter {
+        background-position: 5px -348px;
+    }
+    .icon_opt_in_lead {
+        background-position: 5px -434px;
+    }
+    .icon_vip_leads {
+        background-position: 5px -526px;
+    }
+    .icon_statistics {
+        background-position: 5px -611px;
+    }
+    .icon_mall_item {
+        background-position: 5px -702px;
+    }
+    .icon_daily_report {
+        background-position: 5px -789px;
+    }
+    .icon_super_admin {
+        background-position: 5px -872px;
+    }
+    .icon_setting {
+        background-position: 5px -968px;
+    }
+    .upgrade {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background:url("/assets/upgrade.png") 0 0 no-repeat;
+        width: 40px;
+        height: 40px;
+    }
+    .heading {
+        background:#ffde52;
+        -webkit-box-sizing: border-box; 
+        -moz-box-sizing: border-box;    
+        box-sizing: border-box;   
+        font-size:24px;
+        padding:0px 10px;
+        text-align:center;
+        margin:0;
+    }
+    .border {
+        border:1px solid #ddd;
+    }
+    .form p {
+        clear: both;
+        width: 98%;
+    }
+    .form select {
+        height:34px;
+        border-radius: 0;
+    }
+    .form select:focus {
+        box-shadow:none;
+        border:1px solid #333;
+        outline: none;
+    }
+    .form input[type="text"], .form input[type="password"], .form input[type="email"], .form input[type="search"] {
+        height:24px;
+    }
+    .form input[type="text"]:focus, .form input[type="password"]:focus, .form input[type="email"]:focus, .form input[type="search"]:focus {
+        box-shadow:none;
+        border:1px solid #333;
+    }
 
-body {
-    background-color: #fff 320px;
-    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
-    background-size: 100%;
-    background-image: -webkit-gradient(linear,50% 0,50% 320,color-stop(0%,#9ECFF5),color-stop(100%,#FFF));
-    background-image: -webkit-linear-gradient(#9ECFF5,#FFF 320px);
-    background-image: -moz-linear-gradient(#9ecff5,#fff 320px);
-    background-image: -o-linear-gradient(#9ecff5,#fff 320px);
-    background-image: linear-gradient(#9ECFF5,#FFF 320px);
-    background-repeat: no-repeat;
-}
-/*header*/
-header {
-    box-shadow: 0 2px 12px #666666;
-    color: #eee;
-    padding: 0px 0;
-    font-size: 16px;
-    color: #FFF;
-    width: 100%;
-    background-color: #343434;
+    body {
+        background-color: #fff 320px;
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+        background-size: 100%;
+        background-image: -webkit-gradient(linear,50% 0,50% 320,color-stop(0%,#9ECFF5),color-stop(100%,#FFF));
+        background-image: -webkit-linear-gradient(#9ECFF5,#FFF 320px);
+        background-image: -moz-linear-gradient(#9ecff5,#fff 320px);
+        background-image: -o-linear-gradient(#9ecff5,#fff 320px);
+        background-image: linear-gradient(#9ECFF5,#FFF 320px);
+        background-repeat: no-repeat;
+    }
+    /*header*/
+    header {
+        box-shadow: 0 2px 12px #666666;
+        color: #eee;
+        padding: 0px 0;
+        font-size: 16px;
+        color: #FFF;
+        width: 100%;
+        background-color: #343434;
 
-}
-header h2 {
-    margin: 0;
-    font-size: 24px;
-}
-header h2 a {
-    color: #fff;
-}
-.usernav {
-    margin: 8px 30px 8px 0;
-}
-.usernav li {
-    float: left;
-    margin: 0 10px 0 0;
-}
-#headerNav {
-    margin: -24px 0 10px;
-}
-#headerNav .navbar-inner {
-    background: transparent;
-    border: none;
-}
-#headerNav .nav > li > a {
-    color: #fff;
-    text-shadow: none;
-    font-weight: bold;
-    line-height: 16px;
-    padding: 6px 15px;
-    margin: 0 5px 0 0;
-}
-#headerNav .nav > li > a:hover, #headerNav .nav li a.active {
-    color: #fff;
-    background: #ff0000;
-    text-decoration: none;
-    text-shadow: none;
-    border-radius: 5px;
-}
-#headerNav .btn-navbar {
-    background: #ffde52;
-    min-width: 18px;
-}
-#headerNav .btn-navbar span {
-    background-color: #444d00;
-}
-.icon_login {
-    background-color: #ff0000;
-    border-radius: 30px;
-    height: 15px;
-    width: 15px;
-    text-align: center;
-    line-height: 20px;
-    border:2px solid #ff0000;
-    margin-right: 5px;
-}
-.usernav a {
-    color: #fff;
-}
-.navbar-inner {
-    min-height: 28px;
-}
-#headerNav .home_icon {
-    background: url("/assets/home.png") 13px 5px no-repeat transparent;
-    width: 54px;
-    height: 46px;
-    text-indent: -9999px;
-}
-#headerNav .nav > li > a.home_icon:hover, #headerNav .nav li a.home_icon.active {
-    background: url("/assets/home.png") 22px 5px no-repeat transparent;
-}
-.punchline {
-    margin: 5px 0 0 0px;
-    font-weight: bold;
-    position: absolute;
-    left: 50%;
-    width: 140px;
-    margin-left: -70px;
-}
+    }
+    header h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+    header h2 a {
+        color: #fff;
+    }
+    .usernav {
+        margin: 8px 30px 8px 0;
+    }
+    .usernav li {
+        float: left;
+        margin: 0 10px 0 0;
+    }
+    #headerNav {
+        margin: -24px 0 10px;
+    }
+    #headerNav .navbar-inner {
+        background: transparent;
+        border: none;
+    }
+    #headerNav .nav > li > a {
+        color: #fff;
+        text-shadow: none;
+        font-weight: bold;
+        line-height: 16px;
+        padding: 6px 15px;
+        margin: 0 5px 0 0;
+    }
+    #headerNav .nav > li > a:hover, #headerNav .nav li a.active {
+        color: #fff;
+        background: #ff0000;
+        text-decoration: none;
+        text-shadow: none;
+        border-radius: 5px;
+    }
+    #headerNav .btn-navbar {
+        background: #ffde52;
+        min-width: 18px;
+    }
+    #headerNav .btn-navbar span {
+        background-color: #444d00;
+    }
+    .icon_login {
+        background-color: #ff0000;
+        border-radius: 30px;
+        height: 15px;
+        width: 15px;
+        text-align: center;
+        line-height: 20px;
+        border:2px solid #ff0000;
+        margin-right: 5px;
+    }
+    .usernav a {
+        color: #fff;
+    }
+    .navbar-inner {
+        min-height: 28px;
+    }
+    #headerNav .home_icon {
+        background: url("/assets/home.png") 13px 5px no-repeat transparent;
+        width: 54px;
+        height: 46px;
+        text-indent: -9999px;
+    }
+    #headerNav .nav > li > a.home_icon:hover, #headerNav .nav li a.home_icon.active {
+        background: url("/assets/home.png") 22px 5px no-repeat transparent;
+    }
+    .punchline {
+        margin: 5px 0 0 0px;
+        font-weight: bold;
+        position: absolute;
+        left: 50%;
+        width: 140px;
+        margin-left: -70px;
+    }
 
-/*footer*/
-.footer-nav li {
-    display: inline;
-    float: left;
-    margin-right: 10px;
-    color: #eee;
-}
-.footer-nav li a {
-    color: #eee;
-}
-.footer-nav li a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-.copyrights {
-    font-weight: normal;
-    margin-bottom: 0;
-}
-.superscript {
-    font-size: 6px;
-    vertical-align: text-bottom;
-}
+    /*footer*/
+    .footer-nav li {
+        display: inline;
+        float: left;
+        margin-right: 10px;
+        color: #eee;
+    }
+    .footer-nav li a {
+        color: #eee;
+    }
+    .footer-nav li a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+    .copyrights {
+        font-weight: normal;
+        margin-bottom: 0;
+    }
+    .superscript {
+        font-size: 6px;
+        vertical-align: text-bottom;
+    }
 
 
-/*lead*/
-.leadform label {
-    width:40%;
-    float: left;
-}
-.leadform input {
-    width: 54%;
-    float: left;
-}
-.leadform select {
-    width: 58%;
-    float: left;
-}
-.table {
-    margin-bottom: 0;
-}
-.table thead {
-    background: #333;
-    color: #eee;
-}
-/*appointment*/
-.calender td.time {
-    background: #212d3d !important;
-    color: #eee;
-    width: 80px;
-}
-.green_dark {
-   background: #8dec84 !important;
-}
-.green_light {
+    /*lead*/
+    .leadform label {
+        width:40%;
+        float: left;
+    }
+    .leadform input {
+        width: 54%;
+        float: left;
+    }
+    .leadform select {
+        width: 58%;
+        float: left;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table thead {
+        background: #333;
+        color: #eee;
+    }
+    /*appointment*/
+    .calender td.time {
+        background: #212d3d !important;
+        color: #eee;
+        width: 80px;
+    }
+    .green_dark {
+     background: #8dec84 !important;
+ }
+ .green_light {
     background: #c3f4bd !important;
 }
 .blue_dark {
@@ -1433,7 +1433,7 @@ header h2 a {
     padding: 15px 0;
 }
 .dashboardpage .dashboardIcons li {
-   margin: 0 10px 10px 0;
+ margin: 0 10px 10px 0;
 }
 .payment_success {
     margin: 0 auto 150px !important;
@@ -1837,13 +1837,13 @@ header h2 a {
 }
 
 .leadAssignSelect{
-   background: none repeat scroll 0 0 #FFFFFF;
-   border: 1px solid #DDDDDD;
-   height: 45px;
-   padding: 7px;
-   width: 56%;
-   font-size: 20px;
-   margin-top: 35px;
+ background: none repeat scroll 0 0 #FFFFFF;
+ border: 1px solid #DDDDDD;
+ height: 45px;
+ padding: 7px;
+ width: 56%;
+ font-size: 20px;
+ margin-top: 35px;
 }
 
 .hide{
@@ -1944,10 +1944,10 @@ header h2 a {
 }
 .date_app{
     width:90px;
- }
- .text_fb{
-width: 120px;
- }
+}
+.text_fb{
+    width: 120px;
+}
 
 #share {
     border:1px solid #0D386F;
@@ -2117,7 +2117,7 @@ header .container {
     max-height: 78px;
     max-width: 78px;
 }
- #leadgauge{
+#leadgauge{
     height: 185px !important;
 }
 .cal_design .datepicker-inline{
@@ -2159,5 +2159,14 @@ header .container {
 #error_explanation ul li {
     font-size: 12px;
     list-style: none !important;
+}
+
+.pop_yellow_btn{
+    margin:0 22px 0-12px;
+    background:none repeat scroll 0 0 #FFDE52;
+    padding:10px;
+    border-radius:5px;
+    cursor:pointer;
+    color: #444444;
 }
 

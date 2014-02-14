@@ -46,6 +46,13 @@ $(document).ready(function(){
 		  // optional config
 	}); 
 
+	$(".upgrade_img").click(function(){
+		$.fancybox.open({
+			href: '#upgrade_terms',
+			type: 'inline',
+		});
+	});
+
 	$("#myTab").click(function(){
 		$('#home_link').addClass('decoration');
 	});

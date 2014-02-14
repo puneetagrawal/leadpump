@@ -1,23 +1,25 @@
 
 class HomeController < ApplicationController
 	require 'httparty'
+  include ApplicationHelper
   skip_before_filter :authenticate_user!, :only => [:pass,:print_pass,:storepassinsession,
     :calculateAmount]
-  layout 'company_layout', only: [:pass,:print_pass]
+    layout 'company_layout', only: [:pass,:print_pass]
 
-  def index
-   if !current_user.isAdmin
-     @users = current_user.fetchCompanySalesUsers
-     @leads = Lead.fetchTotalLeads(current_user)
+    def index
+     if !current_user.isAdmin
+       @users = current_user.fetchCompanySalesUsers
+       @leads = Lead.fetchTotalLeads(current_user)
      #saletodate = SaleProd.fetchProdDataTotal(current_user)
      saletodate = SaleProd.fetchProdDataUpTotal(current_user, Date.today)
      @gross_values = SaleProd.fetchGrossMap(saletodate)
+     @upgrade_user = upgrade_user(current_user)
    else
     redirect_to admin_index_path
-   end
- end
+  end
+end
 
- def testsendgrid   
+def testsendgrid   
   response = HTTParty.get('https://api.sendgrid.com/api/stats.get.json?api_user=leadpump&api_key=4trading&days=2&category=socailReferring')
   response = response.gsub("[", " ")
   response = response.gsub("]", " ")
@@ -31,7 +33,7 @@ def terms
 end
 
 def test
-   @companymallitem = current_user.fetchcompanymallitem
+ @companymallitem = current_user.fetchcompanymallitem
 end
 
 def privacy
@@ -115,13 +117,13 @@ def deleteRowByajax
    userss = []
    company = []
    company << object
-    Lead.assigndeletedleadtocompany(object)
-    Appointment.assigndeletedappointmenttocompany(object)
-    OptInLead.assignOptinToAdmin(object)
+   Lead.assigndeletedleadtocompany(object)
+   Appointment.assigndeletedappointmenttocompany(object)
+   OptInLead.assignOptinToAdmin(object)
    if object.isCompany
     company = User.fetchCompanyUserList(object)
-   end
-   if company.present?
+  end
+  if company.present?
     company.each do|user|
       logger.debug("$$$$$$$$$$$")
       logger.debug(user.id)
@@ -150,39 +152,39 @@ respond_to do |format|
 end
 end
 
-  def contacts_callback
-    unless request.env['omnicontacts.contacts'].blank?
-      @contacts = request.env['omnicontacts.contacts']
+def contacts_callback
+  unless request.env['omnicontacts.contacts'].blank?
+    @contacts = request.env['omnicontacts.contacts']
+  end
+end
+
+def send_invitation_social
+  message="Please join Leadpump "
+  email_id=params[:check_invite_email]
+  mail_invitaion(message,email_id)
+  redirect_to "/"
+end
+
+def pass
+  @company = User.find(2)
+  Company.removeAllPrintPassSessions(session)
+  user = User.find(params[:id])
+  @company = user.fetchCompany
+  landpage = LandingPage.where(:user_id=>@company.id).last
+  @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
+end
+
+def print_pass
+  @temp = TemporaryData.first
+  @dayscount = params[:dy].present? ? params[:dy] : 7
+  @down = "true"
+  @company = User.find(2)
+  @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
+  respond_to do |format|
+    format.pdf do
+      send_data @pf, filename: "pass.pdf", type: 'application/pdf', disposition: 'inline'
     end
   end
-
-  def send_invitation_social
-    message="Please join Leadpump "
-    email_id=params[:check_invite_email]
-    mail_invitaion(message,email_id)
-    redirect_to "/"
-  end
-
-  def pass
-    @company = User.find(2)
-    Company.removeAllPrintPassSessions(session)
-    user = User.find(params[:id])
-    @company = user.fetchCompany
-    landpage = LandingPage.where(:user_id=>@company.id).last
-    @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
-  end
-
-  def print_pass
-    @temp = TemporaryData.first
-    @dayscount = params[:dy].present? ? params[:dy] : 7
-    @down = "true"
-    @company = User.find(2)
-    @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb',:layout=>false))
-    respond_to do |format|
-      format.pdf do
-        send_data @pf, filename: "pass.pdf", type: 'application/pdf', disposition: 'inline'
-      end
-    end
     #  respond_to do |format|
     #   format.js do
     #     send_data filename: "foo.pdf",
@@ -198,6 +200,73 @@ end
     TemporaryData.first.prg
     respond_to do |format|
       format.json { render json: msg}
+    end
+  end
+
+  def upgrade_plan
+    @planPerUser = PlanPerUserRange.find(params[:planPerUser])
+  end
+
+  def make_payment
+    logger.debug(params)
+    @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
+    planType = params[:planType] == '2' ? 'yearly' : 'monthly'
+    amt = User.signUpAmount(params[:planPerUserId], params[:discountOnUsers], planType)
+    total_amount = amt["amount"].to_i * 100
+    company = current_user.fetchCompany 
+    email = company.email
+    stripe_token = params["user_subscription_attributes_stripe_card_token"]
+    begin
+      if company.subscription.customer_id.present?
+        customer_id = company.subscription.customer_id
+        # charge = Stripe::Charge.create(
+        # :amount => total_amount, # in cents
+        # :currency => "usd",
+        # :customer => customer.id
+        # )
+      else
+        customer = Stripe::Customer.create(
+        :email => email,
+        :description => "Subscribed for #{@planPerUser.plan.name} plan.",
+        :card  => stripe_token
+        )
+      # charge = Stripe::Charge.create(
+      # :amount => total_amount, # in cents
+      # :currency => "usd",
+      # :customer => customer.id
+      # )
+        customer_id = customer.id
+      end
+      date = planType == "monthly" ? Date.today + 45 : Date.today + 380
+      Subscription.saveSubscription(company, @planPerUser.id, stripe_token, date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer_id, "hello")
+      flash[:notice] = "Plan upgraded successfully"
+      redirect_to home_index_path()
+    rescue Stripe::CardError => e
+      body = e.json_body
+      err  = body[:error]
+      @cardError = "#{err[:message]}"
+      render :action => "upgrade_plan"
+      return false
+    rescue Stripe::InvalidRequestError => e
+      @cardError = "Invalid parameters were supplied to Stripe API"
+      render :action => "upgrade_plan"
+      return false
+    rescue Stripe::AuthenticationError => e
+      @cardError = "Authentication with Stripe's API failed"
+      render :action => "upgrade_plan"
+      return false
+    rescue Stripe::APIConnectionError => e
+      @cardError = "Network communication with Stripe failed"
+      render :action => "upgrade_plan"
+      return false
+    rescue Stripe::StripeError => e
+      @cardError = "Display a very generic error to the user, and maybe send yourself an email"
+      render :action => "upgrade_plan"
+      return false
+    rescue => e
+      @cardError = "Something bad happened, Please try again"
+      render :action => "upgrade_plan"
+      return false
     end
   end
 

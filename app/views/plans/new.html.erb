@@ -67,6 +67,8 @@
                             <div class="plan-signup">
                                 <%if !current_user%>
                                     <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                                <%else%>
+                                    <%= link_to "Choose", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
                                 <%end%>
                             </div>
                         </div>
@@ -179,6 +181,8 @@
                         <div class="plan-signup">
                             <%if !current_user%>
                                 <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                            <%else%>
+                            <%= link_to "Choose", "#", html_options = {} %>
                             <%end%>
                         </div>
                     </div>

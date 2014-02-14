@@ -2,7 +2,6 @@
  require 'net/https'
  require 'uri'
  require 'rexml/document'
-
  class VipleadsController < ApplicationController
   include VipleadsHelper
   include ApplicationHelper
