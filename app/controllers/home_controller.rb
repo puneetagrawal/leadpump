@@ -238,7 +238,7 @@ def print_pass
         customer_id = customer.id
       end
       date = planType == "monthly" ? Date.today + 45 : Date.today + 380
-      Subscription.saveSubscription(company, @planPerUser.id, stripe_token, date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer_id, "hello")
+      Subscription.saveSubscription(company, @planPerUser.id, stripe_token, date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer_id, "")
       flash[:notice] = "Plan upgraded successfully"
       redirect_to home_index_path()
     rescue Stripe::CardError => e
