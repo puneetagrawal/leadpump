@@ -236,7 +236,7 @@ def self.deleteusersfromcompany(companyusers)
     when :company
       limit = self.subscription.plan_per_user_range.plan.lead_management
       if check_plan_expired(self)
-        if self.leads_created <= limit.to_i || limit == "unlimited"
+        if self.leads_created <= limit.to_i || limit == "Unlimited"
           allow = true
         end
       end

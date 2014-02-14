@@ -11,7 +11,7 @@ module ApplicationHelper
 	def check_plan_expired(user)
 		allow = true
 		date = user.subscription.expiry_date
-		if date > Date.today
+		if date < Date.today
 			allow = true
 		end
 		return allow
