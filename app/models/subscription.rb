@@ -15,6 +15,7 @@ class Subscription < ActiveRecord::Base
     user.subscription.plan_type = planType
     user.subscription.customer_id = customerid
     user.subscription.charge_id = chargeid
+    user.subscription.save
   end
 
 end
