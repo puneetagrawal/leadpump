@@ -1,4 +1,4 @@
-<span style="font-weight:bold;">
+<!-- <span style="font-weight:bold;">
 	<%if current_user.isCompany%>
 		Are You Sure want to upgrade your current plan.
 		<div style="margin-top: 100px;">
@@ -13,4 +13,33 @@
 			<span class="pop_yellow_btn cancelFancybox">Cancel</span>
 		</div>
 	<%end%>
-</span>
+</span> -->
+<%if @all_plan.present?%>
+
+<div class="price-tbl" style="height:200px;width:700px;margin:40px 0 0 -85px">
+	<div class="all-data-col">
+		<% @all_plan.each_with_index do |planPerUser, i| %>
+		<div class="data-column data-col-<%="#{i+1}"%><%=' featured' if i == 2%>">
+			<span class="featured-red-corner"></span>
+			<div class="col-header">
+				<div class="plan-name"><span class="cufon"><%="#{planPerUser.plan.name}"%></span></div>
+				<div class="col-header-BG">
+					<div class="plan-price">
+						<em class="cufon">$</em>
+						<strong class="cufon"><%="#{planPerUser.price}"%></strong>
+						<b class="cufon">user/month</b>
+					</div>
+					<div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
+					<div class="plan-signup">
+						<%= link_to "Upgrade", new_plan_path(:maxUsers => planPerUser.user_range_id), html_options = {} %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%end%>
+	</div> 
+</div>
+
+<%else%>
+You can't upgrade your plan.
+<%end%>

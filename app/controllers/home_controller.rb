@@ -268,6 +268,14 @@ def print_pass
     end
   end
 
+  def fetch_upgrade_plan
+    plan = current_user.subscription.plan_per_user_range
+    @all_plan = PlanPerUserRange.order("id ASC").where("user_range_id = ? and plan_id != ?",plan.user_range_id, plan.plan_id)
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   def plan_upg_mail
     begin
       company = current_user.fetchCompany
@@ -285,8 +293,16 @@ def print_pass
 
   def plan_cancel
     current_user.has_cancelled = true
+    users = User.fetchCompanyUserList(current_user)
+    if users.present?
+      users.each do |user|
+        user.original_email = current_user.email
+        user.email = "cXz#{user.email}zXc"
+        user.save
+      end
+    end
     current_user.original_email = current_user.email
-    current_user.email = "#{current_user.email}zXc"
+    current_user.email = "cXz#{current_user.email}zXc"
     current_user.save
     @msg = {:msg=>"sent successfully"}
     respond_to do |format|

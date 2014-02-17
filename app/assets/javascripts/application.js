@@ -50,6 +50,11 @@ $(document).ready(function(){
 		$.fancybox.open({
 			href: '#upgrade_terms',
 			type: 'inline',
+			'beforeLoad' : function() {
+				url = '/fetch_upgrade_plan';
+				$.post(url, {}, function (data) {		
+				});
+			}
 		});
 	});
 
@@ -57,6 +62,7 @@ $(document).ready(function(){
 		$.fancybox.open({
 			href: '#cancel_sub',
 			type: 'inline',
+			
 		});
 	});
 

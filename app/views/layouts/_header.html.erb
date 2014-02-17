@@ -18,7 +18,7 @@
     </ul>
     <ul class="fr usernav">
       <li> 
-        <%- if current_user %>
+        <% if current_user %>
         <%=link_to destroy_user_session_path, :method => :delete do%>   
         <i class="icon-chevron-right icon-white icon_login"></i>
         Logout

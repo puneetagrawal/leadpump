@@ -1,5 +1,5 @@
 module SaleProdsHelper
-
+	include ApplicationHelper
 	def is_daily_rep_allow(user)
 		allow = false
 		company = user.fetchCompany

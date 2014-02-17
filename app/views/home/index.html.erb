@@ -40,8 +40,10 @@ function signUserOut() {
 <!-- <button onclick='signUserOut()'>Click here to sign out!</button> -->
 <div id="upgrade_terms" class="popup_container">
   <div style="z-index:99999;top:3%">
-    <div style="font-size:20px;text-align:center;" id="dltmall" class="small_popup">
-    <%=render "common_templates/upgrade_pop_text"%>
+    <div id="upgrade_pop_txt" style="font-size:20px;text-align:center;width:725px;height:auto" >
+    <img src="/assets/ajax-loader.gif" style="margin:15%" />
+    <%#=render "common_templates/upgrade_pop_text"%>
+    
   </div>
   </div>
 </div>

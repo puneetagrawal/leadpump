@@ -1,5 +1,5 @@
 module VipleadsHelper
-
+include ApplicationHelper
 	def is_vip_allow(user)
 		allow = false
 		company = user.fetchCompany

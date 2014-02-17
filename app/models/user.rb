@@ -229,7 +229,7 @@ def self.deleteusersfromcompany(companyusers)
       user = self.fetchCompany
       limit = user.subscription.plan_per_user_range.plan.lead_management
       if check_plan_expired(user)
-        if !User.numeric?limit || user.leads_created <= limit.to_i
+        if limit == "Unlimited" || user.leads_created <= limit.to_i
           allow = true
         end
       end

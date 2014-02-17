@@ -12,7 +12,7 @@ module ApplicationHelper
 		allow = true
 		date = user.subscription.expiry_date
 		if date < Date.today
-			allow = true
+			allow = false
 		end
 		return allow
 	end
