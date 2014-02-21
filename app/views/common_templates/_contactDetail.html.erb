@@ -1,0 +1,19 @@
+<div class="span4 margin_width">    
+	<div>
+		<h2 class="heading" style="border-radius:5px;">Contact Detail</h2>
+		<table class="table table-striped">
+			<tbody>
+				<% if @address.present? %>
+				<tr><td>Phone</td><td>-</td><td><%=@address.phone.present? ? @address.phone : 'N/A'%></td></tr>
+				<tr><td>Address</td><td>-</td><td><%=@address.address.present? ? @address.address : 'N/A'%></td></tr>
+				<tr><td>Zip</td><td>-</td><td><%=@address.zip.present? ? @address.zip : 'N/A'%></td></tr>
+				<tr><td>City</td><td>-</td><td><%=@address.city.present? ? @address.city : 'N/A'%></td></tr>
+				<tr><td>State</td><td>-</td><td><%=@address.state.present? ? @address.state : 'N/A'%></td></tr>
+				<tr><td>Country</td><td>-</td><td><%=@address.country.present? ? @address.country : 'N/A'%></td></tr>
+				<%else%>
+				<tr><td colspan="3">No contact info available</td></tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>        
+</div>

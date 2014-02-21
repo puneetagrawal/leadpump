@@ -12,5 +12,8 @@
 <td><%= user.created_at.strftime("%Y/%m/%d") %>
 	<td>
 		<%= link_to "Delete", "javascript:void(0)",:class => "leadAction leadDelete" %> 
+		<%if user.isCompany%>
+		 | <%= link_to "Contact Info", "javascript:void(0)",:class => "leadAction viewContact" %>
+		<%end%> 
 	</td>
 </tr>

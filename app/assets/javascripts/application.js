@@ -152,14 +152,15 @@ $(document).ready(function(){
   		onloginCall();
 	});
 
-	$(".viewContact").click(function(){
+	$(document).on('click', '.viewContact', function (){
 		id = $(this).closest('tr').attr('id').split("_")[1]
 		$.fancybox.open({
 			href: '#contactDetails',
 			type: 'inline',
 			'beforeLoad' : function() {
 				url = '/opt_in_leads/viewContact';
-				$.post(url, {leadId:id}, function (data) {		
+				path = window.location.pathname;
+				$.post(url, {id:id,path:path}, function (data) {		
 				});
 			}
 		});

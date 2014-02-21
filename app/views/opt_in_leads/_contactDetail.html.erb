@@ -1,10 +1,16 @@
 <div class="span4 margin_width">    
-    <div>
-        <h2 class="heading" style="border-radius:5px;">Contact Detail</h2>
-        <% if @opt_in_lead.phone.present? %>
-	        <label>Phone:</label><input type="text" name="phone" disabled="disabled" value="<%=@opt_in_lead.phone%>">
-        <%else%>
-        	<span style="margin-top:40px;">No User Info available.</span>
-        <%end%>
-    </div>        
+	<div>
+		<h2 class="heading" style="border-radius:5px;">Contact Detail</h2>
+		<table class="table table-striped">
+			<tbody>
+				<% if @opt_in_lead.phone.present? %>
+				<tr><td>Phone</td><td>-</td><td><%=@opt_in_lead.phone.present? ? @opt_in_lead.phone : '-'%></td>
+				</tr>
+				<%else%>
+				<tr><td colspan="3">Contact number is not available.</td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>        
 </div>

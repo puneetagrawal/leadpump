@@ -12,13 +12,16 @@ class CompanyController < ApplicationController
   end
 
   def new
+    @company = false
   	@user = User.new()
     @picture = Picture.new()
     @users = User.fetchCompanyUserList(current_user)
+    @users.insert(0, current_user)
   end
 
   def create
     if current_user.checkUserLimit
+      @company = false
       @user = User.new(params[:user])
       @user.password = "user.leadpump123"
       @user.reset_status = true
@@ -42,6 +45,11 @@ class CompanyController < ApplicationController
 
   def edit
     @user = User.find(params[:id])  
+    @company = false
+    if @user.isCompany
+      @company = true
+      @address = Address.where(:user_id=>"#{@user.id}").last
+    end
     respond_to do |format|
         format.js 
     end 
@@ -52,6 +60,22 @@ class CompanyController < ApplicationController
     @picture = Picture.new()
     if @userUpdate.update_attributes(params["inputs"]["user"])
       @user = User.new
+      if @userUpdate.isCompany
+        address = Address.where(:user_id=>params[:id]).last
+        if address.present?
+          address.address = params[:inputs][:address]
+          address.phone = params[:inputs][:phone]
+          address.zip = params[:inputs][:zip]
+          address.city = params[:inputs][:city]
+          address.state = params[:inputs][:state]
+          address.country = params[:inputs][:country]
+          address.save
+        else
+          Address.create(:address=>params[:inputs][:address],:phone=>params[:phone],
+            :zip=>params[:inputs][:zip],:city=>params[:inputs][:city],:state=>params[:inputs][:state],
+            :country=>params[:inputs][:country],:user_id=>params[:id])
+        end
+      end
     else
     end
     respond_to do |format|

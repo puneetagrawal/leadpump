@@ -217,22 +217,22 @@ def print_pass
     begin
       if company.subscription.customer_id.present?
         customer_id = company.subscription.customer_id
-        charge = Stripe::Charge.create(
-        :amount => total_amount, # in cents
-        :currency => "usd",
-        :customer => customer.id
-        )
+        # charge = Stripe::Charge.create(
+        # :amount => total_amount, # in cents
+        # :currency => "usd",
+        # :customer => customer.id
+        # )
       else
         customer = Stripe::Customer.create(
         :email => email,
         :description => "Subscribed for #{@planPerUser.plan.name} plan.",
         :card  => stripe_token
         )
-        charge = Stripe::Charge.create(
-        :amount => total_amount, # in cents
-        :currency => "usd",
-        :customer => customer.id
-        )
+        # charge = Stripe::Charge.create(
+        # :amount => total_amount, # in cents
+        # :currency => "usd",
+        # :customer => customer.id
+        # )
         customer_id = customer.id
       end
       date = planType == "monthly" ? Date.today + 45 : Date.today + 380

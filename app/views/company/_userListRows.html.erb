@@ -17,5 +17,6 @@
 </td>
 <td class="leadAction">
 	<%=link_to "Edit", "javascript:void(0)", html={:class=>"leadAction userEdit"}%>
-	 | <%=link_to "Delete", "javascript:void(0)", html={:class=>"leadAction leadDelete"}%> 
+	 <%if current_user != user %> | <%=link_to "Delete", "javascript:void(0)", html={:class=>"leadAction leadDelete"}%> 
+	 <%end%>
 </td>    
