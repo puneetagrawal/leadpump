@@ -8,8 +8,8 @@ class HomeController < ApplicationController
 
     def index
      if !current_user.isAdmin
-       @users = current_user.fetchCompanySalesUsers
-       @leads = Lead.fetchTotalLeads(current_user)
+     @users = current_user.fetchCompanySalesUsers
+     @leads = Lead.fetchTotalLeads(current_user)
      #saletodate = SaleProd.fetchProdDataTotal(current_user)
      saletodate = SaleProd.fetchProdDataUpTotal(current_user, Date.today)
      @gross_values = SaleProd.fetchGrossMap(saletodate)

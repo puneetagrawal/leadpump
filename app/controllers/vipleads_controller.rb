@@ -10,7 +10,7 @@
   layout 'reflanding', only: [:acceptInvitation]
   
   def index
-    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "vip", current_user.id).paginate( :page => params[:page], :per_page => 10)
+    @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", current_user.id).paginate( :page => params[:page], :per_page => 10)
     respond_to do |format|
       format.js
       format.html

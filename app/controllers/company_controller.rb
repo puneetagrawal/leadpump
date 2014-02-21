@@ -99,9 +99,8 @@ class CompanyController < ApplicationController
   def viewusergauge
     @user = User.find(params[:id])
     @leads = Lead.fetchTotalLeads(@user)
-    saletodate = SaleProd.fetchProdDataUpToDate(@user, Date.today)
+    saletodate = SaleProd.fetchProdDataUpTotal(@user, Date.today)
     @gross_values = SaleProd.fetchGrossMap(saletodate)
-    @project = "true"
     respond_to do |format|
       format.js 
     end
