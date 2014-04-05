@@ -163,6 +163,8 @@ Leadpump::Application.routes.draw do
   match '/company/new' => 'company#new'
   match '/company/show' => 'company#show'
   match '/company/create' => 'company#create'
+  match '/autoresponder' => 'company#autoresponder'
+  match '/create_auto_responder' => 'company#create_auto_responder'
   match '/settings' => 'company#settings'
   match '/edit/:id' => 'company#edit', :as => :edit
   match '/company/update/:id' => 'company#update', :as => :update

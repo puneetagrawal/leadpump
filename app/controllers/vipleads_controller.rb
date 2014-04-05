@@ -78,6 +78,7 @@
     end         
     @picture_user = Picture.fetchCompanyLogo(current_user.id)
     @lead = Lead.new
+   
   end
 
   def delete
@@ -197,6 +198,7 @@
         if lead.save
           UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
           user.saveLeadCount
+          AutoResponderRecord.save_respond_message(UserLeads.last, user)
           LeadNotes.create(:lead_id=>lead.id,:notes=>"",:time_stam=>DateTime.now)
           OptInLead.create(:name=>params[:name],:source=>"LEADPUMP optin", :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
           if params[:source] == "gmail" && !params[:sec].blank?

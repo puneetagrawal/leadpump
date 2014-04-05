@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.15'
 
@@ -24,6 +24,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'rufus-scheduler'
 gem 'jquery-rails'
 gem 'devise'
 gem 'compass-rails'

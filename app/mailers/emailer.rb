@@ -55,4 +55,10 @@ class Emailer < ActionMailer::Base
     mail(:from=> "#{name} <#{company_email}>", :to => email, :subject => "Please upgrade your account")
   end
 
+  def send_respond_mail(email, message, subject, c_name, c_email)
+    @message = message
+    @email = email
+    mail(:from=> "#{c_name} <#{c_email}>",:to => email, :subject => subject)
+  end
+
 end

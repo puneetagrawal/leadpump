@@ -28,6 +28,7 @@ class LeadsController < ApplicationController
         user_lead.save
         LeadNotes.create(:lead_id=>@lead.id,:notes=>params[:lead][:notes],:time_stam=>DateTime.now)
         current_user.saveLeadCount
+        AutoResponderRecord.save_respond_message(user_lead, current_user)
         flash[:notice] = "New lead created successfully"
         redirect_to new_lead_path
       else
