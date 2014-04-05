@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140214145441) do
+ActiveRecord::Schema.define(:version => 20140405075206) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -42,6 +42,26 @@ ActiveRecord::Schema.define(:version => 20140214145441) do
     t.datetime "app_date_time"
     t.integer  "user_id"
     t.integer  "lead_id"
+  end
+
+  create_table "auto_responder_records", :force => true do |t|
+    t.integer  "auto_responder_id"
+    t.integer  "user_lead_id"
+    t.boolean  "mail_sent"
+    t.date     "respond_date"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "auto_responders", :force => true do |t|
+    t.date     "respond_date"
+    t.string   "subject"
+    t.string   "message"
+    t.integer  "user_id"
+    t.integer  "user_lead"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "day"
   end
 
   create_table "companies", :force => true do |t|
@@ -289,14 +309,6 @@ ActiveRecord::Schema.define(:version => 20140214145441) do
     t.integer  "cheque"
   end
 
-  create_table "send_ivitation_to_gmail_friends", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "social_messages", :force => true do |t|
     t.text     "facebookMessage"
     t.text     "twitterMessage"
@@ -306,18 +318,6 @@ ActiveRecord::Schema.define(:version => 20140214145441) do
     t.datetime "updated_at",      :null => false
     t.string   "fbsubject"
     t.string   "gmailsubject"
-  end
-
-  create_table "stats", :force => true do |t|
-    t.string   "source",      :default => "email"
-    t.string   "location",    :default => "Default Location"
-    t.integer  "e_sents"
-    t.integer  "e_oppened"
-    t.integer  "e_views"
-    t.integer  "e_converted"
-    t.integer  "user_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -357,7 +357,6 @@ ActiveRecord::Schema.define(:version => 20140214145441) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
