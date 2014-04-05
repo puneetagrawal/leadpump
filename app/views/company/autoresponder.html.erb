@@ -29,7 +29,7 @@ margin-left: 8%;">
 		    		<div class="auto_res">
 			        	message <%=row%>:
 			            <p><label>day</label>
-			            	<%=select_tag("res_#{row}[day]", options_for_select((1..5).to_a,:selected=>1),:prompt => "Select no of days",:style=>"width:200px;margin:10px 0 10px 0;") %>
+			            	<%=select_tag("res_#{row}[day]", options_for_select((1..10).to_a,:selected=>1),:prompt => "Select no of days",:style=>"width:200px;margin:10px 0 10px 0;") %>
 			            </p>
 			            <p><label>Subject</label><%= text_field_tag  :subject,"",  name: "res_#{row}[subject]", class: "input-large" %></p>
 			            <p><label>Message</label>
