@@ -1,8 +1,9 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span12 text-center pricing_plans_heading">
-            <h2>Charter Member Pricing Ends soon!</h2>
-            <h3>Which plan is right for you?</h3>
+            <h2>Start Your 14-Day FREE No Obligation Trial Today</h2>
+            <h3 style="font-size:28px;">The professional plan is our most popular, please pick
+                the plan that is right for you.</h3>
         </div>
     </div>
     <div class="row-fluid">
@@ -66,9 +67,9 @@
                             <div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
                             <div class="plan-signup">
                                 <%if !current_user%>
-                                    <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                                    <%= link_to "Start Trial", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
                                 <%else%>
-                                    <%= link_to "Choose", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
+                                    <%= link_to "Start Free Trial", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
                                 <%end%>
                             </div>
                         </div>
@@ -180,9 +181,9 @@
                     <div class="col-footer">
                         <div class="plan-signup">
                             <%if !current_user%>
-                                <%= link_to "Sign up", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                                <%= link_to "Start Free Trial", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
                             <%else%>
-                            <%= link_to "Choose", "#", html_options = {} %>
+                            <%= link_to "Choose", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
                             <%end%>
                         </div>
                     </div>

@@ -25,7 +25,17 @@ class OptInLeadsController < ApplicationController
   end
 
   def viewContact
-  	@opt_in_lead = OptInLead.find(params[:leadId])
+    if params[:path].include? 'admin'
+  	 @object = User.find(params[:id])
+     @address = ''
+     if @object.isCompany
+      @address = Address.where(:user_id=>"#{@object.id}").last
+     end
+     @usr = true
+    else
+     @object = OptInLead.find(params[:id])
+     @usr = false 
+    end
   	respond_to do |format|
         format.js 
     end 

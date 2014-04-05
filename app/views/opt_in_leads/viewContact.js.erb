@@ -1,1 +1,5 @@
+<%if @usr.present?%>
+$("#showContact").html('<%=escape_javascript(render partial: "common_templates/contactDetail")%>');
+<%else%>
 $("#showContact").html('<%=escape_javascript(render partial: "contactDetail")%>');
+<%end%>
