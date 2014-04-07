@@ -15,12 +15,12 @@
 	<span>Leads</span>                 
 	<%end %>
 </li>
-<%else%>
+<%else%><li>
 	<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
 		<span class="upgrade"></span>
 		<i class="icon icon_leads"></i>
 		<span>Leads</span>                 
-	<%end %>
+	<%end %></li>
 <%end%>
 
 
@@ -48,11 +48,13 @@
 </li>
 
 <%else%>
+
+<li>
 	<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
 	<span class="upgrade"></span>
 	<i class="icon icon_salesdata"></i>
 	<span>Sales Data</span>
-	<%end %>
+	<%end %></li>
 <%end%>
 
 <%if is_daily_rep_allow(current_user)%>
@@ -70,12 +72,12 @@
 	<span>Daily Report</span>
 	<%end %>
 </li>
-<%else%>
+<%else%><li>
 	<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
 		<span class="upgrade"></span>
 		<i class="icon icon_daily_report"></i>
 		<span>Daily Report</span>
-	<%end %>
+	<%end %></li>
 <%end%>
 <%if current_user.isEmployee%> 
 	<%if is_vip_allow(current_user)%>
