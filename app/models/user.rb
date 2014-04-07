@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :statss
   has_many :onlinemalls
   has_many :saleProds
+  has_many :auto_responders
   has_one  :landing_page
   belongs_to :role
   has_one :subscription
@@ -235,8 +236,11 @@ def self.deleteusersfromcompany(companyusers)
       end
     when :company
       limit = self.subscription.plan_per_user_range.plan.lead_management
+      logger.debug("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
       if check_plan_expired(self)
+        logger.debug(limit)
         if self.leads_created <= limit.to_i || limit == "Unlimited"
+          logger.debug("sdfsdfffffffffffffffffffffff")
           allow = true
         end
       end

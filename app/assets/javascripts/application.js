@@ -42,9 +42,23 @@ $(document).ready(function(){
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd',minDate:0 }).val(); 
  	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
  	$('.filter-date').datepicker({ dateFormat: "yy-mm-dd"}).val(); 
-	$('.ckeditor').ckeditor({
-		  // optional config
-	}); 
+	
+$(document).on('click', '.autoResponder',function(){
+		// alert("message submit");
+		// var sub = $("#emailsubject").val();
+		// var msg = $(".ckeditor").val();
+		// alert(msg);
+		element = $(this)
+		var sub = $("#emailsubject").val();
+		var msg = $(".ckeditor").val();
+		
+		$.post(url,{sub:sub, msg: msg},function(data){
+			
+		});
+
+		});
+	
+
 
 	$(".upgrade_img").click(function(){
 		$.fancybox.open({
@@ -152,14 +166,15 @@ $(document).ready(function(){
   		onloginCall();
 	});
 
-	$(".viewContact").click(function(){
+	$(document).on('click', '.viewContact', function (){
 		id = $(this).closest('tr').attr('id').split("_")[1]
 		$.fancybox.open({
 			href: '#contactDetails',
 			type: 'inline',
 			'beforeLoad' : function() {
 				url = '/opt_in_leads/viewContact';
-				$.post(url, {leadId:id}, function (data) {		
+				path = window.location.pathname;
+				$.post(url, {id:id,path:path}, function (data) {		
 				});
 			}
 		});

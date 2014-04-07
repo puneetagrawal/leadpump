@@ -12,13 +12,16 @@ class CompanyController < ApplicationController
   end
 
   def new
+    @company = false
   	@user = User.new()
     @picture = Picture.new()
     @users = User.fetchCompanyUserList(current_user)
+    @users.insert(0, current_user)
   end
 
   def create
     if current_user.checkUserLimit
+      @company = false
       @user = User.new(params[:user])
       @user.password = "user.leadpump123"
       @user.reset_status = true
@@ -42,6 +45,11 @@ class CompanyController < ApplicationController
 
   def edit
     @user = User.find(params[:id])  
+    @company = false
+    if @user.isCompany
+      @company = true
+      @address = Address.where(:user_id=>"#{@user.id}").last
+    end
     respond_to do |format|
         format.js 
     end 
@@ -52,6 +60,22 @@ class CompanyController < ApplicationController
     @picture = Picture.new()
     if @userUpdate.update_attributes(params["inputs"]["user"])
       @user = User.new
+      if @userUpdate.isCompany
+        address = Address.where(:user_id=>params[:id]).last
+        if address.present?
+          address.address = params[:inputs][:address]
+          address.phone = params[:inputs][:phone]
+          address.zip = params[:inputs][:zip]
+          address.city = params[:inputs][:city]
+          address.state = params[:inputs][:state]
+          address.country = params[:inputs][:country]
+          address.save
+        else
+          Address.create(:address=>params[:inputs][:address],:phone=>params[:phone],
+            :zip=>params[:inputs][:zip],:city=>params[:inputs][:city],:state=>params[:inputs][:state],
+            :country=>params[:inputs][:country],:user_id=>params[:id])
+        end
+      end
     else
     end
     respond_to do |format|
@@ -75,9 +99,8 @@ class CompanyController < ApplicationController
   def viewusergauge
     @user = User.find(params[:id])
     @leads = Lead.fetchTotalLeads(@user)
-    saletodate = SaleProd.fetchProdDataUpToDate(@user, Date.today)
+    saletodate = SaleProd.fetchProdDataUpTotal(@user, Date.today)
     @gross_values = SaleProd.fetchGrossMap(saletodate)
-    @project = "true"
     respond_to do |format|
       format.js 
     end
@@ -256,6 +279,36 @@ def preview
   else
     @temp = false
   end
+end
+
+def autoresponder
+  @company = current_user.fetchCompany
+  @auto_responder = AutoResponder.where(:user_id=>@company)
+  @auto_res = AutoResponder.new
+end
+
+def create_auto_responder
+  if params[:ar_id].present?
+    ar_id = params[:ar_id].split(" ")
+    ar_id.each do|upd|
+      if !params["res_#{upd}"].blank?
+        respond = AutoResponder.find(upd)
+        respond.update_attributes(params["res_#{upd}"])
+      end
+    end
+  else
+  (1..10).each do |vip| 
+      if !params["res_#{vip}"].blank?
+        respond = AutoResponder.new(params["res_#{vip}"])
+        if respond.valid?
+          AutoResponder.saveResponder(respond,current_user)
+        else
+          respond.errors.full_messages
+        end
+      end
+    end
+  end
+    redirect_to :back
 end
 
 end

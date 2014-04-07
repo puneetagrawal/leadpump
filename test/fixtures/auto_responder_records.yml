@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  auto_responder_id: 1
+  user_lead_id: 1
+  mail_sent: false
+  respond_date: 2014-04-05
+
+two:
+  auto_responder_id: 1
+  user_lead_id: 1
+  mail_sent: false
+  respond_date: 2014-04-05

@@ -1897,6 +1897,9 @@ a:focus {
 .loader_margin{
     margin-top:35%;
 }
+.sm_loader_margin{
+    margin-top:20%;
+}
 
 .margin_width{
     width:350px;
@@ -2168,5 +2171,9 @@ header .container {
     border-radius:5px;
     cursor:pointer;
     color: #444444;
+}
+
+.pos_rel{
+	position:relative;
 }
 

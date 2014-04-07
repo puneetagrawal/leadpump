@@ -29,7 +29,7 @@ class VipLead < ActiveRecord::Base
 
   def self.saveLead(viplead, user, associate)
     viplead.associate = associate
-    viplead.lead_source = " LEADPUMP p.o.s."
+    viplead.lead_source = "LEADPUMP p.o.s."
     viplead.save
     LeadNotes.create(:lead_id=>viplead.id,:notes=>"",:time_stam=>DateTime.now)
     user_lead = UserLeads.create(:user_id => user.id, :lead_id => viplead.id)

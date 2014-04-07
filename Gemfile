@@ -24,6 +24,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'rufus-scheduler'
 gem 'jquery-rails'
 gem 'devise'
 gem 'compass-rails'

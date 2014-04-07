@@ -1,5 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
     config.width = '40%'
+    config.height = '200px'
     config.toolbar =
         [
 //            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'EqnEditor', '-', 'RemoveFormat' ] },

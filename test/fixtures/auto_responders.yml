@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  respond_date: 2014-04-05
+  subject: MyString
+  message: MyString
+  user_id: 1
+  user_lead: 1
+
+two:
+  respond_date: 2014-04-05
+  subject: MyString
+  message: MyString
+  user_id: 1
+  user_lead: 1

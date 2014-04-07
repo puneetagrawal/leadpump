@@ -7,8 +7,8 @@ Leadpump::Application.configure do
   SERVER_URL = "signin.leadpump.com"
   STRIPE_API_KEY = "sk_live_uZbFMn8jJDxYhcWBJMRz4kZS"
   STRIPE_PUB_KEY = "pk_live_IEcenF7CwslP7o1kXeRcYCQS"
-  # STRIPE_API_KEY = "sk_test_CSZ1ZaPwKkUnqoy9CRHVOaBA"
-  # STRIPE_PUB_KEY = "pk_test_tPb28bRAb7DWYFpeU9l8oKhB"
+   #STRIPE_API_KEY = "sk_test_CSZ1ZaPwKkUnqoy9CRHVOaBA"
+   #STRIPE_PUB_KEY = "pk_test_tPb28bRAb7DWYFpeU9l8oKhB"
   
   FACEBOOK_KEY = "563196563757857"
   FACEBOOK_SECRET = "ac0561d3179ef6507205091ccc4bb018"
