@@ -189,7 +189,7 @@ Leadpump::Application.routes.draw do
   #match '/auth/:provider/callback' => 'vipleads#new'
 
 
-
+  match '/insert_prospect' => 'vipleads#insert_prospect'
 
   # match "/stripe_events", :to => "events#stripe_events", :as => :stripe_events, :via => :post
 
