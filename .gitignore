@@ -9,6 +9,7 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/schema.rb
 /db/migrate_sql
 /public/system/
 /test/fixtures/temporary_data.yml

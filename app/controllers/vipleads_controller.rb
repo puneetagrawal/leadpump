@@ -2,13 +2,17 @@
  require 'net/https'
  require 'uri'
  require 'rexml/document'
+ require 'savon'
+ USERNAME = 'leadpump.com'
+ PASSWORD = 'sh1kq5Da95W4'
+
  class VipleadsController < ApplicationController
   include VipleadsHelper
   include ApplicationHelper
   skip_before_filter :authenticate_user!, :only => [:acceptInvitation, :mallitems,:savereferral,:trackEmail,:viewmallitem,:download]
   before_filter :check_plan, :only => [:new, :index]
   layout 'reflanding', only: [:acceptInvitation]
-  
+
   def index
     @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", current_user.id).paginate( :page => params[:page], :per_page => 10)
     respond_to do |format|
@@ -36,7 +40,7 @@
     current_user.associate = associate
     current_user.save
     error = ''
-    (1..5).each do |vip| 
+    (1..5).each do |vip|
       if !params["inputs"]["vip_#{vip}"].blank?
         viplead = Lead.new(params["inputs"]["vip_#{vip}"])
         if viplead.valid?
@@ -51,9 +55,9 @@
       render json: message
     else
       respond_to do |format|
-        format.js 
+        format.js
       end
-    end 
+    end
   end
 
   def new
@@ -65,7 +69,7 @@
       if @gmail_contacts.present?
         GmailFriend.savegmailContact(@gmail_contacts, current_user, @token)
       end
-      @emailAuth = true 
+      @emailAuth = true
     elsif params[:oauth_token].present?
       unless request.env['omnicontacts.contacts'].blank?
         email = request.env['omnicontacts.user'][:email]
@@ -74,8 +78,8 @@
         @yahoo_contacts = request.env['omnicontacts.contacts']
         GmailFriend.saveyahooContact(@yahoo_contacts, current_user, @token)
       end
-      @emailAuth = true 
-    end         
+      @emailAuth = true
+    end
     @picture_user = Picture.fetchCompanyLogo(current_user.id)
     @lead = Lead.new
    
@@ -98,14 +102,14 @@
       @contacts = GmailFriend.order("name ASC").where(:user_id=> current_user.id, :source=>"gmail",:access_token=>token)
     end
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
 
   def showvipleads
     @viplead = VipLead.find(params[:id])
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
 
@@ -243,14 +247,14 @@ def vipleadsearchfilter
     @leads = UserLeads.where(:user_id => @users)
   end
   respond_to do |format|
-    format.js 
+    format.js
   end
 end
 
 def viewmallitem
   @mall = Onlinemall.find(params[:id])
   respond_to do |format|
-    format.js 
+    format.js
   end
 end
 
@@ -270,11 +274,11 @@ end
 def searchvipleads
   leads =VipLead.fetchList(current_user.id)
   if params[:term].blank?
-    leads = UserLeads.includes(:lead).select("distinct(leads.name)").where(:id => leads) 
+    leads = UserLeads.includes(:lead).select("distinct(leads.name)").where(:id => leads)
     list = leads.map {|l| Hash[id: l.id, label: l.lead.name, name: l.lead.name]}
   else
    like  = "%".concat(params[:term].concat("%"))
-   leads = UserLeads.includes(:lead).select("distinct(leads.name)").where("name ilike ? and user_leads.id IN (?)" , like, leads) 
+   leads = UserLeads.includes(:lead).select("distinct(leads.name)").where("name ilike ? and user_leads.id IN (?)" , like, leads)
    list = leads.map {|l| Hash[id: l.id, label: l.lead.name, name: l.lead.name]}
    if !leads.present?
     userleads = VipLead.fetchList(current_user.id)
@@ -285,7 +289,29 @@ end
 render json: list
 end
 
-private 
+def insert_prospect
+  #client = Savon.client(wsdl: "https://webservice.abcfinancial.com/wsdl/Prospect.wsdl")
+  @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
+  @basic_auth=["leadpump.com","sh1kq5Da95W4"]
+  @message = {:clubNumber=> 'Club0231', :firstName=> 'vishwnath', :lastName=> 'yadav', :gender=> "male"  }
+  @namespace= "https://webservice.abcfinancial.com"
+  @headers={"Authorization" => "Basic"}
+  @client = Savon.client do |globals|
+    globals.wsdl @wsdl
+    globals.namespace @namespace
+    globals.basic_auth @basic_auth
+    globals.headers @headers
+  end
+  logger.debug(@client.inspect)
+  begin
+   response = @client.call(:insert_prospect, :message => @message)
+   logger.debug(response.inspect)
+ rescue Exception => e
+    logger.debug(e.to_s)
+ end
+end
+
+private
 def check_plan
   if !is_vip_allow(current_user)
     flash[:notice] = "Sorry! you are not authorize user"

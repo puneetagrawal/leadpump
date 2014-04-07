@@ -1,5 +1,5 @@
 CKEDITOR.editorConfig = function(config) {
-    config.width = '685px',
+    config.width = '40%'
     config.height = '200px'
     config.toolbar =
         [

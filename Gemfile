@@ -29,7 +29,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'compass-rails'
 gem 'susy'
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stripe', :git => 'http://github.com/stripe/stripe-ruby'
 gem 'cancan'
 gem 'rails3-jquery-autocomplete'
 gem 'country-select'
@@ -68,3 +68,4 @@ group :development do
 	gem 'debugger'
 	gem "rails_best_practices"
 end
+gem 'savon'

@@ -150,7 +150,23 @@
 	<%end%>
 			
 <%end%>
-
+<li>
+	<%if is_vip_allow(current_user)%>
+	<%=link_to(onlinemall_index_path, html_options = {}) do %>
+	<i class="icon icon_mall_item"></i>
+	<span>Online Mall</span>
+	<span></span>                  
+	<%end %>
+	<%else%>
+	
+	<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do%>
+	<span class="upgrade"></span>
+	<i class="icon icon_mall_item"></i>
+	<span>Online Mall</span>
+	<span></span>     
+	<%end %>
+	<%end%>
+</li>
 <%if current_user.isCompany || current_user.isAdmin%>
 <li>
 	<%if current_user.checkUserLimit%>

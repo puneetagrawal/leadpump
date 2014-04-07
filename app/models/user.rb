@@ -239,7 +239,7 @@ def self.deleteusersfromcompany(companyusers)
       logger.debug("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
       if check_plan_expired(self)
         logger.debug(limit)
-        if self.leads_created <= limit.to_i || limit == "unlimited"
+        if self.leads_created <= limit.to_i || limit == "Unlimited"
           logger.debug("sdfsdfffffffffffffffffffffff")
           allow = true
         end
