@@ -283,7 +283,7 @@ end
 
 def autoresponder
   @company = current_user.fetchCompany
-  @auto_responder = AutoResponder.where(:user_id=>@company)
+  @auto_responder = AutoResponder.where(:user_id=>current_user).order('id asc')
   @auto_res = AutoResponder.new
 end
 
@@ -292,12 +292,16 @@ def create_auto_responder
     ar_id = params[:ar_id].split(" ")
     ar_id.each do|upd|
       if !params["res_#{upd}"].blank?
+        logger.debug(upd)
+        logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>")
         respond = AutoResponder.find(upd)
+        logger.debug(params["res_#{upd}"])
         respond.update_attributes(params["res_#{upd}"])
       end
     end
   else
   (1..10).each do |vip| 
+    logger.debug("**********************")
       if !params["res_#{vip}"].blank?
         respond = AutoResponder.new(params["res_#{vip}"])
         if respond.valid?
@@ -308,7 +312,7 @@ def create_auto_responder
       end
     end
   end
-    redirect_to :back
+    redirect_to '/autoresponder'
 end
 
 end
