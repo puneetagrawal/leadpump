@@ -293,19 +293,26 @@ def insert_prospect
   #client = Savon.client(wsdl: "https://webservice.abcfinancial.com/wsdl/Prospect.wsdl")
   @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
   @basic_auth=["leadpump.com","sh1kq5Da95W4"]
-  @message = {:clubNumber=> 'Club0231', :firstName=> 'vishwnath', :lastName=> 'yadav', :gender=> "male"  }
+  @message = {:clubNumber=> '0231', :firstName=> 'vishwnath', :lastName=> 'yadav', :gender=> "male" }
   @namespace= "https://webservice.abcfinancial.com"
-  @headers={"Authorization" => "Basic"}
-  @client = Savon.client do |globals|
-    globals.wsdl @wsdl
-    globals.namespace @namespace
-    globals.basic_auth @basic_auth
-    globals.headers @headers
-  end
-  logger.debug(@client.inspect)
+  @headers={"Authorization" => "Secret"}
+
+  client = Savon.client do |globals|
+  globals.wsdl @wsdl
+
+end
+  # @client = Savon.client do |globals|
+  #   globals.wsdl @wsdl
+  #   globals.namespace @namespace
+  #   globals.basic_auth @basic_auth
+  #   globals.headers @headers
+  # end
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  logger.debug(client.operations)
   begin
-   response = @client.call(:insert_prospect, :message => @message)
-   logger.debug(response.inspect)
+  viplead = VipLead.new
+   response = viplead.insert_prospect(:message => @message)
+   logger.debug(response)
  rescue Exception => e
     logger.debug(e.to_s)
  end
