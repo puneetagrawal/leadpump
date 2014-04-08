@@ -23,7 +23,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'nokogiri'
+#gem 'nokogiri'
 gem 'rufus-scheduler'
 gem 'jquery-rails'
 gem 'devise'
