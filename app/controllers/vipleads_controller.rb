@@ -2,7 +2,7 @@
  require 'net/https'
  require 'uri'
  require 'rexml/document'
- require 'savon'
+ #require 'savon'
  
  class VipleadsController < ApplicationController
   include VipleadsHelper
@@ -287,28 +287,28 @@ end
 render json: list
 end
 
-def insert_prospect
-  #client = Savon.client(wsdl: "https://webservice.abcfinancial.com/wsdl/Prospect.wsdl")
-  @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
-  @basic_auth=["leadpump.com","sh1kq5Da95W4"]
-  @message = {:clubNumber=> '0231', :firstName=> 'vishwnath', :lastName=> 'yadav', :gender=> "male" }
-  @namespace= "https://webservice.abcfinancial.com"
-  @headers={"Authorization" => "Secret"}
-  @client = Savon.client do |globals|
-    globals.wsdl @wsdl
-    globals.namespace @namespace
-    globals.basic_auth @basic_auth
-    globals.headers @headers
-  end
-  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-  logger.debug(@client.operations)
-  begin
-   response = @client.call(:insert_prospect, :message => @message)
-   logger.debug(response)
- rescue Exception => e
-    logger.debug(e.to_s)
- end
-end
+# def insert_prospect
+#   #client = Savon.client(wsdl: "https://webservice.abcfinancial.com/wsdl/Prospect.wsdl")
+#   @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
+#   @basic_auth=["leadpump.com","sh1kq5Da95W4"]
+#   @message = {:clubNumber=> '0231', :firstName=> 'vishwnath', :lastName=> 'yadav', :gender=> "male" }
+#   @namespace= "https://webservice.abcfinancial.com"
+#   @headers={"Authorization" => "Secret"}
+#   @client = Savon.client do |globals|
+#     globals.wsdl @wsdl
+#     globals.namespace @namespace
+#     globals.basic_auth @basic_auth
+#     globals.headers @headers
+#   end
+#   logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+#   logger.debug(@client.operations)
+#   begin
+#    response = @client.call(:insert_prospect, :message => @message)
+#    logger.debug(response)
+#  rescue Exception => e
+#     logger.debug(e.to_s)
+#  end
+# end
 
 private
 def check_plan
