@@ -5,9 +5,9 @@ Leadpump::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   SERVER_URL = "localhost:3000"
-  STRIPE_API_KEY = "sk_test_MDqPbXEEDmOnzrqwJhyzmYeF"
+  STRIPE_API_KEY = "sk_test_CSZ1ZaPwKkUnqoy9CRHVOaBA"
   #STRIPE_API_KEY = "sk_test_CSZ1ZaPwKkUnqoy9CRHVOaBA"
-  STRIPE_PUB_KEY = "pk_test_khzNUZcEtnlUCiom3lA2nQtI"
+  STRIPE_PUB_KEY = "pk_test_tPb28bRAb7DWYFpeU9l8oKhB"
   #STRIPE_PUB_KEY = "pk_test_tPb28bRAb7DWYFpeU9l8oKhB"
   
   FACEBOOK_KEY = "468207766612651"
