@@ -335,33 +335,37 @@ end
 
 def self.create_charge_for_trail_user
   logger.debug("Creating charge for trial users --- #{Date.today}")
-  trial_user = User.where("created_at < ? and trial = ? and role_id = ?",Date.today-14,true,2)
+  trial_user = Subscription.where("expiry_date < ?",Date.today)
   if trial_user.present?
     logger.debug(trial_user.size)
-    trial_user.each do |user|
-      logger.debug("paying for user #{user.id}")
-      user.create_charge
+    logger.debug("ddddddddddddddddddddddddddddd")
+    trial_user.each do |sub|
+      logger.debug("paying for user #{sub.id}")
+      User.create_charge(sub)
     end
   end
 end
 
-def create_charge
-  subscription = self.subscription
-  if subscription.present? && subscription.customer_id.present?
+def self.create_charge(sub)
+  user = sub.user
+  if user.present? && user.role_id == 2 && sub.customer_id.present?
     begin
-      self.trial = false
-      date = subscription.plan_type == "yearly" ? Date.today + 366 : Date.today + 31
-      subscription.expiry_date = date
-      payment = subscription.payment * 100
-      customer = subscription.customer_id
+      #self.trial = false
+      date = sub.plan_type == "yearly" ? Date.today + 366 : Date.today + 31
+      sub.expiry_date = date
+      payment = sub.payment * 100
+      customer = sub.customer_id
       charge = Stripe::Charge.create(
           :amount => payment, # in cents
           :currency => "usd",
           :customer => customer
           )
-      subscription.charge_id = charge.id
-      subscription.save
-      self.save
+      sub.charge_id = charge.id
+      if sub.save
+        logger.debug(">>>>>>>>>>>>>>>>>>>>>>")
+      else
+        logger.debug(sub.errors.full_messages)
+      end
     rescue Stripe::CardError => e
       body = e.json_body
       err  = body[:error]

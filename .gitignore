@@ -24,3 +24,6 @@
 .vagrant
 Vagrantfile
 leadpump_backup
+Gemfile.lock
+/db/database.yml
+
