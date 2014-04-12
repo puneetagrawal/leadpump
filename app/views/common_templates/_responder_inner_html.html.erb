@@ -1,0 +1,10 @@
+<div class="auto_res" style="font-weight:bold;font-size:18px!important;">
+	MESSAGE <%=index%>:
+    <p style="margin-top:20px;"><label>Day to respond</label>
+    	<%=select_tag("res_#{row_id}[day]", options_for_select((1..5).to_a,:selected=>day),:prompt => "Select no of days",:style=>"width:200px;height:33px;margin-bottom:0px;") %>
+    </p>
+    <p><label>Subject</label><%= text_field_tag  :subject, subject,  name: "res_#{row_id}[subject]", class: "input-large", :style=>"width:73%" %></p>
+    <p><label>Message</label>
+    	<%=text_area_tag :message, message, name: "res_#{row_id}[message]", class: "ckeditor" %>
+	</p>
+</div> 
