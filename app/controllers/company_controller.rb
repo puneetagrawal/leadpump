@@ -288,11 +288,17 @@ def autoresponder
 end
 
 def create_auto_responder
+  from_email = params[:from_email]
   if params[:ar_id].present?
     ar_id = params[:ar_id].split(" ")
     ar_id.each do|upd|
       if !params["res_#{upd}"].blank?
         respond = AutoResponder.find(upd)
+        current_user.from_email = from_email
+        if current_user.save
+        else
+           (respond.errors.full_messages)
+        end
         respond.update_attributes(params["res_#{upd}"])
       end
     end
@@ -301,7 +307,7 @@ def create_auto_responder
       if !params["res_#{vip}"].blank?
         respond = AutoResponder.new(params["res_#{vip}"])
         if respond.valid?
-          AutoResponder.saveResponder(respond,current_user)
+          AutoResponder.saveResponder(respond,current_user,from_email)
         else
           respond.errors.full_messages
         end
