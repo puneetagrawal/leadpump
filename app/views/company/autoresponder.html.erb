@@ -1,45 +1,30 @@
 <div class="container">
    <div class="row-fluid">
    	<span class="formfields">
-       <%#= render 'form' %>
-   </span>
-      <div class="span8 app_header" style="width: 78.811966%;
-margin-left: 8%;">
+   	</span>
+      <div class="span8 app_header" style="width: 78.811966%;margin-left: 8%;">
 		  <div class="border" style="width:106%">
 		   	   <h2 class="heading">Auto Responder Messages</h2>
 			   <div class="" style="padding:20px;">
 			   		<%= form_for @auto_res, :url => '/create_auto_responder', :method => :post, :html => { :class => "forms form"} do |res| %>
 
-			<%if @auto_responder.present?%>
-				<%=hidden_field_tag :ar_id, @auto_responder.map(&:id)%>
-				<%@auto_responder.each_with_index do |row, index|%>
-			        <div class="auto_res" style="font-weight:bold;font-size:18px;">
-			        	Message <%=index+1%>:
-			            <p style="margin-top:20px;"><label>Day to respond</label>
-			            	<%=select_tag("res_#{row.id}[day]", options_for_select((1..5).to_a,:selected=>row.day),:prompt => "Select no of days",:style=>"width:200px") %>
-			            </p>
-			            <p><label>Subject</label><%= text_field_tag  :subject, row.subject,  name: "res_#{row.id}[subject]", class: "input-large", :style=>"width:73%" %></p>
-			            <p><label>Message</label>
-			            	<%=text_area_tag :message, row.message, name: "res_#{row.id}[message]", class: "ckeditor" %>
-			        	</p>
-			        </div> 
-			    <%end%>
-		    <%else%>
-		    	<%(1..10).to_a.each do |row|%>
-		    		<div class="auto_res">
-			        	message <%=row%>:
-			            <p><label>day</label>
-			            	<%=select_tag("res_#{row}[day]", options_for_select((1..10).to_a,:selected=>1),:prompt => "Select no of days",:style=>"width:200px;margin:10px 0 10px 0;") %>
-			            </p>
-			            <p><label>Subject</label><%= text_field_tag  :subject,"",  name: "res_#{row}[subject]", class: "input-large" %></p>
-			            <p><label>Message</label>
-			            	<%=text_area_tag :message, "", name: "res_#{row}[message]", class: "ckeditor" %>
-			        	</p>
-			        </div> 
-			    <%end%>
-		    <%end%>
-	    	<%=res.submit :submit, :class=>"btn yellow"%>
-	    <%end%>
+						<%if @auto_responder.present?%>
+							<%=hidden_field_tag :ar_id, @auto_responder.map(&:id)%>
+							<%@auto_responder.each_with_index do |row, index|%>
+								<%=render "common_templates/responder_inner_html", :row_id=>row.id, :index=>index+1, :message=>row.message,:subject=>row.subject,:day=>row.day%>
+						        
+						    <%end%>
+					    <%else%>
+					    	<%(1..10).to_a.each do |row|%>
+						        <%=render "common_templates/responder_inner_html", :row_id=>row, :index=>row, :message=>'',:subject=>'',:day=>1%>
+						    <%end%>
+					    <%end%>
+					    <p>
+					    	<label>From Email</label>
+					    	<%=text_field_tag :from_email, current_user.from_email, :style=>"width:73%"%>
+					    </p>
+				    	<%=res.submit :submit, :class=>"btn yellow"%>
+				    <%end%>
 			   </div>
 			</div>
 		</div>

@@ -2,12 +2,12 @@
  require 'net/https'
  require 'uri'
  require 'rexml/document'
- # require 'savon'
+ require 'savon'
  
  class VipleadsController < ApplicationController
   include VipleadsHelper
   include ApplicationHelper
-  skip_before_filter :authenticate_user!, :only => [:acceptInvitation, :mallitems,:savereferral,:trackEmail,:viewmallitem,:download]
+  skip_before_filter :authenticate_user!, :only => [:insert_prospect,:acceptInvitation, :mallitems,:savereferral,:trackEmail,:viewmallitem,:download]
   before_filter :check_plan, :only => [:new, :index]
   layout 'reflanding', only: [:acceptInvitation]
 
@@ -287,24 +287,46 @@ end
 render json: list
 end
 
-# def insert_prospect
-#   @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
-#   @basic_auth=["leadpump.com","sh1kq5Da95W4"]
-#   @message = {:clubNumber=> 0003, :firstName=> 'vishwnath', :lastName=> 'yadav', :gender=> "male" }
-#   @client = Savon.client do |globals|
-#     globals.wsdl @wsdl
-#     globals.basic_auth @basic_auth
-#   end
-#   logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-#   logger.debug(@client.operations)
-#   begin
-#    response = @client.call(:insert_prospect, :message => @message)
-#    logger.debug(response.inspect)
-#    logger.debug(response.body)
-#  rescue Exception => e
-#     logger.debug(e.to_s)
-#  end
-# end
+def insert_prospect
+ #  AutoResponderRecord.send_auto_respond_mail
+ #  @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
+ #  @wsdl_1 = "http://webservice.abcfinancial.com/ws"
+ #  @basic_auth=["leadpump.com","sh1kq5Da95W4"]
+ #  @message = {:firstName=> "vishwnath", :lastName=> "yadav",:gender=>"male"}
+ #  # @client = Savon.client do |globals|
+ #  #   globals.wsdl @wsdl_1
+ #  #   globals.basic_auth @basic_auth
+ #  # end
+ #  @client = Savon::Client.new do |wsdl|
+ #    wsdl.wsdl "https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
+ #    wsdl.basic_auth @basic_auth
+ #  end
+ #  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+ #  logger.debug(@client.operations)
+ #  begin
+ #   response = @client.call(:insert_prospect, :message=>{:arg0=>{:clubNumber=>9003,:personal => @message}})
+ #   logger.debug(response.inspect)
+ #   logger.debug(response.body)
+ # rescue Exception => e
+ #    logger.debug(e.to_s)
+ # end
+  
+end
+
+# ******************Get Memberlist method ****************************
+  #url = "https://webservice.abcfinancial.com/ws/getMemberList/9003?memberStatus=active&updateStartTime=2014-01-01&memberId=900310003"
+  # logger.debug(">>>>>>>>>>>>>")
+  # uri = URI.parse(url)
+  # logger.debug(uri.inspect)
+  # http = Net::HTTP.new(uri.host, uri.port)
+  # http.use_ssl = true
+  # request = Net::HTTP::Get.new(uri.path + "?" + uri.query)
+  # request.basic_auth 'leadpump.com', 'sh1kq5Da95W4'
+  # logger.debug(request.inspect)
+  # logger.debug("SDFSDFSDFSDFdf")
+  # response = http.request(request)
+  # logger.debug(response.body)
+
 
 private
 def check_plan
