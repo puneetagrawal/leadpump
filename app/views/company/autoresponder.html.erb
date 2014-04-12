@@ -6,6 +6,7 @@
 		  <div class="border" style="width:106%">
 		   	   <h2 class="heading">Auto Responder Messages</h2>
 			   <div class="" style="padding:20px;">
+			   		<div style="font-size:20px;">Enter the number of days after the initial subsubsription to send the email</div>
 			   		<%= form_for @auto_res, :url => '/create_auto_responder', :method => :post, :html => { :class => "forms form"} do |res| %>
 
 						<%if @auto_responder.present?%>
@@ -20,8 +21,8 @@
 						    <%end%>
 					    <%end%>
 					    <p>
-					    	<label>From Email</label>
-					    	<%=text_field_tag :from_email, current_user.from_email, :style=>"width:73%"%>
+					    	<label>Autoresponder From Email Address. The email address that this message will come from.</label>
+					    	<%=text_field_tag :from_email, current_user.from_email, :style=>"width:73%;margin:60px 0 20px 0;"%>
 					    </p>
 				    	<%=res.submit :submit, :class=>"btn yellow"%>
 				    <%end%>
