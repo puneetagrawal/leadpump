@@ -2,7 +2,7 @@
  require 'net/https'
  require 'uri'
  require 'rexml/document'
- require 'savon'
+ #require 'savon'
  
  class VipleadsController < ApplicationController
   include VipleadsHelper
