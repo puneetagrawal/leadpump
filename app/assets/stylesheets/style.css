@@ -2177,3 +2177,9 @@ header .container {
 	position:relative;
 }
 
+.unsub_msg{
+    margin-top: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+

@@ -174,6 +174,8 @@ Leadpump::Application.routes.draw do
   match "/savefbmes" => "company#savefbmes"
   match "/savegmmes" => "company#savegmmes" 
   match "/savevipsetings" => "company#savevipsetings"  
+  match "/unsubscribe" => "company#unsubscribe"  
+
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
   match "/storepassinsession" => "home#storepassinsession"
@@ -192,6 +194,7 @@ Leadpump::Application.routes.draw do
 
 
   match '/insert_prospect' => 'vipleads#insert_prospect'
+
 
   # match "/stripe_events", :to => "events#stripe_events", :as => :stripe_events, :via => :post
 

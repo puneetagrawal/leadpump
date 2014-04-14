@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140412102034) do
+ActiveRecord::Schema.define(:version => 20140414101911) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -169,6 +169,8 @@ ActiveRecord::Schema.define(:version => 20140412102034) do
     t.string   "status"
     t.integer  "no_of_days"
     t.string   "associate"
+    t.boolean  "subscribe"
+    t.string   "lead_token"
   end
 
   create_table "mallpics", :force => true do |t|

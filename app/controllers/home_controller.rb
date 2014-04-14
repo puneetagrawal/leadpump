@@ -33,7 +33,15 @@ def terms
 end
 
 def test
- @companymallitem = current_user.fetchcompanymallitem
+ Lead.all.each do |ld|
+  token = SecureRandom.urlsafe_base64(ld.id, false)
+  ld.lead_token = token[0, 10]
+  if ld.save
+    logger.debug(">>>>>>>saving for #{ld.id}>>>>>>>>")
+ else
+  logger.debug(ld.errors.full_message)
+ end
+ end
 end
 
 def privacy
