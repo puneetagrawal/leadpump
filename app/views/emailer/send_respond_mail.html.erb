@@ -5,7 +5,12 @@
 </head>
 <body>
 	<p><%=@message%></p>
-	<p>In good health.</p>
-	<!-- <img src="<%=@trackUrl%>" /> -->
+	<p>In good health.</p><br />
+	<p>Unsubscribe:</p>
+	<p>
+		<%=link_to "http://#{@unsub_url}" do%>
+		<%="#{SERVER_URL}/Unsubscribe"%>
+		<%end%>
+	</p>
 </body>
 </html>

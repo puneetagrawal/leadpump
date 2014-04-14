@@ -1,5 +1,5 @@
 class CompanyController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome]
+  skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome, :unsubscribe]
   layout 'reflanding', only: [:preview]
 
   def index
@@ -316,5 +316,19 @@ def create_auto_responder
   end
     redirect_to '/autoresponder'
 end
+
+def unsubscribe
+  lead = Lead.where(:lead_token=>params[:unsub]).last
+  if lead.present? && lead.subscribe
+    lead.subscribe = false
+    lead.save
+    @unsub_message = "You have been unsubscirbed successfully."
+  else
+    flash[:notice] = "You are trying to access invalid url."
+    redirect_to "/"
+  end
+end
+
+
 
 end

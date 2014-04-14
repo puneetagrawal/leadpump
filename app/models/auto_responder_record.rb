@@ -22,9 +22,13 @@ class AutoResponderRecord < ActiveRecord::Base
   			ul = UserLeads.find(ml.user_lead_id)
   			company = ul.user.fetchCompany
 			  au = AutoResponder.find(ml.auto_responder_id)
-        if ul.lead.email.present? 
+        logger.debug("SDFFFFFFFFFFFFFFFFFFFFFFFF")
+        if ul.lead.email.present? && ul.lead.subscribe
+          logger.debug("DDDDDDDDDDDDDDDDDDDDDD")
+          logger.debug(ul.lead.email)
           from_email = au.user.from_email.present? ? au.user.from_email : company.email
-  				Emailer.send_respond_mail(ul.lead.email, au.message.html_safe, au.subject, company.name, from_email).deliver
+          unsub_url = "#{SERVER_URL}/unsubscribe?unsub=#{ul.lead.lead_token}"
+  				Emailer.send_respond_mail(ul.lead.email, au.message.html_safe, au.subject, company.name, from_email, unsub_url).deliver
   			end
   		end 
   	end
