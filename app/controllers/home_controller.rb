@@ -33,7 +33,7 @@ def terms
 end
 
 def test
- AutoResponderRecord.send_auto_respond_mail
+ #AutoResponderRecord.send_auto_respond_mail
 end
 
 def privacy
