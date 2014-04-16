@@ -67,5 +67,5 @@ group :development do
 	gem "bullet"
 	gem 'debugger'
 	gem "rails_best_practices"
-	#gem 'savon'
 end
+gem 'savon'

@@ -2,7 +2,8 @@
  require 'net/https'
  require 'uri'
  require 'rexml/document'
- #require 'savon'
+ require 'nokogiri'
+ require 'open-uri'
  
  class VipleadsController < ApplicationController
   include VipleadsHelper
@@ -288,28 +289,19 @@ render json: list
 end
 
 def insert_prospect
- #  AutoResponderRecord.send_auto_respond_mail
- #  @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
- #  @wsdl_1 = "http://webservice.abcfinancial.com/ws"
- #  @basic_auth=["leadpump.com","sh1kq5Da95W4"]
- #  @message = {:firstName=> "vishwnath", :lastName=> "yadav",:gender=>"male"}
- #  # @client = Savon.client do |globals|
- #  #   globals.wsdl @wsdl_1
- #  #   globals.basic_auth @basic_auth
- #  # end
- #  @client = Savon::Client.new do |wsdl|
- #    wsdl.wsdl "https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
- #    wsdl.basic_auth @basic_auth
- #  end
- #  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
- #  logger.debug(@client.operations)
- #  begin
- #   response = @client.call(:insert_prospect, :message=>{:arg0=>{:clubNumber=>9003,:personal => @message}})
- #   logger.debug(response.inspect)
- #   logger.debug(response.body)
- # rescue Exception => e
- #    logger.debug(e.to_s)
- # end
+  # l = Lead.last
+  # url = "https://webservice.abcfinancial.com/ws/getMemberList/9003?memberId=#{l.member_id}&barcode=#{l.barcode}"
+  # uri = URI.parse(url)
+  # http = Net::HTTP.new(uri.host, uri.port)
+  # http.use_ssl = true
+  # request = Net::HTTP::Get.new(uri.path + "?" + uri.query)
+  # request.basic_auth 'leadpump.com', 'sh1kq5Da95W4'
+  # response = http.request(request).body
+  # xml = Nokogiri::XML(response)
+  # logger.debug(xml)
+  # xml.xpath("//status").each do |game|
+  #     status = game.xpath("//active").text
+  # end
   
 end
 

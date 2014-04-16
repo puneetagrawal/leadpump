@@ -13,6 +13,7 @@ class LeadsController < ApplicationController
   end
 
   def new 
+    Lead.get_member_list_from_abc
     hash = Lead.fetchLeadList(current_user) 
     @leads = hash['leads'.to_sym]
     @userList = hash['userList'.to_sym]
