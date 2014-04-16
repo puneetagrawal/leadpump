@@ -120,7 +120,7 @@ end
   end
 
   def self.get_member_list_from_abc
-    leads = Lead.where("status = ? and member_id != ? and barcode != ?", "Active", "", "")
+    leads = Lead.where("status = ? and member_id != ? and barcode != ? and", "Active", "", "")
     if leads.size > 0
       leads.each do |lead|
         lead.change_member_status
@@ -149,7 +149,7 @@ end
 
 protected
 def savestatus
-  self.status = "Inactive"
+  self.status = "Active"
   token = SecureRandom.urlsafe_base64(self.id, false)
   self.lead_token = token[0, 10]
   self.save
