@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(:version => 20140414101911) do
     t.string   "status"
     t.integer  "no_of_days"
     t.string   "associate"
-    t.boolean  "subscribe"
+    t.boolean  "subscribe",                      :default => true
     t.string   "lead_token"
   end
 
