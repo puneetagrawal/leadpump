@@ -1,7 +1,11 @@
+require 'savon'
 class Lead < ActiveRecord::Base
-  attr_accessible :name, :lname, :active, :address, :phone, :email, :address, :refferred_by, :goal, :lead_source, :guest_pass_issued, :dues_value, :enrolment_value, :notes, :user_id, :status, :no_of_days, :associate
+  attr_accessible :name, :lname, :active, :address, :phone, :email, :address, :refferred_by,
+   :goal, :lead_source, :guest_pass_issued, :dues_value, :enrolment_value, :notes, :user_id, 
+   :status, :no_of_days, :associate, :gender, :member_id, :barcode
   belongs_to :user
-  after_create :savestatus
+  after_create :insert_prospect_abc, :savestatus
+  #after_save :savestatus if self.token.blank?
 
   has_many :appointments , :dependent => :destroy
   has_many :lead_notes , :dependent => :destroy, :class_name => "LeadNotes"
@@ -115,12 +119,66 @@ end
     end
   end
 
+  def self.get_member_list_from_abc
+    leads = Lead.where("status = ? and member_id != ? and barcode != ?", "Active", "", "")
+    if leads.size > 0
+      leads.each do |lead|
+        lead.change_member_status
+      end
+    end
+  end
+  
+  def change_member_status
+    url = "https://webservice.abcfinancial.com/ws/getMemberList/9003?memberId=#{self.member_id}&joinType=Prospect"
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    request = Net::HTTP::Get.new(uri.path + "?" + uri.query)
+    request.basic_auth 'leadpump.com', 'sh1kq5Da95W4'
+    response = http.request(request).body
+    xml = Nokogiri::XML(response)
+    logger.debug(xml)
+    stts = ""
+    xml.xpath("//status").each do |game|
+      stts = game.xpath("//joinType").text
+    end
+    logger.debug(stts)
+    self.status = stts == "Member" ? 'Member' : stts == "Prospect" ? 'Active' : 'Inactive'
+    self.save
+  end
+
 protected
 def savestatus
-  self.status = "Active"
+  self.status = "Inactive"
   token = SecureRandom.urlsafe_base64(self.id, false)
   self.lead_token = token[0, 10]
   self.save
+end
+
+def insert_prospect_abc
+  @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
+  @basic_auth=["leadpump.com","sh1kq5Da95W4"]
+  @message = {:firstName=> self.name, :lastName=> self.lname,:gender=>self.gender}
+  @contact = {}
+  @dates = {}
+  @miscellaneous = {}
+  @client = Savon::Client.new do |wsdl|
+    wsdl.wsdl "https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
+    wsdl.basic_auth @basic_auth
+  end
+  begin
+   response = @client.call(:insert_prospect, :message=>{:arg0=>{:clubNumber=>9003,
+    :personal => @message, :contact=>@contact, :dates=> @dates, :miscellaneous=>@miscellaneous}})
+   res = response.body[:insert_prospect_response][:return]
+   logger.debug(res)
+   if res.present? && res[:barcode].present? && res[:member_id].present?
+    self.member_id = res[:member_id]
+    self.barcode = res[:barcode]
+    self.save
+   end
+ rescue Exception => e
+    logger.debug(e.to_s)
+ end
 end
 
 end

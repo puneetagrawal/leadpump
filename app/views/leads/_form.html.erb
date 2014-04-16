@@ -11,6 +11,10 @@
              <p><%= lead.label "Last Name:" %><%= lead.text_field :lname %></p>
             <p><%= lead.label "Phone:" %><%= lead.text_field :phone %></p>
             <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
+            <p>
+                <%= lead.label "Gender:" %>
+                <%=lead.select :gender, options_for_select([['male'], ['female']]), :promt=>"Gender"%>
+            </p>
             <p><%= lead.label "Address:" %><%= lead.text_field :address %></p>
             <p><%= lead.label "Referred By:" %><%= lead.text_field :refferred_by %></p>
 
