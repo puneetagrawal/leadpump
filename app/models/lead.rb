@@ -120,7 +120,7 @@ end
   end
 
   def self.get_member_list_from_abc
-    leads = Lead.where("status = ? and member_id != ? and barcode != ? and", "Active", "", "")
+    leads = Lead.where("status = ? and member_id != ? and barcode != ?", "Active", "", "")
     if leads.size > 0
       leads.each do |lead|
         lead.change_member_status
