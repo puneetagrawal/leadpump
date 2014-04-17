@@ -63,7 +63,6 @@ Leadpump::Application.routes.draw do
   match '/welcome' => 'home#welcome'
   match '/home/deleteRowByajax' => 'home#deleteRowByajax'
   match 'home/social_inviter' => 'referrals#new'
-  match 'home/terms' => 'home#terms'
   match 'home/privacy' => 'home#privacy'
   match '/test' => 'home#test'
   match '/pass' => 'home#pass'
@@ -254,4 +253,5 @@ Leadpump::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  match 'home/terms' => 'home#terms'
 end

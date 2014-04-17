@@ -37,7 +37,7 @@
     <div class="row-fluid">
     	<div class="span12">
 	        <ul class="settings_menu">
-	        	<%if is_vip_allow(current_user)%>
+	        	<%if !is_vip_allow(current_user)%>
 		            <li>
 		                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
 		            </li>
@@ -47,7 +47,11 @@
 		             <li>
 		                <%=link_to "Manage Pos Referral Creation", "javascript:void(0)", :class=> "btn yellow vipseting"%>
 		            </li>
+		            <li>
+		                <%=link_to "Vip Leads", vipleads_path(), :class=> "btn yellow"%>
+		            </li>
 	            <%end%>
+
 	            <%#if check_trial_period(current_user)%>
 	            	<!--<li>
 		                <%#=link_to "Cancel your trial", "javascript:void(0)", :class=> "btn yellow cancel_plan"%>

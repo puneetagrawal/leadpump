@@ -16,7 +16,7 @@ GIT
       rest-client (~> 1.4)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.15)
       actionpack (= 3.2.15)
@@ -45,6 +45,9 @@ GEM
     activesupport (3.2.15)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    akami (1.2.1)
+      gyoku (>= 0.4.0)
+      nokogiri
     arel (3.0.3)
     atomic (1.1.16)
     awesome_print (1.2.0)
@@ -102,12 +105,17 @@ GEM
     fssm (0.2.10)
     gmail-contacts (0.0.6)
       hpricot
+    gyoku (1.1.1)
+      builder (>= 2.1.2)
     hashie (2.0.5)
     hike (1.2.3)
     hpricot (0.8.6)
     httparty (0.13.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
+    httpi (2.1.0)
+      rack
+      rubyntlm (~> 0.3.2)
     i18n (0.6.9)
     journey (1.0.4)
     jquery-rails (3.1.0)
@@ -132,6 +140,8 @@ GEM
     multipart-post (2.0.0)
     nested_form (0.3.2)
     netrc (0.7.7)
+    nokogiri (1.5.10)
+    nori (2.3.0)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
       jwt (~> 0.1.8)
@@ -201,6 +211,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ruby-progressbar (1.4.2)
+    rubyntlm (0.3.4)
     rufus-scheduler (3.0.7)
       tzinfo
     sass (3.2.18)
@@ -208,6 +219,14 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    savon (2.4.0)
+      akami (~> 1.2.0)
+      builder (>= 2.1.2)
+      gyoku (~> 1.1.0)
+      httpi (~> 2.1.0)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.3.0)
+      wasabi (~> 3.2.2)
     sendgrid (1.2.0)
       json
       json
@@ -241,6 +260,10 @@ GEM
     uniform_notifier (1.4.0)
     warden (1.2.3)
       rack (>= 1.0)
+    wasabi (3.2.3)
+      httpi (~> 2.0)
+      mime-types (< 2.0.0)
+      nokogiri (>= 1.4.0)
     wicked_pdf (0.9.10)
       rails
     will_paginate (3.0.5)
@@ -277,6 +300,7 @@ DEPENDENCIES
   rails_best_practices
   rufus-scheduler
   sass-rails (~> 3.2.3)
+  savon
   sendgrid
   stripe!
   susy

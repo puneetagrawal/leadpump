@@ -78,4 +78,7 @@ module LeadsHelper
 		end
 		render(:inline=> text)
 	end
+
+	
+
 end
