@@ -149,7 +149,7 @@ end
 
 protected
 def savestatus
-  self.status = "Active"
+  self.status = "Inactive"
   token = SecureRandom.urlsafe_base64(self.id, false)
   self.lead_token = token[0, 10]
   self.save

@@ -5,13 +5,13 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span12">
-            <h2>Sales Dashboard</h2>
+            <!-- <h2>Sales Dashboard</h2> -->
         </div>
     </div>
     <div class="row-fluid">
         <%=render "sales_user_list"%>
         <div class="<%=current_user.isCompany ? 'span9' : 'span12'%>">
-            <h2 class="heading">Sales Representatives Statistics</h2>
+            <h2 class="heading">Overall Statistics</h2>
             <div class="salesRepData" id="sales_repo_change">
                 <%=render "sales_gauge_data"%>
             </div>
