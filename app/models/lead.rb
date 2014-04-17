@@ -120,7 +120,7 @@ end
   end
 
   def self.get_member_list_from_abc
-    leads = Lead.where("status = ? and member_id != ? and barcode != ?", "Inactive", "", "")
+    leads = Lead.where("status = ? and member_id != ? and barcode != ?", "Active", "", "")
     if leads.size > 0
       leads.each do |lead|
         lead.change_member_status
@@ -129,8 +129,7 @@ end
   end
   
   def change_member_status
-    logger.debug(">>>>>>>>>>>>>>>>>>>")
-    url = "https://webservice.abcfinancial.com/ws/getMemberList/9003?memberId=#{self.member_id}&barcode=#{self.barcode}"
+    url = "https://webservice.abcfinancial.com/ws/getMemberList/9003?memberId=#{self.member_id}&joinType=Prospect"
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
@@ -139,10 +138,12 @@ end
     response = http.request(request).body
     xml = Nokogiri::XML(response)
     logger.debug(xml)
+    stts = ""
     xml.xpath("//status").each do |game|
-      status = game.xpath("//active").text
+      stts = game.xpath("//joinType").text
     end
-    self.status = status == "true" ? 'Active' : "Inactive"
+    logger.debug(stts)
+    self.status = stts == "Member" ? 'Member' : stts == "Prospect" ? 'Active' : 'Inactive'
     self.save
   end
 

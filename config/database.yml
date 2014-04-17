@@ -12,7 +12,7 @@ development: &dev
   username: postgres
   password: postgres
   port: 5432
-  encoding: latin1
+#  encoding: latin1
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your derootvelopment database when you run "rake".

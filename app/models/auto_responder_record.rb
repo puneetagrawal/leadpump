@@ -16,6 +16,8 @@ class AutoResponderRecord < ActiveRecord::Base
   	end
   end
   def self.send_auto_respond_mail
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug("called")
   	mailer_list = AutoResponderRecord.where(:respond_date => Date.today)
   	if mailer_list.present?
   		mailer_list.each do|ml| 

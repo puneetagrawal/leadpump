@@ -25,5 +25,5 @@
 Vagrantfile
 leadpump_backup
 Gemfile.lock
-/db/database.yml
+config/database.yml
 
