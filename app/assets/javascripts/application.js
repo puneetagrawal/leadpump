@@ -328,7 +328,9 @@ function initialization(){
 	$(".submitlogo").click(function (){
 		pic_uid = '';
 		if($("#u_id").length){
-			pic_uid = $(this).closest('td').attr('id').split("_")[1];
+			alert(">>>>>>>>>")
+			pic_uid = $(this).closest("input").val();
+			alert(pic_uid)
 			$('.file_'+pic_uid).click();
 		}
 		else{

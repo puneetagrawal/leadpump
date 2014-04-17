@@ -1,4 +1,4 @@
-<%if current_user.isCompany%>
+<%#if current_user.isCompany%>
     <div class="span3">
         <div class="salesRep borderbox">
             <h2 class="heading">Sales Representative</h2>
@@ -9,6 +9,13 @@
                         <li id="user_<%=user.id%>">
                             <%=render "sales_user", :user=>user%>
                         </li>
+                        <span>
+                            <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a>
+                            <%= form_for 'picture', :url => '/createpic' ,:html => { :id => "c_logo",:class=>"uid_#{user.id}", :style=>"margin:0px;" } do |form| %>
+                              <%= hidden_field_tag :u_id, user.id%>
+                              <%= form.file_field :avatar, :id=>"file_#{user.id} pic_avt",:style =>"display:none" %>
+                            <% end %>
+                        </span>
                         <%end%>
                     <%else%>
                         <li>No sales users present.</li>
@@ -17,4 +24,4 @@
             </div>
         </div>
     </div>
-<%end%>
+<%#end%>
