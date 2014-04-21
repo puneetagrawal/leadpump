@@ -6,7 +6,7 @@
 <body>
 	<p><%=@message%></p>
 	<p>In good health.</p><br />
-	<p>Unsubscribe:</p>
+	<p style="font-size:8px;"><i>Note: This message is not spam. You are receiving this because you requested a guest pass. To manage your subscription or unsubscribe <span style="color:#3399FF;">click here.</span></i></p>
 	<p>
 		<%=link_to "http://#{@unsub_url}" do%>
 		<%="#{SERVER_URL}/Unsubscribe"%>
