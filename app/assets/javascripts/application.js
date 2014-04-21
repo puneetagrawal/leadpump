@@ -327,10 +327,12 @@ function initialization(){
 
 	$(".submitlogo").click(function (){
 		pic_uid = '';
-		if($("#u_id").length){
-			alert(">>>>>>>>>")
-			pic_uid = $(this).closest("input").val();
-			alert(pic_uid)
+		if($("#u_id").length && $(this).closest('td').length){
+			pic_uid = $(this).closest('td').attr('id').split("_")[1];
+			$('.file_'+pic_uid).click();
+		}
+		else if($(this).parent().siblings('li.home_das').length){
+			pic_uid = $(this).parent().siblings('li.home_das').attr('id').split("_")[1];
 			$('.file_'+pic_uid).click();
 		}
 		else{
