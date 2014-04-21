@@ -814,6 +814,16 @@ a:focus {
     font-size: 12px;
 }
 
+.new_report_btn{
+    text-align: center;
+    margin: 5px 25px 10px 0;
+    
+}
+.new_report_btn{
+    padding: 5px !important;
+    font-size: 14px !important;
+}
+
 /*alert*/
 .alert h6, .alert p {
     margin: 0;
