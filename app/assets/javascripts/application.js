@@ -59,6 +59,18 @@ $(document).on('click', '.autoResponder',function(){
 		});
 	
 
+	// $(".start_feed").click(function(){
+	// 	feed_id = $(this).closest('tr').attr('id').split("_")[1]
+	// 	$.fancybox.open({
+	// 		href: '#upgrade_terms',
+	// 		type: 'inline',
+	// 		'beforeLoad' : function() {
+	// 			url = '/fetch_upgrade_plan';
+	// 			$.post(url, {}, function (data) {		
+	// 			});
+	// 		}
+	// 	});
+	// });
 
 	$(".upgrade_img").click(function(){
 		$.fancybox.open({

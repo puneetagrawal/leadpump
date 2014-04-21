@@ -140,6 +140,7 @@ Leadpump::Application.routes.draw do
   match '/leads/test' => 'leads#index'
   match '/leads/createtask' => 'leads#createtask'
   match 'leads/saveappointment' => 'leads#saveappointment'
+  match '/read_feed' => 'leads#read_feed'
 
   resources :leads 
   

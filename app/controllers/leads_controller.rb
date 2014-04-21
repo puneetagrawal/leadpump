@@ -27,6 +27,7 @@ class LeadsController < ApplicationController
       if @lead.save
         user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
         user_lead.save
+        NewsFeed.create(:user_id=>current_user.id, :lead_id=>@lead.id, :description=>"New lead created", :feed_date=>Date.today, :action=>"Start")
         LeadNotes.create(:lead_id=>@lead.id,:notes=>params[:lead][:notes],:time_stam=>DateTime.now)
         current_user.saveLeadCount
         AutoResponderRecord.save_respond_message(user_lead, current_user)
@@ -96,6 +97,7 @@ def createtask
       @zone = "am"
     end
   end
+  @home = params[:uri] == "home" ? true : false
   @tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
   respond_to do |format|
     format.js   
@@ -207,11 +209,22 @@ def saveappointment
       end      
     end
     msg = "Appointment schedule successfully"
+    action = params[:complete_feed] == "true" ? "Completed" : "Finish"
+    #NewsFeed.update_feed_action(lead, action)
   end
   data = {"msg" => msg}
   respond_to do |format|
     format.json { render json: data}
   end
+ end
+
+ def read_feed
+  feed = NewsFeed.find(params[:feed])
+  if feed.present?
+    NewsFeed.update_feed_action(feed.lead, "Completed")
+  end
+  msg = {"status"=>"sucess"}
+  render json:msg
  end
 
 end

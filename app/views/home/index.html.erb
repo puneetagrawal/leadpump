@@ -1,52 +1,147 @@
 <span class="gaugestart">
-    <%=render "dashboard_gauges_script"%>
+    <%= render "dashboard_gauges_script" %>
 </span>
 
 <div class="container">
-    <div class="row-fluid">
-        <div class="span12">
-            <!-- <h2>Sales Dashboard</h2> -->
-        </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <!-- <h2>Sales Dashboard</h2> -->
+    </div>
+  </div>
+  <div class="row-fluid">
+    <%= render "sales_user_list" %>
+    <div class="span9">
+      <h2 class="heading">Overall Statistics</h2>
+
+      <div class="salesRepData" id="sales_repo_change">
+        <%= render "sales_gauge_data" %>
+      </div>
+      <div class="clear mb10"></div>
+      
     </div>
     <div class="row-fluid">
-        <%=render "sales_user_list"%>
-        <div class="span9">
-            <h2 class="heading">Overall Statistics</h2>
-            <div class="salesRepData" id="sales_repo_change">
-                <%=render "sales_gauge_data"%>
-            </div>
-            <div class="clear mb10"></div>
+        <div class="span2">
+          <h2 class="heading">Menu</h2>
+          <div class="dashboardpage menuView">
             <div class="row-fluid">
-                <div class="span3 lead_gaug">
-                    <%=render "home/leadgauge"%>
-                </div>
-                <div class="span9">
-                    <h2 class="heading">Dashboard</h2>
-                    <div class="dashboardpage">
-                        <ul class="dashboardIcons borderbox">
-                            <%=render "home/companyDashboard"%>
-                        </ul>
-                    </div>
-                </div>
+              <ul class="dashboardIcons borderbox">
+                <%= render "home/companyDashboard" %>
+              </ul>
             </div>
+          </div>
         </div>
-    </div>
+        <div class="span4">
+          <div class="border">
+            <h2 class="heading">Current</h2>
+            <table class="table table-striped font-12">
+              <%if @newsfeeds.present?%>
+              <thead>
+              <tr>
+                <td><a href="#"><img src="/assets/point.png"/></a></td>
+                <td>1</td>
+                <td>2 Mar</td>
+                <td>Pts 2 of 10</td>
+              </tr>
+              </thead>
+              <tbody>
+                  <%@newsfeeds.each do |feed|%>
+                      <tr class="yellow_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
+                        "<%=feed.id%>">
+                        <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
+                        <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
+                        <td><%=feed.description%></td>
+                        <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%> read_feed" id="act_<%=feed.lead.id%>" href="javascript:void(0)"><%=feed.action%></a></td>
+                      </tr>
+                  <%end%>
+              <!--<tr class="red_table_strip">-->
+                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
+                <!--<td><a href="#"><img width="25" src="/assets/phone_icon.png"/></a></td>-->
+                <!--<td>Open - Guest pass request</td>-->
+                <!--<td><a class="btn green btn-small w40" href="#">Finish</a></td>-->
+              <!--</tr>-->
+              <!--<tr class="yellow_table_strip">-->
+                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
+                <!--<td><a href="#"><img width="25" src="/assets/calender.png"/></a></td>-->
+                <!--<td>Open - Guest pass request</td>-->
+                <!--<td><a class="btn red btn-small w40" href="#">Finish</a></td>-->
+              <!--</tr>-->
+              </tbody>
+              <%else%>
+                <thead>
+                <tr>
+                  <td colspan="4">No news available</td>
+                </tr>
+              </thead>
+              <%end%>
+            </table>
+          </div>
+        </div>
+        <div class="span4">
+          <div class="border">
+            <h2 class="heading">Backlog</h2>
+            <table class="table table-striped font-12">
+              <%if @backlogs.present?%>
+              <thead>
+              <tr>
+                <td><a href="#"><img src="/assets/point.png" /></a></td>
+                <td>1</td>
+                <td>2 Mar</td>
+                <td>Pts 2 of 10</td>
+              </tr>
+              </thead>
+              <tbody>
+              <%@backlogs.each do |feed|%>
+                  <tr class="green_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
+                        "<%=feed.id%>">
+                    <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
+                    <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
+                    <td><%=feed.description%></td>
+                    <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%> read_feed" id="act_<%=feed.lead.id%>" href="javascript:void(0)"><%=feed.action%></a></td>
+                  </tr>
+              <%end%>
+              <!--<tr>-->
+                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
+                <!--<td><a href="#"><img width="25" src="/assets/phone_icon.png"/></a></td>-->
+                <!--<td>Open - Guest pass request</td>-->
+                <!--<td><a class="btn green btn-small w40" href="#">Finish</a></td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
+                <!--<td><a href="#"><img width="25" src="/assets/phone_icon.png"/></a></td>-->
+                <!--<td>Open - Guest pass request</td>-->
+                <!--<td><a class="btn red btn-small w40" href="#">Finish</a></td>-->
+              <!--</tr>-->
+              </tbody>
+              <%else%>
+                <thead>
+                <tr>
+                  <td colspan="4">No backlogs available</td>
+                </tr>
+              </thead>
+              <%end%>
+            </table>
+          </div>
+        </div>
+        <div class="span2">
+          <%= render "home/leadgauge" %>
+        </div>
+      </div>
+  </div>
 </div>
 <script>
-function signUserOut() {
-    WL.logout();
-}
+    function signUserOut() {
+        WL.logout();
+    }
 </script>
 <!-- <button onclick='signUserOut()'>Click here to sign out!</button> -->
 <div id="upgrade_terms" class="popup_container">
   <div style="z-index:99999;top:3%">
-    <div id="upgrade_pop_txt" style="font-size:20px;text-align:center;width:725px;height:auto" >
-    <img src="/assets/ajax-loader.gif" style="margin:15%" />
-    <%#=render "common_templates/upgrade_pop_text"%>
-    
-  </div>
+    <div id="upgrade_pop_txt" style="font-size:20px;text-align:center;width:725px;height:auto">
+      <img src="/assets/ajax-loader.gif" style="margin:15%"/>
+      <%#=render "common_templates/upgrade_pop_text"%>
+    </div>
   </div>
 </div>
 
-<%=render "common_templates/popupContainer"%>
+<%= render "common_templates/popupContainer" %>
 

@@ -62,6 +62,16 @@ function initLeadCreateOrUpdate(){
 			leadSearchFilter($(this).val())
 		}
 	});
+	$(".container").on('click', '.read_feed', function (){
+		$this = $(this)
+		if($this.attr('class').indexOf('green') > -1){
+			feed_id = $this.closest('tr').attr('data-feed');
+			url = '/read_feed';
+			$.get(url, {feed:feed_id}, function (data) {
+				$this.closest('tr').remove();
+			});
+		}
+	});
 
 }
 
@@ -87,8 +97,11 @@ function tasksave(){
 		}
 		else {
 			url = '/leads/saveappointment';
-			$.get(url, {task:task,date:date,time:time,leadId:leadId}, function (data) {
+			complete_feed = $("#complete").is(':checked')
+			$.get(url, {task:task,date:date,time:time,leadId:leadId,complete_feed:complete_feed}, function (data) {
 				alert(data.msg);
+				handle_feed_row(leadId, complete_feed)
+				
 				$(this).html(btn);
 				$("#viewLead_"+leadId).find(".task").text("ReTask");
 				$.fancybox.close();
@@ -96,6 +109,16 @@ function tasksave(){
 		}
 		
 	});
+}
+
+function handle_feed_row(leadId, complete_feed){
+	if(complete_feed){
+		alert($("#feed_"+leadId).html())
+		$("#feed_"+leadId).remove();
+	}
+	else{
+		$("#act_"+leadId).removeClass('red').addClass('green').html('Finish');
+	}
 }
 
 function openTask(obj){
@@ -106,7 +129,8 @@ function openTask(obj){
 		type: 'inline',
 		'beforeLoad' : function() {
 			url = '/leads/createtask';
-			$.get(url, {leadId:leadid}, function (data) {
+			uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+			$.get(url, {leadId:leadid,uri:uri}, function (data) {
 			});
 		}
 	});

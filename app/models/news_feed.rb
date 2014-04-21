@@ -1,0 +1,38 @@
+class NewsFeed < ActiveRecord::Base
+  attr_accessible :action, :description, :feed_date, :user_id, :lead_id
+
+  belongs_to :user
+  belongs_to :lead
+
+  def self.get_today_news(user)
+    feeds = NewsFeed.where(:user_id=>user.id, :feed_date=>Date.today).where('action = ? or action = ?',"Start", "Finish")
+    return feeds
+  end
+
+  def self.get_backlogs(user)
+    feeds = NewsFeed.where("user_id = ? and feed_date < ? and (action = ? or action = ?)",user.id, Date.today, "Start", "Finish")
+    return feeds
+  end
+
+  def feed_click
+    return "task" if self.action == "Start"
+  end
+
+  def self.update_feed_action(lead, action)
+
+    feed = NewsFeed.find_by_lead_id(lead)
+
+    feed.action = action
+    if feed.save
+      logger.debug(">>>>>>>>>>>>>>")
+    else
+      logger.debug(feed.errors.full_messages)
+    end
+  end
+
+  def color
+    return  self.action == "Start" ? "red" : "green"
+  end
+
+end
+

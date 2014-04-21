@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :onlinemalls
   has_many :saleProds
   has_many :auto_responders
+  has_many :news_feeds
   has_one  :landing_page
   belongs_to :role
   has_one :subscription

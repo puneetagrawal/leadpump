@@ -1324,7 +1324,7 @@ a:focus {
 .salesRep .list {
     float: left;
     width: 100%;
-    height: 400px;
+    height: 294px;
     overflow: auto; 
 }
 .salesRep .list li {
@@ -2192,4 +2192,91 @@ header .container {
     font-size: 20px;
     text-align: center;
 }
+
+/* new css 17-04-2014 */
+.menuView {
+
+}
+.menuView .dashboardIcons {
+    padding:0;
+}
+.menuView .dashboardIcons li {
+    width:100%;
+    padding:0;
+    margin-bottom:0px;
+    float:left;
+    border:none;
+    border-bottom:1px solid #ddd;
+}
+.menuView .dashboardIcons li a {
+    overflow:hidden;
+}
+.w40 {
+    min-width:40px !important;
+}
+.menuView .dashboardIcons li .icon {
+    width:40px;
+    background-size:96%;
+    height:40px;
+    float:left; 
+    margin-right: 10px;
+}
+.menuView .dashboardIcons li span {
+    float:left;
+    text-align:left;
+    width:auto;
+    clear:none;
+    line-height:40px;
+}
+.menuView .dashboardIcons li .icon_setting {
+    background-position: 5px -422px;
+}
+.menuView .dashboardIcons li .icon_dashboard {
+    background-position: 5px 2px;
+}
+.menuView .dashboardIcons li .icon_leads {
+    background-position: 5px -38px;
+}
+.menuView .dashboardIcons li .icon_appointment {
+    background-position: 5px -75px;
+}
+.menuView .dashboardIcons li .icon_salesdata {
+    background-position: 5px -115px;
+}
+.menuView .dashboardIcons li .icon_socialInviter {
+    background-position: 5px -154px;
+}
+.menuView .dashboardIcons li .icon_opt_in_lead {
+    background-position: 5px -190px;
+}
+.menuView .dashboardIcons li .icon_vip_leads {
+    background-position: 5px -231px;
+}
+.menuView .dashboardIcons li .icon_statistics {
+    background-position: 5px -268px;
+}
+.menuView .dashboardIcons li .icon_mall_item {
+    background-position: 5px -307px;
+}
+.menuView .dashboardIcons li .icon_daily_report {
+    background-position: 5px -346px;
+}
+.menuView .dashboardIcons li .icon_super_admin {
+    background-position: 5px -383px;
+}
+.font-12 {
+    font-size:12px;
+}
+
+.green_table_strip td {
+    background:#88ffb2 !important;
+}
+.red_table_strip td {
+    background:#ff8888 !important;
+}
+.yellow_table_strip td {
+    background:#fff799 !important;  
+}
+
+
 
