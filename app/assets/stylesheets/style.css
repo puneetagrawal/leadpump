@@ -2285,4 +2285,8 @@ header .container {
     min-width: 22px;
 }
 
+#lead_text:focus{
+    background: none;
+}
+
 

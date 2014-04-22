@@ -79,6 +79,7 @@ function initLeadCreateOrUpdate(){
 		var notes = $("#lead_text").val();
 		url = '/add_notes';
 		$.get(url, {id:id,notes:notes}, function (data) {
+			$("#lead_text").val('');
 			$(".note").each(function(i) {
 				$(this).remove();
 			});
