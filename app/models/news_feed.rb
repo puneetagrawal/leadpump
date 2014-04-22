@@ -23,9 +23,7 @@ class NewsFeed < ActiveRecord::Base
   end
 
   def self.update_feed_action(lead, action)
-
     feed = NewsFeed.find_by_lead_id(lead)
-
     feed.action = action
     if feed.save
       logger.debug(">>>>>>>>>>>>>>")

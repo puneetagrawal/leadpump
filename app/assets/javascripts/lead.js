@@ -68,7 +68,8 @@ function initLeadCreateOrUpdate(){
 		if($("#act_"+id).text() == "Finish" || name == "Complete"){
 			feed_id = $("#act_"+id).closest('tr').attr('data-feed');
 			url = '/read_feed';
-			$.get(url, {feed:feed_id}, function (data) {
+			uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+			$.get(url, {feed:feed_id,uri:uri}, function (data) {
 				$("#act_"+id).closest('tr').remove();
 				$.fancybox.close();
 			});

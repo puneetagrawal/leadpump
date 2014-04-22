@@ -222,8 +222,10 @@ def saveappointment
     time_now = DateTime.now
     lead = Lead.find(params[:id])
     cls = ''
-    if !params[:notes].blank?
-      NewsFeed.update_feed_action(lead, "Finish")
+    if !params[:notes].blank? && lead.present?
+      if params[:uri] == "home"
+        NewsFeed.update_feed_action(lead, "Finish")
+      end
       LeadNotes.create(:lead_id=>lead.id,:notes=>params[:notes],:time_stam=>time_now)
       cls = 'read_feed'
     end
