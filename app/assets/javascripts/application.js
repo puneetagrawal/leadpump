@@ -22,6 +22,8 @@
 //= require autocomplete-rails
 //= require bootstrap-datepicker
 //= require appointment
+//= require fullcalendar.min
+//= require gcal
 //= require lead
 //= require company
 //= require admin
