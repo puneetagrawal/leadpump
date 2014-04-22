@@ -4,6 +4,7 @@ class Lead < ActiveRecord::Base
    :goal, :lead_source, :guest_pass_issued, :dues_value, :enrolment_value, :notes, :user_id, 
    :status, :no_of_days, :associate, :gender, :member_id, :barcode
   belongs_to :user
+  has_many :news_feeds
   after_create :insert_prospect_abc, :savestatus
   #after_save :savestatus if self.token.blank?
 

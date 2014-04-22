@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :onlinemalls
   has_many :saleProds
   has_many :auto_responders
+  has_many :news_feeds
   has_one  :landing_page
   belongs_to :role
   has_one :subscription
@@ -118,6 +119,8 @@ def fetchCompanySalesUsers
   when :company
     company = Company.where(:company_admin_id=>self.id).pluck(:company_user_id)
     users = User.where(:id=> company)
+  when :employee
+    users = [self]
   end
   return users
 end

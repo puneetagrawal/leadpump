@@ -1,4 +1,5 @@
 class LeadsController < ApplicationController
+  include LeadsHelper
   skip_before_filter :authenticate_user!, :only => [:index] 
   autocomplete :lead, :email, :full => true
   def index
@@ -27,6 +28,7 @@ class LeadsController < ApplicationController
       if @lead.save
         user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
         user_lead.save
+        NewsFeed.create(:user_id=>current_user.id, :lead_id=>@lead.id, :description=>"New lead created", :feed_date=>Date.today, :action=>"Start")
         LeadNotes.create(:lead_id=>@lead.id,:notes=>params[:lead][:notes],:time_stam=>DateTime.now)
         current_user.saveLeadCount
         AutoResponderRecord.save_respond_message(user_lead, current_user)
@@ -96,6 +98,7 @@ def createtask
       @zone = "am"
     end
   end
+  
   @tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
   respond_to do |format|
     format.js   
@@ -207,11 +210,37 @@ def saveappointment
       end      
     end
     msg = "Appointment schedule successfully"
+    
   end
   data = {"msg" => msg}
   respond_to do |format|
     format.json { render json: data}
   end
+ end
+
+ def add_notes
+    time_now = DateTime.now
+    lead = Lead.find(params[:id])
+    cls = ''
+    if !params[:notes].blank? && lead.present?
+      if params[:uri] == "home"
+        NewsFeed.update_feed_action(lead, "Finish")
+      end
+      LeadNotes.create(:lead_id=>lead.id,:notes=>params[:notes],:time_stam=>time_now)
+      cls = 'read_feed'
+    end
+    text = create_note_row(lead)
+    msg = {"note_row"=>text, "clas" => cls}
+    render json:msg
+ end
+
+ def read_feed
+  feed = NewsFeed.find(params[:feed])
+  if feed.present?
+    NewsFeed.update_feed_action(feed.lead, "Completed")
+  end
+  msg = {"status"=>"sucess"}
+  render json:msg
  end
 
 end

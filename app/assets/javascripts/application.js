@@ -61,6 +61,18 @@ $(document).on('click', '.autoResponder',function(){
 		});
 	
 
+	// $(".start_feed").click(function(){
+	// 	feed_id = $(this).closest('tr').attr('id').split("_")[1]
+	// 	$.fancybox.open({
+	// 		href: '#upgrade_terms',
+	// 		type: 'inline',
+	// 		'beforeLoad' : function() {
+	// 			url = '/fetch_upgrade_plan';
+	// 			$.post(url, {}, function (data) {		
+	// 			});
+	// 		}
+	// 	});
+	// });
 
 	$(".upgrade_img").click(function(){
 		$.fancybox.open({
@@ -224,6 +236,11 @@ $(document).on('click', '.autoResponder',function(){
 		}
 	});
 
+	$(document).on("click", ".done", function(){
+		complete_feed = $("#complete").is(':checked')
+		handle_feed_row(leadId, complete_feed)
+	});
+
     setFooterPostion();
     
 });
@@ -265,7 +282,8 @@ function fillPopupContent(obj) {
 	id = id.split("_")[1];
 	act = $(obj).attr('data-action');
 	url = '/home/fillpopupcontent';
-	$.get(url, {id:id,act:act}, function (data) {			
+	uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+	$.get(url, {id:id,act:act,uri:uri}, function (data) {			
 	});
 }
 
@@ -329,8 +347,12 @@ function initialization(){
 
 	$(".submitlogo").click(function (){
 		pic_uid = '';
-		if($("#u_id").length){
+		if($("#u_id").length && $(this).closest('td').length){
 			pic_uid = $(this).closest('td').attr('id').split("_")[1];
+			$('.file_'+pic_uid).click();
+		}
+		else if($(this).parent().siblings('li.home_das').length){
+			pic_uid = $(this).parent().siblings('li.home_das').attr('id').split("_")[1];
 			$('.file_'+pic_uid).click();
 		}
 		else{

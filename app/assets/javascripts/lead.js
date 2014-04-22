@@ -62,6 +62,35 @@ function initLeadCreateOrUpdate(){
 			leadSearchFilter($(this).val())
 		}
 	});
+	$(document).on('click', '.read_feed', function (){
+		var name = $(this).text();
+		var id = $(this).attr('id').split('_')[1];
+		if($("#act_"+id).text() == "Finish" || name == "Complete"){
+			feed_id = $("#act_"+id).closest('tr').attr('data-feed');
+			url = '/read_feed';
+			uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+			$.get(url, {feed:feed_id,uri:uri}, function (data) {
+				$("#act_"+id).closest('tr').remove();
+				$.fancybox.close();
+			});
+		}
+	});
+	$(document).on('click', '#lead_notes', function (e){
+		var id = $(this).attr('data-id');
+		var notes = $("#lead_text").val();
+		url = '/add_notes';
+		$.get(url, {id:id,notes:notes}, function (data) {
+			$("#lead_text").val('');
+			$(".note").each(function(i) {
+				$(this).remove();
+			});
+			$(".Note_row").after(data.note_row)
+			if(data.cls != 'Finish'){
+				$("#act_"+id).removeClass('listView').addClass('read_feed').text('Finish')
+				$("#act_"+id).removeClass('red').addClass('green');
+			}
+		});
+	});
 
 }
 
@@ -98,6 +127,15 @@ function tasksave(){
 	});
 }
 
+function handle_feed_row(leadId, complete_feed){
+	if(complete_feed){
+		$("#feed_"+leadId).remove();
+	}
+	else{
+		$("#act_"+leadId).removeClass('red').addClass('green').html('Finish');
+	}
+}
+
 function openTask(obj){
 	id = $(obj).closest('tr').attr('id');
 	leadid = id.split("_")[1];
@@ -106,6 +144,7 @@ function openTask(obj){
 		type: 'inline',
 		'beforeLoad' : function() {
 			url = '/leads/createtask';
+			
 			$.get(url, {leadId:leadid}, function (data) {
 			});
 		}

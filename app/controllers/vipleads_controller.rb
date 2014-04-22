@@ -201,6 +201,7 @@
         if lead.save
           UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
           user.saveLeadCount
+          NewsFeed.create(:user_id=>user.id, :lead_id=>lead.id, :description=>"New Lead Opt In", :feed_date=>Date.today, :action=>"Start")
           AutoResponderRecord.save_respond_message(UserLeads.last, user)
           LeadNotes.create(:lead_id=>lead.id,:notes=>"",:time_stam=>DateTime.now)
           OptInLead.create(:name=>params[:name],:source=>"LEADPUMP optin", :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)
