@@ -21,11 +21,20 @@
                 <tr><td># of days</td><td>-</td><td><%=@lead.no_of_days%></td></tr>
                 <tr><td>Potential-Enrolment</td><td>-</td><td><%=@lead.enrolment_value%></td></tr>
                 <tr><td>Potential-Dues</td><td>-</td><td><%=@lead.dues_value%></td></tr>
+                <tr class="Note_row">
+                    <td>Add Notes:</td>
+                    <td colspan="2">
+                        <textarea name="lead_notes" id="lead_text" style="width:320px;height:54px;"></textarea>
+                        <a href="javascript:void(0)" class="btn yellow add_notes" id="lead_notes" data-id="<%=@lead.id%>">Add</a>
+                    </td>
+                </tr>
                 <%= gettimestams(@lead) %>
             </tbody>
         </table>
     </div>
     <div class="modal-footer">
-        <a href="javascript:void(0)" class="btn yellow cancelFancybox">Done</a>
-        <!-- <a href="javascript:void(0)" data-dismiss="modal" class="btn yellow cancelFancybox">Cancel</a> -->
+        <%if @home%>
+            <a href="javascript:void(0)" class="btn yellow read_feed" id="lead_<%=@lead.id%>">Complete</a>
+        <%end%>
+        <a href="javascript:void(0)" data-dismiss="modal" class="btn yellow cancelFancybox">Cancel</a>
     </div>

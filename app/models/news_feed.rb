@@ -15,7 +15,11 @@ class NewsFeed < ActiveRecord::Base
   end
 
   def feed_click
-    return "task" if self.action == "Start"
+    if self.action == "Start"
+      return "listView"
+    else
+      return "read_feed"
+    end
   end
 
   def self.update_feed_action(lead, action)

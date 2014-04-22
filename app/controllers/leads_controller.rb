@@ -1,4 +1,5 @@
 class LeadsController < ApplicationController
+  include LeadsHelper
   skip_before_filter :authenticate_user!, :only => [:index] 
   autocomplete :lead, :email, :full => true
   def index
@@ -97,7 +98,7 @@ def createtask
       @zone = "am"
     end
   end
-  @home = params[:uri] == "home" ? true : false
+  
   @tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
   respond_to do |format|
     format.js   
@@ -209,13 +210,26 @@ def saveappointment
       end      
     end
     msg = "Appointment schedule successfully"
-    action = params[:complete_feed] == "true" ? "Completed" : "Finish"
-    #NewsFeed.update_feed_action(lead, action)
+    
   end
   data = {"msg" => msg}
   respond_to do |format|
     format.json { render json: data}
   end
+ end
+
+ def add_notes
+    time_now = DateTime.now
+    lead = Lead.find(params[:id])
+    cls = ''
+    if !params[:notes].blank?
+      NewsFeed.update_feed_action(lead, "Finish")
+      LeadNotes.create(:lead_id=>lead.id,:notes=>params[:notes],:time_stam=>time_now)
+      cls = 'read_feed'
+    end
+    text = create_note_row(lead)
+    msg = {"note_row"=>text, "clas" => cls}
+    render json:msg
  end
 
  def read_feed

@@ -60,25 +60,28 @@ module LeadsHelper
 	end
 
 	def gettimestams(lead)
-		text = '<tr><td>Notes</td>'
+		text = create_note_row(lead)		
+		render(:inline=> text)
+	end
+
+	def create_note_row(lead)
+		text = "<tr class='note'><td>Notes</td>"
 		if lead.lead_notes.present?
 			lead.lead_notes.each do |ld|
 				start_time = ld.time_stam 
 				start_time.rfc822                          # => "Tue, 23 Feb 2010 10:58:23 -0500"
 				pst = ActiveSupport::TimeZone["Pacific Time (US & Canada)"]
 				time = pst.at(start_time).strftime("%m-%d-%Y %H:%M:%S") # => "08:00 AM PST"
-				if text == '<tr><td>Notes</td>'
+				if text == "<tr class='note'><td>Notes</td>"
 					text += "<td>#{ld.notes}</td> <td>#{time}</td></tr>"
 				else
-					text += "<tr> <td></td> <td>#{ld.notes}</td> <td>#{time}</td></tr>"
+					text += "<tr class='note'> <td></td> <td>#{ld.notes}</td> <td>#{time}</td></tr>"
 				end
 			end
 		else
 			text += "<td>-</td><td></td></tr>"
 		end
-		render(:inline=> text)
+		return text
 	end
-
-	
 
 end

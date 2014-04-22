@@ -12,11 +12,7 @@
             <p> <label>Date of Appt: </label>
                 <%= text_field_tag :app_date, @date %>
             </p>
-            <%if @home%>
-                <p> <label>Mark Complete: </label>
-                    <%= check_box_tag :complete %>
-                </p>
-            <%end%>
+            
             <p class="taskBtn"> 
                 <input type="button" name="submitApoint" value="submit" id="submitApoint" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px">
             </p>

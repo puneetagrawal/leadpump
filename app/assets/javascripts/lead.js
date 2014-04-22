@@ -62,15 +62,32 @@ function initLeadCreateOrUpdate(){
 			leadSearchFilter($(this).val())
 		}
 	});
-	$(".container").on('click', '.read_feed', function (){
-		$this = $(this)
-		if($this.attr('class').indexOf('green') > -1){
-			feed_id = $this.closest('tr').attr('data-feed');
+	$(document).on('click', '.read_feed', function (){
+		var name = $(this).text();
+		var id = $(this).attr('id').split('_')[1];
+		if($("#act_"+id).text() == "Finish" || name == "Complete"){
+			feed_id = $("#act_"+id).closest('tr').attr('data-feed');
 			url = '/read_feed';
 			$.get(url, {feed:feed_id}, function (data) {
-				$this.closest('tr').remove();
+				$("#act_"+id).closest('tr').remove();
+				$.fancybox.close();
 			});
 		}
+	});
+	$(document).on('click', '#lead_notes', function (e){
+		var id = $(this).attr('data-id');
+		var notes = $("#lead_text").val();
+		url = '/add_notes';
+		$.get(url, {id:id,notes:notes}, function (data) {
+			$(".note").each(function(i) {
+				$(this).remove();
+			});
+			$(".Note_row").after(data.note_row)
+			if(data.cls != 'Finish'){
+				$("#act_"+id).removeClass('listView').addClass('read_feed').text('Finish')
+				$("#act_"+id).removeClass('red').addClass('green');
+			}
+		});
 	});
 
 }
@@ -97,11 +114,8 @@ function tasksave(){
 		}
 		else {
 			url = '/leads/saveappointment';
-			complete_feed = $("#complete").is(':checked')
-			$.get(url, {task:task,date:date,time:time,leadId:leadId,complete_feed:complete_feed}, function (data) {
+			$.get(url, {task:task,date:date,time:time,leadId:leadId}, function (data) {
 				alert(data.msg);
-				handle_feed_row(leadId, complete_feed)
-				
 				$(this).html(btn);
 				$("#viewLead_"+leadId).find(".task").text("ReTask");
 				$.fancybox.close();
@@ -113,7 +127,6 @@ function tasksave(){
 
 function handle_feed_row(leadId, complete_feed){
 	if(complete_feed){
-		alert($("#feed_"+leadId).html())
 		$("#feed_"+leadId).remove();
 	}
 	else{
@@ -129,8 +142,8 @@ function openTask(obj){
 		type: 'inline',
 		'beforeLoad' : function() {
 			url = '/leads/createtask';
-			uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
-			$.get(url, {leadId:leadid,uri:uri}, function (data) {
+			
+			$.get(url, {leadId:leadid}, function (data) {
 			});
 		}
 	});

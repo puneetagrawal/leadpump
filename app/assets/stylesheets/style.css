@@ -2278,5 +2278,11 @@ header .container {
     background:#fff799 !important;  
 }
 
+.add_notes {
+    padding: 5px;
+    margin: -10px 0 2px;
+    float: left;
+    min-width: 22px;
+}
 
 

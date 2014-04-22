@@ -141,6 +141,7 @@ Leadpump::Application.routes.draw do
   match '/leads/createtask' => 'leads#createtask'
   match 'leads/saveappointment' => 'leads#saveappointment'
   match '/read_feed' => 'leads#read_feed'
+  match '/add_notes' => 'leads#add_notes'
 
   resources :leads 
   

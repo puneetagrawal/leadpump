@@ -234,6 +234,11 @@ $(document).on('click', '.autoResponder',function(){
 		}
 	});
 
+	$(document).on("click", ".done", function(){
+		complete_feed = $("#complete").is(':checked')
+		handle_feed_row(leadId, complete_feed)
+	});
+
     setFooterPostion();
     
 });
@@ -275,7 +280,8 @@ function fillPopupContent(obj) {
 	id = id.split("_")[1];
 	act = $(obj).attr('data-action');
 	url = '/home/fillpopupcontent';
-	$.get(url, {id:id,act:act}, function (data) {			
+	uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+	$.get(url, {id:id,act:act,uri:uri}, function (data) {			
 	});
 }
 

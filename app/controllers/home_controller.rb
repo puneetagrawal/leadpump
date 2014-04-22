@@ -73,6 +73,7 @@ class HomeController < ApplicationController
   end
 
   def fillpopupcontent
+    @home = params[:uri] == "home" ? true : false
     if params[:act] == 'leadpopup'
       @lead = Lead.find(params[:id])
     elsif params[:act] == 'userpopup'
