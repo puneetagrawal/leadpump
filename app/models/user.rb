@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   include ApplicationHelper
   attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, 
   :role_id, :addresses_attributes, :subscription_attributes, :token, :reset_status, :vipon, :vipcount,
-  :associate, :trial
+  :associate, :trial, :lname, :verified, :ref
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses
   has_many :vipLeads
@@ -391,7 +391,5 @@ def saveVipsetings
   self.vipon = true
   self.save
 end
-
-
 
 end#main

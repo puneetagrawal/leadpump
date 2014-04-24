@@ -7,6 +7,7 @@
    <%= stylesheet_link_tag 'application-print', :media => 'print' %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application','autocomplete-rails.js', 'rails.js','subscriptions.js.coffee','autocomplete.js.coffee' %>
+  <%= javascript_include_tag :defaults %>
     <%#= javascript_include_tag '/javascripts/ckeditor/ckeditor.js' %>
   <%= tag :meta, :name => 'stripe-key', :content => STRIPE_PUBLIC_KEY %>
   <%= tag :meta, :name => 'viewport', :content => "width=device-width, initial-scale=1.0" %>

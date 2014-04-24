@@ -46,7 +46,7 @@
                 <% elsif current_user %>
                 <li><%= link_to "Home", home_index_path, :class => "active", :id => "home_link" %></li>
                 <%else%>
-                <li><%= link_to "Home", "http://www.leadpump.com", :class => "active", :id => "home_link"  %></li>
+                <li><%= link_to "Home", signup_user_path, :class => "active", :id => "home_link"  %></li>
                 <%end%>
               </ul>
             </div>

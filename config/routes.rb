@@ -33,6 +33,14 @@ Leadpump::Application.routes.draw do
 
 
   devise_for :users, :controllers => {:registrations => "registrations"}
+  match "/signup_user" => "home#signup_user"
+  match "/create_new_user" => "home#create_new_user"
+  match "/send_verification_mail" => "home#send_verification_mail"
+  match "/confirmation" => "home#confirmation"
+  match "/save_password" => "home#save_password"
+  match "/save_address" => "home#save_address"
+  match "/upload_company_logo" => "home#upload_company_logo"
+  match "/upload_profile_pic" => "home#upload_profile_pic"
 
   root to: "home#index"
 
@@ -73,7 +81,7 @@ Leadpump::Application.routes.draw do
   match '/plan_cancel' => 'home#plan_cancel'
   match '/thanks' => 'home#thanks'
   match '/fetch_upgrade_plan' => 'home#fetch_upgrade_plan'
-
+  match '/save_refs' => 'home#save_refs'
   
   match '/savereferral' => 'vipleads#savereferral'
   match '/admin/index' => 'admin#index'

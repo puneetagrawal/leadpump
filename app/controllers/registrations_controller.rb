@@ -73,7 +73,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   
-  
 
   private
   def getPlan

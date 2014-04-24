@@ -7,40 +7,21 @@ jQuery ->
 
 subscription =
   setupForm: ->
-    $('.submitSignUpForm').click ->
-        if $("input[name='acceptConditions']").is(":checked")
-          if($("input:radio[name='paymentOptionRadio']:checked").attr('class') == 'creditCard')
-            $(".submitSignUpForm").html('<img src="/assets/ajax-loader.gif" style="float:right;margin-right:40px">')
-            if $('#card_number').length
-              #$('#new_user')[0].submit()
-              subscription.validateCard()
-              return false
-            else
-              true
-          else
-             $('#new_user')[0].submit()   
-        else  
-          alert("Please accept Term and conditions")
-          false
-  
+    $('.pay_btn').click ->
+      if $('#card_number').length
+        subscription.validateCard()
+        return false
+      else
+        true
+        
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#user_subscription_attributes_stripe_card_token').val(response.id)
-      subscription.addHiddenField()
-      $('#new_user')[0].submit()
+      $('#stripe_card_token').val(response.id)
+      $('#payment_form').submit()
     else
       $('#stripe_error').text(response.error.message)
-      $("html, body").animate({ scrollTop: 0 }, "fast");
-      $(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn green pull-right">Create My Account</a>')
-
-  addHiddenField: ->
-      if($('#user_discountOnUsers').is(':visible'))      
-        $('#du').val($('#user_discountOnUsers').val())
-      if($("#user_planType_2").is(':checked'))
-        $('#dp').val(2)
-      if($("#user_locationType").is(':visible'))
-        $('#dl').val($("#user_locationType").val())          
+      $(".pay_btn").html('<input type="button" class="submitSignUpForm next_btnlarge" data-id="4" value="Next" style="width:200px;"/>')
 
   validateCard: ->
       card =
@@ -53,4 +34,3 @@ subscription =
         expYear: $('#card_year').val()
       Stripe.createToken(card, subscription.handleStripeResponse)
 
-$(".submitSignUpForm").html('<a id="signupBtn" href="" class="btn green pull-right">Create My Account</a>')

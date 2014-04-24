@@ -1,0 +1,330 @@
+<div id="page_wrap">
+  <div class="banner">
+    
+  <div class="header">
+      
+      <div class="hdr_container">
+          <%=link_to signup_user_path, class: "logo" do%>
+            <img src="/assets/logo_img.png" width="169" height="50" alt="logo_img" />
+          <%end%>
+            <div class="sign_in">
+              <%=link_to "Sign In",'/users/signin'%>
+            </div>
+      </div>
+    </div>
+    <div class="video_img">
+      <img src="/assets/video_img.jpg" width="528" height="296" alt="video_img" />
+      </div>
+  </div>
+    <div class="black_wrap">
+      <div class="black_wrap_container">
+        <div class="acc_content">
+      <h3>Lead<span class="skyblue">Pump</span> <span class="ft_it">- Start your 30-day free trial!</span></h3>
+      <%= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
+        <%=hidden_field_tag :cls, "black_wrap_input"%>
+        <span class="leadform">
+         <%=render "common_templates/signup_user", cls: "black_wrap_input" %>
+        </span>
+         <div class="btn_box">
+          <input name="" type="button" class="black_wrap_btn signup_1" value="Create My Account"/>
+          <p class="btn_fnt">By clicking you agree to terms and conditions.</p>
+        </div>
+        <%end%>
+        </div>
+        </div>
+        </div>
+    </div>
+    <div class="bridge_wrap">
+      <div class="bridge_container">
+      <div class="bridge_nav">
+          <ul>
+              <li><a href="#">Why choose us </a></li>
+                <li><a href="#">Our Features</a></li>
+                <li><a href="#">Our Price</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="bridge_content">
+        <h4>Finally An Affordable Solution That Bridges The Gap!</h4>
+        <p>Uniting lead generation, lead management, team management  and member 
+rewards. <strong>LEAD<span class="skyblue">PUMP</span></strong> will increase your leads, increase your staff's productivity, 
+increase your memberships sales, reward your members for referrals all 
+while lowering new member acquisition cost and operating expenses!</p>
+</div>
+</div>
+    </div>
+    <div class="black_wrap why_wrap">
+      <div class="black_wrap_container">
+        <div class="black_wrap_content ft_align">
+      <h4 class="white_c">WHY US?</h4>
+        <p>Because there is no industry solution that compares to <strong>LEAD<span class="skyblue">PUMP</span></strong>. Other products in our industry claim to offer "lead generation" systems, but you will quickly find they are merely lead management systems which is entirely different then our main focus.</p>
+        <p>We specialize in lead generation. <strong>LEAD<span class="skyblue">PUMP</span></strong> has proprietary technology like our patented "Lead Generator Viral Inviter" that no other company in our industry offers. Generating leads is the hardest part. Our system will produce an abundance of qualified leads which will have the highest probability of converting to new membership sales at your facility.</p>
+       <h5> Most would think that's reason enough to get started...not us.</h5>
+       <p>There is one more amazing feature that only <strong>LEAD<span class="skyblue">PUMP</span></strong> offers...Affordability!</p>
+        </div>
+        </div>
+    </div>
+    <div class="feature_wrap">
+      <div class="feature_wrap_container">
+          <h4>OUR FEATURES</h4>
+            <div class="feature_list">
+              <div class="feature_1">
+              <div class="feature_col">
+                <img src="/assets/msg_creator_img.png" width="73" height="69" alt="msg_creator" class="mc" />
+                <h5>Message Creator</h5>
+                <p>Create a personalized compelling invitation to <br/>
+Your club for your member to send to friends</p>
+                </div>
+                <div class="feature_col feature_ml">
+                <img src="/assets/sales_img.png" width="61" height="61" alt="sales_img" />
+                <h5>Daily Sales Reports</h5>
+                <p>Produce daily sales reports stored in the cloud</p>
+              </div>
+              </div>
+              <div class="feature_1">
+              <div class="feature_col">
+                <img src="/assets/social_icon.png" width="52" height="168" alt="social_icon" class="left_img1"/>
+                <div class="mt_1">
+                <h5>MASS-PASS Social Inviter </h5>
+                <p>Allow your members to import their contacts, share <br/>
+an invitation to your club with guest passes attached<br/>
+to all their friends, family members and co-workers <br/>
+with the click of a button</p>
+        </div>
+              </div>
+              <div class="feature_col feature_ml">
+                <img src="/assets/sales_projection.png" width="64" height="66" alt="sales_projection" />
+                <h5>Sales Projections</h5>
+                <p>Daily sales production sheets, Monthly projections</p>
+              </div>
+              <div class="feature_col feature_ml">
+                <img src="/assets/management_img.jpg" width="84" height="60" alt="management_img" class="left_img2" />
+                <h5>Management</h5>
+                <p>Track your teams opportunities and connections</p>
+              </div>
+              </div>
+              <div class="feature_1">
+              
+              <div class="feature_col">
+                <img src="/assets/pos_img.png" width="62" height="60" alt="pos_img" />
+                <h5>POS Traditional Buddy Referrals</h5>
+                <p>Collect 1-5 names and numbers that load right<br/>
+into your dashboard and create prospect records</p>
+              </div>
+              <div class="feature_col feature_ml">
+                <img src="/assets/dashboard_img.jpg" width="167" height="69" alt="dash_img" class="left_img3" />
+                <h5>Enhanced Dashboard</h5>
+                <p>See up to minute opportunities, sales and<br/>
+projections for your entire team</p>
+              </div>
+              </div>
+              <div class="feature_1">
+              
+              <div class="feature_col ">
+                <img src="/assets/landing_p_img.png" width="64" height="64" alt="landing_p_img" />
+                <h5>Internal Landing Pages</h5>
+                <p>High converting landing pages</p>
+              </div>
+              <div class="feature_col feature_ml">
+                <img src="/assets/online_center.jpg" width="68" height="68" alt="online_center"/>
+                <h5>On-line Profit Centers</h5>
+                <p>Increase profit centers with member rewards</p>
+              </div>
+              </div>
+              <div class="feature_1">
+              
+              <div class="feature_col ">
+                <img src="/assets/crm_img.jpg" width="68" height="68" alt="crm_img" />
+                <h5>Customer Relations Manager</h5>
+                <p>Manage interactions with future customers</p>
+              </div>
+              <div class="feature_col feature_ml">
+                <img src="/assets/cs_img.jpg" width="87" height="61" alt="cs_img" class="left_img4"/>
+                <h5>Cloud Storage</h5>
+                <p>Centralize location of all leads/prospects</p>
+              </div>
+              </div>
+              <div class="feature_1">
+              
+              <div class="feature_col ">
+                <img src="/assets/calender_img.jpg" width="68" height="68" alt="calender_img" />
+                <h5>Calendar</h5>
+                <p>Schedule reminders, tasks, calls or tours</p>
+              </div>
+              <div class="feature_col feature_ml">
+                <img src="/assets/ft&amp;rp_img.png" width="64" height="57" alt="ft&rp" class="left_img5"/>
+                <h5>Free Training & Resource Pages </h5>
+                <p>Proven methods, invaluable information</p>
+              </div>
+              </div>
+              <div class="feature_1">
+                <div class="feature_col ">
+                <img src="/assets/girl_img.jpg" width="83" height="248" alt="girl_img" class="left_img2" />
+                <h5>Former Miss Utah</h5>
+                <p>Placed on your lead pages, encouraging potential members to take that fist step...</p>
+                <span class="click_me"><a href="#">Click Me</a></span>
+              </div>
+              
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="orange_wrap">
+      <div class="orange_wrap_container">
+      <h4 class="white_c">Instantly Increase Leads And Sales By Up To 37% A Month!
+<strong>LEAD<span class="skyblue">PUMP</span></strong> is as simple as one, two, three</h4>
+    <div class="orange_content">
+          <ul>
+              <li><h5>Fire it up.</h5>
+                  <p>Start your trial today<br/>
+and Implement LEADPUMP<br/>
+at your club.</p>
+                </li>
+                <li class="orange_content_mlr"><h5>Members invites friends.</h5>
+                  <p>They have the ability to send just a <br/>
+few or to send hundreds through <br/>
+email, facebook and twitter.</p>
+                </li>
+                <li><h5>Working together.</h5>
+                  <p>Our system organizes all your <br/>
+leads for your sales staff, you<br/>
+are easily able to manage<br/>
+your team.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="black_wrap step_wrap">
+      <div class="black_wrap_container black_1">
+        <div class="black_wrap_content cnt_1 ft_align">
+      <h4 class="white_c">A STEP ABOVE THE REST</h4>
+        <p>Providing True "Lead Generation" With Greater Success For Less</p>
+        <div class="step_top_img">
+        <img src="/assets/lead_gn_img.jpg" width="1172" height="175" alt="lead_gn_img" />
+        </div>
+        <div class="step_col">
+          <div class="step_col_box">
+              <div class="step_col_box_top">
+                  <h5>BASIC</h5>
+                    <h2>$27<span>User/month</span></h2>
+                </div>
+                <div class="step_col_box_btm">
+                Unlimited
+                </div>
+            </div>
+            <div class="step_col_box">
+              <div class="step_col_box_top">
+                  <h5>ADVANCED</h5>
+                    <h2>$37<span>User/month</span></h2>
+                </div>
+                <div class="step_col_box_btm">
+                Unlimited
+                </div>
+            </div>
+            <div class="step_col_box">
+              <div class="step_col_box_top">
+                  <h5>PROFESSIONAL</h5>
+                    <h2>$67<span>User/month</span></h2>
+                </div>
+                <div class="step_col_box_btm">
+                Unlimited
+                </div>
+            </div>
+            <div class="step_col_box ">
+              <div class="step_col_box_top">
+                  <h5>PROFESSIONAL PLUS</h5>
+                    <h2>$97<span>User/month</span></h2>
+                </div>
+                <div class="step_col_box_btm">
+                Unlimited
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    <div class="trial_col">
+      <div class="trial_col_container">
+          <div class="trial_left">
+              <h2>Getting Referrals Can Be Work But It Doesn't 
+Have To Be Difficult, Start Your Trial Today!</h2>
+      <h3>LEAD<span class="skyblue">PUMP</span> <span class="ft_it black_c">- Start your 30-day free trial!</span></h3>
+      <%= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
+        <span class="leadform">
+         <%=render "common_templates/signup_user" , cls: "trial_left_input" %>
+         <%=hidden_field_tag :cls, "trial_left_input"%>
+           <div class="trial_left_btn_box">
+              <input name="" type="button" class="trial_left_btn signup_1" value="Create My Account"/>
+            </div>
+          </span>
+        <%end%>
+        </div>
+        </div>
+            
+        </div>
+    </div>
+    <div class="black_wrap step_wrap">
+      <div class="black_wrap_container black_2">
+          <h4 class="white_c">CONTACT</h4>
+            <div class="contact_content">
+              <div class="contact_content_left">
+                  <div class="map"><img src="/assets/map_img.jpg" width="569" height="350" alt="map_img" /></div>
+                    <div class="info_col">
+                      <h6>More Info</h6>
+                        <div class="info_icon">
+                        <span class="info_1"></span>
+                        <span class="info_2"></span>
+                        <span class="info_3"></span>
+                        <span class="info_4"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact_form">
+                  <h6>Contact Form</h6>
+                  <div class="contact_form_field">
+                      <label>Your Name (required)</label>
+                        <input name="" type="text" class="contact_input"/>
+                    </div>
+                    <div class="contact_form_field">
+                      <label>Your Email (required)</label>
+                        <input name="" type="text" class="contact_input"/>
+                    </div>
+                    <div class="contact_form_field">
+                      <label>Subject</label>
+                        <input name="" type="text" class="contact_input"/>
+                    </div>
+                    <div class="contact_form_field">
+                      <label>Your Message</label>
+                        <textarea name="" cols="" rows="5" class="contact_msg"></textarea>
+                    </div>
+                    <input name="" type="button" class="contact_btn" value="Send"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="email_access" class="popup_container" style="width:700px;height:270px; padding:10px;">
+  <div style="font-size:20px;text-align:center;" class="small_popup">
+    <span style="font-weight:bold;" class="email_access">
+      <img src="/assets/ajax-loader.gif" class="sm_loader_margin" />
+   </span>
+ </div>
+</div>
+
+<%if @signup%>
+  <div id="register_steps" class="popup_container" style="">
+    <div style="font-size:20px;text-align:center" >
+        <%=render "common_templates/signup_steps"%>
+ </div>
+</div>
+  <script>
+    $.fancybox.open({
+      href: '#register_steps',
+      type: 'inline'
+    });
+  </script>
+<%end%>
+

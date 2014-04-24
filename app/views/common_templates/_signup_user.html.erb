@@ -1,0 +1,15 @@
+
+<div class="input_error_col">
+<%= text_field_tag :name, "", :placeholder=>"First Name", :class=>cls %>
+<%=@user.present? && @user.errors[:name].present? ? "Name #{@user.errors[:name][0]}" : ''%>
+</div>
+<div class="input_error_col">
+<%= text_field_tag :last_name, "", :placeholder=>"Last Name", :class=>cls %>
+</div>
+<div class="input_error_col">
+<%= text_field_tag :email, "", :placeholder=>"Email", :class=>cls %>
+<span class="email_provided">
+	<%=@user.present? && @user.errors[:email].present? ? "Email #{@user.errors[:email][0]}" : ''%>
+</span>
+</div>
+

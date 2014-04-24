@@ -90,14 +90,18 @@
               </tr>
               </thead>
               <tbody>
-              <%@backlogs.each do |feed|%>
-                <tr class="green_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
-                  "<%=feed.id%>" >
-                  <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
-                  <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
-                  <td><%=feed.description%></td>
-                  <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
-                </tr>
+              <%if @backlogs.present?%>
+                <%@backlogs.each do |feed|%>
+                  <%if feed.lead.present?%>
+                    <tr class="green_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
+                      "<%=feed.id%>" >
+                      <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
+                      <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
+                      <td><%=feed.description%></td>
+                      <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
+                    </tr>
+                  <%end%>
+                <%end%>
               <%end%>
               <!--<tr>-->
                 <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
@@ -142,6 +146,22 @@
     </div>
   </div>
 </div>
+
+<%if current_user && !current_user.verified%>
+  <div id="setup_wiz" class="popup_container">
+    <div style="font-size:20px;text-align:center" >
+        <%=render "common_templates/setup_wizard"%>
+   </div>
+</div>
+  <script>
+    $.fancybox.open({
+      href: '#setup_wiz',
+      type: 'inline'
+    });
+  </script>
+<%end%>
+
+
 
 <%= render "common_templates/popupContainer" %>
 

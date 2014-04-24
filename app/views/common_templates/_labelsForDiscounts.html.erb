@@ -1,5 +1,5 @@
 
-<p>
+<span class="credit_fild_col">
 	<label></label>
 	<% if DiscountsOnPeriod.all %>
 	<% DiscountsOnPeriod.all.each do |dp| %>
@@ -14,22 +14,6 @@
 	</label>
 	<% end %>
 	<% end %>
-</p>
-<%if !f.blank?%>
-<p>
-	<label></label>
-	<span class="trialInfo">
-		<strong>30-day Free Trial - We won't bill you unless you keep your account open past your 30-day free trial, which starts today.</strong>
-	</span>
-</p>
-<%end%>
+</span>
 <div class="clear"></div>
 <hr>
-<p>
-	<label></label>
-	<label class="checkboxCon">
-		<input type="radio" name="paymentOptionRadio" checked="checked" class="creditCard"> 
-		<strong>Credit card</strong>
-	</label>
-</p>
-<div class="clear"></div>

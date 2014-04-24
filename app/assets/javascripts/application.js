@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery-ui
+//= require jquery.remotipart
 //= require jquery_nested_form
 //= require jqxcare
 //= require jqxchuart
@@ -38,8 +39,8 @@
 //= require ckeditor-jquery
 //= require wl
 
+right_img = '<img src="/assets/right.png" style="width: 15px;margin: 0 2px 0 -20px;">';
 $(document).ready(function(){
-
 	pic_uid = ''; 
  	$('#app_date').datepicker({ dateFormat: 'yy-mm-dd',minDate:0 }).val(); 
  	$('#date_filter').datepicker({ dateFormat: "yy-mm-dd" }).val(); 
@@ -248,12 +249,13 @@ $(document).on('click', '.autoResponder',function(){
 function setFooterPostion(){
     // var heart = $(".container wrapper").height() > $(window).height() - 165 ? $(".container wrapper").height() + 165 : $(window).height() - 155;
     // $(".wrapper").height(heart);
-    var docHeight = $(window).height();
-    var footerHeight = $('#footer').height();
-    var footerTop = $('#footer').position().top + footerHeight;
-   
-    if (footerTop < docHeight) {
-     $('#footer').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+    if($('#footer').length){
+	    var docHeight = $(window).height();
+	    var footerHeight = $('#footer').height();
+	    var footerTop = $('#footer').position().top + footerHeight;
+	    if (footerTop < docHeight) {
+	     $('#footer').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+	    }
     }
 }
 
@@ -360,8 +362,34 @@ function initialization(){
 		}
 	});
 
-	$(".submitviplogo").click(function (){
+	$(document).on("click",".save_referals",function (){
+		id = $("#ref").val();
+		ref = $("#no_of_refs").val();
+		url = '/save_refs';
+		$.post(url, {id:id,ref:ref}, function (data) {
+			$.fancybox.close();
+		});
+	});
+
+	$(document).on("click",".up_comp_logo",function (){
+		$('#picture_company_logo').click();
+	});
+
+	$(document).on("click","#pre_yes",function (){
+		$("#ref").val("1");
+		$('.no_ref').show();
+	});
+
+	$(document).on("click","#pre_no",function (){
+		$("#ref").val("0");
+		$('.no_ref').hide();
+	});
+
+	$(document).on("click",".submitviplogo",function (){
 		$('#picture_viplogo').click();
+	});
+	$(document).on("change","#picture_company_logo",function(){
+		$("#company-logo").submit();
 	});
 
 	$("#picture_viplogo").change(function(){

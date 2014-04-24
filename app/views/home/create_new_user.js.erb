@@ -1,0 +1,9 @@
+<%if @user.errors.present?%>
+	$(".leadform").html("<%=escape_javascript(render 'common_templates/signup_user', cls: @cls)%>");
+<%else%>
+	$.fancybox.open({
+		href: '#email_access',
+		type: 'inline'
+	});
+	$(".small_popup").html('<%=escape_javascript(render partial: "common_templates/email_access")%>');
+<%end%>

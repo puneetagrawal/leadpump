@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140421090409) do
+ActiveRecord::Schema.define(:version => 20140424142211) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -223,8 +223,8 @@ ActiveRecord::Schema.define(:version => 20140421090409) do
 
   create_table "pictures", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -233,6 +233,10 @@ ActiveRecord::Schema.define(:version => 20140421090409) do
     t.string   "viplogo_content_type"
     t.integer  "viplogo_file_size"
     t.datetime "viplogo_updated_at"
+    t.string   "company_logo_file_name"
+    t.string   "company_logo_content_type"
+    t.integer  "company_logo_file_size"
+    t.datetime "company_logo_updated_at"
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|
@@ -412,13 +416,13 @@ ActiveRecord::Schema.define(:version => 20140421090409) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                   :default => "",    :null => false
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "name",                      :default => "",    :null => false
+    t.string   "email",                     :default => "",    :null => false
+    t.string   "encrypted_password",        :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,     :null => false
+    t.integer  "sign_in_count",             :default => 0,     :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -427,14 +431,14 @@ ActiveRecord::Schema.define(:version => 20140421090409) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "active",                 :default => true
+    t.boolean  "active",                    :default => true
     t.integer  "role_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.string   "token"
-    t.integer  "users_created",          :default => 0
-    t.integer  "leads_created",          :default => 0
-    t.boolean  "reset_status",           :default => false
+    t.integer  "users_created",             :default => 0
+    t.integer  "leads_created",             :default => 0
+    t.boolean  "reset_status",              :default => false
     t.boolean  "vipon"
     t.integer  "vipcount"
     t.string   "associate"
@@ -442,6 +446,14 @@ ActiveRecord::Schema.define(:version => 20140421090409) do
     t.boolean  "has_cancelled"
     t.string   "original_email"
     t.string   "from_email"
+    t.string   "lname"
+    t.string   "verification_token"
+    t.boolean  "verified"
+    t.string   "company_logo_file_name"
+    t.string   "company_logo_content_type"
+    t.integer  "company_logo_file_size"
+    t.datetime "company_logo_updated_at"
+    t.integer  "ref"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -3,16 +3,11 @@ class PictureController < ApplicationController
 
   def create
     user = params[:u_id].present? ? User.find(params[:u_id]) : current_user
-    logger.debug("DFDDDDDDDDDDDDDD")
-    logger.debug(user.id)
   	@picture_exist = Picture.find_by_user_id(user.id)
-    logger.debug(params[:picture][:avatar])
     begin 
   	if !@picture_exist.present?
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>")
   		@picture = Picture.create(:avatar=>params[:picture][:avatar],:user_id=>user.id)
   	else
-      logger.debug("dsfeldlseleeeeeeeeeeeee")
   		@picture_exist.update_attributes(:avatar=>params[:picture][:avatar])
   	end
   rescue Exception => e

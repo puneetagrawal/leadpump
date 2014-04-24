@@ -62,4 +62,10 @@ class Emailer < ActionMailer::Base
     mail(:from=> "#{c_name} <#{c_email}>",:to => email, :subject => subject)
   end
 
+  def send_verification_mail(user)
+    @email = user.email
+    @url = "http://"+SERVER_URL+"/confirmation?confirmation_token=#{user.token}"
+    mail(to: @email, subject: 'Complete your verification on Leadpump')
+  end
+
 end

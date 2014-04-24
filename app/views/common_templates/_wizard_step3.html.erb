@@ -1,0 +1,15 @@
+<div>
+	<div class="wizard_text" style="margin-bottom:40px;">
+	<p>Would you like to collect referrals at point of sale?</p>
+	<%= radio_button_tag 'pre', "yes",:class => "ref_yes"%>Yes
+	<%= radio_button_tag 'pre', "no",:class => "ref_no"%>No
+	<span class="no_ref" style="display:none;">
+		<p>How many would you like to collect?<p>
+		<%=hidden_field_tag :ref%>
+		<%=select_tag("no_of_refs", options_for_select((1..10).to_a),:prompt => "Select no of referals",:style=>"width:200px;height:33px;margin-bottom:0px;") %>
+	</span>
+	</div>
+	<div class="ml25"></div>
+	<span class="btn yellow save_referals">Save</span>
+	<span class="btn yellow cancelFancybox">Cancel</span>
+</div>

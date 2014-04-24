@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span12 text-center pricing_plans_heading">
-            <h2>Start Your 14-Day FREE No Obligation Trial Today</h2>
+            <h2>Start Your 30-Day FREE No Obligation Trial Today</h2>
             <h3 style="font-size:28px;">The professional plan is our most popular, please pick
                 the plan that is right for you.</h3>
         </div>
@@ -67,7 +67,7 @@
                             <div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
                             <div class="plan-signup">
                                 <%if !current_user%>
-                                    <%= link_to "Start Trial", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                                    <%= link_to "Start Trial", signup_user_path(:planPerUser => planPerUser, :user=>@user), html_options = {} %>
                                 <%else%>
                                     <%= link_to "Start Free Trial", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
                                 <%end%>
@@ -181,7 +181,7 @@
                     <div class="col-footer">
                         <div class="plan-signup">
                             <%if !current_user%>
-                                <%= link_to "Start Free Trial", new_user_registration_path(:planPerUser => planPerUser), html_options = {} %>
+                                <%= link_to "Start Free Trial", signup_user_path(:planPerUser => planPerUser, :user=>@user), html_options = {} %>
                             <%else%>
                             <%= link_to "Choose", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
                             <%end%>

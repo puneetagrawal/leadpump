@@ -1,0 +1,22 @@
+<div class="row-fluid">
+    <div class="row-fluid">
+    	<%if current_user.picture.present?%>
+	        <%= image_tag current_user.picture.avatar.url(:small), :class=>"img-polaroid img250"%>
+	    <%else%>
+	    	<img class="img-polaroid img250" src="/assets/client_img.png"/>
+	    <%end%>
+	</div>
+     <div class="row-fluid">
+	    <div class="span12">
+	        <%if current_user.isAdmin || current_user.isCompany%>
+	            <div class="pull-left clear mt10 padtp10">
+	                <a class="btn yellow up_comp_logo">Upload Profile Pic</a>
+	                <a class="btn yellow">Skip</a>
+	                <%= form_for @picture, :url => '/upload_profile_pic', :remote=>true ,:html => {:multipart => true,  :id => "company-logo"}, :method=>"post" do |form| %>
+	                  <%= form.file_field :company_logo, :style =>"display:none" %>
+	                <% end %>
+	            </div>
+	        <%end%>
+	    </div>
+	</div>
+</div>

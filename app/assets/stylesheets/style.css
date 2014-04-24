@@ -1236,8 +1236,16 @@ a:focus {
     background-repeat: repeat-x;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     color: #FFFFFF;
+    padding: 10px 14px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
+.img-polaroid.img250{width: 250px;
+height: 90px;}
+.wizard_text{width: 100%;
+float: left;
+margin-bottom: 9px;
+font-size: 17px;}
+.mt10.padtp10{padding-top: 40px;}
 .email_icon {
     float: left;
     background: url("/assets/mail-icon.png") 0 0 no-repeat;
@@ -1324,7 +1332,7 @@ a:focus {
 .salesRep .list {
     float: left;
     width: 100%;
-    height: 294px;
+    height: 274px;
     overflow: auto; 
 }
 .salesRep .list li {
@@ -2289,4 +2297,24 @@ header .container {
     background: none;
 }
 
+.btn_txt{
+    background: none repeat scroll 0 0 #FFDE52;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 13px;
+    float: left;
+    width: 150px;
+    cursor: pointer;
+}
+.mr25{
+    margin-right: 25px;
+}
+
+.ml25{
+    margin-left: 25px;
+}
+
+.ref_no{
+    margin-left: 25px;
+}
 

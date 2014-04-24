@@ -3,7 +3,7 @@
     <div class="span2">
         <div class="pull-left">
             <%if @picture_user.present?%>
-                <%= image_tag @picture_user.avatar.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+                <%= image_tag @picture_user.avatar.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:auto;" %>
             <%else%>
                 <img src="/assets/company-logo.png" class="img-polaroid">
             <%end%>

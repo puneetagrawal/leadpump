@@ -42,6 +42,7 @@ gem "httparty"
 gem "omnicontacts", "~> 0.3.5", :git => "git://github.com/Diego81/omnicontacts.git"
 gem 'omniauth'
 gem "omniauth-google-oauth2"
+gem 'remotipart', '~> 1.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
