@@ -2085,21 +2085,40 @@ font-size: 17px;}
 .fb_social_height{
     width: 50%;
 }
-
+.txt_cent{text-align: center;}
+h2.txt_center{ margin-bottom: 27px;
+    text-align: center;
+    width: 100%;}
 /*setting links*/
 .settings_menu {
     float: left;
     width: 100%;
+      margin-top: 60px;
 }
 .settings_menu li {
-    float: left;
+ display: inline-block;
+    float: none;
+    margin-bottom: 15px;
     margin-right: 10px;
-    margin-bottom:15px;
 }
 .settings_menu li a {
-    width: 250px;
-    padding: 15px 15px;
+    font-size: 13px;
+    min-width: 209px;
+    padding: 11px;
 }
+.settings_menu .img-polaroid {
+background-color: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.2);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+float: none;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+margin-bottom: 12px;
+padding: 4px;
+width: 50%;
+}
+.setting_img_col .yellow:hover{ background: #474747; color: #fff}
 .container {
     min-height: 500px;
 }
@@ -2236,6 +2255,7 @@ header .container {
     clear:none;
     line-height:40px;
 }
+.menuView .dashboardIcons li span.blue_txt{color: #69dcf4;}
 .menuView .dashboardIcons li .icon_setting {
     background-position: 5px -422px;
 }
@@ -2317,4 +2337,23 @@ header .container {
 .ref_no{
     margin-left: 25px;
 }
+
+.middle_cont_bg{ background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 9px;
+    float: left;
+    width: 100%;
+    padding: 10px 15px;}
+
+.setting_img_col{  display: inline-block;
+    float: none;
+    text-align: center;
+    width: 30%;}
+
+.submit_company_logo{ float: none; display: inline-block;}
+
+.setting_img_col .yellow {   background: none repeat scroll 0 0 #FFDE52;
+    border-color: #E8C943;
+    color: #444D00;
+    font-size: 12px;
+    padding: 5px;}
 

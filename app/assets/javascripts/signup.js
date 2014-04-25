@@ -16,6 +16,22 @@ $(document).ready(function(){
 		$.fancybox.close();
 	});
 
+	$(document).on('click', '.try_free_btn',function(){
+		var id = $(this).find('a').attr('data-id');
+		if(id && id != ''){
+			id = id.split("_");
+			$.fancybox.open({
+		      href: '#register_steps',
+		      type: 'inline',
+		      'beforeLoad' : function() {
+					url = '/choose_plan';
+					$.post(url, {user:id[0],plan_range:id[1]}, function (data) {		
+					});
+				}
+		    });
+		}
+	});
+
 	$(document).on('click', '.signup_next',function(){
 		var $parent = $(this).parent();
 		var $this = $parent.html(); 

@@ -1,29 +1,17 @@
 <%if current_user.isCompany%>
 	<%=render "home/companyLogo"%>
-    <div class="pull-left clear mt10">
-        <a class="btn yellow submitlogo">Upload Company Logo</a>
-        <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
-          <%=hidden_field_tag :company, "true"%>
-          <%= form.file_field :companyLogo, :style =>"display:none" %>
-        <% end %>
-    </div>
 <%end%>
 <%if current_user.isEmployee || current_user.isCompany%>
-	<div class="row-fluid">
-	    <div class="span2">
-	        <div class="pull-left">
-	            <%if current_user.picture.present?%>
-	                <%= image_tag current_user.picture.avatar.url(:medium), :class=>"img-polaroid" %>
-	            <%else%>
-	                <img src="/assets/company-logo.png" class="img-polaroid">
-	            <%end%>
-	        </div>
-	    </div>
-	</div>
-    <div class="pull-left clear mt10">
-        <a class="btn yellow submitlogo">Upload Profile Pic</a>
-        <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
+	<div class="setting_img_col">
+	    <%if current_user.picture.present?%>
+            <%= image_tag current_user.picture.avatar.url(:medium), :class=>"img-polaroid" %>
+        <%else%>
+            <img src="/assets/company-logo.png" class="img-polaroid">
+        <%end%>
+        <div class="clear"></div>
+        <a class="btn yellow submit_profile_pic">Upload Profile Pic</a>
+        <%= form_for @picture, :url => '/createpic' ,:html => { :id => "p_logo" } do |form| %>
           <%= form.file_field :avatar, :style =>"display:none" %>
-        <% end %>
-    </div>
-<%end%>
+         <% end %>
+	</div>
+ <%end%>

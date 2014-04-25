@@ -4,13 +4,15 @@ class PictureController < ApplicationController
   def create
     user = params[:u_id].present? ? User.find(params[:u_id]) : current_user
   	@picture_exist = Picture.find_by_user_id(user.id)
-    if params[:comapany].present?
+    if params[:company].present?
+      logger.debug(">>>>>>>>>>>>>>>>>>>")
       if !@picture_exist.present?
-        @picture = Picture.create(:company_logo=>params[:picture][:avatar],:user_id=>user.id)
+        @picture = Picture.create(:company_logo=>params[:picture][:company_logo],:user_id=>user.id)
       else
-        @picture_exist.update_attributes(:company_logo=>params[:picture][:avatar])
+        @picture_exist.update_attributes(:company_logo=>params[:picture][:company_logo])
       end
     else
+      logger.debug("LSDDSFDSFDSFDSFDS")
     	if !@picture_exist.present?
     		@picture = Picture.create(:avatar=>params[:picture][:avatar],:user_id=>user.id)
     	else

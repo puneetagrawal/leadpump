@@ -1,9 +1,9 @@
 <div>
 	<div class="wizard_text" style="margin-bottom:40px;">
 	<p>Would you like to collect referrals at point of sale?</p>
-	<%= radio_button_tag 'pre', "yes",:class => "ref_yes"%>Yes
-	<%= radio_button_tag 'pre', "no",:class => "ref_no"%>No
-	<span class="no_ref" style="display:none;">
+	<input type='radio' class='ref_yes' name="test" value='0' checked='checked'/> Yes
+	<input type='radio' class='ref_no' name="test" value='1' /> No
+	<span class="no_ref">
 		<p>How many would you like to collect?<p>
 		<%=hidden_field_tag :ref%>
 		<%=select_tag("no_of_refs", options_for_select((1..10).to_a),:prompt => "Select no of referals",:style=>"width:200px;height:33px;margin-bottom:0px;") %>

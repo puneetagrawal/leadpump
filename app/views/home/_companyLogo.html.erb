@@ -1,14 +1,17 @@
-<h2><%=current_user.name.humanize%></h2>
-<div class="row-fluid">
-    <div class="span2">
-        <div class="pull-left">
-            <%if current_user.picture.present?%>
-                <%= image_tag current_user.picture.company_logo.url(:medium), :class=>"img-polaroid"%>
-            <%else%>
-                <img src="/assets/company-logo.png" class="img-polaroid">
-            <%end%>
-        </div>
-    </div>
+<h2 class="txt_center"><%=current_user.name.humanize%></h2>
+<div class="setting_img_col">
+    <%if current_user.picture.present?%>
+        <%= image_tag current_user.picture.company_logo.url(:medium), :class=>"img-polaroid"%>
+    <%else%>
+        <img src="/assets/company-logo.png" class="img-polaroid">
+    <%end%>
+    <div class="clear"></div>
+    <a class="btn yellow submit_company_logo">Upload Company Logo</a>
+	<%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
+	  <%=hidden_field_tag :company, "true"%>
+	  <%= form.file_field :company_logo, :style =>"display:none" %>
+	<% end %>
 </div>
+ 
 
 

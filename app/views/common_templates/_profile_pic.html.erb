@@ -11,7 +11,7 @@
 	        <%if current_user.isAdmin || current_user.isCompany%>
 	            <div class="pull-left clear mt10 padtp10">
 	                <a class="btn yellow up_comp_logo">Upload Profile Pic</a>
-	                <a class="btn yellow">Skip</a>
+	                <span><a class="btn yellow skip_profile" data-id="wizard_step3" >Skip</a></span>
 	                <%= form_for @picture, :url => '/upload_profile_pic', :remote=>true ,:html => {:multipart => true,  :id => "company-logo"}, :method=>"post" do |form| %>
 	                  <%= form.file_field :company_logo, :style =>"display:none" %>
 	                <% end %>

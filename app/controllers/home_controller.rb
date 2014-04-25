@@ -6,7 +6,7 @@ class HomeController < ApplicationController
                                                     :calculateAmount, :terms, :create_new_user,
                                                      :signup_user, :send_verification_mail,
                                                      :confirmation, :save_password, :save_address,
-                                                   :make_payment]
+                                                   :make_payment,:choose_plan,:skip_profile]
 
   layout 'company_layout', only: [:pass, :print_pass]
   layout 'index_layout', only: [:signup_user]
@@ -321,8 +321,6 @@ class HomeController < ApplicationController
   end
 
   def signup_user
-    @signup = params[:planPerUser].present? ? true : false
-    @planPerUser = @signup ? PlanPerUserRange.find(params[:planPerUser]) : nil
     @user = params[:user].present? ? User.find_by_token(params[:user]) : nil
   end
 
@@ -357,12 +355,28 @@ class HomeController < ApplicationController
         # user.verified = true
         # user.save
         @msg = "You have been successfully verified"
-        redirect_to new_plan_path(:maxUsers => 1,:user=>@user.token)
+        redirect_to signup_user_path(:user=>@user.token)
       else
         redirect_to home_index_path
       end
     else
       redirect_to home_index_path
+    end
+  end
+
+  def skip_profile
+    @name = params[:id]
+    @picture = Picture.new()
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def choose_plan
+    @user = User.find(params[:user])
+    @planPerUser = PlanPerUserRange.find(params[:plan_range])
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -442,16 +456,13 @@ class HomeController < ApplicationController
 
   def upload_company_logo
     @picture = Picture.new()
-    logger.debug(params[:picture])
     current_user.verified = true
     if !current_user.picture.present?
-      @picture = Picture.create(:company_logo=> params[:picture][:company_logo],:user_id=>current_user.id)
+      Picture.create(:company_logo=> params[:picture][:company_logo],:user_id=>current_user.id)
     else
       current_user.picture.company_logo = params[:picture][:company_logo]
       if current_user.picture.save
-        logger.debug("SDFSDFDFSDfdfsdfd")
       else
-        logger.debug(current_user.picture.errors.full_messages)
       end
     end
     current_user.save
@@ -463,7 +474,7 @@ class HomeController < ApplicationController
   def upload_profile_pic
     @picture = Picture.new()
     if !current_user.picture.present?
-      @picture = Picture.create(:avatar=> params[:picture][:company_logo],:user_id=>current_user.id)
+      Picture.create(:avatar=> params[:picture][:company_logo],:user_id=>current_user.id)
     else
       current_user.picture.avatar = params[:picture][:company_logo]
       if current_user.picture.save

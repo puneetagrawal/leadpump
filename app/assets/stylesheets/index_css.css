@@ -380,10 +380,19 @@ p.btn_fnt{
 	float:left;
 	border-radius:5px;
 	background:#fff;
-	min-height:700px;
+	min-height:731px;
 	margin-right:34px;
 }
-
+.try_free_btn{ background: none repeat scroll 0 0 #A9A9A9;
+    border-radius: 7px;
+    bottom: -22px;
+    color: #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 9px 17px;
+    position: relative;
+    width: 100px;}
+.try_free_btn a{color: #fff; text-decoration: none}
 .step_col_box .step_col_box_top{
 	background:#49484e;
 	border-radius:3px;
@@ -401,15 +410,25 @@ p.btn_fnt{
 	font-size:50px;
 	color:#69dcf4;
 	font-weight:bold;
-	margin-bottom:20px;
+	
 	font-family:Arial, Helvetica, sans-serif;
 }
 .step_col_box .step_col_box_top h2 span{
 	font-size:16px;
 	font-weight:normal;
 }
+
+.blue_box_rounded{  background: none repeat scroll 0 0 #69DCF4;
+    border-radius: 5px 5px 0 0;
+    color: #FFFFFF;
+    float: left;
+    font-size: 22px;
+    height: 43px;
+    line-height: 43px;
+    margin-top: -40px;
+    width: 100%;}
 .step_col_box .step_col_box_btm{
-	padding:20px 30px;
+	padding:33px 20px 20px;
 	font-size:16px;
 	color:#6c6865;
 	text-align:left;
@@ -689,3 +708,41 @@ font-size: 18px;}
 	border-radius: 5px;
 	border: 1px solid #ccc;
 }
+.step_col_box .step_col_box_btm h1{    color: #6C6865;
+    font-family: "Arial",sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center; width: 100%;
+    line-height: 1.18em;}
+
+    .step_col_box .step_col_box_btm h1 span{     color: #111111;
+    float: left;
+    font-family: "Arial",sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.18em;
+    margin-bottom: 11px;
+    margin-top: 11px;
+    width: 100%;}
+
+.step_col_box .step_col_box_btm h2{ color: #6C6865;
+    font-family: "Arial",sans-serif;
+    font-size: 17px;   margin-bottom: 14px;
+    line-height: 1.18em;}
+.step_col_box .step_col_box_btm h3{  color: #6C6865;
+    font-family: "Arial",sans-serif;
+    font-size: 17px;
+    line-height: 1.18em; margin: 0;
+     text-align: left;
+     font-weight: normal;
+    text-transform: none;
+}
+.step_col_box .step_col_box_btm h3 span{ color: #69DCF4}
+
+.step_col_box .step_col_box_btm p{ color: #6C6865;
+    font-family: "Arial",sans-serif;
+    font-size: 11px;
+
+    line-height: 1.27em; margin:0 0 11px 0px}
+
+    .step_col_box .step_col_box_btm p span{color: #69DCF4}

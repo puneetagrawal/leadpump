@@ -7,7 +7,7 @@ jQuery ->
 
 subscription =
   setupForm: ->
-    $('.pay_btn').click ->
+    $(document).on 'click', '.pay_btn', () ->
       if $('#card_number').length
         subscription.validateCard()
         return false

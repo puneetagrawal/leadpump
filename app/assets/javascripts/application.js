@@ -205,6 +205,17 @@ $(document).on('click', '.autoResponder',function(){
 	   view = true
 	});
 
+	$(document).on('click', '.skip_profile', function (){
+		$parent = $(this).parent();
+		$this = $parent.html(); 
+ 		$parent.html('<img src="/assets/ajax-loader.gif">');
+		url = "/skip_profile";
+		var id = $(this).attr('data-id');
+		$.post(url, {id:id}, function (data) {	
+			$parent.html($this);		
+		});
+	});
+
 	$(document).on('click', '.listView', function (){
 		if(view){
 			$.fancybox.open(this,{
@@ -362,6 +373,22 @@ function initialization(){
 		}
 	});
 
+	$(".submit_company_logo").click(function (){
+		$('#picture_company_logo').click();	
+	});
+
+	$(document).on("change","#picture_company_logo",function (){
+		$('#c_logo').submit();	
+	});
+	
+	$(".submit_profile_pic").click(function (){
+		$('#picture_avatar').click();
+	});
+
+	$(document).on("change","#picture_avatar",function (){
+		$('#p_logo').submit();	
+	});
+
 	$(document).on("click",".save_referals",function (){
 		id = $("#ref").val();
 		ref = $("#no_of_refs").val();
@@ -375,12 +402,12 @@ function initialization(){
 		$('#picture_company_logo').click();
 	});
 
-	$(document).on("click","#pre_yes",function (){
+	$(document).on("click",".ref_yes",function (){
 		$("#ref").val("1");
 		$('.no_ref').show();
 	});
 
-	$(document).on("click","#pre_no",function (){
+	$(document).on("click",".ref_no",function (){
 		$("#ref").val("0");
 		$('.no_ref').hide();
 	});

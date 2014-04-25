@@ -83,7 +83,7 @@ while lowering new member acquisition cost and operating expenses!</p>
                 <img src="/assets/msg_creator_img.png" width="73" height="69" alt="msg_creator" class="mc" />
                 <h5>Message Creator</h5>
                 <p>Create a personalized compelling invitation to <br/>
-Your club for your member to send to friends</p>
+                    Your club for your member to send to friends</p>
                 </div>
                 <div class="feature_col feature_ml">
                 <img src="/assets/sales_img.png" width="61" height="61" alt="sales_img" />
@@ -97,9 +97,9 @@ Your club for your member to send to friends</p>
                 <div class="mt_1">
                 <h5>MASS-PASS Social Inviter </h5>
                 <p>Allow your members to import their contacts, share <br/>
-an invitation to your club with guest passes attached<br/>
-to all their friends, family members and co-workers <br/>
-with the click of a button</p>
+                    an invitation to your club with guest passes attached<br/>
+                    to all their friends, family members and co-workers <br/>
+                    with the click of a button</p>
         </div>
               </div>
               <div class="feature_col feature_ml">
@@ -218,36 +218,84 @@ your team.</p>
               <div class="step_col_box_top">
                   <h5>BASIC</h5>
                     <h2>$27<span>User/month</span></h2>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try for FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
-                Unlimited
+                <p class="package_content">
+                  <h1>Get all Advanced features</h1>
+                    <h2>CRM - up to 1000 contacts</h2>
+                    <h2>Calendar</h2>
+                    <h2>Lead dashboard</h2>
+                    <h2>Team management</h2>
+                    <h2>Cloud Storage</h2>
+                </p>
                 </div>
             </div>
             <div class="step_col_box">
               <div class="step_col_box_top">
                   <h5>ADVANCED</h5>
                     <h2>$37<span>User/month</span></h2>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_18" : ""%>'> Try for FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
-                Unlimited
+                <p class="package_content">
+                  <h1>Get all Advanced features
+                    <span>PLUS</span>
+                  </h1>
+                  <h2>CRM - up to 1000 contacts</h2>
+                  <h2>Daily sales reports</h2>
+                  <h2>Monthly sales projections</h2>
+                  <h2>Full dashboard enabled</h2>
+                  <h2>POS referrals up to 25</h2>
+                </p>
                 </div>
             </div>
             <div class="step_col_box">
+                <div class="blue_box_rounded">Recommended  Plan</div>
               <div class="step_col_box_top">
                   <h5>PROFESSIONAL</h5>
                     <h2>$67<span>User/month</span></h2>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try for FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
-                Unlimited
+                  <h1>Get all Advanced features
+                    <span>PLUS</span>
+                  </h1>
+                    <h2>CRM - unlimited contacts</h2>
+
+                     <h3>  <strong>LEAD<span>PUMP</span></strong> - Mass Pass</h3>
+                      <p> Your member can send 100’s of  guest passes to friends, family members and co-workers at once through email, facebook, twitter. This is not grandmas “like it” or “share it” button! </p>
+
+                 <h3> Enhanced tracking</h3>
+                         <p>  Track your members guest invitations that have been sent, opened and those that convert to prospects back to the sales representative and to the referring member. </p>
+
+                      <h3> Electronic guest registration</h3>
+                      <p>  Walk-ins electronically complete guest registration, provide valuable sales insight information and sign liability waiver. Guests turn into prospects and automatically load into your CRM. Full proof. </p>
+
+                      <h3>  Automatic follow up</h3>
+                      <p> Regardless of your staffs follow through, new leads never fall through the cracks. Design up to 10 messages that automatically go out creating urgency to start a fitness program at your facility. Full proof. </p>
+                   
                 </div>
             </div>
             <div class="step_col_box ">
               <div class="step_col_box_top">
                   <h5>PROFESSIONAL PLUS</h5>
                     <h2>$97<span>User/month</span></h2>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try for FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
-                Unlimited
+                <p class="package_content">
+                  <h1>Get all Professional features
+                    <span>PLUS</span>
+                  </h1>
+                    <h3>Spokesperson</h3>
+                      <p> Our spokesperson walks out on the screen of your lead gathering web page and    encourages the potential member to take that first step in starting a fitness program.
+                      </p>
+                      
+                      <h3>Masterminds</h3>
+                    <p>Access to monthly mastermind meetings. In these sessions you will gain valuable insight how to maximize your results by combining LEAD<span>PUMP<span> with out-of-the-box strategies. </p>
+                    
+                </p>
                 </div>
             </div>
         </div>
@@ -324,17 +372,11 @@ Have To Be Difficult, Start Your Trial Today!</h2>
  </div>
 </div>
 
-<%if @signup%>
-  <div id="register_steps" class="popup_container" style="">
-    <div style="font-size:20px;text-align:center" >
-        <%=render "common_templates/signup_steps"%>
+  <div id="register_steps" class="popup_container" style="display:none">
+    <div style="font-size:20px;text-align:center" class="first_step">
+      <div style="position:relative;height:510px;width:600px;padding: 0px 30px;">
+      <img src="/assets/ajax-loader.gif" style="padding:20%" />
+    </div>
  </div>
 </div>
-  <script>
-    $.fancybox.open({
-      href: '#register_steps',
-      type: 'inline'
-    });
-  </script>
-<%end%>
 

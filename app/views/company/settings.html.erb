@@ -1,80 +1,73 @@
  
 <div class="container wrapper">
-  <div class="row-fluid">
-		<div class="span10">
-			<%=render "home/companyLogo_seting"%>
-	    </div>
-    <%if current_user.isCompany%>
-	    <div class="pull-left clear mt10">
-			<div class="row-fluid" style="margin-bottom:11px;">
-			    <div class="span2">
-			        <div class="pull-left">
-			            <%if current_user.picture.present?%>
-			                <%= image_tag current_user.picture.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
-			            <%else%>
-			                <img src="/assets/company-logo.png" class="img-polaroid">
-			            <%end%>
-			        </div>
-			    </div>
-			</div>
-		    <a class="btn yellow submitviplogo">Upload Social Inviter Process Logo</a>
-		    <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
-		      <%= form.file_field :viplogo, :style =>"display:none" %>
-		    <% end %>
-	    </div>
-    <%end%>
-</div>
-    <div class="row-fluid">
-    	<div class="span12">
-	        <ul class="settings_menu">
-	        	<%if !is_vip_allow(current_user)%>
+	<div class="middle_cont_bg">
+	  <div class="row-fluid txt_cent">
+			
+				<%=render "home/companyLogo_seting"%>
+			    <%if current_user.isCompany%>
+				    <div class="setting_img_col">
+					    <%if current_user.picture.present?%>
+				            <%= image_tag current_user.picture.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+				        <%else%>
+				            <img src="/assets/company-logo.png" class="img-polaroid">
+				        <%end%>
+				        <div class="clear"></div>
+				        <a class="btn yellow submitviplogo">Upload Social Inviter Process Logo</a>
+					    <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
+					      <%= form.file_field :viplogo, :style =>"display:none" %>
+					    <% end %>
+					</div>
+			    <%end%>
+			    <ul class="settings_menu">
+		        	<%if !is_vip_allow(current_user)%>
+			            <li>
+			                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
+			            </li>
+			             <li>
+			                <%=link_to "Manage Landing Page", landpage_path, :class=> "btn yellow"%>
+			            </li>
+			             <li>
+			                <%=link_to "Manage Pos Referral Creation", "javascript:void(0)", :class=> "btn yellow vipseting"%>
+			            </li>
+			            <li>
+			                <%=link_to "Online Mall", onlinemall_index_path,:class=> "btn yellow"%>
+			            </li>
+			            
+		            <%end%>
 		            <li>
-		                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
+		                <%=link_to "Vip Leads", vipleads_path(), :class=> "btn yellow"%>
 		            </li>
-		             <li>
-		                <%=link_to "Manage Landing Page", landpage_path, :class=> "btn yellow"%>
-		            </li>
-		             <li>
-		                <%=link_to "Manage Pos Referral Creation", "javascript:void(0)", :class=> "btn yellow vipseting"%>
-		            </li>
-		            <li>
-		                <%=link_to "Online Mall", onlinemall_index_path,:class=> "btn yellow"%>
-		            </li>
-		            
-	            <%end%>
-	            <li>
-	                <%=link_to "Vip Leads", vipleads_path(), :class=> "btn yellow"%>
-	            </li>
-				<li>
-					<%=link_to "Responder", autoresponder_path, :class=> "btn yellow"%>
-				</li>
-				<%if current_user.isCompany%>
 					<li>
-						<%=link_to "Manage User", company_new_path, :class=> "btn yellow"%>
+						<%=link_to "Responder", autoresponder_path, :class=> "btn yellow"%>
 					</li>
-				<%end %>
+					<%if current_user.isCompany%>
+						<li>
+							<%=link_to "Manage User", company_new_path, :class=> "btn yellow"%>
+						</li>
+					<%end %>
 
 
-	            <%#if check_trial_period(current_user)%>
-	            	<!--<li>
-		                <%#=link_to "Cancel your trial", "javascript:void(0)", :class=> "btn yellow cancel_plan"%>
-		            </li>-->
-	            <%#end%>
-	        </ul>
-    	</div>
-    </div>
-</div>
-<div id="cancel_sub" class="popup_container">
-  <div style="z-index:99999;top:3%">
-    <div style="font-size:20px;text-align:center;" id="dltmall" class="small_popup">
-  	<span style="font-weight:bold;">
-		Are you sure that you want to cancel our trial.
-		<div style="margin-top: 100px;">
-			<span class="pop_yellow_btn cancel_subscription">Cancel Trial</span>
-			<span class="pop_yellow_btn cancelFancybox">close</span>
+		            <%#if check_trial_period(current_user)%>
+		            	<!--<li>
+			                <%#=link_to "Cancel your trial", "javascript:void(0)", :class=> "btn yellow cancel_plan"%>
+			            </li>-->
+		            <%#end%>
+		        </ul>
+		 
 		</div>
-	</span>
-  </div>
-  </div>
+	</div>
+	<div id="cancel_sub" class="popup_container">
+	  <div style="z-index:99999;top:3%">
+	    <div style="font-size:20px;text-align:center;" id="dltmall" class="small_popup">
+	  	<span style="font-weight:bold;">
+			Are you sure that you want to cancel our trial.
+			<div style="margin-top: 100px;">
+				<span class="pop_yellow_btn cancel_subscription">Cancel Trial</span>
+				<span class="pop_yellow_btn cancelFancybox">close</span>
+			</div>
+		</span>
+	  </div>
+	  </div>
+	</div>
 </div>
 <%=render "common_templates/popupContainer"%>
