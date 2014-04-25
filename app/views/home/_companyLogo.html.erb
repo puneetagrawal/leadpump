@@ -2,8 +2,8 @@
 <div class="row-fluid">
     <div class="span2">
         <div class="pull-left">
-            <%if @picture_user.present?%>
-                <%= image_tag @picture_user.company_logo.url(:medium), :class=>"img-polaroid"%>
+            <%if current_user.picture.present?%>
+                <%= image_tag current_user.picture.company_logo.url(:medium), :class=>"img-polaroid"%>
             <%else%>
                 <img src="/assets/company-logo.png" class="img-polaroid">
             <%end%>

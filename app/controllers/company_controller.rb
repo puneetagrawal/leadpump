@@ -183,7 +183,6 @@ def savegmmes
 end
 
 def settings
-    @picture_user = Picture.fetchCompanyLogo(current_user.id)
     @picture = Picture.new
 end
 

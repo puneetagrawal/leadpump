@@ -9,8 +9,8 @@
 			<div class="row-fluid" style="margin-bottom:11px;">
 			    <div class="span2">
 			        <div class="pull-left">
-			            <%if @picture_user.present?%>
-			                <%= image_tag @picture_user.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+			            <%if current_user.picture.present?%>
+			                <%= image_tag current_user.picture.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
 			            <%else%>
 			                <img src="/assets/company-logo.png" class="img-polaroid">
 			            <%end%>
