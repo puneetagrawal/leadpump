@@ -1,39 +1,29 @@
  
 <div class="container wrapper">
-    <%if current_user.isEmployee || current_user.isCompany%>
-		  <div class="row-fluid">
-	        <%=render "home/companyLogo"%>
-	         <div class="row-fluid">
-		    <div class="span10">
-		        <%if current_user.isAdmin || current_user.isCompany%>
-		            <div class="pull-left clear mt10">
-		                <a class="btn yellow submitlogo">Upload Company Logo</a>
-		                <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo" } do |form| %>
-		                  <%= form.file_field :avatar, :style =>"display:none" %>
-		                <% end %>
-		            </div>
-		        <%end%>
-		        <div class="pull-left clear mt10">
-		        	<div class="row-fluid" style="margin-bottom:11px;">
-					    <div class="span2">
-					        <div class="pull-left">
-					            <%if @picture_user.present?%>
-					                <%= image_tag @picture_user.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
-					            <%else%>
-					                <img src="/assets/company-logo.png" class="img-polaroid">
-					            <%end%>
-					        </div>
-					    </div>
-					</div>
-	                <a class="btn yellow submitviplogo">Upload Social Inviter Process Logo</a>
-	                <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
-	                  <%= form.file_field :viplogo, :style =>"display:none" %>
-	                <% end %>
-	            </div>
-		    </div>
-		</div>
-		</div>
+  <div class="row-fluid">
+		<div class="span10">
+			<%=render "home/companyLogo_seting"%>
+	    </div>
+    <%if current_user.isCompany%>
+	    <div class="pull-left clear mt10">
+			<div class="row-fluid" style="margin-bottom:11px;">
+			    <div class="span2">
+			        <div class="pull-left">
+			            <%if @picture_user.present?%>
+			                <%= image_tag @picture_user.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+			            <%else%>
+			                <img src="/assets/company-logo.png" class="img-polaroid">
+			            <%end%>
+			        </div>
+			    </div>
+			</div>
+		    <a class="btn yellow submitviplogo">Upload Social Inviter Process Logo</a>
+		    <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
+		      <%= form.file_field :viplogo, :style =>"display:none" %>
+		    <% end %>
+	    </div>
     <%end%>
+</div>
     <div class="row-fluid">
     	<div class="span12">
 	        <ul class="settings_menu">
@@ -48,9 +38,22 @@
 		                <%=link_to "Manage Pos Referral Creation", "javascript:void(0)", :class=> "btn yellow vipseting"%>
 		            </li>
 		            <li>
-		                <%=link_to "Vip Leads", vipleads_path(), :class=> "btn yellow"%>
+		                <%=link_to "Online Mall", onlinemall_index_path,:class=> "btn yellow"%>
 		            </li>
+		            
 	            <%end%>
+	            <li>
+	                <%=link_to "Vip Leads", vipleads_path(), :class=> "btn yellow"%>
+	            </li>
+				<li>
+					<%=link_to "Responder", autoresponder_path, :class=> "btn yellow"%>
+				</li>
+				<%if current_user.isCompany%>
+					<li>
+						<%=link_to "Manage User", company_new_path, :class=> "btn yellow"%>
+					</li>
+				<%end %>
+
 
 	            <%#if check_trial_period(current_user)%>
 	            	<!--<li>

@@ -42,7 +42,7 @@ Leadpump::Application.routes.draw do
   match "/upload_company_logo" => "home#upload_company_logo"
   match "/upload_profile_pic" => "home#upload_profile_pic"
 
-  root to: "home#index"
+  root to: "home#signup_user"
 
   match "/fetchhotmailfriends" => "home#fetchhotmailfriends"
   match "/fetchfbfreinds" => "home#fetchfbfreinds"

@@ -4,12 +4,22 @@
   <div class="header">
       
       <div class="hdr_container">
-          <%=link_to signup_user_path, class: "logo" do%>
+        <%if current_user%>
+          <%=link_to home_index_path, class: "logo" do%>
             <img src="/assets/logo_img.png" width="169" height="50" alt="logo_img" />
           <%end%>
-            <div class="sign_in">
-              <%=link_to "Sign In",'/users/sign_in'%>
-            </div>
+        <%else%>
+          <%=link_to signup_user_path, class: "logo" do%>
+              <img src="/assets/logo_img.png" width="169" height="50" alt="logo_img" />
+          <%end%>
+        <%end%>
+        <div class="sign_in">
+          <%if current_user%>
+            <%= link_to "Logout", destroy_user_session_path, :method => :delete%>
+          <%else%>
+            <%=link_to "Sign In",'/users/sign_in'%>
+          <%end%>
+        </div>
       </div>
     </div>
     <div class="video_img">

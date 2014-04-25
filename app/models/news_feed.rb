@@ -5,12 +5,12 @@ class NewsFeed < ActiveRecord::Base
   belongs_to :lead
 
   def self.get_today_news(user)
-    feeds = NewsFeed.where(:user_id=>user.id, :feed_date=>Date.today).where('action = ? or action = ?',"Start", "Finish")
+    feeds = NewsFeed.includes(:lead).where("leads.id IS NOT NULL").where(:user_id=>user.id, :feed_date=>Date.today).where('action = ? or action = ?',"Start", "Finish")
     return feeds
   end
 
   def self.get_backlogs(user)
-    feeds = NewsFeed.where("user_id = ? and feed_date < ? and (action = ? or action = ?)",user.id, Date.today, "Start", "Finish")
+    feeds = NewsFeed.includes(:lead).where("leads.id IS NOT NULL and user_id = ? and feed_date < ? and (action = ? or action = ?)",user.id, Date.today, "Start", "Finish")
     logger.debug(feeds.size)
     return feeds
   end

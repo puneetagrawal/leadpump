@@ -4,15 +4,19 @@ class PictureController < ApplicationController
   def create
     user = params[:u_id].present? ? User.find(params[:u_id]) : current_user
   	@picture_exist = Picture.find_by_user_id(user.id)
-    begin 
-  	if !@picture_exist.present?
-  		@picture = Picture.create(:avatar=>params[:picture][:avatar],:user_id=>user.id)
-  	else
-  		@picture_exist.update_attributes(:avatar=>params[:picture][:avatar])
-  	end
-  rescue Exception => e
-    flash[:error] = "Please try again"
-  end
+    if params[:comapany].present?
+      if !@picture_exist.present?
+        @picture = Picture.create(:company_logo=>params[:picture][:avatar],:user_id=>user.id)
+      else
+        @picture_exist.update_attributes(:company_logo=>params[:picture][:avatar])
+      end
+    else
+    	if !@picture_exist.present?
+    		@picture = Picture.create(:avatar=>params[:picture][:avatar],:user_id=>user.id)
+    	else
+    		@picture_exist.update_attributes(:avatar=>params[:picture][:avatar])
+    	end
+    end
     if params[:home_dash].present?
       redirect_to home_index_path()
     elsif params[:u_id].present?

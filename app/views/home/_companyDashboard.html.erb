@@ -1,4 +1,31 @@
 
+<%if is_vip_allow(current_user)%>
+	<li>
+		<%=link_to(new_viplead_path, html_options = {}) do %>
+		<i class="icon icon_socialInviter"></i>
+		<span>Invite Friends</span>
+		<span></span>                  
+		<%end %>
+	</li>
+<%elsif current_user.isCompany%>
+	<li>
+		<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do %>
+		<span class="upgrade"></span>
+		<i class="icon icon_socialInviter"></i>
+		<span>Invite Friends</span>
+		<span></span>                  
+		<%end %>
+	</li>
+<%else%>
+	<li>
+		<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
+		<span class="upgrade"></span>
+		<i class="icon icon_socialInviter"></i>
+		<span>Invite Friends</span>
+		<span></span>                  
+		<%end %>
+	</li>
+<%end%>
 
 <%if current_user.checkLeadLimit%>
 	<li>
@@ -24,8 +51,6 @@
 		<%end %>
 	</li>
 <%end%>
-
-
 <li>
 	<%=link_to(new_appointment_path(), html_options = {}) do %>
 	<i class="icon icon_appointment"></i>
@@ -59,150 +84,34 @@
 <%end%>
 
 
-<%#if current_user.isEmployee%> 
-	<%if is_vip_allow(current_user)%>
-		<li>
-			<%=link_to(opt_in_leads_path, html_options = {:class=>""}) do %>
-			<i class="icon icon_opt_in_lead"></i>
-			<span>Opt in leads</span>	
-			<span></span>                  
-			<%end%>
-		</li>
-	<%elsif current_user.isCompany%>
-		<li>
-			<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do %>
-			<span class="upgrade"></span>
-			<i class="icon icon_opt_in_lead"></i>
-			<span>Opt in leads</span>	
-			<span></span>                  
-			<%end%>
-		</li>
-	<%else%>
-		<li>
-			<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
-			<span class="upgrade"></span>
-			<i class="icon icon_opt_in_lead"></i>
-			<span>Opt in leads</span>	
-			<span></span>                  
-			<%end%>
-		</li>
-	<%end%>
-	
-	<%if is_vip_allow(current_user)%>
-		<li>
-			<%=link_to(new_viplead_path, html_options = {}) do %>
-			<i class="icon icon_socialInviter"></i>
-			<span>Invite Friends</span>
-			<span></span>                  
-			<%end %>
-		</li>
-	<%elsif current_user.isCompany%>
-		<li>
-			<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do %>
-			<span class="upgrade"></span>
-			<i class="icon icon_socialInviter"></i>
-			<span>Invite Friends</span>
-			<span></span>                  
-			<%end %>
-		</li>
-	<%else%>
-		<li>
-			<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
-			<span class="upgrade"></span>
-			<i class="icon icon_socialInviter"></i>
-			<span>Invite Friends</span>
-			<span></span>                  
-			<%end %>
-		</li>
-	<%end%>
-	<%if is_vip_allow(current_user)%>
-		<li>
-			<%=link_to(statss_path(), html_options = {}) do %>
-			<i class="icon icon_statistics"></i>
-			<span>Stats</span>                 
-			<%end %>
-		</li>
-	<%elsif current_user.isCompany%>
-		<li>
-			<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do %>
-			<span class="upgrade"></span>
-			<i class="icon icon_statistics"></i>
-			<span>Stats</span>                 
-			<%end %>
-		</li>
-	<%else%>
-		<li>
-			<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
-			<span class="upgrade"></span>
-			<i class="icon icon_statistics"></i>
-			<span>Stats</span>                 
-			<%end %>
-		</li>
-	<%end%>
-<%#end%>
-<li>
-	<%if is_vip_allow(current_user)%>
-		<%=link_to(onlinemall_index_path, html_options = {}) do %>
-			<i class="icon icon_mall_item"></i>
-			<span>Online Mall</span>
-			<span></span>                  
+<%if is_vip_allow(current_user)%>
+	<li>
+		<%=link_to(statss_path(), html_options = {}) do %>
+		<i class="icon icon_statistics"></i>
+		<span>Statistics</span>                 
 		<%end %>
-	<%else%>
-		<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do%>
-			<span class="upgrade"></span>
-			<i class="icon icon_mall_item"></i>
-			<span>Online Mall</span>
-			<span></span>     
+	</li>
+<%elsif current_user.isCompany%>
+	<li>
+		<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do %>
+		<span class="upgrade"></span>
+		<i class="icon icon_statistics"></i>
+		<span>Statistics</span>                 
 		<%end %>
-	<%end%>
-</li>
-<%if current_user.isCompany || current_user.isAdmin%>
-	<li>
-		<%if current_user.checkUserLimit%>
-			<%=link_to(company_new_path, html_options = {}) do %>
-				<i class="icon icon_leads"></i>
-				<span>Manage User</span>
-				<span></span>                  
-			<%end %>
-		<%else%>
-			<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do%>
-				<span class="upgrade"></span>
-				<i class="icon icon_leads"></i>
-				<span>Manage User</span>
-				<span></span>      
-			<%end %>
-		<%end%>
 	</li>
-
+<%else%>
 	<li>
-		<%if is_vip_allow(current_user)%>
-			<%=link_to(onlinemall_index_path, html_options = {}) do %>
-				<i class="icon icon_mall_item"></i>
-				<span>Online Mall</span>
-				<span></span>                  
-			<%end %>
-		<%else%>
-			<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do%>
-				<span class="upgrade"></span>
-				<i class="icon icon_mall_item"></i>
-				<span>Online Mall</span>
-				<span></span>     
-			<%end %>
-		<%end%>
+		<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
+		<span class="upgrade"></span>
+		<i class="icon icon_statistics"></i>
+		<span>Statistics</span>                 
+		<%end %>
 	</li>
-
-	<li>
-		<%=link_to(settings_path, html_options = {}) do %>
-			<i class="icon icon_setting"></i>
-			<span>Settings</span>
-			<span></span>                  
-		<%end%>
-	</li>
-
-<%end %>		
+<%end%>
 <li>
-	<%=link_to(autoresponder_path, html_options = {}) do %>
-	<i class="icon icon_appointment"></i>
-	<span>Responder</span>                 
-	<%end %>
+	<%=link_to(settings_path, html_options = {}) do %>
+		<i class="icon icon_setting"></i>
+		<span>Manage Campaign</span>
+		<span></span>                  
+	<%end%>
 </li>

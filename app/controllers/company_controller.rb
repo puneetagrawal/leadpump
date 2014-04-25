@@ -183,12 +183,8 @@ def savegmmes
 end
 
 def settings
-  if current_user.isCompany
     @picture_user = Picture.fetchCompanyLogo(current_user.id)
     @picture = Picture.new
-  else
-    redirect_to home_index_path
-  end
 end
 
 def savevipsetings
