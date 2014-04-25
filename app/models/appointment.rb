@@ -34,9 +34,9 @@ class Appointment < ActiveRecord::Base
     app = app.present? ? app.size : 0
   end
 
-  def self.fetchuserappointments(user,date)
+  def self.fetchuserappointments(user,date, date1)
       date = date.to_s
-      date1 = (date + 1).to_s
+      date1 = date1.to_s
       case user.user_role.role_type.to_sym  
       when :admin
         appointments = Appointment.includes(:lead).includes(:user).where("app_date_time >= ? and app_date_time < ?", date,date1)  
