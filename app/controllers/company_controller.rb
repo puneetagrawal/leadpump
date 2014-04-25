@@ -328,5 +328,35 @@ def unsubscribe
     redirect_to "/"
   end
 end
+  
+  def report
+    # @leads = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", current_user.id)
+    # u = User.pluck(:email)
+    user_ary = []
+    ary = [145,2,110]
+    ary.each do |a|
+      logger.debug "<<<<<<<<<<<<<<"
+      logger.debug a
+      u = User.find(a)
+      # logger.debug ar.name
+      # user_ary = ar
+      # usr = User.all
+      # usr.each do |u|
+      # opts = OptInLead.where(source: "LEADPUMP optin").count
+      opts = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP optin", u.id).count
+      # p_o_s = Lead.where(lead_source: "LEADPUMP p.o.s.").count
+      p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
+      crnt_user = current_user.email
+      logger.debug "<<<<<<<<<<<<<<"
+      logger.debug opts
+      logger.debug p_o_s
+      logger.debug u.email    
+      to = u.email
+      Emailer.report_mailer(opts, p_o_s, crnt_user, to ).deliver
+    end
+
+  end
+
 
 end
+

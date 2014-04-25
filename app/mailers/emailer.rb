@@ -61,5 +61,18 @@ class Emailer < ActionMailer::Base
     @unsub_url = unsub_url
     mail(:from=> "#{c_name} <#{c_email}>",:to => email, :subject => subject)
   end
+  def report_mailer(opts, p_o_s, user, to )
+    @opts = opts
+    @p_o_s = p_o_s
+    user = user
+    to = to
+    logger.debug "!!!!!!!!!!!!!!!"
+    # u.each do |to|
+    #   logger.debug ">>>>>>>>>>>"
+    #   logger.debug to
+      mail(:from=> "#{user}", :to => "#{to}", :subject => "report" )
+    # end
+
+  end
 
 end
