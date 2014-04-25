@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
 
 def new
-  @appointments = Appointment.fetchuserappointments(current_user, DateTime.now, DateTime.now + 1)
+  @appointments = Appointment.fetchuserappointments(current_user, Date.today)
 end
 
 def index

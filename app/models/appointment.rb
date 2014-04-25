@@ -34,9 +34,7 @@ class Appointment < ActiveRecord::Base
     app = app.present? ? app.size : 0
   end
 
-  def self.fetchuserappointments(user,date, date1)
-      date = date.to_s
-      date1 = date1.to_s
+  def self.fetchuserappointments(user,date)
       case user.user_role.role_type.to_sym  
       when :admin
         appointments = Appointment.includes(:lead).includes(:user).where("app_date_time >= ? and app_date_time < ?", date,date1)  
@@ -44,9 +42,9 @@ class Appointment < ActiveRecord::Base
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users << user.id
         users = users.present? ? users.uniq : []
-        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>users).where("app_date_time > '"+ date +"' and app_date_time < '"+ date1+"'")
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>users).where("app_date = ?", date)
       when :employee
-        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>user.id).where("app_date_time > '"+ date +"' and app_date_time < '"+ date1 +"'")
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>user.id).where("app_date = ?", date)
     end
     return appointments
   end
