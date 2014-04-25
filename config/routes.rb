@@ -44,7 +44,7 @@ Leadpump::Application.routes.draw do
   match "/choose_plan" => "home#choose_plan"
   match "/skip_profile" => "home#skip_profile"
 
-  root to: "home#signup_user"
+  root to: "home#index"
 
   match "/fetchhotmailfriends" => "home#fetchhotmailfriends"
   match "/fetchfbfreinds" => "home#fetchfbfreinds"
