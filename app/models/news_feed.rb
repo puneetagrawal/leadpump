@@ -11,6 +11,7 @@ class NewsFeed < ActiveRecord::Base
 
   def self.get_backlogs(user)
     feeds = NewsFeed.where("user_id = ? and feed_date < ? and (action = ? or action = ?)",user.id, Date.today, "Start", "Finish")
+    logger.debug(feeds.size)
     return feeds
   end
 

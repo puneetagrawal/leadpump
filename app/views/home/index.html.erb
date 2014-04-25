@@ -53,18 +53,6 @@
                         <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
                       </tr>
                   <%end%>
-              <!--<tr class="red_table_strip">-->
-                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
-                <!--<td><a href="#"><img width="25" src="/assets/phone_icon.png"/></a></td>-->
-                <!--<td>Open - Guest pass request</td>-->
-                <!--<td><a class="btn green btn-small w40" href="#">Finish</a></td>-->
-              <!--</tr>-->
-              <!--<tr class="yellow_table_strip">-->
-                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
-                <!--<td><a href="#"><img width="25" src="/assets/calender.png"/></a></td>-->
-                <!--<td>Open - Guest pass request</td>-->
-                <!--<td><a class="btn red btn-small w40" href="#">Finish</a></td>-->
-              <!--</tr>-->
               </tbody>
               <%else%>
                 <thead>
@@ -81,41 +69,27 @@
             <h2 class="heading">Backlog</h2>
             <table class="table table-striped font-12">
               <%if @backlogs.present?%>
-              <thead>
-              <tr>
-                <td><a href="#"><img src="/assets/point.png" /></a></td>
-                <td>1</td>
-                <td>2 Mar</td>
-                <td>Pts 2 of 10</td>
-              </tr>
-              </thead>
-              <tbody>
-              <%if @backlogs.present?%>
-                <%@backlogs.each do |feed|%>
-                  <%if feed.lead.present?%>
-                    <tr class="green_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
-                      "<%=feed.id%>" >
-                      <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
-                      <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
-                      <td><%=feed.description%></td>
-                      <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
-                    </tr>
-                  <%end%>
+                <thead>
+                <tr>
+                  <td><a href="#"><img src="/assets/point.png" /></a></td>
+                  <td>1</td>
+                  <td>2 Mar</td>
+                  <td>Pts 2 of 10</td>
+                </tr>
+                </thead>
+                <tbody>
+                  <%@backlogs.each do |feed|%>
+                    <%if feed.lead.present?%>
+                      <tr class="green_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
+                        "<%=feed.id%>" >
+                        <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
+                        <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
+                        <td><%=feed.description%></td>
+                        <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
+                      </tr>
+                    <%end%>
                 <%end%>
-              <%end%>
-              <!--<tr>-->
-                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
-                <!--<td><a href="#"><img width="25" src="/assets/phone_icon.png"/></a></td>-->
-                <!--<td>Open - Guest pass request</td>-->
-                <!--<td><a class="btn green btn-small w40" href="#">Finish</a></td>-->
-              <!--</tr>-->
-              <!--<tr>-->
-                <!--<td><a href="#"><img src="/assets/right_arrow.png"/></a></td>-->
-                <!--<td><a href="#"><img width="25" src="/assets/phone_icon.png"/></a></td>-->
-                <!--<td>Open - Guest pass request</td>-->
-                <!--<td><a class="btn red btn-small w40" href="#">Finish</a></td>-->
-              <!--</tr>-->
-              </tbody>
+                </tbody>
               <%else%>
                 <thead>
                 <tr>
