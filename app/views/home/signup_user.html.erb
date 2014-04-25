@@ -379,4 +379,11 @@ Have To Be Difficult, Start Your Trial Today!</h2>
     </div>
  </div>
 </div>
+<%if @user.present?%>
+  <script>
+    $('html, body').animate({
+          scrollTop: $('.step_col').offset().top
+      }, 2000);
+  </script>
+<% end %>
 

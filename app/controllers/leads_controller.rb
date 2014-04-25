@@ -195,7 +195,7 @@ def socialInviter
 end
 
 def saveappointment
-  time = DateTime.strptime(params[:time], '%m/%d/%Y %I:%M:%p')
+  time = DateTime.strptime(params[:time], '%m/%d/%Y %H:%M:%S')
   date = DateTime.strptime(params[:date], '%m/%d/%Y')
   lead = params[:leadId] ? Lead.find(params[:leadId]) : nil
   msg = "Please try again."
