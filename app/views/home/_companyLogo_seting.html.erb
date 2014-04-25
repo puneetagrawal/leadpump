@@ -7,7 +7,8 @@
           <%= form.file_field :companyLogo, :style =>"display:none" %>
         <% end %>
     </div>
-<%elsif current_user.isEmployee || current_user.isCompany%>
+<%end%>
+<%if current_user.isEmployee || current_user.isCompany%>
 	<div class="row-fluid">
 	    <div class="span2">
 	        <div class="pull-left">
