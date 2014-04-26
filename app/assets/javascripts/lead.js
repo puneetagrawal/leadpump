@@ -78,8 +78,9 @@ function initLeadCreateOrUpdate(){
 	$(document).on('click', '#lead_notes', function (e){
 		var id = $(this).attr('data-id');
 		var notes = $("#lead_text").val();
-		url = '/add_notes';
-		$.get(url, {id:id,notes:notes}, function (data) {
+		var url = '/add_notes';
+		var uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+		$.get(url, {id:id,notes:notes,uri:uri}, function (data) {
 			$("#lead_text").val('');
 			$(".note").each(function(i) {
 				$(this).remove();

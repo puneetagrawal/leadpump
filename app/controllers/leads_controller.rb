@@ -236,7 +236,7 @@ def saveappointment
 
  def read_feed
   feed = NewsFeed.find(params[:feed])
-  if feed.present?
+  if feed.present? && params[:uri] == "home"
     NewsFeed.update_feed_action(feed.lead, "Completed")
   end
   msg = {"status"=>"sucess"}
