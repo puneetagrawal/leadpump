@@ -19,8 +19,11 @@ class HomeController < ApplicationController
       saletodate = SaleProd.fetchProdDataUpTotal(current_user, Date.today)
       @gross_values = SaleProd.fetchGrossMap(saletodate)
       @upgrade_user = upgrade_user(current_user)
-      @newsfeeds = NewsFeed.get_today_news(current_user)
-      @backlogs = NewsFeed.get_backlogs(current_user)
+      logger.debug(Date.today)
+      date = Date.today.to_s
+      logger.debug(date)
+      @newsfeeds = NewsFeed.get_today_news(current_user, date)
+      @backlogs = NewsFeed.get_backlogs(current_user, date)
       @picture = Picture.new()
     elsif current_user && current_user.isAdmin
       redirect_to admin_index_path
