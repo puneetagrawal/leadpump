@@ -13,7 +13,7 @@
       <% @appointments.each do |a| %>
         <tr id="viewLead_<%=a.lead_id%>" class="viewLead listView" data-action="leadpopup">
           <% if a.app_date_time.present? && a.app_date.present?%>
-            <td class="time"><%= a.app_date_time.strftime("%I:%M %p").in_time_zone('Arizona') %></td>
+            <td class="time"><%= a.app_date_time.in_time_zone('Arizona').strftime("%I:%M %p")%></td>
             <td class="green_dark"> <%= a.app_date.strftime("%m/%d/%Y") %>  </td>
             <td class="blue_dark"> <%= a.user.name.humanize if a.user.present? %>  </td>
             <td class="green_dark"> <%= a.lead.name %> </td>
