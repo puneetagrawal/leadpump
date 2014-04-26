@@ -210,7 +210,6 @@ def saveappointment
       end      
     end
     msg = "Appointment schedule successfully"
-    
   end
   data = {"msg" => msg}
   respond_to do |format|

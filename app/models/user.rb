@@ -187,12 +187,11 @@ def self.deleteusersfromcompany(companyusers)
   end
 
   def fetchPlan
-    plan = nil
+    plan = Plan.find(1)
     company = self.fetchCompany
     if company.present? && company.subscription.present? 
       plan = company.subscription.plan_per_user_range.plan
     end
-    
     return plan
   end
 

@@ -6,7 +6,7 @@ class HomeController < ApplicationController
                                                     :calculateAmount, :terms, :create_new_user,
                                                      :signup_user, :send_verification_mail,
                                                      :confirmation, :save_password, :save_address,
-                                                   :make_payment,:choose_plan,:skip_profile]
+                                                   :make_payment,:choose_plan,:skip_profile, :contact_form, :test]
 
   layout 'company_layout', only: [:pass, :print_pass]
   layout 'index_layout', only: [:signup_user]
@@ -19,9 +19,7 @@ class HomeController < ApplicationController
       saletodate = SaleProd.fetchProdDataUpTotal(current_user, Date.today)
       @gross_values = SaleProd.fetchGrossMap(saletodate)
       @upgrade_user = upgrade_user(current_user)
-      logger.debug(Date.today)
-      date = Date.today.to_s
-      logger.debug(date)
+      date = Date.today
       @newsfeeds = NewsFeed.get_today_news(current_user, date)
       @backlogs = NewsFeed.get_backlogs(current_user, date)
       @picture = Picture.new()
@@ -495,6 +493,13 @@ class HomeController < ApplicationController
       current_user.save
     end
     render json: {"msg"=> "success"}
+  end
+
+  def contact_form
+    Emailer.send_contact_form(params[:contact_email], params[:contact_name], params[:contact_subject],params[:contact_message]).deliver
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

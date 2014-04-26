@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 function initSocialInviter(){
 	$(".proceed_step1").unbind();
-	$(".proceed_step1").click(function(){
+	$(document).on("click", ".proceed_step1", function(){
 		movetostep1(this);
 	});
 
@@ -182,19 +182,27 @@ function movetostep1(obj){
 }
 
 function executeFirstStep(obj, skip){
+	$(".associate_error").val('');
 	btntxt = $(obj).text();
+	$this = $(obj).html();
 	$(obj).html('<img src="/assets/ajax-loader.gif" style="margin-left: 40px;">');
-	url = '/vipleads';
-	$.post(url, {inputs:formfields(), skip:skip}, function (data) {
-		if(data.error){
-			alert(data.error);
-			$(obj).html('<a id="proceed_step_1" class="btn yellow" href="javascript:void(0)">Proceed to Next Step</a>');
-		}
-		else{
-			$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
-			$(".stepNo2").removeClass('disabled');
-		}
-	});
+	if($("#lead_associate").val() != ''){
+		url = '/vipleads';
+		$.post(url, {inputs:formfields(), skip:skip}, function (data) {
+			if(data.error){
+				alert(data.error);
+				$(obj).html('<a id="proceed_step_1" class="btn yellow" href="javascript:void(0)">Proceed to Next Step</a>');
+			}
+			else{
+				$(".stepNo1").addClass('step-visited disabled').prepend('<i class="icon-ok icon-white step-mark"></i>');
+				$(".stepNo2").removeClass('disabled');
+			}
+		});
+	}
+	else{
+		$(".associate_error").text('Member name is required');
+		$(obj).html($this);
+	}
 }
 
 function executeSecondStep(name){

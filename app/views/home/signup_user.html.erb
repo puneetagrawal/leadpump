@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="video_img">
-      <img src="/assets/video_img.jpg" width="528" height="296" alt="video_img" />
+      <iframe width="620" height="400" src="//www.youtube.com/embed/30VAxy_YXBM?rel=0" frameborder="0" allowfullscreen></iframe>
       </div>
   </div>
     <div class="black_wrap">
@@ -169,12 +169,10 @@ projections for your entire team</p>
               </div>
               <div class="feature_1">
                 <div class="feature_col ">
-                <img src="/assets/girl_img.jpg" width="83" height="248" alt="girl_img" class="left_img2" />
-                <h5>Former Miss Utah</h5>
-                <p>Placed on your lead pages, encouraging potential members to take that fist step...</p>
-                <span class="click_me"><a href="#">Click Me</a></span>
-              </div>
-              
+                  <a href="http://lead.brsystem.info">
+                    <img src="/assets/women.jpg" width="400" height="262" alt="girl_img" class="left_img2" />
+                  </a>
+                </div>
               </div>
             </div>
         </div>
@@ -211,14 +209,15 @@ your team.</p>
       <h4 class="white_c">A STEP ABOVE THE REST</h4>
         <p>Providing True "Lead Generation" With Greater Success For Less</p>
         <div class="step_top_img">
-        <img src="/assets/lead_gn_img.jpg" width="1172" height="175" alt="lead_gn_img" />
+        <img src="/assets/p_chart.jpg" width="1172" height="220" alt="lead_gn_img" />
+        <p style="font-size: 11.3px;margin: -35px 0px 0px 10px;">Sales Force pricing based on public available information located here. Pricing for INTOUCH and LeadDolphin based on direct email quotes provided by each company that can be seen here. Abbreviations, pu. = per user and pl. = per location.</p>
         </div>
         <div class="step_col">
           <div class="step_col_box">
               <div class="step_col_box_top">
                   <h5>BASIC</h5>
                     <h2>$27<span>User/month</span></h2>
-                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try for FREE &gt; </a> </span>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try It For FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
                 <p class="package_content">
@@ -235,7 +234,7 @@ your team.</p>
               <div class="step_col_box_top">
                   <h5>ADVANCED</h5>
                     <h2>$37<span>User/month</span></h2>
-                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_18" : ""%>'> Try for FREE &gt; </a> </span>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_18" : ""%>'> Try It For FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
                 <p class="package_content">
@@ -255,7 +254,7 @@ your team.</p>
               <div class="step_col_box_top">
                   <h5>PROFESSIONAL</h5>
                     <h2>$67<span>User/month</span></h2>
-                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try for FREE &gt; </a> </span>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try It For FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
                   <h1>Get all Advanced features
@@ -281,7 +280,7 @@ your team.</p>
               <div class="step_col_box_top">
                   <h5>PROFESSIONAL PLUS</h5>
                     <h2>$97<span>User/month</span></h2>
-                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try for FREE &gt; </a> </span>
+                    <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try It For FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
                 <p class="package_content">
@@ -293,7 +292,7 @@ your team.</p>
                       </p>
                       
                       <h3>Masterminds</h3>
-                    <p>Access to monthly mastermind meetings. In these sessions you will gain valuable insight how to maximize your results by combining LEAD<span>PUMP<span> with out-of-the-box strategies. </p>
+                    <p>Access to monthly mastermind meetings. In these sessions you will gain valuable insight how to maximize your results by combining LEAD<span>PUMP</span> with out-of-the-box strategies. </p>
                     
                 </p>
                 </div>
@@ -309,13 +308,13 @@ your team.</p>
 Have To Be Difficult, Start Your Trial Today!</h2>
       <h3>LEAD<span class="skyblue">PUMP</span> <span class="ft_it black_c">- Start your 30-day free trial!</span></h3>
       <%= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
-        <span class="leadform">
+        <span class="leadform1">
          <%=render "common_templates/signup_user" , cls: "trial_left_input" %>
+         </span>
          <%=hidden_field_tag :cls, "trial_left_input"%>
-           <div class="trial_left_btn_box">
-              <input name="" type="button" class="trial_left_btn signup_1" value="Create My Account"/>
-            </div>
-          </span>
+         <div class="trial_left_btn_box">
+            <input name="" type="button" class="trial_left_btn signup_1" value="Create My Account"/>
+         </div>
         <%end%>
         </div>
         </div>
@@ -340,23 +339,29 @@ Have To Be Difficult, Start Your Trial Today!</h2>
                 </div>
                 <div class="contact_form">
                   <h6>Contact Form</h6>
-                  <div class="contact_form_field">
-                      <label>Your Name (required)</label>
-                        <input name="" type="text" class="contact_input"/>
-                    </div>
-                    <div class="contact_form_field">
-                      <label>Your Email (required)</label>
-                        <input name="" type="text" class="contact_input"/>
-                    </div>
-                    <div class="contact_form_field">
-                      <label>Subject</label>
-                        <input name="" type="text" class="contact_input"/>
-                    </div>
-                    <div class="contact_form_field">
-                      <label>Your Message</label>
-                        <textarea name="" cols="" rows="5" class="contact_msg"></textarea>
-                    </div>
-                    <input name="" type="button" class="contact_btn" value="Send"/>
+                  <%= form_tag('/contact_form', method: :post, :id=>"contact_form", :class => "", :remote=>true) do |f| %>
+                      <div class="contact_form_field">
+                          <label>Your Name (required)</label>
+                            <%= text_field_tag :contact_name, "", class: "contact_input" %>
+                            <i style="color:#B43104" class="error_name"></i>
+                        </div>
+                        <div class="contact_form_field">
+                          <label>Your Email (required)</label>
+                            <%= text_field_tag :contact_email, "", class: "contact_input" %>
+                            <i style="color:#B43104" class="error_email"></i>
+                        </div>
+                        <div class="contact_form_field">
+                          <label>Subject</label>
+                            <%= text_field_tag :contact_subject, "", class: "contact_input" %>
+                        </div>
+                        <div class="contact_form_field">
+                          <label>Your Message</label>
+                          <%=text_area_tag 'contact_message', nil, rows: 5, :class=>"contact_msg"%>
+                        </div>
+                        <span>
+                          <input name="contact_form" type="button" class="contact_btn" value="Send"/>
+                        </span>
+                      <%end%>
                 </div>
             </div>
         </div>
@@ -364,7 +369,7 @@ Have To Be Difficult, Start Your Trial Today!</h2>
 </div>
 
 
-<div id="email_access" class="popup_container" style="width:700px;height:270px; padding:10px;">
+<div id="email_access" class="popup_container" style="width:700px;height:270px; padding:10px;display:none">
   <div style="font-size:20px;text-align:center;" class="small_popup">
     <span style="font-weight:bold;" class="email_access">
       <img src="/assets/ajax-loader.gif" class="sm_loader_margin" />

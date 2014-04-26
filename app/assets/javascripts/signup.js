@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$(document).on('click', '.signup_1',function(){
-		$("#signup_user").submit();
+		$(this).parent().parent('form').submit();
 	});
 
 	$(document).on('click', '.allow_email',function(){
@@ -14,6 +14,27 @@ $(document).ready(function(){
 	$(document).on('click', '.unallow_email',function(){
 		$(".email_provided").text('Please provide valid email.');
 		$.fancybox.close();
+	});
+
+	$(document).on('click', '.contact_btn',function(){
+		$(".error_name").text('');
+		$(".error_email").text('');
+		var $parent = $(this).parent();
+		var $this = $parent.html();
+		$parent.html('<img src="/assets/loader_black.gif" style="margin:5% 0 0 50%;">');
+		var email  = $("#contact_email").val();
+		var name  = $("#contact_name").val();
+		if(name == ''){
+			$(".error_name").text('Please Enter Name');
+			$parent.html($this);
+		}
+		else if(email == ''){
+			$(".error_email").text('Please Enter Email');
+			$parent.html($this);
+		}
+		else{
+			$("#contact_form").submit();
+		}
 	});
 
 	$(document).on('click', '.try_free_btn',function(){

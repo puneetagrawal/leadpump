@@ -1,5 +1,9 @@
 <%if @user.errors.present?%>
-	$(".leadform").html("<%=escape_javascript(render 'common_templates/signup_user', cls: @cls)%>");
+	<%if @cls == "trial_left_input"%>
+		$(".leadform1").html("<%=escape_javascript(render 'common_templates/signup_user', cls: @cls)%>");
+	<%else%>
+		$(".leadform").html("<%=escape_javascript(render 'common_templates/signup_user', cls: @cls)%>");
+	<%end%>
 <%else%>
 	$.fancybox.open({
 		href: '#email_access',

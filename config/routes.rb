@@ -43,6 +43,7 @@ Leadpump::Application.routes.draw do
   match "/upload_profile_pic" => "home#upload_profile_pic"
   match "/choose_plan" => "home#choose_plan"
   match "/skip_profile" => "home#skip_profile"
+  match "/contact_form" => "home#contact_form"
 
   root to: "home#index"
 

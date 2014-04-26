@@ -1,7 +1,11 @@
 <%= form_for @lead, :url => '/vipleads', :method => :post, :html => { :class => "forms form social_inviter"} do |vip| %>
     <%=render "common_templates/showerrors", :object=>@lead%>
     <div class="viprow">
-        <p><label>Member Name</label><%= vip.text_field :associate, class: "input-large"%></p>
+        <p>
+            <label>Member Name*</label>
+            <%= vip.text_field :associate, class: "input-large", style:"float:left;"%>
+            <span class="associate_error" style="float: left; clear: both; margin: -10px 0px 0px 2px;color:#B40431"></span>
+        </p>
     </div>   
     <%(1..current_user.fetchCompany.vipcount).each do |row|%>
         <div class="viprow">
