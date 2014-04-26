@@ -64,6 +64,7 @@ class Emailer < ActionMailer::Base
 
   def send_verification_mail(user)
     @email = user.email
+    @name = user.name
     @url = "http://"+SERVER_URL+"/confirmation?confirmation_token=#{user.token}"
     mail(to: @email, subject: 'Complete your verification for LEADPUMP')
   end
