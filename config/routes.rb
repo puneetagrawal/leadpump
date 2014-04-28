@@ -177,6 +177,7 @@ Leadpump::Application.routes.draw do
   match '/company/show' => 'company#show'
   match '/company/create' => 'company#create'
   match '/autoresponder' => 'company#autoresponder'
+  match '/report' => 'company#report'
   match '/create_auto_responder' => 'company#create_auto_responder'
   match '/settings' => 'company#settings'
   match '/edit/:id' => 'company#edit', :as => :edit
