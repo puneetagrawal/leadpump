@@ -67,11 +67,7 @@ class Emailer < ActionMailer::Base
     user = user
     to = to
     logger.debug "!!!!!!!!!!!!!!!"
-    # u.each do |to|
-    #   logger.debug ">>>>>>>>>>>"
-    #   logger.debug to
       mail(:from=> "#{user}", :to => "#{to}", :subject => "report" )
-    # end
 
   end
 
