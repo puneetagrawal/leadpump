@@ -13,7 +13,7 @@ class NewsFeed < ActiveRecord::Base
 
   def self.get_backlogs(user, date)
     logger.debug(date)
-    feeds = NewsFeed.includes(:lead).where("leads.id IS NOT NULL and user_id = ? and feed_date < ? and (action = ? or action = ?)",user.id, date, "Start", "Finish")
+    feeds = NewsFeed.includes(:lead).where("leads.id IS NOT NULL and user_id = ? and feed_date < ? and (action = ? or action = ?)",user.id, date, "Start", "Finish").group_by{|g| g.feed_date}
     logger.debug(feeds.size)
     return feeds
   end

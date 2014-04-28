@@ -10,4 +10,13 @@ def create_verify_text()
 		return text
 	end
 
+	def get_logs_class(feed)
+		if feed.description == "New POS Lead"
+			return "red_table_strip"
+		else
+			return "yellow_table_strip"
+		end
+
+	end
+
 end
