@@ -10,7 +10,7 @@ end
 
 
 	def get_logs_class(feed)
-		if feed.description == "New POS Lead"
+		if feed.description == "New Optin Lead"
 			return "red_table_strip"
 		else
 			return "yellow_table_strip"
