@@ -43,15 +43,15 @@
             <h2 class="heading">CURRENT ITEMS DUE</h2>
             <table class="table table-striped font-12">
               <%if @newsfeeds.present?%>
-              <thead>
-              <tr>
-                 <td colspan="4">
-                      <%=date.strftime("%b %d")%>
-                    </td>
-              </tr>
-              </thead>
-              <tbody>
-                  <%@newsfeeds.each do |feed|%>
+                <%@newsfeeds.each do |feed|%>
+                  <thead>
+                  <tr>
+                     <td colspan="4">
+                          <%=date.strftime("%b %d")%>
+                        </td>
+                  </tr>
+                  </thead>
+                  <tbody>
                       <tr class="yellow_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
                         "<%=feed.id%>" >
                         <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
@@ -59,8 +59,8 @@
                         <td><%=feed.description%></td>
                         <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
                       </tr>
-                  <%end%>
-              </tbody>
+                  </tbody>
+                <%end%>
               <%else%>
                 <thead>
                 <tr>
