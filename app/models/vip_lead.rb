@@ -33,7 +33,7 @@ class VipLead < ActiveRecord::Base
     viplead.lead_source = "LEADPUMP p.o.s."
     viplead.save
     LeadNotes.create(:lead_id=>viplead.id,:notes=>"",:time_stam=>DateTime.now)
-    NewsFeed.create(:user_id=>user.id, :lead_id=>viplead.id, :description=>"New lead created", :feed_date=>Date.today, :action=>"Start")
+    NewsFeed.create(:user_id=>user.id, :lead_id=>viplead.id, :description=>"New p.o.s Lead", :feed_date=>Date.today, :action=>"Start")
     user_lead = UserLeads.create(:user_id => user.id, :lead_id => viplead.id)
     user.saveLeadCount
   end

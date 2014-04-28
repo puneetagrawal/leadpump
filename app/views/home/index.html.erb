@@ -1,3 +1,11 @@
+// <script type="text/javascript">
+// setTimeout(function(){var a=document.createElement("script");
+// var b=document.getElementsByTagName("script")[0];
+// a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0021/7530.js?"+Math.floor(new Date().getTime()/3600000);
+// a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+// </script>
+
+
 <span class="gaugestart">
     <%= render "dashboard_gauges_script" %>
 </span>
@@ -32,14 +40,14 @@
         </div>
         <div class="span4">
           <div class="border">
-            <h2 class="heading">Current</h2>
+            <h2 class="heading">CURRENT ITEMS DUE</h2>
             <table class="table table-striped font-12">
               <%if @newsfeeds.present?%>
               <thead>
               <tr>
                 <td><a href="#"><img src="/assets/point.png"/></a></td>
                 <td>1</td>
-                <td>2 Mar</td>
+                <td><%=Date.today%></td>
                 <td>Pts 2 of 10</td>
               </tr>
               </thead>
@@ -66,29 +74,30 @@
         </div>
         <div class="span4">
           <div class="border">
-            <h2 class="heading">Backlog</h2>
+            <h2 class="heading">PAST DUE ITEMS</h2>
             <table class="table table-striped font-12">
               <%if @backlogs.present?%>
-                <thead>
-                <tr>
-                  <td><a href="#"><img src="/assets/point.png" /></a></td>
-                  <td>1</td>
-                  <td>2 Mar</td>
-                  <td>Pts 2 of 10</td>
-                </tr>
-                </thead>
-                <tbody>
-                  <%@backlogs.each do |feed|%>
-                    <%if feed.lead.present?%>
-                      <tr class="green_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
-                        "<%=feed.id%>" >
-                        <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
-                        <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
-                        <td><%=feed.description%></td>
-                        <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
-                      </tr>
+                <%@backlogs.each do |date, value|%>
+                  <thead>
+                  <tr>
+                    <td colspan="4">
+                      <%=date.strftime("%b %d")%>
+                    </td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <%value.each do|feed|%>
+                      <%if feed.lead.present?%>
+                        <tr class="<%=get_logs_class(feed)%>" id="feed_<%=feed.lead.id%>" data-feed=
+                          "<%=feed.id%>" >
+                          <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
+                          <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
+                          <td><%=feed.description%></td>
+                          <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
+                        </tr>
+                      <%end%>
                     <%end%>
-                <%end%>
+                  <%end%>
                 </tbody>
               <%else%>
                 <thead>

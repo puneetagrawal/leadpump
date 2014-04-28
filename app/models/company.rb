@@ -49,4 +49,23 @@ class Company < ActiveRecord::Base
     	TemporaryData.first.update_attributes(:fn=>"",:add=>"",:zp=>"",:ag=>"",:ct=>"",
     		:em=>"",:ph=>"",:gst=>"",:st=>"",:cex=>"",:hc=>"",:fg=>"")
     end
+
+    def self.report
+		user_ary = []
+		ary = [106,127,140]
+      	ary.each do |a|
+	        u = User.find(a)
+	        user_list = User.fetchCompanyUserList
+	        user_count = user_list.size
+	        opts = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP optin", u.id).count
+	        p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
+	        mail_oppened_count = Stats.where("user_id = ?", u.id).pluck(:e_oppened).count
+	        mail_sent_count =  Stats.where("user_id = ?", u.id).pluck(:e_sents).count
+	        mail_converted_count = Stats.where("user_id = ?", u.id).pluck(:e_converted).count
+	        crnt_user = current_user.email
+	        to = u.email
+	        Emailer.report_mailer(opts, p_o_s, mail_oppened_count, mail_sent_count , mail_converted_count, crnt_user, to ).deliver
+      	end
+
+	end
 end
