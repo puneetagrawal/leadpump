@@ -353,10 +353,8 @@ class HomeController < ApplicationController
       @user = User.find_by_token(params[:confirmation_token])
       @msg = "Your token is exprired"
       if @user.present? && !@user.verified
-        # user.verified = true
-        # user.save
         @msg = "You have been successfully verified"
-        redirect_to signup_user_path(:user=>@user.token)
+        redirect_to new_plan_path(:user=>@user.token)
       else
         redirect_to home_index_path
       end
@@ -375,6 +373,7 @@ class HomeController < ApplicationController
 
   def choose_plan
     @user = User.find(params[:user])
+    @add = Address.find_by_user_id("#{@user.id}")
     @planPerUser = PlanPerUserRange.find(params[:plan_range])
     respond_to do |format|
       format.js
@@ -391,20 +390,22 @@ class HomeController < ApplicationController
   end
 
   def save_address
-    user = User.find(params[:user])
-    address = Address.where(:user_id=>"#{user.id}").last
-    if address.present?
-      address.update_attributes(params[:address])
-      address.user_id = "#{user.id}"
-      address.save
+    @user = User.find(params[:user])
+    @add = Address.where(:user_id=>"#{@user.id}").last
+    if @add.present?
+      @add.update_attributes(params[:address])
+      @add.user_id = "#{@user.id}"
+      @add.save
     else
-      address = Address.new(params[:address])
-      address.user_id = "#{user.id}"
-      if address.save
+      @add = Address.new(params[:address])
+      @add.user_id = "#{@user.id}"
+      if @add.save
       else
-        logger.debug(address.errors.full_messages)
+        logger.debug(@add.errors.full_messages)
       end
     end
+    @user.company_name = params[:company_name]
+    @user.save
     respond_to do |format|
       format.js
     end

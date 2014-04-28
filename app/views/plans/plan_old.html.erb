@@ -1,0 +1,197 @@
+<div class="row-fluid">
+        <div class="span9 offset1">
+            <div class="price-tbl">
+
+             <div class="feature-column">
+                <div class="col-header bg_none">
+
+                </div>
+                <div class="col-body">
+                    <span class="highlight"># of Users</span>
+                    <span>Lead Management - CRM</span>
+                    <span class="highlight">Appointment Scheduler</span>
+                    <span>Lead Dashboard</span>
+                    <span class="highlight">Team Management</span>
+                    <span>Daily Sales Report</span>
+                    <span class="highlight">Monthly Sales Projections</span>
+                    <span>Full Dashboard Enabled</span>
+                    <span class="highlight">Traditional Referrals (3-5)</span>
+                    <span>LEAD<i class="txt_red">PUMP</i> - Social Inviter</span>
+                    <span class="highlight">
+                        <i class="mr10"><img src="/assets/table_images/fb.png"></i>
+                        <i class="mr10"><img src="/assets/table_images/twitter.png"></i>
+                        <i><img src="/assets/table_images/mail.png"></i>
+                    </span>                    
+                    <span>Virtual Store - <i class="pricingMallText">Member Rewards</i></span>
+                    <span class="highlight">Daily Team Usage Reports</span>
+                    <span>Unlimited Team Training</span>
+                    <span class="highlight">&nbsp;National Spokeswoman
+                        <img class="info-icon" src="/assets/table_images/info-icon.png" alt="info icon">
+                        <em class="popup-box"><b class="corner"></b>
+                            Former Miss Utah, is featured on
+                            your landing page encouraging
+                            the potential members to take that
+                            first step in starting a fitness program
+                        </em>
+                    </span>
+                    <span>Buy Membership Now - Online
+                        <img class="info-icon" src="/assets/table_images/info-icon.png" alt="info icon">
+                        <em class="popup-box"><b class="corner"></b>We build an online membership
+                            sales portal for your club. Potential
+                            member has the option to join 
+                            online before coming to the club
+                        </em>
+                    </span>
+                </div>
+            </div>
+            <div class="all-data-col">
+                <% @planPerUsers.each_with_index do |planPerUser, i| %>
+                <div class="data-column data-col-<%="#{i+1}"%><%=' featured' if i == 2%>">
+                    <span class="featured-red-corner"></span>
+                    <div class="col-header">
+                        <div class="plan-name"><span class="cufon"><%="#{planPerUser.plan.name}"%></span></div>
+                        <div class="col-header-BG">
+                            <div class="plan-price">
+                                <em class="cufon">$</em>
+                                <strong class="cufon"><%="#{planPerUser.price}"%></strong>
+                                <b class="cufon">user/month</b>
+                            </div>
+                            <div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
+                            <div class="plan-signup">
+                                <%if !current_user%>
+                                    <%= link_to "Start Trial", signup_user_path(:planPerUser => planPerUser, :user=>@user), html_options = {} %>
+                                <%else%>
+                                    <%= link_to "Start Free Trial", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
+                                <%end%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-body">
+                        <span class="highlight"><%=planPerUser.user_range.start_range%> - <%=planPerUser.user_range.end_range%></span>
+                        <span class=<%=unlimitedText(planPerUser.plan.lead_management)%>><%=fetechPlanLeadmanagementText(planPerUser.plan.lead_management)%></span>
+                        <span class="highlight unlimited"><%=planPerUser.plan.appointment_sheduler%></span>
+                        <span>
+                            <%if planPerUser.plan.lead_dashboard%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span class="highlight">
+                            <%if planPerUser.plan.team_management%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+
+
+                        <span>
+                            <%if planPerUser.plan.daily_sales_report%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span class="highlight">
+                            <%if planPerUser.plan.daily_sales_projection%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span>
+                            <%if planPerUser.plan.full_dashboard_enabled%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span class="highlight">
+                            <%if planPerUser.plan.traditional_referrals%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span>
+                            <%if planPerUser.plan.leadpump_social_inviter%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span class="highlight unlimited">
+                            <%if planPerUser.plan.social_referrals != ''%>
+                                UNLIMITED INVITATIONS
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if planPerUser.plan.online_mall%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span class="highlight">
+                            <%if planPerUser.plan.daily_team_usage_report%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if planPerUser.plan.unlimited_team_training%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+
+                        <span class="highlight">
+                            <%if planPerUser.plan.national_spokeswoman%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>
+                        <span>
+                            <%if planPerUser.plan.online_membership%>
+                            <em class="tick">tick</em>
+                            <%else%>
+                            <em class="cross">cross</em>
+                            <%end%>
+                        </span>                        
+                    </div>
+                    <div class="col-footer">
+                        <div class="plan-signup">
+                            <%if !current_user%>
+                                <%= link_to "Start Free Trial", signup_user_path(:planPerUser => planPerUser, :user=>@user), html_options = {} %>
+                            <%else%>
+                            <%= link_to "Choose", upgrade_plan_path(:planPerUser => planPerUser), html_options = {} %>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+                
+                <%end%>
+            </div> 
+        </div>
+        <div class="user_filter pull-left">
+            <p>Charter member pricing for more users?</p>
+            <ul>
+                <li><%= link_to "11-20", new_plan_path(:maxUsers => 2) %></li>
+                <li><%= link_to "21-50", new_plan_path(:maxUsers => 3) %></li>
+                <li><%= link_to "51-100", new_plan_path(:maxUsers => 4) %></li>
+                <li><%= link_to "101-200", new_plan_path(:maxUsers => 5) %></li>
+            </ul>
+        </div>
+    </div>
+</div>

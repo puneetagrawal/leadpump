@@ -13,7 +13,7 @@
   <%= tag :meta, :name => 'stripe-key', :content => STRIPE_PUBLIC_KEY %>
   <%= tag :meta, :name => 'viewport', :content => "width=device-width, initial-scale=1.0" %>
 </head>
-<body>
+<body class="<%=get_bg_color%>">
 <script type="text/javascript" charset="utf-8">var ROOT_PATH = '<%= root_url %>';</script>  
 <%= render 'layouts/header' %>
  <% if flash[:error] %>

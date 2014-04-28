@@ -220,6 +220,10 @@ h4 {
     color: #ff0000;
     font-style: normal;
 }
+.txt_blue {
+    color: #4b80cb;
+    font-style: normal;
+}
 .txt_black {
     color: #333;
     font-weight: normal;
@@ -609,7 +613,7 @@ a:focus {
         font-size: 16px;
         color: #FFF;
         width: 100%;
-        background-color: #343434;
+        background-color: #fff;
 
     }
     header h2 {
@@ -634,16 +638,16 @@ a:focus {
         border: none;
     }
     #headerNav .nav > li > a {
-        color: #fff;
+        color: #000;
         text-shadow: none;
         font-weight: bold;
         line-height: 16px;
-        padding: 6px 15px;
+        padding: 4px 12px;
         margin: 0 5px 0 0;
     }
     #headerNav .nav > li > a:hover, #headerNav .nav li a.active {
         color: #fff;
-        background: #ff0000;
+        background: #4b80cb;
         text-decoration: none;
         text-shadow: none;
         border-radius: 5px;
@@ -656,17 +660,17 @@ a:focus {
         background-color: #444d00;
     }
     .icon_login {
-        background-color: #ff0000;
+        background-color: #4b80cb;
         border-radius: 30px;
-        height: 15px;
-        width: 15px;
+        height: 19px;
+        width: 17px;
         text-align: center;
         line-height: 20px;
-        border:2px solid #ff0000;
+        border: 2px solid #4b80cb;
         margin-right: 5px;
     }
     .usernav a {
-        color: #fff;
+        color: #000;
     }
     .navbar-inner {
         min-height: 28px;
@@ -689,6 +693,15 @@ a:focus {
         margin-left: -70px;
     }
 
+    .punchline li {
+        color: #000;
+    }
+    .navbar .nav {
+        margin-top: 10px;
+    }
+    .navbar-inner {
+        box-shadow: none;
+    }
     /*footer*/
     .footer-nav li {
         display: inline;
@@ -1194,10 +1207,10 @@ a:focus {
     text-decoration: none;
 }
 .pricing_plans_heading h2 {
-    color: #ff0000;
+    color: #4b80cb;
     font-size: 44px;
     font-family: arial;
-    text-shadow: 0 0 2px #FFF;
+    text-shadow: 0 0 2px #000;
 
 }
 .pricing_plans_heading h3 {
