@@ -52,7 +52,7 @@
               </thead>
               <tbody>
                   <%@newsfeeds.each do |feed|%>
-                      <tr class="yellow_table_strip" id="feed_<%=feed.lead.id%>" data-feed=
+                      <tr class="<%=get_logs_class(feed)%>" id="feed_<%=feed.lead.id%>" data-feed=
                         "<%=feed.id%>" >
                         <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
                         <td><a href="javascript:void(0)"><img width="25" src="/assets/edit_user.png"/></a></td>
