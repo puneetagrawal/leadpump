@@ -45,10 +45,9 @@
               <%if @newsfeeds.present?%>
               <thead>
               <tr>
-                <td><a href="#"><img src="/assets/point.png"/></a></td>
-                <td>1</td>
-                <td><%=Date.today%></td>
-                <td>Pts 2 of 10</td>
+                 <td colspan="4">
+                      <%=date.strftime("%b %d")%>
+                    </td>
               </tr>
               </thead>
               <tbody>
