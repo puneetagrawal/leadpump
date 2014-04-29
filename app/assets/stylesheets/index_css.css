@@ -333,7 +333,7 @@ p.btn_fnt{
 	width:100%;
 	float:left;
 	background:url(/assets/orange_bg.jpg) no-repeat center top;
-	padding:40px 0px 60px;
+	padding:2px 0px 60px;
 }
 .orange_wrap_container{
 	max-width:1000px;
@@ -437,10 +437,10 @@ p.btn_fnt{
     font-weight: bold;
 }
 .step_col_box .step_col_box_btm{
-	padding:33px 20px 20px;
-	font-size:16px;
-	color:#6c6865;
-	text-align:left;
+	padding: 33px 18px 20px;
+font-size: 16px;
+color: #6c6865;
+text-align: left;
 }
 
 .trial_col{
@@ -732,7 +732,7 @@ margin-right: 7px;}
     font-family: "Arial",sans-serif;
     font-size: 17px;
     font-weight: 700;
-    text-align: center; width: 100%;
+    text-align: left; width: 100%;
     line-height: 1.18em;}
 
     .step_col_box .step_col_box_btm h1 span{     color: #111111;
