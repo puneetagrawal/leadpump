@@ -20,6 +20,8 @@ end
 def get_feed_icon(feed)
 	if feed.description == "Meeting - Tour or Signup"
 		return '<img width="25" src="/assets/hand.png"/>'.html_safe
+	elsif feed.description == "Guest Pass Expiring"
+		return '<img width="25" src="/assets/calender.png"/>'.html_safe
 	else
 		return '<img width="25" src="/assets/phone_icon1.png"/>'.html_safe
 	end
