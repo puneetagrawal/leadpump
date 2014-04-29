@@ -19,7 +19,7 @@
 					</div>
 			    <%end%>
 			    <ul class="settings_menu">
-		        	<%if !is_vip_allow(current_user)%>
+		        	<%if is_vip_allow(current_user)%>
 			            <li>
 			                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
 			            </li>
