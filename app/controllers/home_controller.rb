@@ -492,7 +492,8 @@ class HomeController < ApplicationController
 
   def save_refs
     if !params[:id].blank? || !params[:ref].blank?
-      current_user.ref = params[:ref]
+      current_user.vipcount = params[:ref]
+      current_user.vipon = true
       current_user.save
     end
     render json: {"msg"=> "success"}
