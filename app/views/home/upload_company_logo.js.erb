@@ -1,3 +1,4 @@
 $(".user_profile").html('<%=escape_javascript(render partial: "common_templates/profile_pic")%>');
-$(".stepNo1 .step-order").html(right_img);
-$(".stepNo1").addClass('step-visited').addClass('disabled')
+$(".step_1").addClass('step_line');
+$(".step_1 .step_circle").addClass('step_active').addClass('step_passed');
+$(".step_2 .step_circle").addClass('step_active');
