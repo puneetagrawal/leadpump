@@ -18,7 +18,7 @@ $(document).ready ->
 
          $('#searchUserAc').autocomplete
                  source: "/searchUserAc"
-                 select: (event,ui) -> userSearchFilter(ui.item.name)
+                 select: (event,ui) -> userSearchFilter(ui.item.id)
 
          $('#statsearch').autocomplete
                  source: "/statsearch"
