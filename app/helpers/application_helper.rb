@@ -1,4 +1,12 @@
 module ApplicationHelper
+
+	
+	def get_bg_color
+		if controller_name == "plans" && action_name == "new"
+			return "graybg"
+		end
+	end
+
 	def wicked_pdf_image_tag_for_public(img, options={})
 		if img[0] == "/"
 			new_image = img.slice(1..-1)

@@ -1,19 +1,32 @@
-
-<span class="credit_fild_col">
-	<label></label>
-	<% if DiscountsOnPeriod.all %>
-	<% DiscountsOnPeriod.all.each do |dp| %>
-	<label class="checkboxCon">
-		<%= radio_button_tag 'planType', "#{dp.id}",:class => "plant #{dp.periodType}"%>
-		<strong>Pay 
-			<%= "#{dp.periodType}"%>
-			<%if dp.discountPercentage > 0%>
-			(save <%="#{dp.discountPercentage}" %>%)
-			<%end%>
-		</strong>
-	</label>
-	<% end %>
-	<% end %>
-</span>
+<div class="divFull">
+	<div class="trialOptn">
+	<span class="daysTrial">
+	<strong>30-day Free Trial-</strong>
+	We won't bill you unless you keep your account open past your 30-day free trial, which starts today.
+	</span>
+	<span class="credit_fild_col">
+		<label> </label>
+		<div class="paymentOptCon">
+		<% if DiscountsOnPeriod.all %>
+		<% DiscountsOnPeriod.all.each do |dp| %>
+		
+		<label class="checkboxCon">
+			<%= radio_button_tag 'planType', "#{dp.id}",:class => "plant #{dp.periodType}"%>
+			<strong>Pay 
+				<%= "#{dp.periodType}"%>
+				<%if dp.discountPercentage > 0%>
+				<span>(save <%="#{dp.discountPercentage}" %>%)</span>
+				<%end%>
+			</strong>
+		</label>
+		
+		<% end %>
+		<% end %>
+		</div>
+	</span>
+	</div>
+	<div class="days30">
+	<img src="/assets/30days.png">
+	</div>
+</div>
 <div class="clear"></div>
-<hr>

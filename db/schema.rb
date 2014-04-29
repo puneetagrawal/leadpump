@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140424142211) do
+ActiveRecord::Schema.define(:version => 20140428133136) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -454,6 +454,7 @@ ActiveRecord::Schema.define(:version => 20140424142211) do
     t.integer  "company_logo_file_size"
     t.datetime "company_logo_updated_at"
     t.integer  "ref"
+    t.string   "company_name"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

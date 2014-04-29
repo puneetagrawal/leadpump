@@ -1,6 +1,7 @@
 <span id="stripe_error" class="pwd_error crd_error"></span>
 <span id="creditCardDiv">
-	<%= hidden_field_tag "planPerUserId",  @planPerUser.id%>
+	<%= hidden_field_tag "planPerUserId"%>
+	<%=render "common_templates/select_users"%>
 	<span class="credit_fild_col"><%= label_tag :Type %>
 		<%= select_tag "credit_card", options_for_select([ "VISA", "MasterCard","American Express", "Discover" ], "MasterCard"), class:"input-small mr10 large-select" %></span>
 	<span class="credit_fild_col">
@@ -21,5 +22,35 @@
 		
 		<%= text_field_tag :card_code, nil, name: nil , :class => "input-small mr10"%>
 		<%= label_tag :card_code, "CVV", :class =>"input-small mr10" %>
+	</span>
+	<span class="credit_fild_col">
+		<label>&nbsp;</label>
+		<%=check_box_tag :billing_address%>
+		<p style="font-size:13px;margin-left:10px;float:left;">My billing address is same as my locations address</p>
+	</span>
+	<span class="credit_fild_col">
+		<label>&nbsp;</label>
+		<%=check_box_tag :billing_address1%>
+		<p style="font-size:13px;margin-left:10px;float:left;">I need to enter a different address for my billing.</p>
+	</span>
+	<span class="same_address" style="display:none;">
+		
+	</span>
+	<span class="diff_address" style="display:none;">
+		
+	</span>
+	<span class="credit_fild_col">
+		<label>
+			<div class="freeItem">
+				<strong>FREE</strong>
+				<span><b class="payAmountTxt"></b> after trial</span>	
+			</div>
+		</label>
+		<span class="trailDaysDes">
+			<strong>Your 30-day trial will start today and last until <%=(Date.today + 30).strftime("%m/%d/%Y")%>
+			.</strong>If you don't want to continue using LEADPUMP, just
+								cancel before your trial ends and you will be refunded. Otherwise, you'll pay just <span class="payAmountTxt"></span> for the services as
+								long as your account is open. You can upgrade or downgrade at any time or cancel with a 60-day notice.
+		</span>
 	</span>
 </span>

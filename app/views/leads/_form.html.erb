@@ -29,9 +29,9 @@
             <p><%= lead.label "Potential enrollment $:" %><%= lead.text_field :enrolment_value %></p>
             <p><%= lead.label "Potential dues $:" %><%= lead.text_field :dues_value %></p>
             <p><%= lead.label "Notes:" %><%= lead.text_field :notes, :value=>""  %></p>
-            <p><%= lead.label "State:" %><%= lead.text_field :state, :value=>""  %></p>
-            <p><%= lead.label "City:" %><%= lead.text_field :city, :value=>""  %></p>
-            <p><%= lead.label "ZIP_code:" %><%= lead.text_field :zip_code, :value=>""  %></p>
+            <!-- <p><%#= lead.label "State:" %><%#= lead.text_field :state, :value=>""  %></p>
+            <p><%#= lead.label "City:" %><%#= lead.text_field :city, :value=>""  %></p>
+            <p><%#= lead.label "ZIP_code:" %><%#= lead.text_field :zip_code, :value=>""  %></p> -->
             <p class="submitLeadBtn">
              <%if current_user.checkLeadLimit %>   
                 <input type="submit" class="btn yellow" value="Enter Lead"/>

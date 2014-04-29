@@ -5,7 +5,7 @@ body{
 	background:#fff;
 	margin:0px;
 	padding:0px;
-	font-family: 'MyriadProRegular';
+	font-family: 'Open Sans', 'sans-serif';
 }
 h1,h2,h3,h4,h5,h6{
 	margin:0px;
@@ -372,8 +372,9 @@ p.btn_fnt{
 .step_col{
 	width:100%;
 	float:left;
-	margin-top:157px;
+	margin-top:86px;
 	margin-bottom:80px;
+
 }
 .step_col_box{
 	width:22%;
@@ -418,7 +419,8 @@ p.btn_fnt{
 	font-weight:normal;
 }
 
-.blue_box_rounded{  background: none repeat scroll 0 0 #69DCF4;
+.blue_box_rounded{  
+	background: none repeat scroll 0 0 #69DCF4;
     border-radius: 5px 5px 0 0;
     color: #FFFFFF;
     float: left;
@@ -426,7 +428,11 @@ p.btn_fnt{
     height: 43px;
     line-height: 43px;
     margin-top: -40px;
-    width: 100%;}
+    width: 100%;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+}
 .step_col_box .step_col_box_btm{
 	padding:33px 20px 20px;
 	font-size:16px;
@@ -649,38 +655,43 @@ padding: 9px 6px;
 border-radius: 5px;
 border: 1px solid #ccc;}
 
-.credit_fild_col .input-small {width: 82px;
+.credit_fild_col .input-small {width: 75px;
 float: left;
 height: 33px;
 border-radius: 6px;}
-.credit_fild_col .input-small.large-select{ width: 412px;}
+.credit_fild_col .input-small.large-select{ width: 336px;}
 .credit_fild_col .input-small.mr10{ margin-right: 12px;}
 .credit_fild_col .feild_info{float: left;
 font-size: 14px;
 margin-left: 10px;
 line-height: 31px;}
 .credit_fild_col label.checkboxCon{width: auto;
-margin-right: 19px;}
+margin-right: 19px; 
+	float: left;
+	clear: both;
+}
 .credit_fild_col input[type="radio"]{width: auto;
 float: left;
 position: relative;
 top: 11px;
 margin-right: 7px;}
-.next_btnlarge{width: 113px;
-height: 41px;
-float: none;
-margin-top: 15px;
-border-radius: 5px;
-border: 1px solid #000;
-background: #1a1a1a;
-color: #fff;
-cursor: pointer;
-font-size: 18px;}
+.next_btnlarge{
+	width: 113px;
+	height: 41px;
+	float: none;
+	margin-top: 15px;
+	border-radius: 5px;
+	border: 1px solid #02aafe;
+	background: #02aafe;
+	color: #fff;
+	cursor: pointer;
+	font-size: 18px;}
 
 .pwd_error{
 	font-size: 16px;
-	margin: 0 85px 0 0px;
 	color: #FE2E2E;
+	float: left;
+	margin-left:192px;
 }
 .crd_error{
 	margin: -8px 0 8px 0;
@@ -689,12 +700,14 @@ font-size: 18px;}
 }
 
 #step1{
-	margin-top: 8%;
+	margin-top: 1%;
+}
+.mb5{
+	margin-bottom: 5%;
 }
 
 .steps{
-	position:absolute;
-	left:0;
+	float:left;
 	padding: 0 30px;
 }
 
@@ -746,3 +759,124 @@ font-size: 18px;}
     line-height: 1.27em; margin:0 0 11px 0px}
 
     .step_col_box .step_col_box_btm p span{color: #69DCF4}
+
+    .popupLefCol {
+    	width:500px;
+    	float:left;
+    }
+    .popupRightCol {
+    	width:240px;
+    	float:right;
+    	margin-right: -28px;
+    	text-align: left;
+    }
+    .popupTitleHead {
+    	background:#f3f3f3;
+    	border:1px solid #e1e1e1;
+    	margin-bottom: 10px;
+    }
+    .popupTitleHead h2 {
+    	text-transform: uppercase;
+    	text-align: center;
+    	font-size:18px;
+    	line-height: 40px;
+    	padding-bottom: 0;
+    	border-bottom: none;
+    	margin-bottom: 0;
+    	font-weight: bold;
+    }
+    .trialOptn {
+    	width:75%;
+    	float: left;
+    }
+    .days30 {
+    	float: left;
+    	width:25%;
+    }
+    .divFull {
+    	width:100%;
+    	float: left;
+    }
+    .daysTrial {
+    	font-size:18px;
+    	text-align: left;
+    	display: block;
+    }
+    .paymentOptCon {
+    	float: left;
+    	margin-left: 36%;
+    }
+    .paymentOptCon strong span {
+    	color:#02aafe;
+    }
+    .credit_fild_col input[type="checkbox"] {
+    	width: auto;
+    }
+    .freeItem {
+    	float: left;
+    	width:100px;
+    	background:#f3f3f3;
+    	border:1px solid #e1e1e1;
+    	border-radius: 5px;
+    }
+    .freeItem strong {
+    	display: block;
+    	text-align: center;
+    	font-weight: bold;
+    	text-transform: uppercase;
+    	color: #666;
+    	border-bottom: 1px solid #e1e1e1;
+    	font-size:36px;
+    }
+    .freeItem span {
+    	display: block;
+    	text-align: center;
+    }
+    .trailDaysDes {
+    	text-align: left;
+    	float: left;
+    	width: 72%;
+    	font-size:16px;
+    }
+    .trailDaysDes strong {
+    	display:block;
+    	font-size:16px;
+    }
+    #user_counter h3 {
+    	font-size:16px;
+    }
+    #user_counter strong {
+    	display: block;
+    	font-size:40px;
+    	color: #02aafe;
+    }
+    .txt_blue {
+		color: #4b80cb;
+		font-style: normal;
+	}
+	.testimonial strong {
+		font-size:14px;
+	}
+	.popupRightBlock {
+		background: #fff;
+		float: left;
+		width: 100%;
+		margin-top: -10px;
+		padding: 10px;
+	}
+	#payment_logos img {
+		width: 100%;
+	}
+	.graybg {
+		background: #ccc;
+	}
+	.pricing_plans_heading {
+		margin-top: 50px;
+	}
+	.pricing_plans_heading h3 {
+		font-size: 20px !important;
+	}
+
+	.inpupt_pop input[type='text'], .inpupt_pop input[type='password']{
+		height: 36px;
+	}

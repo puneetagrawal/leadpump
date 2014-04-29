@@ -1,36 +1,111 @@
-<div style="position:relative;height:510px;width:600px;padding: 0px 30px;">
-	<h2 class="head_user">Choose your password</h2>
-	<div id="step1" class="steps" style="display:block">
+<div style="position:relative;height:550px;width:800px;padding: 0px 30px;">
+	
+	<div id="step1" class="steps inpupt_pop" style="display:block">
+		<div class="popupTitleHead mb5">
+			<h2 class="head_user">CHOOSE YOUR PASSWORD</h2>
+		</div>
 		<span class="credit_fild_col"><%= label_tag "Name" %>
 			<%= text_field_tag :name, @user.name, disabled: "disabled", placeholder:"Name" %></p></span>
 		<span class="credit_fild_col"><%= label_tag "Last Name" %><%= text_field_tag :lname, @user.lname, disabled: "disabled", placeholder:"Last Name" %></p></span>
 		<span class="credit_fild_col"><%= label_tag "Email" %><%= text_field_tag :email, @user.email, disabled: "disabled", placeholder:"Enter Your Password" %></p></span>
 		<span class="credit_fild_col">
 			<%= label_tag "Password" %>
-			<%= text_field_tag :password, "", placeholder:"Enter Your Password" %>
-			<span class="pwd_error"></span>
-		</p></span>
-
+			<p>
+				<%= text_field_tag :password, @user.password, placeholder:"Enter Your Password" %>
+				<span class="pwd_error"></span>
+			</p>
+		</span>
 		<p><input type="button" class="next_btnlarge signup_next" data-id="2" value="Next" style="width:200px;"/></p>
 	</div>
-	<div id="step2" class="steps" style="display:none">
+	<div id="step2" class="steps inpupt_pop" style="display:none">
+		<div class="popupTitleHead mb5">
+			<h2 class="head_user">YOUR CLUBS LOCATION</h2>
+		</div>
 		<%= form_tag('/save_address', method: :post, :id=>"add_form", :class => "forms", :remote=>true) do |f| %>
 			<%=hidden_field_tag :user, @user.id%>
-			<%=render "common_templates/addressFields"%>
+			<%=render "common_templates/addressFields", user: @user, add: @add%>
 			<p class="add_btn">
 				<input type="button" class="next_btnlarge signup_next" data-id="3" value="Next" style="width:200px;"/>
 			</p>
 		<%end%>
 	</div>
-	<div id="step3" class="steps" style="display:none;padding:0 5px;display:none">
-		<%= form_tag('/make_payment', method: :post, :id=>"payment_form", :class => "forms", :remote=>true) do |f| %>
-			<%=hidden_field_tag :user, @user.id%>
-			<%=render "common_templates/select_users"%>
-			<%= render :template => "common_templates/_labelsForDiscounts" %>	
-			<%= render :template => "devise/registrations/_creditCardDetails"%>	
-			<p class="pay_btn">
-				<input type="button" class="next_btnlarge signup_next1" data-id="4" value="Next" style="width:200px;"/>
-			</p>
-		<%end%>
+	<div id="step3" class="steps inpupt_pop" style="display:none;padding:0 5px;display:none">
+	<div class="popupLefCol">
+			<div class="popupTitleHead">
+				<h2 class="head_user">PAYMENT CYCLE</h2>
+			</div>
+			<%= form_tag('/make_payment', method: :post, :id=>"payment_form", :class => "forms", :remote=>true) do |f| %>
+				<%=hidden_field_tag :user, @user.id%>
+				<%= render :template => "common_templates/_labelsForDiscounts" %>	
+				<div class="popupTitleHead">
+					<h2 class="">BILLING INFORMATION</h2>
+				</div>
+				<%= render :template => "devise/registrations/_creditCardDetails"%>	
+				<span class="credit_fild_col">
+					<label>&nbsp;</label>
+					<%=check_box_tag :terms%>
+					<p style="font-size:15px;margin-left:4px;float:left;">I have read and accept the<%=link_to "Terms and Conditions", home_terms_path, class: "txt_blue" %>.</p>
+				</span>
+				<p class="pay_btn">
+					<input type="button" class="next_btnlarge pay_btn" data-id="4" value="Next" style="width:200px;"/>
+				</p>
+			<%end%>
+		</div>
+	
+	<div class="popupRightCol">
+		<span class="span4 signupRight" style="width:230px;">
+			<div class="popupTitleHead">
+				<h2>FAQ</h2>
+			</div>
+			<div class="popupRightBlock">
+				<div class="testimonial">
+					<p>
+					<strong>Why do you need my credit card info?</strong>
+					We ask for your credit card so you don't experience any interruption to your reporting and campaign data collection if you decide to continue your subscription.
+					</p>
+				</div>
+				<div class="testimonial">
+				<p><strong>Why do you need my credit card info?</strong>
+					Nope! You are under obligation when you sign up for monthly subscription. You can cancel at any time in the billing and subscription page of your account.
+				</p>
+				</div>
+				<div class="testimonial">
+				<p>
+					<strong>What payment option do you except?</strong>
+					We currently except Visa, Master Card, Discover and American Express. We unfortunately do not except PayPal at this time.
+				</p>
+				</div>
+				<!-- <div class="testimonial">
+				<p>Plan Type: 
+				<strong><%#= @planPerUser ? @planPerUser.plan.name ? @planPerUser.plan.name : 'Plan name not Given' : 'Plan name not Given' %></strong></p>
+				<p>Total Amount as per user: <p><strong><span id="pu"></span></strong></p></p>
+				<p>Total Discount: <strong><span id="td"></span></strong></p>
+				<p>Total Charges: <strong><span class="payAmountTxt"></span></strong></p>
+
+				</div> -->
+
+				<div class="absblock" id="payment_logos">
+					<img alt="Payment_logos" src="/assets/payment_logos.png">
+				</div>
+				<div id="user_counter" class="absblock">
+					<h3 style="
+						    font-size: 13px;
+						    font-weight: bold;
+						    text-transform: none;
+						">You are in good company</h3>
+											<strong style="
+						    font-size: 33px;
+						">1,276 Users</strong>
+											<p style="
+						    font-size: 12px;
+						    margin-top: 10px;
+						    color: black;
+						">	
+						Are already enrolled for <b class="txt_black">LEAD</b><b class="txt_blue">PUMP</b>
+					</p>
+				</div>
+			</div>
+		</span>		
+	</div>
 	</div>
 </div>

@@ -313,26 +313,19 @@ function initialization(){
 	});
 
 
-	$("#discountOnUsers").change(function(){
-		no_of_users = $(this).val()
+	$(document).on("change", "#discountOnUsers", function(){
+		no_of_users = $(this).val();
 		options = ''
 		for(i=1;i<=no_of_users;i++){
 			options += '<option value="'+i+'">'+i+'</option>'	
 		}
 		$("#no_of_locations").html(options)
-		caclulateAmount()
+		caclulateAmount();
 	})
 
-	$("#planType_1, #planType_2").click(function(){
-		caclulateAmount()	
-	})
-	$("#planType_1").attr('checked', 'checked');
-	$("#planType_2").attr('checked', false);
-	//$("#discountOnUsers").val(1);
-
-	if ($("#discountOnUsers").val()){
-		caclulateAmount()
-	}			
+	$(document).on("click", "#planType_1, #planType_2", function(){
+		caclulateAmount();	
+	});
 	
 	// $(".container").on('click', '.span', function (event){
 	// 	if(!view){
@@ -438,6 +431,16 @@ function initialization(){
     $(document).on('click', '.closealert', function (){
         closealert(this);
     });
+    $(document).on('click', '#billing_address', function(){
+    	$("#billing_address1").attr('checked', false);
+    	$(".diff_address").hide();
+    	$(".same_address").show();
+    });
+    $(document).on('click', '#billing_address1', function(){
+    	$("#billing_address").attr('checked', false);
+    	$(".same_address").hide();
+    	$(".diff_address").show();
+    });
 }
 
 function closealert(obj){
@@ -466,10 +469,10 @@ function caclulateAmount(){
 	}
 	url = '/home/calculateAmount'
 	$.get(url, {du:no_of_users,dp:payment_type, plan_per_user_range:planId}, function (data) {
-		$("#pu").html(data.chargesPerUserStr);
-		$("#td").html(data.disAmountStr);
+		// $("#pu").html(data.chargesPerUserStr);
+		// $("#td").html(data.disAmountStr);
 		$(".payAmountTxt").html(data.amountStr);
-		$(".tAmount").html("$ "+data.amount);		
+		// $(".tAmount").html("$ "+data.amount);		
 	});
 }
 

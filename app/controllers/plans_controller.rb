@@ -7,7 +7,7 @@ class PlansController < ApplicationController
 
   def new
   	rangeId = params[:maxUsers] ? params[:maxUsers] : 1
-  	@user = params[:user]
+  	@user = params[:user].present? ? User.find_by_token(params[:user]) : nil
 	@planPerUsers = PlanPerUserRange.order("id ASC").where(:user_range_id => rangeId)
   end
 

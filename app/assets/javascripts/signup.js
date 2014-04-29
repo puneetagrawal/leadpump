@@ -73,7 +73,14 @@ $(document).ready(function(){
 			$("#add_form").submit();	
 		}
 		else if(id == 4){
-			$("#payment_form").submit();
+			if($("#terms").is(':checked')){
+				alert("dfdsfdfds");
+
+			}
+			else{
+				alert("sdfsdfsdfddddddddddddddddd");
+			}
+			//$("#payment_form").submit();
 		}
 	});
 
@@ -90,7 +97,7 @@ function save_password(par, obj, id){
 		par.html(obj)
 		par.parent().animate({left: '-400px'}, 500).hide();
 		$("#step"+id).show();
-		$(".head_user").text("Fill Your Billing Address");
+		
 	});
 }
 

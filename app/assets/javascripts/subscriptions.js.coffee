@@ -8,11 +8,15 @@ jQuery ->
 subscription =
   setupForm: ->
     $(document).on 'click', '.pay_btn', () ->
-      if $('#card_number').length
-        subscription.validateCard()
-        return false
+      if $("#terms").is(':checked')
+        if $('#card_number').length
+          subscription.validateCard()
+          return false
+        else
+          true
       else
-        true
+        alert("Please accept term and conditions");
+        return false
         
   
   handleStripeResponse: (status, response) ->
@@ -21,7 +25,7 @@ subscription =
       $('#payment_form').submit()
     else
       $('#stripe_error').text(response.error.message)
-      $(".pay_btn").html('<input type="button" class="submitSignUpForm next_btnlarge" data-id="4" value="Next" style="width:200px;"/>')
+      $(".pay_btn").html('<input type="button" class="pay_btn next_btnlarge" data-id="4" value="Next" style="width:200px;"/>')
 
   validateCard: ->
       card =

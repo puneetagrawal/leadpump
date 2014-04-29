@@ -37,7 +37,7 @@ class Appointment < ActiveRecord::Base
   def self.fetchuserappointments(user,date)
       case user.user_role.role_type.to_sym  
       when :admin
-        appointments = Appointment.includes(:lead).includes(:user).where("app_date_time >= ? and app_date_time < ?", date,date1)  
+        appointments = Appointment.includes(:lead).includes(:user).where("app_date_time >= ? and app_date_time < ?", date,date + 1)  
       when :company
         users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
         users << user.id
