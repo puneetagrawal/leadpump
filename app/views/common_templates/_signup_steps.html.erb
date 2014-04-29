@@ -1,6 +1,6 @@
-<div style="position:relative;height:550px;width:800px;padding: 0px 30px;">
+<div style="position:relative;height:550px;width:900px;padding: 0px 30px;">
 	
-	<div id="step1" class="steps inpupt_pop" style="display:block">
+	<div id="step1" class="steps inpupt_pop wid" style="display:block">
 		<div class="popupTitleHead mb5">
 			<h2 class="head_user">CHOOSE YOUR PASSWORD</h2>
 		</div>
@@ -17,7 +17,7 @@
 		</span>
 		<p><input type="button" class="next_btnlarge signup_next" data-id="2" value="Next" style="width:200px;"/></p>
 	</div>
-	<div id="step2" class="steps inpupt_pop" style="display:none">
+	<div id="step2" class="steps inpupt_pop wid" style="display:none">
 		<div class="popupTitleHead mb5">
 			<h2 class="head_user">YOUR CLUBS LOCATION</h2>
 		</div>
@@ -41,10 +41,10 @@
 					<h2 class="">BILLING INFORMATION</h2>
 				</div>
 				<%= render :template => "devise/registrations/_creditCardDetails"%>	
-				<span class="credit_fild_col">
+				<span class="credit_fild_col wid mb-15">
 					<label>&nbsp;</label>
 					<%=check_box_tag :terms%>
-					<p style="font-size:15px;margin-left:4px;float:left;">I have read and accept the<%=link_to "Terms and Conditions", home_terms_path, class: "txt_blue" %>.</p>
+					<p style="font-size:15px;margin-left:4px;float:left;">I have read and accept the<%=link_to " Terms and Conditions", home_terms_path, class: "txt_blue" %>.</p>
 				</span>
 				<p class="pay_btn">
 					<input type="button" class="next_btnlarge pay_btn" data-id="4" value="Next" style="width:200px;"/>
@@ -53,25 +53,25 @@
 		</div>
 	
 	<div class="popupRightCol">
-		<span class="span4 signupRight" style="width:230px;">
+		<span class="span4 signupRight" style="width:300px;">
 			<div class="popupTitleHead">
 				<h2>FAQ</h2>
 			</div>
 			<div class="popupRightBlock">
 				<div class="testimonial">
 					<p>
-					<strong>Why do you need my credit card info?</strong>
+					<strong>Why do you need my credit card info?</strong><br />
 					We ask for your credit card so you don't experience any interruption to your reporting and campaign data collection if you decide to continue your subscription.
 					</p>
 				</div>
 				<div class="testimonial">
-				<p><strong>Why do you need my credit card info?</strong>
+				<p><strong>Why do you need my credit card info?</strong><br />
 					Nope! You are under obligation when you sign up for monthly subscription. You can cancel at any time in the billing and subscription page of your account.
 				</p>
 				</div>
 				<div class="testimonial">
 				<p>
-					<strong>What payment option do you except?</strong>
+					<strong>What payment option do you except?</strong><br />
 					We currently except Visa, Master Card, Discover and American Express. We unfortunately do not except PayPal at this time.
 				</p>
 				</div>

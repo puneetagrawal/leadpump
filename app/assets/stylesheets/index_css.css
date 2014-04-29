@@ -637,12 +637,12 @@ padding-bottom: 14px;}
 .ml25 .allow_email{width: auto; cursor: pointer; padding: 10px; border-radius: 5px; background: green; font-size: 14px; color: #fff; margin-right: 10px;}
 .ml25 .allow_email.unallow_email{background: red;}
 
-.thanku_col p{margin-bottom: 40px;
+.thanku_col p{margin-bottom: 27px;
 font-size: 19px;}
 .thanku_col p.heading{font-size: 40px}
 
 .credit_fild_col{width: 100%; float: left; margin-bottom: 10px;}
-.credit_fild_col label{width: 28%;
+.credit_fild_col label{width: 26%;
 float: left;
 font-size: 15px;
 text-align: left;
@@ -761,7 +761,7 @@ margin-right: 7px;}
     .step_col_box .step_col_box_btm p span{color: #69DCF4}
 
     .popupLefCol {
-    	width:500px;
+    	width:530px;
     	float:left;
     }
     .popupRightCol {
@@ -798,9 +798,9 @@ margin-right: 7px;}
     	float: left;
     }
     .daysTrial {
-    	font-size:18px;
-    	text-align: left;
-    	display: block;
+    	font-size: 16px;
+		text-align: left;
+		display: block;
     }
     .paymentOptCon {
     	float: left;
@@ -836,11 +836,11 @@ margin-right: 7px;}
     	text-align: left;
     	float: left;
     	width: 72%;
-    	font-size:16px;
+    	font-size:14px;
     }
     .trailDaysDes strong {
     	display:block;
-    	font-size:16px;
+    	font-size:15px;
     }
     #user_counter h3 {
     	font-size:16px;
@@ -879,4 +879,20 @@ margin-right: 7px;}
 
 	.inpupt_pop input[type='text'], .inpupt_pop input[type='password']{
 		height: 36px;
+	}
+
+	.mb-15{
+		margin-bottom: -15px;
+	}
+
+	.mb2{
+		margin-bottom: 2px;
+	}
+
+	.wid span label{
+		width: 18% !important;
+	}
+
+	.wid span input{
+		width: 76% !important;
 	}
