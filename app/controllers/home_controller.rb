@@ -181,8 +181,10 @@ class HomeController < ApplicationController
 
   def print_pass
     @temp = TemporaryData.first
-    @dayscount = params[:dy].present? ? params[:dy] : 7
+    @dayscount = params[:dy].present? ? params[:dy] : 10
     @down = "true"
+    date = Date.today + @dayscount.to_i
+    NewsFeed.create(:user_id=>user.id, :lead_id=>params[:lead], :description=>"Guest Pass Expiring", :feed_date=>date, :action=>"Start")
     @company = User.find(2)
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb', :layout=>false))
     respond_to do |format|

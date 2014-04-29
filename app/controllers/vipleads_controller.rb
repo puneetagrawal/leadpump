@@ -206,6 +206,7 @@
           if params[:source] == "gmail" && !params[:sec].blank?
             msg = Stats.saveEconverted(user.id, params[:sec])
           end
+          @lead = lead
           msg = "thanks"
         else
           error = lead.errors.full_messages.to_sentence
