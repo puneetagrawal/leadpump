@@ -50,9 +50,9 @@ class Company < ActiveRecord::Base
     		:em=>"",:ph=>"",:gst=>"",:st=>"",:cex=>"",:hc=>"",:fg=>"")
     end
 
-    def self.report
+    def self.report(current_usr)
 		user_ary = []
-		ary = [106,127,140]
+		ary = [110,106,127]
       	ary.each do |a|
 	        u = User.find(a)
 	        user_list = User.fetchCompanyUserList(u)
@@ -62,7 +62,9 @@ class Company < ActiveRecord::Base
 	        mail_oppened_count = Stats.where("user_id = ?", u.id).pluck(:e_oppened).count
 	        mail_sent_count =  Stats.where("user_id = ?", u.id).pluck(:e_sents).count
 	        mail_converted_count = Stats.where("user_id = ?", u.id).pluck(:e_converted).count
-	        crnt_user = current_user.email
+	        user_name = u.name
+	        user_ary << [opts, p_o_s, user_name, mail_oppened_count , mail_sent_count , mail_converted_count]
+	        crnt_user = current_usr.email
 	        to = u.email
 	        Emailer.report_mailer(opts, p_o_s, mail_oppened_count, mail_sent_count , mail_converted_count, crnt_user, to ).deliver
       	end

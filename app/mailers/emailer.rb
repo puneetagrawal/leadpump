@@ -66,7 +66,7 @@ class Emailer < ActionMailer::Base
     @p_o_s = p_o_s
     @mail_oppened_count = mail_oppened_count
     @mail_sent_count = mail_sent_count
-    @mail_converted_count = mail_converted_counts
+    @mail_converted_count = mail_converted_count
     user = user
     to = to
     logger.debug "!!!!!!!!!!!!!!!"

@@ -325,7 +325,7 @@ class CompanyController < ApplicationController
   end
   def report
       user_ary = []
-      Company.report
+      Company.report(current_user)
       
     end
   
