@@ -28,7 +28,7 @@ class LeadsController < ApplicationController
       if @lead.save
         user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
         user_lead.save
-        NewsFeed.create(:user_id=>current_user.id, :lead_id=>@lead.id, :description=>"Data Entry Lead", :feed_date=>Date.today, :action=>"Start")
+        NewsFeed.create(:user_id=>current_user.id, :lead_id=>@lead.id, :description=>"New Data Entry Lead", :feed_date=>Date.today, :action=>"Start")
         LeadNotes.create(:lead_id=>@lead.id,:notes=>params[:lead][:notes],:time_stam=>DateTime.now)
         current_user.saveLeadCount
         AutoResponderRecord.save_respond_message(user_lead, current_user)
