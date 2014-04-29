@@ -61,17 +61,12 @@ class Emailer < ActionMailer::Base
     @unsub_url = unsub_url
     mail(:from=> "#{c_name} <#{c_email}>",:to => email, :subject => subject)
   end
-  def report_mailer(opts, p_o_s, mail_oppened_count, mail_sent_count, mail_converted_count, user, to )
-    @opts = opts
-    @p_o_s = p_o_s
-    @mail_oppened_count = mail_oppened_count
-    @mail_sent_count = mail_sent_count
-    @mail_converted_count = mail_converted_count
-    user = user
-    to = to
-    logger.debug "!!!!!!!!!!!!!!!"
-      mail(:from=> "#{user}", :to => "#{to}", :subject => "report" )
-
+  
+  def report_mailer(user_list, user)
+    @user = user
+    @u_list = user_list
+    to = user.email
+    mail(:to => "#{to}", :subject => "Daily Report" )
   end
 
   def send_verification_mail(user)
