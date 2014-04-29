@@ -711,6 +711,10 @@ margin-right: 7px;}
 	padding: 0 30px;
 }
 
+.fm span select{
+	width: 68% !important;
+}
+
 #address_country{
 	margin-right: 12px;
 	width: 68%;
