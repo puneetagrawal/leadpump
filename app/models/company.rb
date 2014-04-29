@@ -55,7 +55,7 @@ class Company < ActiveRecord::Base
 		ary = [106,127,140]
       	ary.each do |a|
 	        u = User.find(a)
-	        user_list = User.fetchCompanyUserList
+	        user_list = User.fetchCompanyUserList(u)
 	        user_count = user_list.size
 	        opts = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP optin", u.id).count
 	        p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
