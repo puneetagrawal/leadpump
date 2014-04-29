@@ -127,13 +127,18 @@ def destroy
 end
 
 def searchUserAc
-  like  = "%".concat(params[:term].concat("%"))
-    users = User.select("distinct(name)").where(" name ilike ? ", like)
+    like  = "%".concat(params[:term].concat("%"))
+    users = User.select("distinct(email)").where("email ilike ?", like)
+    if users.present?
+      list = users.map {|l| Hash[label: l.email, name: l.email, id: l.id]}
+    end
+    if !users.present?
+      users = User.select("distinct(name)").where(" name ilike ?", like)
+      list = users.map {|l| Hash[label: l.name, name: l.name, id: l.id]}
+    end
     if !users.present?
       users = Plan.where("name ilike ?", like)
-      list = users.map {|l| Hash[label: l.name, name: l.name]}
-    else
-      list = users.map {|l| Hash[label: l.name, name: l.name]}
+      list = users.map {|l| Hash[label: l.name, name: l.name, id: l.id]}
     end
     render json: list
 end
@@ -142,8 +147,11 @@ end
   	like  = "%".concat(params[:userId].concat("%"))
   	@users = User.where(" name ilike ? ", like).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
     if !@users.present?
-      plan = Plan.where("name ilike ?", like)
-      @users = User.fetchUserByPlan(plan).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+      @users = User.where(" email ilike ? ", like).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+      if !@users.present?
+        plan = Plan.where("name ilike ?", like)
+        @users = User.fetchUserByPlan(plan).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC")
+      end
     end
   	respond_to do |format|
   		format.js { render "user" }

@@ -7,15 +7,22 @@ def create_verify_text()
 	return text
 end
 
-
-
-	def get_logs_class(feed)
-		if feed.description == "New Optin Lead"
-			return "red_table_strip"
-		else
-			return "yellow_table_strip"
-		end
-
+def get_logs_class(feed)
+	if feed.description == "New Optin Lead"
+		return "red_table_strip"
+	elsif feed.description == "New POS Lead"
+		return "yellow_table_strip"
+	else
+		return "green_table_strip"
 	end
+end
+
+def get_feed_icon(feed)
+	if feed.description == "Meeting - Tour or Signup"
+		return '<img width="25" src="/assets/hand.png"/>'.html_safe
+	else
+		return '<img width="25" src="/assets/phone_icon1.png"/>'.html_safe
+	end
+end
 
 end

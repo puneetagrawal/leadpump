@@ -97,14 +97,19 @@ while lowering new member acquisition cost and operating expenses!</p>
               </div>
               <div class="feature_1">
               <div class="feature_col">
-                <img src="/assets/social_icon.png" width="52" height="168" alt="social_icon" class="left_img1"/>
-                <div class="mt_1">
+                <div class="social_icon">
+                  <img src="/assets/social-media-logos-facebook.png" width="52" height="168" alt="social_icon" class="left_img1"/>
+                  <img src="/assets/social-media-logos-linkedin.png" width="52" height="168" alt="social_icon" class="left_img1"/>
+                  <img src="/assets/social-media-logos-twitter.png" width="52" height="168" alt="social_icon" class="left_img1"/>
+                </div>
+                <div style="width:322px; float:left">
+                <div class="mt_0">
                 <h5>MASS-PASS Social Inviter </h5>
                 <p>Allow your members to import their contacts, share <br/>
                     an invitation to your club with guest passes attached<br/>
                     to all their friends, family members and co-workers <br/>
                     with the click of a button</p>
-        </div>
+        </div></div>
               </div>
               <div class="feature_col feature_ml">
                 <img src="/assets/sales_projection.png" width="64" height="66" alt="sales_projection" />
@@ -318,7 +323,7 @@ Have To Be Difficult, Start Your Trial Today!</h2>
          </span>
          <%=hidden_field_tag :cls, "trial_left_input"%>
          <div class="trial_left_btn_box">
-            <input name="" type="button" class="trial_left_btn signup_1" value="Create My Account"/>
+            <input name="" type="button" class="trial_left_btn <%= current_user.present? ? '' : 'signup_1'%>" value="Create My Account"/>
          </div>
         <%end%>
         </div>

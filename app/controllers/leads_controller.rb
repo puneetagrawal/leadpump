@@ -209,6 +209,7 @@ def saveappointment
       else
       end      
     end
+    NewsFeed.add_appointment_feed(lead, appoint, current_user)
     msg = "Appointment schedule successfully"
   end
   data = {"msg" => msg}

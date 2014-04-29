@@ -1,6 +1,7 @@
 <%if user.present? && user.fetchPlan.present?%>
 	<tr id="viewLead_<%= user.id %>"> 
 		<td><%= user.name %></td> 
+		<td><%=user.email%></td>
 		<td><%=user.role.role_type%></td>
 		<td><%= user.fetchCompany.name %></td>
 		<td class="leadActive leadAction" id="plan_<%=user.id%>">

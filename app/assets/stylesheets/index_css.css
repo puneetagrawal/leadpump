@@ -896,3 +896,5 @@ margin-right: 7px;}
 	.wid span input{
 		width: 76% !important;
 	}
+	.social_icon{width:83px; float:left}
+	.social_icon img{ width: 48px; height: 48px; margin-bottom: 10px;}

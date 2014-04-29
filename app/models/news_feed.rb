@@ -40,5 +40,9 @@ class NewsFeed < ActiveRecord::Base
     return  self.action == "Start" ? "red" : "green"
   end
 
+  def self.add_appointment_feed(lead, appoint, user)
+    NewsFeed.create(:user_id=>user.id, :lead_id=>lead.id, :description=>"Meeting - Tour or Signup", :feed_date=>Date.today, :action=>"Start")
+  end
+
 end
 
