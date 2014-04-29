@@ -2,20 +2,20 @@
 <span id="creditCardDiv">
 	<%= hidden_field_tag "planPerUserId"%>
 	<%=render "common_templates/select_users"%>
-	<span class="credit_fild_col"><%= label_tag :Type %>
+	<span class="credit_fild_col mb2"><%= label_tag :Type %>
 		<%= select_tag "credit_card", options_for_select([ "VISA", "MasterCard","American Express", "Discover" ], "MasterCard"), class:"input-small mr10 large-select" %></span>
-	<span class="credit_fild_col">
+	<span class="credit_fild_col mb2">
 		<%= label_tag :card_number, "Credit Card Number" %>
 		<%= text_field_tag :card_number, nil, name: nil %>
 	</span>
 	<%= hidden_field_tag :stripe_card_token %>
 	<%= hidden_field_tag :plan_per_user_range_id, :value=>@planPerUser.id %>
-	<span class="credit_fild_col">
+	<span class="credit_fild_col mb2">
 		<%= label_tag :person_name, "Name" %>
 		<%= text_field_tag :customerName, nil, name: nil %>
 	</span>
 
-	<span class="credit_fild_col">
+	<span class="credit_fild_col mb2">
 		<%= label_tag :card_month, "Card Expiration" %>
 		<%= select_month nil, {use_month_numbers: true}, {name: nil, class: "input-small mr10",id: "card_month"}%>
 		<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, class:"input-small mr10", id: "card_year"} %>
@@ -23,15 +23,15 @@
 		<%= text_field_tag :card_code, nil, name: nil , :class => "input-small mr10"%>
 		<%= label_tag :card_code, "CVV", :class =>"input-small mr10" %>
 	</span>
-	<span class="credit_fild_col">
+	<span class="credit_fild_col mb-15">
 		<label>&nbsp;</label>
 		<%=check_box_tag :billing_address%>
-		<p style="font-size:13px;margin-left:10px;float:left;">My billing address is same as my locations address</p>
+		<p style="font-size:16px;margin-left:10px;float:left;">My billing address is same as my locations address</p>
 	</span>
-	<span class="credit_fild_col">
+	<span class="credit_fild_col mb2">
 		<label>&nbsp;</label>
 		<%=check_box_tag :billing_address1%>
-		<p style="font-size:13px;margin-left:10px;float:left;">I need to enter a different address for my billing.</p>
+		<p style="font-size:16px;margin-left:10px;float:left;">I need to enter a different address for my billing.</p>
 	</span>
 	<span class="same_address" style="display:none;">
 		
@@ -39,7 +39,7 @@
 	<span class="diff_address" style="display:none;">
 		
 	</span>
-	<span class="credit_fild_col">
+	<span class="credit_fild_col mb2">
 		<label>
 			<div class="freeItem">
 				<strong>FREE</strong>
@@ -47,8 +47,8 @@
 			</div>
 		</label>
 		<span class="trailDaysDes">
-			<strong>Your 30-day trial will start today and last until <%=(Date.today + 30).strftime("%m/%d/%Y")%>
-			.</strong>If you don't want to continue using LEADPUMP, just
+			<strong>Your 30-day trial will start today and last until <%=(Date.today + 30).strftime("%m/%d/%Y")%>.
+			</strong>If you don't want to continue using LEADPUMP, just
 								cancel before your trial ends and you will be refunded. Otherwise, you'll pay just <span class="payAmountTxt"></span> for the services as
 								long as your account is open. You can upgrade or downgrade at any time or cancel with a 60-day notice.
 		</span>

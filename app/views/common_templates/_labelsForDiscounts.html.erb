@@ -8,9 +8,8 @@
 		<label> </label>
 		<div class="paymentOptCon">
 		<% if DiscountsOnPeriod.all %>
-		<% DiscountsOnPeriod.all.each do |dp| %>
-		
-		<label class="checkboxCon">
+		<% DiscountsOnPeriod.all.each_with_index do |dp, ind| %>
+		<label class="checkboxCon <%=ind == 0 ? 'mb-15' : ''%>">
 			<%= radio_button_tag 'planType', "#{dp.id}",:class => "plant #{dp.periodType}"%>
 			<strong>Pay 
 				<%= "#{dp.periodType}"%>
