@@ -52,22 +52,24 @@ class Company < ActiveRecord::Base
 
     def self.report(current_usr)
 		user_ary = []
-		ary = [110,106,127]
-      	ary.each do |a|
-	        u = User.find(a)
-	        user_list = User.fetchCompanyUserList(u)
-	        user_count = user_list.size
-	        opts = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP optin", u.id).count
-	        p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
-	        mail_oppened_count = Stats.where("user_id = ?", u.id).pluck(:e_oppened).count
-	        mail_sent_count =  Stats.where("user_id = ?", u.id).pluck(:e_sents).count
-	        mail_converted_count = Stats.where("user_id = ?", u.id).pluck(:e_converted).count
-	        user_name = u.name
-	        user_ary << [opts, p_o_s, user_name, mail_oppened_count , mail_sent_count , mail_converted_count]
-	        crnt_user = current_usr.email
-	        to = u.email
-	        Emailer.report_mailer(opts, p_o_s, mail_oppened_count, mail_sent_count , mail_converted_count, crnt_user, to ).deliver
-      	end
+		arry = User.where(:id=>[110, 2])
+  	arry.each do |b|
+  		comp_user = []
+  		users = User.fetchCompanyUserList(b)
+      user_count = users.size
+      users.each do |u|
+      	stat = Stats.where("user_id = ? and created_at = ?", u, Date.today).last
+	      if stat.present?
 
+		      mail_oppened_count = stat.e_oppened
+		      mail_sent_count = stat.e_sents
+		      mail_converted_count = stat.e_converted
+		      comp_user << [u.name, mail_oppened_count , mail_sent_count , mail_converted_count]
+		    end
+      end
+      #opts = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP optin", u.id).count
+      #p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
+	    Emailer.report_mailer(comp_user, b).deliver
+	  end
 	end
 end

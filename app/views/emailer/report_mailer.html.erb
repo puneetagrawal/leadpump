@@ -1,49 +1,28 @@
-Welcome Mail!!!!!
-By<p><%=@user%></p>
-<p>
-No of OptInLead <%="#{@opts}"%>
-</P>
-<p>
-No of P.O.S. <%="#{@p_o_s}"%>
-</P>
-<table>
+Hello <%="#{@user.name}"%>
+
+
+<table border="1">
 	<tr>
 		<th>
 			Sales Person
 		</th>
-		<th>
-			Number of Uses
-		</th>
-		<th>
+ 		<th>
 			Email Sent
 		</th>
-
 		<th>
 			Email Opened
 		</th>
-
 		<th>
 			Email Clicked
 		</th>
 	</tr>
-	<tr>
-		<td>
-			
-		</td>
-		<td>
-
-		</td>
-		<td>
-			<%="#{@mail_sent_count}"%>
-		</td>
-		<td>
-			<%="#{@mail_oppened_count}"%>
-		</td>
-		<td>
-			<%="#{@mail_converted_count}"%>
-		</td>
-		
-
-
-
+	<%@u_list.each do |user| %>
+		<tr>
+			<%user.each do |u| %>
+			<td>
+				<%="#{u}"%>
+			</td>
+			<%end%>
+		</tr>
+		<%end%>
 </table>
