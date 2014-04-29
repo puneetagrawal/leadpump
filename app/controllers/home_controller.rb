@@ -171,10 +171,9 @@ class HomeController < ApplicationController
   end
 
   def pass
-    @company = User.find(2)
+    @user = User.find(params[:id])
     Company.removeAllPrintPassSessions(session)
-    user = User.find(params[:id])
-    @company = user.fetchCompany
+    @company = @user.fetchCompany
     landpage = LandingPage.where(:user_id=>@company.id).last
     @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end
