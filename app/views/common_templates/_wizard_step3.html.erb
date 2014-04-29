@@ -6,7 +6,7 @@
 	<span class="no_ref">
 		<p style="margin-top:30px;">How many would you like to collect?<p>
 		<%=hidden_field_tag :ref%>
-		<%=select_tag("no_of_refs", options_for_select((1..10).to_a),:selected=>current_user.vipcount, :prompt => "Select no of referals",:style=>"width:200px;height:33px;margin-bottom:0px;") %>
+		<%=select_tag("no_of_refs", options_for_select((1..10).to_a,:selected=>current_user.vipcount), :prompt => "Select no of referals",:style=>"width:200px;height:33px;margin-bottom:0px;") %>
 	</span>
 	</div>
 	<div class="ml25"></div>
