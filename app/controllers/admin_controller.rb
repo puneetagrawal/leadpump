@@ -132,8 +132,6 @@ def searchUserAc
     if users.present?
       list = users.map {|l| Hash[label: l.email, name: l.email, id: l.id]}
     end
-    logger.debug(">>>>>>>>>>>>>>>>>>>>")
-    logger.debug(list)
     if !users.present?
       users = User.select("distinct(name)").where(" name ilike ?", like)
       list = users.map {|l| Hash[label: l.name, name: l.name, id: l.id]}

@@ -55,7 +55,7 @@
                       <tr class="<%=get_logs_class(feed)%>" id="feed_<%=feed.lead.id%>" data-feed=
                         "<%=feed.id%>" >
                         <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
-                        <td><a href="javascript:void(0)"><img width="25" src="/assets/phone_icon1.png"/></a></td>
+                        <td><a href="javascript:void(0)"><%=get_feed_icon(feed)%></a></td>
                         <td><%=feed.description%></td>
                         <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
                       </tr>
@@ -90,7 +90,7 @@
                         <tr class="<%=get_logs_class(feed)%>" id="feed_<%=feed.lead.id%>" data-feed=
                           "<%=feed.id%>" >
                           <td><a href="javascript:void(0)"><img src="/assets/right_arrow.png"/></a></td>
-                          <td><a href="javascript:void(0)"><img width="25" src="/assets/phone_icon1.png"/></a></td>
+                          <td><a href="javascript:void(0)"><%=get_feed_icon(feed)%></a></td>
                           <td><%=feed.description%></td>
                           <td><a class="btn <%=feed.color%> btn-small w40 <%=feed.feed_click%>" id="act_<%=feed.lead.id%>" href="javascript:void(0)" data-action="leadpopup"><%=feed.action%></a></td>
                         </tr>
