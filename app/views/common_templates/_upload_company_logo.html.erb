@@ -8,7 +8,7 @@
 	</div>
      <div class="row-fluid">
 	    <div class="span12">
-	        <%if !current_user.isCompany%>
+	        <%if current_user.isCompany%>
 	            <div class="pull-left clear mt10 padtp10">
 	                <a class="btn blue up_comp_logo">Upload Company Logo</a>
 	                <span><a class="btn blue skip_profile" data-id="profile_pic">Skip</a></span>
