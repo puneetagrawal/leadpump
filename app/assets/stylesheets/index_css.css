@@ -642,12 +642,12 @@ font-size: 19px;}
 .thanku_col p.heading{font-size: 40px}
 
 .credit_fild_col{width: 100%; float: left; margin-bottom: 10px;}
-.credit_fild_col label{width: 26%;
+.credit_fild_col label{width: 28%;
 float: left;
 font-size: 15px;
 text-align: left;
 line-height: 39px;}
-.credit_fild_col input{width: 69%;
+.credit_fild_col input{width: 68%;
 float: left;
 font-size: 15px;
 text-align: left;
@@ -814,7 +814,7 @@ margin-right: 7px;}
     }
     .freeItem {
     	float: left;
-    	width:100px;
+    	width:114px;
     	background:#f3f3f3;
     	border:1px solid #e1e1e1;
     	border-radius: 5px;
@@ -836,11 +836,11 @@ margin-right: 7px;}
     	text-align: left;
     	float: left;
     	width: 72%;
-    	font-size:14px;
+    	font-size:13px;
     }
     .trailDaysDes strong {
     	display:block;
-    	font-size:15px;
+    	font-size:13px;
     }
     #user_counter h3 {
     	font-size:16px;
