@@ -185,7 +185,8 @@ class HomeController < ApplicationController
     @down = "true"
     date = Date.today + @dayscount.to_i
     NewsFeed.create(:user_id=>user.id, :lead_id=>params[:lead], :description=>"Guest Pass Expiring", :feed_date=>date, :action=>"Start")
-    @company = User.find(2)
+    @user = User.find(params[:user])
+    @company = @user.fetchCompany
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb', :layout=>false))
     respond_to do |format|
       format.pdf do
