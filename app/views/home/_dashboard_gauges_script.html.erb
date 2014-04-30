@@ -11,17 +11,18 @@ cash = cash != 0 ? getRange1(parseInt(cash), '') : 0;
 total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
 total_gross = total_gross != 0 ? getRange2(parseInt(total_gross), '') : 0;
 
-lead = "<%#=@leads%>";
+lead = "<%=@leads%>";
 lead = lead != 0 ? parseInt(lead) : 0;
 
-$(".mem_text").html('$'+mem_sold);
-$(".cash_text").html('$'+eft);
-$(".eft_text").html('$'+cash);
-$(".total_text").html('$'+total_gross);
-$(".lead_text").html('$'+lead);
+
 
 
 function createGauge() {
+    $(".mem_text").html('$'+mem_sold);
+    $(".cash_text").html('$'+eft);
+    $(".eft_text").html('$'+cash);
+    $(".total_text").html('$'+total_gross);
+    $(".lead_text").html('$'+lead);
 
     $("#mem_gauge").kendoRadialGauge({
         pointer: {
@@ -48,6 +49,7 @@ function createGauge() {
           }]
         }
     });
+    
     $("#cash_gauge").kendoRadialGauge({
         pointer: {
             value: cash,
@@ -73,6 +75,7 @@ function createGauge() {
           }]
         }
     });
+    
     $("#eft_gauge").kendoRadialGauge({
         pointer: {
             value: eft,
@@ -150,16 +153,18 @@ function createGauge() {
           }]
         }
     });
-}
-function updateValue() {
-    $("#gauge_mem").data("kendoRadialGauge").value(mem_sold);
-    $("#gauge_cash").data("kendoRadialGauge").value(eft);
-    $("#gauge_eft").data("kendoRadialGauge").value(cash);
-    $("#gauge_total").data("kendoRadiaGauge").value(total_gross);
-    $("#gauge_lead").data("kendoRadialGauge").value(lead);
+
+    // $("#gauge_mem").data("kendoRadialGauge").value(mem_sold);
+    
+    // $("#gauge_eft").data("kendoRadialGauge").value(eft);
+    
+    // $("#gauge_cash").data("kendoRadialGauge").value(cash);
+    
+    // $("#gauge_total").data("kendoRadialGauge").value(total_gross);
+    
+    // $("#gauge_lead").data("kendoRadialGauge").value(lead);
 }
 createGauge();
-updateValue();
 
 function getRange(no, id){
     no = no ? parseInt(n) : 0
