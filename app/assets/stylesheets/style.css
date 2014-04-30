@@ -2577,4 +2577,7 @@ top: -12px;}
 .meter_up_txt{position: relative;
 bottom: -23px;}
 
-
+.img_recommend{
+    font-size: 14px;
+    margin-top: 1%;
+}
