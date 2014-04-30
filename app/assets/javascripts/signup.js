@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 	$(document).on('click', '.allow_email',function(){
 		url = '/send_verification_mail';
-		var email  = $("#email").val();
+		var email  = $("#email_ac").val();
 		$.post(url, {email:email}, function (data) {
 			$(".small_popup").html(data.msg);
 		});
