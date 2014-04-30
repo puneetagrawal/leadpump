@@ -5,7 +5,7 @@
             
             <!-- <button class="pull-right" onclick="window.print();">Print Page</button> -->
             <p style="float:right">
-                <%= link_to "Print Page", print_pass_path(user: @company,dy:@dayscount ,format: 'pdf'), :class=>"btn yellow"%>
+                <%= link_to "Print Page", print_pass_path(user: @user,dy:@dayscount,lead:params[:lead] ,format: 'pdf'), :class=>"btn yellow"%>
             <p>
             <!-- <p onclick="test2()" class="btn">download pdf</p> -->
         </div>

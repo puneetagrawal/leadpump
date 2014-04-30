@@ -171,19 +171,21 @@ class HomeController < ApplicationController
   end
 
   def pass
-    @company = User.find(2)
+    @user = User.find(params[:id])
     Company.removeAllPrintPassSessions(session)
-    user = User.find(params[:id])
-    @company = user.fetchCompany
+    @company = @user.fetchCompany
     landpage = LandingPage.where(:user_id=>@company.id).last
     @dayscount = landpage.present? ? landpage.no_of_days.present? ? landpage.no_of_days : 1 : 1
   end
 
   def print_pass
     @temp = TemporaryData.first
-    @dayscount = params[:dy].present? ? params[:dy] : 7
+    @dayscount = params[:dy].present? ? params[:dy] : 10
     @down = "true"
-    @company = User.find(2)
+    date = Date.today + @dayscount.to_i
+    @user = User.find(params[:user])
+    @company = @user.fetchCompany
+    NewsFeed.create(:user_id=>@user.id, :lead_id=>params[:lead], :description=>"Guest Pass Expiring", :feed_date=>date, :action=>"Start")
     @pf = WickedPdf.new.pdf_from_string(render_to_string('home/_printPass.html.erb', :layout=>false))
     respond_to do |format|
       format.pdf do
@@ -458,7 +460,7 @@ class HomeController < ApplicationController
 
   def upload_company_logo
     @picture = Picture.new()
-    current_user.verified = true
+    #current_user.verified = true
     if !current_user.picture.present?
       Picture.create(:company_logo=> params[:picture][:company_logo],:user_id=>current_user.id)
     else
@@ -490,7 +492,8 @@ class HomeController < ApplicationController
 
   def save_refs
     if !params[:id].blank? || !params[:ref].blank?
-      current_user.ref = params[:ref]
+      current_user.vipcount = params[:ref]
+      current_user.vipon = true
       current_user.save
     end
     render json: {"msg"=> "success"}

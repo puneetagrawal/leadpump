@@ -21,7 +21,7 @@
 		<div class="popupTitleHead mb5">
 			<h2 class="head_user">YOUR CLUBS LOCATION</h2>
 		</div>
-		<%= form_tag('/save_address', method: :post, :id=>"add_form", :class => "forms", :remote=>true) do |f| %>
+		<%= form_tag('/save_address', method: :post, :id=>"add_form", :class => "forms fm", :remote=>true) do |f| %>
 			<%=hidden_field_tag :user, @user.id%>
 			<%=render "common_templates/addressFields", user: @user, add: @add%>
 			<p class="add_btn">

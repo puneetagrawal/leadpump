@@ -1,12 +1,36 @@
-<div style="position:relative;height:350px;width:400px;padding: 0px 30px;">
-	<h3>Setup Your Account</h3>
-	<div class="process_steps">
-		<div class="stepNo1 step-title btn btn-success step-active"> <span class="step-order"></span> <span class="step-name">Step 1</span></div>
-		<div class="stepNo2 step-title  btn"><span class="step-order"></span> <span class="step-name">Step 2</span></div>
-		<div class="stepNo3 step-title  btn"><span class="step-order"></span> <span class="step-name">Step 3</span></div>
-	</div>
+<div style="position:relative;height:450px;width:500px;padding: 0px 30px;">
+	<h3 style="margin:10px 0 18px 0">Setup Your Account</h3>
+	<div class="step_main_col">
+    	<div class="step_wise_col step_1">
+        	<span class="step_circle step_active"><span >1</span></span>
+            <div class="step_txt">
+       			<h3>STEP 1</h3>
+				<p>Company<br />
+Logo</p>
+            </div>
+        </div>
+        
+        <div class="step_wise_col step_2">
+        	<span class="step_circle"><span>2</span></span>
+       		<div class="step_txt">
+       		<h3>STEP 2</h3>
+			<p>Profile<br />
+Picture</p>
+            </div>
+        </div>
+        
+        <div class="step_wise_col step_3">
+        	<span class="step_circle"><span>3</span></span>
+       		<div class="step_txt">
+       		<h3>STEP 3</h3>
+			<p>P.O.S.<br />
+
+Referrals</p>
+            </div>
+        </div>
+    </div>
 	<span class="user_profile">
-		<%=render "common_templates/wizard_step3"%>
+		<%=render "common_templates/upload_company_logo"%>
 	</span>
 	<%#=render "common_templates/profile_pic"%>
 	<%#=render "common_templates/wizard_step3"%>

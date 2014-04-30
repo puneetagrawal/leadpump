@@ -1,4 +1,7 @@
-@charset "utf-8";
+width: 38.5%;
+float: left;
+margin-left: 24.8%;
+margin-top: 5px;@charset "utf-8";
 /* CSS Document */
 *{-moz-box-sizing:border-box; box-sizing:border-box; -webkit-box-sizing:border-box;}
 body{
@@ -82,10 +85,10 @@ p{
 	margin:0px auto;
 }
 .video_img{
-	width:38.5%;
-	float:left;
-	margin-left:30.8%;
-	margin-top:20px;
+	width: 38.5%;
+float: left;
+margin-left: 24.8%;
+margin-top: 5px;
 }
 .video_img img{
 	width:100%;
@@ -132,7 +135,7 @@ p{
 	color:#a7a7a7;
 	margin-bottom: 6px;
 	padding:10px;
-	width: 100%;
+	width: 84%;
 	
 	font-weight:bold;
 }
@@ -240,7 +243,7 @@ h4.white_c{
 p.btn_fnt{
 	font-size:11px;
 	color:#ccc;
-	margin:0px 20px 0px 0px;
+	margin:0px 40px 0px 0px;
 	float:right;
 }
 .black_wrap_container{
@@ -330,7 +333,7 @@ p.btn_fnt{
 	width:100%;
 	float:left;
 	background:url(/assets/orange_bg.jpg) no-repeat center top;
-	padding:40px 0px 60px;
+	padding:2px 0px 60px;
 }
 .orange_wrap_container{
 	max-width:1000px;
@@ -434,10 +437,10 @@ p.btn_fnt{
     font-weight: bold;
 }
 .step_col_box .step_col_box_btm{
-	padding:33px 20px 20px;
-	font-size:16px;
-	color:#6c6865;
-	text-align:left;
+	padding: 33px 18px 20px;
+font-size: 16px;
+color: #6c6865;
+text-align: left;
 }
 
 .trial_col{
@@ -477,7 +480,7 @@ p.btn_fnt{
 	margin-bottom:40px;
 }
 .trial_left_input{
-	width:100%;
+	width:86%;
 	display:inline-block;
 	background:#fff;
 	font-size:18px;
@@ -642,12 +645,12 @@ font-size: 19px;}
 .thanku_col p.heading{font-size: 40px}
 
 .credit_fild_col{width: 100%; float: left; margin-bottom: 10px;}
-.credit_fild_col label{width: 26%;
+.credit_fild_col label{width: 28%;
 float: left;
 font-size: 15px;
 text-align: left;
 line-height: 39px;}
-.credit_fild_col input{width: 69%;
+.credit_fild_col input{width: 68%;
 float: left;
 font-size: 15px;
 text-align: left;
@@ -711,9 +714,13 @@ margin-right: 7px;}
 	padding: 0 30px;
 }
 
+.fm span select{
+	width: 76% !important;
+}
+
 #address_country{
 	margin-right: 12px;
-	width: 76%;
+	width: 68%;
 	float: left;
 	font-size: 15px;
 	text-align: left;
@@ -725,7 +732,7 @@ margin-right: 7px;}
     font-family: "Arial",sans-serif;
     font-size: 17px;
     font-weight: 700;
-    text-align: center; width: 100%;
+    text-align: left; width: 100%;
     line-height: 1.18em;}
 
     .step_col_box .step_col_box_btm h1 span{     color: #111111;
@@ -814,7 +821,7 @@ margin-right: 7px;}
     }
     .freeItem {
     	float: left;
-    	width:100px;
+    	width:114px;
     	background:#f3f3f3;
     	border:1px solid #e1e1e1;
     	border-radius: 5px;
@@ -836,11 +843,11 @@ margin-right: 7px;}
     	text-align: left;
     	float: left;
     	width: 72%;
-    	font-size:14px;
+    	font-size:13px;
     }
     .trailDaysDes strong {
     	display:block;
-    	font-size:15px;
+    	font-size:13px;
     }
     #user_counter h3 {
     	font-size:16px;

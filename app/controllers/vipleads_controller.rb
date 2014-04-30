@@ -215,7 +215,7 @@
       msg = "Sorry! your referrer limit have been reached."
     end
     if msg == 'thanks'
-      url = "http://#{SERVER_URL}/pass?id=#{user.id}"
+      url = "http://#{SERVER_URL}/pass?id=#{user.id}&lead=#{lead.id}"
     end
     message = {"msg" => msg,"error"=>error,"url"=>url}
     respond_to do |format|

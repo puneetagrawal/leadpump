@@ -1,15 +1,15 @@
 <div>
-	<div class="wizard_text" style="margin-bottom:40px;">
+	<div class="wizard_text" style="margin-bottom:20px;">
 	<p>Would you like to collect referrals at point of sale?</p>
 	<input type='radio' class='ref_yes' name="test" value='0' checked='checked'/> Yes
-	<input type='radio' class='ref_no' name="test" value='1' /> No
+	<input type='radio' class='ref_no' name="test" value='1' style="margin-left:30px"/> No
 	<span class="no_ref">
-		<p>How many would you like to collect?<p>
+		<p style="margin-top:30px;">How many would you like to collect?<p>
 		<%=hidden_field_tag :ref%>
-		<%=select_tag("no_of_refs", options_for_select((1..10).to_a),:prompt => "Select no of referals",:style=>"width:200px;height:33px;margin-bottom:0px;") %>
+		<%=select_tag("no_of_refs", options_for_select((1..10).to_a,:selected=>current_user.vipcount), :prompt => "Select no of referals",:style=>"width:200px;height:33px;margin-bottom:0px;") %>
 	</span>
 	</div>
 	<div class="ml25"></div>
-	<span class="btn yellow save_referals">Save</span>
-	<span class="btn yellow cancelFancybox">Cancel</span>
+	<span class="btn blue save_referals">Save</span>
+	<span class="btn blue cancelFancybox">Cancel</span>
 </div>
