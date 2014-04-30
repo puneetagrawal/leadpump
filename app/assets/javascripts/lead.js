@@ -66,11 +66,11 @@ function initLeadCreateOrUpdate(){
 		var name = $(this).text();
 		var id = $(this).attr('id').split('_')[1];
 		if($("#act_"+id).text() == "Finish" || name == "Complete"){
-			feed_id = $("#act_"+id).closest('tr').attr('data-feed');
+			feed_id = $("#act_"+id).attr('data-id');
 			url = '/read_feed';
 			uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
 			$.get(url, {feed:feed_id,uri:uri}, function (data) {
-				$("#act_"+id).closest('tr').remove();
+				$("#act_"+id).closest('ul').remove();
 				$.fancybox.close();
 			});
 		}
