@@ -821,7 +821,7 @@ margin-right: 7px;}
     }
     .freeItem {
     	float: left;
-    	width:114px;
+    	width:110px;
     	background:#f3f3f3;
     	border:1px solid #e1e1e1;
     	border-radius: 5px;
@@ -838,6 +838,7 @@ margin-right: 7px;}
     .freeItem span {
     	display: block;
     	text-align: center;
+    	line-height: 20px;
     }
     .trailDaysDes {
     	text-align: left;
@@ -885,7 +886,7 @@ margin-right: 7px;}
 	}
 
 	.inpupt_pop input[type='text'], .inpupt_pop input[type='password']{
-		height: 36px;
+		height: 22px;
 	}
 
 	.mb-15{

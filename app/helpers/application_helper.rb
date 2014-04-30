@@ -2,7 +2,7 @@ module ApplicationHelper
 
 	
 	def get_bg_color
-		if controller_name == "plans" && action_name == "new"
+		if (controller_name == "plans" && action_name == "new") || (controller_name == "home" && action_name == "intouch")
 			return "graybg"
 		end
 	end

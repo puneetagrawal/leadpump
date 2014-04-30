@@ -38,8 +38,10 @@
     associate = associate ? associate : current_user.name
     current_user.associate = associate
     current_user.save
+    company = current_user.fetchCompany
+    count = company.vipcount != 0 ? company.vipcount : 5
     error = ''
-    (1..5).each do |vip|
+    (1..count).each do |vip|
       if !params["inputs"]["vip_#{vip}"].blank?
         viplead = Lead.new(params["inputs"]["vip_#{vip}"])
         if viplead.valid?
