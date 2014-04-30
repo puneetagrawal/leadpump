@@ -2,11 +2,11 @@ class HomeController < ApplicationController
   require 'httparty'
   include ApplicationHelper
   include HomeHelper
-  skip_before_filter :authenticate_user!, :only => [:thanks, :pass, :print_pass, :storepassinsession,
-                                                    :calculateAmount, :terms, :create_new_user,
+  skip_before_filter :authenticate_user!, :only => [:thanks, :pass, :print_pass, :storepassinsession,:calculateAmount, :terms, :create_new_user,
                                                      :signup_user, :send_verification_mail,
                                                      :confirmation, :save_password, :save_address,
-                                                   :make_payment,:choose_plan,:skip_profile, :contact_form, :test]
+                                                   :make_payment,:choose_plan,:skip_profile,
+                                                    :contact_form, :test, :intouch]
 
   layout 'company_layout', only: [:pass, :print_pass]
   layout 'index_layout', only: [:signup_user]

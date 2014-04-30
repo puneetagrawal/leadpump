@@ -105,7 +105,7 @@ while lowering new member acquisition cost and operating expenses!</p>
                   <img src="/assets/social-media-logos-twitter.png" width="52" height="168" alt="social_icon" class="left_img1"/>
                 </div>
                 <div style="width:322px; float:left">
-                <div class="mt_0">
+                <div class="mt_0 lgt_yellow">
                 <h5>MASS-PASS Social Inviter </h5>
                 <p>Allow your members to import their contacts, share <br/>
                     an invitation to your club with guest passes attached<br/>
@@ -179,7 +179,7 @@ projections for your entire team</p>
               </div>
               </div>
               <div class="feature_1">
-                <div class="feature_col ">
+                <div class="feature_col col_center">
                   <a href="http://lead.brsystem.info"  target="_blank">
                     <img src="/assets/women.jpg" width="400" height="262" alt="girl_img" class="left_img2"/>
                   </a>
@@ -232,14 +232,14 @@ your team.</p>
                     <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try It For FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
-                <p class="package_content">
+                
                   <h1>Get all Advanced features</h1>
                     <h2>CRM - up to 1000 contacts</h2>
                     <h2>Calendar</h2>
                     <h2>Lead dashboard</h2>
                     <h2>Team management</h2>
                     <h2>Cloud Storage</h2>
-                </p>
+               
                 </div>
             </div>
             <div class="step_col_box">
@@ -249,7 +249,7 @@ your team.</p>
                     <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_18" : ""%>'> Try It For FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
-                <p class="package_content">
+                
                   <h1>Get all Advanced features
                     <span>PLUS</span>
                   </h1>
@@ -258,7 +258,7 @@ your team.</p>
                   <h2>Monthly sales projections</h2>
                   <h2>Full dashboard enabled</h2>
                   <h2>POS referrals up to 25</h2>
-                </p>
+               
                 </div>
             </div>
             <div class="step_col_box">
@@ -295,7 +295,7 @@ your team.</p>
                     <span class="try_free_btn"><a href="javascript:void(0)" data-id='<%=@user.present? ? "#{@user.id}_17" : ""%>'> Try It For FREE &gt; </a> </span>
                 </div>
                 <div class="step_col_box_btm">
-                <p class="package_content">
+                
                   <h1>Get all Professional features
                     <span>PLUS</span>
                   </h1>
@@ -306,7 +306,7 @@ your team.</p>
                       <h3>Masterminds</h3>
                     <p>Access to monthly mastermind meetings. In these sessions you will gain valuable insight how to maximize your results by combining LEAD<span>PUMP</span> with out-of-the-box strategies. </p>
                     
-                </p>
+              
                 </div>
             </div>
         </div>
@@ -336,13 +336,13 @@ Have To Be Difficult, Start Your Trial Today!</h2>
     <div class="black_wrap step_wrap">
       <div class="black_wrap_container black_2">
           <a id = "contact_us"></a>
-          <h4 class="white_c">CONTACT</h4>
             <div class="contact_content">
               <div class="contact_content_left">
                   <div class="map">
 
-
+                      <h2> About us </h2>
                     <div>
+                        
                       <p class="Wp-Body-P"><span class="Body-C-C16">LEAD</span><span class="Body-C-C22">PUMP</span><span class="Body-C-C23"> </span><span class="Body-C-C24">has spent over 65 successful years in the business of health and fitness.
                           Our team has managed and directed every aspect of the business – including sales,
                           marketing, promotions, staff training, club design, consulting and total club operations.
@@ -360,17 +360,27 @@ Have To Be Difficult, Start Your Trial Today!</h2>
 
 
                   </div>
-                    <div class="info_col">
-                      <div>
+                      
+                    <div class="info_col contact_loc">
+                        <h2>Contact us</h2>
                         <p class="Wp-Body-P"><span class="Body-C-C16">LEAD</span><span class="Body-C-C22">PUMP </span><span class="Body-C-C24">Corporate Offices<br>1623 Central Avenue Suite #4682<br>Cheyenne, Wyoming 82001<br>(o)
                             xxx-<wbr>xxx-<wbr>xxxx<br>(f) 307-<wbr>316-<wbr>0442</span></p>
                         <p class="Wp-Body-P"><span class="Body-C-C24"><br></span></p>
                         <p class="Wp-Body-P"><span class="Body-C-C22"><br></span></p>
+                        
+                        
+                        <div class= "footer_social_icon">
+                          <h2>Follow us</h2>
+                          <img src="/assets/social-media-logos-facebook.png" width="52" height="168" alt="social_icon" class="left_img1"/>
+                          <img src="/assets/social-media-logos-linkedin.png" width="52" height="168" alt="social_icon" class="left_img1"/>
+                          <img src="/assets/social-media-logos-twitter.png" width="52" height="168" alt="social_icon" class="left_img1"/>
                         </div>
                     </div>
+
                 </div>
+                
                 <div class="contact_form">
-                  <h6>Contact Form</h6>
+                  <h2>Email us</h2>
                   <%= form_tag('/contact_form', method: :post, :id=>"contact_form", :class => "", :remote=>true) do |f| %>
                       <div class="contact_form_field">
                           <label>Your Name (required)</label>
@@ -395,11 +405,24 @@ Have To Be Difficult, Start Your Trial Today!</h2>
                         </span>
                       <%end%>
                 </div>
+                
             </div>
+        
         </div>
+        <div class= "copyrht_col">
+                  <div class="copylft">
+                  <p class="Wp-Body-P">Copyright 2014 • All Rights Reserved • <span class="Body-C-C16">LEAD</span><span class="Body-C-C22">PUMP</span>™
+                  </div>
+                    <div class="copyrht">
+                  <span class="Artistic-Body-C-C17">Terms and Conditions • Privacy • Security </span>
+                </div>
+                  <p>
+                </div>
     </div>
-</div>
 
+
+    
+</div>
 
 <div id="email_access" class="popup_container" style="width:700px;height:270px; padding:10px;display:none">
   <div style="font-size:20px;text-align:center;" class="small_popup">
@@ -408,6 +431,8 @@ Have To Be Difficult, Start Your Trial Today!</h2>
    </span>
  </div>
 </div>
+
+ 
 
 <script type="text/javascript">
   setTimeout(function(){var a=document.createElement("script");
