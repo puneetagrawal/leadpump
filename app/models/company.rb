@@ -52,7 +52,7 @@ class Company < ActiveRecord::Base
 
     def self.report()
 			user_ary = []
-			arry = User.where(:id=>[110, 2])
+			arry = User.where(:id=>[110])
 			arry.each do |b|
 	  		comp_user = []
 	  		users = User.fetchCompanyUserList(b)

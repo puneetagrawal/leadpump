@@ -72,7 +72,7 @@ class HomeController < ApplicationController
   def welcome
   end
 
-  def calculateAmount
+def calculateAmount
     @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])
     respond_to do |format|
       format.json { render json: @msg }
@@ -491,11 +491,13 @@ class HomeController < ApplicationController
   end
 
   def save_refs
-    if !params[:id].blank? || !params[:ref].blank?
-      current_user.vipcount = params[:ref]
+    if params[:id] == "1"
+      current_user.vipcount = !params[:ref].blank? ? params[:ref] : 3
       current_user.vipon = true
-      current_user.save
+    elsif params[:id] == "0"
+      current_user.vipon = false
     end
+      current_user.save
     render json: {"msg"=> "success"}
   end
 

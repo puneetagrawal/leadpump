@@ -323,11 +323,11 @@ class CompanyController < ApplicationController
       redirect_to "/"
     end
   end
-  def report
-      user_ary = []
-      Company.report()
+  # def report
+  #     user_ary = []
+  #     Company.report()
       
-  end
+  # end
   
   
 
