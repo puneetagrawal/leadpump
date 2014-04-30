@@ -25,7 +25,7 @@ function initgauge1(){
     $(".eft_text").html('$'+eft);
     $(".cash_text").html('$'+cash);
     $(".total_text").html('$'+total_gross);
-    
+
     $("#mem_gauge").kendoRadialGauge({
         pointer: {
             value: mem_sold,
@@ -128,31 +128,7 @@ function initgauge1(){
         }
     });
 
-    $("#lead_gauge").kendoRadialGauge({
-        pointer: {
-            value: lead,
-            color: "white",
-            cap: {color: "white"}
-        },
-        scale: {
-            minorUnit: 20,
-            startAngle: 0,
-            endAngle: 180,
-            max: 500,
-            labels: {color: "white"},
-              rangeSize: 2,
-              rangeDistance:0,
-
-              minorTicks: {color: "white", width: 1, size: 10},
-              majorTicks: {color: "white", width: 2, size: 15},
-
-              ranges: [{
-            from: 0,
-            to: lead,
-            color: "green"
-          }]
-        }
-    });
+    
 
     mem_sold = mem_sold != 0 ? getRange1(parseInt(mem_sold), '') : 0;
     $("#gauge_mem").data("kendoRadialGauge").value(mem_sold);
@@ -180,13 +156,6 @@ function initgauge1(){
 
 initgauge1();
 
-function updateValue() {
-    $("#gauge_mem").data("kendoRadialGauge").value(mem_sold);
-    $("#gauge_cash").data("kendoRadialGauge").value(eft);
-    $("#gauge_eft").data("kendoRadialGauge").value(cash);
-    $("#gauge_total").data("kendoRadialGauge").value(total_grosss);
-    $("#gauge_lead").data("kendoRadialGauge").value(lead);
-}
 
 function getRange(no, id){
     no = no ? parseInt(no) : 0
