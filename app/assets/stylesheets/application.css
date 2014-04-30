@@ -13,7 +13,10 @@
  *= require bootstrap-datepicker
  *= require style.css
  *= require admin.css
- 
+ *= require kendo.common.min.css
+ *= require kendo.default.min.css
+ *= require kendo.dataviz.min.css
+ *= require kendo.dataviz.default.min.css
  *= require jquery-ui-1.10.3.custom.min.css
  *= require jquery.fancybox.css
  *= require_self

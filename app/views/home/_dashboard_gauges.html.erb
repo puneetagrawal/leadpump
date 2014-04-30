@@ -1,46 +1,4 @@
-<ul class="sale_statistic_data gaugemargin">
-    <li>
-        <div class="gauge">
-            <div class="demoWidget" style="position: relative;">
-                <div style="float: left;" class="gaugeContainer container220" id="membersoldgauge"></div>
-                <div class="gaugeValue" style="position: absolute; top: 119px; left: 42px; font-family: Sans-Serif; text-align: center; font-size: 13px; width: 70px;"></div>
-            </div>
-        </div>
-        <span>New Memberships</span>
-    </li>
-    <li>
-        <div class="gauge">
-            <div class="demoWidget" style="position: relative;">
-                <div style="float: left;" class="gaugeContainer container500" id="cashgauge"></div>
-                <div class="gaugeValue" style="position: absolute; top: 119px; left: 42px; font-family: Sans-Serif; text-align: center; font-size: 13px; width: 70px;"></div>
-
-            </div>
-        </div>
-        <span>Money Down - $$ Collected<br />
-            <span id="cash_scope"></span>
-        </span>
-    </li>
-    <li>
-        <div class="gauge">
-            <div class="demoWidget" style="position: relative;">
-                <div style="float: left;" class="gaugeContainer container500" id="eftgauge"></div>
-                <div class="gaugeValue" style="position: absolute; top: 119px; left: 42px; font-family: Sans-Serif; text-align: center; font-size: 13px; width: 70px;"></div>
-            </div>
-        </div>
-        <span>New Dues - E.F.T.<br />
-            <span id="eft_scope"></span>
-        </span>
-    </li>
-    <li>
-        <div class="gauge">
-            <div class="demoWidget" style="position: relative;">
-                <div style="float: left;" class="gaugeContainer container1000" id="totalgrossgauge"></div>
-                <div class="gaugeValue" style="position: absolute; top: 119px; left: 42px; font-family: Sans-Serif; text-align: center; font-size: 13px; width: 70px;"></div>
-
-            </div>
-        </div>
-        <span>Total Sales<br />
-            <span id="gross_scope"></span>
-        </span>
-    </li>
+<ul class="sale_statistic_data gaugemargin gauges_ul">
+    <%= render "home/gauges_element"%>
 </ul>
+

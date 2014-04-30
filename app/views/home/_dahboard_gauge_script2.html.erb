@@ -1,8 +1,4 @@
 <script type="text/javascript">
-$(document).ready(function () {
-    initgauge1();
-});
-
 function initgauge1(){
     var project = "<%=@project.present? ? 'true' : 'false'%>";
     var eft = 0;
@@ -15,6 +11,7 @@ function initgauge1(){
         mem_sold = "<%=@gross_values['m_prjt'.to_sym]%>";   
         cash = "<%=@gross_values['c_prjt'.to_sym]%>";
         total_gross = "<%=@gross_values['g_prjt'.to_sym]%>";
+
     }
     else{
         eft = "<%=@gross_values['g_eft'.to_sym]%>";
@@ -23,41 +20,142 @@ function initgauge1(){
         total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
     }
 
-    efts = getRange1(eft, 'eft_scope');
-    $('#eftgauge').jqxGauge('value', efts);
-    $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(eft));   
+    $(".lead_text").html('$'+lead);
+    $(".mem_text").html('$'+mem_sold);
+    $(".eft_text").html('$'+eft);
+    $(".cash_text").html('$'+cash);
+    $(".total_text").html('$'+total_gross);
+
+    $("#mem_gauge").kendoRadialGauge({
+        pointer: {
+            value: mem_sold,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 20,
+            startAngle: 0,
+            endAngle: 180,
+            max: 500,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: mem_sold,
+            color: "green"
+          }]
+        }
     });
-    
-    mem_sold = mem_sold ? parseInt(mem_sold) : 0;
-    $('#membersoldgauge').jqxGauge('value', mem_sold);
-    $('#membersoldgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
+    $("#cash_gauge").kendoRadialGauge({
+        pointer: {
+            value: cash,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 20,
+            startAngle: 0,
+            endAngle: 180,
+            max: 500,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: cash,
+            color: "green"
+          }]
+        }
+    });
+    $("#eft_gauge").kendoRadialGauge({
+        pointer: {
+            value: eft,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 20,
+            startAngle: 0,
+            endAngle: 180,
+            max: 500,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: eft,
+            color: "green"
+          }]
+        }
     });
 
-    cashs = getRange1(cash, 'cash_scope');
-    $('#cashgauge').jqxGauge('value', cashs)
-    $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(cash));
+    $("#total_gauge").kendoRadialGauge({
+        pointer: {
+            value: total_gross,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 30,
+            startAngle: 0,
+            endAngle: 180,
+            max: 1000,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: total_gross,
+            color: "green"
+          }]
+        }
     });
-     
-    total_grosss = getRange2(total_gross, 'gross_scope');
-    $('#totalgrossgauge').jqxGauge('value', total_grosss);
-    $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(total_gross));
-    });
+
+    
+
+    mem_sold = mem_sold != 0 ? getRange1(parseInt(mem_sold), '') : 0;
+    $("#gauge_mem").data("kendoRadialGauge").value(mem_sold);
+    
+
+    eft = eft != 0 ? getRange1(parseInt(eft), '') : 0;
+    $("#gauge_eft").data("kendoRadialGauge").value(eft);
+    
+    
+    cash = cash != 0 ? getRange1(parseInt(cash), '') : 0;
+    $("#gauge_cash").data("kendoRadialGauge").value(cash);
+    
+    
+    total_gross = total_gross != 0 ? getRange2(parseInt(total_gross), '') : 0;
+    $("#gauge_total").data("kendoRadialGauge").value(total_gross);
+    
 
     var test = "<%=@leads.present? ? 'true' : 'false'%>"
     if(test == "true"){
-        var lead = "<%=@leads%>";
         lead = lead != 0 ? parseInt(lead) : 0;
-        $('#leadgauge').jqxGauge('value', lead);
-        $('#leadgauge').on('valueChanging', function (e) {
-            $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
-        });
+        $("#gauge_lead").data("kendoRadialGauge").value(lead);
     }
     
 }
+
+initgauge1();
+
 
 function getRange(no, id){
     no = no ? parseInt(no) : 0

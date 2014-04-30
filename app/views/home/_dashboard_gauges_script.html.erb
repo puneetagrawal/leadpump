@@ -1,133 +1,201 @@
 <script type="text/javascript">
-$(document).ready(function () {
-    initgauge();
-    var count = 0;
-});
+mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
+mem_sold = mem_sold != 0 ? getRange1(parseInt(mem_sold), '') : 0;
 
-function initgauge(){
-    var total = 220;
-    var interval = 220/10;
-    var range = 220/4;
+eft = "<%=@gross_values['g_eft'.to_sym]%>";
+eft = eft != 0 ? getRange1(parseInt(eft), '') : 0;
 
+cash = "<%=@gross_values['g_cash'.to_sym]%>";
+cash = cash != 0 ? getRange1(parseInt(cash), '') : 0;
+
+total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
+total_gross = total_gross != 0 ? getRange2(parseInt(total_gross), '') : 0;
+
+lead = "<%=@leads%>";
+lead = lead != 0 ? parseInt(lead) : 0;
+
+
+
+
+function createGauge() {
+    $(".mem_text").html('$'+mem_sold);
+    $(".cash_text").html('$'+eft);
+    $(".eft_text").html('$'+cash);
+    $(".total_text").html('$'+total_gross);
+    $(".lead_text").html('$'+lead);
+
+    $("#mem_gauge").kendoRadialGauge({
+        pointer: {
+            value: mem_sold,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 20,
+            startAngle: 0,
+            endAngle: 180,
+            max: 500,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: mem_sold,
+            color: "green"
+          }]
+        }
+    });
     
-    $(".container220").jqxGauge({ 
-        max: total, 
-        labels: { interval: 22},
-        ticksMinor: { interval: interval/4, size: '5%' },
-        ticksMajor: { interval: interval/2, size: '9%' },
-        ranges: [{ startValue: 0, endValue: range, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
-        { startValue: range, endValue: range * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
-        { startValue: range * 2, endValue: range * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
-        { startValue: range * 3, endValue: range * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
-        colorScheme: 'scheme05',
-        animationDuration: 400,
-        width: 180
+    $("#cash_gauge").kendoRadialGauge({
+        pointer: {
+            value: cash,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 20,
+            startAngle: 0,
+            endAngle: 180,
+            max: 500,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: cash,
+            color: "green"
+          }]
+        }
     });
-
-    var t_csh_due_th = 1000;
-    var interval_csh_due_th = 1000/10;
-    var range_csh_due_th = 1000/4;
-
-    $(".container1000").jqxGauge({ 
-        max: t_csh_due_th, 
-        labels: { interval: 100},
-        ticksMinor: { interval: interval_csh_due_th/4, size: '5%' },
-        ticksMajor: { interval: interval_csh_due_th/2, size: '9%' },
-        ranges: [{ startValue: 0, endValue: range_csh_due_th, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
-        { startValue: range_csh_due_th, endValue: range_csh_due_th * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
-        { startValue: range_csh_due_th * 2, endValue: range_csh_due_th * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
-        { startValue: range_csh_due_th * 3, endValue: range_csh_due_th * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
-        colorScheme: 'scheme05',
-        animationDuration: 400,
-        width: 180
-    });
-
-    var t_csh_due = 500;
-    var interval_csh_due = 500/10;
-    var range_csh_due = 500/4;
-
-    $(".container500").jqxGauge({ 
-        max: t_csh_due, 
-        labels: { interval: 50},
-        ticksMinor: { interval: interval_csh_due/4, size: '5%' },
-        ticksMajor: { interval: interval_csh_due/2, size: '9%' },
-        ranges: [{ startValue: 0, endValue: range_csh_due, style: {fill: '#e02629', stroke: '#e02629'  }, endWidth: 5, startWidth: 1 },
-        { startValue: range_csh_due, endValue: range_csh_due * 2, style: {fill: '#ff8000', stroke: '#ff8000' }, endWidth: 10, startWidth: 5 },
-        { startValue: range_csh_due * 2, endValue: range_csh_due * 3, style: { fill: '#fbd109', stroke: '#fbd109' }, endWidth: 13, startWidth: 10 },
-        { startValue: range_csh_due * 3, endValue: range_csh_due * 4, style: { fill: '#4bb648', stroke: '#4bb648' }, endWidth: 16, startWidth: 13 }],
-        colorScheme: 'scheme05',
-        animationDuration: 400,
-        width: 180
-    });
-
-    var eft = "<%=@gross_values['g_eft'.to_sym]%>";
-    efts = getRange1(eft, 'eft_scope');
-    $('#eftgauge').jqxGauge('value', efts);
-    $('#eftgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(eft));    
-    });
-   
-
-    var mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
-    mem_sold = mem_sold != 0 ? parseInt(mem_sold) : 0;
-    $('#membersoldgauge').jqxGauge('value', mem_sold);
-    $('#membersoldgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
-    });
-
     
-    var cash = "<%=@gross_values['g_cash'.to_sym]%>";
-    cashs = getRange1(cash, 'cash_scope');
-    $('#cashgauge').jqxGauge('value', cashs);
-    $('#cashgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(cash));
+    $("#eft_gauge").kendoRadialGauge({
+        pointer: {
+            value: eft,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 20,
+            startAngle: 0,
+            endAngle: 180,
+            max: 500,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: eft,
+            color: "green"
+          }]
+        }
     });
 
-    var total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
-    total_grosss = getRange2(total_gross, 'gross_scope');
-    $('#totalgrossgauge').jqxGauge('value', total_grosss);
-    $('#totalgrossgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text('$ ' + Math.round(total_gross));
+    $("#total_gauge").kendoRadialGauge({
+        pointer: {
+            value: total_gross,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 30,
+            startAngle: 0,
+            endAngle: 180,
+            max: 1000,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: total_gross,
+            color: "green"
+          }]
+        }
     });
 
-    var lead = "<%=@leads%>";
-    lead = lead != 0 ? parseInt(lead) : 0;
-    $('#leadgauge').jqxGauge('value', lead);
-    $('#leadgauge').on('valueChanging', function (e) {
-        $(this).siblings('.gaugeValue').text(Math.round(e.args.value));
+    $("#lead_gauge").kendoRadialGauge({
+        pointer: {
+            value: lead,
+            color: "white",
+            cap: {color: "white"}
+        },
+        scale: {
+            minorUnit: 20,
+            startAngle: 0,
+            endAngle: 180,
+            max: 500,
+            labels: {color: "white"},
+              rangeSize: 2,
+              rangeDistance:0,
+
+              minorTicks: {color: "white", width: 1, size: 10},
+              majorTicks: {color: "white", width: 2, size: 15},
+
+              ranges: [{
+            from: 0,
+            to: lead,
+            color: "green"
+          }]
+        }
     });
+
+    // $("#gauge_mem").data("kendoRadialGauge").value(mem_sold);
+    
+    // $("#gauge_eft").data("kendoRadialGauge").value(eft);
+    
+    // $("#gauge_cash").data("kendoRadialGauge").value(cash);
+    
+    // $("#gauge_total").data("kendoRadialGauge").value(total_gross);
+    
+    // $("#gauge_lead").data("kendoRadialGauge").value(lead);
 }
+createGauge();
 
 function getRange(no, id){
-    no = no ? parseInt(no) : 0
+    no = no ? parseInt(n) : 0
     if(no >= 0 && no <= 220){
         value = no;
-        $("#"+id).html('');
+        //$("#"+id).html('');
         count = 0;
     }
     else if(no > 220 && no <= 2200){
         value = no/10;
-        $("#"+id).html('(in 10)');
+        //$("#"+id).html('(in 10)');
         count = 10;
     }
     else if(no > 2200 && no <= 22000){
         value = no/100;
-        $("#"+id).html('(in 100)');
+        //$("#"+id).html('(in 100)');
         count = 100;
     }   
     else if(no > 22000 && no <= 220000){
         value = no/1000;
-        $("#"+id).html('(in 1000)');
+        //$("#"+id).html('(in 1000)');
         count = 1000;
     }  
     else if(no > 2200000 && no <= 22000000){
         value = no/100000;
-        $("#"+id).html('(in 100000)');
+        //$("#"+id).html('(in 100000)');
         count = 100000;
     }  
     else{
         value = no/1000000;
-        $("#"+id).html('(in 1000000)');
+        //$("#"+id).html('(in 1000000)');
         count = 1000000;
     }
     return value;
@@ -137,37 +205,37 @@ function getRange1(no, id){
     no = no ? parseInt(no) : 0
     if(no >= 0 && no <= 500){
         value = no;
-        $("#"+id).html('');
+        //$("#"+id).html('');
         count = 0;
     }
     else if(no > 500 && no <= 5000){
         value = no/10;
-        $("#"+id).html('(in 10)');
+        //$("#"+id).html('(in 10)');
         count = 10;
     }
     else if(no > 5000 && no <= 50000){
         value = no/100;
-        $("#"+id).html('(in 100)');
+        //$("#"+id).html('(in 100)');
         count = 100;
     }   
     else if(no > 50000 && no <= 500000){
         value = no/1000;
-        $("#"+id).html('(in 1000)');
+        //$("#"+id).html('(in 1000)');
         count = 1000;
     }
     else if(no > 500000 && no <= 5000000){
         value = no/10000;
-        $("#"+id).html('(in 10000)');
+        //$("#"+id).html('(in 10000)');
         count = 10000;
     }
     else if(no > 5000000 && no <= 50000000){
         value = no/100000;
-        $("#"+id).html('(in 100000)');
+        //$("#"+id).html('(in 100000)');
         count = 100000;
     }
     else{
         value = no/1000000;
-        $("#"+id).html('(in 1000000)');
+        //$("#"+id).html('(in 1000000)');
         count = 1000000;
     }
     return value;
@@ -177,40 +245,39 @@ function getRange2(no, id){
     no = no ? parseInt(no) : 0
     if(no >= 0 && no <= 1000){
         value = no;
-        $("#"+id).html('');
+        //$("#"+id).html('');
         count = 0;
     }
     else if(no > 1000 && no <= 10000){
         value = no/10;
-        $("#"+id).html('(in 10)');
+        //$("#"+id).html('(in 10)');
         count = 10;
     }
     else if(no > 10000 && no <= 100000){
         value = no/100;
-        $("#"+id).html('(in 100)');
+        //$("#"+id).html('(in 100)');
         count = 100;
     }   
     else if(no > 100000 && no <= 1000000){
         value = no/1000;
-        $("#"+id).html('(in 1000)');
+        //$("#"+id).html('(in 1000)');
         count = 1000;
     }
     else if(no > 1000000 && no <= 10000000){
         value = no/10000;
-        $("#"+id).html('(in 10000)');
+        //$("#"+id).html('(in 10000)');
         count = 10000;
     }
     else if(no > 10000000 && no <= 100000000){
         value = no/100000;
-        $("#"+id).html('(in 100000)');
+        //$("#"+id).html('(in 100000)');
         count = 100000;
     }
     else{
         value = no/1000000;
-        $("#"+id).html('(in 1000000)');
+        //$("#"+id).html('(in 1000000)');
         count = 1000000;
     }
-    return value;
+    return value
 }
-
 </script>
