@@ -460,7 +460,7 @@ class HomeController < ApplicationController
 
   def upload_company_logo
     @picture = Picture.new()
-    #current_user.verified = true
+    current_user.verified = true
     if !current_user.picture.present?
       Picture.create(:company_logo=> params[:picture][:company_logo],:user_id=>current_user.id)
     else
