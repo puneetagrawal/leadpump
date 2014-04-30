@@ -2,11 +2,11 @@ class HomeController < ApplicationController
   require 'httparty'
   include ApplicationHelper
   include HomeHelper
-  skip_before_filter :authenticate_user!, :only => [:thanks, :pass, :print_pass, :storepassinsession,
-                                                    :calculateAmount, :terms, :create_new_user,
+  skip_before_filter :authenticate_user!, :only => [:thanks, :pass, :print_pass, :storepassinsession,:calculateAmount, :terms, :create_new_user,
                                                      :signup_user, :send_verification_mail,
                                                      :confirmation, :save_password, :save_address,
-                                                   :make_payment,:choose_plan,:skip_profile, :contact_form, :test]
+                                                   :make_payment,:choose_plan,:skip_profile,
+                                                    :contact_form, :test, :intouch]
 
   layout 'company_layout', only: [:pass, :print_pass]
   layout 'index_layout', only: [:signup_user]
@@ -72,7 +72,7 @@ class HomeController < ApplicationController
   def welcome
   end
 
-  def calculateAmount
+def calculateAmount
     @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])
     respond_to do |format|
       format.json { render json: @msg }
@@ -460,7 +460,7 @@ class HomeController < ApplicationController
 
   def upload_company_logo
     @picture = Picture.new()
-    #current_user.verified = true
+    current_user.verified = true
     if !current_user.picture.present?
       Picture.create(:company_logo=> params[:picture][:company_logo],:user_id=>current_user.id)
     else
@@ -491,11 +491,13 @@ class HomeController < ApplicationController
   end
 
   def save_refs
-    if !params[:id].blank? || !params[:ref].blank?
-      current_user.vipcount = params[:ref]
+    if params[:id] == "1"
+      current_user.vipcount = !params[:ref].blank? ? params[:ref] : 3
       current_user.vipon = true
-      current_user.save
+    elsif params[:id] == "0"
+      current_user.vipon = false
     end
+      current_user.save
     render json: {"msg"=> "success"}
   end
 

@@ -29,11 +29,13 @@ $(document).ready(function(){
 
 	$(document).on('click', '.report', function (){
 		$(this).after('<img src="/assets/small-load.gif" class="report-load">');
+		$('.wht_active').removeClass('wht_active');
+		$(this).addClass('wht_active');
 		name = $(this).attr('name');
 		id = $(this).closest('ul').attr('id').split("_")[1];
 		url = '/sale_prods/showreport';
 		$.post(url, {id:id,name:name}, function (data) {
-			$('.report-load').remove();
+		    $('.report-load').remove();
 		});
 	});
 

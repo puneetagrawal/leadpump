@@ -98,15 +98,15 @@ def self.signUpAmount(planId, du, dp)
   chargesPerUserStr = "$#{@plan.price} * #{no_of_users} = $#{totalCharge} per month"
   disAmount = 0
   disAmountStr = "No Discount"
-  paymentPeriod = '/month'
+  paymentPeriod = ' a month'
   if dp == 'yearly'
     totalCharge = totalCharge * 12
     disAmount =  (totalCharge * 17)/100
-    disAmountStr = "$ #{disAmount} on yearly"
-    paymentPeriod = "/year"
+    disAmountStr = "$#{disAmount} on yearly"
+    paymentPeriod = " a year"
   end
   amount = totalCharge - disAmount
-  amountStr = "$ #{amount}" + paymentPeriod
+  amountStr = "$#{amount}" + paymentPeriod
   @msg = { "chargesPerUserStr" => chargesPerUserStr, "disAmountStr" => disAmountStr, "amountStr" => amountStr, "amount" => amount}
   return @msg
 end
@@ -238,11 +238,9 @@ def self.deleteusersfromcompany(companyusers)
       end
     when :company
       limit = self.subscription.plan_per_user_range.plan.lead_management
-      logger.debug("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
       if check_plan_expired(self)
         logger.debug(limit)
         if self.leads_created <= limit.to_i || limit == "Unlimited"
-          logger.debug("sdfsdfffffffffffffffffffffff")
           allow = true
         end
       end

@@ -38,8 +38,10 @@
     associate = associate ? associate : current_user.name
     current_user.associate = associate
     current_user.save
+    company = current_user.fetchCompany
+    count = company.vipcount != 0 ? company.vipcount : 5
     error = ''
-    (1..5).each do |vip|
+    (1..count).each do |vip|
       if !params["inputs"]["vip_#{vip}"].blank?
         viplead = Lead.new(params["inputs"]["vip_#{vip}"])
         if viplead.valid?
@@ -199,7 +201,7 @@
         if lead.save
           UserLeads.create(:user_id=>user.id, :lead_id=>lead.id)
           user.saveLeadCount
-          NewsFeed.create(:user_id=>user.id, :lead_id=>lead.id, :description=>"New Optin Lead", :feed_date=>Date.today, :action=>"Start")
+          NewsFeed.create(:user_id=>user.id, :lead_id=>lead.id, :description=>"New Guest Pass Request", :feed_date=>Date.today, :action=>"Start")
           AutoResponderRecord.save_respond_message(UserLeads.last, user)
           LeadNotes.create(:lead_id=>lead.id,:notes=>"",:time_stam=>DateTime.now)
           OptInLead.create(:name=>params[:name],:source=>"LEADPUMP optin", :email=>params[:email],:phone=>params[:phone], :referrer_id=>user.id)

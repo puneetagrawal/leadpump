@@ -102,7 +102,7 @@ function tasksave(){
 		date = $("#app_date").val();
 		time = $("#app_date").val()+" "+$("#hr").val()+":"+$("#min").val()+":"+$("#zon").val();
 		leadId = $("#leadid").val();
-		var btn = '<input type="button" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #FFDE52;padding:7px" id="submitApoint" value="submit" name="submitApoint">'
+		var btn = '<input type="button" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #ffffff;padding:7px" id="submitApoint" value="submit" name="submitApoint">'
 		if(task == ''){
 			alert("please schedule task");
 			$(this).html(btn);

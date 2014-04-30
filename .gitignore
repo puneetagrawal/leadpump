@@ -29,4 +29,6 @@ Vagrantfile
 leadpump_backup
 Gemfile.lock
 config/database.yml
+id_rsa
+leadpump.sql
 

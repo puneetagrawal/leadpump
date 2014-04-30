@@ -14,9 +14,7 @@
 //= require jquery-ui
 //= require jquery.remotipart
 //= require jquery_nested_form
-//= require jqxcare
-//= require jqxchuart
-//= require jqxgauge
+//= require kendo.all.min
 //= require highcharts
 //= require exporting
 //= require Chart

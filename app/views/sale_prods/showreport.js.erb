@@ -1,4 +1,5 @@
 
-$(".gaugestart").html('<%=escape_javascript(render partial: "home/dahboard_gauge_script2")%>');
-
+$('.report-load').remove();
+$(".gauges_ul").html('<%=escape_javascript(render partial: "home/gauges_element")%>');
+$(".script_gauges").html('<%=escape_javascript(render partial: "home/dahboard_gauge_script2")%>');
 

@@ -11,7 +11,7 @@ subscription =
       if $("#terms").is(':checked')
         if $('#card_number').length
           subscription.validateCard()
-          return false
+          
         else
           true
       else
