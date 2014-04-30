@@ -646,7 +646,7 @@ overflow: auto;
 
     }
     header h2 {
-        margin: 0;
+        margin: 5px 0 0 0;
         font-size: 24px;
     }
     header h2 a {
@@ -802,7 +802,7 @@ padding: 2px 5px;
 -webkit-box-sizing: border-box
 }
 .table_container ul li.wd60{width: 59%; line-height: 26px;
-text-align: center;}
+text-align: left;}
 .table_container ul li.wd20{width: 20%;}
 
 
@@ -811,6 +811,13 @@ width: 100%;
 float: left;
 margin-bottom: 1px;
 border-radius: 5px;}
+.red_table_strip{
+    background:#FC5253 !important;
+    width: 100%;
+float: left;
+margin-bottom: 1px;
+border-radius: 5px;
+}
 .yellow_table_strip{background:#FFFF99;
 width: 100%;
 float: left;
