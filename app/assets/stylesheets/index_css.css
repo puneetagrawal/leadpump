@@ -901,7 +901,8 @@ margin-right: 0 !important;
 		margin-top: 50px;
 	}
 	.pricing_plans_heading h3 {
-		font-size: 20px !important;
+		font-size: 22px !important;
+		line-height: 25px !important;
 	}
 
 	.inpupt_pop input[type='text'], .inpupt_pop input[type='password']{
