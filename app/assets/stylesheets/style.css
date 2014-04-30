@@ -46,6 +46,7 @@ ul {
     margin: 0;
     padding: 0;
 }
+body.graybg{background: #ccc}
 
 /*
  * Remove default fieldset styles.
@@ -281,7 +282,7 @@ textarea {
     min-height: 600px;
 }
 .dashboardIcons span{
-    color: #FFDE52;
+    color: #ffffff;
 }
 
 .s_msg_inv a{
@@ -289,7 +290,7 @@ textarea {
 }
 
 .dashboardIcons span:focus{
-    color: #FFDE52;
+    color: #ffffff;
 }
 
 .feild_info {
@@ -348,9 +349,10 @@ textarea {
 }
 
 .yellow {
-    background: #ffde52;
-    border-color: #e8c943;
-    color: #444d00;
+    background: #4b80cb;
+border-color: #4b80cb;
+color: #fff;
+text-shadow: 0 0 0;
 }
 .yellow:hover {
     background: #474747;
@@ -586,9 +588,10 @@ font-weight: normal;
        
     }
     .wdt20_col{width: 20%; float: left;}
-    .wdt30_col{width: 29%;
+    .wdt30_col{width: 28%;
 float: left;
 margin-left: 15px;}
+.wdt20_col.ml15{ margin-left: 15px;}
      .grad_box_col{ border-radius: 5px; background: #3c6baf; /* Old browsers */
 background: -moz-linear-gradient(top,  #3c6baf 0%, #333333 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c6baf), color-stop(100%,#333333)); /* Chrome,Safari4+ */
@@ -622,7 +625,6 @@ overflow: auto;
     }
 
     body {
-        background-color: #ccc;
         /*background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
         background-size: 100%;
         background-image: -webkit-gradient(linear,50% 0,50% 320,color-stop(0%,#9ECFF5),color-stop(100%,#FFF));
@@ -680,7 +682,7 @@ overflow: auto;
         border-radius: 5px;
     }
     #headerNav .btn-navbar {
-        background: #ffde52;
+        background: #ffffff;
         min-width: 18px;
     }
     #headerNav .btn-navbar span {
@@ -1408,15 +1410,16 @@ font-size: 17px;}
     float: left;
     width: 100%;
     overflow: auto;
-    min-height: 323px;
+    min-height: 344px;
 }
+.clear{clear: both}
 .salesRep h3 {
     text-transform: none;
 }
 .salesRep .list {
     float: left;
     width: 100%;
-    height: 274px;
+   
     overflow: auto; 
     margin-top: 1px;
 }
@@ -1456,8 +1459,9 @@ min-width: 130px;
     float: left;
     width: 100%;
     position: relative;
-    background: #333;
+
 }
+.grad_box_col.banner_mhgt{min-height: 311px;}
 .salesRepUser {
     position: absolute;
     top: 5px;
@@ -1475,14 +1479,24 @@ min-width: 130px;
     clear: both;
 }
 .sales_data_filter {
-    float: left;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    color: #fff;
+  float: left;
+position: absolute;
+top: 2px;
+right: 3px;     
+color: #fff;
 }
+.sales_data_filter ul{margin:0px; padding: 0px;}
+.sales_data_filter ul li{background: #333;
+border-radius: 5px;
+font-size: 10px;
+text-align: center;
+padding: 1px 5px;
+width: auto;
+margin-bottom: 1px;}
+.sales_data_filter ul li a{color: #9f9f9f;}
+.sales_data_filter ul li a.wht_active{color: #fff}
 .sale_statistic_data {
-    padding: 44px 0 20px 100px;
+    padding:44px 0 20px 14px;
     float: left;
     width: 100%;
     -moz-box-sizing:border-box;
@@ -1490,7 +1504,7 @@ min-width: 130px;
 }
 .sale_statistic_data li {
     float: left;
-    width: 180px;
+    width: 211px;
     margin-right: 8% !important;
     color: #fff;
 }
@@ -1499,6 +1513,10 @@ min-width: 130px;
     text-align: center;
     clear: both;
 }
+.banner_col{float: right;
+width: 920px;
+}
+.row-fluid.mt10{margin-top: 10px;}
 .gauge {
     width: 180px;
     height: 180px;
@@ -1523,6 +1541,7 @@ min-width: 130px;
     display: block;
     text-align: center;
     clear: both;
+    color: #fff;
 }
 
 .total_leads .gauge {
@@ -2223,8 +2242,11 @@ header .container {
     padding-bottom: 5px;
 }
 .gaugemargin li{
-    margin-right: 1% !important;
+ margin-right: 1% !important;
+text-align: center;
+font-size: 18px;
 }
+.meter_down_txt{font-size: 26px;}
 .decoration {
     color: #fff;
     background: #ff0000;
@@ -2289,7 +2311,7 @@ header .container {
 
 .pop_yellow_btn{
     margin:0 22px 0-12px;
-    background:none repeat scroll 0 0 #FFDE52;
+    background:none repeat scroll 0 0 #ffffff;
     padding:10px;
     border-radius:5px;
     cursor:pointer;
@@ -2405,7 +2427,7 @@ header .container {
 }
 
 .btn_txt{
-    background: none repeat scroll 0 0 #FFDE52;
+    background: none repeat scroll 0 0 #ffffff;
     padding: 5px;
     border-radius: 5px;
     font-size: 13px;
@@ -2438,7 +2460,7 @@ header .container {
 
 .submit_company_logo{ float: none; display: inline-block;}
 
-.setting_img_col .yellow {   background: none repeat scroll 0 0 #FFDE52;
+.setting_img_col .yellow {   background: none repeat scroll 0 0 #ffffff;
     border-color: #E8C943;
     color: #444D00;
     font-size: 12px;
@@ -2518,5 +2540,41 @@ background: linear-gradient(to bottom,  #575757 1%,#cccccc 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#575757', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 border-radius: 5px;
 }
+
+.gauges{width: 220px; }
+
+h2.heading_about{width: 100%;
+background: #ccc;
+font-size: 23px;
+text-transform: uppercase;
+color: #fff;
+position: relative;
+padding-left: 99px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+margin-top: 30px;
+margin-bottom: 32px;
+background: #3d6fb8; /* Old browsers */
+background: -moz-linear-gradient(left,  #3d6fb8 0%, #36373b 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#3d6fb8), color-stop(100%,#36373b)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  #3d6fb8 0%,#36373b 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  #3d6fb8 0%,#36373b 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  #3d6fb8 0%,#36373b 100%); /* IE10+ */
+background: linear-gradient(to right,  #3d6fb8 0%,#36373b 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d6fb8', endColorstr='#36373b',GradientType=1 ); /* IE6-9 */
+
+line-height: 55px;
+font-weight: normal;}
+h2.heading_about:before{position: absolute;
+content: '';
+background:  url(/assets/heading_icon.png) no-repeat;
+width: 82px;
+height: 83px;
+left: 2px;
+top: -12px;}
+
+.meter_up_txt{position: relative;
+bottom: -23px;}
 
 

@@ -325,7 +325,7 @@ textarea {
 }
 
 .yellow {
-    background: #ffde52;
+    background: #ffffff;
     border-color: #e8c943;
     color: #444d00;
 }
@@ -537,7 +537,7 @@ footer {
     height: 40px;
 }
 .heading {
-    background:#ffde52;
+    background:#ffffff;
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;    
     box-sizing: border-box;   
@@ -629,7 +629,7 @@ header h2 a {
     border-radius: 5px;
 }
 #headerNav .btn-navbar {
-    background: #ffde52;
+    background: #ffffff;
     min-width: 18px;
 }
 #headerNav .btn-navbar span {

@@ -1,33 +1,25 @@
-// <script type="text/javascript">
-// setTimeout(function(){var a=document.createElement("script");
-// var b=document.getElementsByTagName("script")[0];
-// a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0021/7530.js?"+Math.floor(new Date().getTime()/3600000);
-// a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-// </script>
-
-
-<span class="gaugestart">
-    <%= render "dashboard_gauges_script" %>
-</span>
 
 <div class="container main_container">
   <div class="row-fluid">
     <div class="span12">
-      <!-- <h2>Sales Dashboard</h2> -->
+      <h2 class="heading_about">Sales Dashboard</h2>
     </div>
   </div>
   <div class="row-fluid">
     <%= render "sales_user_list" %>
-    <div class="span9">
+    <div class="banner_col">
+      <div class="border grad_box_col banner_mhgt">
       <h2 class="heading">Overall Statistics</h2>
 
       <div class="salesRepData" id="sales_repo_change">
         <%= render "sales_gauge_data" %>
       </div>
       <div class="clear mb10"></div>
-      
+      </div>
     </div>
-    <div class="row-fluid">
+
+    <div class="clear"></div>
+    <div class="row-fluid mt10">
         <div class="wdt20_col">
           <div class="border grad_box_col">
           <h2 class="heading">Menu</h2>
@@ -105,9 +97,10 @@
         
       </div>
   </div>
-  <div class="wdt20_col">
+  <div class="wdt20_col ml15">
     <%= render "home/leadgauge" %>
   </div>
+</div>
 </div>
 <script>
     function signUserOut() {
@@ -141,4 +134,4 @@
 
 
 <%= render "common_templates/popupContainer" %>
-
+</div>
