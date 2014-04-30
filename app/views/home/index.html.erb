@@ -46,10 +46,10 @@
                       <div class="<%= get_logs_class(feed) %>" id="feed_<%= feed.lead.id %>" data-feed=
                               "<%= feed.id %>">
                         <ul>
-                          <li><a href="javascript:void(0)"><%= get_feed_icon(feed) %></a></li>
-                          <li><%= feed.description %></li>
-                          <li>
-                            <a class="btn <%= feed.color %> btn-small w40 <%= feed.feed_click %>" id="act_<%= feed.lead.id %>" href="javascript:void(0)" data-action="leadpopup"><%= feed.action %></a>
+                          <li class="wd20"><a href="javascript:void(0)"><%= get_feed_icon(feed) %></a></li>
+                          <li class="wd60"><%= feed.description %></li>
+                          <li class="wd20">  
+                            <a class="btn <%= feed.color %> btn-small w40 <%= feed.feed_click %>" id="act_<%= feed.lead.id %>" href="javascript:void(0)" data-id="<%=feed.id%>" data-action="leadpopup"><%= feed.action %></a>
                           </li>
                         </ul>
                       </div>
@@ -82,7 +82,7 @@
                                   <li class="wd20"><a href="javascript:void(0)"><%= get_feed_icon(feed) %></a></li>
                                   <li class="wd60"><%= feed.description %></li>
                                   <li class="wd20">
-                                    <a class="btn <%= feed.color %> btn-small w40 <%= feed.feed_click %>" id="act_<%= feed.lead.id %>" href="javascript:void(0)" data-action="leadpopup"><%= feed.action %></a>
+                                    <a class="btn <%= feed.color %> btn-small w40 <%= feed.feed_click %>" id="act_<%= feed.lead.id %>" href="javascript:void(0)" data-id="<%=feed.id%>" data-action="leadpopup"><%= feed.action %></a>
                                   </li>
                                 </ul>
                               </div>

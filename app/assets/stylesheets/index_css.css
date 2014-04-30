@@ -240,7 +240,7 @@ h4.white_c{
 	margin-bottom:20px;
 }
 p.btn_fnt{
-	font-size:11px;
+	font-size:10px;
 	color:#ccc;
 	margin:0px 55px 0px 0px;
 	float:right;
@@ -610,7 +610,7 @@ margin-left: 75px;}
 .contact_btn{
 	background:#1f8d9a;
 	border-radius:5px;
-	width:100%;
+	width:106%;
 	float:left;
 	font-size:18px;
 	color:#fff;
