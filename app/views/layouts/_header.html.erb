@@ -42,11 +42,11 @@
             <div class="nav-collapse collapse fr">
               <ul class="nav">
                 <% if current_user && current_user.role_id == 1%>
-                <li><%= link_to "Home", admin_index_path, :class => "active", :id => "home_link" %></li>
+                <li><%= link_to "DASHBOARD", admin_index_path, :class => "active", :id => "home_link" %></li>
                 <% elsif current_user %>
-                <li><%= link_to "Home", home_index_path, :class => "active", :id => "home_link" %></li>
+                <li><%= link_to "DASHBOARD", home_index_path, :class => "active", :id => "home_link" %></li>
                 <%else%>
-                <li><%= link_to "Home", signup_user_path, :class => "active", :id => "home_link"  %></li>
+                <li><%= link_to "DASHBOARD", signup_user_path, :class => "active", :id => "home_link"  %></li>
                 <%end%>
               </ul>
             </div>

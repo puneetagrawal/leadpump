@@ -62,7 +62,7 @@
 	<li>
 		<%=link_to(sale_prods_path, html_options = {}) do %>
 		<i class="icon icon_salesdata"></i>
-		<span>sales reports</span>
+		<span>Sales Reports</span>
 		<%end %>
 	</li>
 <%elsif current_user.isCompany%>
@@ -70,7 +70,7 @@
 		<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do %>
 		<span class="upgrade"></span>
 		<i class="icon icon_salesdata"></i>
-		<span>sales reports</span>
+		<span>Sales Reports</span>
 		<%end %>
 	</li>
 <%else%>
@@ -78,7 +78,7 @@
 		<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
 		<span class="upgrade"></span>
 		<i class="icon icon_salesdata"></i>
-		<span>sales reports</span>
+		<span>Sales Reports</span>
 		<%end %>
 	</li>
 <%end%>

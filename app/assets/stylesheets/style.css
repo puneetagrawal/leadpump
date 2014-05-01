@@ -304,10 +304,11 @@ textarea {
     font-size:16px;
     padding: 10px 20px;
     text-decoration: none;
+      border-radius:1px;
     border: 1px solid #ddd;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    border-radius: 2px;
+   
     min-width: 100px;
     display: inline-block;
     text-align: center;
@@ -368,8 +369,9 @@ text-shadow: 0 0 0;
     background: #525252;
 }
 .btn-small {
-    padding: 2px 10px;
     font-size: 12px;
+    margin-top: 2px;
+    padding: 0 9px;
 }
 
 label {
@@ -580,7 +582,7 @@ padding: 0px 10px;
 margin: 0;
 line-height: 30px;
 color: #fff;
-border-radius: 5px;
+border-radius:5px 5px 0px 0px;
 font-weight: normal;
     }
     .border {
@@ -679,6 +681,7 @@ overflow: auto;
         background: #4b80cb;
         text-decoration: none;
         text-shadow: none;
+           font-size: 14px;
         border-radius: 5px;
     }
     #headerNav .btn-navbar {
@@ -694,6 +697,8 @@ overflow: auto;
         height: 18px;
         width: 18px;
         text-align: center;
+         top: -2px;
+         position:relative;
         line-height: 20px;
         border: 2px solid #4b80cb;
         margin-right: 5px;
@@ -1548,6 +1553,7 @@ width: 920px;
     display: block;
     text-align: center;
     clear: both;
+    font-size: 26px;
     color: #fff;
 }
 
@@ -2355,7 +2361,7 @@ font-size: 18px;
     overflow:hidden;
 }
 .w40 {
-    min-width:40px !important;
+    min-width:35px !important;
 }
 .menuView .dashboardIcons li .icon {
     width:40px;
@@ -2581,8 +2587,12 @@ height: 83px;
 left: 2px;
 top: -12px;}
 
-.meter_up_txt{position: relative;
-bottom: -23px;}
+.meter_up_txt{bottom: -23px;
+    height: 43px;
+    position: relative;}
+
+.meter_up_txt span{float: left;
+    width: 100%;}
 
 .img_recommend{
     font-size: 14px;
@@ -2592,3 +2602,19 @@ bottom: -23px;}
     font-size: 12px;
     margin-top: 2px;
 }
+.contract_value_font{
+   float: left;
+    font-size: 11px !important;
+    width: 100%;
+}
+.lead_size{
+    font-size: 26px;
+}
+
+#leadListContent tr td{    float: left;
+    line-height: 20px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+    width: 10.2%;
+    word-wrap: break-word;}
