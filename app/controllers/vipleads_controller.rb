@@ -135,7 +135,7 @@
       end
     end
     if session[:email_user].present?
-      Emailer.sendrewards(session[:email_user], company.name, company.email, token).deliver
+      Emailer.sendrewards(session[:email_user], company.company_name, company.email, token).deliver
     end
     message = {"msg"=> "successfully sent invitations."}
     render json: message
@@ -154,7 +154,7 @@
       end
     end
     if !session[:email_user].blank?
-      Emailer.sendrewards(session[:email_user], company.name, company.email, token).deliver
+      Emailer.sendrewards(session[:email_user], company.company_name, company.email, token).deliver
     end
     message = {"msg"=> "successfully sent invitations."}
     render json: message
@@ -164,7 +164,7 @@
     if params[:user_email].present?
       token = current_user.token
       company = current_user.fetchCompany
-      Emailer.sendrewards(params[:user_email], company.name,company.email, token).deliver
+      Emailer.sendrewards(params[:user_email], company.company_name,company.email, token).deliver
     end
     message = {"msg"=> "successfully sent invitations."}
     render json: message
