@@ -30,24 +30,24 @@
       <!-- <iframe width="560" height="315" src="//www.youtube.com/embed/30VAxy_YXBM?rel=0" frameborder="0" allowfullscreen></iframe> -->
       </div>
   </div>
-    <div class="black_wrap">
+    <div class="black_wrap" >
       <div class="black_wrap_container">
-        <div class="acc_content">
-      <h3>Lead<span class="skyblue">Pump</span> <span class="ft_it">- Start your 30-day free trial!</span></h3>
-      <%= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
-        <%=hidden_field_tag :cls, "black_wrap_input"%>
-        <span class="leadform">
-         <%=render "common_templates/signup_user", cls: "black_wrap_input" %>
-        </span>
-         <div class="btn_box">
-          <input name="" type="button" class="black_wrap_btn signup_1" value="Start Free Trial"/>
-          <p class="btn_fnt">By clicking you agree to terms and conditions.</p>
-        </div>
-        <%end%>
-        </div>
-        </div>
-        </div>
+          <div class="acc_content" id="test">
+            <h3>Lead<span class="skyblue">Pump</span> <span class="ft_it">- Start your 30-day free trial!</span></h3>
+              <%= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
+                  <%=hidden_field_tag :cls, "black_wrap_input"%>
+                  <span class="leadform">
+                   <%=render "common_templates/signup_user", cls: "black_wrap_input" %>
+                  </span>
+                     <div class="btn_box">
+                        <input name="" type="button" class="black_wrap_btn signup_1" value="Start Free Trial"/>
+                        <p class="btn_fnt">By clicking you agree to terms and conditions.</p>
+                    </div>
+                <%end%>
+          </div>
+      </div>
     </div>
+  </div>
     <div class="bridge_wrap">
       <div class="bridge_container">
       <div class="bridge_nav">
@@ -429,7 +429,24 @@ Have To Be Difficult, Start Your Trial Today!</h2>
    </span>
  </div>
 </div>
-
+<script>
+$(document).ready(function(){
+       var msie6 = $.browser == 'msie' && $.browser.version < 7;
+        var top = $('#test').offset().top;
+        $(window).scroll(function () {
+            if (!msie6) {
+                if ($(this).scrollTop() >= top + 90) {
+                    console.log(">>>>>>>>>>>>>>>>>>>");
+                    $('#test').addClass('top_optin_bar');
+                }
+                else {
+                    $('#test').removeClass('top_optin_bar');
+                    console.log(">>Dfdfdfdfdffdfdfdfdf");
+                }
+            }
+        });
+});
+</script>
  
 
 <script type="text/javascript">
