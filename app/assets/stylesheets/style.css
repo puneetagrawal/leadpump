@@ -372,6 +372,7 @@ text-shadow: 0 0 0;
     font-size: 12px;
     margin-top: 2px;
     padding: 0 9px;
+    border-radius: 0px;
 }
 
 label {
