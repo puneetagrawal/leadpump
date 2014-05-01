@@ -30,9 +30,9 @@
       <!-- <iframe width="560" height="315" src="//www.youtube.com/embed/30VAxy_YXBM?rel=0" frameborder="0" allowfullscreen></iframe> -->
       </div>
   </div>
-    <div class="black_wrap" >
+    <div class="black_wrap" id="test">
       <div class="black_wrap_container">
-          <div class="acc_content" id="test">
+          <div class="acc_content" >
             <h3>Lead<span class="skyblue">Pump</span> <span class="ft_it">- Start your 30-day free trial!</span></h3>
               <%= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
                   <%=hidden_field_tag :cls, "black_wrap_input"%>

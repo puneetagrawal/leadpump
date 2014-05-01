@@ -19,7 +19,12 @@ def calander
 	if @appointments.present?
 		@appointments.each do |a|
 			if a.app_date_time.present? && a.app_date.present?
-				# logger.debug "<<<<<<<<<<<<<<<"
+				@appoint_date = a.app_date
+				@appoint_task = a.task 
+				logger.debug "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+				logger.debug @appoint_date
+				logger.debug @appoint_task
+				logger.debug "<<<<<<<<<<<<<<<"
 				# logger.debug a.app_date_time.strftime("%I:%M %p")
 				# logger.debug a.app_date.strftime("%m/%d/%Y")
 				# logger.debug a.user.name.humanize if a.user.present?
