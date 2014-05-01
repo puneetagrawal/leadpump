@@ -1422,7 +1422,7 @@ font-size: 17px;}
     float: left;
     width: 100%;
     overflow: auto;
-    min-height: 344px;
+    min-height: 389px;
 }
 .clear{clear: both}
 .salesRep h3 {
@@ -2611,7 +2611,9 @@ top: -12px;}
     font-size: 26px;
 }
 
-#leadListContent tr td{    float: left;
+#leadListContent tr td{   
+    background: none;
+    float: left;
     line-height: 20px;
     padding: 8px;
     text-align: left;

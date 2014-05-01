@@ -1,122 +1,99 @@
-<% if @appointments.present? %>
-  <% @appointments.each do |a| %>
-    <% if a.app_date_time.present? && a.app_date.present?%>
-        <% @appdate = a.app_date_time.strftime("%m/%d/%Y") %>
-        <%#=puts @appdate %>
-        <%#=logger.debug @appdate %>
-        <%#=logger.debug @tsk %>
-        <%#=logger.debug "////////////////" %>
-        <%#= hidden_field_tag :app_date_time, @ad %>
-        <input type="hidden" name="app_date" id="app_date" value=<%=@appdate %>>
-        <% @tsk = a.task %>
-        <%#= hidden_field_tag :task, @tsk %>
-        <input type="hidden" name="task" id="task" value= <%=@tsk%>>
+<input type="hidden" name="app_date" id="app_date" value="<%=@appoint_date %>">
+<input type="hidden" name="task" id="task" value= "<%=@appoint_task%>">
 
-    <%end%>
-  <%end%>
-<%end%>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
 
 <script>
 
-  $(document).ready(function() {
-  
-    for(var i=1 ; i<=1; i++){
-      alert("hiiii");
+    $(document).ready(function() {
     
-        
-        var task_name = $('#task').val();
-        var  appointmentsdate = $('#app_date').val();
-        alert(task_name);
-        alert(appointmentsdate);
-
-        var date = new Date(appointmentsdate);
-        alert(date);
-        console.log(date);
-        // var d = date.getDate();
-        // var m = date.getMonth();
-        // var y = date.getFullYear();
+        var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
         
         $('#calendar').fullCalendar({
-          header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-          },
-
-          editable: true,
-          
-          events: [
-          
-            {
-              title: task_name,
-              start: new Date(y, m, d)
-            }
-
-             
-
-            //   title: task_name,
-            //   start: appointmentsdate
-            // },
-            // {
-            //   title: task_name
-            //   start:
-            // }
-            // {
-            //   title: 'Long Event',
-            //   start: new Date(y, m, d-5),
-            //   end: new Date(y, m, d-2)
-            // },
-            // {
-            //   id: 999,
-            //   title: 'Repeating Event',
-            //   start: new Date(y, m, d-3, 16, 0),
-            //   allDay: false
-            // },
-            // {
-            //   id: 999,
-            //   title: 'Repeating Event',
-            //   start: new Date(y, m, d+4, 16, 0),
-            //   allDay: false
-            // },
-            // {
-            //   title: 'Meeting',
-            //   start: new Date(y, m, d, 10, 30),
-            //   allDay: false
-            // },
-            // {
-            //   title: 'Lunch',
-            //   start: new Date(y, m, d, 12, 0),
-            //   end: new Date(y, m, d, 14, 0),
-            //   allDay: false
-            // },
-            // {
-            //   title: 'Birthday Party',
-            //   start: new Date(y, m, d+1, 19, 0),
-            //   end: new Date(y, m, d+1, 22, 30),
-            //   allDay: false
-            // },
-            // {
-            //   title: 'Click for Google',
-            //   start: new Date(y, m, 28),
-            //   end: new Date(y, m, 29),
-            //   url: 'http://google.com/'
-            // }
-          // }
-          ]
+            theme: true,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            events: [
+                // {
+                //     title: 'All Day Event',
+                //     start: new Date(y, m, 1)
+                // },
+                // {
+                //     title: 'Long Event',
+                //     start: new Date(y, m, d-5),
+                //     end: new Date(y, m, d-2)
+                // },
+                // {
+                //     id: 999,
+                //     title: 'Repeating Event',
+                //     start: new Date(y, m, d-3, 16, 0),
+                //     allDay: false
+                // },
+                // {
+                //     id: 999,
+                //     title: 'Repeating Event',
+                //     start: new Date(y, m, d+4, 16, 0),
+                //     allDay: false
+                // },
+                {
+                    title: 'Meeting',
+                    start: new Date(y, m, d, 10, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Lunch',
+                    start: new Date(y, m, d, 12, 0),
+                    end: new Date(y, m, d, 14, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Birthday Party',
+                    start: new Date(y, m, d+1, 19, 0),
+                    end: new Date(y, m, d+1, 22, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Click for Google',
+                    start: new Date(y, m, 28),
+                    end: new Date(y, m, 29),
+                    url: 'http://google.com/'
+                }
+            ]
         });
-      }
-    
-  });
+        
+    });
+
 </script>
+<style>
 
-<!-- <div id='calendar'></div> -->
-<div class="container wrapper">
-   <!-- <div class="row-fluid">
-    <div id='calendar'></div>
-   </div> -->
-    <div id='calendar'></div>
-</div>
+    body {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 13px;
+        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+        }
 
+    #calendar {
+        width: 900px;
+        margin: 0 auto;
+        }
+
+</style>
+</head>
+<body>
+<div id='calendar'></div>
+</body>
+</html>

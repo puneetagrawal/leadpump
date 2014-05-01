@@ -14,6 +14,8 @@ class HomeController < ApplicationController
   def index
     if current_user && !current_user.isAdmin
       @users = current_user.fetchCompanySalesUsers
+      @users << current_user
+      @users.reverse
       @leads = Lead.fetchTotalLeads(current_user)
       #saletodate = SaleProd.fetchProdDataTotal(current_user)
       saletodate = SaleProd.fetchProdDataUpTotal(current_user, Date.today)

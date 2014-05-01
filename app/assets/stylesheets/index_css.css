@@ -96,8 +96,15 @@ margin-top: 5px;
 }
 .black_wrap{
 	width:100%;
-	
+
 	float:left;
+	background:#333;
+	padding:50px 0px;
+}
+.black_wrap_signup{
+	width:100%;
+	float:left;
+	position: fixed;
 	background:#333;
 	padding:50px 0px;
 }
@@ -968,3 +975,12 @@ text-align: right;}
 .copylft p{font-size: 12px; margin-bottom: 0}
 
 .lgt_yellow{background: #FFFF4D}
+
+.top_optin_bar{
+    background: none repeat scroll 0 0 #333333;
+    float: left;
+    padding: 54px 0 0px;
+    width: 100%;
+    position: fixed;
+    top: -130px;
+}
