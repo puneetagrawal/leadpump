@@ -2598,6 +2598,10 @@ top: -12px;}
     font-size: 14px;
     margin-top: 1%;
 }
+.meter_in_txt{
+    font-size: 12px;
+    margin-top: 2px;
+}
 .contract_value_font{
    float: left;
     font-size: 11px !important;
