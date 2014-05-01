@@ -1,20 +1,18 @@
 <script type="text/javascript">
 mem_sold = "<%=@gross_values['g_mem'.to_sym]%>";
-mem_sold = mem_sold != 0 ? getRange1(parseInt(mem_sold), '') : 0;
+mem_sold = mem_sold != 0 ? getRange1(parseInt(mem_sold), 'mem_in_txt') : 0;
 
 eft = "<%=@gross_values['g_eft'.to_sym]%>";
-eft = eft != 0 ? getRange1(parseInt(eft), '') : 0;
+eft = eft != 0 ? getRange1(parseInt(eft), 'eft_in_txt') : 0;
 
 cash = "<%=@gross_values['g_cash'.to_sym]%>";
-cash = cash != 0 ? getRange1(parseInt(cash), '') : 0;
+cash = cash != 0 ? getRange1(parseInt(cash), 'cash_in_txt') : 0;
 
 total_gross = "<%=@gross_values['g_gross'.to_sym]%>";
-total_gross = total_gross != 0 ? getRange2(parseInt(total_gross), '') : 0;
+total_gross = total_gross != 0 ? getRange2(parseInt(total_gross), 'tot_in_txt') : 0;
 
 lead = "<%=@leads%>";
 lead = lead != 0 ? parseInt(lead) : 0;
-
-
 
 
 function createGauge() {
@@ -198,86 +196,87 @@ function getRange(no, id){
         //$("#"+id).html('(in 1000000)');
         count = 1000000;
     }
-    return value;
+    return parseInt(value);
 }
 
 function getRange1(no, id){
     no = no ? parseInt(no) : 0
+
     if(no >= 0 && no <= 500){
         value = no;
-        //$("#"+id).html('');
+        $("#"+id).html('');
         count = 0;
     }
     else if(no > 500 && no <= 5000){
         value = no/10;
-        //$("#"+id).html('(in 10)');
+        $("#"+id).html('(in 10)');
         count = 10;
     }
     else if(no > 5000 && no <= 50000){
         value = no/100;
-        //$("#"+id).html('(in 100)');
+        $("#"+id).html('(in 100)');
         count = 100;
     }   
     else if(no > 50000 && no <= 500000){
         value = no/1000;
-        //$("#"+id).html('(in 1000)');
+        $("#"+id).html('(in 1000)');
         count = 1000;
     }
     else if(no > 500000 && no <= 5000000){
         value = no/10000;
-        //$("#"+id).html('(in 10000)');
+        $("#"+id).html('(in 10000)');
         count = 10000;
     }
     else if(no > 5000000 && no <= 50000000){
         value = no/100000;
-        //$("#"+id).html('(in 100000)');
+        $("#"+id).html('(in 100000)');
         count = 100000;
     }
     else{
         value = no/1000000;
-        //$("#"+id).html('(in 1000000)');
+        $("#"+id).html('(in 1000000)');
         count = 1000000;
     }
-    return value;
+    return parseInt(value);
 }
 
 function getRange2(no, id){
     no = no ? parseInt(no) : 0
     if(no >= 0 && no <= 1000){
         value = no;
-        //$("#"+id).html('');
+        $("#"+id).html('');
         count = 0;
     }
     else if(no > 1000 && no <= 10000){
         value = no/10;
-        //$("#"+id).html('(in 10)');
+        $("#"+id).html('(in 10)');
         count = 10;
     }
     else if(no > 10000 && no <= 100000){
         value = no/100;
-        //$("#"+id).html('(in 100)');
+        $("#"+id).html('(in 100)');
         count = 100;
     }   
     else if(no > 100000 && no <= 1000000){
         value = no/1000;
-        //$("#"+id).html('(in 1000)');
+        $("#"+id).html('(in 1000)');
         count = 1000;
     }
     else if(no > 1000000 && no <= 10000000){
         value = no/10000;
-        //$("#"+id).html('(in 10000)');
+        $("#"+id).html('(in 10000)');
         count = 10000;
     }
     else if(no > 10000000 && no <= 100000000){
         value = no/100000;
-        //$("#"+id).html('(in 100000)');
+        $("#"+id).html('(in 100000)');
         count = 100000;
     }
     else{
         value = no/1000000;
-        //$("#"+id).html('(in 1000000)');
+        $("#"+id).html('(in 1000000)');
         count = 1000000;
     }
-    return value
+    return parseInt(value)
 }
 </script>
