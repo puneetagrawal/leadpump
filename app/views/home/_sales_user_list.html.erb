@@ -5,10 +5,10 @@
             <div class="list borderbox seeusergauge">
                 <ul>
                         <%if @users.present? %>
-                        <%@users.each do |user|%>
-                            <li id="user_<%=user.id%>" class="home_das">
-                                <%=render "sales_user", :user=>user%>
-                            </li>
+                            <%@users.each do |user|%>
+                                <li id="user_<%=user.id%>" class="home_das">
+                                    <%=render "sales_user", :user=>user%>
+                                </li>
                             <%#if !current_user.isCompany%>
                                 <!-- <span> -->
                                     <!-- <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a> -->
