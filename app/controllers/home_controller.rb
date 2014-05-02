@@ -369,6 +369,8 @@ def calculateAmount
   end
 
   def skip_profile
+    current_user.verified = true
+    current_user.save
     @name = params[:id]
     @picture = Picture.new()
     respond_to do |format|
@@ -494,14 +496,14 @@ def calculateAmount
   end
 
   def save_refs
-    if params[:id] == "1"
+    if params[:id] == "0"
+      current_user.vipon = false
+    else
       current_user.vipcount = !params[:ref].blank? ? params[:ref] : 3
       current_user.vipon = true
-    elsif params[:id] == "0"
-      current_user.vipon = false
     end
       current_user.save
-    render json: {"msg"=> "success"}
+      render json: {"msg"=> "success"}
   end
 
   def contact_form
