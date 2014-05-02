@@ -2474,11 +2474,7 @@ font-size: 18px;
 
 .submit_company_logo{ float: none; display: inline-block;}
 
-.setting_img_col .yellow {   background: none repeat scroll 0 0 #ffffff;
-    border-color: #E8C943;
-    color: #444D00;
-    font-size: 12px;
-    padding: 5px;}
+.setting_img_col .yellow {  margin-top: 10px;}
 
     .step_main_col{width:450px; font-family: arial; color:#333333; float:left;margin-left: 63px;
 margin-bottom: 60px;}
