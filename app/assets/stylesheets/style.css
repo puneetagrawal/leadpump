@@ -525,7 +525,7 @@ a:focus {
         width: 100px;
         height: 88px;
         display: block;
-        background-image: url("/assets/icon-sprite.png");
+        background-image: url("/assets/icon-sprite_1.png");
         background-repeat: no-repeat;
     }
     .icon_dashboard {
