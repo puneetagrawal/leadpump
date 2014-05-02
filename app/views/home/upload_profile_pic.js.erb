@@ -1,3 +1,11 @@
+if($("#user_<%=current_user.id%>").length){
+	alert(">>>>>>>>>>")
+	$("#user_<%=current_user.id%>").html('<%=escape_javascript(render partial: "sales_user", :locals=>{:user=>current_user})%>');
+}
+else{
+	alert("dfdfdff")
+	$(".seeusergauge ul").prepend('<%=escape_javascript(render partial: "dashboard_user_view", :locals=>{:user=>current_user})%>');
+}
 $(".user_profile").html('<%=escape_javascript(render partial: "common_templates/wizard_step3")%>');
 $(".step_2").addClass('step_line');
 $(".step_2 .step_circle").addClass('step_passed');
