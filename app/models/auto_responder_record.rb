@@ -27,7 +27,7 @@ class AutoResponderRecord < ActiveRecord::Base
         if ul.lead.email.present? && ul.lead.subscribe
           from_email = au.user.from_email.present? ? au.user.from_email : company.email
           unsub_url = "#{SERVER_URL}/unsubscribe?unsub=#{ul.lead.lead_token}"
-  				Emailer.send_respond_mail(ul.lead.email, au.message.html_safe, au.subject, company.name, from_email, unsub_url).deliver
+  				Emailer.send_respond_mail(ul.lead.email, au.message.html_safe, au.subject, company.company_name, from_email, unsub_url).deliver
   			end
   		end 
   	end

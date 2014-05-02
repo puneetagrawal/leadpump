@@ -372,6 +372,7 @@ text-shadow: 0 0 0;
     font-size: 12px;
     margin-top: 2px;
     padding: 0 9px;
+    border-radius: 0px;
 }
 
 label {
@@ -524,7 +525,7 @@ a:focus {
         width: 100px;
         height: 88px;
         display: block;
-        background-image: url("/assets/icon-sprite.png");
+        background-image: url("/assets/icon-sprite_1.png");
         background-repeat: no-repeat;
     }
     .icon_dashboard {
@@ -1422,7 +1423,7 @@ font-size: 17px;}
     float: left;
     width: 100%;
     overflow: auto;
-    min-height: 344px;
+    min-height: 389px;
 }
 .clear{clear: both}
 .salesRep h3 {
@@ -2473,11 +2474,7 @@ font-size: 18px;
 
 .submit_company_logo{ float: none; display: inline-block;}
 
-.setting_img_col .yellow {   background: none repeat scroll 0 0 #ffffff;
-    border-color: #E8C943;
-    color: #444D00;
-    font-size: 12px;
-    padding: 5px;}
+.setting_img_col .yellow {  margin-top: 10px;}
 
     .step_main_col{width:450px; font-family: arial; color:#333333; float:left;margin-left: 63px;
 margin-bottom: 60px;}
@@ -2611,7 +2608,9 @@ top: -12px;}
     font-size: 26px;
 }
 
-#leadListContent tr td{    float: left;
+#leadListContent tr td{   
+    background: none;
+    float: left;
     line-height: 20px;
     padding: 8px;
     text-align: left;

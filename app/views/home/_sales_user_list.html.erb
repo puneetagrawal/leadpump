@@ -4,26 +4,11 @@
             <h2 class="heading">TEAM MEMBERS</h2>
             <div class="list borderbox seeusergauge">
                 <ul>
-                    <%if @users.present? %>
-                        <%@users.each do |user|%>
-                            <li id="user_<%=user.id%>" class="home_das">
-                                <%if current_user.isCompany && @users.size < 2%>
-                                    <a href="javascript:void(0)">
-                                        <div class="salesPrsn img-polaroid">
-                                            <%if current_user.picture.present?%>
-                                                <%= image_tag current_user.picture.avatar.url(:small), :class=>"img-polaroid user78"%>
-                                            <%else%>
-                                                <img class="img-polaroid user78" src="/assets/client_img.png"/>
-                                            <%end%>
-                                        </div>
-                                        <div class="pull-left name" style="max-width:48%">
-                                            <span style="color:#ffffff;word-break:break-all"><%=current_user.name%></span><span style="color:#ffffff"><%=current_user.role.role_type.humanize%></span>
-                                        </div>
-                                    </a>
-                                <%else%>
+                        <%if @users.present? %>
+                            <%@users.each do |user|%>
+                                <li id="user_<%=user.id%>" class="home_das">
                                     <%=render "sales_user", :user=>user%>
-                                <%end%>
-                            </li>
+                                </li>
                             <%#if !current_user.isCompany%>
                                 <!-- <span> -->
                                     <!-- <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a> -->

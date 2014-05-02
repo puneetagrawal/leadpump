@@ -40,7 +40,7 @@
                    <%=render "common_templates/signup_user", cls: "black_wrap_input" %>
                   </span>
                      <div class="btn_box">
-                        <input name="" type="button" class="black_wrap_btn signup_1" value="Start Free Trial"/>
+                        <input name="" type="button" class="black_wrap_btn <%if !current_user.present?%>signup_1<%end%>" value="Start Free Trial"/>
                         <p class="btn_fnt">By clicking you agree to terms and conditions.</p>
                     </div>
                 <%end%>

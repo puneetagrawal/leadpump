@@ -160,6 +160,7 @@ def self.deleteusersfromcompany(companyusers)
     return email
   end
 
+  
   # def fetchCompanyName
   #   name = self.name
   #   case self.user_role.role_type.to_sym
