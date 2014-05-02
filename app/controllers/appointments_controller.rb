@@ -16,11 +16,10 @@ end
 def calander
 	@appointments = Appointment.fetch_monthly_apptmnt(current_user, Date.today)
 	logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>#{@appointments.size}"
-	# @appoint_date = @appointments.collect{|app| app.app_date.strftime("%m/%d/%Y")}
+	@appoint_date = @appointments.collect{|app| app.app_date_time.strftime("%m/%d/%Y %I:%M")}
 	
-	@appoint_date = @appointments.collect{|app| app.app_date_time.strftime("%m/%d/%Y %I:%M%p")}
-logger.debug "????????????????????????"
-	logger.debug @appointments.app_date_time.strftime("%m/%d/%Y %I:%M%p")
+	# @appoint_date = @appointments.collect{|app| app.app_date_time.strftime("%m/%d/%Y %I:%M%p")}
+	# logger.debug @appointments.app_date_time.strftime("%m/%d/%Y %I:%M%p")
 	@appoint_task = @appointments.collect{|app| app.task}
 end
 
