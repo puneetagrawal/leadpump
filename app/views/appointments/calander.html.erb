@@ -16,12 +16,18 @@
             // var appnt = $('#apt').val();
             // var dt = $('#apt.app_date').val();
             // var date = new Date(dt);
+            // var a = new Date();
+            // var at = getTime();
+            // alert(at);
          var dt = "<%=@appoint_date %>";
          var tsk = "<%=@appoint_task%>";
+
          var dt_array = string_to_array(dt, ']');
+
          var tsk_array = string_to_array(tsk, ']');
          var dta = array_to_hash(dt_array, tsk_array);         
           $('#calendar').fullCalendar({
+
               theme: true,
               header: {
                   left: 'prev,next today',
@@ -30,9 +36,18 @@
               },
 
               editable: true,
-              events: dta
+              events: dta, 
+
+
+        // if (event.url) {
+        //     window.open(event.url);
+        //     return false;
+        // }
+    
+
           });
     });
+    
     function string_to_array(str, sep) {
         str = str.replace(/\[/g, '').replace(/&quot;/g, '');
         var arr = str.split(sep);
@@ -42,14 +57,20 @@
         return arr;
     }
     function array_to_hash(dt_array, tsk_array){
-          alert(dt_array);
           var dtar = new Array();
+          console.log(dt_array);
           for(i=0;i<=dt_array.length;i++){
             var date = new Date(dt_array[i]);
+            console.log(date)
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-            var hsh = {title: tsk_array[i],start: new Date(y, m, d)}
+            var h = date.getHours();
+            var min = date.getMinutes();
+            console.log(d+">>>"+m+">>"+y+">>"+h+">>>"+min)
+            // var t = date.getTime();
+            // alert(t);
+            var hsh = {title: tsk_array[i],start: new Date(y, m, d, h, min), allDay: false}
             dtar.push(hsh);
          }
          return dtar;
