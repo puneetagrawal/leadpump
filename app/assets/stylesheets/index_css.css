@@ -84,10 +84,8 @@ p{
 	margin:0px auto;
 }
 .video_img{
-	width: 38.5%;
-float: left;
-margin-left: 24.8%;
-margin-top: 5px;
+	width: 609px;
+	margin: 5px auto 0;
 }
 .video_img img{
 	width:100%;

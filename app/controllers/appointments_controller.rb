@@ -14,25 +14,14 @@ def filter_app
 end
 
 def calander
-	@appointments = Appointment.fetchuserappointments(current_user, DateTime.now)
-	logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>"
-	if @appointments.present?
-		@appointments.each do |a|
-			if a.app_date_time.present? && a.app_date.present?
-				@appoint_date = a.app_date
-				@appoint_task = a.task 
-				logger.debug "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-				logger.debug @appoint_date
-				logger.debug @appoint_task
-				logger.debug "<<<<<<<<<<<<<<<"
-				# logger.debug a.app_date_time.strftime("%I:%M %p")
-				# logger.debug a.app_date.strftime("%m/%d/%Y")
-				# logger.debug a.user.name.humanize if a.user.present?
-				# logger.debug a.lead.name
-				# logger.debug a.task
-			end
-		end
-	end
+	@appointments = Appointment.fetch_monthly_apptmnt(current_user, Date.today)
+	logger.debug ">>>>>>>>>>>>>>>>>>>>>>>>>#{@appointments.size}"
+	# @appoint_date = @appointments.collect{|app| app.app_date.strftime("%m/%d/%Y")}
+	
+	@appoint_date = @appointments.collect{|app| app.app_date_time.strftime("%m/%d/%Y %I:%M%p")}
+logger.debug "????????????????????????"
+	logger.debug @appointments.app_date_time.strftime("%m/%d/%Y %I:%M%p")
+	@appoint_task = @appointments.collect{|app| app.task}
 end
 
 end
