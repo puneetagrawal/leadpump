@@ -385,7 +385,7 @@ function initialization(){
 		ref = $("#no_of_refs").val();
 		url = '/save_refs';
 		$.post(url, {id:id,ref:ref}, function (data) {
-			//$.fancybox.close();
+			$.fancybox.close();
 		});
 	});
 
