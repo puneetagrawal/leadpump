@@ -64,4 +64,20 @@ class Appointment < ActiveRecord::Base
     return appointments
   end
 
+  def self.fetch_monthly_apptmnt(user, date)
+      mth_strt = date.at_beginning_of_month
+      mth_end = date.at_end_of_month
+      case user.user_role.role_type.to_sym  
+      when :admin
+        appointments = Appointment.includes(:lead).includes(:user).where("app_date = ?", date)  
+      when :company
+        users = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
+        users << user.id
+        users = users.present? ? users.uniq : []
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>users).where("app_date > ? and app_date < ?",mth_strt, mth_end)
+      when :employee
+        appointments = Appointment.includes(:lead).includes(:user).where(:user_id=>user.id).where("app_date > ? and app_date < ?",mth_strt, mth_end)
+    end
+  end
+
 end

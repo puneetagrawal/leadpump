@@ -1,7 +1,7 @@
 <input type="hidden" name="app_date" id="app_date" value="<%=@appoint_date %>">
 <input type="hidden" name="task" id="task" value= "<%=@appoint_task%>">
 
-
+<!-- <input type="hidden" name="appointments" id="apt" value= "<%=@appointments%>"> -->
 
 
 
@@ -9,73 +9,51 @@
 <html>
 <head>
 
+
 <script>
 
     $(document).ready(function() {
-    
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
-        
-        $('#calendar').fullCalendar({
-            theme: true,
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: true,
-            events: [
-                // {
-                //     title: 'All Day Event',
-                //     start: new Date(y, m, 1)
-                // },
-                // {
-                //     title: 'Long Event',
-                //     start: new Date(y, m, d-5),
-                //     end: new Date(y, m, d-2)
-                // },
-                // {
-                //     id: 999,
-                //     title: 'Repeating Event',
-                //     start: new Date(y, m, d-3, 16, 0),
-                //     allDay: false
-                // },
-                // {
-                //     id: 999,
-                //     title: 'Repeating Event',
-                //     start: new Date(y, m, d+4, 16, 0),
-                //     allDay: false
-                // },
-                {
-                    title: 'Meeting',
-                    start: new Date(y, m, d, 10, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Lunch',
-                    start: new Date(y, m, d, 12, 0),
-                    end: new Date(y, m, d, 14, 0),
-                    allDay: false
-                },
-                {
-                    title: 'Birthday Party',
-                    start: new Date(y, m, d+1, 19, 0),
-                    end: new Date(y, m, d+1, 22, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Click for Google',
-                    start: new Date(y, m, 28),
-                    end: new Date(y, m, 29),
-                    url: 'http://google.com/'
-                }
-            ]
-        });
-        
-    });
+            // var appnt = $('#apt').val();
+            // var dt = $('#apt.app_date').val();
+            // var date = new Date(dt);
+         var dt = "<%=@appoint_date %>";
+         var tsk = "<%=@appoint_task%>";
+         var dt_array = string_to_array(dt, ']');
+         var tsk_array = string_to_array(tsk, ']');
+         var dta = array_to_hash(dt_array, tsk_array);         
+          $('#calendar').fullCalendar({
+              theme: true,
+              header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,agendaWeek,agendaDay'
+              },
 
+              editable: true,
+              events: dta
+          });
+    });
+    function string_to_array(str, sep) {
+        str = str.replace(/\[/g, '').replace(/&quot;/g, '');
+        var arr = str.split(sep);
+        arr[arr.length - 1] = arr[arr.length - 1].replace(/\]/g, '');
+        var arry = new Array();
+        arr = arr[0].split(",")
+        return arr;
+    }
+    function array_to_hash(dt_array, tsk_array){
+          alert(dt_array);
+          var dtar = new Array();
+          for(i=0;i<=dt_array.length;i++){
+            var date = new Date(dt_array[i]);
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            var hsh = {title: tsk_array[i],start: new Date(y, m, d)}
+            dtar.push(hsh);
+         }
+         return dtar;
+    }
 </script>
 <style>
 
