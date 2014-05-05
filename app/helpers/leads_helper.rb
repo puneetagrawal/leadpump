@@ -31,13 +31,6 @@ module LeadsHelper
 				assigntext = "Reassign"
 			end
 		end
-
-		if !assigntext.blank?
-			assigntext = "<span id='asignBtn_#{leadId}' class='leadAction '>
-			  					| <%=link_to '#{assigntext}', 'javascript:void(0)',html={:class=>'leadAction assignLead'}%>
-							</span>"
-
-		end
 		return render(:inline=> assigntext)
 	end	 
 
@@ -53,7 +46,6 @@ module LeadsHelper
 			if app.present?
 				tasktext = "ReTask"	
 			end
-			tasktext = "<%=link_to '#{tasktext}', 'javascript:void(0)',html={:class=>'leadAction task'}%>"
 			return render(:inline=> tasktext)
 		end
 
