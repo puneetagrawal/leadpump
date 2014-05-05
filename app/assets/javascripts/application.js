@@ -426,6 +426,10 @@ function initialization(){
         isNormalText(this);
     });
 
+    $(document).on('keyup', '.phone_text', function (){
+        change_phone_format(this);
+    });
+
     $(document).on('click', '.closealert', function (){
         closealert(this);
     });
@@ -534,9 +538,18 @@ function statSearchFilter(userId){
 }
 
 function isNormalText(event) {
-    var re = /[^0-9]+/g;
+    var re =  /[^- ^0-9]/g;
     var text = event.value.replace(re, '');
     $(event).val(text);
+}
+
+function change_phone_format(event){
+	var len = $(event).val();
+    var text = "";
+    if(len.length == 3 || len.length  == 7){
+    	text = len+'-';
+    	$(event).val(text);
+	}	
 }
 
 function optSearchFilter(optId){

@@ -2622,3 +2622,11 @@ top: -12px;}
     vertical-align: top;
     width: 10.2%;
     word-wrap: break-word;}
+.fc-border-separate thead{
+     background: none repeat scroll 0 0 #323232;
+    color: #FFFFFF;
+}
+
+.fc-header{
+    margin-bottom: -10px;
+}

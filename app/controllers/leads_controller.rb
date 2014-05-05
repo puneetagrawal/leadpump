@@ -211,7 +211,13 @@ def saveappointment
     NewsFeed.add_appointment_feed(lead, appoint, current_user)
     msg = "Appointment schedule successfully"
   end
-  data = {"msg" => msg}
+  logger.debug("<><<<<<<<<<<<<<<<")
+  logger.debug(date)
+  @appointments = Appointment.fetch_monthly_apptmnt(current_user, date)
+  @appoint_date = @appointments.collect{|app| app.app_date_time.strftime("%m/%d/%Y %I:%M")}
+  @appoint_task = @appointments.collect{|app| app.task}
+  @appoint_id  = @appointments.collect{|app| app.lead_id}
+  data = {"msg" => msg,"app_date"=>@appoint_date, "app_task"=>@appoint_task, "lead_id"=>@appoint_id}
   respond_to do |format|
     format.json { render json: data}
   end

@@ -160,6 +160,8 @@ Leadpump::Application.routes.draw do
 
   match 'appointment/new' => 'appointments#new'
   match '/calander' => 'appointments#calander'
+  match '/get_cal_data' => 'appointments#get_cal_data'
+
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
 

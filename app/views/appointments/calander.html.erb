@@ -1,80 +1,85 @@
-<input type="hidden" name="app_date" id="app_date" value="<%=@appoint_date %>">
-<input type="hidden" name="task" id="task" value= "<%=@appoint_task%>">
-
-<!-- <input type="hidden" name="appointments" id="apt" value= "<%=@appointments%>"> -->
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-
-
 <script>
+$(document).ready(function() {
+    init_cal();    
+});
 
-    $(document).ready(function() {
-            // var appnt = $('#apt').val();
-            // var dt = $('#apt.app_date').val();
-            // var date = new Date(dt);
-            // var a = new Date();
-            // var at = getTime();
-            // alert(at);
-         var dt = "<%=@appoint_date %>";
-         var tsk = "<%=@appoint_task%>";
+function fill_calendar(app_date, app_task, lead_id){
+   alert(">>>>>>")
+   var dt = app_date;
+   var tsk = app_task;
+   var lead_id = lead_id
+   var dta = array_to_hash(dt, tsk, lead_id); 
+    console.log(dta)
+    $('#calendar').fullCalendar(dta);
+} 
 
-         var dt_array = string_to_array(dt, ']');
-
-         var tsk_array = string_to_array(tsk, ']');
-         var dta = array_to_hash(dt_array, tsk_array);         
-          $('#calendar').fullCalendar({
-
-              theme: true,
-              header: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'month,agendaWeek,agendaDay'
-              },
-
-              editable: true,
-              events: dta, 
-
-
-        // if (event.url) {
-        //     window.open(event.url);
-        //     return false;
-        // }
-    
-
-          });
-    });
-    
-    function string_to_array(str, sep) {
-        str = str.replace(/\[/g, '').replace(/&quot;/g, '');
-        var arr = str.split(sep);
-        arr[arr.length - 1] = arr[arr.length - 1].replace(/\]/g, '');
-        var arry = new Array();
-        arr = arr[0].split(",")
-        return arr;
-    }
-    function array_to_hash(dt_array, tsk_array){
-          var dtar = new Array();
-          console.log(dt_array);
-          for(i=0;i<=dt_array.length;i++){
-            var date = new Date(dt_array[i]);
-            console.log(date)
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-            var h = date.getHours();
-            var min = date.getMinutes();
-            console.log(d+">>>"+m+">>"+y+">>"+h+">>>"+min)
-            // var t = date.getTime();
-            // alert(t);
-            var hsh = {title: tsk_array[i],start: new Date(y, m, d, h, min), allDay: false}
-            dtar.push(hsh);
-         }
-         return dtar;
-    }
+function init_cal(){
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        eventClick: function(event) {
+           leadid = event.id
+           $.fancybox.open({
+                href: '#createTask',
+                type: 'inline',
+                'beforeLoad' : function() {
+                    $.ajax({
+                        url: '/leads/createtask',
+                        type: 'GET',
+                        data: {
+                            leadId: leadid
+                        },
+                        success: function(doc) {
+                        }
+                    });
+                }
+            });
+            return false;
+        },
+        events: function(start, end, callback) {
+            $.ajax({
+                url: '/get_cal_data',
+                type: 'GET',
+                data: {
+                    month: end.getMonth()
+                },
+                success: function(doc) {
+                   var dt = doc.app_date;
+                   var tsk = doc.app_task;
+                   var lead_id = doc.lead_id
+                   var dta = array_to_hash(dt, tsk, lead_id); 
+                   callback(dta);
+                }
+            });
+        }
+    });  
+}
+function string_to_array(str, sep) {
+    str = str.replace(/\[/g, '').replace(/&quot;/g, '');
+    var arr = str.split(sep);
+    arr[arr.length - 1] = arr[arr.length - 1].replace(/\]/g, '');
+    var arry = new Array();
+    arr = arr[0].split(",")
+    return arr;
+}
+function array_to_hash(dt_array, tsk_array, lid){
+      var dtar = new Array();
+      for(i=0;i<=dt_array.length;i++){
+        var date = new Date(dt_array[i]);
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+        var h = date.getHours();
+        var min = date.getMinutes();
+        var hsh = {id: lid[i], title: tsk_array[i],start: new Date(y, m, d, h, min), allDay: false}
+        dtar.push(hsh);
+     }
+     return dtar;
+} 
 </script>
 <style>
 
@@ -91,8 +96,11 @@
         }
 
 </style>
-</head>
-<body>
-<div id='calendar'></div>
-</body>
-</html>
+<div id='calendar' style="margin-top:20px"></div>
+
+
+<div id="createTask" class="popup_container" style="height:430px">
+  <div id="createtask" class="small_popup">
+    <img src="/assets/ajax-loader.gif" class="loader_margin"/>
+  </div>
+</div>
