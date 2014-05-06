@@ -6,7 +6,7 @@
 
 	        <p> <label>Appt. time: </label>
                 <%=select_tag "hr", options_for_select(1..12, @hour),:prompt => "hours",:class=>"w10" %>
-                <%=select_tag "min", options_for_select([00, 15, 30, 45], @min),:prompt => "min",:class=>"w10" %>
+                <%=select_tag "min", options_for_select(["00", "15", "30", "45"], @min),:prompt => "min",:class=>"w10" %>
                 <%=select_tag "zon", options_for_select(["am","pm"], @zone),:class=>"w10" %>
             </p>
             <p> <label>Date of Appt: </label>
