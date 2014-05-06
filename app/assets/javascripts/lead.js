@@ -121,7 +121,9 @@ function tasksave(){
 				alert(data.msg);
 				$('.fc-header').remove();
 				$('.fc-content').remove();
-				init_cal();
+				if(window.location.pathname.indexOf('calander') > -1){
+					init_cal();
+				}
 				$(this).html(btn);
 				$("#viewLead_"+leadId).find(".task").text("ReTask");
 				$.fancybox.close();
