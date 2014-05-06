@@ -71,7 +71,7 @@ include SaleProdsHelper
   def is_daily_rep_allowed
     if !is_daily_rep_allow(current_user)
       flash[:notice] = "Sorry! you are not authorize user"
-      redirect_to home_index_path
+      redirect_to dashboard_path
     end
   end
 

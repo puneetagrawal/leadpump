@@ -4,12 +4,10 @@ $(document).ready(function() {
 });
 
 function fill_calendar(app_date, app_task, lead_id){
-   alert(">>>>>>")
    var dt = app_date;
    var tsk = app_task;
    var lead_id = lead_id
    var dta = array_to_hash(dt, tsk, lead_id); 
-    console.log(dta)
     $('#calendar').fullCalendar(dta);
 } 
 

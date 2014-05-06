@@ -135,7 +135,7 @@ class CompanyController < ApplicationController
   def socialMessages
     if current_user.isEmployee || current_user.isNormaluser
       flash[:notice] = "Sorry! you are not authorize user to perform this action."
-      redirect_to home_index_path
+      redirect_to dashboard_path
       return false
     end
   end
@@ -203,7 +203,7 @@ class CompanyController < ApplicationController
       end
     else
       flash[:notice] = "You are not authorie for this action"
-      redirect_to home_index_path
+      redirect_to dashboard_path
     end
   end
 
@@ -243,7 +243,7 @@ class CompanyController < ApplicationController
       end
     else
       flash[:notice] = "You are not authorie for this action"
-      redirect_to home_index_path
+      redirect_to dashboard_path
     end
   end
 
@@ -328,6 +328,31 @@ class CompanyController < ApplicationController
   #     Company.report()
       
   # end
+
+  def social_message_page
+    logger.debug("<<<<<<<<<<<<<<<<<<<<")
+    logger.debug(params[:name])
+    @landpage = LandingPage.find_by_user_id(current_user.id)
+    if !@landpage.present?
+      @landpage = LandingPage.new
+    end
+    @company = current_user.fetchCompany
+    @auto_responder = AutoResponder.where(:user_id=>current_user).order('id asc')
+    @auto_res = AutoResponder.new
+
+    @onlinemall = Onlinemall.new
+    if current_user.isAdmin
+      @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC")
+    elsif current_user.isCompany
+      logger.debug(">>>>>>>>")
+      @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC").where(:user_id=>[current_user,1])
+    end
+    
+    @temp_name = params[:name]
+    respond_to do |format|
+      format.js 
+    end
+  end
   
   
 

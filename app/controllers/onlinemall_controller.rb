@@ -6,7 +6,7 @@ class OnlinemallController < ApplicationController
     elsif current_user.isCompany
     	@onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC").where(:user_id=>[current_user,1])
     else
-      redirect_to home_index_path
+      redirect_to dashboard_path
     end
   end
 

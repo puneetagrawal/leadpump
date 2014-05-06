@@ -7,7 +7,7 @@
       
       <div class="hdr_container">
         <%if current_user%>
-          <%=link_to home_index_path, class: "logo" do%>
+          <%=link_to dashboard_path, class: "logo" do%>
             <img src="/assets/logo_img.png" width="169" height="50" alt="logo_img" />
           <%end%>
         <%else%>
@@ -17,7 +17,7 @@
         <%end%>
         <div class="sign_in">
           <%if current_user%>
-            <%= link_to "Logout", destroy_user_session_path, :method => :delete%>
+            <%= link_to "Logout", destroy_user_session_path, class: "border_none", :method => :delete%>
           <%else%>
             <%=link_to "Sign In",'/users/sign_in'%>
           <%end%>

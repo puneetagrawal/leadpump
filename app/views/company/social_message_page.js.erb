@@ -1,0 +1,16 @@
+alert("<%=@temp_name%>");
+<%if @temp_name == "manage_social"%>
+	alert("<%=@temp_name%>");
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_social")%>')
+<%elsif @temp_name == "manage_landing"  %>
+	alert("<%=@temp_name%>");
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_landing")%>')
+<%elsif @temp_name == "responder" %>
+	alert("<%=@temp_name%>");
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/responder")%>')
+<%elsif @temp_name == "online_mall"%>
+	alert("<%=@temp_name%>");
+<%elsif @temp_name == "vip_leads"%>
+	alert("<%=@temp_name%>");
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/vip_leads")%>')
+<%end%>

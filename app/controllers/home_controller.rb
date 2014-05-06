@@ -250,7 +250,7 @@ def calculateAmount
   #     date = planType == "monthly" ? Date.today + 45 : Date.today + 380
   #     Subscription.saveSubscription(company, @planPerUser.id, stripe_token, date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer_id, "")
   #     flash[:notice] = "Plan upgraded successfully"
-  #     redirect_to home_index_path()
+  #     redirect_to dashboard_path()
   #   rescue Stripe::CardError => e
   #     body = e.json_body
   #     err = body[:error]
@@ -361,10 +361,10 @@ def calculateAmount
         @msg = "You have been successfully verified"
         redirect_to new_plan_path(:user=>@user.token)
       else
-        redirect_to home_index_path
+        redirect_to dashboard_path
       end
     else
-      redirect_to home_index_path
+      redirect_to dashboard_path
     end
   end
 
