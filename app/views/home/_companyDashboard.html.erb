@@ -51,10 +51,17 @@
 		<%end %>
 	</li>
 <%end%>
-<li>
-	<%=link_to(new_appointment_path(), html_options = {}) do %>
+<!-- <li>
+	<%#=link_to(new_appointment_path(), html_options = {}) do %>
 	<i class="icon icon_appointment"></i>
 	<span>Appointments</span>                 
+	<%#end %>
+</li>  -->
+
+<li>
+	<%=link_to(calander_path, html_options = {}) do %>
+	<i class="icon icon_appointment"></i>
+	<span>Calander</span>                 
 	<%end %>
 </li> 
 
