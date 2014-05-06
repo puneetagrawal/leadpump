@@ -14,7 +14,11 @@
   <%#=link_to "Delete", "javascript:void(0)",html={:class=>"leadAction leadDelete"}%>
   <%#=checkIfCompanyAdmin(lead.id)%> 
   <%#=fetchTasklink(lead.id)%>
-  <%= select "action", "lead", options_for_select(["Edit","Delete",checkIfCompanyAdmin(lead.id),fetchTasklink(lead.id)], :selected=>lead.status), {}, :class=>"action_select leadAction"%>
+  <%if checkIfCompanyAdmin(lead.id) != ''%>
+  	<%= select "action", "lead", options_for_select(["Edit","Delete",fetchTasklink(lead.id),checkIfCompanyAdmin(lead.id)], :selected=>lead.status), {}, :class=>"action_select leadAction"%>
+	<%else%>
+  	<%= select "action", "lead", options_for_select(["Edit","Delete",fetchTasklink(lead.id)], :selected=>lead.status), {}, :class=>"action_select leadAction"%>
+	<%end%>
 
 </td>    
   

@@ -2632,3 +2632,9 @@ top: -12px;}
 }
 
 .table td{font-size: 12px;}
+
+.action_select{
+    font-size: 13px;
+    padding: 2px;
+    height: 25px;
+}
