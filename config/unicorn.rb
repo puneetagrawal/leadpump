@@ -1,15 +1,10 @@
-listen 80
+root = "/root/leadpump"
+working_directory root
+pid "#{root}/tmp/pids/unicorn_leadpump.pid"
+listen "/tmp/unicorn.leadpump.sock"
 
-worker_processes 3
+stderr_path "#{root}/log/unicorn.log"
+stdout_path "#{root}/log/unicorn.log"
 
-preload_app true
-
-#user nobody nogroup; # for systems with a "nogroup"
-# user nobody nobody; # for systems with "nobody" as a group instead
-
-# Feel free to change all paths to suite your needs here, of course
-#pid /path/to/nginx.pid;
-pid 'tmp/pids/unicorn.pid'
-
-stderr_path 'log/unicorn.log'
-stdout_path 'log/unicorn.log'
+worker_processes 2
+timeout 60
