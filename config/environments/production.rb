@@ -1,10 +1,11 @@
 Leadpump::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # Code is not reloaded between requests
+  SERVER_URL = "www.leadpump.com"
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  SERVER_URL = "signin.leadpump.com"
   STRIPE_API_KEY = "sk_live_uZbFMn8jJDxYhcWBJMRz4kZS"
   STRIPE_PUB_KEY = "pk_live_IEcenF7CwslP7o1kXeRcYCQS"
    #STRIPE_API_KEY = "sk_test_CSZ1ZaPwKkUnqoy9CRHVOaBA"
@@ -17,7 +18,7 @@ Leadpump::Application.configure do
   GMAIL_SECRET = "124660366124-6q04kuaps32m6qk248d9p0vvuuek56j5.apps.googleusercontent.com"
 
   YAHOO_KEY = "0e3144bc3873c87a36439f404c3753a240feaec7"
-  YAHOO_SECRET = "dj0yJmk9VDd0UG5Ncm96VXFVJmQ9WVdrOVlYTmtjMnRFTjJjbWNHbzlNekl6T0RZd05qWXkmcz1jb25zdW1lcnNlY3JldCZ4PTdm"
+  YAHOO_SECRET = "dj0yJmk9MzhBZ1ZrSHF4akh5JmQ9WVdrOVVuSlRUbTA0TjJVbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1lNQ--"
 
   PDF_PATH = "/usr/bin/wkhtmltopdf.sh"
 
