@@ -2,7 +2,44 @@
 <div class="container wrapper">
 	<div class="middle_cont_bg">
 	  <div class="row-fluid txt_cent">
-			
+				
+	  			<!-- <table class="settings_menu" >
+	  				<tbody>
+	  					<tr>
+	  						<%if is_vip_allow(current_user)%>
+		  						<td>
+		  							<input type="submit" class="btn yellow setting_btn" id = "manage_social_invite"  value="Manage Social Invite Messages" name="manage_social"/>
+		  						</td>
+		  						<td>
+		  							<input type="submit" class="btn yellow setting_btn" id = "manage_landing"  value="Manage Landing Page", name="manage_landing" />
+		  						</td>
+		  						<td>
+		  							<input type="submit" class="btn yellow setting_btn" id = "manage_pos_referral"  value="Manage Pos Referral Creation", name="manage_pos" />
+		  						</td>
+		  						<td>
+		  							<input type="submit" class="btn yellow setting_btn" id = "online_mall"  value="Online Mall", name="online_mall" />
+		  						</td>
+	  						<%end%>
+	  						<td>
+	  							<input type="submit" class="btn yellow setting_btn" id = "vip_leads"  value="Vip Leads", name="vip_leads" />
+	  						</td>
+	  						<td>
+	  							<input type="submit" class="btn yellow setting_btn" id = "responder"  value="Responder", name="responder" />
+	  						</td>
+	  						<%if current_user.isCompany%>
+		  						<td>
+		  							<input type="submit" class="btn yellow setting_btn" id = "manage_user"  value="Manage User", name="manage_user" />
+		  						</td>
+	  						<%end%>
+	  					</tr>
+	  				</tbody>
+	  			</table>
+	  			<div id = "setting_page" style="margin-top: -15px;float: left"> -->
+	  			
+
+
+
+
 				<%=render "home/companyLogo_seting"%>
 			    <%if current_user.isCompany%>
 				    <div class="setting_img_col">
@@ -18,7 +55,7 @@
 					    <% end %>
 					</div>
 			    <%end%>
-			    <ul class="settings_menu">
+			     <ul class="settings_menu">
 		        	<%if is_vip_allow(current_user)%>
 			            <li>
 			                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
@@ -50,13 +87,13 @@
 		            <%#if check_trial_period(current_user)%>
 		            	<!--<li>
 			                <%#=link_to "Cancel your trial", "javascript:void(0)", :class=> "btn yellow cancel_plan"%>
-			            </li>-->
+			            </li>
 		            <%#end%>
-		        </ul>
-		 
+		        </ul> -->
+		 </div>
 		</div>
 	</div>
-	<div id="cancel_sub" class="popup_container">
+	<!-- <div id="cancel_sub" class="popup_container">
 	  <div style="z-index:99999;top:3%">
 	    <div style="font-size:20px;text-align:center;" id="dltmall" class="small_popup">
 	  	<span style="font-weight:bold;">
@@ -68,6 +105,6 @@
 		</span>
 	  </div>
 	  </div>
-	</div>
+	</div> -->
 </div>
 <%=render "common_templates/popupContainer"%>

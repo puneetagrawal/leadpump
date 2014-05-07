@@ -9,7 +9,7 @@
             <%= lead.hidden_field :id%>
             <p><%= lead.label "First Name:" %><%= lead.text_field :name %></p>
              <p><%= lead.label "Last Name:" %><%= lead.text_field :lname %></p>
-            <p><%= lead.label "Phone:" %><%= lead.text_field :phone %></p>
+            <p><%= lead.label "Phone:" %><%= lead.text_field :phone, class: "phone_text" %></p>
             <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
             <p>
                 <%= lead.label "Gender:" %>

@@ -6,7 +6,7 @@
       <img src="/assets/logo_img.png">
       <%end %>
       <% else %>
-      <%=link_to home_index_path do%>  
+      <%=link_to dashboard_path do%>  
       <img src="/assets/logo_img.png">
       <%end %>
       <%end%>
@@ -17,20 +17,33 @@
       <li>Pump Up <i class="txt_blue">Profits</i>.</li>
     </ul>
     <ul class="fr usernav">
+      <% dashboard_selected = "" %>
+      <% home_selected = "" %>
+      <% if controller_name == "home" && action_name == "signup_user"
+           home_selected = "selected" 
+         elsif controller_name == "home" && action_name == "index"
+           dashboard_selected = "selected"         
+         end 
+      %>
+      <li class="<%= home_selected%>"><%=link_to  'Home', signup_user_path %></li>
+      
+      <li class="<%= dashboard_selected%>"><%=link_to  'Dashboard', dashboard_path %></li>
       <li> 
         <% if current_user %>
         <%=link_to destroy_user_session_path, :method => :delete do%>   
-        <i class="icon-chevron-right icon-white icon_login"></i>
+        <!-- <i class="icon-chevron-right icon-white icon_login"></i> -->
+        
         Logout
         <%end %>
         <%else%>
         <%=link_to new_user_session_path do %>
-        <i class="icon-chevron-right icon-white icon_login"></i>Login<%end %>
+        Login
+        <!-- <i class="icon-chevron-right icon-white icon_login"></i> Login--><%end %>
         <%end%>
       </li>
     </ul>
     <div class="clear"></div>
-    <div class="fr">
+    <!-- <div class="fr">
       <div id="headerNav" class="navbar">
         <div class="navbar-inner">
           <div class="container">
@@ -42,18 +55,18 @@
             <div class="nav-collapse collapse fr">
               <ul class="nav">
                 <% if current_user && current_user.role_id == 1%>
-                <li><%= link_to "DASHBOARD", admin_index_path, :class => "active", :id => "home_link" %></li>
+                <li><%#= link_to "DASHBOARD", admin_index_path, :class => "active", :id => "home_link" %></li>
                 <% elsif current_user %>
-                <li><%= link_to "DASHBOARD", home_index_path, :class => "active", :id => "home_link" %></li>
+                <li><%#= link_to "DASHBOARD", dashboard_path, :class => "active", :id => "home_link" %></li>
                 <%else%>
-                <li><%= link_to "DASHBOARD", signup_user_path, :class => "active", :id => "home_link"  %></li>
+                <li><%#= link_to "DASHBOARD", signup_user_path, :class => "active", :id => "home_link"  %></li>
                 <%end%>
               </ul>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </header>
 

@@ -37,7 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
           #Subscription.saveSubscription(resource, @planPerUser.id, params["user"]["subscription_attributes"]["stripe_card_token"], DateTime.strptime("2013-12-30 11:59 pm", '%Y-%m-%d %I:%M %p'), amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType)
           sign_in(resource_name, resource)  
           flash[:notice] = "Thankyou for registration."
-          redirect_to home_index_path()
+          redirect_to dashboard_path
         end
         rescue Stripe::CardError => e
         body = e.json_body

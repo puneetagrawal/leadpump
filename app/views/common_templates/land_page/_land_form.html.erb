@@ -2,7 +2,7 @@
     <p><label>*First Name</label><%= text_field_tag :name %></p>
     <p><label>*Last Name</label><%= text_field_tag :lname %></p>
     <p><label>*Email</label><%= text_field_tag :email %></p>
-    <p><label>*Phone</label><%= text_field_tag :phone %></p>
+    <p><label>*Phone</label><%= text_field_tag :phone, class: "phone_text" %></p>
     <p><label>*Referring friends name</label><%= text_field_tag :user_id, @associate, :readonly=>true %></p>
     <p><label>Build Muscle</label><input type="checkbox" name="b_muscle"></p>
     <p><label>Lose Weight</label><input type="checkbox" name="l_weight"></p>

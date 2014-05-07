@@ -348,7 +348,7 @@ end
   def authenticate
     if !current_user.isAdmin 
       flash[:notice] = "Sorry! you are not authorize user to perform this action."
-      redirect_to home_index_path
+      redirect_to dashboard_path
       return false
     end
   end

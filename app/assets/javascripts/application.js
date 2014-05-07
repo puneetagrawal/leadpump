@@ -179,6 +179,11 @@ $(document).on('click', '.autoResponder',function(){
   		onloginCall();
 	});
 
+	$(document).on('change', '.action_select', function (){
+  		action_change($(this));
+	});
+
+
 	$(document).on('click', '.viewContact', function (){
 		id = $(this).closest('tr').attr('id').split("_")[1]
 		$.fancybox.open({
@@ -426,6 +431,10 @@ function initialization(){
         isNormalText(this);
     });
 
+    $(document).on('keyup', '.phone_text', function (){
+        change_phone_format(this);
+    });
+
     $(document).on('click', '.closealert', function (){
         closealert(this);
     });
@@ -534,9 +543,18 @@ function statSearchFilter(userId){
 }
 
 function isNormalText(event) {
-    var re = /[^0-9]+/g;
+    var re =  /[^- ^0-9]/g;
     var text = event.value.replace(re, '');
     $(event).val(text);
+}
+
+function change_phone_format(event){
+	var len = $(event).val();
+    var text = "";
+    if(len.length == 3 || len.length  == 7){
+    	text = len+'-';
+    	$(event).val(text);
+	}	
 }
 
 function optSearchFilter(optId){
@@ -549,5 +567,22 @@ function test2(){
 	url = '/print_pass';
 	$.get(url, {optId:"optId"}, function (data) {	
 	});
+}
+
+function action_change($this){
+	var sel_val = $this.val();
+	var leadId = $this.parent().attr('id').split("_")[1];
+	if(sel_val == "Assign" || sel_val == "Reassign"){
+		getAutoCompleteForLeadAssign(leadId);
+	}
+	else if(sel_val == "Task" || sel_val == "ReTask"){
+		openTask($this);
+	}
+	else if(sel_val == "Delete"){
+		deleteFancyBox($this);
+	}
+	else if(sel_val == "Edit"){
+		leadEdit($this);
+	}
 }
 

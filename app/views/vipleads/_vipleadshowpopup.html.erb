@@ -4,7 +4,7 @@
             <h2 class="heading">View Vip Lead</h2>
             <div class="form pd15 leadform">
                 <p><%= label_tag "First Name:" %><%= text_field_tag  :name, @viplead.first_name %></p>
-                <p><%= label_tag "Last Name:" %><%= text_field_tag :phone, @viplead.last_name %></p>
+                <p><%= label_tag "Last Name:" %><%= text_field_tag :phone, @viplead.last_name, class: "phone_text" %></p>
                 <p><%= label_tag "Phone:" %><%= text_field_tag :email, @viplead.phone %></p>
                 <p><%= label_tag "Status:" %><%= text_field_tag :notes, @viplead.status %></p>
                 <p><input type="button" class="btn yellow cancelFancybox" value="Cancel"/></p>

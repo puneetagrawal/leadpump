@@ -12,7 +12,7 @@ class OptInLeadsController < ApplicationController
       end
 	 else
 		flash[:notice] = "Sorry you are not authorize user for this action"
-		redirect_to home_index_path
+		redirect_to dashboard_path
 		return false
 	 end
   end

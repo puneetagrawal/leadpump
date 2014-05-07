@@ -97,6 +97,12 @@ function initCompanyCreateOrUpdate(){
 			$('.submitGmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 		}
 	});	
+	$(".setting_btn").click(function(){
+		var page_name = $(this).attr('name');
+		var url = "/social_message_page";
+		$.get(url, {name: page_name}, function (data) {
+		});
+	});
 }
 
 function fakeClick(anchorObj) {

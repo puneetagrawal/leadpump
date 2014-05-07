@@ -1,0 +1,61 @@
+<script type="text/javascript" language="javascript">
+    $(function() {
+        //  Fuild layout, centering the items
+        $('#foo5').carouFredSel({
+            width: '100%',
+            scroll: 1
+        });
+
+    });
+</script>
+
+<div class="container wrapper">
+    <div class="row-fluid">
+        <div class="span4" style="width:35.624%;"%>
+            <div class="border formfields" data-no-turbolink>
+                <%=render "/onlinemall/form"%>
+            </div>
+        </div>
+        <div class="span8" style="width: 61.812%;;marging-left:0px">
+            <div class="border" style="width:106%;">
+                <h2 class="heading">All Mall Items</h2>
+                <table class="table table-striped">
+                    <thead>
+                    <tr><td>No.</td><td>Title</td><td>Associate</td><td>Description</td><td>Picture</td><td>File</td><td>Select</td><td>Action</td></tr>
+                    </thead>
+                    <tbody>
+                        <%if @onlinemalls.present?%>
+                            <%@onlinemalls.each_with_index do|om, index|%>
+                                <tr id="mallitem_<%=om.id%>">
+                                    <td><%=index+1%></td>
+                                    <%=render "mallitemcontentrow", :om=>om,:index=>index%>
+                                </tr>
+                            <%end%>
+                        <%end%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="span8">
+                <div class="clear"></div>
+                <div class="sliderCon">
+                    <h2>Online Mall</h2>
+                    <p class="text-center alert">Please click on the ad of your choice to print a coupon to redeem at the club.</p>
+                    <div class="list_carousel responsive" >
+                        <ul id="foo5">
+                            <%if @onlinemalls.present?%>
+                                <% @onlinemalls.each_with_index do|om, index|%>
+                                    <%if om.mallpic.present?%>
+                                        <li><%= image_tag om.mallpic.last.avatar.url() %></li>
+                                    <%end%>
+                                <%end%>
+                            <%end%>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <%=render "common_templates/popupContainer"%>

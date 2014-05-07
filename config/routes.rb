@@ -32,7 +32,11 @@ Leadpump::Application.routes.draw do
   match "/statsearch" => "statss#statsearch"
 
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users,:controllers => {:registrations => "registrations"}
+  as :user do
+    get 'login', to: 'devise/sessions#new', as: :new_user_session
+    post 'login', to: 'devise/sessions#create', as: :user_session    
+  end
   match "/signup_user" => "home#signup_user"
   match "/create_new_user" => "home#create_new_user"
   match "/send_verification_mail" => "home#send_verification_mail"
@@ -46,7 +50,7 @@ Leadpump::Application.routes.draw do
   match "/contact_form" => "home#contact_form"
   match "/intouch" => "home#intouch"
 
-  root to: "home#index"
+  root to: "home#signup_user"
 
   match "/fetchhotmailfriends" => "home#fetchhotmailfriends"
   match "/fetchfbfreinds" => "home#fetchfbfreinds"
@@ -65,7 +69,7 @@ Leadpump::Application.routes.draw do
 
   resources :vipleads
   
-  match 'home/index' => 'home#index'
+  match '/dashboard' => 'home#index' , :as => :dashboard
   match '/home/fillpopupcontent' => 'home#fillpopupcontent'
   match '/home/changestatus' => 'home#changestatus'
   match '/home/saveleadstatus' => 'home#saveleadstatus'
@@ -160,6 +164,8 @@ Leadpump::Application.routes.draw do
 
   match 'appointment/new' => 'appointments#new'
   match '/calander' => 'appointments#calander'
+  match '/get_cal_data' => 'appointments#get_cal_data'
+
   match 'appointment/create' => 'appointments#create'
   match 'appointment/index' => 'appointments#index'
 
@@ -185,6 +191,7 @@ Leadpump::Application.routes.draw do
   match '/company/update/:id' => 'company#update', :as => :update
   match '/delete/:id' => 'company#delete', :as => :delete
   match "/socialMessages" => "company#socialMessages"
+  match "/social_message_page" => "company#social_message_page"
   match "/savetwmes" => "company#savetwmes"
   match "/savefbmes" => "company#savefbmes"
   match "/savegmmes" => "company#savegmmes" 

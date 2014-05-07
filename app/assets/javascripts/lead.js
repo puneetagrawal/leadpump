@@ -119,6 +119,11 @@ function tasksave(){
 			url = '/leads/saveappointment';
 			$.get(url, {task:task,date:date,time:time,leadId:leadId}, function (data) {
 				alert(data.msg);
+				$('.fc-header').remove();
+				$('.fc-content').remove();
+				if(window.location.pathname.indexOf('calander') > -1){
+					init_cal();
+				}
 				$(this).html(btn);
 				$("#viewLead_"+leadId).find(".task").text("ReTask");
 				$.fancybox.close();

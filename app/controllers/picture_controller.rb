@@ -20,9 +20,9 @@ class PictureController < ApplicationController
     	end
     end
     if params[:home_dash].present?
-      redirect_to home_index_path()
+      redirect_to dashboard_path
     elsif params[:u_id].present?
-      redirect_to company_new_path()
+      redirect_to company_new_path
     else
     	redirect_to settings_path
     end
