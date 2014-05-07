@@ -107,7 +107,7 @@ $(document).on('click', '.autoResponder',function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = "/plan_cancel";
 		$.post(url, {}, function (data) {
-			window.location = "http://signin.leadpump.com/thanks"
+			window.location = "http://www.leadpump.com/thanks"
 		});
 	});
 
