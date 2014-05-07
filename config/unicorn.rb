@@ -7,4 +7,4 @@ stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
 worker_processes 2
-timeout 30
+timeout 60
