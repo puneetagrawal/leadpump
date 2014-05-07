@@ -323,15 +323,8 @@ class CompanyController < ApplicationController
       redirect_to "/"
     end
   end
-  # def report
-  #     user_ary = []
-  #     Company.report()
-      
-  # end
-
+  
   def social_message_page
-    logger.debug("<<<<<<<<<<<<<<<<<<<<")
-    logger.debug(params[:name])
     @landpage = LandingPage.find_by_user_id(current_user.id)
     if !@landpage.present?
       @landpage = LandingPage.new
@@ -340,13 +333,21 @@ class CompanyController < ApplicationController
     @auto_responder = AutoResponder.where(:user_id=>current_user).order('id asc')
     @auto_res = AutoResponder.new
 
+   
+
+
     @onlinemall = Onlinemall.new
     if current_user.isAdmin
       @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC")
     elsif current_user.isCompany
-      logger.debug(">>>>>>>>")
       @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC").where(:user_id=>[current_user,1])
     end
+
+    @company = false
+    @user = User.new()
+    @picture = Picture.new()
+    @users = User.fetchCompanyUserList(current_user)
+    @users.insert(0, current_user)
     
     @temp_name = params[:name]
     respond_to do |format|
