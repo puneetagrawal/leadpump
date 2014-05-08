@@ -21,7 +21,9 @@ function createGauge() {
     $(".eft_text").html('$'+cash);
     $(".total_text").html('$'+total_gross);
     $(".lead_text").html(lead);
-
+    var u_count = parseInt("<%=@users.size%>");
+    m_unit = u_count <= 1 ? .5 : 20
+    mx = u_count <= 1 ? 16 : 500
     $("#mem_gauge").kendoRadialGauge({
         pointer: {
             value: mem_sold,
@@ -29,10 +31,10 @@ function createGauge() {
             cap: {color: "white"}
         },
         scale: {
-            minorUnit: 20,
+            minorUnit: m_unit,
             startAngle: 0,
             endAngle: 180,
-            max: 500,
+            max: mx,
             labels: {color: "white"},
               rangeSize: 6,
               rangeDistance:0,
