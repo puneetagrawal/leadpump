@@ -1,40 +1,77 @@
- 
+<%= stylesheet_link_tag  "color_pic/colorpicker.css", :media => "all" %>
+<%= javascript_include_tag 'color_pic/colorpicker.js', 'color_pic/eye.js','color_pic/utils.js' => true %>
+<script>
+    $(document).ready(function(){
+    $('#bg_color_sl').ColorPicker({
+        color: '#0000ff',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $("#bg_color_sl").css('backgroundColor', '#' + hex);
+            $("#landing_page_bg_color").val('#' + hex);
+        }
+    });
+
+    $('#hd_color_sl').ColorPicker({
+        color: '#0000ff',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $('#hd_color_sl').css('backgroundColor', '#' + hex);
+            $('#landing_page_header_color').val('#' + hex);
+        }
+    });
+});
+
+</script> 
 <div class="container wrapper">
 	<div class="middle_cont_bg">
 	  <div class="row-fluid txt_cent">
 				
-	  			<!-- <table class="settings_menu" >
-	  				<tbody>
-	  					<tr>
+	  			<div class="settings_menu setting_all_btn" >
+	  				<ul>
 	  						<%if is_vip_allow(current_user)%>
-		  						<td>
-		  							<input type="submit" class="btn yellow setting_btn" id = "manage_social_invite"  value="Manage Social Invite Messages" name="manage_social"/>
-		  						</td>
-		  						<td>
-		  							<input type="submit" class="btn yellow setting_btn" id = "manage_landing"  value="Manage Landing Page", name="manage_landing" />
-		  						</td>
-		  						<td>
-		  							<input type="submit" class="btn yellow setting_btn vipseting" id = "manage_pos_referral"  value="Manage Pos Referral Creation", name="manage_pos" />
-		  						</td>
-		  						<td>
-		  							<input type="submit" class="btn yellow setting_btn" id = "online_mall"  value="Online Mall", name="online_mall" />
-		  						</td>
+		  						<li>
+		  							<input type="submit" class="btn yellow setting_btn manage_social" id = "manage_social_invite"  value="Manage Social Invite Messages" name="manage_social"/>
+		  						</li>
+		  						<li>
+		  							<input type="submit" class="btn yellow setting_btn manage_landing" id = "manage_landing"  value="Manage Landing Page", name="manage_landing" />
+		  						</li>
+		  						<li>
+		  							<input type="submit" class="btn yellow setting_btn manage_pos" id = "manage_pos_referral"  value="Manage Pos Referral Creation", name="manage_pos" />
+		  						</li>
+		  						<li>
+		  							<input type="submit" class="btn yellow setting_btn online_mall" id = "online_mall"  value="Online Mall", name="online_mall" />
+		  						</li>
 	  						<%end%>
-	  						<td>
+	  						<!-- <li>
 	  							<input type="submit" class="btn yellow setting_btn" id = "vip_leads"  value="Vip Leads", name="vip_leads" />
-	  						</td>
-	  						<td>
-	  							<input type="submit" class="btn yellow setting_btn" id = "responder"  value="Responder", name="responder" />
-	  						</td>
+	  						</li> -->
+	  						<li>
+	  							<input type="submit" class="btn yellow setting_btn responder" id = "responder"  value="Responder", name="responder" />
+	  						</li>
 	  						<%if current_user.isCompany%>
-		  						<td>
-		  							<input type="submit" class="btn yellow setting_btn" id = "manage_user"  value="Manage User", name="manage_user" />
-		  						</td>
+		  						<li>
+		  							<input type="submit" class="btn yellow setting_btn manage_user" id = "manage_user"  value="Manage User", name="manage_user" />
+		  						</li>
 	  						<%end%>
-	  					</tr>
-	  				</tbody>
-	  			</table>
-	  			<div id = "setting_page" style="margin-top: -15px;float: left"> -->
+
+	  			</ul>
+	  				
+	  			</div>
+	  			<div id = "setting_page" >
 	  			
 
 
@@ -55,7 +92,7 @@
 					    <% end %>
 					</div>
 			    <%end%>
-			     <ul class="settings_menu">
+			     <!-- <ul class="settings_menu">
 		        	<%if is_vip_allow(current_user)%>
 			            <li>
 			                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
@@ -89,7 +126,7 @@
 			                <%#=link_to "Cancel your trial", "javascript:void(0)", :class=> "btn yellow cancel_plan"%>
 			            </li>
 		            <%#end%>
-		        </ul>
+		        </ul> -->
 		 </div>
 		</div>
 	</div>
@@ -107,4 +144,6 @@
 	  </div>
 	</div> -->
 </div>
+
+<!-- <span class="background_color" id="bg_color_sl" style="background:<%#=@landpage.bg_color%>;display:none;"></span> -->
 <%=render "common_templates/popupContainer"%>

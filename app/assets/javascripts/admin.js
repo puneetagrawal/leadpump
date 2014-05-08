@@ -3,8 +3,8 @@ $(document).ready(function(){
 	dltid = '';
 	plid = '';
 	$('.pagination a').attr('data-remote', 'true');
-	$(".mallsubmit").click(function(){
-		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val()
+	$(document).on("click",".mallsubmit", function(){
+		var isValid = $("#onlinemall_mallpic_attributes_0_avatar").val();
 		if (isValid != '') {
 			$("#new_onlinemall").submit()
 		}
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	$(document).on('click', ".edit_icon", function () {
 		$(".formfields").html('<img src="/assets/ajax-loader.gif" style="margin:35%">');
 		id = $(this).closest('tr').attr('id').split("_")[1];
-		url = '/onlinemall/'+id+'/edit'
+		url = '/onlinemall/'+id+'/edit';
 		$.get(url, {id:id}, function (data) {
 			mallid = id;
 			$(".heading").text("Update Mall Item");
@@ -54,12 +54,12 @@ $(document).ready(function(){
 
 	$(document).on('click', ".mallBtn", function () {
 		$(this).html('<img src="/assets/ajax-loader.gif" style="">');
-		url = '/mallremove'
+		url = '/mallremove';
 		$.get(url, {id:dltid}, function (data) {
 			$(this).html('Delete');
 			alert(data.msg);
 			$("#mallitem_"+dltid).remove();
-			$.fancybox.close()
+			$.fancybox.close() ;
 		});
 	});
 
@@ -221,7 +221,7 @@ $(document).ready(function(){
 		else if (to_date.length == 0)
 		{
 			$.ajax({
-				url: "/filter_user",
+				url: "/filter_user"
 			});
 		}
 	});

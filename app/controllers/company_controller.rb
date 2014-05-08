@@ -29,17 +29,17 @@ class CompanyController < ApplicationController
       if @user.save      
         Company.createUser(current_user, @user)
         flash[:success] = "User successfully created"
-        redirect_to company_new_path()      
+        redirect_to settings_path      
       else
         @users = User.fetchCompanyUserList(current_user)
-        render :action =>"new"
+        render :action =>"settings"
       end
     else
       flash[:alert] = "Sorry! your user creation limit exceeded."
       @user = User.new()
       @picture = Picture.new()
       @users = User.fetchCompanyUserList(current_user)
-      render :action =>"new"
+      render :action =>"settings"
     end
   end
 
@@ -332,10 +332,6 @@ class CompanyController < ApplicationController
     @company = current_user.fetchCompany
     @auto_responder = AutoResponder.where(:user_id=>current_user).order('id asc')
     @auto_res = AutoResponder.new
-
-   
-
-
     @onlinemall = Onlinemall.new
     if current_user.isAdmin
       @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC")

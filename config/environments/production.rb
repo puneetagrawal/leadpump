@@ -17,8 +17,8 @@ Leadpump::Application.configure do
   GMAIL_KEY = "BSt-gSNSovq5iqQ8b01WcmlQ"
   GMAIL_SECRET = "124660366124-6q04kuaps32m6qk248d9p0vvuuek56j5.apps.googleusercontent.com"
 
-  YAHOO_KEY = "0e3144bc3873c87a36439f404c3753a240feaec7"
-  YAHOO_SECRET = "dj0yJmk9MzhBZ1ZrSHF4akh5JmQ9WVdrOVVuSlRUbTA0TjJVbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1lNQ--"
+  YAHOO_KEY = "ef78376f5a2414e68408865e3a8422eabdd26c44"
+  YAHOO_SECRET = "dj0yJmk9R1BBTTF0YUc0VnpGJmQ9WVdrOWVUaHVhamxhTTJNbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yMA--"
 
   PDF_PATH = "/usr/bin/wkhtmltopdf.sh"
 
@@ -52,7 +52,7 @@ Leadpump::Application.configure do
   config.assets.compress = true
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
 
   config.action_mailer.default_url_options = { :host => SERVER_URL }
 

@@ -1,41 +1,4 @@
-  <%= stylesheet_link_tag  "color_pic/colorpicker.css", :media => "all" %>
-  <%= javascript_include_tag 'color_pic/colorpicker.js', 'color_pic/eye.js','color_pic/utils.js' => true %>
-<script>
-    $(document).ready(function(){
-    $('#bg_color_sl').ColorPicker({
-        color: '#0000ff',
-        onShow: function (colpkr) {
-            $(colpkr).fadeIn(500);
-            return false;
-        },
-        onHide: function (colpkr) {
-            $(colpkr).fadeOut(500);
-            return false;
-        },
-        onChange: function (hsb, hex, rgb) {
-            $("#bg_color_sl").css('backgroundColor', '#' + hex);
-            $("#landing_page_bg_color").val('#' + hex);
-        }
-    });
-
-    $('#hd_color_sl').ColorPicker({
-        color: '#0000ff',
-        onShow: function (colpkr) {
-            $(colpkr).fadeIn(500);
-            return false;
-        },
-        onHide: function (colpkr) {
-            $(colpkr).fadeOut(500);
-            return false;
-        },
-        onChange: function (hsb, hex, rgb) {
-            $('#hd_color_sl').css('backgroundColor', '#' + hex);
-            $('#landing_page_header_color').val('#' + hex);
-        }
-    });
-});
-
-</script>
+  
 <div class="container landing_pages">
     <div class="row-fluid">
         <div class="span12">

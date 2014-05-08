@@ -11,8 +11,8 @@ function initCompanyCreateOrUpdate(){
 	$(".container").on('click', '.compSubmit', function (){
 		companySubmit(this);
 	});	
-	$(".land_page_submit").unbind();
-	$(".land_page_submit").click(function (){
+	// $(".land_page_submit").unbind();
+	$(document).on("click", ".land_page_submit", function (){
 		$(".forms").submit();
 	});
 
@@ -30,8 +30,8 @@ function initCompanyCreateOrUpdate(){
 		}
 	});
 
-	$(".land_page_preview").unbind();
-	$(".land_page_preview").click(function (){
+	// $(".land_page_preview").unbind();
+	$(document).on("click", ".land_page_preview", function (){
 		$(this).siblings('span').html('<img src="/assets/ajax-load.gif" style="width:20px;height:20px;margin:10px">');
 		url = '/previewsave';
 		$.post(url, {inputs:formfields()}, function (data) {
@@ -41,8 +41,7 @@ function initCompanyCreateOrUpdate(){
 		});
 	});	
 
-	$(".submitFmes").unbind();
-	$(".submitFmes").click(function(){
+	$(document).on("click", ".submitFmes", function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savefbmes';
 		subject = $.trim($("#fbsubject").val());
@@ -63,9 +62,7 @@ function initCompanyCreateOrUpdate(){
 		}
 	});
 
-	$(".submitTmes").unbind();
-	$(".submitTmes").click(function(){
-		debugger;
+	$(document).on("click", ".submitTmes", function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savetwmes';
 		text = $.trim($(this).siblings('textarea').val());
@@ -80,8 +77,7 @@ function initCompanyCreateOrUpdate(){
 			$('.submitTmes').html('<a href="javascript:void(0)" class="btn yellow">Submit</a>');
 		}
 	});
-	$(".submitGmes").unbind();
-	$(".submitGmes").click(function(){
+	$(document).on("click", ".submitGmes", function(){
 		$(this).html('<img src="/assets/ajax-loader.gif">');
 		url = '/savegmmes';
 		text = $(this).siblings('textarea').val();
@@ -98,6 +94,7 @@ function initCompanyCreateOrUpdate(){
 		}
 	});	
 	$(".setting_btn").click(function(){
+		$("#setting_page").html('<img src="/assets/ajax-loader.gif" style="margin:15% 0 0 50%">');
 		var page_name = $(this).attr('name');
 		var url = "/social_message_page";
 		$.get(url, {name: page_name}, function (data) {
@@ -116,9 +113,9 @@ function fakeClick(anchorObj) {
 
 
 function companyEdit(obj){
-	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 0;float:left;">')
+	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 0;float:left;">') ;
 	id = $(obj).closest('tr').attr('id');
-	userId = id.split("_")[1]
+	userId = id.split("_")[1] ;
 	url = '/company/'+userId+'/edit'
 	$.get(url, {}, function (data) {
 		$(".headmsg").text("Update User");

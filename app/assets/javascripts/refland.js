@@ -31,7 +31,7 @@ function saveReferral(obj){
 		});	
 	}
 	else{
-		alert("Please fill required fields")
+		alert("Please fill required fields");
 		$(obj).html('<button class="ref_submit" type="button">Submit</button>');
 	}
 	

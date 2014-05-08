@@ -1,5 +1,5 @@
 
-WL.init({ client_id: "0000000048110A7E", redirect_uri: "http://www.leadpump.com" });
+WL.init({ client_id: "0000000044119D8D", redirect_uri: "http://www.leadpump.com" });
 
 function testt(){
   WL.login({ scope: ["wl.basic","wl.contacts_emails","wl.emails"] }).then(
