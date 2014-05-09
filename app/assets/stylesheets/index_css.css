@@ -535,6 +535,7 @@ p.btn_fnt {
     float: left;
     position: relative;
     padding: 50px 0px;
+    z-index:9
 }
 
 .trial_col_container {
@@ -1249,4 +1250,5 @@ p.btn_fnt {
     width: 100%;
     position: fixed;
     top: -130px;
+    z-index: 999;
 }
