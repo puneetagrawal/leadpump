@@ -40,7 +40,7 @@
                    <%=render "common_templates/signup_user", cls: "black_wrap_input" %>
                   </span>
                      <div class="btn_box">
-                        <input name="" type="button" class="black_wrap_btn <%if !current_user.present?%>signup_1<%end%>" value="Start Free Trial"/>
+                        <input name="" type="button" class="black_wrap_btn <%if !current_user.present?%>signup_1<%end%>" value="Try It For FREE"/>
                         <p class="btn_fnt">By clicking you agree to terms and conditions.</p>
                     </div>
                 <%end%>
@@ -79,7 +79,7 @@ while lowering new member acquisition cost and operating expenses!</p>
         </div>
         </div>
     </div>
-    <div class="feature_wrap">
+    <!-- <div class="feature_wrap">
       <div class="feature_wrap_container">
           <a id = "our_features"></a>
           <h4>OUR FEATURES</h4>
@@ -185,7 +185,7 @@ projections for your entire team</p>
               </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="orange_wrap">
       <div class="orange_wrap_container">
       <h4 class="white_c">Instantly Increase Leads And Sales By Up To 37% A Month!
@@ -316,16 +316,16 @@ your team.</p>
           <div class="trial_left">
               <h2>Getting Referrals Can Be Work But It Doesn't 
 Have To Be Difficult, Start Your Trial Today!</h2>
-      <h3>LEAD<span class="skyblue">PUMP</span> <span class="ft_it black_c">- Start your 30-day free trial!</span></h3>
-      <%= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
-        <span class="leadform1">
-         <%=render "common_templates/signup_user" , cls: "trial_left_input" %>
+      <!-- <h3>LEAD<span class="skyblue">PUMP</span> <span class="ft_it black_c">- Start your 30-day free trial!</span></h3> -->
+      <%#= form_tag('/create_new_user', method: :post, :id=>"signup_user", :class => "", :remote=>true) do |f| %>
+       <!--  <span class="leadform1">
+         <%#=render "common_templates/signup_user" , cls: "trial_left_input" %>
          </span>
-         <%=hidden_field_tag :cls, "trial_left_input"%>
+         <%#=hidden_field_tag :cls, "trial_left_input"%>
          <div class="trial_left_btn_box">
             <input name="" type="button" class="trial_left_btn <%= current_user.present? ? '' : 'signup_1'%>" value="Start Free Trial"/>
-         </div>
-        <%end%>
+         </div> -->
+        <%#end%>
         </div>
         </div>
             
@@ -369,9 +369,9 @@ Have To Be Difficult, Start Your Trial Today!</h2>
                         
                         <div class= "footer_social_icon">
                           <h2>Follow us</h2>
-                          <img src="/assets/social-media-logos-facebook.png" width="52" height="168" alt="social_icon" class="left_img1"/>
-                          <img src="/assets/social-media-logos-linkedin.png" width="52" height="168" alt="social_icon" class="left_img1"/>
-                          <img src="/assets/social-media-logos-twitter.png" width="52" height="168" alt="social_icon" class="left_img1"/>
+                          <a href="https://www.facebook.com/pages/LEADPUMPcom/178827235651483" target="_blank"><img src="/assets/social-media-logos-facebook.png" width="52" height="168" alt="social_icon" class="left_img1"/></a>
+                          <a href="#" target="_blank" ><img src="/assets/social-media-logos-linkedin.png" width="52" height="168" alt="social_icon" class="left_img1"/></a>
+                          <a href=" https://twitter.com/leadpump" target="_blank" ><img src="/assets/social-media-logos-twitter.png" width="52" height="168" alt="social_icon" class="left_img1"/></a>
                         </div>
                     </div>
 
