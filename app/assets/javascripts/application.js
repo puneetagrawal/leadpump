@@ -362,7 +362,7 @@ function initialization() {
         }
     });
 
-    $(".submit_company_logo").click(function () {
+    $(document).on("click", ".submit_company_logo", function () {
         $('#picture_company_logo').click();
     });
 
@@ -370,7 +370,7 @@ function initialization() {
         $('#c_logo').submit();
     });
 
-    $(".submit_profile_pic").click(function () {
+    $(document).on("click", ".submit_profile_pic", function () {
         $('#picture_avatar').click();
     });
 
