@@ -22,18 +22,10 @@ function init_cal(){
         eventClick: function(event) {
            leadid = event.id
            $.fancybox.open({
-                href: '#createTask',
+                href: '#viewPopup',
                 type: 'inline',
-                'beforeLoad' : function() {
-                    $.ajax({
-                        url: '/leads/createtask',
-                        type: 'GET',
-                        data: {
-                            leadId: leadid
-                        },
-                        success: function(doc) {
-                        }
-                    });
+                'beforeLoad': function () {
+                    fillPopupContent($(this.element), leadid);
                 }
             });
             return false;
@@ -96,9 +88,4 @@ function array_to_hash(dt_array, tsk_array, lid){
 </style>
 <div id='calendar' style="margin-top:20px"></div>
 
-
-<div id="createTask" class="popup_container" style="height:430px">
-  <div id="createtask" class="small_popup">
-    <img src="/assets/ajax-loader.gif" class="loader_margin"/>
-  </div>
-</div>
+<%=render "common_templates/popupContainer"%>

@@ -221,7 +221,7 @@ $(document).ready(function () {
                 href: '#viewPopup',
                 type: 'inline',
                 'beforeLoad': function () {
-                    fillPopupContent($(this.element));
+                    fillPopupContent($(this.element), '');
                 }
             });
         }
@@ -288,12 +288,11 @@ function initLeadActiveSelect() {
     });
 }
 
-function fillPopupContent(obj) {
-    id = $(obj).attr('id');
-    id = id.split("_")[1];
-    act = $(obj).attr('data-action');
+function fillPopupContent(obj, lead_id) {
+    id = lead_id == '' ? $(obj).attr('id').split("_")[1] : lead_id;
+    act = lead_id == '' ? $(obj).attr('data-action') : 'leadpopup'
     url = '/home/fillpopupcontent';
-    uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home";
+    uri = lead_id == '' ? window.location.pathname.indexOf("leads") > -1 ? "leads" : "home" : "cal";
     $.get(url, {id: id, act: act, uri: uri}, function (data) {
     });
 }
