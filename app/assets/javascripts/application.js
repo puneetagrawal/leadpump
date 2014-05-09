@@ -14,9 +14,6 @@
 //= require jquery-ui
 //= require jquery.remotipart
 //= require jquery_nested_form
-//= require kendo.all.min
-//= require highcharts
-//= require exporting
 //= require Chart
 //= require autocomplete-rails
 //= require bootstrap-datepicker
