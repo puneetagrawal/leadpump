@@ -54,6 +54,34 @@ def self.fetchTotalLeads(user)
     totallead = leads.present? && leads.size > 0 ? leads.size : 0
 end
 
+def self.fetchAppointmentData(lead_id)
+  lead = Lead.find(lead_id)
+  appointment = Appointment.find_by_lead_id(lead.id)
+  task = ''
+  hour = ''
+  min = ''
+  zone = ''
+  if appointment.present?
+    date = appointment.app_date_time.strftime("%m/%d/%Y")
+    task = appointment.task
+    hour = appointment.app_date_time.hour
+    min = appointment.app_date_time.min
+    if hour >= 12 
+      zone = "pm"
+      hour = appointment.app_date_time.hour - 12
+    else
+      zone = "am"
+    end
+  end
+  tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
+  hash_list = {tasklist: tasklist, lead: lead, date: date, task: task, hour: hour, min: min, zone: zone}
+  logger.debug hash_list
+  return hash_list
+end
+
+
+
+
 def self.fetchLeadList(user)
 	leads = []
 	userList = []

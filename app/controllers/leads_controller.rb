@@ -79,26 +79,7 @@ class LeadsController < ApplicationController
 end
 
 def createtask
-  @lead = Lead.find(params[:leadId])
-  @appointment = Appointment.find_by_lead_id(@lead.id)
-  @task = ''
-  @hour = ''
-  @min = ''
-  @zone = ''
-  if @appointment.present?
-    @date = @appointment.app_date_time.strftime("%m/%d/%Y")
-    @task = @appointment.task
-    @hour = @appointment.app_date_time.hour
-    @min = @appointment.app_date_time.min
-    if @hour >= 12 
-      @zone = "pm"
-      @hour = @appointment.app_date_time.hour - 12
-    else
-      @zone = "am"
-    end
-  end
-  
-  @tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
+  @task_hash = Lead.fetchAppointmentData(params[:leadId])
   respond_to do |format|
     format.js   
   end
@@ -211,8 +192,6 @@ def saveappointment
     NewsFeed.add_appointment_feed(lead, appoint, current_user)
     msg = "Appointment schedule successfully"
   end
-  logger.debug("<><<<<<<<<<<<<<<<")
-  logger.debug(date)
   @appointments = Appointment.fetch_monthly_apptmnt(current_user, date)
   @appoint_date = @appointments.collect{|app| app.app_date_time.strftime("%m/%d/%Y %I:%M")}
   @appoint_task = @appointments.collect{|app| app.task}

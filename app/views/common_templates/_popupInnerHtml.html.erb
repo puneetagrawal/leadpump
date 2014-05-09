@@ -1,9 +1,32 @@
 
 <div class="modal-header">
         <button type="button" class="close cancelFancybox" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Lead</h3>
+        <%if @home == "cal"%>
+            <h3>APPOINTMENT</h3>
+        <%else%>
+            <h3>Lead</h3>
+        <%end%>
     </div>
     <div class="modal-body">
+        <%if @home == "cal" %>
+        <div class="span4 margin_width" style="width:100%;margin-left:0px">    
+                <div class="taskAsgn">
+                        <%=hidden_field_tag :leadid, @task_hash[:lead].id%>
+                        <%=select_tag "createLeadTask", options_for_select(@task_hash[:tasklist], @task_hash[:task]),:prompt => "Create Task",:class=>"createLeadTask taskAssign new_Task" %>
+                            <%=select_tag "hr", options_for_select(1..12, @task_hash[:hour]),:prompt => "hours",:class=>"w10 new_w10" %>
+                            <%=select_tag "min", options_for_select(["00", "15", "30", "45"], @task_hash[:min]),:prompt => "min",:class=>"w10 new_w10" %>
+                            <%=select_tag "zon", options_for_select(["am","pm"], @task_hash[:zone]),:class=>"w10 new_w10" %>
+                            <%= text_field_tag :app_date, @task_hash[:date], :class=>"new_date_input"%>
+                        </p>
+                        
+                </div>        
+            </div>
+            <%end%>
+
+<script type="text/javascript">
+    $('#app_date').datepicker({ dateFormat: 'yy-mm-dd', minDate: 0 }).val();
+    tasksave();
+</script>
         <table class="table table-striped" style= "width:600px">
             <!-- <thead>
                 <tr><td>#</td><td>Name</td><td>Email</td></tr>
@@ -19,7 +42,7 @@
                 <tr><td>Goals</td><td>-</td><td><%=@lead.goal%></td></tr>
                 <tr><td>Guest-Pass-Issued</td><td>-</td><td><%=@lead.guest_pass_issued%></td></tr>
                 <tr><td># of days</td><td>-</td><td><%=@lead.no_of_days%></td></tr>
-                <%if action_name != "createtask"%>
+                <%if @home != "cal"%>
                     <tr><td>Potential-Enrolment</td><td>-</td><td><%=@lead.enrolment_value%></td></tr>
                     <tr><td>Potential-Dues</td><td>-</td><td><%=@lead.dues_value%></td></tr>
                     <tr class="Note_row">
@@ -37,8 +60,12 @@
         </table>
     </div>
     <div class="modal-footer">
-        <%if @home%>
-            <a href="javascript:void(0)" class="btn yellow read_feed" id="lead_<%=@lead.id%>">Complete</a>
+        <%if @home == "home"%>
+            <a href="javascript:void(0)" class="btn yellow read_feed" id="lead_<%=@lead.id%>"  style="padding: 8px 0 7px;">Complete</a>
+        <%elsif @home == "cal"%>
+            <span class="taskBtn"> 
+                <input type="button" name="submitApoint" value="submit" id="submitApoint" class="btn yellow">
+            </span>
         <%end%>
-        <a href="javascript:void(0)" data-dismiss="modal" class="btn yellow cancelFancybox">Cancel</a>
+        <a href="javascript:void(0)" data-dismiss="modal" class="btn yellow cancelFancybox" style=" padding: 8px 0 7px;">Cancel</a>
     </div>

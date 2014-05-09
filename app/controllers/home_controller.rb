@@ -82,11 +82,15 @@ def calculateAmount
   end
 
   def fillpopupcontent
-    @home = params[:uri] == "home" ? true : false
+    @home = params[:uri]
     if params[:act] == 'leadpopup'
       @lead = Lead.find(params[:id])
     elsif params[:act] == 'userpopup'
       @user = User.find(params[:id])
+    end
+    if @home == 'cal'
+      @task_hash = Lead.fetchAppointmentData(@lead.id)
+      logger.debug @task_hash
     end
     respond_to do |format|
       format.js
