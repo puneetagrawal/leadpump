@@ -19,14 +19,18 @@
                 <tr><td>Goals</td><td>-</td><td><%=@lead.goal%></td></tr>
                 <tr><td>Guest-Pass-Issued</td><td>-</td><td><%=@lead.guest_pass_issued%></td></tr>
                 <tr><td># of days</td><td>-</td><td><%=@lead.no_of_days%></td></tr>
-                <tr><td>Potential-Enrolment</td><td>-</td><td><%=@lead.enrolment_value%></td></tr>
-                <tr><td>Potential-Dues</td><td>-</td><td><%=@lead.dues_value%></td></tr>
-                <tr class="Note_row">
-                    <td>Add Notes:</td>
-                    <td colspan="2">
-                        <textarea name="lead_notes" id="lead_text" style="width:320px;height:54px;"></textarea>
-                        <a href="javascript:void(0)" class="btn yellow add_notes" id="lead_notes" data-id="<%=@lead.id%>">Add</a>
-                    </td>
+                <%if action_name != "createtask"%>
+                    <tr><td>Potential-Enrolment</td><td>-</td><td><%=@lead.enrolment_value%></td></tr>
+                    <tr><td>Potential-Dues</td><td>-</td><td><%=@lead.dues_value%></td></tr>
+                    <tr class="Note_row">
+                        
+
+                        <td>Add Notes:</td>
+                        <td colspan="2">
+                            <textarea name="lead_notes" id="lead_text" style="width:320px;height:54px;float: left;"></textarea>
+                            <a href="javascript:void(0)" class="btn yellow add_notes" id="lead_notes" data-id="<%=@lead.id%>">Add</a>
+                        </td>
+                <%end%>
                 </tr>
                 <%= gettimestams(@lead) %>
             </tbody>

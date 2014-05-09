@@ -93,7 +93,7 @@ p {
 
 .video_img {
     width: 609px;
-    margin: 5px auto 0;
+    margin: 120px auto 0;
 }
 
 .black_wrap {
@@ -282,7 +282,7 @@ h4.white_c {
 p.btn_fnt {
     font-size: 10px;
     color: #ccc;
-    margin: 0px 55px 0px 0px;
+    margin: 0 34px 0 0;
     float: right;
 }
 
@@ -483,6 +483,7 @@ p.btn_fnt {
 .step_col_box .step_col_box_top {
     background: #49484e;
     border-radius: 3px;
+      min-height: 160px;
     text-align: center;
     padding: 15px 0px;
 }
@@ -534,7 +535,7 @@ p.btn_fnt {
     width: 100%;
     float: left;
     position: relative;
-    padding: 50px 0px;
+    padding:80px 0;
     z-index:9
 }
 
@@ -1134,7 +1135,7 @@ p.btn_fnt {
 }
 
 .inpupt_pop input[type='text'], .inpupt_pop input[type='password'] {
-    height: 22px;
+    height: 32px;
 }
 
 .mb-15 {

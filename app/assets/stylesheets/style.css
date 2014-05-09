@@ -2932,6 +2932,7 @@ header .container {
     margin: -10px 0 2px;
     float: left;
     min-width: 22px;
+    clear: both;
 }
 
 #lead_text:focus {
