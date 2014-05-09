@@ -227,8 +227,8 @@
 
   def mallitems
     user = User.where(:token=>params[:id]).last
-  #user = User.find(2)
-  @companymallitem = user.fetchcompanymallitem
+    #user = User.find(2)
+    @companymallitem = user.fetchcompanymallitem
 end
 
 def trackEmail

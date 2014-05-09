@@ -73,13 +73,6 @@ $(document).ready(function(){
 			$("#add_form").submit();	
 		}
 		else if(id == 4){
-			if($("#terms").is(':checked')){
-				alert("dfdsfdfds");
-
-			}
-			else{
-				alert("sdfsdfsdfddddddddddddddddd");
-			}
 			//$("#payment_form").submit();
 		}
 	});

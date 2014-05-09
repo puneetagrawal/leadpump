@@ -8,7 +8,7 @@
 	<label class="credit_fild_col">Zip</label><%= text_field_tag "address[zip]", @add.present? ? @add.zip : "" %>
 </span>
 <span class="credit_fild_col mb2"><label>State/Region</label><%= text_field_tag "address[state]", @add.present? ? @add.state : "" %></span>
-<span class="credit_fild_col mb2"><%= label_tag :Phone %><%= text_field_tag "address[phone]", class: "phone_text", @add.present? ? @add.phone : "" %></span>
+<span class="credit_fild_col mb2"><%= label_tag :Phone %><%= text_field_tag "address[phone]", @add.present? ? @add.phone : "" %></span>
 <span class="credit_fild_col mb2"><%= label_tag :Country %><%= country_select("address", "country")%>
  </span>
 <div class="clear"></div>				
