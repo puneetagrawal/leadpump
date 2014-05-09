@@ -27,7 +27,9 @@ class Subscription < ActiveRecord::Base
       user.subscription.customer_id = customerid
       user.subscription.charge_id = chargeid
       user.subscription.save
+      
     end
   end
 
+  
 end

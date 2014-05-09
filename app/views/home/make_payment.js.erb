@@ -1,6 +1,6 @@
 <%if @cardError.present?%>
-	 $('#stripe_error').text(@cardError)
-      $(".submitSignUpForm").html('<input type="button" class="btn yellow signup_next" data-id="3" value="Next" style="width:200px;"/>')
+	  $('#stripe_error').text(@cardError)
+      $(".pay_btn").html('<input type="button" style="width:200px;" value="Next" data-id="4" class="next_btnlarge">')
 <% else %>
- 	window.location = "/home/index"
+ 	window.location = "/dashboard"
 <%end%>
