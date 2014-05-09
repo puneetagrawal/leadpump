@@ -444,8 +444,6 @@ def calculateAmount
          date = planType == "monthly" ? Date.today + 45 : Date.today + 380
          Subscription.saveSubscription(user, planPerUser.id, params["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, "")
          address = Address.find_by_user_id("#{user.id}")
-         logger.debug("S>>>>>>>>>>>>>>>>>>>sdfsdfd")
-         logger.debug(address)
          Emailer.send_user_info_to_admin(user, params[:user_ip], address).deliver
          sign_in :user, user
         end
