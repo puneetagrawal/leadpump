@@ -72,6 +72,9 @@ $(document).ready(function(){
 		else if(id == 3){
 			$("#add_form").submit();	
 		}
+		else if(id == 4){
+			//$("#payment_form").submit();
+		}
 	});
 
 	$(document).on('click', '.signup_next1',function(){
