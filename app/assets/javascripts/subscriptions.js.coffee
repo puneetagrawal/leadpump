@@ -22,7 +22,7 @@ subscription =
   handleStripeResponse: (status, response) ->
     if status == 200
       $('#stripe_card_token').val(response.id)
-      $('#payment_form').submit()
+      
     else
       $('#stripe_error').text(response.error.message)
       $(".pay_btn").html('<input type="button" class="pay_btn next_btnlarge" data-id="4" value="Next" style="width:200px;"/>')
