@@ -14,7 +14,7 @@
 //= require jquery-ui
 //= require jquery.remotipart
 //= require jquery_nested_form
-//= require Chart
+
 //= require autocomplete-rails
 //= require bootstrap-datepicker
 //= require appointment
@@ -24,7 +24,7 @@
 //= require company
 //= require admin
 //= require invites
-//= require jquery.carouFredSel-6.2.1-packed
+
 //= require jquery.fancybox
 //= require strip
 //= require viplead
