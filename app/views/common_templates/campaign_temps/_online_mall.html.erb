@@ -13,11 +13,11 @@
     <div class="row-fluid">
         <div class="span4" style="width:35.624%;"%>
             <div class="border formfields" data-no-turbolink>
-                <%=render "/onlinemall/form"%>
+                <%=render "onlinemall/form"%>
             </div>
         </div>
         <div class="span8" style="width: 61.812%;;marging-left:0px">
-            <div class="border" style="width:106%;">
+            <div class="border" style="width:98%;">
                 <h2 class="heading">All Mall Items</h2>
                 <table class="table table-striped">
                     <thead>
@@ -28,7 +28,7 @@
                             <%@onlinemalls.each_with_index do|om, index|%>
                                 <tr id="mallitem_<%=om.id%>">
                                     <td><%=index+1%></td>
-                                    <%#=render "mallitemcontentrow", :om=>om,:index=>index%>
+                                    <%=render "onlinemall/mallitemcontentrow", :om=>om,:index=>index%>
                                 </tr>
                             <%end%>
                         <%end%>

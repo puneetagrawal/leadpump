@@ -32,9 +32,9 @@ class StatssController < ApplicationController
 
   private 
   def check_plan
-    if !is_vip_allow(current_user)
-      flash[:notice] = "Sorry! you are not authorize user"
-      redirect_to dashboard_path
-    end
+    # if !is_vip_allow(current_user)
+    #   flash[:notice] = "Sorry! you are not authorize user"
+    #   redirect_to dashboard_path
+    # end
   end
 end

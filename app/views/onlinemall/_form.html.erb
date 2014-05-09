@@ -6,7 +6,7 @@
 <%= hidden_field_tag :mallid%>
 <p><%= mall.label "Description:" %>
 	<%#= mall.cktext_area :description, :class => "someclass", :ckeditor => {:language => "uk"}%>
-	<%= mall.text_area :description, :class => "ckeditor", :style=>"width:412px;" %></p>
+	<%= mall.text_area :description, :class => "ckeditor", :style=>"width:377px;" %></p>
 <%= mall.fields_for :mallpic, Mallpic.new do |pic| %>
 	<p><label>Image:</label><%= pic.file_field :avatar %>	</p>
 <% end %>

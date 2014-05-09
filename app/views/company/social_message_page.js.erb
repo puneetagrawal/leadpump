@@ -1,3 +1,5 @@
+$(".btn_active").removeClass("btn_active")
+$(".<%=@temp_name%>").addClass("btn_active")
 <%if @temp_name == "manage_social"%>
 	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_social")%>')
 
@@ -16,4 +18,8 @@
 <%elsif @temp_name == "manage_user"%>	
 	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_user")%>')
 
+<%elsif @temp_name == "manage_pos"%>
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_pos")%>')
+
 <%end%>
+

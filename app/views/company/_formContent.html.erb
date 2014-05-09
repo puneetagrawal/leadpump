@@ -6,7 +6,7 @@
 		<p><%= user.label :Email %><%= user.email_field :email %></p>
 		<%if @company%>
 			<p><label>Address</label><%= text_field_tag :address, @address.present? ? @address.address.present? ? @address.address : '' : ''%></p>
-			<p><label>Phone</label><%= text_field_tag :phone, @address.present?, class: "phone_text" ? @address.phone.present? ? @address.phone : '' : ''%></p>
+			<p><label>Phone</label><%= text_field_tag :phone, @address.present? ? @address.phone.present? ? @address.phone : '' : '', class: "phone_text"%></p>
 			<p><label>Zip</label><%= text_field_tag :zip, @address.present? ? @address.zip.present? ? @address.zip : '' : '' %></p>
 			<p><label>City</label><%= text_field_tag :city, @address.present? ? @address.city.present? ? @address.city : '' : '' %></p>
 			<p><label>State</label><%= text_field_tag :state, @address.present? ? @address.state.present? ? @address.state : '' : ''%></p>

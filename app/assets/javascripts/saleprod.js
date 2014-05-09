@@ -16,12 +16,12 @@ $(document).ready(function(){
 		calendars: 1,
 		starts: 1
 	}).on('changeDate', function(ev, date) {
-		$(".salesData").html('<img src="/assets/ajax-loader.gif" style="margin: 25% 50%;">')
+		$(".salesData").html('<img src="/assets/ajax-loader.gif" style="margin: 25% 50%;">') ;
         d = ev.date;
 	    var curr_date = d.getDate();
 	    var curr_month = d.getMonth() + 1; //Months are zero based
 	    var curr_year = d.getFullYear();
-	    date = curr_month + "-" + curr_date + "-" + curr_year
+	    date = curr_month + "-" + curr_date + "-" + curr_year ;
 		url = '/sale_prods/showproduction';
 		$.post(url, {date:date}, function (data) {
 		});

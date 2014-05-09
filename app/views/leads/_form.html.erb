@@ -9,29 +9,29 @@
             <%= lead.hidden_field :id%>
             <p><%= lead.label "First Name:" %><%= lead.text_field :name %></p>
              <p><%= lead.label "Last Name:" %><%= lead.text_field :lname %></p>
-            <p><%= lead.label "Phone:" %><%= lead.text_field :phone, class: "phone_text" %></p>
-            <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
+            <p><%= lead.label "Address:" %><%= lead.text_field :address %></p>
+            <p><%= lead.label "City:" %><%= lead.text_field :city %></p>
+            <p><%= lead.label "State:" %><%= lead.text_field :state %></p>
+            <p><%= lead.label "ZIP_code:" %><%= lead.text_field :zip %></p>
             <p>
                 <%= lead.label "Gender:" %>
                 <%=lead.select :gender, options_for_select([['male'], ['female']]), :promt=>"Gender"%>
             </p>
-            <p><%= lead.label "Address:" %><%= lead.text_field :address %></p>
-            <p><%= lead.label "Referred By:" %><%= lead.text_field :refferred_by %></p>
-
-            <p><%= lead.label "Lead Source:" %><%= lead.select(:lead_source, [['LEADPUMP POS', "LEADPUMP POS"], ['LEADPUMP Opt in', "LEADPUMP Opt in"], ['Member referral', "Member referral"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"], ['Direct mail', "Direct mail"], ['Radio', "Radio"], ['T.V.', "T.V."], ['Other', "Other"]], {}, :class=>"lead_source_sel", :prompt => "Select Source") %></p>
-            <p id="text_div"> </p>
-
             <p><%= lead.label "Goals:" %><%= lead.select(:goal, [['Lose weight', "Lose weight"], ['Improve strength', "Improve strength"], ['Cardiovascular', "Cardiovascular"], ['Stress management', "Stress management"], ['Injury rehab', "Injury rehab"], ['Improve stamina', "Improve stamina"], ['General conditioning', "General conditioning"], ['Overall health', "Overall health"], ['Doctor recommended', "Doctor recommended"], ['Other', "Other"]],{}, :class=>"goal_sel", :prompt => "Select Goal")%></p>
             <p id="text_div_2"> </p>
-
+            <p><%= lead.label "Referred By:" %><%= lead.text_field :refferred_by %></p>
             <p><%= lead.label "Guest Pass Issued:" %><%= lead.select :guest_pass_issued, [['Yes', true], ['No', false]], :prompt => "Select Pass" %></p>
-            <p><%= lead.label "# of days:" %><%= lead.select :no_of_days, (1 .. 30), :prompt => "Select No. Of Days" %></p>
-            <p><%= lead.label "Potential enrollment $:" %><%= lead.text_field :enrolment_value %></p>
-            <p><%= lead.label "Potential dues $:" %><%= lead.text_field :dues_value %></p>
+            <p><%= lead.label "Expiration date:" %><%= lead.select :no_of_days, (1 .. 30), :prompt => "Select No. Of Days" %></p>
             <p><%= lead.label "Notes:" %><%= lead.text_field :notes %></p>
-            <p><%= lead.label "State:" %><%= lead.text_field :state %></p>
-            <p><%= lead.label "City:" %><%= lead.text_field :city %></p>
-            <p><%= lead.label "ZIP_code:" %><%= lead.text_field :zip %></p>
+            <p><%= lead.label "Lead Source:" %><%= lead.select(:lead_source, [['LEADPUMP POS', "LEADPUMP POS"], ['LEADPUMP Opt in', "LEADPUMP Opt in"], ['Member referral', "Member referral"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"], ['Direct mail', "Direct mail"], ['Radio', "Radio"], ['T.V.', "T.V."], ['Other', "Other"]], {}, :class=>"lead_source_sel", :prompt => "Select Source") %></p>
+            <p id="text_div"> </p>
+            <p><%= lead.label "Phone:" %><%= lead.text_field :phone, "",class: "phone_text" %></p>
+            <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
+
+
+
+            <!-- <p><%= lead.label "Potential enrollment $:" %><%= lead.text_field :enrolment_value %></p>
+            <p><%= lead.label "Potential dues $:" %><%= lead.text_field :dues_value %></p> -->
             <p class="submitLeadBtn">
              <%if current_user.checkLeadLimit %>   
                 <input type="submit" class="btn yellow" value="Enter Lead"/>

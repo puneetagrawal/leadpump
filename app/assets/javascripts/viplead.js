@@ -30,11 +30,11 @@ function initSocialInviter(){
 	$(".vipseting").click(function (){
 		openvipsetings();
 	});
-	$(".editvipseting").click(function (){
+	$(document).on("click",".editvipseting", function (){
 		savevipsetings(this);
 	});
 	$(document).on('click', '.viewVipLead', function (){
-		id = $(this).closest('tr').attr('id').split("_")[1]
+		id = $(this).closest('tr').attr('id').split("_")[1];
 		$.fancybox.open({
 			href: '#dashboardPopup',
 			type: 'inline',
@@ -78,7 +78,7 @@ function initSocialInviter(){
 		});
 
 		if(emaillist.length){
-			u_email = $("#user_email").val()
+			u_email = $("#user_email").val();
 			url = '/sendIvitationToGmailFriend';
 			$.post(url, {emaillist:emaillist,u_email:u_email}, function (data) {
 				alert(data.msg);
@@ -212,7 +212,7 @@ function executeSecondStep(name){
 	if(name != "common"){
 		$(".social_options ul li").each(function(){
 			if(!$(this).hasClass('hide')){
-				$(this).addClass("hide")	
+				$(this).addClass("hide");
 			}
 		});
 		$("."+name).removeClass('hide');

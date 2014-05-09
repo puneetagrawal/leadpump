@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	leadid = ''
+	leadid = '';
 	$(".leadFilterByName").change(function(){
 		leadFilterByName($(this).val());	
 	});	
@@ -16,8 +16,8 @@ function deleteFancyBox(obj){
 }
 
 function deleteLead(obj){
- 	$(obj).html('<img src="/assets/ajax-loader.gif" style="">')
- 	url = '/home/deleteRowByajax'
+ 	$(obj).html('<img src="/assets/ajax-loader.gif" style="">');
+ 	url = '/home/deleteRowByajax';
  	uri = window.location.pathname;
 	$.get(url, {leadId:leadid, uri:uri}, function (data) {
 		$("#viewLead_"+leadid).remove();
@@ -39,7 +39,7 @@ function initLeadCreateOrUpdate(){
 	$(".container").on('click', '.leadDelete', function (){
 		deleteFancyBox(this);
 	});
-	$("#deleteLeadPopup").on('click', '.leadDeleteBtn', function (){
+	$(document).on('click', '.leadDeleteBtn', function (){
 		deleteLead(this);
 	});
 	$(".container").on('click', '.assignLead', function (){
@@ -59,7 +59,7 @@ function initLeadCreateOrUpdate(){
 	// });
 	$("#test").keyup(function(e){
 		if(e.keyCode == 13){
-			leadSearchFilter($(this).val())
+			leadSearchFilter($(this).val()) ;
 		}
 	});
 	$(document).on('click', '.read_feed', function (){
@@ -68,7 +68,7 @@ function initLeadCreateOrUpdate(){
 		if($("#act_"+id).text() == "Finish" || name == "Complete"){
 			feed_id = $("#act_"+id).attr('data-id');
 			url = '/read_feed';
-			uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+			uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home";
 			$.get(url, {feed:feed_id,uri:uri}, function (data) {
 				$("#act_"+id).closest('ul').remove();
 				$.fancybox.close();
@@ -79,7 +79,7 @@ function initLeadCreateOrUpdate(){
 		var id = $(this).attr('data-id');
 		var notes = $("#lead_text").val();
 		var url = '/add_notes';
-		var uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home"
+		var uri = window.location.pathname.indexOf("leads") > -1 ? "leads" : "home" ;
 		$.get(url, {id:id,notes:notes,uri:uri}, function (data) {
 			$("#lead_text").val('');
 			$(".note").each(function(i) {
@@ -87,7 +87,7 @@ function initLeadCreateOrUpdate(){
 			});
 			$(".Note_row").after(data.note_row)
 			if(data.cls != 'Finish'){
-				$("#act_"+id).removeClass('listView').addClass('read_feed').text('Finish')
+				$("#act_"+id).removeClass('listView').addClass('read_feed').text('Finish');
 				$("#act_"+id).removeClass('red').addClass('green');
 			}
 		});
@@ -102,7 +102,7 @@ function tasksave(){
 		date = $("#app_date").val();
 		time = $("#app_date").val()+" "+$("#hr").val()+":"+$("#min").val()+":"+$("#zon").val();
 		leadId = $("#leadid").val();
-		var btn = '<input type="button" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #ffffff;padding:7px" id="submitApoint" value="submit" name="submitApoint">'
+		var btn = '<input type="button" style="margin:-10px 0 0 !important;width:30%;background:none repeat scroll 0 0 #ffffff;padding:7px" id="submitApoint" value="submit" name="submitApoint">'  ;
 		if(task == ''){
 			alert("please schedule task");
 			$(this).html(btn);
@@ -158,10 +158,10 @@ function openTask(obj){
 }
 
 function leadEdit(obj){
-	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 200px;float:left;">')
+	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 200px;float:left;">') ;
 	id = $(obj).closest('tr').attr('id');
 	leadId = id.split("_")[1];
-	url = '/leads/'+leadId+'/edit'
+	url = '/leads/'+leadId+'/edit';
 	$.get(url, {}, function (data) {
 		$(".headmsg").text("Update Lead");
 		$(".submitLeadBtn").html('<input type="button" class="btn yellow leadSubmit" value="Update Lead">');	
@@ -180,7 +180,7 @@ function leadSubmit(obj){
 }
 
 function leadFilterByName(userId){
-	$("#leadListContent").html('<img src="/assets/ajax-loader.gif" style="margin:100px 350px 300px">')
+	$("#leadListContent").html('<img src="/assets/ajax-loader.gif" style="margin:100px 350px 300px">') ;
 	url = '/leads/filterbyname';
 	$.post(url, {userId:userId}, function (data) {	
 	});

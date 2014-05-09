@@ -66,7 +66,7 @@ $(document).ready(function(){
 			}
 			else{
 				$(".pwd_error").html('Please enter password');
-				$parent.html('<input type="button" class="next_btnlarge signup_next" data-id="2" value="Next" style="width:200px;"/>')
+				$parent.html('<input type="button" class="next_btnlarge signup_next" data-id="2" value="Next" style="width:200px;"/>') ;
 			}
 		}
 		else if(id == 3){
@@ -87,7 +87,7 @@ $(document).ready(function(){
 function save_password(par, obj, id){
 	url = "/save_password";
 	$.post(url, {password:$("#password").val(),user:$("#user").val()}, function (data) {
-		par.html(obj)
+		par.html(obj);
 		par.parent().animate({left: '-400px'}, 500).hide();
 		$("#step"+id).show();
 		

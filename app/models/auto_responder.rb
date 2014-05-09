@@ -5,7 +5,6 @@ class AutoResponder < ActiveRecord::Base
   	user.from_email = from_email
   	user.save
   	respond.user_id = user.id
-  	respond.from_email = from_email
   	respond.save
   end
 

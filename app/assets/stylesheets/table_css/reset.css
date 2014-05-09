@@ -1,53 +1,44 @@
-
-ul, ol, li
-{
-	list-style-type: none;
+ul, ol, li {
+    list-style-type: none;
 }
 
-a
-{
-	text-decoration: none;
-	cursor: pointer;
+a {
+    text-decoration: none;
+    cursor: pointer;
 }
 
-a img
-{
-	border: none;
+a img {
+    border: none;
 }
 
 /*--CLEARING FLOATS. PROVIDE CLASS NAME "clearfix" TO THE PARENT CONTAINER. HERE IT IS "ul#nav-bar"--*/
-.clearfix:after
-{
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 
 /*--FOR IE6--*/
-* html .clearfix
-{
-  height: 1%;
+* html .clearfix {
+    height: 1%;
 }
 
 /*--FOR IE7--*/
-.clearfix
-{
-  min-height: 1px;
+.clearfix {
+    min-height: 1px;
 }
 
-.clearleft
-{
-  clear: left;
+.clearleft {
+    clear: left;
 }
-
 
 /*--SOME TYPOGRAPHY WHICH YOU CAN EASILY ALTER AS PER YOUR CHOICE--*/
-.price-tbl
-{
-  font: normal 10px/1 Verdana, Geneva, Tahoma, sans-serif;--RESET ALL BROWSER FONT SIZE: 10PX, THAT IS, 1em--
-	color: #333; /*--BODY TEXT COLOR--*/
+.price-tbl {
+    font: normal 10px/1 Verdana, Geneva, Tahoma, sans-serif; /* --RESET ALL BROWSER FONT SIZE:10PX, THAT IS,1em-- */
+    color: #333;
+    /*--BODY TEXT COLOR--*/
 }
 
 

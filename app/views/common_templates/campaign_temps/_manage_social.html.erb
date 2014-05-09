@@ -54,7 +54,7 @@
         <p>Enter message that you want to send on Email.</p>
         <form class="form">
             <%=text_field_tag :emailsubject, current_user.fetchgmailsubject, :placeholder=>"Enter Subject Line Here.", :class=>"fb_social_height"%>
-            <textarea class="ckeditor">
+            <textarea class="ckeditor", style="width:50%">
                 <%=current_user.fetchEmailMessage%>
             </textarea>
                <br/>
