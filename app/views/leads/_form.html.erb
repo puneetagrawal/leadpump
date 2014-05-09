@@ -25,7 +25,7 @@
             <p><%= lead.label "Notes:" %><%= lead.text_field :notes %></p>
             <p><%= lead.label "Lead Source:" %><%= lead.select(:lead_source, [['LEADPUMP POS', "LEADPUMP POS"], ['LEADPUMP Opt in', "LEADPUMP Opt in"], ['Member referral', "Member referral"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"], ['Direct mail', "Direct mail"], ['Radio', "Radio"], ['T.V.', "T.V."], ['Other', "Other"]], {}, :class=>"lead_source_sel", :prompt => "Select Source") %></p>
             <p id="text_div"> </p>
-            <p><%= lead.label "Phone:" %><%= lead.text_field :phone, class: "phone_text" %></p>
+            <p><%= lead.label "Phone:" %><%= lead.text_field :phone, "",class: "phone_text" %></p>
             <p><%= lead.label "Email:" %><%= lead.text_field :email %></p>
 
 
