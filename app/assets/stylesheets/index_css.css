@@ -1253,3 +1253,12 @@ p.btn_fnt {
     top: -130px;
     z-index: 999;
 }
+.terms_pop{
+     border: 1px solid #CCCCCC;
+    float: left;
+    font-size: 14px;
+    height: 170px;
+    overflow: auto;
+    padding: 10px;
+    text-align: left;
+}

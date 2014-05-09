@@ -1,5 +1,5 @@
 <div style="position:relative;height:550px;width:900px;padding: 0px 30px;">
-	
+	<%=request.remote_ip%> dfdfdfd
 	<div id="step1" class="steps inpupt_pop wid" style="display:block">
 		<div class="popupTitleHead mb5">
 			<h2 class="head_user">CHOOSE YOUR PASSWORD</h2>
@@ -42,9 +42,18 @@
 				</div>
 				<%= render :template => "devise/registrations/_creditCardDetails"%>	
 				<span class="credit_fild_col wid mb-15" style="margin-top:23px;">
+					<label>Terms and Conditions</label>
+					<span class="terms_pop">
+						<p>
+							<%=render "common_templates/terms_and_conditions"%>
+						</p>
+					</span>
+				</span>
+				<span class="credit_fild_col wid mb-15" style="margin-top:23px;">
 					<label>&nbsp;</label>
 					<%=check_box_tag :terms%>
-					<p style="font-size:15px;margin-left:4px;float:left;">I have read and accept the<%=link_to " Terms and Conditions", home_terms_path, class: "txt_blue" %>.</p>
+					<p style="font-size:15px;margin-left:4px;float:left;">I have read and accept the Terms and Conditions
+					</p>
 				</span>
 				<p class="pay_btn">
 					<input type="button" class="next_btnlarge pay_btn" data-id="4" value="Next" style="width:200px;"/>
