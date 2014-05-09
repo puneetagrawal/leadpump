@@ -281,9 +281,11 @@ h4.white_c {
 
 p.btn_fnt {
     font-size: 10px;
-    color: #ccc;
-    margin: 0 34px 0 0;
-    float: right;
+color: #ccc;
+margin: 0;
+float: right;
+text-align: center;
+width: 255px
 }
 
 .black_wrap_container {
