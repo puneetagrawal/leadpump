@@ -1,5 +1,4 @@
 <div style="position:relative;height:550px;width:900px;padding: 0px 30px;">
-	<%=request.remote_ip%> dfdfdfd
 	<div id="step1" class="steps inpupt_pop wid" style="display:block">
 		<div class="popupTitleHead mb5">
 			<h2 class="head_user">CHOOSE YOUR PASSWORD</h2>
@@ -24,6 +23,7 @@
 		<%= form_tag('/save_address', method: :post, :id=>"add_form", :class => "forms fm", :remote=>true) do |f| %>
 			<%=hidden_field_tag :user, @user.id%>
 			<%=render "common_templates/addressFields", user: @user, add: @add%>
+			
 			<p class="add_btn">
 				<input type="button" class="next_btnlarge signup_next" data-id="3" value="Next" style="width:200px;"/>
 			</p>
@@ -36,6 +36,7 @@
 			</div>
 			<%= form_tag('/make_payment', method: :post, :id=>"payment_form", :class => "forms", :remote=>true) do |f| %>
 				<%=hidden_field_tag :user, @user.id%>
+				<%=hidden_field_tag :user_ip%>
 				<%= render :template => "common_templates/_labelsForDiscounts" %>	
 				<div class="popupTitleHead">
 					<h2 class="">BILLING INFORMATION</h2>
@@ -56,7 +57,7 @@
 					</p>
 				</span>
 				<p class="pay_btn">
-					<input type="button" class="next_btnlarge pay_btn" data-id="4" value="Next" style="width:200px;"/>
+					<input type="button" class="next_btnlarge" data-id="4" value="Next" style="width:200px;"/>
 				</p>
 			<%end%>
 		</div>
@@ -118,3 +119,11 @@
 	</div>
 	</div>
 </div>
+
+<script>
+  $(document).ready(function () {
+     $.get('http://jsonip.com', function (res) {
+         $("#user_ip").val(res.ip);
+     });
+ });
+</script>

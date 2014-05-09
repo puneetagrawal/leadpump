@@ -84,4 +84,13 @@ class Emailer < ActionMailer::Base
     mail(:from=> "#{name} <#{email}>", to: "info@leadpump.com", subject: subject)
   end
 
+  def send_user_info_to_admin(user, user_ip, address)
+
+    @address = address
+    @email = "vishwanath.yadav@ongraph.com"
+    @user = user
+    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>")
+    mail(to: @email, subject: 'Serif Web Resources Form Submission')
+  end
+
 end

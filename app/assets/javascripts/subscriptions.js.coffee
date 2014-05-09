@@ -10,8 +10,8 @@ subscription =
     $(document).on 'click', '.pay_btn', () ->
       if $("#terms").is(':checked')
         if $('#card_number').length
+          $('.pay_btn').html('<img src="/assets/ajax-loader.gif" style="margin:20px 0 0 0;">');
           subscription.validateCard()
-          
         else
           true
       else
@@ -25,7 +25,7 @@ subscription =
       $('#payment_form').submit()
     else
       $('#stripe_error').text(response.error.message)
-      $(".pay_btn").html('<input type="button" class="pay_btn next_btnlarge" data-id="4" value="Next" style="width:200px;"/>')
+      $(".pay_btn").html('<input type="button" style="width:200px;" value="Next" data-id="4" class="next_btnlarge">')
 
   validateCard: ->
       card =
