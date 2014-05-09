@@ -1,0 +1,15 @@
+	<%=render "home/companyLogo_seting"%>
+    <%if current_user.isCompany%>
+	    <div class="setting_img_col">
+		    <%if current_user.picture.present?%>
+	            <%= image_tag current_user.picture.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+	        <%else%>
+	            <img src="/assets/company-logo.png" class="img-polaroid">
+	        <%end%>
+	        <div class="clear"></div>
+	        <a class="btn yellow submitviplogo">Upload Social Inviter Process Logo</a>
+		    <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
+		      <%= form.file_field :viplogo, :style =>"display:none" %>
+		    <% end %>
+		</div>
+    <%end%>
