@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='Content-Type' />
+  </head>
+  <body>
+	<p>Hello Admin</p>
+  <p>New user has been registered with following details:</p>
+
+  <p>Time Submitted: <%=@user.created_at%></p>
+  <p>Referer: <%=link_to "Leadpump", "http://leadpump.com"%></p>
+  <p>First_name = <%=@user.name%></p>
+  <p>Last_name: <%=@user.lname%></p>
+  <p>Business_name: <%=@user.company_name%></p>
+  <p>Business_address: <%=@address.address%></p>
+  <p>city: <%=@address.city%></p>
+  <p>state: <%=@address.state%></p>
+  <p>zip_code: <%=@address.zip%></p>
+  <p>phone: <%=@address.phone%></p>
+  <p>Email: <%=@user.email%></p>
+  <p>Plan_name: <%=@user.subscription.plan_per_user_range.plan.name%></p>
+  <p>Plan_cost: $ <%=@user.subscription.payment%></p><br />
+  <p style="text-align:left;float:left">
+    <%=render "common_templates/terms_and_conditions"%>
+  </p>
+
+	<p>In good health,<br />
+	LEADPUMP - Staff</p>
+
+	<p>"Getting referrals can be work but it does not have to be difficult"</p>
+    
+  </body>
+</html>
