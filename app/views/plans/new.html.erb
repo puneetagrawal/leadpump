@@ -103,3 +103,19 @@ Plan” is our most popular and recommend.</h3>
         </div>
  </div>
 </div>
+
+<%if params[:card_error].present?%>
+    <script>
+    var plan_id = "<%=params[:plan_per_user_range]%>";
+    var user_id = "<%=@user.id%>";
+    $.fancybox.open({
+      href: '#register_steps',
+      type: 'inline',
+      'beforeLoad' : function() {
+            url = '/choose_plan';
+            $.post(url, {user:user_id,plan_range:plan_id,card_eror: "<%=params[:card_error]%>"}, function (data) {
+            });
+        }
+    });
+    </script>
+<%end%>

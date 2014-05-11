@@ -1,11 +1,21 @@
 <component name="ProjectDictionaryState">
   <dictionary name="vishwnath">
     <words>
+      <w>byajax</w>
+      <w>changestatus</w>
       <w>emailer</w>
+      <w>eror</w>
       <w>fbfreinds</w>
       <w>fetchfbfreinds</w>
       <w>fetchhotmailfriends</w>
+      <w>fillpopupcontent</w>
+      <w>intouch</w>
+      <w>saveleadstatus</w>
       <w>sendtestmail</w>
+      <w>signup</w>
+      <w>storepassinsession</w>
+      <w>testsendgrid</w>
+      <w>userss</w>
     </words>
   </dictionary>
 </component>

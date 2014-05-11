@@ -34,7 +34,7 @@
 			<div class="popupTitleHead">
 				<h2 class="head_user">PAYMENT CYCLE</h2>
 			</div>
-			<%= form_tag('/make_payment', method: :post, :id=>"payment_form", :class => "forms", :remote=>true) do |f| %>
+			<%= form_tag('/make_payment', method: :post, :id=>"payment_form", :class => "forms") do |f| %>
 				<%=hidden_field_tag :user, @user.id%>
 				<%=hidden_field_tag :user_ip%>
 				<%= render :template => "common_templates/_labelsForDiscounts" %>	

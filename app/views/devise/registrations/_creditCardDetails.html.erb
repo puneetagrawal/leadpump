@@ -1,4 +1,4 @@
-<span id="stripe_error" class="pwd_error crd_error"></span>
+<span id="stripe_error" class="pwd_error crd_error"><%=@cardError%></span>
 <span id="creditCardDiv">
 	<%=render "common_templates/select_users"%>
 	<%= hidden_field_tag "planPerUserId",  @planPerUser.id%>
