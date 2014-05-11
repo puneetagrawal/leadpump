@@ -456,7 +456,9 @@ def calculateAmount
          logger.debug("email sended")
          sign_in :user, @user
         end
-
+      logger.debug(@cardError)
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    end
     if @cardError != ''
         redirect_to new_plan_path(:user=>@user.token,:card_error=>@cardError,:plan_per_user_range=>params[:planPerUserId])
     else
