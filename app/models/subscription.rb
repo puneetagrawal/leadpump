@@ -14,7 +14,6 @@ class Subscription < ActiveRecord::Base
         :locations_count=>no_of_locations,:plan_type=>planType,:customer_id=>customerid,:charge_id=>chargeid)
       if sub.save
         logger.debug("subacript saved")
-        user.subscription_id = sub
         user.save
       else
         logger.debug(sub.errors.full_messages)
