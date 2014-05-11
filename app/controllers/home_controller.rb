@@ -385,7 +385,7 @@ def calculateAmount
     @user = User.find(params[:user])
     @add = Address.find_by_user_id("#{@user.id}")
     @planPerUser = PlanPerUserRange.find(params[:plan_range])
-    @cardError = params[:card_eror]
+    @cardError = params[:card_eror].present? ? params[:card_eror] : ''
     respond_to do |format|
       format.js
     end
@@ -431,6 +431,7 @@ def calculateAmount
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
       amt = User.signUpAmount(planPerUser.id, params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
+      begin
         email = @user.email.to_s
         logger.debug("inside begin")
         logger.debug(email)
@@ -451,12 +452,26 @@ def calculateAmount
          Subscription.saveSubscription(@user, planPerUser.id, params["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, "")
         logger.debug("subscription saving")
          address = Address.find_by_user_id("#{@user.id}")
-          logger.debug("address found")
+         logger.debug("address found")
          Emailer.send_user_info_to_admin(@user, params[:user_ip], address).deliver
-          logger.debug("email sended")
+         logger.debug("email sended")
          sign_in :user, @user
         end
-      @cardError = "Error"
+      rescue Stripe::CardError => e
+        body = e.json_body
+        err  = body[:error]
+        @cardError = "#{err[:message]}"
+      rescue Stripe::InvalidRequestError => e
+        @cardError = "Invalid parameters were supplied to Stripe API"
+      rescue Stripe::AuthenticationError => e
+        @cardError = "Authentication with Stripe's API failed"
+      rescue Stripe::APIConnectionError => e
+        @cardError = "Network communication with Stripe failed"
+      rescue Stripe::StripeError => e
+        @cardError = "Display a very generic error to the user, and maybe send yourself an email"
+      rescue => e
+        @cardError = "Something bad happened, Please try again"
+      end
       logger.debug(@cardError)
       logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     end
