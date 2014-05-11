@@ -13,11 +13,13 @@
   <p>First_name = <%=@user.name%></p>
   <p>Last_name: <%=@user.lname%></p>
   <p>Business_name: <%=@user.company_name%></p>
-  <p>Business_address: <%=@address.address%></p>
-  <p>city: <%=@address.city%></p>
-  <p>state: <%=@address.state%></p>
-  <p>zip_code: <%=@address.zip%></p>
-  <p>phone: <%=@address.phone%></p>
+  <%if @address.present?%>
+      <p>Business_address: <%=@address.address%></p>
+      <p>city: <%=@address.city%></p>
+      <p>state: <%=@address.state%></p>
+      <p>zip_code: <%=@address.zip%></p>
+      <p>phone: <%=@address.phone%></p>
+  <%end%>
   <p>Email: <%=@user.email%></p>
   <p>Plan_name: <%=@user.subscription.plan_per_user_range.plan.name%></p>
   <p>Plan_cost: $ <%=@user.subscription.payment%></p><br />
