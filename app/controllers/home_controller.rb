@@ -452,7 +452,7 @@ def calculateAmount
         logger.debug("subscription saving")
          address = Address.find_by_user_id("#{@user.id}")
           logger.debug("address found")
-         #Emailer.send_user_info_to_admin(@user, params[:user_ip], address).deliver
+         Emailer.send_user_info_to_admin(@user, params[:user_ip], address).deliver
           logger.debug("email sended")
          sign_in :user, @user
         end
