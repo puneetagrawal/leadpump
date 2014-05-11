@@ -431,7 +431,6 @@ def calculateAmount
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
       amt = User.signUpAmount(planPerUser.id, params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
-      begin
         email = @user.email.to_s
         logger.debug("inside begin")
         logger.debug(email)
@@ -457,24 +456,7 @@ def calculateAmount
          logger.debug("email sended")
          sign_in :user, @user
         end
-      rescue Stripe::CardError => e
-        body = e.json_body
-        err  = body[:error]
-        @cardError = "#{err[:message]}"
-      rescue Stripe::InvalidRequestError => e
-        @cardError = "Invalid parameters were supplied to Stripe API"
-      rescue Stripe::AuthenticationError => e
-        @cardError = "Authentication with Stripe's API failed"
-      rescue Stripe::APIConnectionError => e
-        @cardError = "Network communication with Stripe failed"
-      rescue Stripe::StripeError => e
-        @cardError = "Display a very generic error to the user, and maybe send yourself an email"
-      rescue => e
-        @cardError = "Something bad happened, Please try again"
-      end
-      logger.debug(@cardError)
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    end
+
     if @cardError != ''
         redirect_to new_plan_path(:user=>@user.token,:card_error=>@cardError,:plan_per_user_range=>params[:planPerUserId])
     else
