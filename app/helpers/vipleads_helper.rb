@@ -1,7 +1,7 @@
 module VipleadsHelper
 include ApplicationHelper
 	def is_vip_allow(user)
-		allow = false
+		allow = true
 		company = user.fetchCompany
 		if company.present?
 			if company.subscription.present?

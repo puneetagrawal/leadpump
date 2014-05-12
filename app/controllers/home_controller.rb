@@ -15,6 +15,7 @@ class HomeController < ApplicationController
     if current_user && !current_user.isAdmin
       @users = current_user.fetchCompanySalesUsers
       @users << current_user
+      @users = @users.uniq
       @users = @users.reverse
       @leads = Lead.fetchTotalLeads(current_user)
       #saletodate = SaleProd.fetchProdDataTotal(current_user)

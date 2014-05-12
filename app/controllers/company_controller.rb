@@ -26,6 +26,8 @@ class CompanyController < ApplicationController
       @user.password = "user.leadpump123"
       @user.reset_status = true
       @user.role_id = Role.find_by_role_type("employee").id
+      @user.verified = true
+      @picture = Picture.new()
       if @user.save      
         Company.createUser(current_user, @user)
         flash[:success] = "User successfully created"

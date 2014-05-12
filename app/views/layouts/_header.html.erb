@@ -94,20 +94,19 @@ function onloginCall(){
 function handleSessionResponse(response){
   var accessToken = response.authResponse.accessToken;
   var email = '';
-  var description = "<%=current_user.present? ? strip_tags(current_user.fetchFacebookMessage.html_safe.gsub!(/\n/, '<br />')) : ''%>"
+  var description = "<%=current_user.present? ? current_user.fetchFacebookMessage.html_safe : ''%>"
   var link = '<%=current_user.present? ? VipLead.fetchfblink(current_user).html_safe : ''%>';
   var subject = '<%=current_user.present? ? current_user.fetchfbsubject : ''%>';
   var img_url = '<%=current_user.present? ? fetchcompanyimageforfb(current_user) : ''%>';
-  var message = '<%=current_user.present? ? current_user.fetchCompany.name : ''%>';
   if (response.authResponse) {
     FB.api('/me', function (response) {
-      email = response.email
-    });
+      email = response.email;
+      name = response.name;
     FB.ui({
      method: 'stream.publish',
-     message: message,
+     message: response.name,
      attachment: {
-       name: '<%=current_user.present? ? current_user.fetchCompany.name : ''%>',
+       name: name,
        caption: subject,
        description: (description),
        href: link,
@@ -136,6 +135,8 @@ function handleSessionResponse(response){
    }
 
  );
+    });
+
    
  }
  else {
