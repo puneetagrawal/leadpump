@@ -119,6 +119,7 @@ def fetchCompanySalesUsers
   when :company
     company = Company.where(:company_admin_id=>self.id).pluck(:company_user_id)
     users = User.where(:id=> company)
+    users << self
   when :employee
     users = [self]
   end
