@@ -1,7 +1,7 @@
 
 <div class="container wrapper">
    <div class="row-fluid" style="padding:0px 10px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;">
-	   	<%if !@temp_name == "dusr_set"%>
+	   	<%if @temp_name != "dusr_set"%>
 		   	<span class="formfields">
 		       <%= render 'form' %>
 		   </span>
