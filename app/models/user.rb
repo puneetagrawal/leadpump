@@ -316,7 +316,7 @@ def fetchFacebookMessage
     logger.debug("inside if")
     message = socialmessage.facebookMessage
   end
-  message = message.gsub(/"/, '').gsub(/'/,'')
+  message = message.gsub(/"/, '').gsub(/'/,'').gsub(/\n/, '<br />')
   logger.debug(message)
   return message.html_safe
 end
