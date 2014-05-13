@@ -90,6 +90,7 @@ class Emailer < ActionMailer::Base
     @user = user
     @user_ip = user_ip
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>")
+    logger.debug("user info")
     mail(to: @email, subject: 'Serif Web Resources Form Submission')
   end
 

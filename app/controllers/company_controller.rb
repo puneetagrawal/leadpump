@@ -356,10 +356,8 @@ class CompanyController < ApplicationController
     elsif @temp_name == "account_setting"
       @user = current_user
       @add = Address.find_by_user_id("#{current_user.id}")
-    elsif @temp_name == "fb_logo"
-      @picture = Picture.new()
     end
-
+    @picture = Picture.new()
     respond_to do |format|
       format.js 
     end
