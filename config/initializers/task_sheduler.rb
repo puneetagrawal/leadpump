@@ -14,6 +14,7 @@ end
 scheduler.every '12h' do
 	Lead.get_member_list_from_abc
 end
-# scheduler.cron '05 00 * * 1-7' do
-# 	Company.report
-# end
+
+scheduler.cron '05 00 * * 1-7' do
+	Company.report
+end

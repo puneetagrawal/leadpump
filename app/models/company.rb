@@ -51,24 +51,27 @@ class Company < ActiveRecord::Base
     end
 
     def self.report()
-			user_ary = []
-			arry = User.where(:id=>[110])
-			arry.each do |b|
+		user_ary = []
+		show = false
+		arry = User.where(:dusr=>true)
+		arry.each do |b|
 	  		comp_user = []
 	  		users = User.fetchCompanyUserList(b)
 	    	user_count = users.size
 	    	users.each do |u|
-	      	stat = Stats.where("user_id = ? and created_at = ?", u, Date.today).last
-	        if stat.present?
-				    mail_oppened_count = stat.e_oppened
+		      	stat = Stats.where("user_id = ? and created_at = ?", u, Date.today).last
+		    	if stat.present?
+	    		  show = true
+				  mail_oppened_count = stat.e_oppened
 			      mail_sent_count = stat.e_sents
 			      mail_converted_count = stat.e_converted
 			      comp_user << [u.name, mail_oppened_count , mail_sent_count , mail_converted_count]
 			    end
-	      end
-	      #opts = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP optin", u.id).count
-	      #p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
-		    Emailer.report_mailer(comp_user, b).deliver
-			end
+		      end
+		    p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
+		    if show
+		    	Emailer.report_mailer(comp_user, b, show).deliver
+		    end
 		end
+	end
 end
