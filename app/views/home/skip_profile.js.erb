@@ -1,5 +1,9 @@
-<%if @name == "profile_pic"%>
-	$(".user_profile").html('<%=escape_javascript(render partial: "common_templates/profile_pic")%>');
-<%elsif @name == "wizard_step3"%>
-	$(".user_profile").html('<%=escape_javascript(render partial: "common_templates/wizard_step3")%>');
+<% if current_user.isCompany%>
+	<%if @name == "profile_pic"%>
+		$(".user_profile").html('<%=escape_javascript(render partial: "common_templates/profile_pic")%>');
+	<%elsif @name == "wizard_step3"%>
+		$(".user_profile").html('<%=escape_javascript(render partial: "common_templates/wizard_step3")%>');
+	<%end%>
+<%else%>
+	$.fancybox.close();
 <%end%>

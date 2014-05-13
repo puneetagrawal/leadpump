@@ -177,7 +177,7 @@ p {
     border: 0px;
     margin: 0px;
     font-weight: bold;
-    padding: 16px 22px 16px 0px;
+    padding: 16px 7px 16px 0px;
     margin-left: 50px;
 }
 
@@ -316,9 +316,10 @@ width: 255px
 }
 
 .black_wrap_content h5 {
-    font-size: 32px;
-    color: #fff;
+       color: #FFFFFF;
+    font-size: 27px;
     font-weight: bold;
+    margin-bottom: 13px;
 }
 
 .feature_wrap {
@@ -527,7 +528,7 @@ width: 255px
 }
 
 .step_col_box .step_col_box_btm {
-    padding: 33px 18px 20px;
+    padding: 33px 17px 20px;
     font-size: 16px;
     color: #6c6865;
     text-align: left;
@@ -922,20 +923,24 @@ width: 255px
 }
 
 #address_country {
-    margin-right: 12px;
-    width: 68%;
-    float: left;
-    font-size: 15px;
-    text-align: left;
-    padding: 9px 6px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+width: 76% !important;
+float: left;
+font-size: 15px;
+text-align: left;
+padding: 6px 6px;
+border-radius: 5px;
+border: 1px solid #ccc;
+height: 34px;
+}
+
+#step3 .credit_fild_col #address_country{
+    width: 68% !important;
 }
 
 .step_col_box .step_col_box_btm h1 {
     color: #6C6865;
     font-family: "Arial", sans-serif;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 10px;
     text-align: left;

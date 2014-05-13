@@ -497,6 +497,8 @@ class HomeController < ApplicationController
   end
 
   def upload_profile_pic
+    current_user.verified = true
+    current_user.save
     @picture = Picture.new()
     if !current_user.picture.present?
       Picture.create(:avatar=> params[:picture][:company_logo],:user_id=>current_user.id)

@@ -1,37 +1,42 @@
 <div style="position:relative;height:450px;width:500px;padding: 0px 30px;">
 	<h3 style="margin:10px 0 18px 0">Setup Your Account</h3>
-	<div class="step_main_col">
-    	<div class="step_wise_col step_1">
-        	<span class="step_circle step_active"><span >1</span></span>
-            <div class="step_txt">
-       			<h3>STEP 1</h3>
-				<p>Company<br />
-Logo</p>
-            </div>
-        </div>
-        
-        <div class="step_wise_col step_2">
-        	<span class="step_circle"><span>2</span></span>
-       		<div class="step_txt">
-       		<h3>STEP 2</h3>
-			<p>Profile<br />
-Picture</p>
-            </div>
-        </div>
-        
-        <div class="step_wise_col step_3">
-        	<span class="step_circle"><span>3</span></span>
-       		<div class="step_txt">
-       		<h3>STEP 3</h3>
-			<p>P.O.S.<br />
+	<%if current_user.isCompany%>
+    <div class="step_main_col">
+      	<div class="step_wise_col step_1">
+          	<span class="step_circle step_active"><span >1</span></span>
+              <div class="step_txt">
+         			<h3>STEP 1</h3>
+  				<p>Company<br />
+  Logo</p>
+              </div>
+          </div>
+          
+          <div class="step_wise_col step_2">
+          	<span class="step_circle"><span>2</span></span>
+         		<div class="step_txt">
+         		<h3>STEP 2</h3>
+  			<p>Profile<br />
+  Picture</p>
+              </div>
+          </div>
+          
+          <div class="step_wise_col step_3">
+          	<span class="step_circle"><span>3</span></span>
+         		<div class="step_txt">
+         		<h3>STEP 3</h3>
+  			<p>P.O.S.<br />
 
-Referrals</p>
-            </div>
-        </div>
-    </div>
+  Referrals</p>
+              </div>
+          </div>
+      </div>
+    <%end%>
 	<span class="user_profile">
-		<%=render "common_templates/upload_company_logo"%>
-	</span>
-	<%#=render "common_templates/profile_pic"%>
+    <%if current_user.isCompany%>
+		  <%=render "common_templates/upload_company_logo"%>
+    <%else%>
+      <%=render "common_templates/profile_pic"%>
+    <%end%>
+  </span>
 	<%#=render "common_templates/wizard_step3"%>
 </div>
