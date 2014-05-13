@@ -1234,13 +1234,14 @@ height: 34px;
 
 .copylft {
     float: left;
-    width: 65%;
+    width: 59%;
     text-align: right;
 }
 
 .copyrht {
     float: right;
     line-height: 39px;
+    margin-right: 10px;
 }
 
 .copylft p {
