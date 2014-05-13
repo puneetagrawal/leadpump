@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   def index
     if current_user && !current_user.isAdmin
       @users = current_user.fetchCompanySalesUsers
-      @users << current_user
+      @users = @users.size == 1 ? @users.uniq : @users
       @users = @users.reverse
       @leads = Lead.fetchTotalLeads(current_user)
       #saletodate = SaleProd.fetchProdDataTotal(current_user)
@@ -385,6 +385,7 @@ def calculateAmount
     @user = User.find(params[:user])
     @add = Address.find_by_user_id("#{@user.id}")
     @planPerUser = PlanPerUserRange.find(params[:plan_range])
+    @cardError = params[:card_eror].present? ? params[:card_eror] : ''
     respond_to do |format|
       format.js
     end
@@ -423,13 +424,17 @@ def calculateAmount
 
   def make_payment
     planPerUser = PlanPerUserRange.find(params[:planPerUserId])
-    user = User.find(params[:user])
-    if user.present?
+    @user = User.find(params[:user])
+    @cardError = ''
+    if @user.present?
+      logger.debug("user found")
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
       amt = User.signUpAmount(planPerUser.id, params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
       begin
-        email = user.email.to_s
+        email = @user.email.to_s
+        logger.debug("inside begin")
+        logger.debug(email)
         customer = Stripe::Customer.create(
           :email => email,
           :description => "Subscribed for #{planPerUser.plan.name} plan.",
@@ -440,12 +445,17 @@ def calculateAmount
         #       :currency => "usd",
         #       :customer => customer.id
         # )
-        if user.save
+        logger.debug("user saving")
+        if @user.save
+          logger.debug("after saved")
          date = planType == "monthly" ? Date.today + 45 : Date.today + 380
-         Subscription.saveSubscription(user, planPerUser.id, params["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, "")
-         address = Address.find_by_user_id("#{user.id}")
-         Emailer.send_user_info_to_admin(user, params[:user_ip], address).deliver
-         sign_in :user, user
+         Subscription.saveSubscription(@user, planPerUser.id, params["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, "")
+        logger.debug("subscription saving")
+         address = Address.find_by_user_id("#{@user.id}")
+         logger.debug("address found")
+         Emailer.send_user_info_to_admin(@user, params[:user_ip], address).deliver
+         logger.debug("email sended")
+         sign_in :user, @user
         end
       rescue Stripe::CardError => e
         body = e.json_body
@@ -462,9 +472,13 @@ def calculateAmount
       rescue => e
         @cardError = "Something bad happened, Please try again"
       end
-    respond_to do |format|
-      format.js
+      logger.debug(@cardError)
+      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     end
+    if @cardError != ''
+        redirect_to new_plan_path(:user=>@user.token,:card_error=>@cardError,:plan_per_user_range=>params[:planPerUserId])
+    else
+      redirect_to dashboard_path
     end
   end
 

@@ -347,7 +347,7 @@ function initialization() {
     });
 
 
-    $(".submitlogo").click(function () {
+    $(document).on("click",".submitlogo",function () {
         pic_uid = '';
         if ($("#u_id").length && $(this).closest('td').length) {
             pic_uid = $(this).closest('td').attr('id').split("_")[1];
@@ -375,7 +375,12 @@ function initialization() {
     });
 
     $(document).on("change", "#picture_avatar", function () {
-        $('#p_logo').submit();
+        if(pic_uid != ''){
+            $(".uid_"+pic_uid).submit();
+        }
+        else{
+            $('#p_logo').submit();
+        }
     });
 
     $(document).on("click", ".save_referals", function () {

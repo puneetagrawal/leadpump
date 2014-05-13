@@ -119,6 +119,7 @@ def fetchCompanySalesUsers
   when :company
     company = Company.where(:company_admin_id=>self.id).pluck(:company_user_id)
     users = User.where(:id=> company)
+    users << self
   when :employee
     users = [self]
   end
@@ -310,9 +311,13 @@ def fetchFacebookMessage
   company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company.id)
+  logger.debug("facebook_mes")
   if socialmessage.present? && socialmessage.facebookMessage.present?
+    logger.debug("inside if")
     message = socialmessage.facebookMessage
   end
+  message = message.gsub(/"/, '').gsub(/'/,'')
+  logger.debug(message)
   return message.html_safe
 end
 

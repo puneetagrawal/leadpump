@@ -1,2 +1,8 @@
 $(".first_step").html('<%=escape_javascript(render partial: "common_templates/signup_steps")%>');
-$("#planPerUserId").val("<%=@planPerUser.id%>")
+$("#planPerUserId").val("<%=@planPerUser.id%>");
+<%if @cardError != ''%>
+  $("#step1").hide();
+  $("#step3").show();
+  $(".same_address").html('<%=escape_javascript(render partial: "common_templates/addressFields")%>');
+  $(".diff_address").html('<%=escape_javascript(render partial: "home/diff_address")%>');
+<%end%>

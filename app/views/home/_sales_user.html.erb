@@ -6,7 +6,11 @@
         	<img class="img-polaroid user78" src="/assets/client_img.png"/>
 	    <%end%>
 	</div>
-	<div class="pull-left name" style="max-width:48%">
-		<span style="color:#ffffff;word-break:break-all"><%=user.name.humanize%></span><span style="color:#ffffff"><%=user.role.role_type.humanize%></span>
+	<div class="pull-left name" style="max-width:45%">
+		<span style="color:#ffffff;word-break:break-all"><%=user.name.humanize%> <%=!user.lname.blank? ? user.lname.humanize : ''%>
+		</span>
+		<span style="color:#ffffff">
+			<%=user.isEmployee ? 'Employee' : 'Admin'%>
+		</span>
 	</div>
 </a>
