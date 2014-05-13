@@ -9,7 +9,7 @@
   include VipleadsHelper
   include ApplicationHelper
   skip_before_filter :authenticate_user!, :only => [:insert_prospect,:acceptInvitation, :mallitems,:savereferral,:trackEmail,:viewmallitem,:download]
-  before_filter :check_plan, :only => [:new, :index]
+  before_filter :check_plan, :only => [:index]
   layout 'reflanding', only: [:acceptInvitation]
 
   def index
