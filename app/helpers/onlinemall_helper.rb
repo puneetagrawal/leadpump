@@ -51,7 +51,7 @@ module OnlinemallHelper
     def fetchcompanyimageforfb(company)
 		img = '<img src="images/gymslogo.png" style="max-width:250px;max-height:100px;"/>'
 	    if company.picture.present?
-	    	url = "http://"+SERVER_URL+company.picture.company_logo.url(:medium)
+	    	url = "http://"+SERVER_URL+company.picture.fb_logo.url(:medium)
 	      	img = image_tag url, :class=>'img-polaroid mh60 logo_dimension'
 	    end
     	return img.html_safe
