@@ -83,7 +83,6 @@
     end
     @picture_user = Picture.fetchCompanyLogo(current_user.id)
     @lead = Lead.new
-   
   end
 
   def delete

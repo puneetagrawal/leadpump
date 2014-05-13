@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140501101140) do
+ActiveRecord::Schema.define(:version => 20140513110830) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -240,6 +240,10 @@ ActiveRecord::Schema.define(:version => 20140501101140) do
     t.string   "company_logo_content_type"
     t.integer  "company_logo_file_size"
     t.datetime "company_logo_updated_at"
+    t.string   "fb_logo_file_name"
+    t.string   "fb_logo_content_type"
+    t.integer  "fb_logo_file_size"
+    t.datetime "fb_logo_updated_at"
   end
 
   create_table "plan_per_user_ranges", :force => true do |t|
@@ -331,6 +335,14 @@ ActiveRecord::Schema.define(:version => 20140501101140) do
     t.integer  "cheque"
   end
 
+  create_table "send_ivitation_to_gmail_friends", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "social_messages", :force => true do |t|
     t.text     "facebookMessage"
     t.text     "twitterMessage"
@@ -340,6 +352,18 @@ ActiveRecord::Schema.define(:version => 20140501101140) do
     t.datetime "updated_at",      :null => false
     t.string   "fbsubject"
     t.string   "gmailsubject"
+  end
+
+  create_table "stats", :force => true do |t|
+    t.string   "source",      :default => "email"
+    t.string   "location",    :default => "Default Location"
+    t.integer  "e_sents"
+    t.integer  "e_oppened"
+    t.integer  "e_views"
+    t.integer  "e_converted"
+    t.integer  "user_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -379,6 +403,7 @@ ActiveRecord::Schema.define(:version => 20140501101140) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -437,6 +462,7 @@ ActiveRecord::Schema.define(:version => 20140501101140) do
     t.datetime "company_logo_updated_at"
     t.integer  "ref"
     t.string   "company_name"
+    t.boolean  "dusr",                      :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

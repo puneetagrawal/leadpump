@@ -1,0 +1,18 @@
+<div class="container wrapper" style="margin-top:40px">
+    <div class="row-fluid">
+        <div class="setting_img_col" style="text-align:center">
+            <span class="fb_pic">
+                <%if current_user.picture.present?%>
+                    <%= image_tag current_user.picture.fb_logo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+                <%else%>
+                    <img src="/assets/company-logo.png" class="img-polaroid">
+                <%end%>
+            </span>
+            <div class="clear" style="margin-bottom:20px;"></div>
+            <a class="btn yellow submit_fb_logo">Upload Facebook Logo</a>
+            <%= form_for @picture, :url => '/create_fb_logo', :remote=>true ,:html => {:multipart => true,  :id => "fb_logo"}, :method=>"post" do |form| %>
+              <%= form.file_field :fb_logo, :style =>"display:none" %>
+            <% end %>
+        </div>
+    </div>
+</div>

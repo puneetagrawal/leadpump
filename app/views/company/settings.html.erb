@@ -43,8 +43,12 @@
 	  			<div class="settings_menu setting_all_btn" >
 	  				<ul>
 	  						<li>
-	  							<input type="submit" class="btn yellow setting_btn home_setting" id = "home_setting"  value="Home Settings" name="home_setting"/>
+	  							<input type="submit" class="btn yellow setting_btn home_setting" id = "home_setting"  value="Settings" name="home_setting"/>
 	  						</li>
+	  						<li>
+	  							<input type="submit" class="btn yellow setting_btn fb_logo" id = "fb_logo"  value="Upload Fb Logo" name="fb_logo"/>
+	  						</li>
+
 	  						<%if is_vip_allow(current_user)%>
 		  						<li>
 		  							<input type="submit" class="btn yellow setting_btn manage_social" id = "manage_social_invite"  value="Manage Social Invite Messages" name="manage_social"/>
@@ -68,6 +72,9 @@
 	  						<%if current_user.isCompany%>
 		  						<li>
 		  							<input type="submit" class="btn yellow setting_btn manage_user" id = "manage_user"  value="Manage User", name="manage_user" />
+		  						</li>
+		  						<li>
+		  							<input type="submit" class="btn yellow setting_btn dusr_set" id = "dusr_set"  value="Manage DUSR" name="dusr_set"/>
 		  						</li>
 	  						<%end%>
 
@@ -147,6 +154,9 @@
 	  </div>
 	</div> -->
 </div>
-
+<script>
+	$(".btn_active").removeClass("btn_active");
+	$("#home_setting").addClass("btn_active");
+</script>
 <!-- <span class="background_color" id="bg_color_sl" style="background:<%#=@landpage.bg_color%>;display:none;"></span> -->
 <%=render "common_templates/popupContainer"%>

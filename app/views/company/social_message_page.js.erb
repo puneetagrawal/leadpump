@@ -16,7 +16,7 @@ $(".<%=@temp_name%>").addClass("btn_active")
 <%elsif @temp_name == "vip_leads"%>
 	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/vip_leads")%>')
 
-<%elsif @temp_name == "manage_user"%>	
+<%elsif @temp_name == "manage_user" || @temp_name == "dusr_set"%>	
 	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_user")%>')
 
 <%elsif @temp_name == "manage_pos"%>
@@ -24,6 +24,9 @@ $(".<%=@temp_name%>").addClass("btn_active")
 
 <%elsif @temp_name == "home_setting"%>
 	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/home_setting")%>')
-
+<%elsif @temp_name == "account_setting"%>
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/account_settings")%>')
+<%elsif @temp_name == "fb_logo"%>
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/upload_fb_logo")%>')
 <%end%>
 

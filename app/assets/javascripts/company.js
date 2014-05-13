@@ -16,6 +16,10 @@ function initCompanyCreateOrUpdate(){
 		$(".forms").submit();
 	});
 
+	$(document).on("click", "#dusr_enable", function(){
+		save_dusr_to_user(this);
+	});
+
 	$("#landing_page_land_type").unbind();
 	$("#landing_page_land_type").change(function (){
 		if($(this).val() == "External landing page"){
@@ -111,6 +115,13 @@ function fakeClick(anchorObj) {
   }
 }
 
+function save_dusr_to_user(obj){
+	var user_id = $(obj).parent().parent().attr('id').split('_')[1];
+	var dusr = $(obj).is(':checked');
+	var url = '/save_dusr_report';
+	$.get(url, {dusr:dusr, user_id:user_id}, function (data) {	
+	});
+}
 
 function companyEdit(obj){
 	$('.formfields').html('<img src="/assets/ajax-loader.gif" style="margin:165px 169px 0;float:left;">') ;

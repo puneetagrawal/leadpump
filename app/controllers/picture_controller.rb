@@ -42,6 +42,22 @@ def createvippic
     redirect_to settings_path
   end
 
+  def create_fb_logo
+    @picture_exist = Picture.find_by_user_id(current_user.id)
+    begin 
+    if !@picture_exist.present?
+      @picture = Picture.create(:fb_logo=>params[:picture][:fb_logo],:user_id=>current_user.id)
+    else
+      @picture_exist.update_attributes(:fb_logo=>params[:picture][:fb_logo])
+    end
+    rescue Exception => e
+      flash[:error] = "Please try again"
+    end
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   def show
   end
 

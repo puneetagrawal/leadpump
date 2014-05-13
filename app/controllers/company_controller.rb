@@ -327,34 +327,54 @@ class CompanyController < ApplicationController
   end
   
   def social_message_page
-    @landpage = LandingPage.find_by_user_id(current_user.id)
-    if !@landpage.present?
-      @landpage = LandingPage.new
-    end
-    @company = current_user.fetchCompany
-    @auto_responder = AutoResponder.where(:user_id=>current_user).order('id asc')
-    @auto_res = AutoResponder.new
-    @onlinemall = Onlinemall.new
-    if current_user.isAdmin
-      @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC")
-    elsif current_user.isCompany
-      @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC").where(:user_id=>[current_user,1])
+    @temp_name = params[:name]
+    if @temp_name == "manage_landing"
+      @landpage = LandingPage.find_by_user_id(current_user.id)
+      if !@landpage.present?
+        @landpage = LandingPage.new
+      end
+    
+    elsif @temp_name == "responder"
+      @company = current_user.fetchCompany
+      @auto_responder = AutoResponder.where(:user_id=>current_user).order('id asc')
+      @auto_res = AutoResponder.new
+    
+    elsif @temp_name == "online_mall"
+      @onlinemall = Onlinemall.new
+      if current_user.isAdmin
+        @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC")
+      elsif current_user.isCompany
+        @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC").where(:user_id=>[current_user,1])
+      end
+    
+    elsif @temp_name == "manage_user" || @temp_name == "dusr_set"
+      @company = false
+      @user = User.new()
+      @picture = Picture.new()
+      @users = User.fetchCompanyUserList(current_user)
+      @users.insert(0, current_user)
+    elsif @temp_name == "account_setting"
+      @user = current_user
+      @add = Address.find_by_user_id("#{current_user.id}")
+    elsif @temp_name == "fb_logo"
+      @picture = Picture.new()
     end
 
-    @company = false
-    @user = User.new()
-    @picture = Picture.new()
-    @users = User.fetchCompanyUserList(current_user)
-    @users.insert(0, current_user)
-    
-    @temp_name = params[:name]
     respond_to do |format|
       format.js 
     end
   end
-  
-  
 
+  def save_dusr_report
+    user = User.find(params[:user_id])
+    if params[:dusr] == "true"
+      user.dusr = true
+    else
+      user.dusr = false
+    end
+    user.save
+    render json: {message: "success"}
+  end
 
 end
 

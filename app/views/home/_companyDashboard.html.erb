@@ -1,31 +1,11 @@
 
-<%if is_vip_allow(current_user)%>
-	<li>
-		<%=link_to(new_viplead_path, html_options = {}) do %>
-		<i class="icon icon_socialInviter"></i>
-		<span class="blue_txt">Invite Friends</span>
-		<span></span>                  
-		<%end %>
-	</li>
-<%elsif current_user.isCompany%>
-	<li>
-		<%=link_to("javascript:void(0)", html_options = {:class=>"upgrade_img"}) do %>
-		<span class="upgrade"></span>
-		<i class="icon icon_socialInviter"></i>
-		<span>Invite Friends</span>
-		<span></span>                  
-		<%end %>
-	</li>
-<%else%>
-	<li>
-		<%=link_to("javascript:void(0)", html_options = {:class=>""}) do %>
-		<span class="upgrade"></span>
-		<i class="icon icon_socialInviter"></i>
-		<span>Invite Friends</span>
-		<span></span>                  
-		<%end %>
-	</li>
-<%end%>
+<li>
+	<%=link_to(new_viplead_path, html_options = {}) do %>
+	<i class="icon icon_socialInviter"></i>
+	<span class="blue_txt">Invite Friends</span>
+	<span></span>                  
+	<%end %>
+</li>
 
 <%if current_user.checkLeadLimit%>
 	<li>

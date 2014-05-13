@@ -27,6 +27,7 @@ Leadpump::Application.routes.draw do
 
   match "/createpic" => "picture#create"
   match "/createvippic" => "picture#createvippic"  
+  match "/create_fb_logo" => "picture#create_fb_logo"
   resources :picture
 
   match "/statsearch" => "statss#statsearch"
@@ -197,6 +198,7 @@ Leadpump::Application.routes.draw do
   match "/savegmmes" => "company#savegmmes" 
   match "/savevipsetings" => "company#savevipsetings"  
   match "/unsubscribe" => "company#unsubscribe"  
+  match "/save_dusr_report" => "company#save_dusr_report"
 
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"

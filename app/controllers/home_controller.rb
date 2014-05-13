@@ -70,11 +70,10 @@ class HomeController < ApplicationController
     end
   end
 
-
   def welcome
   end
 
-def calculateAmount
+  def calculateAmount
     @msg = User.signUpAmount(params[:plan_per_user_range], params[:du], params[:dp])
     respond_to do |format|
       format.json { render json: @msg }
@@ -472,8 +471,6 @@ def calculateAmount
       rescue => e
         @cardError = "Something bad happened, Please try again"
       end
-      logger.debug(@cardError)
-      logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     end
     if @cardError != ''
         redirect_to new_plan_path(:user=>@user.token,:card_error=>@cardError,:plan_per_user_range=>params[:planPerUserId])

@@ -1,11 +1,19 @@
 <table class="table table-striped">
  <thead>
-   <tr><td>User Image</td><td>Name</td><td>Email</td><td>Status</td><td>Action</td></tr>
+   <tr><td>User Image</td><td>Name</td><td>Email</td><td>Status</td>
+    <td>
+      <%if @temp_name != "dusr_set"%>
+        Action
+      <%else%>
+        Add To DUSR List
+      <%end%>
+    </td>
+  </tr>
  </thead>
  <tbody>    
   <%if @users.size > 0%>                
   <% @users.each do |user|%>
-  <tr class="viewLead listView" id="viewLead_<%=user.id%>" href="#viewPopup" data-action="userpopup">
+  <tr class="<%if @temp_name != "dusr_set"%>viewLead<%end%> listView" id="viewLead_<%=user.id%>" href="#viewPopup" data-action="userpopup">
     <%= render "userListRows", :user => user%>
   </tr>
   <% end %>      

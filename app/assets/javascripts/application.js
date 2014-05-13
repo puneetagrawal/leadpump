@@ -374,6 +374,14 @@ function initialization() {
         $('#picture_avatar').click();
     });
 
+    $(document).on("click", ".submit_fb_logo", function () {
+        $('#picture_fb_logo').click();
+    });
+
+    $(document).on("change", "#picture_fb_logo", function () {
+        $('form#fb_logo').submit();
+    });
+
     $(document).on("change", "#picture_avatar", function () {
         if(pic_uid != ''){
             $(".uid_"+pic_uid).submit();

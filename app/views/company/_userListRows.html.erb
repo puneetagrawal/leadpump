@@ -2,21 +2,36 @@
 	<%if user.picture.present?%>
         <%= image_tag user.picture.avatar.url(:thumb), :class=>"img-polaroid user78"%>
     <%end%>
-    <div class="pull-left clear leadAction" style="margin-top:3px;">
-	    <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a>
-	    <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo",:class=>"uid_#{user.id}", :style=>"margin:0px;" } do |form| %>
-	      <%= hidden_field_tag :u_id, user.id%>
-	      <%= form.file_field :avatar, :class=>"file_#{user.id} pic_avt",:style =>"display:none" %>
-	    <% end %>
-	</div>
+    <%if @temp_name != "dusr_set"%>
+	    <div class="pull-left clear leadAction" style="margin-top:3px;">
+		    <a class="btn yellow submitlogo leadAction" style="font-size: 10px;min-width: 42px;padding: 2px 20px;">Upload Pic</a>
+		    <%= form_for @picture, :url => '/createpic' ,:html => { :id => "c_logo",:class=>"uid_#{user.id}", :style=>"margin:0px;" } do |form| %>
+		      <%= hidden_field_tag :u_id, user.id%>
+		      <%= form.file_field :avatar, :class=>"file_#{user.id} pic_avt",:style =>"display:none" %>
+		    <% end %>
+		</div>
+	<%end%>
 </td>
 <td><%=user.name%></td>
 <td><%=user.email%></td>
-<td class="leadActive leadAction" id="status_<%=user.id%>">
-	<%=render "common_templates/changeStatus", :user=>user, :lead=>nil%>
-</td>
-<td class="leadAction">
-	<%=link_to "Edit", "javascript:void(0)", html={:class=>"leadAction userEdit"}%>
-	 <%if current_user != user %> | <%=link_to "Delete", "javascript:void(0)", html={:class=>"leadAction leadDelete"}%> 
-	 <%end%>
-</td>    
+<%if @temp_name != "dusr_set"%>
+	<td class="leadActive leadAction" id="status_<%=user.id%>">
+		<%=render "common_templates/changeStatus", :user=>user, :lead=>nil%>
+	</td>
+	<td class="leadAction">
+		<%=link_to "Edit", "javascript:void(0)", html={:class=>"leadAction userEdit"}%>
+		 <%if current_user != user %> | <%=link_to "Delete", "javascript:void(0)", html={:class=>"leadAction leadDelete"}%> 
+		 <%end%>
+	</td>   
+<%else%>
+	<td class="leadActive leadAction" id="status_<%=user.id%>">
+		<%=render "common_templates/changeStatus", :user=>user, :lead=>nil%>
+	</td>
+	<td class="leadAction">
+	  <%if user.dusr%>
+    	<%=check_box_tag 'dusr_enable', '', true %>
+      <%else%>
+        <%=check_box_tag 'dusr_enable', '', false%>
+      <%end%>
+	</td>   
+<%end%> 
