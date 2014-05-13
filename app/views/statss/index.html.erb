@@ -28,11 +28,12 @@ $(function() {
                     
                     converteddata = "<%= raw @statsgraphdata['e_con'.to_sym] %>"
                     converteddata = converteddata.split(",").map(Number)
-                    console.log(converteddata)
+                    // console.log(converteddata)
                     
                     nonqualified = "<%= raw @statsgraphdata['e_view'.to_sym] %>"
+                    
                     nonqualified = nonqualified.split(",").map(Number)
-                    console.log(nonqualified)
+                    // console.log(nonqualified)
                     $('#container').highcharts({
                         chart: {
                             type: 'area'
