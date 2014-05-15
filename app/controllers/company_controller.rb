@@ -374,5 +374,25 @@ class CompanyController < ApplicationController
     render json: {message: "success"}
   end
 
+  def save_waiver_text
+    if params[:title] && params[:desc].present?
+
+      desk_desc = FrontDeskDesc.find_by_user_id(current_user.id)
+      if desk_desc.present?
+        front_desk = desk_desc.update_attributes(:title => params[:title], :description => params[:desc], :user_id => current_user.id)
+      else
+        front_desk = FrontDeskDesc.create(:title => params[:title], :description => params[:desc], :user_id => current_user.id)
+      end
+      
+      # flash[:success] = "Waiver text saved successfully"
+    else
+      # flash[:alert] = "Error!"      
+    end
+    
+    respond_to do |format|
+      format.js { render nothing: true }
+    end    
+  end
+
 end
 

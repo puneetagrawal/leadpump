@@ -531,6 +531,44 @@ class HomeController < ApplicationController
     end
   end
 
+  def guest_register
+  end
+
+  def member_profile_basic
+    @lead = Lead.new(:email => params[:lead][:email_address], :name => params[:lead][:first_name],
+    :lname => params[:lead][:last_name], :lead_source => "new guest checkin")
+    @lead.save
+
+    user_lead = UserLeads.new(:user_id => current_user.id, :lead_id => @lead.id)
+    user_lead.save
+
+    news_feed = NewsFeed.create(:user_id => current_user.id, :lead_id => @lead.id, :description => "New Guest Check in",
+    :feed_date => Date.today, :action => "Start")
+    news_feed.save
+
+    AutoResponderRecord.save_respond_message(user_lead, current_user)
+  end
+
+  def member_profile_advance
+    if params[:lead][:lead_id].present?
+      @lead = Lead.find(params[:lead][:lead_id])
+    
+      @lead.update_attributes(:address => params[:lead][:address], :city => params[:lead][:address], :zip =>
+      params[:lead][:zip], :phone => params[:lead][:phone], :age => params[:lead][:age], :gender => params[:gender])
+    end
+  end
+
+  def save_details
+    if params[:lead_id].present?
+      @lead = Lead.find(params[:lead_id])
+
+      @lead.update_attributes(:is_member => params[:are_you_member], :currently_exercise => params[:currently_exercise],
+      :program_span => params[:program], :goal => params[:goals], :refferred_by => params[:guest])
+
+      @waiver = FrontDeskDesc.find_by_user_id(current_user.id)
+    end
+  end
+
   private
 
   def mail_invitaion(message, email_id)

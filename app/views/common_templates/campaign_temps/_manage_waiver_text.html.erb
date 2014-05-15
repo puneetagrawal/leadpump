@@ -1,0 +1,24 @@
+<div class="container wrapper" style="margin-top:40px">
+    <div class="row-fluid">
+        <div>
+            <%= form_tag "/save_waiver_text", remote: true, style: "margin-left: 20px;" do %>
+                <label><b>Title</b></lable>
+                <p style="width: 33%; margin-top: 14px;">
+                    <%= text_field_tag "title", nil, placeholder: "Enter title" %>
+                </p>
+
+                <label><b>Description</b></label><br />
+                <p><%= text_area_tag 'desc', nil, class: "ckeditor" %></p>
+
+                <%= submit_tag "Save" %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $('.ckeditor').ckeditor();
+    });
+</script>
