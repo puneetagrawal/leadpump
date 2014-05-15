@@ -2,7 +2,8 @@ require 'savon'
 class Lead < ActiveRecord::Base
   attr_accessible :name, :lname, :active, :address, :phone, :email, :address, :refferred_by,
    :goal, :lead_source, :guest_pass_issued,:notes, :user_id, 
-   :status, :no_of_days, :associate, :gender, :member_id, :barcode, :state, :city, :zip, :country
+   :status, :no_of_days, :associate, :gender, :member_id, :barcode, :state, :city, :zip, :country,
+   :age, :is_member, :currently_exercise, :program_span
   belongs_to :user
   has_many :news_feeds
   after_create :insert_prospect_abc, :savestatus

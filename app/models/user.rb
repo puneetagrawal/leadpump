@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_one  :landing_page
   belongs_to :role
   has_one :subscription
+  has_one :front_desk_desc
   has_one :picture
   accepts_nested_attributes_for :addresses, :subscription
 

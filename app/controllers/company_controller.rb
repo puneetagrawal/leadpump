@@ -420,5 +420,30 @@ class CompanyController < ApplicationController
     end
   end
 
+  def save_waiver_text
+    @message = ""
+    if params[:title] && params[:desc].present?
+      desk_desc = FrontDeskDesc.find_by_user_id(current_user.id)
+      if desk_desc.present?
+        logger.debug(">>>>>>>")
+        desk_desc.title = params[:title]
+        desk_desc.description = params[:desc]
+        if desk_desc.save
+          logger.debug("saved")
+        else
+          logger.debug(desk_desc.errors.full_messages)
+        end
+      else
+        front_desk = FrontDeskDesc.create(:title => params[:title], :description => params[:desc], :user_id => current_user.id)
+      end
+      @message = "Waiver text saved successfully"
+    else
+      @message = "Message not saved"      
+    end
+    respond_to do |format|
+      format.js
+    end    
+  end
+
 end
 

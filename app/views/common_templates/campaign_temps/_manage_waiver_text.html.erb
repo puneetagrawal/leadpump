@@ -1,0 +1,31 @@
+<div class="container wrapper" style="margin-top:40px">
+    <div class="row-fluid">
+        <div class="" style="margin-left: 3%;text-align: left;width: 59%;">
+            <h2 class="heading">Manage Waiver Message</h2>
+                <div class="" style="padding:20px;">
+                    <span id="stripe_error"></span>
+                    <%= form_tag "/save_waiver_text", remote: true, style: "margin-left: 20px;" do %>
+                        <label><b>Title</b></lable>
+                        <p style="width: 85%; margin-top: 14px;">
+                            <%= text_field_tag "title", current_user.front_desk_desc.present? ? current_user.front_desk_desc.title : nil, placeholder: "Enter title" %>
+                        </p>
+
+                        <label><b>Description</b></label><br />
+                        <p><%= text_area_tag 'desc', current_user.front_desk_desc.present? ? current_user.front_desk_desc.description : nil, class: "ckeditor" ,:style=>"width 85%;"%></p>
+
+                        <%= submit_tag "Save", :class=>"btn yellow" %>
+                    <% end %>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function(){
+        $('.ckeditor').ckeditor();
+    });
+</script>

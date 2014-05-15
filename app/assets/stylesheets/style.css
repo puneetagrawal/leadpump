@@ -2886,7 +2886,7 @@ header .container {
 .menuView .dashboardIcons li .icon_setting {
     background-position: 5px -422px;
 }
-
+.menuView .dashboardIcons li .icon_guest_btn{background-position: 5px -462px;}
 .menuView .dashboardIcons li .icon_dashboard {
     background-position: 5px 2px;
 }
@@ -3267,4 +3267,73 @@ h2.heading_about:before {
 
 .acc_set_steps form .input-small{
     width: 10%;   
+}
+.step_main_col_new{width: 770px;
+margin: 0px auto}
+
+.step_main_col_new input[type="text"]{background: #fff;
+border-radius: 0;
+float: left;
+width: 30%;
+margin-right: 10px;
+height: 40px;
+border: 1px solid #000;
+color: #a7a7a7;
+font-size: 20px !important;
+padding-top: 7px;}
+
+.step_main_col.step_new {
+width: 450px;
+font-family: arial;
+color: #fff;
+float: left;
+margin-left: 204px;
+margin-bottom: 33px;
+margin-top: 30px;
+}
+.step_main_col.step_new .step_txt h3, .step_main_col.step_new .step_txt p{color: #fff}
+
+
+.step_main_col_new .yellow {
+background: #4b80cb !important;
+border-color: 1px solid #4b80cb !important
+color: #fff;
+text-shadow: 0 0 0;
+}
+.step_main_col_new .btn {
+background: #eee;
+color: #fff;
+font-size: 12px;
+padding: 10px 20px;
+text-decoration: none;
+border-radius: 1px;
+border: 1px solid #ddd;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+min-width: 100px;
+display: inline-block;
+text-align: center;
+}
+.select_input_col{width: 100%; float: left;}
+.select_input_col label{width: 48%;
+float: left;
+font-size: 18px;
+color: #fff;
+line-height: 57px;}
+.select_input_col select{width: 51%;
+float: right;
+font-size: 18px;
+border-radius: 0;
+height: 52px;
+border: 1px solid #000;}
+.guest_input{width: 49% !important;
+margin-left: 9px !important;
+margin-right: 0 !important;}
+.step_main_col_new .yellow.step_su_btn{width: 150px;
+height: 52px;
+font-size: 21px;
+margin-top: 11px;}
+
+.waiver_white {
+ color: white;   
 }

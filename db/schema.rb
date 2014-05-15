@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514123453) do
+ActiveRecord::Schema.define(:version => 20140515055014) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -107,6 +107,14 @@ ActiveRecord::Schema.define(:version => 20140514123453) do
     t.datetime "updated_at",         :null => false
   end
 
+  create_table "front_desk_descs", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "title"
+  end
+
   create_table "gmail_friends", :force => true do |t|
     t.string   "email"
     t.string   "name"
@@ -157,11 +165,11 @@ ActiveRecord::Schema.define(:version => 20140514123453) do
   end
 
   create_table "leads", :force => true do |t|
-    t.boolean  "active",                         :default => true
+    t.boolean  "active",                          :default => true
     t.string   "name"
     t.string   "email"
     t.string   "address"
-    t.integer  "phone",             :limit => 8
+    t.integer  "phone",              :limit => 8
     t.string   "refferred_by"
     t.boolean  "guest_pass_issued"
     t.string   "lead_source"
@@ -169,21 +177,25 @@ ActiveRecord::Schema.define(:version => 20140514123453) do
     t.string   "enrolment_value"
     t.string   "notes"
     t.integer  "company_id"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "goal"
     t.string   "lname"
     t.string   "status"
     t.integer  "no_of_days"
     t.string   "associate"
-    t.boolean  "subscribe",                      :default => true
+    t.boolean  "subscribe",                       :default => true
     t.string   "lead_token"
     t.string   "barcode"
     t.string   "member_id"
-    t.string   "gender",                         :default => "male"
+    t.string   "gender",                          :default => "male"
     t.string   "zip"
     t.string   "city"
     t.string   "state"
+    t.integer  "age"
+    t.boolean  "is_member"
+    t.string   "currently_exercise"
+    t.string   "program_span"
   end
 
   create_table "mallpics", :force => true do |t|

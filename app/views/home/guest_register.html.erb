@@ -1,0 +1,43 @@
+<div class="container main_container " style="padding-top:40px;">
+	<div class="row-fluid">
+		<div class="span12">
+			<h2 class="heading-about" style="text-align: center; color:#fff">Guest Registration</h2>
+		</div>
+
+		<div class="row-fluid">
+			<div class="step_main_col_new">
+
+					<div class="step_main_col step_new">
+      	<div class="step_wise_col step_1">
+          	<span class="step_circle step_active"><span >1</span></span>
+              <div class="step_txt">
+         			<h3>STEP 1</h3>
+              </div>
+          </div>
+          
+          <div class="step_wise_col step_2">
+          	<span class="step_circle"><span>2</span></span>
+         		<div class="step_txt">
+         			<h3>STEP 2</h3>
+              </div>
+          </div>
+          
+          <div class="step_wise_col step_3">
+          	<span class="step_circle"><span>3</span></span>
+         		<div class="step_txt">
+         		<h3>STEP 3</h3>
+              </div>
+          </div>
+      </div>
+      <div class="clear"></div>
+
+				<%= form_for :lead, :url => member_profile_basic_path, :html => { :style => 'margin-left:35px;'} do |f| %>
+					<%= f.text_field :first_name, value: "", :placeholder => "First name" %>
+					<%= f.text_field :last_name, value: "", :placeholder => "Last name"  %>
+					<%= f.text_field :email_address, value: "", :placeholder => "Email address"  %>
+				<div style="text-align:center">	<%= f.submit "Step Two", :class => "btn yellow step_su_btn" %></div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
