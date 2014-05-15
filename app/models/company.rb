@@ -57,21 +57,22 @@ class Company < ActiveRecord::Base
 		arry.each do |b|
 	  		comp_user = []
 	  		users = User.fetchCompanyUserList(b)
-	    	user_count = users.size
-	    	users.each do |u|
-		      	stat = Stats.where("user_id = ? and created_at = ?", u, Date.today).last
+	  		users << b
+	  		usr_list = users.uniq
+	    	user_count = usr_list.size
+	    	usr_list.each do |u|
+	    		logger.debug("calculating for #{u.id}")
+		      	stat = Stats.where("user_id = ? and created_at > ?", u, Date.today).last
 		    	if stat.present?
 	    		  show = true
 				  mail_oppened_count = stat.e_oppened
 			      mail_sent_count = stat.e_sents
 			      mail_converted_count = stat.e_converted
-			      comp_user << [u.name, mail_oppened_count , mail_sent_count , mail_converted_count]
+			      mail_clicked = stat.e_views
 			    end
+		        comp_user << [u.name, mail_sent_count, mail_oppened_count, mail_clicked, mail_converted_count]
 		      end
-		    p_o_s = UserLeads.includes(:lead).where("leads.lead_source = ? and user_id = ?", "LEADPUMP p.o.s.", u.id).count
-		    if show
-		    	Emailer.report_mailer(comp_user, b, show).deliver
-		    end
+	    	Emailer.report_mailer(comp_user, b).deliver
 		end
 	end
 end

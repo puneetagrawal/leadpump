@@ -39,6 +39,7 @@ $(document).ready(function(){
 
 	$(document).on('click', '.try_free_btn',function(){
 		var id = $(this).find('a').attr('data-id');
+		var upg = $(this).find('a').attr('data-upgrade');
 		if(id && id != ''){
 			id = id.split("_");
 			$.fancybox.open({
@@ -50,6 +51,15 @@ $(document).ready(function(){
 					});
 				}
 		    });
+		}
+		else if (upg && upg != ''){
+			upg = upg.split("_");
+			$.fancybox.open({
+		      href: '#upgrade_plans_pop',
+		      type: 'inline'
+		    });
+		    $("#upgrade_plan").val(upg);
+		    $(".heading").text('Upgrade Your Plan');
 		}
 	});
 

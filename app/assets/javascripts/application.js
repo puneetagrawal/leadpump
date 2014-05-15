@@ -69,7 +69,7 @@ $(document).ready(function () {
     // 	});
     // });
 
-    $(".upgrade_img").click(function () {
+    $(document).on("click",".upgrade_img", function () {
         $.fancybox.open({
             href: '#upgrade_terms',
             type: 'inline',
@@ -453,6 +453,18 @@ function initialization() {
         $("#billing_address").attr('checked', false);
         $(".same_address").hide();
         $(".diff_address").show();
+    });
+    $(document).on('click', '.acc_set_btn', function () {
+        $(".app_header").html('<img src="/assets/ajax-loader.gif" style="margin:11% 0 10% 50%">')
+        var btn_name =  $(this).attr('data-form');
+        url = '/acc_setting_address';
+        $.get(url, {btn_name: btn_name}, function (data) {
+        });
+    });
+
+    $(document).on('click', '.save_addres', function (data){
+        $(this).html('<img src="/assets/ajax-loader.gif">');
+        $("#acc_set").submit();
     });
 }
 

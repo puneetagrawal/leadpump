@@ -374,5 +374,51 @@ class CompanyController < ApplicationController
     render json: {message: "success"}
   end
 
+  def acc_setting_address
+    @btn_name = params[:btn_name]
+    if @btn_name == "addrs"
+      @user = current_user
+      @add = Address.find_by_user_id("#{current_user.id}")
+    end
+    respond_to do |format|
+      format.js 
+    end
+  end
+
+  def save_acc_settings
+    if params[:address].present?
+      Address.save_user(params[:address], params[:company_name], current_user)
+    elsif params[:stripe_card_token]
+      email = current_user.email
+      stripe_token = params[:stripe_card_token]
+      begin
+          email = current_user.email.to_s
+          customer = Stripe::Customer.create(
+            :email => email,
+            :description => "Creating Card Info",
+            :card  => params["stripe_card_token"]
+            )
+          CreditCard.create(:user_id=>current_user.id, :customer_id=>customer.id)
+        rescue Stripe::CardError => e
+          body = e.json_body
+          err  = body[:error]
+          @cardError = "#{err[:message]}"
+        rescue Stripe::InvalidRequestError => e
+          @cardError = "Invalid parameters were supplied to Stripe API"
+        rescue Stripe::AuthenticationError => e
+          @cardError = "Authentication with Stripe's API failed"
+        rescue Stripe::APIConnectionError => e
+          @cardError = "Network communication with Stripe failed"
+        rescue Stripe::StripeError => e
+          @cardError = "Display a very generic error to the user, and maybe send yourself an email"
+        rescue => e
+          @cardError = "Something bad happened, Please try again"
+      end
+    end
+    respond_to do |format|
+        format.js 
+    end
+  end
+
 end
 

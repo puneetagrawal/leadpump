@@ -20,4 +20,12 @@ def unlimitedText(data)
 	return class_name
 end
 
+def get_upg(maxUsers, plan_id)
+	if !maxUsers.blank? && current_user.present?
+		return "#{plan_id}_#{current_user.id}"
+	else
+		return ""
+	end
+end
+
 end

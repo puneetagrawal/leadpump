@@ -2,20 +2,14 @@
    <div class="row-fluid">
    	<span class="formfields">
    	</span>
+   	<div style="margin:10px">
+	  	<a href="javascript:void(0)" class="btn yellow acc_set_btn" data-form="addrs">Location Address</a>
+	  	<a href="javascript:void(0)" class="btn yellow acc_set_btn" data-form="card">Save Card Info</a>
+	  	<a href="javascript:void(0)" class="btn yellow acc_set_btn" data-form="manage_sub">Manage Subscription</a>
+	</div>
       <div class="span8 app_header" style="width: 78.811966%;margin-left: 8%;">
 		  <div class="border" style="width:106%">
-		   	   <h2 class="heading">Account Settings</h2>
-			   <div class="acc_set_steps" style="padding:20px;">
-			   		<%=render "common_templates/addressFields"%>
-			   </div>
-			   <div style="width:100%;float:left;">
-			   	<p class="acc_set_btn" data-id = "1" data-name="next">
-			   		<input type="button" class="btn yellow" data-id="2" value="Next" style="width:200px;"/>
-			   	</p>
-			   	<p class="acc_set_btn" data-id="1" data-name="skip">
-			   		<input type="button" class="btn yellow" data-id="2" value="Skip" style="width:200px;"/>
-			   	</p>
-			   </div>
+		   	   <%=render "common_templates/campaign_temps/manage_address"%>
 			</div>
 		</div>
    </div>

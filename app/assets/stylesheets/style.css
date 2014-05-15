@@ -1,3 +1,4 @@
+
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 html,
 button,
@@ -3247,4 +3248,23 @@ h2.heading_about:before {
     text-decoration: none;
     color: #fff;
     background: #4b80cb;
+}
+
+.set_btn{
+    margin: 15px 10px 10px;
+    float: left;
+}
+
+#stripe_error {
+  color: #D00;
+  margin-bottom: 10px;
+}
+
+.acc_set_steps form input{
+    height: 30px;
+    width: 50%;
+}
+
+.acc_set_steps form .input-small{
+    width: 10%;   
 }

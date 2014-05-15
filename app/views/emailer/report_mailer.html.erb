@@ -15,12 +15,15 @@ Hello <%="#{@user.name}"%>
 		<th>
 			Email Clicked
 		</th>
+		<th>
+			Email Converted
+		</th>
 	</tr>
 	<%@u_list.each do |user| %>
 		<tr>
 			<%user.each do |u| %>
 			<td>
-				<%="#{u}"%>
+				<%="#{u ? u : '-'}"%>
 			</td>
 			<%end%>
 		</tr>

@@ -3,13 +3,16 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+  window.btn = ''
   subscription.setupForm()
+
 
 subscription =
   setupForm: ->
     $(document).on 'click', '.pay_btn', () ->
       if $("#terms").is(':checked')
         if $('#card_number').length
+          window.btn = $('.pay_btn').html();
           $('.pay_btn').html('<img src="/assets/ajax-loader.gif" style="margin:20px 0 0 0;">');
           subscription.validateCard()
         else
@@ -25,7 +28,7 @@ subscription =
       $('#payment_form').submit()
     else
       $('#stripe_error').text(response.error.message)
-      $(".pay_btn").html('<input type="button" style="width:200px;" value="Next" data-id="4" class="next_btnlarge">')
+      $(".pay_btn").html(window.btn)
 
   validateCard: ->
       card =

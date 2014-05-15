@@ -1,21 +1,4 @@
-<!-- <span style="font-weight:bold;">
-	<%if current_user.isCompany%>
-		Are You Sure want to upgrade your current plan.
-		<div style="margin-top: 100px;">
-		<%=link_to "Upgrade", new_plan_path(:maxUsers => @upgrade_user), :class=>"pop_yellow_btn"%>
-		<span class="pop_yellow_btn cancelFancybox">Cancel</span>
-	</div>
-	<%else%>
-		You are not authorize for directly upgrade your plan. 
-		Ask your admin for upgrade plan.
-		<div style="margin-top: 100px;">
-			<span class="pop_yellow_btn plan_upg_mail">Send Request</span>
-			<span class="pop_yellow_btn cancelFancybox">Cancel</span>
-		</div>
-	<%end%>
-</span> -->
 <%if @all_plan.present?%>
-
 <div class="price-tbl" style="height:200px;width:700px;margin:40px 0 0 -85px">
 	<div class="all-data-col">
 		<% @all_plan.each_with_index do |planPerUser, i| %>

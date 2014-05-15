@@ -1,5 +1,6 @@
-							
-<span class="credit_fild_col mb2"><%= label_tag "Company Name" %><%= text_field_tag :company_name, @user.present? ? @user.company_name : "" %></span>
+<%if @user.isCompany%>						
+	<span class="credit_fild_col mb2"><%= label_tag "Company Name" %><%= text_field_tag :company_name, @user.present? ? @user.company_name : "" %></span>
+<%end%>
 <span class="credit_fild_col mb2">
 	<%= label_tag :Address %><%= text_field_tag "address[address]", @add.present? ? @add.address : "" %>
 </span>

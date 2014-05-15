@@ -5,7 +5,9 @@
 			<tbody>
 				<% if @address.present? %>
 				<tr><td>Phone</td><td>-</td><td><%=@address.phone.present? ? @address.phone : 'N/A'%></td></tr>
-				<tr><td>Address</td><td>-</td><td><%=@address.address.present? ? @address.address : 'N/A'%></td></tr>
+				<tr><td>Address</td><td>-</td><td>
+					<%=@address.address.present? ? @address.address : 'N/A'%>
+				</td></tr>
 				<tr><td>Zip</td><td>-</td><td><%=@address.zip.present? ? @address.zip : 'N/A'%></td></tr>
 				<tr><td>City</td><td>-</td><td><%=@address.city.present? ? @address.city : 'N/A'%></td></tr>
 				<tr><td>State</td><td>-</td><td><%=@address.state.present? ? @address.state : 'N/A'%></td></tr>

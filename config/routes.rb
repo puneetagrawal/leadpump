@@ -199,6 +199,8 @@ Leadpump::Application.routes.draw do
   match "/savevipsetings" => "company#savevipsetings"  
   match "/unsubscribe" => "company#unsubscribe"  
   match "/save_dusr_report" => "company#save_dusr_report"
+  match "/acc_setting_address" => "company#acc_setting_address"
+  match "/save_acc_settings" => "company#save_acc_settings"
 
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
