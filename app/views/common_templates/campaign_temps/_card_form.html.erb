@@ -1,0 +1,16 @@
+<h2 class="heading">Save Your Card</h2>
+<div class="acc_set_steps" style="padding:20px;">
+   	<%= form_tag("/save_acc_settings", method: "post", :remote=>true, :id=>"payment_form") do |form| %>
+   		<span id="stripe_error"></span>
+		<%=render "common_templates/credit_card_info"%>
+		<%=hidden_field_tag :btn_name%>
+		<%=hidden_field_tag :upgrade_plan%>
+		<span class="credit_fild_col mb2">
+			<%= label_tag "Agree" %>
+			<%=check_box_tag :terms%>
+		</span>
+	<%end%>
+	<p class="pay_btn">
+   		<input type="button" class="btn yellow" value="Save"/>
+   	</p>
+</div>

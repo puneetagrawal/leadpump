@@ -1,0 +1,7 @@
+<%if @btn_name == "addrs"%>
+	$(".app_header").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_address")%>')
+<%elsif @btn_name == "card"%>
+	$(".app_header").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/card_form")%>')
+<%elsif @btn_name == "manage_sub"%>
+	$(".app_header").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_subscription")%>')
+<%end%>

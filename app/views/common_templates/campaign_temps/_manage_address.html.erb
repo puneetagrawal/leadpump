@@ -1,0 +1,10 @@
+<h2 class="heading">Location Address</h2>
+<div class="acc_set_steps" style="padding:20px;">
+   	<%= form_for @add, :url => '/save_acc_settings', :remote=>true, :method=>"post", :html=>{:id=>"acc_set"} do |form| %>
+   		<%=render "common_templates/addressFields"%>
+   		<%=hidden_field_tag :btn_name%>
+	<%end%>
+	<p class="save_set">
+   		<input type="button" class="btn yellow save_addres" value="Save"/>
+   	</p>
+</div>

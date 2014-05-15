@@ -1,0 +1,7 @@
+$(".save_w_mes").html('<input type="submit" value="Save" name="commit" class="btn yellow">');
+<%if @message == "Message not saved"%>
+	$("#stripe_error").text("<%=@cardError%>");
+<%else%>
+	$("header").append('<p class="flashes alert alert-success">SuccessFully Updated</p>');
+	hideSuccessMsg();
+<%end%>

@@ -1,0 +1,20 @@
+<span class="credit_fild_col mb2"><%= label_tag :Type %>
+	<%= select_tag "credit_card", options_for_select([ "VISA", "MasterCard","American Express", "Discover" ], "MasterCard"), class:"input-small mr10 large-select" %>
+</span>
+<span class="credit_fild_col mb2">
+	<%= label_tag :card_number, "Credit Card Number" %>
+	<%= text_field_tag :card_number, nil, name: nil %>
+</span>
+<%= hidden_field_tag :stripe_card_token %>
+<%= hidden_field_tag :plan_per_user_range_id, @planPerUser.present? ? @planPerUser.id : ''%>
+<span class="credit_fild_col mb2">
+	<%= label_tag :person_name, "Name" %>
+	<%= text_field_tag :customerName, nil, name: nil %>
+</span>
+<span class="credit_fild_col mb2">
+	<%= label_tag :card_month, "Card Expiration" %>
+	<%= select_month nil, {use_month_numbers: true}, {name: nil, class: "input-small mr10",id: "card_month"}%>
+	<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, class:"input-small mr10", id: "card_year"} %>
+	<%= text_field_tag :card_code, nil, name: nil , :class => "input-small mr10"%>
+	<%= label_tag :card_code, "CVV", :class =>"input-small mr10" %>
+</span>
