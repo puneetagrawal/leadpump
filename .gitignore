@@ -8,7 +8,8 @@ public/images/*
 /.vagrant
 /Vagrantfile
 /.ruby-version
-postgresql.conf
+
+.postgresql.conf
 /test/fixtures/credit_cards.yml
 /test/fixtures/news_feeds.yml
 /test/unit/credit_card_test.rb

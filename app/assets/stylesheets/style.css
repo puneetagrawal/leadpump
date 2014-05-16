@@ -3291,7 +3291,6 @@ margin-left: 204px;
 margin-bottom: 33px;
 margin-top: 30px;
 }
-.step_main_col.step_new .step_txt h3, .step_main_col.step_new .step_txt p{color: #fff}
 
 
 .step_main_col_new .yellow {
@@ -3318,7 +3317,6 @@ text-align: center;
 .select_input_col label{width: 48%;
 float: left;
 font-size: 18px;
-color: #fff;
 line-height: 57px;}
 .select_input_col select{width: 51%;
 float: right;
