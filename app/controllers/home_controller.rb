@@ -284,7 +284,11 @@ class HomeController < ApplicationController
 
   def fetch_upgrade_plan
     plan = current_user.subscription.plan_per_user_range
-    @all_plan = PlanPerUserRange.order("id ASC").where("user_range_id = ? and plan_id != ?", plan.user_range_id, plan.plan_id)
+    @all_plan = PlanPerUserRange.order("id ASC").where("user_range_id = ? and plan_id < ?", 5, plan.plan_id)
+    @message = ''
+    if @all_plan.size <= 0
+      @message = "Sorry! You already bought maximum plan."
+    end
     respond_to do |format|
       format.js
     end

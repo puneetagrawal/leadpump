@@ -1,28 +1,44 @@
-<%if @all_plan.present?%>
-<div class="price-tbl" style="height:200px;width:700px;margin:40px 0 0 -85px">
-	<div class="all-data-col">
-		<% @all_plan.each_with_index do |planPerUser, i| %>
-		<div class="data-column data-col-<%="#{i+1}"%><%=' featured' if i == 2%>">
-			<span class="featured-red-corner"></span>
-			<div class="col-header">
-				<div class="plan-name"><span class="cufon"><%="#{planPerUser.plan.name}"%></span></div>
-				<div class="col-header-BG">
-					<div class="plan-price">
-						<em class="cufon">$</em>
-						<strong class="cufon"><%="#{planPerUser.price}"%></strong>
-						<b class="cufon">user/month</b>
-					</div>
-					<div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
-					<div class="plan-signup">
-						<%= link_to "Upgrade", new_plan_path(:maxUsers => planPerUser.user_range_id), html_options = {} %>
+<div id="upg_step1">
+	<%if @all_plan.present?%>
+	<div class="price-tbl" style="height:190px;">
+		<div class="all-data-col">
+			<% @all_plan.each_with_index do |planPerUser, i| %>
+			<div class="data-column data-col-<%="#{i+1}"%><%=' featured' if i == 2%>">
+				<span class="featured-red-corner"></span>
+				<div class="col-header">
+					<div class="plan-name"><span class="cufon"><%="#{planPerUser.plan.name}"%></span></div>
+					<div class="col-header-BG">
+						<div class="plan-price">
+							<em class="cufon">$</em>
+							<strong class="cufon"><%="#{planPerUser.price}"%></strong>
+							<b class="cufon">user/month</b>
+						</div>
+						<div class="plan-user"><span class="cufon"><%="#{planPerUser.plan.user_position}"%></span></div>
+						<div class="plan-signup">
+							<a href="javascript:void(0)" data-plan="<%=planPerUser.id%>" class="upgrade_plan_btn">Upgrade</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<%end%>
-	</div> 
-</div>
+			<%end%>
+		</div> 
+	</div>
 
-<%else%>
-You can't upgrade your plan.
-<%end%>
+	<%else%>
+	You can't upgrade your plan.
+	<%end%>
+</div>
+<div id="upg_step2" style="width:50%;display:none;">
+	<h3>Enter your credit card Details</h3>
+	<%= form_tag('/save_acc_settings', method: :post, remote: true, :id=>"payment_form", :class => "forms upg_form") do |f| %>
+		<%=render "common_templates/select_users"%>
+		<span id="stripe_error"></span>
+		<%=render "common_templates/credit_card_info"%>
+		<span style="float: left;width: 200px !important;">
+			<%=check_box_tag :terms%> I Agree
+		</span>
+		<p class="pay_btn">
+			<input type="button" class="upg_btn_sv btn yellow" data-id="4" value="Make Payment"/>
+		</p>
+	<%end%>
+</div>

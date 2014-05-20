@@ -1,2 +1,5 @@
-
-$(".fancybox-inner #upgrade_pop_txt").html('<%=escape_javascript(render partial: "common_templates/upgrade_pop_text")%>')
+<%if @message != ''%>
+	$(".upgrade_plan_content").html('<p><%=@message%></p>');
+<%else%>
+	$(".upgrade_plan_content").html('<%=escape_javascript(render partial: "common_templates/upgrade_pop_text")%>');
+<%end%>

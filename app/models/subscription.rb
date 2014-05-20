@@ -39,5 +39,29 @@ class Subscription < ActiveRecord::Base
       logger.debug("complete")
   end
 
+  def self.upgrade_user_plan(user, planperuserId,users,
+    locations,customerId, stripe_token)
+    sub = Subscription.where(:user_id=>2).last
+    if sub.present?
+      plan = PlanPerUserRange.where(:id=>planperuserId).last
+      payment = Subscription.get_payment(plan, users)
+      sub.plan_per_user_range_id = planperuserId
+      sub.customer_id = customerId
+      sub.payment = payment
+      sub.expiry_date = Date.today + 365
+      sub.plan_type = "yearly"
+      sub.stripe_card_token = stripe_token
+      sub.users_count = users
+      if sub.save
+        user.users_created = 0
+        user.leads_created = 0
+        user.save
+      end
+    end
+  end
+
+  def self.get_payment(plan, users)
+    return plan.price * users.to_i
+  end
   
 end

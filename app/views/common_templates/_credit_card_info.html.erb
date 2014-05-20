@@ -16,5 +16,5 @@
 	<%= select_month nil, {use_month_numbers: true}, {name: nil, class: "input-small mr10",id: "card_month"}%>
 	<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, class:"input-small mr10", id: "card_year"} %>
 	<%= text_field_tag :card_code, nil, name: nil , :class => "input-small mr10"%>
-	<%= label_tag :card_code, "CVV", :class =>"input-small mr10" %>
+	<%= label_tag :card_code, "CVV", :class =>"input-small mr10" ,style: 'display:inline;'%>
 </span>

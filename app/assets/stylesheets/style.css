@@ -1816,7 +1816,7 @@ header h2 a {
 
 .sale_statistic_data li {
     float: left;
-    width: 211px;
+    width: 210px;
     margin-right: 8% !important;
     color: #fff;
 }
@@ -1829,7 +1829,7 @@ header h2 a {
 
 .banner_col {
     float: right;
-    width: 920px;
+    width: 78.6%;
 }
 
 .row-fluid.mt10 {
@@ -2776,7 +2776,10 @@ header .container {
 }
 
 .cal_design .datepicker-inline {
-    width: 235px;
+    width: 91%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+      -moz-box-sizing: border-box;
 }
 
 .cal_design .datepicker {
@@ -3205,15 +3208,16 @@ h2.heading_about:before {
 }
 
 #leadListContent tr td {
-    background: none;
+    min-height: 60px;
     float: left;
     line-height: 20px;
     padding: 8px;
     text-align: left;
     vertical-align: top;
-    width: 10.2%;
+    width: 10.4%;
     word-wrap: break-word;
 }
+#leadListContent thead tr td{min-height: 20px;}
 
 .fc-border-separate thead {
     background: none repeat scroll 0 0 #323232;
@@ -3255,9 +3259,49 @@ h2.heading_about:before {
     float: left;
 }
 
+}
 #stripe_error {
   color: #D00;
   margin-bottom: 10px;
+}
+
+.upg_form input{
+    height: 27px !important;
+    width: 75% !important;
+}
+
+.upg_form .input-small{
+    width: 20% !important;
+}
+
+.upg_form .large-select{
+    width: 34% !important;
+}
+
+.upg_form .card_code{
+    margin-bottom: 15px !important;
+}
+
+.upg_form #stripe_error{
+    float: left;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.upg_form .upg_btn_sv{
+    padding: 0;
+    width: 10% !important;
+}
+
+.upg_form p{
+    float: left;
+    margin: 0 0 10px;
+    width: 70%;
+}
+
+.upg_form #terms{
+    margin-bottom: 5px;
+    width: 12% !important;
 }
 
 .acc_set_steps form input{
@@ -3335,3 +3379,124 @@ margin-top: 11px;}
 .waiver_white {
  /*color: white;   */
 }
+
+.btn_inline{
+     float: left;
+     width: 16%;
+}
+
+.area_inline{
+    float: left;
+    width: 100%;
+}
+
+@media only screen and (min-width:760px) and (max-width:1000px) {
+
+.wdt20_col {
+width: 26%;
+
+margin-left: 3px;
+}
+.banner_col {
+width: 72%;
+margin-right: 4px;
+}
+.gaugemargin li {
+margin-right: 8% !important;
+margin-bottom: 20px;
+
+}
+.wdt30_col {
+width: 34.4%;
+}
+.wdt20_col.ml15 {
+margin-left: 4px;
+margin-top: 7px;
+width: 99%;
+}
+#lead_gauge{margin-top: -20px;
+text-align: center;
+display: inline-block;}
+
+.salesRep {
+
+min-height: 694px;
+}
+.middle_cont_bg {
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+-moz-sizing: border-box;
+}
+.container {
+
+padding: 0px 10px;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+-moz-sizing: border-box;
+}
+
+.email_icon {
+   width: 80px;
+padding-left: 110px;
+}
+
+.facebook_icon {
+    float: left;
+    background: url("/assets/facebook-icon.png") 0 0 no-repeat;
+    width: 80px;
+padding-left: 110px;
+}
+
+.yahoo_icon {
+    float: left;
+    background: url("/assets/yahoo-icon.jpg") 0 0 no-repeat;
+   width: 80px;
+padding-left: 110px;
+}
+
+.twitter_icon {
+    float: left;
+    background: url("/assets/twitter-icon.png") 0 0 no-repeat;
+    width: 80px;
+padding-left: 110px;
+}
+
+.social_options ul li {
+
+width: 28%;
+}
+.btn {
+
+padding: 10px 7px;
+}
+
+.social_options ul li a {
+
+min-width: 110px;
+}
+
+#leadListContent tr td {
+width: 21.5%;
+min-height: 51px;
+
+}
+.leadform input {
+width: 91%;}
+.leadform label {
+width: 100%;}
+
+.leadform select {
+width: 100%;
+}
+.wht_100{width: 100% !important;}
+.wht_100.m10{margin: 10px 0 0 0}
+.cal_design .datepicker-inline{width: 100%;}
+.wdt92{width: 92% !important;}
+.wid_100_form{width: 92% !important;
+margin-left: 0 !important;}
+
+    }
+
+
+
+

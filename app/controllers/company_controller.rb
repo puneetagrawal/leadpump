@@ -356,6 +356,7 @@ class CompanyController < ApplicationController
     elsif @temp_name == "account_setting"
       @user = current_user
       @add = Address.find_by_user_id("#{current_user.id}")
+      @add = @add.present? ? @add : Address.new
     end
     @picture = Picture.new()
     respond_to do |format|
@@ -379,6 +380,7 @@ class CompanyController < ApplicationController
     if @btn_name == "addrs"
       @user = current_user
       @add = Address.find_by_user_id("#{current_user.id}")
+      @add = @add.present? ? @add : Address.new
     end
     respond_to do |format|
       format.js 
@@ -398,7 +400,12 @@ class CompanyController < ApplicationController
             :description => "Creating Card Info",
             :card  => params["stripe_card_token"]
             )
-          CreditCard.create(:user_id=>current_user.id, :customer_id=>customer.id)
+          if params[:discountOnUsers].present?
+              Subscription.upgrade_user_plan(current_user, params[:plan_per_user_range_id],params[:discountOnUsers], params[:no_of_locations],
+                 customer.id, params["stripe_card_token"])
+          else
+            CreditCard.create(:user_id=>current_user.id, :customer_id=>customer.id)
+          end
         rescue Stripe::CardError => e
           body = e.json_body
           err  = body[:error]
@@ -416,8 +423,11 @@ class CompanyController < ApplicationController
       end
     end
     respond_to do |format|
-        format.js 
+      format.js 
     end
+  end
+
+  def upgrade_user_plan
   end
 
   def save_waiver_text
@@ -425,11 +435,10 @@ class CompanyController < ApplicationController
     if params[:title] && params[:desc].present?
       desk_desc = FrontDeskDesc.find_by_user_id(current_user.id)
       if desk_desc.present?
-        logger.debug(">>>>>>>")
         desk_desc.title = params[:title]
         desk_desc.description = params[:desc]
         if desk_desc.save
-          logger.debug("saved")
+          logger.debug("saved waiver Text")
         else
           logger.debug(desk_desc.errors.full_messages)
         end

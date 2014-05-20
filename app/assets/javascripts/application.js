@@ -48,11 +48,8 @@ $(document).ready(function () {
         element = $(this);
         var sub = $("#emailsubject").val();
         var msg = $(".ckeditor").val();
-
         $.post(url, {sub: sub, msg: msg}, function (data) {
-
         });
-
     });
 
 
@@ -70,14 +67,8 @@ $(document).ready(function () {
     // });
 
     $(document).on("click",".upgrade_img", function () {
-        $.fancybox.open({
-            href: '#upgrade_terms',
-            type: 'inline',
-            'beforeLoad': function () {
-                url = '/fetch_upgrade_plan';
-                $.post(url, {}, function (data) {
-                });
-            }
+        url = '/fetch_upgrade_plan';
+        $.post(url, {}, function (data) {
         });
     });
 

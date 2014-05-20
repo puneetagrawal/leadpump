@@ -19,6 +19,12 @@ function initCompanyCreateOrUpdate(){
 	$(document).on("click", "#dusr_enable", function(){
 		save_dusr_to_user(this);
 	});
+	$(document).on("click", ".upgrade_plan_btn", function(){
+		plan = $(this).attr('data-plan');
+		$("#plan_per_user_range_id").val(plan);
+		$("#upg_step1").hide();
+		$("#upg_step2").show();
+	});
 
 	$("#landing_page_land_type").unbind();
 	$("#landing_page_land_type").change(function (){
