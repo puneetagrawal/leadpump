@@ -13,7 +13,7 @@
  <tbody>    
   <%if @users.size > 0%>                
   <% @users.each do |user|%>
-  <tr class="<%if @temp_name != "dusr_set"%>viewLead<%end%> listView" id="viewLead_<%=user.id%>" href="#viewPopup" data-action="userpopup">
+  <tr <%if @temp_name != "dusr_set"%> class='viewLead listView' href='#viewPopup' data-action='userpopup' <%end%>  id="viewLead_<%=user.id%>"  >
     <%= render "userListRows", :user => user%>
   </tr>
   <% end %>      
