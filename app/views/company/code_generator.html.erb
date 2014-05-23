@@ -53,18 +53,17 @@
 					$(document).on('click','.lsubmit', function(e) {
 						var $this = $(this);
 						var btn = $this.html();
-						$(this).html('<img src="/assets/ajax-loader.gif"/>');
+						$(this).html('<img src="http://www.leadpump.com/assets/ajax-loader.gif"/>');
 				         var v1 = $('#name').val();
 				         var v2= $('#lname').val();
 				         var v3 = $('#email').val();
 				         var v4 = $('#phone').val();
-				         var v5 = "External Lead"
+				         var v5 = "External Lead";
 				         var v6 = $('#token').val();
 				         url = 'http://www.leadpump.com/save_external_lead';
 				         $.ajax({
 						     url: url,
 						     type: 'get',
-						     //dataType: 'jsonp',
 						     data: {token:v6, lead:{name:v1, lname:v2, email:v3, phone:v4, lead_source:v5}}
 						}).done(function(data){
 							if(data.message == "success"){
@@ -101,31 +100,6 @@
 			}
 	    });
 	});
-	$(document).on('click','.lsubmit', function(e) {
-		var $this = $(this);
-		var btn = $this.html();
-		$(this).html('<img src="/assets/ajax-loader.gif"/>');
-         var v1 = $('#name').val();
-         var v2= $('#lname').val();
-         var v3 = $('#email').val();
-         var v4 = $('#phone').val();
-         var v5 = "External Lead";
-         var v6 = $('#token').val();
-         url = 'http://www.leadpump.com/save_external_lead';
-         $.ajax({
-		     url: url,
-		     type: 'get',
-		     data: {token:v6, lead:{name:v1, lname:v2, email:v3, phone:v4, lead_source:v5}}
-		}).done(function(data){
-			if(data.message == "success"){
-				alert("Thank You For Registration");
-			}
-			else{
-				alert(data.message);
-			}
-			$this.html(btn);
-		});
-    });
 </script>
 
 <div id="register_popup_submit" style="width: 800px;height: 400px;display: none;text-align: center; display: none;">
