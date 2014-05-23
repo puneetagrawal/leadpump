@@ -110,6 +110,15 @@ function initCompanyCreateOrUpdate(){
 		$.get(url, {name: page_name}, function (data) {
 		});
 	});
+
+	$(document).on("click", ".code_btn", function(){
+		$("#html_code_image_avatar").click();
+	});
+
+	$(document).on("change", "#html_code_image_avatar", function(){
+		$("#code_img").submit();
+	});
+
 }
 
 function fakeClick(anchorObj) {

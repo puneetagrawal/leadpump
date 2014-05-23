@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_one :subscription
   has_one :front_desk_desc
   has_one :picture
+  has_one :html_code_image
   accepts_nested_attributes_for :addresses, :subscription
 
   validates :name, :presence => true

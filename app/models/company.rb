@@ -52,7 +52,6 @@ class Company < ActiveRecord::Base
 
     def self.report()
 		user_ary = []
-		show = false
 		arry = User.where(:dusr=>true)
 		arry.each do |b|
 	  		comp_user = []
@@ -62,17 +61,19 @@ class Company < ActiveRecord::Base
 	    	user_count = usr_list.size
 	    	usr_list.each do |u|
 	    		logger.debug("calculating for #{u.id}")
-		      	stat = Stats.where("user_id = ? and created_at > ?", u, Date.today).last
+		      	stat = Stats.where("user_id = ? and created_at > ?", u, Date.today - 1).last
 		    	if stat.present?
-	    		  show = true
 				  mail_oppened_count = stat.e_oppened
 			      mail_sent_count = stat.e_sents
 			      mail_converted_count = stat.e_converted
 			      mail_clicked = stat.e_views
+		          comp_user << [u.name, mail_sent_count, mail_oppened_count, mail_clicked, mail_converted_count]
 			    end
-		        comp_user << [u.name, mail_sent_count, mail_oppened_count, mail_clicked, mail_converted_count]
-		      end
-	    	Emailer.report_mailer(comp_user, b).deliver
+		    end
+		    logger.debug(comp_user.size)
+		    if comp_user.size > 0
+	    		Emailer.report_mailer(comp_user, b).deliver
+	    	end
 		end
 	end
 end
