@@ -18,6 +18,7 @@ class CompanyController < ApplicationController
   end
 
   def save_external_lead
+    headers['Access-Control-Allow-Origin'] = "*"
     logger.debug("entering")
     logger.debug(params[:lead])
     user = User.where(:token=>params[:token]).last
