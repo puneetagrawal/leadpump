@@ -18,7 +18,7 @@
 		        		}
 		        		.form_input{
 		        			float: left;
-						    font-size: 13px;
+						    font-size: 13px !important;
 						    height: 16px !important;
 						    width: 40% !important;
 		        		}
@@ -57,7 +57,7 @@
 					  <%= form.file_field :avatar, :style =>"display:none" %>
 					<% end %>
 				</div>
-				<input type="button" class="form_input g_code" value="Generate Code" name="submit" style="display: inline-block; width: 110px; height: 26px; float: none;margin:20px;">
+				<input type="button" class="form_input g_code" value="Generate Code" name="submit" style="display: inline-block; width: 110px !important; height: 26px !important; float: none;margin:20px;">
 			</div>
 		</span>
 	</div>
@@ -83,11 +83,11 @@
          var v4 = $('#phone').val();
          var v5 = "External Lead"
          var v6 = $('#token').val();
-         url = 'http://localhost:5000/save_external_lead';
+         url = 'http://www.leadpump.com/save_external_lead';
          $.ajax({
 		     url: url,
-		     type: 'post',
-		     // dataType: 'jsonp',
+		     type: 'get',
+		     //dataType: 'jsonp',
 		     data: {token:v6, lead:{name:v1, lname:v2, email:v3, phone:v4, lead_source:v5}}
 		}).done(function(data){
 			if(data.message == "success"){
