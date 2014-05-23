@@ -4,7 +4,8 @@
 	       <div class="border app_header">
 		        <h2 class="heading headmsg">Create Your Custom Code For Lead Generation</h2>
 		        <span class="ext_code">
-		         <div style="width: 400px; height: 280px; display: block; background: url(<%=@img.avatar.url(:medium)%>) no-repeat scroll 0% 0% / contain  transparent;margin:3% 0 0 30%;border:1px solid #eee;" id ="html_cd_gn">
+		        <%url = @img.present? ? @img.avatar.url(:medium) : ''%>
+		         <div style="width: 400px; height: 280px; display: block; background: url(<%=url%>) no-repeat scroll 0% 0% / contain  transparent;margin:3% 0 0 30%;border:1px solid #eee;" id ="html_cd_gn">
 		        	<style type="text/css">
 		        		.form_label{
 			        		color: #666666;
