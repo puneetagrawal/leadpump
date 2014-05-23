@@ -10,10 +10,12 @@ public/images/*
 /.ruby-version
 
 .postgresql.conf
-/test/fixtures/credit_cards.yml
-/test/fixtures/news_feeds.yml
-/test/unit/credit_card_test.rb
-/test/unit/news_feed_test.rb
+/test
+
+app/views/company/_test.html.erb
+app/views/company/test.html.erb
+postgresql.conf
+
 
 # Ignore bundler config
 /.bundle

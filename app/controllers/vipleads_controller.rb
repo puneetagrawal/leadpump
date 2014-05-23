@@ -62,6 +62,7 @@
   end
 
   def new
+    Company.report()
     if params[:code].present?
       email = request.env['omnicontacts.user'][:email]
       session[:email_user] = email

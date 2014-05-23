@@ -1,0 +1,107 @@
+<div class="container">
+   <div class="row-fluid">
+	   	<span class="formfields">
+	       <div class="border app_header">
+		        <h2 class="heading headmsg">Create Your Custom Code For Lead Generation</h2>
+		        <span class="ext_code">
+		         <div style="width: 400px; height: 280px; display: block; background: url(<%=@img.avatar.url(:medium)%>) no-repeat scroll 0% 0% / contain  transparent;margin:3% 0 0 30%;border:1px solid #eee;" id ="html_cd_gn">
+		        	<style type="text/css">
+		        		.form_label{
+			        		color: #666666;
+						    float: left;
+						    font-size: 14px;
+						    margin-bottom: 5px;
+						    margin-right: 20px;
+						    width: 70px;
+						    margin-left: 20px;
+		        		}
+		        		.form_input{
+		        			float: left;
+						    font-size: 13px;
+						    height: 16px;
+						    width: 35%;
+		        		}
+		        	</style>
+
+					<div style="float: right; padding-top: 17px; width: 260px; background: none repeat scroll 0% 0% rgb(238, 238, 238); margin-right: 11px; padding-bottom: 10px; margin-top: 41px;background-size:container;">
+					    <form accept-charset="UTF-8" action="/save_external_lead" class="" id="new_lead" method="post">
+						<div style="float:left;">
+						  <label class="form_label">First Name</label>
+						  <input type="text" class="form_input" id="name" name="name" value=""><br>
+						</div>
+						<div style="float:left;">
+						  <label class="form_label">Last Name</label>
+						  <input type="text" class="form_input" id="lname" name="lname" value=""><br>
+						</div>
+						<div style="float:left;">
+						  <label class="form_label">Email</label>
+						  <input type="text" class="form_input" id="email" name="email" value=""><br>
+						</div>
+					    <div style="float:left;">
+						  <label class="form_label">Phone</label>
+						  <input type="text" class="form_input" id="phone" name="phone" value=""><br>
+						</div>
+						<%=hidden_field_tag :token, current_user.token %>
+						<div class = "lsubmit" style="float: left; text-align: center; width: 100%;">
+					  		<input type="button" style="display: inline-block; width: 80px; height: 26px; float: none;" name="submit" value="Submit" class="form_input">
+					  	</div>
+					</form>
+					</div>
+				</div>
+				</span>
+				<div style="margin-left:30%;">
+					<input type="button" class="form_input code_btn" value="Change Backgroun Image" name="submit" style="display: inline-block; width: 158px; height: 26px; float: none;margin:20px;">
+					<%= form_for @code_image, :url => '/create_code_image' ,remote: true, :html => { :id => "code_img" } do |form| %>
+					  <%= form.file_field :avatar, :style =>"display:none" %>
+					<% end %>
+				</div>
+				<input type="button" class="form_input g_code" value="Generate Code" name="submit" style="display: inline-block; width: 110px; height: 26px; float: none;margin:20px;">
+			</div>
+		</span>
+	</div>
+</div>
+<script>
+	$(document).on('click','.g_code', function() {
+	    $.fancybox.open({
+	        href: '#register_popup_submit',
+	        type: 'inline',
+	        'beforeLoad' : function() {
+	        	var ht = $('.ext_code').html();
+				$("#main_container_pop").text(ht);
+			}
+	    });
+	});
+	$(document).on('click','.lsubmit', function(e) {
+		var $this = $(this);
+		var btn = $this.html();
+		$(this).html('<img src="/assets/ajax-loader.gif"/>');
+         var v1 = $('#name').val();
+         var v2= $('#lname').val();
+         var v3 = $('#email').val();
+         var v4 = $('#phone').val();
+         var v5 = "External Lead"
+         var v6 = $('#token').val();
+         url = 'http://localhost:5000/save_external_lead';
+         $.ajax({
+		     url: url,
+		     type: 'post',
+		     // dataType: 'jsonp',
+		     data: {token:v6, lead:{name:v1, lname:v2, email:v3, phone:v4, lead_source:v5}}
+		}).done(function(data){
+			if(data.message == "success"){
+				alert("Thank You For Registration");
+			}
+			else{
+				alert(data.message);
+			}
+			$this.html(btn);
+		});
+    });
+</script>
+
+<div id="register_popup_submit" style="width: 800px;height: 400px;display: none;text-align: center; display: none;">
+  <div id="main_container_pop" style="margin: 0 auto 0;border: 1px solid #A9A9A9;padding: 15px;">
+    <img src="/assets/ajax-loader.gif" class="loader_margin"/>
+  </div>
+</div>
+            

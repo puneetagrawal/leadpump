@@ -11,6 +11,53 @@ class CompanyController < ApplicationController
   def show
   end
 
+  def code_generator
+    @lead = Lead.new
+    @code_image = HtmlCodeImage.new
+    @img = current_user.html_code_image
+  end
+
+  def save_external_lead
+    logger.debug("entering")
+    logger.debug(params[:lead])
+    user = User.where(:token=>params[:token]).last
+    lead = Lead.new(params[:lead])
+    if !user.present?
+      message = "Please Enter Valid Fields"
+    elsif lead.save
+      user_lead = UserLeads.new(:user_id => user.id, :lead_id => lead.id)
+      user_lead.save
+      NewsFeed.create(:user_id=>current_user.id, :lead_id=>lead.id, :description=>"New External Entry Lead", :feed_date=>Date.today, :action=>"Start")
+      message = "success"
+    else
+      message = lead.errors.full_messages[0]
+      logger.debug(lead.errors.full_messages[0])
+    end
+    respond_to do |format|
+      msg = {message: message}
+      format.json { render json: msg}
+    end
+  end
+
+  def create_code_image
+    logger.debug(params[:html_code_image][:avatar])
+    @img = HtmlCodeImage.where(:user_id=> current_user.id).last
+    if @img.present?
+      @img.avatar = params[:html_code_image][:avatar]
+      if @img.save
+      else
+        logger.debug(@img.errors.full_messages)
+      end
+    else
+      @img = HtmlCodeImage.new(:avatar=> params[:html_code_image][:avatar],
+       :user_id=> current_user.id)
+      @img.save
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def new
     @company = false
   	@user = User.new()
