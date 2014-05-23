@@ -33,5 +33,7 @@ $(".<%=@temp_name%>").addClass("btn_active")
 
 <%elsif @temp_name == "waiver_text" %>	
 	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/manage_waiver_text")%>')
+<%elsif @temp_name == "code_gen" %>	
+	$("#setting_page").html('<%=escape_javascript(render partial: "common_templates/campaign_temps/lead_code_generator")%>')
 <%end%>
 

@@ -13,12 +13,6 @@ class CompanyController < ApplicationController
   def show
   end
 
-  def code_generator
-    @lead = Lead.new
-    @code_image = HtmlCodeImage.new
-    @img = current_user.html_code_image
-  end
-
   respond_to :json
   def save_external_lead
     logger.debug("entering")
@@ -410,6 +404,10 @@ class CompanyController < ApplicationController
       @user = current_user
       @add = Address.find_by_user_id("#{current_user.id}")
       @add = @add.present? ? @add : Address.new
+    elsif @temp_name == "code_gen"
+      @lead = Lead.new
+      @code_image = HtmlCodeImage.new
+      @img = current_user.html_code_image
     end
     @picture = Picture.new()
     respond_to do |format|

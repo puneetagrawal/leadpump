@@ -1,7 +1,4 @@
-<div class="container">
-   <div class="row-fluid">
-	   	<span class="formfields">
-	       <div class="border app_header">
+<div class="border app_header">
 		        <h2 class="heading headmsg">Create Your Custom Code For Lead Generation</h2>
 		        <span class="ext_code">
 		        <%url = @img.present? ? "http://#{SERVER_URL}#{@img.avatar.url(:medium)}" : ''%>
@@ -89,10 +86,8 @@
 				</div>
 				<input type="button" class="form_input g_code" value="Generate Code" name="submit" style="display: inline-block; width: 110px !important; height: 26px !important; float: none;margin:20px;">
 			</div>
-		</span>
-	</div>
-</div>
-<script>
+
+			<script>
 	$(document).on('click','.g_code', function() {
 	    $.fancybox.open({
 	        href: '#register_popup_submit',
@@ -110,4 +105,3 @@
     <img src="/assets/ajax-loader.gif" class="loader_margin"/>
   </div>
 </div>
-            
