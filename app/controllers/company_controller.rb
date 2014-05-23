@@ -41,18 +41,19 @@ class CompanyController < ApplicationController
 
   def create_code_image
     logger.debug(params[:html_code_image][:avatar])
-    @img = HtmlCodeImage.where(:user_id=> current_user.id).last
-    if @img.present?
-      @img.avatar = params[:html_code_image][:avatar]
-      if @img.save
+    img = HtmlCodeImage.where(:user_id=> current_user.id).last
+    if img.present?
+      img.avatar = params[:html_code_image][:avatar]
+      if img.save
       else
-        logger.debug(@img.errors.full_messages)
+        logger.debug(img.errors.full_messages)
       end
     else
-      @img = HtmlCodeImage.new(:avatar=> params[:html_code_image][:avatar],
+      img = HtmlCodeImage.new(:avatar=> params[:html_code_image][:avatar],
        :user_id=> current_user.id)
-      @img.save
+      img.save
     end
+    @url = "http://#{SERVER_URL}#{img.avatar.url(:medium)}"
     respond_to do |format|
       format.js
     end
