@@ -5,26 +5,26 @@
 		        <h2 class="heading headmsg">Create Your Custom Code For Lead Generation</h2>
 		        <span class="ext_code">
 		        <%url = @img.present? ? "http://#{SERVER_URL}#{@img.avatar.url(:medium)}" : ''%>
-		         <div style="width: 400px; height: 280px; display: block; background: url(<%=url%>) no-repeat scroll 0% 0% / contain  transparent;margin:3% 0 0 30%;border:1px solid #eee;" id ="html_cd_gn">
+		         <div style="width: 372px; height: 280px; display: block; background: url(<%=url%>) no-repeat scroll 0% 0% / contain  transparent;margin:3% 0 0 30%;border:1px solid #eee;" id ="html_cd_gn">
 		        	<style type="text/css">
 		        		.form_label{
 			        		color: #666666;
 						    float: left;
-						    font-size: 14px;
+						    font-size: 12px;
 						    margin-bottom: 5px;
 						    margin-right: 20px;
-						    width: 70px;
+						    width: 35%;
 						    margin-left: 20px;
 		        		}
 		        		.form_input{
 		        			float: left;
 						    font-size: 13px;
-						    height: 16px;
-						    width: 35%;
+						    height: 16px !important;
+						    width: 40% !important;
 		        		}
 		        	</style>
 
-					<div style="float: right; padding-top: 17px; width: 260px; background: none repeat scroll 0% 0% rgb(238, 238, 238); margin-right: 11px; padding-bottom: 10px; margin-top: 41px;background-size:container;">
+					<div style="float: right; padding-top: 17px; width: 60%; background: none repeat scroll 0% 0% rgb(238, 238, 238); margin-right: 11px; padding-bottom: 10px; margin-top: 41px;background-size:container;">
 					    <form accept-charset="UTF-8" action="/save_external_lead" class="" id="new_lead" method="post">
 						<div style="float:left;">
 						  <label class="form_label">First Name</label>
@@ -43,15 +43,15 @@
 						  <input type="text" class="form_input" id="phone" name="phone" value=""><br>
 						</div>
 						<%=hidden_field_tag :token, current_user.token %>
-						<div class = "lsubmit" style="float: left; text-align: center; width: 100%;">
-					  		<input type="button" style="display: inline-block; width: 80px; height: 26px; float: none;" name="submit" value="Submit" class="form_input">
+						<div class = "lsubmit" style="float: left; text-align: center; width: 50%;">
+					  		<input type="button" style="display: inline-block; width: 60%; height: 26px; float: none;" name="submit" value="Submit" class="form_input">
 					  	</div>
 					</form>
 					</div>
 				</div>
 				</span>
 				<div style="margin-left:30%;">
-					<input type="button" class="form_input code_btn" value="Change Backgroun Image" name="submit" style="display: inline-block; width: 158px; height: 26px; float: none;margin:20px;">
+					<input type="button" class="form_input code_btn" value="Change Backgroun Image" name="submit" style="display: inline-block; width: 158px !important; height: 26px !important; float: none;margin:20px;">
 					<span style="color:green;display:none;" class="pl_wt">Please wait..</span>
 					<%= form_for @code_image, :url => '/create_code_image' ,remote: true, :html => { :id => "code_img" } do |form| %>
 					  <%= form.file_field :avatar, :style =>"display:none" %>
