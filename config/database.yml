@@ -3,17 +3,6 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-development: &dev
-  adapter: postgresql
-  host: localhost
-  database: dev_leadpump
-  pool: 5
-  timeout: 5000
-  username: postgres
-  password: postgres
-  port: 5432
-  encoding: latin1
-
 # # Warning: The database defined as "test" will be erased and
 # # re-generated from your derootvelopment database when you run "rake".
 # # Do not set this db to the same as development or production.
@@ -28,21 +17,11 @@ development: &dev
 #  port: 5432
 
 staging: &stag
-adapter: postgresql
-host: "localhost"
-database: dev_leadpump
-pool: 5
-timeout: 5000
-username: postgres
-password: postgres
-port: 5432
-
-production: &prod
-adapter: postgresql
-host: "localhost"
-database: dev_leadpump
-pool: 5
-timeout: 5000
-username: postgres
-password: postgres
-port: 5432
+ adapter: postgresql
+ host: "localhost"
+ database: dev_leadpump
+ pool: 5
+ timeout: 5000
+ username: postgres
+ password: postgres
+ port: 5432

@@ -78,13 +78,6 @@ ActiveRecord::Schema.define(:version => 20140515055014) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "credit_cards", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "customer_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "discounts_on_locations", :force => true do |t|
     t.string   "locationRanges"
     t.integer  "discountPercentage"
