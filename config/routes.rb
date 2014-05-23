@@ -208,7 +208,7 @@ Leadpump::Application.routes.draw do
   match "/acc_setting_address" => "company#acc_setting_address"
   match "/save_acc_settings" => "company#save_acc_settings"
   match "/code_generator" => "company#code_generator"
-  match "/save_external_lead" => "company#save_external_lead"
+  match "/save_external_lead" => "company#save_external_lead", :as => :json
   match "/create_code_image" => "company#create_code_image"
   
 
