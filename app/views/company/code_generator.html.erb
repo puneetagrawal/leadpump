@@ -52,6 +52,7 @@
 				</span>
 				<div style="margin-left:30%;">
 					<input type="button" class="form_input code_btn" value="Change Backgroun Image" name="submit" style="display: inline-block; width: 158px; height: 26px; float: none;margin:20px;">
+					<span style="color:green;display:none;" class="pl_wt">Please wait..</span>
 					<%= form_for @code_image, :url => '/create_code_image' ,remote: true, :html => { :id => "code_img" } do |form| %>
 					  <%= form.file_field :avatar, :style =>"display:none" %>
 					<% end %>
