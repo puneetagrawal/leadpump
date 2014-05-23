@@ -60,20 +60,23 @@
 				         var v4 = $('#phone').val();
 				         var v5 = "External Lead";
 				         var v6 = $('#token').val();
-				         url = 'http://www.leadpump.com/save_external_lead';
+				         url = 'http://localhost:5000/save_external_lead';
 				         $.ajax({
-						     url: url,
-						     type: 'get',
-						     data: {token:v6, lead:{name:v1, lname:v2, email:v3, phone:v4, lead_source:v5}}
-						}).done(function(data){
-							if(data.message == "success"){
-								alert("Thank You For Registration");
-							}
-							else{
-								alert(data.message);
-							}
-							$this.html(btn);
-						});
+					          type: 'GET',    
+					          url: url,
+					          data:{token:v6, lead:{name:v1, lname:v2,email:v3, phone:v4, lead_source:v5}},
+					          dataType: "jsonp",
+					          crossDomain: true,          
+					          cache:false, 
+					          success: function(data){
+								alert("Thank You for Registration");
+								$this.html(btn);
+							  },
+					          error:function(jqXHR, textStatus, errorThrown)		{
+								$this.html(btn);
+					            alert("Please Enter Field Correctly");
+					          }
+					        });
 				    });
 				</script>
 				</span>

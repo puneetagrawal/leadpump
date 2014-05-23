@@ -1,5 +1,7 @@
 class CompanyController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome, :unsubscribe]
+  before_filter :set_access_control_headers
+            
   layout 'reflanding', only: [:preview]
 
   def index
@@ -17,27 +19,29 @@ class CompanyController < ApplicationController
     @img = current_user.html_code_image
   end
 
+  respond_to :json
   def save_external_lead
-    headers['Access-Control-Allow-Origin'] = "*"
     logger.debug("entering")
     logger.debug(params[:lead])
     user = User.where(:token=>params[:token]).last
     lead = Lead.new(params[:lead])
     if !user.present?
-      message = "Please Enter Valid Fields"
+      message = "Please Enter Valid Fiels"
     elsif lead.save
       user_lead = UserLeads.new(:user_id => user.id, :lead_id => lead.id)
       user_lead.save
       NewsFeed.create(:user_id=>current_user.id, :lead_id=>lead.id, :description=>"New External Entry Lead", :feed_date=>Date.today, :action=>"Start")
-      message = "success"
+      message = ""
     else
-      message = lead.errors.full_messages[0]
+      message = lead.errors.full_messages[0].humanize
       logger.debug(lead.errors.full_messages[0])
     end
-    respond_to do |format|
-      msg = {message: message}
-      format.json { render json: msg}
-    end
+    render :json => message.to_json, :callback => params['callback']
+    # respond_with message
+    # respond_to do |format|
+    #   msg = {message: message}
+    #   format.json { render json: {message: "dfdfdf"}}
+    # end
   end
 
   def create_code_image
@@ -501,6 +505,13 @@ class CompanyController < ApplicationController
     respond_to do |format|
       format.js
     end    
+  end
+
+  def  set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = '*'
+    headers['Access-Control-Allow-Credentials'] = "true"
   end
 
 end
