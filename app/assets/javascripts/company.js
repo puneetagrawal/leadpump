@@ -116,6 +116,7 @@ function initCompanyCreateOrUpdate(){
 	});
 
 	$(document).on("change", "#html_code_image_avatar", function(){
+		$('.pl_wt').show();
 		$("#code_img").submit();
 	});
 
