@@ -71,8 +71,8 @@ module Leadpump
        #  port: 465,
        #  domain: "gmail",
        #  authentication: "plain",
-       #  user_name: "9170vs@gmail.com",
-       #  password: "loveyoumom.2012",
+       #  user_name: "@@@@@@@@",
+       #  password: "@@@@@@@@@@",
 	      # ssl: true
         :address => "smtp.sendgrid.net",
         :port => 465,
