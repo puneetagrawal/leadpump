@@ -84,7 +84,7 @@ $(document).ready(function () {
         });
     });
 
-    $(".cancel_plan").click(function () {
+    $(document).on("click",".cancel_plan", function () {
         $.fancybox.open({
             href: '#cancel_sub',
             type: 'inline'
@@ -92,11 +92,11 @@ $(document).ready(function () {
         });
     });
 
-    $(".cancel_subscription").click(function () {
-        $(this).html('<img src="/assets/ajax-loader.gif">');
+    $(document).on("click", ".cancel_subscription", function () {
+        $(this).html('<img src="/assets/ajax-loader.gif" style="width:18px;height:18px">');
         url = "/plan_cancel";
         $.post(url, {}, function (data) {
-            window.location = "http://www.leadpump.com";
+            window.location = ROOT_PATH+"thanks";
         });
     });
 
