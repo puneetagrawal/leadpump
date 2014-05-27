@@ -2,9 +2,11 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   include ApplicationHelper
-  attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, 
-  :role_id, :addresses_attributes, :subscription_attributes, :token, :reset_status, :vipon, :vipcount,
-  :associate, :trial, :lname, :verified, :ref
+  attr_accessible :email,:users_created, :leads_created, :active, :name, :password, :remember_me, :role_id, :addresses_attributes, :subscription_attributes, :token, :reset_status, :vipon, :vipcount,
+  :associate, :trial, :lname, :verified, :ref, :company_name
+
+  translates :name, :lname, :company_name
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses
   has_many :vipLeads

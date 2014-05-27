@@ -439,6 +439,7 @@ class CompanyController < ApplicationController
   end
 
   def save_acc_settings
+    logger.debug(I18n.locale)
     if params[:address].present?
       Address.save_user(params[:address], params[:company_name], current_user)
     elsif params[:stripe_card_token]

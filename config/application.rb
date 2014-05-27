@@ -62,6 +62,8 @@ module Leadpump
 
     config.cache_store = :mem_cache_store
 
+    config.i18n.fallbacks = true
+
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
       "#{html_tag}".html_safe 
     }

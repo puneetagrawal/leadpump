@@ -1,6 +1,8 @@
 class Onlinemall < ActiveRecord::Base
   attr_accessible :active, :link, :mallpic_id, :title, :user_id, :description, :file
 
+  translates :title, :description
+
   has_many :mallpic
   belongs_to :user
   has_attached_file :file, :styles => { :medium => "100x100>", :thumb => "30x30>" }, :default_url => "/images/:style/missing.png"

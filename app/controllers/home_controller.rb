@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   require 'httparty'
   include ApplicationHelper
   include HomeHelper
-  skip_before_filter :authenticate_user!, :only => [:thanks, :pass, :print_pass, :storepassinsession,:calculateAmount, :terms, :create_new_user,
+  skip_before_filter :authenticate_user!, :only => [:change_locale,:thanks, :pass, :print_pass, :storepassinsession,:calculateAmount, :terms, :create_new_user,
                                                      :signup_user, :send_verification_mail,
                                                      :confirmation, :save_password, :save_address,
                                                    :make_payment,:choose_plan,:skip_profile,
@@ -582,6 +582,14 @@ class HomeController < ApplicationController
         send_data @pf, filename: "pass.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
+  end
+
+  def change_locale
+    logger.debug(I18n.locale)
+    session[:locale] = (params[:language].blank?) ? I18n.default_locale : params[:language]  
+    I18n.locale = session[:locale] || I18n.default_locale
+    logger.debug(I18n.locale)
+    render json: {"msg"=> "success"}
   end
 
   private

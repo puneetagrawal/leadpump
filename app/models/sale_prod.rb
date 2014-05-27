@@ -1,5 +1,6 @@
 class SaleProd < ActiveRecord::Base
   attr_accessible :appointment, :call, :mail, :net, :referral, :user_id
+  
   has_many :sale_reports
   belongs_to :user
 

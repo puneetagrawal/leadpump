@@ -103,6 +103,9 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     fssm (0.2.10)
+    globalize (3.1.0)
+      activemodel (>= 3.1.0, < 4.0.0)
+      activerecord (>= 3.1.0, < 4.0.0)
     gmail-contacts (0.0.6)
       hpricot
     gyoku (1.1.1)
@@ -283,6 +286,7 @@ DEPENDENCIES
   country-select
   debugger
   devise
+  globalize (~> 3.1.0)
   gmail-contacts
   httparty
   jquery-rails
