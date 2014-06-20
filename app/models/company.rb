@@ -60,7 +60,6 @@ class Company < ActiveRecord::Base
 	  		usr_list = users.uniq
 	    	user_count = usr_list.size
 	    	usr_list.each do |u|
-	    		logger.debug("calculating for #{u.id}")
 		      	stat = Stats.where("user_id = ? and created_at >= ?", u, Date.today - 1).last
 		    	if stat.present?
 				  mail_oppened_count = stat.e_oppened
