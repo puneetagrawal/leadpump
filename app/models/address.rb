@@ -14,7 +14,9 @@ class Address < ActiveRecord::Base
       logger.debug(":DSFSDFDSF")
       logger.debug(add.id)
       if user.isCompany
+        logger.debug("inside")
         user.company_name = company_name
+        user.save
       end
 	end
 end

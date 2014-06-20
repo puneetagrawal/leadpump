@@ -1,8 +1,6 @@
 class Stats < ActiveRecord::Base
    attr_accessible :source, :location, :e_sents, :e_oppened, :e_views, :e_converted, :user_id
 
-   translates :source, :location
-
    belongs_to :user
 
    def self.to_csv(options = {})

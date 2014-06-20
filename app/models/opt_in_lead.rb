@@ -1,8 +1,6 @@
 class OptInLead < ActiveRecord::Base
   attr_accessible :email, :source, :phone, :name, :referrer_id
 
-  translates :name, :source
-  
   belongs_to :user
 
 

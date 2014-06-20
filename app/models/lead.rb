@@ -5,11 +5,6 @@ class Lead < ActiveRecord::Base
    :status, :no_of_days, :associate, :gender, :member_id, :barcode, :state, :city, :zip, :country,
    :age, :is_member, :currently_exercise, :program_span
 
-translates :name, :lname,:address,
-   :goal, :lead_source,:notes, 
-   :status, :gender, :state, :city,
-   :currently_exercise, :program_span
-
   belongs_to :user
   has_many :news_feeds
   after_create :insert_prospect_abc, :savestatus

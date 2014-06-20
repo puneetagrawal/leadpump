@@ -358,7 +358,7 @@ class CompanyController < ApplicationController
         end
       end
     end
-      redirect_to '/autoresponder'
+      redirect_to '/settings'
   end
 
   def unsubscribe

@@ -1,8 +1,6 @@
 class Referral < ActiveRecord::Base
   attr_accessible :email, :name, :referrer
 
-  translates :name
-
   belongs_to :user
 
   # validates :email, :uniqueness => true

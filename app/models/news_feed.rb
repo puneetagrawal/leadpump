@@ -1,8 +1,6 @@
 class NewsFeed < ActiveRecord::Base
   attr_accessible :action, :description, :feed_date, :user_id, :lead_id
 
-  translates :action, :description
-
   belongs_to :user
   belongs_to :lead
 

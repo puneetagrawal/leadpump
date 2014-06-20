@@ -1,8 +1,6 @@
 class SaleReport < ActiveRecord::Base
   attr_accessible :amount, :commission, :contract, :eft, :mem_no, :name, :report, :s_type, :sale_prod_id, :source,:cheque
 
-  translates :name, :report, :s_type, :source
-
   belongs_to :sale_prod
   # validates  :s_type, :presence => true
   # validates  :contract, :presence => true

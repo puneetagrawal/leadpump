@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140527124146) do
+ActiveRecord::Schema.define(:version => 20140528063451) do
 
   create_table "address_translations", :force => true do |t|
     t.integer  "address_id"
@@ -149,7 +149,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "description"
-    t.string   "title"
   end
 
   add_index "front_desk_desc_translations", ["front_desk_desc_id"], :name => "index_front_desk_desc_translations_on_front_desk_desc_id"
@@ -198,11 +197,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "landing_page_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "landing_pages", :force => true do |t|
     t.string   "land_type"
     t.string   "temp_name"
@@ -223,11 +217,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.text     "notes"
     t.datetime "time_stam"
     t.integer  "lead_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "lead_translations", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -276,11 +265,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "news_feed_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "news_feeds", :force => true do |t|
     t.string   "description"
     t.string   "action"
@@ -289,11 +273,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.integer  "lead_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "onlinemall_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "onlinemalls", :force => true do |t|
@@ -309,11 +288,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-  end
-
-  create_table "opt_in_lead_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "opt_in_leads", :force => true do |t|
@@ -356,11 +330,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "plan_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "plans", :force => true do |t|
     t.string   "name"
     t.decimal  "price"
@@ -385,11 +354,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.datetime "updated_at",              :null => false
   end
 
-  create_table "preview_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "previews", :force => true do |t|
     t.text     "header_text"
     t.text     "intro_text"
@@ -406,20 +370,10 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.string   "temp_name"
   end
 
-  create_table "referral_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "referrals", :force => true do |t|
     t.string   "referrer"
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "role_translations", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -439,11 +393,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.integer  "user_id"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
-  end
-
-  create_table "sale_report_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "sale_reports", :force => true do |t|
@@ -470,11 +419,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "social_message_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "social_messages", :force => true do |t|
     t.text     "facebookMessage"
     t.text     "twitterMessage"
@@ -496,11 +440,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.integer  "user_id"
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
-  end
-
-  create_table "stats_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -537,15 +476,9 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "temporary_data_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -623,11 +556,6 @@ ActiveRecord::Schema.define(:version => 20140527124146) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "vip_lead_translations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "vip_leads", :force => true do |t|
     t.string   "first_name"
