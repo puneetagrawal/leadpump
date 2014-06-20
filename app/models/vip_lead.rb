@@ -1,5 +1,6 @@
 class VipLead < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :phone, :email, :user_id, :active, :status
+  
   belongs_to :user
   before_create :saveStatus
   

@@ -99,9 +99,12 @@ function tasksave(){
 	$(".taskBtn").click(function (){
 		var btn = $(this).html();
 		$(this).html('<img src="/assets/ajax-loader.gif" style="margin:8px;">');
-		task = $("#createLeadTask").val();
-		date = $("#app_date").val();
-		time = $("#app_date").val()+" "+$("#hr").val()+":"+$("#min").val()+":"+$("#zon").val();
+		var task = $("#createLeadTask").val();
+		var date = $("#app_date").val();
+		var hr = $("#hr").val() != '' ? $("#hr").val() : 0; 
+		var min = $("#min").val() != '' ? ":"+$("#min").val() : ':'+0;
+		var zon = $("#zon").val() != '' ? ":"+$("#zon").val() : ':'+am;
+		var time = $("#app_date").val()+" "+hr+min+zon;
 		leadId = $("#leadid").val();
 		if(task == ''){
 			alert("please schedule task");

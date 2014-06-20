@@ -20,6 +20,10 @@
 							<%= f.label :password %><br />
 							<%= f.password_field :password %>
 						</p>
+						<p>
+							<%= f.label "Select Your Language" %><br />
+							<%= select_tag "language", options_for_select([["English", "en"],["Chinese", "zh-TW"]], :selected=>I18n.locale),:class => "w265"%>
+						</p>
 
 						<% if devise_mapping.rememberable? -%>
 							<p style="float:left"><%= f.check_box :remember_me, :class=>"signin_checkbox" %> 

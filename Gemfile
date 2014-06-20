@@ -70,3 +70,4 @@ group :development do
 	gem "rails_best_practices"
 end
 gem 'savon'
+gem 'globalize', '~> 3.1.0'

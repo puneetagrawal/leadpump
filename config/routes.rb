@@ -209,7 +209,7 @@ Leadpump::Application.routes.draw do
   match "/save_acc_settings" => "company#save_acc_settings"
   match "/save_external_lead" => "company#save_external_lead", :as => :json
   match "/create_code_image" => "company#create_code_image"
-  
+  match "/home/change_locale" => "home#change_locale"
 
   match "/testsendgrid" => "home#testsendgrid"
   match "/trackEmail" => "vipleads#trackEmail"
