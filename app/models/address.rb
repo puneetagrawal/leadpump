@@ -1,7 +1,6 @@
 class Address < ActiveRecord::Base
 	belongs_to :user
 	attr_accessible :address, :city, :zip, :state, :phone, :country, :user_id
-  translates :address, :city, :state
 	def self.save_user(address, company_name, user)
 	  add = Address.find_by_user_id("#{user.id}")
       if add.present?
