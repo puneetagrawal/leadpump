@@ -16,8 +16,8 @@ Leadpump::Application.configure do
   GMAIL_KEY = "BSt-gSNSovq5iqQ8b01WcmlQ"
   GMAIL_SECRET = "124660366124-6q04kuaps32m6qk248d9p0vvuuek56j5.apps.googleusercontent.com"
 
-  YAHOO_KEY = "0e3144bc3873c87a36439f404c3753a240feaec7"
-  YAHOO_SECRET = "dj0yJmk9VDd0UG5Ncm96VXFVJmQ9WVdrOVlYTmtjMnRFTjJjbWNHbzlNekl6T0RZd05qWXkmcz1jb25zdW1lcnNlY3JldCZ4PTdm"
+  YAHOO_KEY = "da12843dbd5d8415f383d29df293ee7d0d049fa0"
+  YAHOO_SECRET = "dj0yJmk9TVN6S0swbUZHYWxaJmQ9WVdrOVRUVkNZMU5tTXpZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yNg--"
 
   PDF_PATH = "/usr/bin/wkhtmltopdf.sh"
 
