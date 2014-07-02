@@ -32,12 +32,12 @@ subscription =
 
   validateCard: ->
       card =
-        email: $('#user_email').val()
-        name: $('#customerName').val()
-        type: $('#credit_card').val()
-        number: $('#card_number').val()
-        cvc: $('#card_code').val()
-        expMonth: $('#card_month').val()
-        expYear: $('#card_year').val()
+        email: $('.fancybox-inner #user_email').val()
+        name: $('.fancybox-inner #customerName').val()
+        type: $('.fancybox-inner #credit_card').val()
+        number: $('.fancybox-inner #card_number').val()
+        cvc: $('.fancybox-inner #card_code').val()
+        expMonth: $('.fancybox-inner #card_month').val()
+        expYear: $('.fancybox-inner #card_year').val()
       Stripe.createToken(card, subscription.handleStripeResponse)
 
