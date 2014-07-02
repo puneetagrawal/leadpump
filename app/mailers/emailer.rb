@@ -9,7 +9,7 @@ class Emailer < ActionMailer::Base
     @email = email.to_s
     @url  = url
     @message = message
-    u_email = u_email.to_s
+    u_email = u_email.blank? ? "LeadPump@Leadpump.com" : u_email.to_s
     @trackUrl = SERVER_URL+"/trackEmail?token=#{token}&sec=#{sec_token}"
     mail(from:u_email, to: @email, subject: subject)
   end
