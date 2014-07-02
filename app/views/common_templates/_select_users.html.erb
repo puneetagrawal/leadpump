@@ -1,5 +1,5 @@
-<% start_range = @planPerUser.present? ? @planPerUser.user_range : 1%>
-<% end_range = @planPerUser.present? ? @planPerUser.user_range : 200%>
+<% start_range = @planPerUser.present? ? @planPerUser.user_range.start_range : 1%>
+<% end_range = @planPerUser.present? ? @planPerUser.user_range.end_range : 200%>
 <span class="credit_fild_col mb2">
 	<label>Users</label>
 	<%= select_tag "discountOnUsers", options_for_select((start_range..end_range).collect{ |dl| [dl, dl] }),:class => "moreUserLink input-small"%>
