@@ -11,7 +11,7 @@
 							<div class="stepNo3 step-title  btn"><span class="step-order">3.</span> <span class="step-name">Step 3</span></div>
 						</div>
 						<span class="vipContainer">
-							<%if (@emailAuth.present? || !current_user.fetchCompany.vipon)%>
+							<%if !(@emailAuth.present? || !current_user.fetchCompany.vipon)%>
 					        	<%=render "socialInviteStep2"%>
 					       <%else%>
 					        	<%=render "form"%>
