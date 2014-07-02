@@ -73,13 +73,6 @@ $(document).ready(function () {
     });
 
     
-    $(document).on("change","#language", function () {
-        var language = $(this).val();
-        url = '/home/change_locale';
-        $.post(url, {language:language}, function (data) {
-        });
-    });
-
 
     $(".plan_upg_mail").click(function () {
         $(this).html('<img src="/assets/ajax-loader.gif">');

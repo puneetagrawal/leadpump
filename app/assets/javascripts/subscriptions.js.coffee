@@ -10,7 +10,7 @@ jQuery ->
 subscription =
   setupForm: ->
     $(document).on 'click', '.pay_btn', () ->
-      if $("#terms").is(':checked')
+      if $(".fancybox-inner #terms").is(':checked')
         if $('#card_number').length
           window.btn = $('.pay_btn').html();
           $('.pay_btn').html('<img src="/assets/ajax-loader.gif" style="margin:20px 0 0 0;">');
@@ -24,10 +24,10 @@ subscription =
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#stripe_card_token').val(response.id)
-      $('#payment_form').submit()
+      $('.fancybox-inner #stripe_card_token').val(response.id)
+      $('.fancybox-inner #payment_form').submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('.fancybox-inner #stripe_error').text(response.error.message)
       $(".pay_btn").html(window.btn)
 
   validateCard: ->

@@ -86,7 +86,7 @@ class Emailer < ActionMailer::Base
 
   def send_user_info_to_admin(user, user_ip, address)
     @address = address
-    @email = "vishwanath.yadav@ongraph.com"
+    @email = "besheynaz@aol.com"
     @user = user
     @user_ip = user_ip
     logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>")

@@ -70,7 +70,7 @@ $(document).ready(function(){
 		id = parseInt(id);
 		$parent.html('<img src="/assets/ajax-loader.gif" style="margin:20px 0 0 0;">');
 		if(id == 2){
-			if($("#password").val() != ""){
+			if($(".fancybox-inner #password").val() != ""){
 				$(".pwd_error").html('');
 				save_password($parent, $this, id);	
 			}
@@ -99,8 +99,7 @@ function save_password(par, obj, id){
 	$.post(url, {password:$("#password").val(),user:$("#user").val()}, function (data) {
 		par.html(obj);
 		par.parent().animate({left: '-400px'}, 500).hide();
-		$("#step"+id).show();
-		
+		$(".fancybox-inner #step"+id).show();
 	});
 }
 
