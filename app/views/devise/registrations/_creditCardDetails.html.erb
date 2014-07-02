@@ -2,7 +2,7 @@
 <span id="creditCardDiv">
 	<%=render "common_templates/select_users"%>
 	<%= hidden_field_tag "planPerUserId",  @planPerUser.id%>
-	<%=render "common_templates/_credit_card_info"%>
+	<%=render "common_templates/credit_card_info"%>
 	<span class="credit_fild_col mb-15">
 		<label>&nbsp;</label>
 		<%=check_box_tag :billing_address%>
