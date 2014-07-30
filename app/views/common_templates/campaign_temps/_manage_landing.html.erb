@@ -53,7 +53,7 @@
                         <label><span class="number">3</span>Header Default Text</label>
                         <p>Act Now, This offer is not available to the public and expires in the next 48 hours!</p>
                         <strong>Change text to:</strong>
-                        <%= land.text_area :header_text, :value=>@landpage.header_text.present? ? @landpage.header_text : "Limited to 100 Characters" %>
+                        <%= land.text_area :header_text, :value=>@landpage.header_text.present? ? @landpage.header_text : "" %>
                     </div>
                     <div>
                         <label><span class="number">4</span>Intro default text:</label>
@@ -61,7 +61,7 @@
                             site for "You Gym's Name Here". This means that one of your friends cares about you and your health. You have
                             been invited to receive a FREE trial membership to "Your Gyms Name Here".</p>
                         <strong>Change text to:</strong>
-                        <%= land.text_area :intro_text, :value=>@landpage.intro_text.present? ? @landpage.intro_text : "Limited to 100 Characters" %>
+                        <%= land.text_area :intro_text, :value=>@landpage.intro_text.present? ? @landpage.intro_text : "" %>
                     </div>
                     <div>
                         <label><span class="number">5</span>Mission Statement default text:</label>
@@ -70,7 +70,7 @@
                             all ages a fun, friendly environment. To promote a healthy lifestyle through convenient, clean locations, state-of-
                             the-art equipment, programs and activities that provide an exceptional and unique value to our community.</p>
                         <strong>Change text to:</strong>
-                        <%= land.text_area :mission_text, :value=>@landpage.mission_text.present? ? @landpage.mission_text : "Limited to 100 Characters"%>
+                        <%= land.text_area :mission_text, :value=>@landpage.mission_text.present? ? @landpage.mission_text : ""%>
                     </div>
                     <div>
                         <label><span class="number">6</span>Header color:</label>
@@ -86,10 +86,15 @@
                         <label><span class="number">8</span>Number of free days?</label>
                          <%= land.select :no_of_days, options_for_select(1..14, :selected=> @landpage.no_of_days),{},:class=>"numberOfDays" %>
                     </div>
-                    <div>
-                        <label><span class="number">9</span>Upload logo</label>
+                    <div class="wd30">
+                        <label>
+                            <span class="number">9</span>Image:
+                            <span class="fr">
+                                <%=image_tag(get_img(@landpage), class: 'img-polaroid img100')%>
+                            </span>
+                        </label>
                         <%= land.fields_for :land_page_logo, LandPageLogo.new do |pic| %>
-                            <label>Image:</label><%= pic.file_field :avatar %>  
+                            <label class="land_new_img_label">Upload New:</label><%= pic.file_field :avatar %>  
                         <% end %>
                     </div>
                 </span>

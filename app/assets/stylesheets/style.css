@@ -1586,6 +1586,21 @@ header h2 a {
     height: 90px;
 }
 
+.img-polaroid.img100 {
+    width: 100px;
+    height: 80px;
+}
+
+.landing_pages form label.land_new_img_label{
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.landing_pages form div.wd30{
+    width: 30%;
+}
+
 .wizard_text {
     width: 100%;
     float: left;

@@ -26,11 +26,12 @@
 		              	</div>
 		          	</div>
       			</div>
-
-      			<%=render "common_templates/campaign_temps/waiver_print"%>
-      			<div>
-      				<%#= link_to "Print", print_waiver_details_path(user: @user,dy:@dayscount,lead:params[:lead] ,format: 'pdf'), :class=>"btn yellow"%>
-      			</div>
+      			<%= form_for :logout, :url=>"home/guest_register_complete",:method=>:post, :html => {:class => "form forms pd15", :style=>"font-size:13px;"} do |guest| %>
+      				<%=render "common_templates/campaign_temps/waiver_print"%>
+	      			<div>
+	      				<%= guest.submit :submit, :class=>"btn yellow"%>
+	      			</div>
+      			<%end%>
 			</div>
 		</div>
 	</div>

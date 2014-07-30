@@ -26,8 +26,7 @@ function initCompanyCreateOrUpdate(){
 		$("#upg_step2").show();
 	});
 
-	$("#landing_page_land_type").unbind();
-	$("#landing_page_land_type").change(function (){
+	$(document).on('change', "#landing_page_land_type", function (){
 		if($(this).val() == "External landing page"){
 			$(".internal_land_page").hide();
 			$(".land_page_preview").hide();

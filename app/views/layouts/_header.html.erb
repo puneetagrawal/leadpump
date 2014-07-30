@@ -25,7 +25,9 @@
            dashboard_selected = "selected"         
          end 
       %>
-      <li class="<%= home_selected%>"><%=link_to  'Home', signup_user_path %></li>
+      <%if current_user.present?%>
+        <li class="<%= home_selected%>"><%=link_to  'Home', signup_user_path %></li>
+      <%end%>
       
       <li class="<%= dashboard_selected%>"><%=link_to  'Dashboard', dashboard_path %></li>
       <li> 

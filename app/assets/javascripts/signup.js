@@ -70,7 +70,7 @@ $(document).ready(function(){
 		id = parseInt(id);
 		$parent.html('<img src="/assets/ajax-loader.gif" style="margin:20px 0 0 0;">');
 		if(id == 2){
-			if($(".fancybox-inner #password").val() != ""){
+			if($(".fancybox-inner #is_password_blank").val() == ""){
 				$(".pwd_error").html('');
 				save_password($parent, $this, id);	
 			}
@@ -80,7 +80,7 @@ $(document).ready(function(){
 			}
 		}
 		else if(id == 3){
-			$("#add_form").submit();	
+			$(".fancybox-inner #add_form").submit();	
 		}
 		else if(id == 4){
 			//$("#payment_form").submit();
