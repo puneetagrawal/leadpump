@@ -50,6 +50,7 @@ Leadpump::Application.routes.draw do
   match "/skip_profile" => "home#skip_profile"
   match "/contact_form" => "home#contact_form"
   match "/intouch" => "home#intouch"
+  match "home/guest_register_complete" => "home#guest_register_complete"
 
   root to: "home#signup_user"
 

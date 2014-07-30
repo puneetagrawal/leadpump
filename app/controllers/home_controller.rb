@@ -7,10 +7,8 @@ class HomeController < ApplicationController
                                                      :confirmation, :save_password, :save_address,
                                                    :make_payment,:choose_plan,:skip_profile,
                                                     :contact_form, :test, :intouch]
-
-  layout 'company_layout', only: [:pass, :print_pass]
-  layout 'index_layout', only: [:signup_user]
-
+  layout :resolve_layout                                                
+  
   def index
     if current_user && !current_user.isAdmin
       @users = current_user.fetchCompanySalesUsers
@@ -407,16 +405,14 @@ class HomeController < ApplicationController
     @user = User.find(params[:user])
     @add = Address.where(:user_id=>"#{@user.id}").last
     if @add.present?
+      logger.debug("sdfdsfdsfds")
       @add.update_attributes(params[:address])
-      @add.user_id = "#{@user.id}"
-      @add.save
+      @add.save!
     else
+      logger.debug(">>>>>>>>>>>>>")
       @add = Address.new(params[:address])
       @add.user_id = "#{@user.id}"
-      if @add.save
-      else
-        logger.debug(@add.errors.full_messages)
-      end
+      @add.save!
     end
     @user.company_name = params[:company_name]
     @user.save
@@ -584,6 +580,10 @@ class HomeController < ApplicationController
     end
   end
 
+  def guest_register_complete
+    redirect_to guest_register_path
+  end
+
   def change_locale
     logger.debug(I18n.locale)
     session[:locale] = (params[:language].blank?) ? I18n.default_locale : params[:language]  
@@ -602,6 +602,21 @@ class HomeController < ApplicationController
         rescue Exception => e
         end
       end
+    end
+  end
+
+  private
+
+  def resolve_layout
+    case action_name
+    when "pass", "print_pass"
+      "company_layout"
+    when "signup_user"
+      "index_layout"
+    when "guest_register", "member_profile_basic", "member_profile_advance", "save_details"
+      "guest_layout"
+    else
+      "application"
     end
   end
 

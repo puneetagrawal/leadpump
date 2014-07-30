@@ -303,17 +303,17 @@ function initialization() {
     });
 
 
-    $(document).on("change", "#discountOnUsers", function () {
+    $(document).on("change", ".fancybox-inner #discountOnUsers", function () {
         no_of_users = $(this).val();
         options = '';
         for (i = 1; i <= no_of_users; i++) {
             options += '<option value="' + i + '">' + i + '</option>'
         }
-        $("#no_of_locations").html(options)
+        $(".fancybox-inner #no_of_locations").html(options)
         caclulateAmount();
     })
 
-    $(document).on("click", "#planType_1, #planType_2", function () {
+    $(document).on("click", ".fancybox-inner #planType_1, .fancybox-inner #planType_2", function () {
         caclulateAmount();
     });
 
@@ -438,12 +438,12 @@ function initialization() {
         closealert(this);
     });
     $(document).on('click', '#billing_address', function () {
-        $("#billing_address1").attr('checked', false);
+        $(".fancybox-inner #billing_address1").attr('checked', false);
         $(".diff_address").hide();
         $(".same_address").show();
     });
     $(document).on('click', '#billing_address1', function () {
-        $("#billing_address").attr('checked', false);
+        $(".fancybox-inner #billing_address").attr('checked', false);
         $(".same_address").hide();
         $(".diff_address").show();
     });
@@ -477,8 +477,8 @@ function savepic() {
 function caclulateAmount() {
     no_of_users = 1;
     payment_type = 'monthly';
-    planId = $("#planPerUserId").val();
-    no_of_users = $("#discountOnUsers").val();
+    planId = $(".fancybox-inner #planPerUserId").val();
+    no_of_users = $(".fancybox-inner #discountOnUsers").val();
 
     if ($("input[name='planType']").is(":checked")) {
         if ($("input[name='planType']:checked").val() > 1) {

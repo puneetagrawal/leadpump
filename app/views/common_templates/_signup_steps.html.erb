@@ -8,9 +8,10 @@
 		<span class="credit_fild_col"><%= label_tag "Last Name" %><%= text_field_tag :lname, @user.lname, disabled: "disabled", placeholder:"Last Name" %></p></span>
 		<span class="credit_fild_col"><%= label_tag "Email" %><%= text_field_tag :email, @user.email, disabled: "disabled", placeholder:"Enter Your Password" %></p></span>
 		<span class="credit_fild_col">
+			<%=hidden_field_tag :is_password_blank, @user.password.nil? ? '' : 'present'%>
 			<%= label_tag "Password" %>
 			<p>
-				<%= text_field_tag :password, @user.password, placeholder:"Enter Your Password" %>
+				<%= password_field_tag :password, @user.password, placeholder:"Enter Your Password" %>
 				<span class="pwd_error"></span>
 			</p>
 		</span>
@@ -36,7 +37,7 @@
 			</div>
 			<%= form_tag('/make_payment', method: :post, :id=>"payment_form", :class => "forms") do |f| %>
 				<%=hidden_field_tag :user, @user.id%>
-				<%=hidden_field_tag :user_ip%>
+				<%=hidden_field_tag :user_ip, "", class: "user_ip"%>
 				<%= render "common_templates/labelsForDiscounts" %>	
 				<div class="popupTitleHead">
 					<h2 class="">BILLING INFORMATION</h2>
@@ -123,7 +124,7 @@
 <script>
   $(document).ready(function () {
      $.get('http://jsonip.com', function (res) {
-         $("#user_ip").val(res.ip);
+         $(".user_ip").val(res.ip);
      });
  });
 </script>

@@ -40,6 +40,15 @@ module OnlinemallHelper
 		# end
 		return img.html_safe
 	end
+
+	def get_img(landpage)
+		url = ''
+		if landpage.present? && landpage.land_page_logos.present?
+			url = landpage.land_page_logos.last.avatar.url(:thumb)
+		end
+		return url
+	end
+
 	def fetchlandpreivewimage(landpage)
 		img = '<img src="/assets/land_page/women.png">'
 		# if landpage.present? && landpage.avatar.present?
