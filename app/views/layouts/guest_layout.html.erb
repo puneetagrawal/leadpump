@@ -9,6 +9,10 @@
 </head>
 <body>
   <script type="text/javascript" charset="utf-8">var root = '<%= root_url %>';</script> 
+  <script type="text/javascript">
+      emailAuth = '<%=@emailAuth %>';
+      tokend = '<%=@token%>';
+  </script>
   <%= yield %>
 </body>
 </html>
