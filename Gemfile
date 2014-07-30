@@ -69,5 +69,10 @@ group :development do
 	gem 'debugger'
 	gem "rails_best_practices"
 end
+
+group :staging do
+	gem 'unicorn-worker-killer'
+end
+
 gem 'savon'
 # gem 'globalize', '~> 3.1.0'
