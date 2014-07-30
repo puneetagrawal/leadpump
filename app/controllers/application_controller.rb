@@ -2,16 +2,6 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, :set_cache_buster
   protect_from_forgery
 
-
-
-  # def set_locale
-
-  #  @language = (params[:language].blank?) ? I18n.default_locale : params[:language]
-  #  session[:locale] = @language  
-  #  # session[:locale] = params[:locale]   if params[:locale]
-  #  I18n.locale = session[:locale] || I18n.default_locale
-  # end
-
     def after_sign_in_path_for(user)
       url = dashboard_path
       case user.user_role.role_type.to_sym  

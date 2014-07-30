@@ -10,7 +10,7 @@ jQuery ->
 subscription =
   setupForm: ->
     $(document).on 'click', '.pay_btn', () ->
-      if $("#terms").is(':checked')
+      if $(".fancybox-inner #terms").is(':checked')
         if $('#card_number').length
           window.btn = $('.pay_btn').html();
           $('.pay_btn').html('<img src="/assets/ajax-loader.gif" style="margin:20px 0 0 0;">');
@@ -24,20 +24,20 @@ subscription =
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#stripe_card_token').val(response.id)
-      $('#payment_form').submit()
+      $('.fancybox-inner #stripe_card_token').val(response.id)
+      $('.fancybox-inner #payment_form').submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('.fancybox-inner #stripe_error').text(response.error.message)
       $(".pay_btn").html(window.btn)
 
   validateCard: ->
       card =
-        email: $('#user_email').val()
-        name: $('#customerName').val()
-        type: $('#credit_card').val()
-        number: $('#card_number').val()
-        cvc: $('#card_code').val()
-        expMonth: $('#card_month').val()
-        expYear: $('#card_year').val()
+        email: $('.fancybox-inner #user_email').val()
+        name: $('.fancybox-inner #customerName').val()
+        type: $('.fancybox-inner #credit_card').val()
+        number: $('.fancybox-inner #card_number').val()
+        cvc: $('.fancybox-inner #card_code').val()
+        expMonth: $('.fancybox-inner #card_month').val()
+        expYear: $('.fancybox-inner #card_year').val()
       Stripe.createToken(card, subscription.handleStripeResponse)
 
