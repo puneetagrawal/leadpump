@@ -42,7 +42,7 @@ module OnlinemallHelper
 	end
 
 	def get_img(landpage)
-		url = ''
+		url = '/assets/land_page/gymslogo.png'
 		if landpage.present? && landpage.land_page_logos.present?
 			url = landpage.land_page_logos.last.avatar.url(:thumb)
 		end
