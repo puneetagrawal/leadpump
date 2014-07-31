@@ -3022,6 +3022,16 @@ header .container {
     margin-top: 10px;
 }
 
+.vip .step_main_col {
+    width: 450px;
+    font-family: arial;
+    color: #333333;
+    float: none;
+    margin-bottom: 60px;
+    margin: auto;
+}
+
+
 .step_main_col {
     width: 450px;
     font-family: arial;

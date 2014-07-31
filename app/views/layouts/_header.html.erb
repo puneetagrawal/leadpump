@@ -123,6 +123,7 @@ function handleSessionResponse(response){
    },
    function(response) {
      if (response && response.post_id) {
+       completeVipStep();
        alert('Post was published.');
        FB.logout(function(response) {
         });
