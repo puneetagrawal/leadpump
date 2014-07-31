@@ -2,6 +2,7 @@
 WL.init({ client_id: "0000000044119D8D", redirect_uri: "http://www.leadpump.com" });
 
 function testt(){
+  complete_email_step();
   WL.login({ scope: ["wl.basic","wl.contacts_emails","wl.emails"] }).then(
       function(response) {
         $.fancybox.open({

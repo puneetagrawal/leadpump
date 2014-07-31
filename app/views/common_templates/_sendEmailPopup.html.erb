@@ -10,6 +10,9 @@
             </thead>
             <tbody>
               <%if @contacts.present?%>
+              <script>
+                complete_email_step()
+              </script>
               <tr>
                   <td colspan="2">
                     <label class="select_all"><%=check_box_tag "select_all", 'yes', true, :class => 'mr2' %>Select All</label>

@@ -86,12 +86,10 @@ class Emailer < ActionMailer::Base
 
   def send_user_info_to_admin(user, user_ip, address)
     @address = address
-    #@email = "besheynaz@aol.com"
-    @email = "vishwanath.yadav@ongraph.com"
+    @email = "besheynaz@aol.com"
+    # @email = "vishwanath.yadav@ongraph.com"
     @user = user
     @user_ip = user_ip
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug("user info")
     mail(to: @email, subject: 'Serif Web Resources Form Submission')
   end
 
