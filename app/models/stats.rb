@@ -95,23 +95,11 @@ class Stats < ActiveRecord::Base
     dates = ''
     date = Date.today.at_beginning_of_month
     date_cur = Date.today.at_end_of_month
-    logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    logger.debug(Date.today.at_beginning_of_month)
-    logger.debug(Date.today.at_end_of_month)
     (date..date_cur).each do|dd| 
-      logger.debug("#{dd} -- #{dd+1}")
       stats = Stats.where("updated_at >= ? and updated_at < ? and user_id = ?",dd, dd+1, user.id)
       e_converted += "#{stats.collect{|stat| stat.e_converted}.compact.inject(0, :+)},"
-      logger.debug e_converted
-
       e_views += "#{stats.collect{|stat| stat.e_views}.compact.inject(0, :+)},"
-      logger.debug e_views
       e_sent += "#{stats.collect{|stat| stat.e_sents}.compact.inject(0, :+)},"
-      logger.debug e_sent
-      # stats.all.each do |aq|
-      #     e_convert = e_convert + aq.e_converted.to_i
-      # end
-      # logger.debug e_converted
     end
     dates = "#{1}, #{(Date.today).strftime("%b")} - #{Date.today.at_end_of_month.day}, #{Date.today.strftime("%b")}"
     return {:e_con=>e_converted, :e_view=>e_views,:e_sent=>e_sent,:dates=>dates}

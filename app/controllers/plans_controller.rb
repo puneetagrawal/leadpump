@@ -12,8 +12,6 @@ class PlansController < ApplicationController
 	  @planPerUsers = PlanPerUserRange.order("id ASC").where(:user_range_id => rangeId)
 
 	  #address = Address.find_by_user_id("#{@user.id}")
-	  #logger.debug("S>>>>>>>>>>>>>>>>>>>sdfsdfd")
-	  #logger.debug(address)
 	  #Emailer.send_user_info_to_admin(@user, "", address).deliver
   end
 

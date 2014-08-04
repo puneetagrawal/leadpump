@@ -119,7 +119,6 @@ def saveleadstatus
   object.active = params[:status] == "false" ? false : true
   object.save
   status = Lead.checkLeadStatus(object.active)
-  logger.debug(status)
   msg = {"status"=>status}
   render json:msg
 end

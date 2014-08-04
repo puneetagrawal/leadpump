@@ -32,8 +32,6 @@ class Company < ActiveRecord::Base
 	end
 
 	def self.createUser(useradmin, user)
-		logger.debug(useradmin)
-		logger.debug(user)
 		company = Company.new(:company_admin_id => useradmin.id, :company_user_id => user.id)
         company.save
         useradmin.update_attributes(:users_created=> useradmin.users_created+1)
@@ -69,7 +67,6 @@ class Company < ActiveRecord::Base
 		          comp_user << [u.name, mail_sent_count, mail_oppened_count, mail_clicked, mail_converted_count]
 			    end
 		    end
-		    logger.debug(comp_user.size)
 		    if comp_user.size > 0
 	    		Emailer.report_mailer(comp_user, b).deliver
 	    	end

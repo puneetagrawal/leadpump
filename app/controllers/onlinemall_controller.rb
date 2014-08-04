@@ -64,10 +64,7 @@ class OnlinemallController < ApplicationController
     @mallupdate.update_attributes(:description=>params[:onlinemall][:description], :title=>params[:onlinemall][:title],:link=>params[:onlinemall][:link], :file => params[:onlinemall][:file])
     if params[:onlinemall].has_key?(:mallpic_attributes)
       @mallupdate.mallpic[0].avatar = params["onlinemall"]["mallpic_attributes"]["0"]["avatar"]
-      if @mallupdate.mallpic[0].save
-      else
-        logger.debug(@mallupdate.errors.fullmessage)
-      end
+      @mallupdate.mallpic[0].save
     end
     flash[:notice] = "Mall item updated successfully"
     redirect_to onlinemall_index_path

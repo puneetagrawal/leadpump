@@ -75,7 +75,6 @@ def self.fetchAppointmentData(lead_id)
   end
   tasklist = ["Schedule call", "Schedule tour", "Schedule sign up"]
   hash_list = {tasklist: tasklist, lead: lead, date: date, task: task, hour: hour, min: min, zone: zone}
-  logger.debug hash_list
   return hash_list
 end
 
@@ -166,7 +165,6 @@ end
     request.basic_auth 'leadpump.com', 'sh1kq5Da95W4'
     response = http.request(request).body
     xml = Nokogiri::XML(response)
-    logger.debug(xml)
     stts = ""
     xml.xpath("//status").each do |game|
       stts = game.xpath("//joinType").text
@@ -198,14 +196,12 @@ def insert_prospect_abc
    response = @client.call(:insert_prospect, :message=>{:arg0=>{:clubNumber=>9003,
     :personal => @message, :contact=>@contact, :dates=> @dates, :miscellaneous=>@miscellaneous}})
    res = response.body[:insert_prospect_response][:return]
-   logger.debug(res)
    if res.present? && res[:barcode].present? && res[:member_id].present?
     self.member_id = res[:member_id]
     self.barcode = res[:barcode]
     self.save
    end
  rescue Exception => e
-    logger.debug(e.to_s)
  end
 end
 
