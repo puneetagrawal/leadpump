@@ -15,8 +15,6 @@ class CompanyController < ApplicationController
 
   respond_to :json
   def save_external_lead
-    logger.debug("entering")
-    logger.debug(params[:lead])
     user = User.where(:token=>params[:token]).last
     lead = Lead.new(params[:lead])
     if !user.present?
@@ -28,7 +26,6 @@ class CompanyController < ApplicationController
       message = ""
     else
       message = lead.errors.full_messages[0].humanize
-      logger.debug(lead.errors.full_messages[0])
     end
     render :json => message.to_json, :callback => params['callback']
     # respond_with message
@@ -39,14 +36,10 @@ class CompanyController < ApplicationController
   end
 
   def create_code_image
-    logger.debug(params[:html_code_image][:avatar])
     img = HtmlCodeImage.where(:user_id=> current_user.id).last
     if img.present?
       img.avatar = params[:html_code_image][:avatar]
-      if img.save
-      else
-        logger.debug(img.errors.full_messages)
-      end
+      img.save
     else
       img = HtmlCodeImage.new(:avatar=> params[:html_code_image][:avatar],
        :user_id=> current_user.id)
@@ -439,7 +432,6 @@ class CompanyController < ApplicationController
   end
 
   def save_acc_settings
-    logger.debug(I18n.locale)
     if params[:address].present?
       Address.save_user(params[:address], params[:company_name], current_user)
     elsif params[:stripe_card_token]
@@ -489,11 +481,7 @@ class CompanyController < ApplicationController
       if desk_desc.present?
         desk_desc.title = params[:title]
         desk_desc.description = params[:desc]
-        if desk_desc.save
-          logger.debug("saved waiver Text")
-        else
-          logger.debug(desk_desc.errors.full_messages)
-        end
+        desk_desc.save
       else
         front_desk = FrontDeskDesc.create(:title => params[:title], :description => params[:desc], :user_id => current_user.id)
       end

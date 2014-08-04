@@ -18,7 +18,6 @@ class GmailFriend < ActiveRecord::Base
 	def self.savegmailContact(contacts, user, token)
 		contacts.each do |contact|
 			unless contact[:email].blank? 
-				logger.debug(contact)
 				email = contact[:email] != '' ? contact[:email] : ''
 				name = contact[:name] != '' ? contact[:name] : ''
 				if email.present? && name.present?

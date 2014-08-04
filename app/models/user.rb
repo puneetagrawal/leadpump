@@ -65,7 +65,6 @@ end
 
 def isCompany
   iscompany = self.user_role.id == 2 ? true : false
-  logger.debug(iscompany)
   return iscompany
 end
 
@@ -244,7 +243,6 @@ def self.deleteusersfromcompany(companyusers)
     when :company
       limit = self.subscription.plan_per_user_range.plan.lead_management
       if check_plan_expired(self)
-        logger.debug(limit)
         if self.leads_created <= limit.to_i || limit == "Unlimited"
           allow = true
         end
@@ -314,13 +312,10 @@ def fetchFacebookMessage
   company = self.fetchCompany
   message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
   socialmessage = SocialMessage.find_by_company_id(company.id)
-  logger.debug("facebook_mes")
   if socialmessage.present? && socialmessage.facebookMessage.present?
-    logger.debug("inside if")
     message = socialmessage.facebookMessage
   end
   message = message.gsub(/"/, '').gsub(/'/,'').gsub(/\n/, '<br />')
-  logger.debug(message)
   return message.html_safe
 end
 
@@ -335,7 +330,6 @@ def fetchtwitterMessage
 end
 
 def self.find_user(id)
-  logger.debug(id)
   begin
     return User.find(id)
   rescue
@@ -357,29 +351,19 @@ def self.create_charge(sub)
           :customer => customer
           )
       sub.charge_id = charge.id
-      if sub.save
-        logger.debug(">>>>>>>>>>>>>>>>>>>>>>")
-      else
-        logger.debug(sub.errors.full_messages)
-      end
+      sub.save
     rescue Stripe::CardError => e
       body = e.json_body
       err  = body[:error]
-      logger.debug("#{err[:message]}")
     rescue Stripe::InvalidRequestError => e
       @cardError = "Invalid parameters were supplied to Stripe API"
-      logger.debug(@cardError)
     rescue Stripe::AuthenticationError => e
       @cardError = "Authentication with Stripe's API failed"
-      logger.debug(@cardError)
     rescue Stripe::APIConnectionError => e
       @cardError = "Network communication with Stripe failed"
-      logger.debug(@cardError)
     rescue Stripe::StripeError => e
       @cardError = "Display a very generic error to the user, and maybe send yourself an email"
-      logger.debug(@cardError)
     rescue => e
-      logger.debug("Something bad happened, Please try again")
     end
   end
 end

@@ -87,7 +87,6 @@ class HomeController < ApplicationController
     end
     if @home == 'cal'
       @task_hash = Lead.fetchAppointmentData(@lead.id)
-      logger.debug @task_hash
     end
     respond_to do |format|
       format.js
@@ -218,7 +217,6 @@ class HomeController < ApplicationController
   end
 
   # def make_payment
-  #   logger.debug(params)
   #   @planPerUser = PlanPerUserRange.find(params[:planPerUserId])
   #   planType = params[:planType] == '2' ? 'yearly' : 'monthly'
   #   amt = User.signUpAmount(params[:planPerUserId], params[:discountOnUsers], planType)
@@ -405,11 +403,9 @@ class HomeController < ApplicationController
     @user = User.find(params[:user])
     @add = Address.where(:user_id=>"#{@user.id}").last
     if @add.present?
-      logger.debug("sdfdsfdsfds")
       @add.update_attributes(params[:address])
       @add.save!
     else
-      logger.debug(">>>>>>>>>>>>>")
       @add = Address.new(params[:address])
       @add.user_id = "#{@user.id}"
       @add.save!
@@ -426,14 +422,11 @@ class HomeController < ApplicationController
     @user = User.find(params[:user])
     @cardError = ''
     if @user.present?
-      logger.debug("user found")
       planType = params[:planType] == '2' ? 'yearly' : 'monthly'
       amt = User.signUpAmount(planPerUser.id, params[:discountOnUsers], planType)
       total_amount = amt["amount"].to_i * 100
       begin
         email = @user.email.to_s
-        logger.debug("inside begin")
-        logger.debug(email)
         customer = Stripe::Customer.create(
           :email => email,
           :description => "Subscribed for #{planPerUser.plan.name} plan.",
@@ -444,16 +437,11 @@ class HomeController < ApplicationController
         #       :currency => "usd",
         #       :customer => customer.id
         # )
-        logger.debug("user saving")
         if @user.save
-          logger.debug("after saved")
          date = planType == "monthly" ? Date.today + 45 : Date.today + 380
          Subscription.saveSubscription(@user, planPerUser.id, params["stripe_card_token"], date, amt["amount"].to_i, params[:discountOnUsers], params[:no_of_locations], planType, customer.id, "")
-        logger.debug("subscription saving")
-         address = Address.find_by_user_id("#{@user.id}")
-         logger.debug("address found")
+         address = Address.save_address(@user, params)
          Emailer.send_user_info_to_admin(@user, params[:user_ip], address).deliver
-         logger.debug("email sended")
          sign_in :user, @user
         end
       rescue Stripe::CardError => e
@@ -585,10 +573,8 @@ class HomeController < ApplicationController
   end
 
   def change_locale
-    logger.debug(I18n.locale)
     session[:locale] = (params[:language].blank?) ? I18n.default_locale : params[:language]  
     I18n.locale = session[:locale] || I18n.default_locale
-    logger.debug(I18n.locale)
     render json: {"msg"=> "success"}
   end
 

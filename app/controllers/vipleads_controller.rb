@@ -298,7 +298,6 @@ def insert_prospect
   # request.basic_auth 'leadpump.com', 'sh1kq5Da95W4'
   # response = http.request(request).body
   # xml = Nokogiri::XML(response)
-  # logger.debug(xml)
   # xml.xpath("//status").each do |game|
   #     status = game.xpath("//active").text
   # end
@@ -307,17 +306,12 @@ end
 
 # ******************Get Memberlist method ****************************
   #url = "https://webservice.abcfinancial.com/ws/getMemberList/9003?memberStatus=active&updateStartTime=2014-01-01&memberId=900310003"
-  # logger.debug(">>>>>>>>>>>>>")
   # uri = URI.parse(url)
-  # logger.debug(uri.inspect)
   # http = Net::HTTP.new(uri.host, uri.port)
   # http.use_ssl = true
   # request = Net::HTTP::Get.new(uri.path + "?" + uri.query)
   # request.basic_auth 'leadpump.com', 'sh1kq5Da95W4'
-  # logger.debug(request.inspect)
-  # logger.debug("SDFSDFSDFSDFdf")
   # response = http.request(request)
-  # logger.debug(response.body)
 
 
 private

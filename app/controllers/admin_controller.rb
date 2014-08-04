@@ -196,10 +196,6 @@ end
     f_dt = Date.strptime(f_dt, "%m/%d/%Y")
     t_dt = Date.strptime(t_dt, "%m/%d/%Y")
     @users = User.where("created_at >= ? and created_at <= ?", f_dt, t_dt ).paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC") 
-    logger.debug f_dt
-    logger.debug t_dt
-    logger.debug @users
-    logger.debug("<<<<<<<<<<<<<<<<<<")
   else
     @users = User.paginate(:page => params[:page], :per_page => 10, :order => "created_at DESC") 
   end
@@ -374,7 +370,6 @@ end
     plan = Plan.find(params[:planId]) 
     if user.subscription.present?
       plnperuser = PlanPerUserRange.where(:plan_id=>plan.id).last
-      logger.debug(plnperuser.id)
       user.subscription.update_attributes(:plan_per_user_range_id=>plnperuser.id)
     end
     msg = {"plan"=> plan.name}

@@ -25,11 +25,7 @@ class NewsFeed < ActiveRecord::Base
   def self.update_feed_action(lead, action)
     feed = NewsFeed.find_by_lead_id(lead)
     feed.action = action
-    if feed.save
-      logger.debug(">>>>>>>>>>>>>>")
-    else
-      logger.debug(feed.errors.full_messages)
-    end
+    feed.save
   end
 
   def color
