@@ -671,6 +671,11 @@ a:focus {
     font-weight: normal;
 }
 
+.vip_head_img{
+    width: 180px;
+    height: 50px;
+}
+
 .border {
     border: 1px solid #ddd;
 

@@ -28,7 +28,7 @@ include ApplicationHelper
       	if user.picture.present? && user.picture.company_logo(:medium)
        		logo_html = '<a href='+dashboard_path+'><img src='+user.picture.company_logo.url(:head_logo)+' /></a>'   
        	else
-       		logo_html = '<a href='+dashboard_path+'><img src=/assets/logo_img.png /></a>'   
+       		logo_html = '<a href='+dashboard_path+'><img src=/assets/logo_img.png class="vip_head_img"/></a>'   
        	end
       else
        logo_html = '<a href='+dashboard_path+'><img src=/assets/logo_img.png /></a>'   
