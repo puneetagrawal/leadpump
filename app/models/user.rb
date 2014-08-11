@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :opt_in_leads
   has_many :statss
   has_many :onlinemalls
+  has_many :companymallitems
   has_many :saleProds
   has_many :auto_responders
   has_many :news_feeds
@@ -321,7 +322,7 @@ end
 
 def fetchtwitterMessage
   company = self.fetchCompany
-  message = 'I just joined "gym", here a free 7-day pass for you.Come join me!'
+  message = 'I just made the decision to join Life Time Fitness. Hands down I LOVE this place. Here is a link for a FREE 7-day trial pass.'
   socialmessage = SocialMessage.find_by_company_id(company.id)
   if socialmessage.present? && socialmessage.twitterMessage.present?
     message = socialmessage.twitterMessage

@@ -28,7 +28,7 @@
                             <%@onlinemalls.each_with_index do|om, index|%>
                                 <tr id="mallitem_<%=om.id%>">
                                     <td><%=index+1%></td>
-                                    <%=render "mallitemcontentrow", :om=>om,:index=>index%>
+                                    <%#=render "mallitemcontentrow", :om=>om,:index=>index%>
                                 </tr>
                             <%end%>
                         <%end%>
@@ -42,10 +42,10 @@
                     <p class="text-center alert">Please click on the ad of your choice to print a coupon to redeem at the club.</p>
                     <div class="list_carousel responsive" >
                         <ul id="foo5">
-                            <%if @onlinemalls.present?%>
-                                <% @onlinemalls.each_with_index do|om, index|%>
-                                    <%if om.mallpic.present?%>
-                                        <li><%= image_tag om.mallpic.last.avatar.url() %></li>
+                            <%if @user_selected_onlinemall.present?%>
+                                <% @user_selected_onlinemall.each_with_index do|om, index|%>
+                                    <%if om.onlinemall.mallpic.present?%>
+                                        <li><%= image_tag om.onlinemall.mallpic.last.avatar.url() %></li>
                                     <%end%>
                                 <%end%>
                             <%end%>

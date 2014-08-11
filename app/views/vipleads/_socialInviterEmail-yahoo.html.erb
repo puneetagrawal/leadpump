@@ -1,4 +1,4 @@
-<div class="common hide">
+<!-- <div class="common hide">
 <div class="social_options">
     <ul>
         <li name="social-email" class="e-m">
@@ -10,6 +10,24 @@
     </ul>
 </div>
 
-<%=render "socialInviterYahoo"%>
-<%=render "socialInviterEmail"%>
+	<%#=render "socialInviterYahoo"%>
+	<%#=render "socialInviterEmail"%>
+</div> -->
+
+
+
+<div class="vip_mb social-email hide">
+    <h3 class="mb0">Share on Facebook</h3>
+    <p>Share this message with your friends on Facebook. The following invitation will be posted to your facebook timeline.</p>
+    <div class="follow_col">
+      <div class="wdt_1">
+        <div class="fol_box">
+          <div class="fb_icon"><img src="/assets/mail-icon.png" width="100" height="100" alt="fb_icon1" /></div>
+          <%=current_user.fetchEmailMessage.html_safe %>
+        </div>
+      </div>
+      <div class="post_btn">
+        <a class="email_btn" href="javascript:void(0)">Email to Friends</a>
+      </div>
+    </div>
 </div>
