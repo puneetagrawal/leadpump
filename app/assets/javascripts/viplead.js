@@ -92,7 +92,23 @@ function initSocialInviter(){
 			$(this).html('<a class="btn yellow" href="javascript:void(0)">Send Invitations</a>');
 		}
 	});
+
+	$(document).on('click', '.email_btn', function(){
+		open_invite_email_popup()
+	})
 }
+
+function open_invite_email_popup(){
+	$.fancybox.open({
+		href: '#socialinvitepopup',
+		type: 'inline',
+		'afterLoad' : function() {
+			$("#inviter_select").val('');
+			$(".inviter-container").html('');
+		}
+	});
+}
+
 
 function changeInviter(obj){
 	WL.logout();
@@ -161,24 +177,6 @@ function savevipsetings(obj){
 function movetostep1(obj){
 	var exit = false;
 	skip = $(obj).attr('id');
-	// if(skip != 'skip'){
-	// 	$(".viprow").each(function() {
-	// 		exit = false;
-	// 		// $(this).find('p input').each(function(){
-	// 		// 	if($(this).val() == '') { 
-	// 		// 		exit = true;
-	// 		// 		alert(" Please fill all fields, then proceed further..!!");
-	// 		// 		return false;
-	// 		// 	}
-	// 		// });
-	// 		if (exit){
-	// 			return false;
-	// 		}
-	// 	});
-	// }
-	// if(!exit){
-	// 	executeFirstStep(obj, skip);	
-	// }
 	executeFirstStep(obj, skip);
 }
 
@@ -208,27 +206,15 @@ function executeFirstStep(obj, skip){
 }
 
 function executeSecondStep(name){
-	if(name != "common"){
-		$(".step_2").addClass('step_line');
-		$(".step_2 .step_circle").addClass('step_active').addClass('step_passed');
-		$(".step_3 .step_circle").addClass('step_active');
-		$(".social_options ul li").each(function(){
-			if(!$(this).hasClass('hide')){
-				$(this).addClass("hide");
-			}
-		});
-		$("."+name).removeClass('hide');
-	}
-	else{
-		$.fancybox.open({
-			href: '#socialinvitepopup',
-			type: 'inline',
-			'afterLoad' : function() {
-				$("#inviter_select").val('');
-				$(".inviter-container").html('');
-			}
-		});	
-	}
+	$(".step_2").addClass('step_line');
+	$(".step_2 .step_circle").addClass('step_active').addClass('step_passed');
+	$(".step_3 .step_circle").addClass('step_active');
+	$(".social_options ul li").each(function(){
+		if(!$(this).hasClass('hide')){
+			$(this).addClass("hide");
+		}
+	});
+	$("."+name).removeClass('hide');
 }
 
 function complete_email_step(){

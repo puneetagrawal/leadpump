@@ -1,6 +1,7 @@
 class OnlinemallController < ApplicationController
   def index
     @onlinemall = Onlinemall.new
+    @user_selected_onlinemall = Companymallitem.where(user_id: current_user.id)
     if current_user.isAdmin
       @onlinemalls = Onlinemall.includes(:mallpic).includes(:user).order("created_at DESC")
     elsif current_user.isCompany
@@ -31,7 +32,6 @@ class OnlinemallController < ApplicationController
     	flash[:notice] = "Please add image"
     	render "index"
     end
-  	
   end
 
   def mallitemassign

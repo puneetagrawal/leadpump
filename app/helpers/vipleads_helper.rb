@@ -13,4 +13,26 @@ include ApplicationHelper
 		end
 		return allow
 	end
+
+	def social_invite_page
+		if action_name == "new" && controller_name == "vipleads"
+			return "hide"
+		end
+	end
+
+	def fetch_header_logo(user)
+	  logo_html = ''
+	  if user && user.isAdmin
+       logo_html = '<a href='+admin_index_path+'><img src=/assets/logo_img.png /></a>'   
+      elsif action_name == "new" && controller_name == "vipleads"
+      	if user.picture.present? && user.picture.company_logo(:medium)
+       		logo_html = '<a href='+dashboard_path+'><img src='+user.picture.company_logo.url(:head_logo)+' /></a>'   
+       	else
+       		logo_html = '<a href='+dashboard_path+'><img src=/assets/logo_img.png /></a>'   
+       	end
+      else
+       logo_html = '<a href='+dashboard_path+'><img src=/assets/logo_img.png /></a>'   
+      end
+      render(:inline=> logo_html)
+	end
 end

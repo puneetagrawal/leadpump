@@ -1,17 +1,10 @@
 <header>
   <div class="container">
     <h2 class="fl">
-      <% if current_user && current_user.role_id == 1 %>
-      <%=link_to admin_index_path do%>   
-      <img src="/assets/logo_img.png">
-      <%end %>
-      <% else %>
-      <%=link_to dashboard_path do%>  
-      <img src="/assets/logo_img.png">
-      <%end %>
-      <%end%>
+      <%=fetch_header_logo(current_user)%>
+      
     </h2>
-    <ul class="pull-left punchline">
+    <ul class="pull-left punchline <%=social_invite_page%>">
       <li><i class="txt_blue">Pump</i> Up Leads,</li> 
       <li>Pump <i class="txt_blue">Up</i> Sales,</li>
       <li>Pump Up <i class="txt_blue">Profits</i>.</li>
