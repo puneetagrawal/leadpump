@@ -22,7 +22,7 @@ class CompanyController < ApplicationController
     elsif lead.save
       user_lead = UserLeads.new(:user_id => user.id, :lead_id => lead.id)
       user_lead.save
-      NewsFeed.create(:user_id=>current_user.id, :lead_id=>lead.id, :description=>"New External Entry Lead", :feed_date=>Date.today, :action=>"Start")
+      NewsFeed.create(:user_id=>user.id, :lead_id=>lead.id, :description=>"New External Entry Lead", :feed_date=>Date.today, :action=>"Start")
       message = ""
     else
       message = lead.errors.full_messages[0].humanize
