@@ -1,5 +1,5 @@
 class CompanyController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome, :unsubscribe]
+  skip_before_filter :authenticate_user!, :only => [:calculateAmount, :terms, :welcome, :unsubscribe, :save_external_lead]
   before_filter :set_access_control_headers
             
   layout 'reflanding', only: [:preview]
