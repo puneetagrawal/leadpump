@@ -6,15 +6,15 @@
 <td class="leadActive leadAction" id="status_<%=lead.id%>">
   <%=render "common_templates/changeStatus", :lead=>lead, :user=>nil%>
 </td>
+<td>
+  <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>
+</td>
 <td class="leadActive leadAction">
     <%if lead.subscribe%>
       <%=check_box_tag 'responder_enable', '', true %>
     <%else%>
       <%=check_box_tag 'responder_enable', '', false%>
     <%end%>
-</td>
-<td>
-  <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>
 </td>
 <td class="leadAction" id="select_<%=lead.id%>">
   <%#=link_to "Edit", "javascript:void(0)",html={:class=>"leadAction leadEdit"}%>  
