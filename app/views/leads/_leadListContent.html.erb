@@ -1,6 +1,6 @@
 <table class="table table-striped">
  <thead>
-   <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Goal</td><td>Status</td><td>Employee</td><td>Turn off auto responders"</td><td>Action</td></tr>
+   <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Goal</td><td>Status</td><td>Employee</td><%if controller_name == "leads"%><td>Turn off auto responders</td><%end%><td>Action</td></tr>
  </thead>
  <%=render "leadtablebody"%>
  </table>
