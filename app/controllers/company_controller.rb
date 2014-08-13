@@ -420,6 +420,17 @@ class CompanyController < ApplicationController
     render json: {message: "success"}
   end
 
+  def auto_responder_subscribe
+    lead = Lead.find(params[:lead_id])
+    if params[:subscribe] == "true"
+      lead.subscribe = true
+    else
+      lead.subscribe = false
+    end
+    lead.save
+    render json: {message: "success"}
+  end
+
   def acc_setting_address
     @btn_name = params[:btn_name]
     if @btn_name == "addrs"

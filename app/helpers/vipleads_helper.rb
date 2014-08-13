@@ -25,7 +25,7 @@ include ApplicationHelper
 	  if user && user.isAdmin
        logo_html = '<a href='+admin_index_path+'><img src=/assets/logo_img.png /></a>'   
       elsif action_name == "new" && controller_name == "vipleads"
-      	if user.picture.present? && user.picture.company_logo(:medium)
+      	if user.picture.present? && user.picture.company_logo(:head_logo).present?
        		logo_html = '<a href='+dashboard_path+'><img src='+user.picture.company_logo.url(:head_logo)+' class="vip_head_img"/></a>'   
        	else
        		logo_html = '<a href='+dashboard_path+'><img src=/assets/logo_img.png /></a>'   

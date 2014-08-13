@@ -28,7 +28,7 @@
                             <%@onlinemalls.each_with_index do|om, index|%>
                                 <tr id="mallitem_<%=om.id%>">
                                     <td><%=index+1%></td>
-                                    <%#=render "onlinemall/mallitemcontentrow", :om=>om,:index=>index%>
+                                    <%=render "onlinemall/mallitemcontentrow", :om=>om,:index=>index%>
                                 </tr>
                             <%end%>
                         <%end%>

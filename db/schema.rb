@@ -114,6 +114,13 @@ ActiveRecord::Schema.define(:version => 20140528063451) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "credit_cards", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "customer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "discounts_on_locations", :force => true do |t|
     t.string   "locationRanges"
     t.integer  "discountPercentage"
@@ -234,8 +241,6 @@ ActiveRecord::Schema.define(:version => 20140528063451) do
     t.string   "status"
     t.integer  "no_of_days"
     t.string   "associate"
-    t.boolean  "subscribe",                       :default => true
-    t.string   "lead_token"
     t.string   "barcode"
     t.string   "member_id"
     t.string   "gender",                          :default => "male"
@@ -246,6 +251,8 @@ ActiveRecord::Schema.define(:version => 20140528063451) do
     t.boolean  "is_member"
     t.string   "currently_exercise"
     t.string   "program_span"
+    t.boolean  "subscribe",                       :default => false
+    t.string   "lead_token"
   end
 
   create_table "mallpics", :force => true do |t|

@@ -206,6 +206,9 @@ function executeFirstStep(obj, skip){
 }
 
 function executeSecondStep(name){
+	if(!$(".step2_container").hasClass('hide')){
+		$(".step2_container").addClass('hide')
+	}
 	$(".step_2").addClass('step_line');
 	$(".step_2 .step_circle").addClass('step_active').addClass('step_passed');
 	$(".step_3 .step_circle").addClass('step_active');

@@ -18,3 +18,7 @@ end
 scheduler.cron '15 00 * * 1-7' do
 	Company.report
 end
+
+# scheduler.cron '13 07 * * 1-7' do
+# 	Company.report
+# end

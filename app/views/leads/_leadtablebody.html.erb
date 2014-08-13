@@ -1,9 +1,11 @@
 <tbody>    
   <%if @leads.size > 0%>                
   <% @leads.each do |ur|%>
-  <tr class="viewLead listView" id="viewLead_<%=ur.lead.id%>"  data-action="leadpopup">
-    <%=render "leadContentRow", :lead=>ur.lead %>
-  </tr>
+  <%if ur.lead.present? && ur.user.present?%>
+    <tr class="viewLead listView" id="viewLead_<%=ur.lead.id%>"  data-action="leadpopup">
+      <%=render "leadContentRow", :lead=>ur.lead %>
+    </tr>
+  <% end %>         
   <% end %>         
   <%else%>
   <tr>
