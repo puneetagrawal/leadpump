@@ -1,5 +1,10 @@
 
-<div class="container wrapper">
+<div class="container wrapper dusr_head">
+	<%if @temp_name == "dusr_set"%>
+	<h3>Daily Usage Summary Report:</h3>
+	<p>Please checkmark the box "Add to DUSR list" next to users that you would like to receive a nightly emailed report that breaks down their usage & statistics 
+	for the prior day.</p>
+	<%end%>
    <div class="row-fluid" style="padding:0px 10px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;">
 	   	<%if @temp_name != "dusr_set"%>
 		   	<span class="formfields">

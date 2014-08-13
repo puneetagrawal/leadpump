@@ -206,6 +206,7 @@ Leadpump::Application.routes.draw do
   match "/savevipsetings" => "company#savevipsetings"  
   match "/unsubscribe" => "company#unsubscribe"  
   match "/save_dusr_report" => "company#save_dusr_report"
+  match "/auto_responder_subscribe" => "company#auto_responder_subscribe"
   match "/acc_setting_address" => "company#acc_setting_address"
   match "/save_acc_settings" => "company#save_acc_settings"
   match "/save_external_lead" => "company#save_external_lead", :as => :json

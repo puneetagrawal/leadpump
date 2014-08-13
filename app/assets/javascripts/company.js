@@ -19,6 +19,9 @@ function initCompanyCreateOrUpdate(){
 	$(document).on("click", "#dusr_enable", function(){
 		save_dusr_to_user(this);
 	});
+	$(document).on("click", "#responder_enable", function(){
+		auto_responder_subscribe(this);
+	});
 	$(document).on("click", ".upgrade_plan_btn", function(){
 		plan = $(this).attr('data-plan');
 		$("#plan_per_user_range_id").val(plan);
@@ -136,6 +139,14 @@ function save_dusr_to_user(obj){
 	var url = '/save_dusr_report';
 	$.get(url, {dusr:dusr, user_id:user_id}, function (data) {	
 	});
+}
+
+function auto_responder_subscribe(obj){
+	var lead_id = $(obj).closest('tr').attr('id').split('_')[1];
+	var subscribe = $(obj).is(':checked');
+	var url = '/auto_responder_subscribe';
+	$.get(url, {subscribe:subscribe, lead_id:lead_id}, function (data) {	
+	});	
 }
 
 function companyEdit(obj){

@@ -6,6 +6,13 @@
 <td class="leadActive leadAction" id="status_<%=lead.id%>">
   <%=render "common_templates/changeStatus", :lead=>lead, :user=>nil%>
 </td>
+<td class="leadActive leadAction">
+    <%if lead.subscribe%>
+      <%=check_box_tag 'responder_enable', '', true %>
+    <%else%>
+      <%=check_box_tag 'responder_enable', '', false%>
+    <%end%>
+</td>
 <td>
   <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>
 </td>
@@ -19,6 +26,5 @@
 	<%else%>
   	<%= select "action", "lead", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), {}, :prompt=>"test", :class=>"action_select leadAction"%>
 	<%end%>
-
 </td>    
   
