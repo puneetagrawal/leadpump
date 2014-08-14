@@ -7,6 +7,31 @@
         });
 
     });
+    // $(document).on("change",'.xyz input:checkbox',function(){
+    // $('.mall_chek input:checkbox').click(function(){
+        
+        
+    // });
+    
+    // $('[id^="onlinemall_"]').click(function(e){
+
+    //  alert("sdffsdfsfddfs");
+    //     checked = $(this).is(':checked'); 
+    //     id = $(this).attr('id').split("_")[1];
+    //     url = '/mallitemassign';
+    //     $.get(url, {id:id,checked:checked}, function (data) {           
+    //     });
+    // });
+    
+    $('document').on('click', 'mall_chek', function (e) {
+        alert("sdffsdfsfddfs");
+        checked = $(this).is(':checked'); 
+        id = $(this).attr('id').split("_")[1];
+        url = '/mallitemassign';
+        $.get(url, {id:id,checked:checked}, function (data) {           
+        });
+    });
+
 </script>
 
 <div class="container wrapper">
@@ -17,7 +42,7 @@
             </div>
         </div>
         <div class="span8" style="width: 61.812%;;marging-left:0px">
-            <div class="border" style="width:98%;">
+            <div class="border xyz" style="width:98%;">
                 <h2 class="heading">All Mall Items</h2>
                 <table class="table table-striped">
                     <thead>
@@ -59,3 +84,5 @@
     </div>
 
     <%=render "common_templates/popupContainer"%>
+
+   
