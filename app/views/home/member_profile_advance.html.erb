@@ -58,10 +58,14 @@
 					<div class="select_input_col">
 					<label>I am a guest of? </label>
 					
+						
 						<%= text_field_tag "guest", nil, :class => "guest_input",:placeholder => "Member Name"  %>
+						
 					</div>
 					
-					<%= hidden_field_tag 'lead_id', @lead.id %>
+					<%if params[:lead][:lead_id].present? %>
+						<%= hidden_field_tag 'lead_id', @lead.id %>
+					<% end %>
 				
 			 <div class="clear"></div>	
 				<div style="text-align:center">	<%= submit_tag 'Final Step', :class => "btn yellow step_su_btn" %></div>
