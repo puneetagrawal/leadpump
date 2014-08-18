@@ -29,13 +29,14 @@ $(document).ready(function(){
 		admincreatecmpy(this);
 	});
 
-	$('.mall_chek').click(function(){
-		checked = $(this).is(':checked'); 
-		id = $(this).attr('id').split("_")[1];
-		url = '/mallitemassign';
-		$.get(url, {id:id,checked:checked}, function (data) {			
-		});
-	});
+	
+	$(document).on('click', ".mall_chek", function(){
+        checked = $(this).is(':checked'); 
+        id = $(this).attr('id').split("_")[1];
+        url = '/mallitemassign';
+        $.get(url, {id:id,checked:checked}, function (data) {           
+        });
+    });
 
 	$(document).on('click', ".edit_icon", function () {
 		$(".formfields").html('<img src="/assets/ajax-loader.gif" style="margin:35%">');

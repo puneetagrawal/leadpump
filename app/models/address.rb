@@ -1,6 +1,7 @@
 class Address < ActiveRecord::Base
 	belongs_to :user
 	attr_accessible :address, :city, :zip, :state, :phone, :country, :user_id
+  validates :phone, :format => {:with => /^\d+(-\d+)*$/}
 	
   def self.save_user(address, company_name, user)
 	  add = Address.find_by_user_id("#{user.id}")

@@ -3,6 +3,7 @@ class VipLead < ActiveRecord::Base
   
   belongs_to :user
   before_create :saveStatus
+  validates :phone, :format => {:with => /^\d+(-\d+)*$/}
   
 
   def self.fetchList(userId)

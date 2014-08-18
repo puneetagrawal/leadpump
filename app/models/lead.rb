@@ -15,6 +15,7 @@ class Lead < ActiveRecord::Base
   validates :name, :presence => true
   validates :email, :presence => true, :if => Proc.new { |foo| foo.phone.blank? } 
   #validates :phone, :presence => true, :if => Proc.new { |foo| foo.email.blank? ? true :}
+  validates :phone, :format => {:with => /^\d+(-\d+)*$/}
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => :email?
   validates :lead_source, :presence => true
   number_regex = /\d[0-9]\)*\z/

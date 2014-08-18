@@ -2,6 +2,7 @@ class OptInLead < ActiveRecord::Base
   attr_accessible :email, :source, :phone, :name, :referrer_id
 
   belongs_to :user
+  validates :phone, :format => {:with => /^\d+(-\d+)*$/}
 
 
 	# def self.fetchOptInLead(user)
