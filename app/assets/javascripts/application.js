@@ -32,6 +32,7 @@
 //= require saleprod
 //= require ckeditor-jquery
 //= require wl
+//= require jquery.carouFredSel-6.2.1-packed
 
 right_img = '<img src="/assets/right.png" style="width: 15px;margin: 0 2px 0 -20px;">';
 $(document).ready(function () {
