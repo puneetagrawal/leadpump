@@ -15,6 +15,7 @@
 #  username: postgres
 #  password: postgres
 #  port: 5432
+#  encoding: LATIN1
 
 staging: &stag
  adapter: postgresql

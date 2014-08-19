@@ -4,6 +4,7 @@ class Appointment < ActiveRecord::Base
   
   belongs_to :lead
   belongs_to :user
+  validates :phone, :format => {:with => /^\d+(-\d+)*$/}
 
   default_scope :order => "app_date_time ASC"
 
