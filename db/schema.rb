@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
     t.string   "status"
     t.integer  "no_of_days"
     t.string   "associate"
-    t.boolean  "subscribe",          :default => false
+    t.boolean  "subscribe",          :default => true
     t.string   "lead_token"
     t.string   "barcode"
     t.string   "member_id"
@@ -432,6 +432,7 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
   create_table "tweet_referrals", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "referrer"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
