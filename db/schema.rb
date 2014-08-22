@@ -13,6 +13,19 @@
 
 ActiveRecord::Schema.define(:version => 20140814085246) do
 
+  create_table "address_translations", :force => true do |t|
+    t.integer  "address_id"
+    t.string   "locale",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+  end
+
+  add_index "address_translations", ["address_id"], :name => "index_address_translations_on_address_id"
+  add_index "address_translations", ["locale"], :name => "index_address_translations_on_locale"
+
   create_table "addresses", :force => true do |t|
     t.string   "address"
     t.string   "city"
@@ -24,6 +37,17 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "appointment_translations", :force => true do |t|
+    t.integer  "appointment_id"
+    t.string   "locale",         :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "task"
+  end
+
+  add_index "appointment_translations", ["appointment_id"], :name => "index_appointment_translations_on_appointment_id"
+  add_index "appointment_translations", ["locale"], :name => "index_appointment_translations_on_locale"
 
   create_table "appointments", :force => true do |t|
     t.string   "name"
@@ -52,6 +76,18 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  create_table "auto_responder_translations", :force => true do |t|
+    t.integer  "auto_responder_id"
+    t.string   "locale",            :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "message"
+    t.string   "subject"
+  end
+
+  add_index "auto_responder_translations", ["auto_responder_id"], :name => "index_auto_responder_translations_on_auto_responder_id"
+  add_index "auto_responder_translations", ["locale"], :name => "index_auto_responder_translations_on_locale"
 
   create_table "auto_responders", :force => true do |t|
     t.date     "respond_date"
@@ -106,6 +142,17 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "front_desk_desc_translations", :force => true do |t|
+    t.integer  "front_desk_desc_id"
+    t.string   "locale",             :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "description"
+  end
+
+  add_index "front_desk_desc_translations", ["front_desk_desc_id"], :name => "index_front_desk_desc_translations_on_front_desk_desc_id"
+  add_index "front_desk_desc_translations", ["locale"], :name => "index_front_desk_desc_translations_on_locale"
 
   create_table "front_desk_descs", :force => true do |t|
     t.integer  "user_id"
@@ -194,8 +241,6 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
     t.string   "status"
     t.integer  "no_of_days"
     t.string   "associate"
-    t.boolean  "subscribe",          :default => true
-    t.string   "lead_token"
     t.string   "barcode"
     t.string   "member_id"
     t.string   "gender",             :default => "male"
@@ -206,6 +251,8 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
     t.boolean  "is_member"
     t.string   "currently_exercise"
     t.string   "program_span"
+    t.boolean  "subscribe",          :default => false
+    t.string   "lead_token"
   end
 
   create_table "mallpics", :force => true do |t|
@@ -450,6 +497,19 @@ ActiveRecord::Schema.define(:version => 20140814085246) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "user_translations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "locale",       :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "name"
+    t.string   "lname"
+    t.string   "company_name"
+  end
+
+  add_index "user_translations", ["locale"], :name => "index_user_translations_on_locale"
+  add_index "user_translations", ["user_id"], :name => "index_user_translations_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                      :default => "",    :null => false

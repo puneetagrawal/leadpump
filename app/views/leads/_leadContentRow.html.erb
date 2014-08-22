@@ -1,20 +1,17 @@
-<td><%=lead.name%></td>
+<td><%=lead.created_at.strftime("%m/%d/%y")%></td>
+<td class="big_wd"><%=lead.fullname%></td>
 <td><%=lead.phone%></td>
-<td><%=lead.email%></td>
+<!-- <td><%#=lead.email%></td> -->
 <td><%=lead.lead_source%></td>
-<td><%=lead.goal%></td>
+<!-- <td><%#=lead.goal%></td> -->
 <td class="leadActive leadAction" id="status_<%=lead.id%>">
   <%=render "common_templates/changeStatus", :lead=>lead, :user=>nil%>
 </td>
-<td>
-  <span id="emp_<%=lead.id%>"><%=fetchLeadEmployee(lead.id)%>
-</td>
-<td class="leadActive leadAction">
-    <%if lead.subscribe%>
-      <%=check_box_tag 'responder_enable', '', true %>
-    <%else%>
-      <%=check_box_tag 'responder_enable', '', false%>
-    <%end%>
+<!-- <td>
+  <span id="emp_<%#=lead.id%>"><%#=fetchLeadEmployee(lead.id)%>
+</td> -->
+<td class="leadAction">
+    <%=render "common_templates/auto_responder_simulator", :lead=>lead%>
 </td>
 <td class="leadAction" id="select_<%=lead.id%>">
   <%#=link_to "Edit", "javascript:void(0)",html={:class=>"leadAction leadEdit"}%>  
@@ -22,9 +19,11 @@
   <%#=checkIfCompanyAdmin(lead.id)%> 
   <%#=fetchTasklink(lead.id)%>
   <%if checkIfCompanyAdmin(lead.id) != ''%>
-  	<%= select "action", "lead", options_for_select(["Edit","Delete",fetchTasklink(lead.id),checkIfCompanyAdmin(lead.id)]), {}, :prompt=>"test", :class=>"action_select leadAction"%>
+  	<%#= select(:action, :lead, options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), :prompt=>"Action", {}, :class=>"action_select leadAction")%>
+    <%=select_tag "filter[select]", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), prompt: "Action", class: "action_select leadAction" %>
 	<%else%>
-  	<%= select "action", "lead", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), {}, :prompt=>"test", :class=>"action_select leadAction"%>
+  <%=select_tag "filter[select]", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), prompt: "Action", class: "action_select leadAction" %>
+  	<%#= select "action", "lead", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), {}, :prompt=>"test", :class=>"action_select leadAction"%>
 	<%end%>
 </td>    
   

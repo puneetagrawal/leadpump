@@ -1,8 +1,6 @@
 $(document).ready(function(){
 	leadid = '';
-	$(".leadFilterByName").change(function(){
-		leadFilterByName($(this).val());	
-	});	
+	
 	initLeadCreateOrUpdate();
 });
 
@@ -29,6 +27,10 @@ function deleteLead(obj){
 }
 
 function initLeadCreateOrUpdate(){
+
+	$(".container").on('change', '#auto_responder_lead', function (){
+		manage_auto_responder($(this));
+	});
 
 	$(".container").on('click', '.leadEdit', function (){
 		leadEdit(this);
@@ -93,6 +95,23 @@ function initLeadCreateOrUpdate(){
 		});
 	});
 
+	$(".leadFilterByName").change(function(){
+	   $('#search_lead_form').submit();	
+	});	
+
+	$(document).on("click",".column_sort",function(){
+		$("#sorted_by").val($(this).attr('data-sort'));
+		$("#order").val($(this).attr('data-order'));
+		$('#search_lead_form').submit();
+	});
+}
+
+function manage_auto_responder($this){
+	var lead_id = $this.closest('tr').attr('id').split("_")[1];
+	var subscribe = $this.val() == "On" ? "true" : "false";
+	var url = '/auto_responder_subscribe';
+	$.get(url, {subscribe:subscribe, lead_id:lead_id}, function (data) {	
+	});	
 }
 
 function tasksave(){
@@ -182,12 +201,6 @@ function leadSubmit(obj){
 	
 }
 
-function leadFilterByName(userId){
-	$("#leadListContent").html('<img src="/assets/ajax-loader.gif" style="margin:100px 350px 300px">') ;
-	url = '/leads/filterbyname';
-	$.post(url, {userId:userId}, function (data) {	
-	});
-}
 
 function leadSearchFilter(leadId){
 	url = '/leads/leadsearchfilter';

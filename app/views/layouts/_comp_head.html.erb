@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="fl">
       <%if @company.picture.present?%>
-          <%= image_tag @company.picture.avatar.url(),:style=>"height:70px;width:180px" %>
+          <%= image_tag @company.picture.company_logo.url(:medium),:style=>"height:70px;width:180px" %>
       <%else%>
           <img src="/assets/logo.png">
       <%end%>

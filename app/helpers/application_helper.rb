@@ -48,4 +48,4 @@ module ApplicationHelper
 		return allow
 	end
 
-	end
+end

@@ -2,12 +2,16 @@
   <div class="border" style="width:106%">
    <h2 class="heading">All Contacts / Leads</h2>
    <div class="heading leadHeading">
-   	<%if @userList%>
-    <%= select_tag "filter_select", options_for_select(@userList.collect{ |user| [user.name, user.id] }),:class => "leadFilterByName filter_select",:prompt=>"Filter By Employee"%>  
-    <%end%>
-    <input type="text" name="test" id="test" placeholder="Type name, lastname or source">        
+    <%= form_tag('/get_sorted_list', remote: true, method: "get", id: "search_lead_form") do |f|%>
+     	<%if @userList%>
+        <%= select_tag "filter_select", options_for_select(@userList.collect{ |user| [user.name, user.id] }),:class => "leadFilterByName filter_select",:prompt=>"Filter By Employee"%>  
+      <%end%>
+      <input type="text" name="test" id="test" placeholder="Type name, lastname or source"> 
+      <%= hidden_field_tag :sorted_by, "created_at"%>
+      <%= hidden_field_tag :order, "DESC"%> 
+    <%end%>      
   </div>
-  <span class="leadListContent" id="leadListContent">
+  <span id="leadListContent" class="leadListContent lead_page">
     <%= render "leadListContent"%>   
   </span>
 </div>

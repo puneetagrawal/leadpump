@@ -41,6 +41,9 @@ class Lead < ActiveRecord::Base
 #     return hash
 # end
 
+def fullname
+  "#{self.name} #{self.lname}"
+end
 
 def self.fetchTotalLeads(user)
   totallead = 0
@@ -87,17 +90,18 @@ def self.fetchLeadList(user)
 	userList = []
 	case user.user_role.role_type.to_sym  
     when :admin
-      leads = UserLeads.includes(:lead).all  
+      leads = UserLeads.includes(:lead).order('leads.created_at DESC')  
       userList = User.where("id != ?", user.id)   
     when :company
       userList = Company.where(:company_admin_id => user.id).pluck(:company_user_id)
       users = userList
       userList << user.id
-      leads = UserLeads.includes(:lead).where(:user_id => userList)
+      leads = UserLeads.includes(:lead).where(:user_id => userList).order('leads.created_at DESC')
       users = users.collect{|user| User.find(user)}
     when :employee
-      leads = UserLeads.includes(:lead).where(:user_id => user.id)
+      leads = UserLeads.includes(:lead).where(:user_id => user.id).order('leads.created_at DESC')
     end
+    leads = leads.delete_if{|ld|  Lead.find_by_id(ld.lead_id).nil?}
     hash = {:leads=>leads,:userList=>users}
 end
 
