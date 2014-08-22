@@ -155,7 +155,6 @@ Leadpump::Application.routes.draw do
   match '/leads/leadassigntouser' => 'leads#leadassigntouser'
   #match '/leads/changeleadstatus' => 'leads#changeleadstatus'
   match '/leads/saveleadstatus' => 'leads#saveleadstatus'
-  match '/leads/filterbyname' => 'leads#filterbyname'
   match '/leads/leadsearchfilter' => 'leads#leadsearchfilter'
   match '/leads/getemails' => 'leads#getemails'
   match '/leads/socialInviter' => 'leads#socialInviter'
@@ -165,6 +164,7 @@ Leadpump::Application.routes.draw do
   match 'leads/saveappointment' => 'leads#saveappointment'
   match '/read_feed' => 'leads#read_feed'
   match '/add_notes' => 'leads#add_notes'
+  match '/get_sorted_list' => 'leads#get_sorted_list'
 
   resources :leads 
   

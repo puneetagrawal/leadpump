@@ -73,8 +73,6 @@ $(document).ready(function () {
         });
     });
 
-    
-
     $(".plan_upg_mail").click(function () {
         $(this).html('<img src="/assets/ajax-loader.gif">');
         url = "/plan_upg_mail";

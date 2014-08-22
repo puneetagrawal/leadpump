@@ -67,12 +67,12 @@ module OnlinemallHelper
     end
 
 	def fetchCompanyLogo(user)
-	company = user.fetchCompany
+		company = user.fetchCompany
     img = '<img src="images/gymslogo.png" style="max-width:250px;max-height:100px;"/>'
     if company.picture.present?
-      img = image_tag company.picture.avatar.url(), :class=>'img-polaroid mh60 logo_dimension'
+      img = image_tag company.picture.company_logo.url(:medium), :class=>'img-polaroid mh60 logo_dimension'
     end
-    return img.html_safe
+  	return img.html_safe
   end 
 
   def getsubstring(title)

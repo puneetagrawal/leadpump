@@ -9,8 +9,8 @@ class LeadsController < ApplicationController
   def edit   
     @lead = Lead.find(params[:id])   
     respond_to do |format|
-        format.js 
-    end 
+      format.js 
+    end
   end
 
   def new 
@@ -18,6 +18,19 @@ class LeadsController < ApplicationController
     @leads = hash['leads'.to_sym]
     @userList = hash['userList'.to_sym]
     @lead  = Lead.new()
+  end
+
+  def get_sorted_list
+    sort = params[:sorted_by].blank? ? "created_at" : params[:sorted_by]
+    order = params[:order].blank? ? "DESC" : params[:order]
+    user = params[:filter_select].blank? ? current_user : User.find_by_id(params[:filter_select])
+    hash = Lead.fetchLeadList(user) 
+    @leads = hash['leads'.to_sym]
+    if sort == "created_at"
+      @leads = order == "ASC" && @leads.size > 0 ? @leads.sort_by{|x| x.lead["#{sort}".to_sym]} : @leads.sort_by{|x| x.lead["#{sort}".to_sym]}.reverse
+    else
+      @leads = order == "ASC" && @leads.size > 0 ? @leads.sort_by{|x| x.lead["#{sort}".to_sym].downcase if x.lead.present?} : @leads.sort_by{|x| x.lead["#{sort}".to_sym].downcase if x.lead.present?}.reverse
+    end
   end
 
   def create
@@ -123,18 +136,6 @@ def saveleadstatus
   render json:msg
 end
 
-def filterbyname
-  if params[:userId].blank?
-    hash = Lead.fetchLeadList(current_user) 
-    @leads = hash['leads'.to_sym]
-  else
-    @leads = UserLeads.includes(:lead).where(:user_id=>params[:userId])
-  end
-  respond_to do |format|
-    format.js 
-  end
-end
-
 def leadsearchfilter
   hash = Lead.fetchLeadList(current_user) 
   leadlist = hash['leads'.to_sym]
@@ -225,5 +226,7 @@ def saveappointment
   msg = {"status"=>"sucess"}
   render json:msg
  end
+
+
 
 end

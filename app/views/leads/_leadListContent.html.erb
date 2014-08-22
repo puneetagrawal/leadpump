@@ -1,6 +1,51 @@
 <table class="table table-striped">
  <thead>
-   <tr><td>Name</td><td>Phone</td><td>Email</td><td>Source</td><td>Goal</td><td>Status</td><td>Employee</td><%if controller_name == "leads"%><td>Turn off auto responders</td><%end%><td>Action</td></tr>
+   <tr>
+   	<td>
+         <span class="thumb_text">
+            <span class="name_sort">Date</span>
+             <span class="sort_icn">
+               <i class="icn-sort column_sort" data-sort="created_at" data-order="ASC"></i>
+               <i class="icn-sort_down column_sort" data-sort="created_at" data-order="DESC"></i>
+             </span>
+        </span>
+      </td>
+   	<td class="big_wd">
+         <span class="thumb_text">
+            <span class="name_sort">Name</span>
+             <span class="sort_icn">
+               <i class="icn-sort column_sort" data-sort="name" data-order="ASC"></i>
+               <i class="icn-sort_down column_sort" data-sort="name" data-order="DESC"></i>
+             </span>
+        </span>
+      </td>
+   	<td>Phone</td>
+   	<!-- <td>Email</td> -->
+   	<td>
+         <span class="thumb_text">
+            <span class="name_sort">Source</span>
+             <span class="sort_icn">
+               <i class="icn-sort column_sort" data-sort="lead_source" data-order="ASC"></i>
+               <i class="icn-sort_down column_sort" data-sort="lead_source" data-order="DESC"></i>
+             </span>
+        </span>
+      </td>
+   	<!-- <td>Goal</td> -->
+   	<td>
+         <span class="thumb_text">
+            <span class="name_sort">Status</span>
+             <span class="sort_icn">
+               <i class="icn-sort column_sort" data-sort="status" data-order="ASC"></i>
+               <i class="icn-sort_down column_sort" data-sort="status" data-order="DESC"></i>
+             </span>
+        </span>
+      </td>
+   	<!-- <td>Employee</td> -->
+   	<%if controller_name == "leads"%>
+   		<td>Auto Responders</td>
+   	<%end%>
+   	<td>Action</td>
+   </tr>
  </thead>
  <%=render "leadtablebody"%>
  </table>

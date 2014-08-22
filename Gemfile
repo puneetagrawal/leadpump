@@ -68,7 +68,7 @@ group :development do
 	gem "bullet"
 	gem 'debugger'
 	gem "rails_best_practices"
-	# gem "pry"
+	gem "pry"
 end
 
 group :staging do

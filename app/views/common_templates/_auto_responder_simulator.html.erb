@@ -1,0 +1,3 @@
+<%if lead.present?%>
+	<%= select "auto_responder", "lead", options_for_select(["On","Off"], :selected=>lead.subscribe ? "On" : "Off"), {}, :class=>"auto_respond_select leadAction"%>
+<%end%>

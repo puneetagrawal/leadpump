@@ -3293,6 +3293,33 @@ h2.heading_about:before {
     width: 9.1%;
     word-wrap: break-word;
 }
+
+#leadListContent tr td {
+    min-height: 60px;
+    float: left;
+    line-height: 20px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+    width: 9.1%;
+    word-wrap: break-word;
+}
+
+.lead_page td.big_wd{
+    width: 17.7% !important;
+}
+
+.lead_page td{
+    width: 11.4% !important;
+}
+
+.auto_respond_select{
+    font-size: 13px;
+    padding: 2px;
+    height: 25px;
+    width:55%;
+}
+
 #leadListContent thead tr td{min-height: 20px;}
 
 .fc-border-separate thead {
@@ -3554,11 +3581,7 @@ min-width: 110px;
     text-decoration: none;
 }
 
-#leadListContent tr td {
-width: 21.5%;
-min-height: 51px;
 
-}
 .leadform input {
 width: 91%;}
 .leadform label {
@@ -3698,6 +3721,53 @@ text-decoration: none;
   margin: 0 0 9px 16px;
 }
 
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .asc {
+  background-image: url(/assets/tip_icon_up.png);
+}
+
+.pretty th .desc {
+  background-image: url(/asssets/tip_icon_down.png);
+}
+
+
+.icn-sort{
+    background-image: url('/assets/tip_icon_up.png');
+    width: 11px;
+    height: 7px;
+    float: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.icn-sort_down{
+    background-image: url('/assets/tip_icon_down.png');
+    width: 11px;
+    height: 7px;
+    float: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+span.name_sort{
+    width: auto;
+    padding-right: 5px;
+}
+
+span.sort_icn{
+    width: 12px;
+    float: left;
+    margin-top: 4px;
+}
+span.tx_rht.heading_txt{
+    float: right;
+    max-width: 153px;
+}
 
 
 

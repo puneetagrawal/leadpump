@@ -25,7 +25,8 @@
         <tr>
             <td>
                 <label style="width:50%;">State:</label>
-                <select class="input-large st_sl" onchange="setsession('st',$(this).val())" style="width:215px !important;">
+                <input class="input-large" type="text" value="<%=@temp.present? ? @temp.st : ''%>" onblur="setsession('st',$(this).val())">
+                <!-- <select class="input-large st_sl" onchange="setsession('st',$(this).val())" style="width:215px !important;">
                     <option value="">Select State</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
@@ -84,7 +85,7 @@
                     <option value="GU">Guam</option>
                     <option value="AS">American&nbsp;Samoa</option>
                     <option value="PW">Palau</option>
-                </select>
+                </select> -->
             </td>
             <td>
                 <label style="width:50%;">City:</label>
