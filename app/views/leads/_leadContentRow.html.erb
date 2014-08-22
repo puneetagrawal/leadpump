@@ -20,7 +20,7 @@
   <%#=fetchTasklink(lead.id)%>
   <%if checkIfCompanyAdmin(lead.id) != ''%>
   	<%#= select(:action, :lead, options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), :prompt=>"Action", {}, :class=>"action_select leadAction")%>
-    <%=select_tag "filter[select]", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), prompt: "Action", class: "action_select leadAction" %>
+    <%=select_tag "filter[select]", options_for_select(["Edit","Delete",fetchTasklink(lead.id),checkIfCompanyAdmin(lead.id)]), prompt: "Action", class: "action_select leadAction" %>
 	<%else%>
   <%=select_tag "filter[select]", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), prompt: "Action", class: "action_select leadAction" %>
   	<%#= select "action", "lead", options_for_select(["Edit","Delete",fetchTasklink(lead.id)]), {}, :prompt=>"test", :class=>"action_select leadAction"%>
