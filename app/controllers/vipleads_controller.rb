@@ -114,7 +114,7 @@
   end
 
   def sendIvitationToGmailFriend
-    emails = [params[:emaillist]]
+    emails = params[:emaillist]
     if params[:u_email].present?
       session[:email_user] = params[:u_email]
     end
