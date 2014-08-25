@@ -3781,4 +3781,17 @@ span.tx_rht.heading_txt{
     margin: -24px 10px 17px 40px;
 }
 
+#setting_page .pos_container{
+    margin-left: 34%;
+    margin-top: 7%;
+    text-align: left;
+    width: 35%;
+
+}
+
+#setting_page .waiver_container{
+    margin-left: 3%;
+    text-align: left;
+    width: 59%;
+}
 
