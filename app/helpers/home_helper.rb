@@ -27,4 +27,19 @@ def get_feed_icon(feed)
 	end
 end
 
+def get_waiver_text(user)
+	# binding.pry
+	logger.debug(">>>.>>>>>>>>>>>>>>>>>>>>>>>>")
+	text = user.front_desk_desc.present? && !user.front_desk_desc.description.blank? ? user.front_desk_desc.description : FrontDeskDesc::DESC
+end
+
+def get_waiver_title(user)
+	logger.debug(">>>.>>>>>>>>>>>>>>>>>>>>>>>>")
+	if user.front_desk_desc.present? && !user.front_desk_desc.title.blank?
+	  return user.front_desk_desc.title
+	else
+		return nil
+	end
+end
+
 end
