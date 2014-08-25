@@ -1,21 +1,21 @@
 <h3 class="pos_h3">Point Of Sale Referrals:</h3>
 <p class="pos_p">If you would like to collect referrals at the point of sale, please check mark the box to turn this feature on. Next select the number of referrals you would like to have the option to collect.</p>
 <div class="span4 margin_width pos_container">    
-    <div>
-        <div class="border">
-            <h2 class="heading headmsg">Edit POS</h2>
-            <div class="form pd15">
-                <p>
-                    <label><%=check_box_tag "vipon", 'yes', current_user.fetchCompany.vipon ? true : false, :class => 'viponsetting mr2' %>On/Off</label>
-                </p>
-                <p><label>Number of POS referrals you would like to collect</label>
-                    <%=select_tag("noofvip", options_for_select([[1],[2],[3],[4],[5]],:selected=>current_user.fetchCompany.vipcount),:prompt => "Select No Of Vips",:style=>"width:200px;margin:10px 0 10px 0;") %>
-                </p>
-                <p class="editvipseting">
-                    <input type="button" class="btn yellow" name="vipsetting" value="submit"/>
-                </p>
-                <div class="clear"></div>
-            </div>        
-        </div> 
-    </div>        
+  <div>
+    <div class="border">
+      <h2 class="heading headmsg">Edit POS</h2>
+      <div class="form pd15">
+        <p>
+          <label><%=check_box_tag "vipon", 'yes', current_user.fetchCompany.vipon ? true : false, :class => 'viponsetting mr2' %>On/Off</label>
+        </p>
+        <p><label>Number of POS referrals you would like to collect</label>
+          <%=select_tag("noofvip", options_for_select([[1],[2],[3],[4],[5]],:selected=>current_user.fetchCompany.vipcount),:prompt => "Select No Of Vips",:style=>"width:200px;margin:10px 0 10px 0;") %>
+        </p>
+        <p class="editvipseting">
+          <input type="button" class="btn yellow" name="vipsetting" value="submit"/>
+        </p>
+        <div class="clear"></div>
+      </div>        
+    </div> 
+  </div>        
 </div>

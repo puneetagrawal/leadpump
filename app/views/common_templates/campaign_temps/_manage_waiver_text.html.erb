@@ -2,31 +2,25 @@
     <p class="waiver_p">When a new guest checks into your club and electronically enters their personal information they will be required to sign a liability waiver. Below is the default liability waiver. If you would like to add/delete any content simply type it in the box and click save. You liability waiver will then be automatically updated. </p>
     <div class="row-fluid">
         <div class="waiver_container">
-            <h2 class="heading">Manage Waiver Message</h2>
-                <div class="" style="padding:20px;">
-                    <span id="stripe_error"></span>
-                    <%= form_tag "/save_waiver_text", remote: true, style: "margin-left: 20px;" do %>
-                        <label><b>Title</b></lable>
-                        <p style="width: 85%; margin-top: 14px;">
-                            <%= text_field_tag "title", current_user.front_desk_desc.present? ? current_user.front_desk_desc.title : nil, placeholder: "Enter title" %>
-                        </p>
-
-                        <label><b>Description</b></label><br />
-                        <p><%= text_area_tag 'desc', current_user.front_desk_desc.present? ? current_user.front_desk_desc.description : nil, class: "ckeditor" ,:style=>"width 85%;"%></p>
-
-                        <%= submit_tag "Save", :class=>"btn yellow" %>
-                    <% end %>
-                </div>
-
+          <h2 class="heading">Manage Waiver Message</h2>
+          <div style="padding:20px;">
+            <span id="stripe_error"></span>
+            <%= form_tag "/save_waiver_text", remote: true, style: "margin-left: 20px;" do %>
+              <label><b>Title</b></lable>
+              <p style="width: 85%; margin-top: 14px;">
+                  <%= text_field_tag "title", current_user.front_desk_desc.present? ? current_user.front_desk_desc.title : nil, placeholder: "Enter title" %>
+              </p>
+              <label><b>Description</b></label><br />
+              <p><%= text_area_tag 'desc', current_user.front_desk_desc.present? ? current_user.front_desk_desc.description : nil, class: "ckeditor" ,:style=>"width 85%;"%></p>
+              <%= submit_tag "Save", :class=>"btn yellow" %>
+            <% end %>
+          </div>
         </div>
     </div>
 </div>
 
-
-
-
 <script>
-    $(document).ready(function(){
-        $('.ckeditor').ckeditor();
-    });
+  $(document).ready(function(){
+    $('.ckeditor').ckeditor();
+  });
 </script>

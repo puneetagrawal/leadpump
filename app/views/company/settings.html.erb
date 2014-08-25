@@ -39,88 +39,61 @@
 <div class="container wrapper">
 	<div class="middle_cont_bg">
 	  <div class="row-fluid txt_cent">
-				
-	  			<div class="settings_menu setting_all_btn" >
-	  				<ul>
-	  						<li>
-	  							<input type="submit" class="btn yellow setting_btn home_setting" id = "home_setting"  value="Settings" name="home_setting"/>
-	  						</li>
-	  						<li>
-	  							<input type="submit" class="btn yellow setting_btn fb_logo" id = "fb_logo"  value="Upload Fb Logo" name="fb_logo"/>
-	  						</li>
-	  						<li>
-	  							<input type="submit" class="btn yellow setting_btn account_setting" id = "account_setting"  value="Account Setting" name="account_setting"/>
-	  						</li>
-
-	  						<%if is_vip_allow(current_user)%>
-		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn manage_social" id = "manage_social_invite"  value="Manage Social Invite Messages" name="manage_social"/>
-		  						</li>
-		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn manage_landing" id = "manage_landing"  value="Manage Landing Page", name="manage_landing" />
-		  						</li>
-		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn manage_pos" id = "manage_pos_referral"  value="Manage POS Referral Creation", name="manage_pos" />
-		  						</li>
-		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn online_mall" id = "online_mall"  value="Online Mall", name="online_mall" />
-		  						</li>
-	  						<%end%>
-	  						<!-- <li>
-	  							<input type="submit" class="btn yellow setting_btn" id = "vip_leads"  value="Vip Leads", name="vip_leads" />
-	  						</li> -->
-	  						<li>
-	  							<input type="submit" class="btn yellow setting_btn responder" id = "responder"  value="Responder", name="responder" />
-	  						</li>
-	  						<%if current_user.isCompany%>
-		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn manage_user" id = "manage_user"  value="Manage User", name="manage_user" />
-		  						</li>
-		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn dusr_set" id = "dusr_set"  value="Manage DUSR" name="dusr_set"/>
-		  						</li>
-		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn waiver_text" id = "waiver_text"  value="Manage Guest Pass Waiver Text" name="waiver_text"/>
-		  						</li>
-
-		  						
-	  						<%end%>
-	  						<li>
-	  							<input type="submit" class="btn yellow setting_btn code_gen" id = "code_gen"  value="Generate Lead Form" name="code_gen"/>
-	  						</li>
-
-	  			</ul>
-	  				
-	  			</div>
-	  			<div id = "setting_page" >
+			<div class="settings_menu setting_all_btn" >
+				<ul>
+					<li>
+						<input type="submit" class="btn yellow setting_btn home_setting" id = "home_setting"  value="Settings" name="home_setting"/>
+					</li>
+					<li>
+						<input type="submit" class="btn yellow setting_btn fb_logo" id = "fb_logo"  value="Upload Fb Logo" name="fb_logo"/>
+					</li>
+					<li>
+						<input type="submit" class="btn yellow setting_btn account_setting" id = "account_setting"  value="Account Setting" name="account_setting"/>
+					</li>
+					<%if is_vip_allow(current_user)%>
+						<li>
+							<input type="submit" class="btn yellow setting_btn manage_social" id = "manage_social_invite"  value="Manage Social Invite Messages" name="manage_social"/>
+						</li>
+						<li>
+							<input type="submit" class="btn yellow setting_btn manage_landing" id = "manage_landing"  value="Manage Landing Page", name="manage_landing" />
+						</li>
+						<li>
+							<input type="submit" class="btn yellow setting_btn manage_pos" id = "manage_pos_referral"  value="Manage POS Referral Creation", name="manage_pos" />
+						</li>
+						<li>
+							<input type="submit" class="btn yellow setting_btn online_mall" id = "online_mall"  value="Online Mall", name="online_mall" />
+						</li>
+					<%end%>
+					<li>
+						<input type="submit" class="btn yellow setting_btn responder" id = "responder"  value="Responder", name="responder" />
+					</li>
+					<%if current_user.isCompany%>
+						<li>
+							<input type="submit" class="btn yellow setting_btn manage_user" id = "manage_user"  value="Manage User", name="manage_user" />
+						</li>
+						<li>
+							<input type="submit" class="btn yellow setting_btn dusr_set" id = "dusr_set"  value="Manage DUSR" name="dusr_set"/>
+						</li>
+						<li>
+							<input type="submit" class="btn yellow setting_btn waiver_text" id = "waiver_text"  value="Manage Guest Pass Waiver Text" name="waiver_text"/>
+						</li>
+					<%end%>
+					<li>
+						<input type="submit" class="btn yellow setting_btn code_gen" id = "code_gen"  value="Generate Lead Form" name="code_gen"/>
+					</li>
+				</ul>
+			</div>
+			<div id = "setting_page" >
 				<%=render "home/companyLogo_seting"%>
-			    
-			    <%#if current_user.isCompany%>
-				    <!-- <div class="setting_img_col">
-					    <%#if current_user.picture.present?%>
-				            <%#= image_tag current_user.picture.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
-				        <%#else%>
-				            <img src="/assets/company-logo.png" class="img-polaroid">
-				        <%#end%>
-				        <div class="clear"></div>
-				        <a class="btn yellow submitviplogo">Upload Social Inviter Process Logo</a>
-					    <%#= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
-					      <%#= form.file_field :viplogo, :style =>"display:none" %>
-					    <%# end %>
-					</div> -->
-			    <%#end%>
 		 </div>
 		</div>
 	</div>
-	
 </div>
 <script>
 	$(".btn_active").removeClass("btn_active");
 	$("#home_setting").addClass("btn_active");
 </script>
-<!-- <span class="background_color" id="bg_color_sl" style="background:<%#=@landpage.bg_color%>;display:none;"></span> -->
 <%=render "common_templates/popupContainer"%>
-
 <div id="cancel_sub" class="popup_container">
   <div style="z-index:99999;top:3%">
     <div style="font-size:20px;text-align:center;" id="dltmall" class="small_popup">
