@@ -3769,6 +3769,16 @@ span.tx_rht.heading_txt{
     max-width: 153px;
 }
 
+#setting_page .pos_h3{
+    margin: 9px 0px 0px 10px;
+}
 
+#setting_page .pos_p{
+    margin: 0 34px -50px 12px;
+}
+
+#setting_page .waiver_p{
+    margin: -24px 10px 17px 40px;
+}
 
 

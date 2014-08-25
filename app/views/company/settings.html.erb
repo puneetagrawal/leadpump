@@ -60,7 +60,7 @@
 		  							<input type="submit" class="btn yellow setting_btn manage_landing" id = "manage_landing"  value="Manage Landing Page", name="manage_landing" />
 		  						</li>
 		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn manage_pos" id = "manage_pos_referral"  value="Manage Pos Referral Creation", name="manage_pos" />
+		  							<input type="submit" class="btn yellow setting_btn manage_pos" id = "manage_pos_referral"  value="Manage POS Referral Creation", name="manage_pos" />
 		  						</li>
 		  						<li>
 		  							<input type="submit" class="btn yellow setting_btn online_mall" id = "online_mall"  value="Online Mall", name="online_mall" />
@@ -80,7 +80,7 @@
 		  							<input type="submit" class="btn yellow setting_btn dusr_set" id = "dusr_set"  value="Manage DUSR" name="dusr_set"/>
 		  						</li>
 		  						<li>
-		  							<input type="submit" class="btn yellow setting_btn waiver_text" id = "waiver_text"  value="Manage Waiver Text" name="waiver_text"/>
+		  							<input type="submit" class="btn yellow setting_btn waiver_text" id = "waiver_text"  value="Manage Guest Pass Waiver Text" name="waiver_text"/>
 		  						</li>
 
 		  						
@@ -94,55 +94,21 @@
 	  			</div>
 	  			<div id = "setting_page" >
 				<%=render "home/companyLogo_seting"%>
-			    <%if current_user.isCompany%>
-				    <div class="setting_img_col">
-					    <%if current_user.picture.present?%>
-				            <%= image_tag current_user.picture.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
-				        <%else%>
+			    
+			    <%#if current_user.isCompany%>
+				    <!-- <div class="setting_img_col">
+					    <%#if current_user.picture.present?%>
+				            <%#= image_tag current_user.picture.viplogo.url(:medium), :class=>"img-polaroid", :style=>"width:100%;height:suto;" %>
+				        <%#else%>
 				            <img src="/assets/company-logo.png" class="img-polaroid">
-				        <%end%>
+				        <%#end%>
 				        <div class="clear"></div>
 				        <a class="btn yellow submitviplogo">Upload Social Inviter Process Logo</a>
-					    <%= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
-					      <%= form.file_field :viplogo, :style =>"display:none" %>
-					    <% end %>
-					</div>
-			    <%end%>
-			     <!-- <ul class="settings_menu">
-		        	<%if is_vip_allow(current_user)%>
-			            <li>
-			                <%=link_to "Manage Social Invite Messages", socialMessages_path, :class=> "btn yellow" %>
-			            </li>
-			             <li>
-			                <%=link_to "Manage Landing Page", landpage_path, :class=> "btn yellow"%>
-			            </li>
-			             <li>
-			                <%=link_to "Manage Pos Referral Creation", "javascript:void(0)", :class=> "btn yellow vipseting"%>
-			            </li>
-			            <li>
-			                <%=link_to "Online Mall", onlinemall_index_path,:class=> "btn yellow"%>
-			            </li>
-			            
-		            <%end%>
-		            <li>
-		                <%=link_to "Vip Leads", vipleads_path(), :class=> "btn yellow"%>
-		            </li>
-					<li>
-						<%=link_to "Responder", autoresponder_path, :class=> "btn yellow"%>
-					</li>
-					<%if current_user.isCompany%>
-						<li>
-							<%=link_to "Manage User", company_new_path, :class=> "btn yellow"%>
-						</li>
-					<%end %>
-
-
-		            <%#if check_trial_period(current_user)%>
-		            	<li>
-			                <%#=link_to "Cancel your trial", "javascript:void(0)", :class=> "btn yellow cancel_plan"%>
-			            </li>
-		            <%#end%>
-		        </ul> -->
+					    <%#= form_for @picture, :url => '/createvippic',:html => { :id => "viplogo" } do |form| %>
+					      <%#= form.file_field :viplogo, :style =>"display:none" %>
+					    <%# end %>
+					</div> -->
+			    <%#end%>
 		 </div>
 		</div>
 	</div>
