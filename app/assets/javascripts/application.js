@@ -243,9 +243,9 @@ $(document).ready(function () {
         handle_feed_row(leadId, complete_feed);
     });
 
-     $(document).on("change", ".leadSource select", function () {
-        saveLeadSource($(this).parent().attr('id'), $(this).val());
-    });
+    //  $(document).on("change", ".leadSource select", function () {
+    //     saveLeadSource($(this).parent().attr('id'), $(this).val());
+    // });
 
     setFooterPostion();
 
@@ -516,12 +516,12 @@ function saveLeadStatus(id, status) {
     });
 }
 
-function saveLeadSource(id, source) {
-    id = id.split("_")[1]
-    url = '/leads/save_lead_source';
-    $.post(url, {leadId: id, source: source}, function (data) {
-    });
-}
+// function saveLeadSource(id, source) {
+//     id = id.split("_")[1]
+//     url = '/leads/save_lead_source';
+//     $.post(url, {leadId: id, source: source}, function (data) {
+//     });
+// }
 
 // function alterplantype(id){
 // 	id = id.split("_")[1]

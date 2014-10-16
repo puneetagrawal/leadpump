@@ -168,7 +168,7 @@ Leadpump::Application.routes.draw do
 
   resources :leads do
     collection do 
-      post 'save_lead_source'
+      # post 'save_lead_source'
     end
   end
   

@@ -136,14 +136,14 @@ def saveleadstatus
   render json:msg
 end
 
-def save_lead_source
-  lead = Lead.where(id: params[:leadId]).last
-  if lead.present?
-    lead.lead_source = params[:source]
-    lead.save
-  end
-  render json: {"status"=>"success"}
-end
+# def save_lead_source
+#   lead = Lead.where(id: params[:leadId]).last
+#   if lead.present?
+#     lead.lead_source = params[:source]
+#     lead.save
+#   end
+#   render json: {"status"=>"success"}
+# end
 
 def leadsearchfilter
   hash = Lead.fetchLeadList(current_user) 
