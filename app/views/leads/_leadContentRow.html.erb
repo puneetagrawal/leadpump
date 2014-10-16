@@ -2,7 +2,9 @@
 <td class="big_wd"><%=lead.fullname%></td>
 <td><%=lead.phone%></td>
 <!-- <td><%#=lead.email%></td> -->
-<td><%=lead.lead_source%></td>
+<td class="leadSource leadAction" id="source_<%=lead.id%>">
+  <%=render "change_lead_source", :lead=>lead%>
+</td>
 <!-- <td><%#=lead.goal%></td> -->
 <td class="leadActive leadAction" id="status_<%=lead.id%>">
   <%=render "common_templates/changeStatus", :lead=>lead, :user=>nil%>

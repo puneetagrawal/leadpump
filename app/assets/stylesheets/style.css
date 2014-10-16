@@ -2409,6 +2409,14 @@ header.guest_header .usernav li a:hover{
     font-size: 10px;
 }
 
+.leadSource select {
+    height: 34px;
+    margin-bottom: -2px;
+    padding: 2px 0 0;
+    width: 93px;
+    font-size: 10px;
+}
+
 .leadActive span, .userActive span {
     cursor: pointer;
 }

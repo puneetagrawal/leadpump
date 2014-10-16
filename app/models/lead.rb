@@ -20,6 +20,8 @@ class Lead < ActiveRecord::Base
   validates :lead_source, :presence => true
   number_regex = /\d[0-9]\)*\z/
   
+
+  SOURCE = [['LEADPUMP POS', "LEADPUMP POS"], ['LEADPUMP Opt in', "LEADPUMP Opt in"], ['Member referral', "Member referral"], ['Telephone inquiry', "Telephone inquiry"], ['Website', "Website"], ['Walk in', "Walk in"], ['Direct mail', "Direct mail"], ['Radio', "Radio"], ['T.V.', "T.V."], ['Other', "Other"]]
   #default_scope :order => "created_at DESC"
 
 

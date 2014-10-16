@@ -166,7 +166,11 @@ Leadpump::Application.routes.draw do
   match '/add_notes' => 'leads#add_notes'
   match '/get_sorted_list' => 'leads#get_sorted_list'
 
-  resources :leads 
+  resources :leads do
+    collection do 
+      post 'save_lead_source'
+    end
+  end
   
 
   match 'appointment/new' => 'appointments#new'
@@ -230,7 +234,7 @@ Leadpump::Application.routes.draw do
   #match '/auth/:provider/callback' => 'vipleads#new'
 
 
-  match '/insert_prospect' => 'vipleads#insert_prospect'
+  # match '/insert_prospect' => 'vipleads#insert_prospect'
 
 
   # match "/stripe_events", :to => "events#stripe_events", :as => :stripe_events, :via => :post
