@@ -128,13 +128,13 @@
         sec_token = GmailFriend.where(:email=>email,:user_id=>current_user.id).last
         sec_token = sec_token.present? ? sec_token.secret_token : ''
         url = VipLead.fetchgmaillink(token,sec_token, current_user)
-        Emailer.gmail_referral_mail(email, token, emailMessage, sec_token, subject, url,session[:email_user]).deliver
+        Emailer.delay.gmail_referral_mail(email, token, emailMessage, sec_token, subject, url,session[:email_user])
         sents_count += 1
         Stats.saveEsents(current_user.id, sents_count, email)
       end
     end
     if session[:email_user].present?
-      Emailer.sendrewards(session[:email_user], company.company_name, company.email, token).deliver
+      Emailer.delay.sendrewards(session[:email_user], company.company_name, company.email, token)
     end
     message = {"msg"=> "successfully sent invitations."}
     render json: message
