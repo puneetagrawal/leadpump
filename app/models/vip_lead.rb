@@ -31,12 +31,13 @@ class VipLead < ActiveRecord::Base
   end
 
   def self.saveLead(viplead, user, associate)
-    viplead.associate = associate
-    viplead.lead_source = "LEADPUMP p.o.s."
-    viplead.save
+    viplead.update_attributes(:associate=> associate, :lead_source=> "LEADPUMP p.o.s.")
+    logger.debug(">>>>>>>>>>>>>>>>>>")
+    logger.debug(viplead.id)
+    logger.debug(">>>>>>>>>>>>>>>>>>")
     LeadNotes.create(:lead_id=>viplead.id,:notes=>"",:time_stam=>DateTime.now)
     NewsFeed.create(:user_id=>user.id, :lead_id=>viplead.id, :description=>"New POS Lead", :feed_date=>Date.today, :action=>"Start")
-    user_lead = UserLeads.create(:user_id => user.id, :lead_id => viplead.id)
+    UserLeads.create(:user_id => user.id, :lead_id => viplead.id)
     user.saveLeadCount
   end
 
