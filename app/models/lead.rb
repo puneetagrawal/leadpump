@@ -189,6 +189,7 @@ def savestatus
 end
 
 def insert_prospect_abc
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
   @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
   @basic_auth=["leadpump.com","sh1kq5Da95W4"]
   @message = {:firstName=> self.name, :lastName=> self.lname,:gender=>self.gender}
@@ -210,6 +211,7 @@ def insert_prospect_abc
    end
  rescue Exception => e
  end
+ logger.debug(">>>>>>>>>>>>>>>>>>>>>>dddddd>>>>>>>>>>>>>>>>>>>>>>")
 end
 
 end
