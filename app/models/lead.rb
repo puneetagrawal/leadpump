@@ -7,7 +7,8 @@ class Lead < ActiveRecord::Base
 
   belongs_to :user
   has_many :news_feeds
-  after_create :insert_prospect_abc, :savestatus
+  after_create :savestatus
+  after_commit :insert_prospect_abc, on: :create
   #after_save :savestatus if self.token.blank?
 
   has_many :appointments , :dependent => :destroy
@@ -188,8 +189,9 @@ def savestatus
   self.save
 end
 
+private
 def insert_prospect_abc
-  logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  logger.debug(">>>>>>>>>>>>>>>>>>>>>>sssssssss")
   @wsdl="https://webservice.abcfinancial.com/wsdl/Prospect.wsdl"
   @basic_auth=["leadpump.com","sh1kq5Da95W4"]
   @message = {:firstName=> self.name, :lastName=> self.lname,:gender=>self.gender}
@@ -211,9 +213,9 @@ def insert_prospect_abc
    end
  rescue Exception => e
  end
- logger.debug(">>>>>>>>>>>>>>>>>>>>>>dddddd>>>>>>>>>>>>>>>>>>>>>>")
+ logger.debug(">>>>>>>>>>>>>>>>>ddddddddd>>>>>sssssssss")
 end
-
+handle_asynchronously :insert_prospect_abc
 end
 
 
