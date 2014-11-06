@@ -77,5 +77,5 @@ group :staging do
 end
 
 gem 'savon'
-gem 'rack-cors', :require => 'rack/cors'
+# gem 'rack-cors', :require => 'rack/cors'
 # gem 'globalize', '~> 3.1.0'
