@@ -2,7 +2,7 @@
     <h2 class="heading headmsg">Create Your Custom Code For Lead Generation</h2>
     <span class="ext_code">
     <%url = @img.present? ? "http://#{SERVER_URL}#{@img.avatar.url(:medium)}" : ''%>
-     <div style="width: 372px; height: 280px; display: block; margin: 3% 0px 0px 30%; border: 1px solid rgb(238, 238, 238);background: url(<%=url%>) no-repeat;background-size: cover;">
+     <div style="width: 372px; height: 280px; display: block; margin: 3% 0px 0px 30%; border: 1px solid rgb(238, 238, 238);background: url(<%=url%>) no-repeat;background-size: cover;" id ="html_cd_gn" class="main_code_div">
      	<div style="float: right; padding-top: 17px; padding:-left:8px; padding-right: 8px; width: 60%; padding-left:17px;
 background: none repeat scroll 0% 0% rgb(238, 238, 238); margin-right: 11px;
 padding-bottom: 10px; margin-top: 41px;">
@@ -15,23 +15,23 @@ width: 45%; border: 1px solid #ccc;" id="name" name="name" value="">
 
      		<div style="width:100%; float:left; margin-bottom:10px;">
      		<label style="color: #666666; float: left; font-size: 12px; margin-bottom: 0px; margin-right: 20px; width: 35%; 
-font-family: arial;">First Name</label>
+font-family: arial;">Last Name</label>
      		<input type="text" style="float: left; margin-bottom:0; font-size: 13px; height: 17px;
-width: 45%; border: 1px solid #ccc;" id="name" name="name" value="">
+width: 45%; border: 1px solid #ccc;" id="lname" name="lname" value="">
+     	</div>
+
+     		<div style="width:100%; float:left; margin-bottom:10px;">
+     		<label style="color: #666666; float: left; font-size: 12px; margin-bottom: 0px; margin-right: 20px; width: 35%; 
+font-family: arial;">Email</label>
+     		<input type="text" style="float: left; margin-bottom:0; font-size: 13px; height: 17px;
+width: 45%; border: 1px solid #ccc;" id="email" name="email" value="">
      	</div>
 
      		<div style="width:100%; float:left; margin-bottom:10px;">
      		<label style="color: #666666; float: left; font-size: 12px; margin-bottom: 0px; margin-right: 20px; width: 35%; 
 font-family: arial;">First Name</label>
      		<input type="text" style="float: left; margin-bottom:0; font-size: 13px; height: 17px;
-width: 45%; border: 1px solid #ccc;" id="name" name="name" value="">
-     	</div>
-
-     		<div style="width:100%; float:left; margin-bottom:10px;">
-     		<label style="color: #666666; float: left; font-size: 12px; margin-bottom: 0px; margin-right: 20px; width: 35%; 
-font-family: arial;">First Name</label>
-     		<input type="text" style="float: left; margin-bottom:0; font-size: 13px; height: 17px;
-width: 45%; border: 1px solid #ccc;" id="name" name="name" value="">
+width: 45%; border: 1px solid #ccc;" id="phone" name="phone" value="">
      	</div>
 <div id="lsubmit" class="lsubmit" style="float: left; text-align: center; width: 50%;"><input type="button" style="display: inline-block; width: 60% !important; height: 26px !important; float: none;" name="submit" value="Submit" class="form_input"></div>
      </div>
