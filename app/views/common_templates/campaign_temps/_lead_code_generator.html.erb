@@ -2,6 +2,7 @@
     <h2 class="heading headmsg">Create Your Custom Code For Lead Generation</h2>
     <span class="ext_code">
     <%url = @img.present? ? "http://#{SERVER_URL}#{@img.avatar.url(:medium)}" : ''%>
+     <%=hidden_field_tag :token, current_user.token%>
      <div style="width: 372px; height: 280px; display: block; margin: 3% 0px 0px 30%; border: 1px solid rgb(238, 238, 238);background: url(<%=url%>) no-repeat;background-size: cover;" id ="html_cd_gn" class="main_code_div">
      	<div style="float: right; padding-top: 17px; padding:-left:8px; padding-right: 8px; width: 60%; padding-left:17px;
 background: none repeat scroll 0% 0% rgb(238, 238, 238); margin-right: 11px;
