@@ -5,7 +5,7 @@ class NewsFeed < ActiveRecord::Base
   belongs_to :lead
 
   def self.get_today_news(user, date)
-    feeds = NewsFeed.includes(:lead).where("leads.id IS NOT NULL").where(:user_id=>user.id, :feed_date=>date).where('action = ? or action = ?',"Start", "Finish")
+    feeds = NewsFeed.includes(:lead).where("leads.id IS NOT NULL").where('user_id = ? and feed_date >= ?', user.id, date - 1).where('action = ? or action = ?',"Start", "Finish")
     return feeds
   end
 

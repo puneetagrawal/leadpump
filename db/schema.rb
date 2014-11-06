@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(:version => 20141018092144) do
     t.string   "status"
     t.integer  "no_of_days"
     t.string   "associate"
-    t.boolean  "subscribe",          :default => true
+    t.boolean  "subscribe",          :default => false
     t.string   "lead_token"
     t.string   "barcode"
     t.string   "member_id"
@@ -380,14 +380,6 @@ ActiveRecord::Schema.define(:version => 20141018092144) do
     t.integer  "cheque"
   end
 
-  create_table "send_ivitation_to_gmail_friends", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "social_messages", :force => true do |t|
     t.text     "facebookMessage"
     t.text     "twitterMessage"
@@ -397,18 +389,6 @@ ActiveRecord::Schema.define(:version => 20141018092144) do
     t.datetime "updated_at",      :null => false
     t.string   "fbsubject"
     t.string   "gmailsubject"
-  end
-
-  create_table "stats", :force => true do |t|
-    t.string   "source",      :default => "email"
-    t.string   "location",    :default => "Default Location"
-    t.integer  "e_sents"
-    t.integer  "e_oppened"
-    t.integer  "e_views"
-    t.integer  "e_converted"
-    t.integer  "user_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "subscriptions", :force => true do |t|

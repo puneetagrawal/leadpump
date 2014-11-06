@@ -16,14 +16,14 @@ class CompanyController < ApplicationController
   respond_to :json
   def save_external_lead
     user = User.where(:token=>params[:token]).last
-    lead = Lead.new(params[:lead])
+    lead = Lead.new(name: params[:name], lname: params[:lname],email: params[:email], phone: params[:phone], lead_source: params[:lead_source])
     if !user.present?
       message = "Please Enter Valid Fiels"
     elsif lead.save
       user_lead = UserLeads.new(:user_id => user.id, :lead_id => lead.id)
       user_lead.save
       NewsFeed.create(:user_id=>user.id, :lead_id=>lead.id, :description=>"New External Entry Lead", :feed_date=>Date.today, :action=>"Start")
-      message = ""
+      message = "Thanks For registration"
     else
       message = lead.errors.full_messages[0].humanize
     end
