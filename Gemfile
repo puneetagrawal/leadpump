@@ -40,8 +40,8 @@ gem "netrc", "~> 0.7.7"
 gem "httparty"
 # gem "omnicontacts"
 gem "omnicontacts", "~> 0.3.5", :git => "git://github.com/Diego81/omnicontacts.git"
-# gem 'omniauth'
-# gem "omniauth-google-oauth2"
+gem 'omniauth'
+gem "omniauth-google-oauth2"
 gem 'remotipart', '~> 1.2'
 gem 'delayed_job_active_record'
 

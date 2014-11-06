@@ -86,8 +86,6 @@ def self.fetchAppointmentData(lead_id)
 end
 
 
-
-
 def self.fetchLeadList(user)
 	leads = []
 	userList = []
